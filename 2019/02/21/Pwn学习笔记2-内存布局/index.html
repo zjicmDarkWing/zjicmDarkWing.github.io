@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记2:内存布局 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="0x01 内存布局大部分Linux：                                                                                                             .text 汇编代码 .data 有初始值的数据 .bss  无初始值的数据 heap 堆 shared object 共享对象区域(libc.s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记2:内存布局">
+<meta property="og:url" content="https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="0x01 内存布局大部分Linux：                                                                                                             .text 汇编代码 .data 有初始值的数据 .bss  无初始值的数据 heap 堆 shared object 共享对象区域(libc.s">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022101.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022102.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022103.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022104.jpg">
+<meta property="article:published_time" content="2019-02-21T07:19:12.000Z">
+<meta property="article:modified_time" content="2019-02-21T07:20:32.817Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022101.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记2:内存布局</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记2:内存布局</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-21T07:19:12.000Z" itemprop="datePublished" class="page-time">
+  2019-02-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x01-内存布局"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x01 内存布局</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#大部分Linux："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">大部分Linux：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实际数值大概像这样："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">实际数值大概像这样：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#补足"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">补足</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NX、ASLR、PIE"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">NX、ASLR、PIE</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RELRO"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">RELRO</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记2-内存布局"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记2:内存布局</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-21 15:19:12" datetime="2019-02-21T07:19:12.000Z"  itemprop="datePublished">2019-02-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="0x01-内存布局"><a href="#0x01-内存布局" class="headerlink" title="0x01 内存布局"></a>0x01 内存布局</h1><h2 id="大部分Linux："><a href="#大部分Linux：" class="headerlink" title="大部分Linux："></a>大部分Linux：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>.text 汇编代码</li>
+<li>.data 有初始值的数据</li>
+<li>.bss  无初始值的数据</li>
+<li>heap 堆</li>
+<li>shared object 共享对象区域(libc.so之类的)</li>
+<li>stack 栈</li>
+<li>kernel-area 内核区域</li>
+</ul>
+<h2 id="实际数值大概像这样："><a href="#实际数值大概像这样：" class="headerlink" title="实际数值大概像这样："></a>实际数值大概像这样：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li><p>gdb-peda/pwndbg 下可以直接使用vmmap</p>
+</li>
+<li><p>也可以通过<code>cat /proc/$PID/maps</code></p>
+</li>
+<li><p>每行有各种属性（Read,Write,eXec）</p>
+<ul>
+<li>p是private mapping，变更不会反映在文件上</li>
+<li>地址是0x1000的倍数，这个单位被称为”页”</li>
+</ul>
+</li>
+<li><p>进程启动时，ELF加载确保这样的内存布局</p>
+<ul>
+<li>使用<code>mmap()</code>进行确保，并且通过<code>sbrk()</code>来做自动补齐</li>
+<li>进程启动后，进程自身也可以使用<code>mmap()</code>来进行追加确保</li>
+</ul>
+</li>
+</ul>
+<h2 id="补足"><a href="#补足" class="headerlink" title="补足"></a>补足</h2><ul>
+<li>这里是虚拟内存，与物理内存存在差异</li>
+<li>物理内存和虚拟内存都与内核相关联，这是一种被称为MMU(Memory Management Unit)的机制</li>
+<li>用户程序只能看到虚拟内存，并不需要考虑物理内存</li>
+</ul>
+<h2 id="NX、ASLR、PIE"><a href="#NX、ASLR、PIE" class="headerlink" title="NX、ASLR、PIE"></a>NX、ASLR、PIE</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这个例子有0x0804XXXX和0xfXXXXXXX两种类型的起始地址，前者在堆之外每次启动不会变化，后者每次启动都会发生改变，这被称为ASLR(Address space layout randomization，地址空间配置随机加载)。</p>
+<p>对前者也进行随机化的技术叫做PIE(position-independent executable, 地址无关可执行文件).</p>
+<p>这个例子中stack，mapped之类的很多地方都是rwx，也就是说，可以在这些内存区域进行读取，写入和执行。</p>
+<p>但是，这样的话安全性较差，因此NX(DEP)会使得text区域没有执行权限</p>
+<h2 id="RELRO"><a href="#RELRO" class="headerlink" title="RELRO"></a>RELRO</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>使用外部库(共享对象，*.so)时，他们会映射到地址空间的各个位置。</p>
+<p>如果每次都计算这些库提供的函数地址，这不太方便，计算一次后保存到一个映射表会很方便后续使用。</p>
+<p>这个表被称为GOT(Global Offset Table，全剧映射表)，它存在于地址固定的区域。</p>
+<p>GOT实际上就在这里，但如果它是可写的，某些情况下如果它被重写，这个表也就变得不值得信任了。</p>
+<p>因此，我们会使用一种叫做RELRO(Full-RELRO)的技术，在启动时计算所有外部库的所有函数地址，写入GOT中，然后使GOT只读。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-02-21T07:20:32.817Z" itemprop="dateUpdated">2019-02-21 15:20:32</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记2:内存布局》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记2:内存布局》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记2:内存布局》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/22/malloc%E5%8F%8Afree%E7%AE%97%E6%B3%95/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">malloc及free算法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记1:基本环境及概念</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记2:内存布局》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记2:内存布局》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记2:内存布局》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD7ElEQVR42u3ay27bQBAEQP3/T8dAbgFMqntmKTtA8WRAErUsHdrzeL3i68/fa/Pq/XX1zvv7X302OdXqwoEDBw4cwaMmB03+vrrD/WMkj3d15pwmOiEOHDhw4DjE0cZYG8Dt3fLQvX/4/Blx4MCBA8fnOZKH2YR08u15qOPAgQMHjt/PkZdG7bHuz5PfHwcOHDhw/B6OfCA0g0jmO/sx1eydOHDgwIHjLEe70PA//v3gfgcOHDhw4CiX2PKFtlnLr119aNcpiqfDgQMHDhxrjuTQ7epA0ubL8262ZtFSDg+NAwcOHDiCgVO+uNA2+9qWYvIAp/4hwIEDBw4cpziSEM1p8sfYFHXRUkK5VIcDBw4cOE5xtIGXHDQv0mZHb3+SPP5x4MCBA8eeYxa6bSNvUyi2cJsxGA4cOHDgeIKjbcDNlhhe8dW2Dtt/GoYTORw4cODAccuRryPkbcR8pWBWYrU/T3F/HDhw4MCx4Ng0406VXnkZ2a5ZtIUoDhw4cODYc+wPMcz2sjicwSXLE3WXFAcOHDhwjPpys5KsZZ31L5N3JnGOAwcOHDg+w9Euk923/FqCpLXXLkOsghwHDhw4cIw48hWEJHTzYGuDNikRZ98evRUHDhw4cJSZ0i6xnYrVvIbKG45tXfbPFA4HDhw4cCw48rfmhdPsPvuh0SMtQhw4cODA8QBHe5TZuGhGuefDgQMHDhzPcbRBlRO090+GWO2rdQzjwIEDB44RxybA9stqs+bjqW/BgQMHDhzPcbRjnrNRdzbU85U4HDhw4MDxBEcbnJsYy+O8HSm1w603axY4cODAgWPB0Tb12tCdjZHa1YdkIS9aaMCBAwcOHGuOWcsvefgcul07aH+GtkzFgQMHDhwbjn3stUXdrMzL69H8VN98CgcOHDhwrDnygq24XRmoeTBvRlnDuhYHDhw4cJQcecmUN9raONyXfO31porFgQMHDhxrjlPl0GwRoV2bSyCGzUccOHDgwHGIIx/e5KsGbaHVloUJUFuU4sCBAweOUxx50LZxmK8mtBAJdz7EwoEDBw4cZzna3GnLqlkR2Ib0rMV5WcLhwIEDB44Rx761l495Ng3HWXk5W8XAgQMHDhwbjs0qwObalHB5ZNbjKBw4cODAsebIr6TYm8VkOwB74v44cODAgeMsRx6K7YrDbHSUF2yb0VRU0eLAgQMHjgVHvki3D8jZCCp/9UCvFAcOHDhwfISjLe3axYhZC3I2uLr8LA4cOHDg+FGOfNEtie287Th7fxTPOHDgwIHjEMdmiSFHaR/pvuWXhHQb9jhw4MCBY8/RLjS0g5y2VGsfKa+/8h8MBw4cOHCMOL4A8XBeYCIqTX0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

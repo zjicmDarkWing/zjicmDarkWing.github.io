@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记9:栈溢出及NX | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="漏洞类型及攻略方法全写出来不太可能，图示大概这样：                                                                                                             Stack以x86环境为例 每个进程在内存区域底部都有一个stack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记9:栈溢出及NX">
+<meta property="og:url" content="https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="漏洞类型及攻略方法全写出来不太可能，图示大概这样：                                                                                                             Stack以x86环境为例 每个进程在内存区域底部都有一个stack">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040101.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040102.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040103.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040104.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040105.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040106.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040107.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040204.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040205.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040206.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040207.jpg">
+<meta property="article:published_time" content="2019-04-02T06:44:47.000Z">
+<meta property="article:modified_time" content="2019-04-02T06:46:00.268Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040101.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记9:栈溢出及NX</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记9:栈溢出及NX</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-02T06:44:47.000Z" itemprop="datePublished" class="page-time">
+  2019-04-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#漏洞类型及攻略方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">漏洞类型及攻略方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Stack"><span class="post-toc-number">2.</span> <span class="post-toc-text">Stack</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#每个进程在内存区域底部都有一个stack"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">每个进程在内存区域底部都有一个stack</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#它与C语言函数密切相关"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">它与C语言函数密切相关</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#栈溢出"><span class="post-toc-number">3.</span> <span class="post-toc-text">栈溢出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对策及解决方法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">对策及解决方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#对策-Stack不可执行-NX"><span class="post-toc-number">4.</span> <span class="post-toc-text">对策 - Stack不可执行(NX)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如果stack和heap不能执行就太好了"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">如果stack和heap不能执行就太好了</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#考虑绕过NX"><span class="post-toc-number">5.</span> <span class="post-toc-text">考虑绕过NX</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题点"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">问题点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ret2plt"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">ret2plt</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记9-栈溢出及NX"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记9:栈溢出及NX</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-02 14:44:47" datetime="2019-04-02T06:44:47.000Z"  itemprop="datePublished">2019-04-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="漏洞类型及攻略方法"><a href="#漏洞类型及攻略方法" class="headerlink" title="漏洞类型及攻略方法"></a>漏洞类型及攻略方法</h1><p>全写出来不太可能，图示大概这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><p>以x86环境为例</p>
+<h2 id="每个进程在内存区域底部都有一个stack"><a href="#每个进程在内存区域底部都有一个stack" class="headerlink" title="每个进程在内存区域底部都有一个stack"></a>每个进程在内存区域底部都有一个stack</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>上半部分是在32位机器中运行32位程序</li>
+<li>下半部分是在64位机器中运行32位程序</li>
+</ul>
+<h2 id="它与C语言函数密切相关"><a href="#它与C语言函数密切相关" class="headerlink" title="它与C语言函数密切相关"></a>它与C语言函数密切相关</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main(void)&#123; </span><br><span class="line">	int a, b;</span><br><span class="line">	..</span><br><span class="line">	func(a, b); ..</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br><span class="line">void func(int a, int b)&#123; </span><br><span class="line">	int x, y;</span><br><span class="line">	..</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如，调用这个函数时stack状态如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>ESP/EBP不容易理解，这里解释一下</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>ESP寄存器始终指向栈顶</li>
+<li>EBP寄存器始终指向栈底</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>EBP-0x8能偶访问本地变量2</li>
+<li>EBP-0x4能够访问本地变量1</li>
+<li>EBP+0x8能够访问参数1</li>
+<li>EBP+0xC能够访问参数2</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>调用原函数也有相同的帧并保存EBP寄存器，当函数被调用时，EBP会以新的帧为基础更新。因此，调用原函数的帧暂时保存到stack中</p>
+<h1 id="栈溢出"><a href="#栈溢出" class="headerlink" title="栈溢出"></a>栈溢出</h1><h2 id="对策及解决方法"><a href="#对策及解决方法" class="headerlink" title="对策及解决方法"></a>对策及解决方法</h2><p> 首先来看经典问题</p>
+<ul>
+<li><p>曾经，stack和heap都是有X权限的</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040107.jpg" alt=""></p>
+</li>
+<li><p>BOF:buffer overflow</p>
+<ul>
+<li><p>写入数据超出区域</p>
+</li>
+<li><p>覆盖写入后续区域</p>
+</li>
+<li><p>例如这段代码：</p>
+</li>
+<li><pre><code>int main(void){ 
+    int a, b;
+    ..
+    func(a, b); 
+    ..
+    return 0; 
+}
+void func(int a, int b){ 
+    char buf1[4];
+    char buf2[4];
+    strcpy(buf2,&quot;AAAABBBB&quot;);
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040108.jpg)</span><br><span class="line"></span><br><span class="line">- 如果用户可以输入任意值，会发生什么？</span><br><span class="line"></span><br><span class="line">  - 如果没有size限制，就可以任意进行覆盖</span><br><span class="line"></span><br><span class="line">  - 甚至可以指定返回地址</span><br><span class="line"></span><br><span class="line">  - 例如这段代码：</span><br><span class="line"></span><br><span class="line">  -</span><br></pre></td></tr></table></figure>
+int main(void){ 
+    int a;
+    char s[256];
+    ..
+    read(stdin, s, 256); 
+    func(a, s);
+    ..
+    return 0; 
+}
+void func(int a, char* s){ 
+    char buf1[4];
+    char buf2[4]; 
+    strcpy(buf2, s);
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040109.jpg)</span><br><span class="line"></span><br><span class="line">- 添加shellcode</span><br><span class="line"></span><br><span class="line">  - 如果Evil Return addr指向shellcode</span><br><span class="line"></span><br><span class="line">    - 那么返回前会执行shellcode并执行shell(&#x2F;bin&#x2F;sh)</span><br><span class="line">    - 可以执行任意代码</span><br><span class="line"></span><br><span class="line">    ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040110.jpg)</span><br><span class="line"></span><br><span class="line">## 1-猜测地址</span><br><span class="line"></span><br><span class="line">- stack地址是动态的，取决于环境</span><br><span class="line"></span><br><span class="line">  - 如何让它到达shellcode</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040111.jpg)</span><br><span class="line"></span><br><span class="line">- 可以略微转移</span><br><span class="line"></span><br><span class="line">  - nop-sled</span><br><span class="line">    - nop &#x3D; 0x90(空指令)</span><br><span class="line">    - 尽可能多的拼接</span><br><span class="line">    - 如果到达nop-sled的某个地方，shellcode将自动执行</span><br><span class="line"></span><br><span class="line">- 多次尝试</span><br><span class="line"></span><br><span class="line">  - brute force </span><br><span class="line">    - 如果不知道地址，那么可以尝试所有的可能</span><br><span class="line">    - 结合使用nop-sled可以减少尝试次数</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040112.jpg)</span><br><span class="line"></span><br><span class="line">## 2-溢出量的问题</span><br><span class="line"></span><br><span class="line">- 考虑不能过多溢出的情况</span><br><span class="line"></span><br><span class="line">  - nop-sled无法准备好(或者太短了)</span><br><span class="line">    - 不能猜测地址</span><br><span class="line"></span><br><span class="line">- brute force需要太长时间</span><br><span class="line"></span><br><span class="line">  - 如果运气好的话，能够执行shellcode</span><br><span class="line">  - 实践中很少会成功</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040201.jpg)</span><br><span class="line"></span><br><span class="line">- 使用保存栈地址的ESP比较好</span><br><span class="line"></span><br><span class="line">- ret2esp</span><br><span class="line"></span><br><span class="line">  - 但是，如果代码中没有jmp esp或者call esp就很糟糕</span><br><span class="line">  - 实际上很可能找不到</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040202.jpg)</span><br><span class="line"></span><br><span class="line">## 3-溢出量的问题</span><br><span class="line"></span><br><span class="line">- 只能够少量溢出的情况</span><br><span class="line"></span><br><span class="line">  - nop-sled无法构造</span><br><span class="line">  - 甚至连填充shellcode都不够</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019040203.jpg)</span><br><span class="line"></span><br><span class="line">- 可以使用较短的代码来读取后面更多内容</span><br><span class="line"></span><br><span class="line">  - Stager	</span><br><span class="line"></span><br><span class="line">    - 通过溢出写入较短的汇编代码</span><br><span class="line">    - 先运行这部分代码，读取其他shellcode</span><br><span class="line">    - 通过读取的内容来控制程序运行流程</span><br><span class="line"></span><br><span class="line">  - 具体大概像这样( 只有17个byte)：</span><br><span class="line"></span><br><span class="line">    -</span><br></pre></td></tr></table></figure>
+  push byte 0x3 ; eax = NR_read pop eax
+  push byte 0x4 ; ebx = fd
+  pop ebx
+  push byte 0xff; edx = size pop edx
+  call next
+  next:
+  pop ecx ; ecx = buf(=ret_addr) int 0x80 ; read(fd, buf, size)</code></pre><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040204.jpg" alt=""></p>
+</li>
+<li><p>stager的优点</p>
+<ul>
+<li>使用Shellcode时，目的是首先执行Stager</li>
+<li>如果Stager移动，Shellcode也会移动</li>
+<li>因为它很短，很容易绕过限制</li>
+<li>可以轻松更改后续shellcode</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="对策-Stack不可执行-NX"><a href="#对策-Stack不可执行-NX" class="headerlink" title="对策 - Stack不可执行(NX)"></a>对策 - Stack不可执行(NX)</h1><h2 id="如果stack和heap不能执行就太好了"><a href="#如果stack和heap不能执行就太好了" class="headerlink" title="如果stack和heap不能执行就太好了"></a>如果stack和heap不能执行就太好了</h2><ul>
+<li><p>这就是NX(No eXecute / Never eXecute)</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040205.jpg" alt=""></p>
+</li>
+<li><p>有各种实现，例如NX比特位，PaX，Exec Shield(Redhat)等</p>
+<ul>
+<li>硬件实现或软件实现</li>
+</ul>
+</li>
+<li><p>结果都是让stack之类不可执行</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040206.jpg" alt=""></p>
+</li>
+</ul>
+<h1 id="考虑绕过NX"><a href="#考虑绕过NX" class="headerlink" title="考虑绕过NX"></a>考虑绕过NX</h1><ul>
+<li>该怎么做</li>
+<li>(例)创建可写的固定地址，编写shellcode并执行<ul>
+<li>通过mmap或者mprotect获取RWX权限的内存区域</li>
+<li>在那里写入shellcode并返回</li>
+</ul>
+</li>
+</ul>
+<h2 id="问题点"><a href="#问题点" class="headerlink" title="问题点"></a>问题点</h2><ol>
+<li>如何调用到mmap/mprotect？</li>
+<li>通过溢出如何写入到那里<ul>
+<li>溢出是在栈向下写入的攻击</li>
+<li>不能够反向写入</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="ret2plt"><a href="#ret2plt" class="headerlink" title="ret2plt"></a>ret2plt</h2><ul>
+<li>让栈的状态，在函数调用的瞬间是相同的(非常重要的概念)</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-02T06:46:00.268Z" itemprop="dateUpdated">2019-04-02 14:46:00</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/&title=《Pwn学习笔记9:栈溢出及NX》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/&title=《Pwn学习笔记9:栈溢出及NX》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记9:栈溢出及NX》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/03/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-PLT-GOT%E4%B8%8Eret2plt/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记10:PLT,GOT与ret2plt</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记:总结01</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/&title=《Pwn学习笔记9:栈溢出及NX》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/&title=《Pwn学习笔记9:栈溢出及NX》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记9:栈溢出及NX》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD50lEQVR42u3aSU4DQRAEQP//0+YK8kJmVQ+LFD4hbM9MB4ekltstft1fvDbvJp/8/PtXT/X43fffOvDCgQMHDhyjo+YHTh40uW/7nO8h8j8JDhw4cOC4giM/0gbrVBw+fmsWujhw4MCB4y9wJFjtJ/PYzv8AOHDgwIHjv3AkAZyUVbNGZB7POHDgwIHjdzmSwyRRmhyybfa1ZdsP9Upx4MCBA0eadLdToft3fr5kvwMHDhw4cMTF0mx9Yb9C14Z3EszF6XDgwIEDx5pjVoDNQq4tmdpj7BuROHDgwIHjFEfbIszbdnkEtvSXBzkOHDhw4DhUEyVfnh2gLe2S+GzjvG4j4sCBAweOEUfS+GtpZkGeB2EOkbc1ceDAgQPHnqMdLLXxmYPuo31znaiyxIEDBw4ccQ62zbsNSt523Ly7GXfhwIEDB44Nx2xIk4+jNs3Hfb8zj+EvJRwOHDhw4FhwXFFi5QXhpvxrlyqSxiUOHDhw4NhztCXTrCTbNP7ahYn2OXHgwIEDx1mOfSHULjS00d4Wh8kiRTF2woEDBw4cJUfRMiubfZujboZVs3WHL/934MCBAweOBUe+3PA+zNqtgPyaeXy24ygcOHDgwHE1xyZc2+ZgW4zNUNrnx4EDBw4cpzjaQU4eWpvR1OxeeVuw7pXiwIEDB46YI6cpLlReMz9qXrDN7oUDBw4cOM5ytEHVll5ny7x9GVncFwcOHDhwBBxR13C0oNBec7YwcQr05X4HDhw4cOAYcbRB1S6itWmfD5M2i3fRwAkHDhw4cEymM7e2FZhzJI/e3rfd1Jj9BgcOHDhwzDj2qwxJaLUQ9+CVX784BQ4cOHDgWHPMRjhtG7G9clKezdbyosYiDhw4cOBYc+wJ2hIuH2XtB2A5Og4cOHDg2HO08dOOl9pWYz79OTtkwoEDBw4cpzhmzbjZsCpfX9sv2OVjKhw4cODAcR1H/rWkTGobc8kgarZakUcyDhw4cOA4y5GvI+wHP5tj56t4w/DGgQMHDhwLjs36WvuZtp2XQ2+ag0/GTjhw4MCBY81xKrpmhdZmkaJdgPimiYkDBw4cONYc7ZpC0kYs2nBxYZlH7+z60Rs4cODAgSPguJevvGS6omBroWsmHDhw4MCx5mjXzhKU/crC7Ar54l070MKBAwcOHC3H7NFnhdlsVSLna4MWBw4cOHBcx5EH1YHVgXgs9J5mU5i9xMKBAwcOHD/OUUdXXFDNxmB5A7FwwoEDBw4cv8TRLr21A6H98drFPhw4cODAcYpjs5p2aoUuZ52tYkShjgMHDhw41hybumbW5svHWnm5mA/DDozNcODAgQPH809+AN7vr/J0Gm/4AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

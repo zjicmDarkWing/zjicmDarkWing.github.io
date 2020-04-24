@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>RC4简单学习 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="简介 很常见的流密码  现实世界被认为是弱加密方式   但事实上，并没发现任何明确的漏洞  Bit-flip-attack这种，原理上没什么用的攻击 针对与RC4结合使用的协议特征的攻击   除此之外，”概率性确定密钥比特位”的攻击 https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;RC4   需要很多密文进行分析  如果密文量不足，RC4仍然不切实际(短时间内)不可解读 常规CTF问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RC4简单学习">
+<meta property="og:url" content="https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="简介 很常见的流密码  现实世界被认为是弱加密方式   但事实上，并没发现任何明确的漏洞  Bit-flip-attack这种，原理上没什么用的攻击 针对与RC4结合使用的协议特征的攻击   除此之外，”概率性确定密钥比特位”的攻击 https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;RC4   需要很多密文进行分析  如果密文量不足，RC4仍然不切实际(短时间内)不可解读 常规CTF问题">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061201.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061202.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061203.jpg">
+<meta property="article:published_time" content="2019-06-12T03:07:40.000Z">
+<meta property="article:modified_time" content="2019-06-12T03:08:16.369Z">
+<meta property="article:author" content="暗羽">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061201.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RC4简单学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RC4简单学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-12T03:07:40.000Z" itemprop="datePublished" class="page-time">
+  2019-06-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RC4算法"><span class="post-toc-number">2.</span> <span class="post-toc-text">RC4算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#由两个元素组成"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">由两个元素组成</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-KSA-生成表"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1.KSA(生成表)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-PRGA-生成伪随机数"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.PRGA(生成伪随机数)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于RC4实现"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">关于RC4实现</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-RC4简单学习"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RC4简单学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-12 11:07:40" datetime="2019-06-12T03:07:40.000Z"  itemprop="datePublished">2019-06-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li><p>很常见的流密码</p>
+<ul>
+<li>现实世界被认为是弱加密方式</li>
+</ul>
+</li>
+<li><p>但事实上，并没发现任何明确的漏洞</p>
+<ol>
+<li>Bit-flip-attack这种，原理上没什么用的攻击</li>
+<li>针对与RC4结合使用的协议特征的攻击</li>
+</ol>
+<ul>
+<li>除此之外，”概率性确定密钥比特位”的攻击</li>
+<li><a href="https://en.wikipedia.org/wiki/RC4" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/RC4</a></li>
+</ul>
+</li>
+<li><p>需要很多密文进行分析</p>
+<ul>
+<li>如果密文量不足，RC4仍然不切实际(短时间内)不可解读</li>
+<li>常规CTF问题，量及时间都很困难</li>
+</ul>
+</li>
+<li><p>因此，RC4题目还能在CTF中存活</p>
+</li>
+</ul>
+<h1 id="RC4算法"><a href="#RC4算法" class="headerlink" title="RC4算法"></a>RC4算法</h1><h2 id="由两个元素组成"><a href="#由两个元素组成" class="headerlink" title="由两个元素组成"></a>由两个元素组成</h2><ol>
+<li>KSA(Key-scheduling algorithm 密钥调度算法) <ul>
+<li>从key创建表的过程</li>
+</ul>
+</li>
+<li>PRGA(Pseudo-random generation algorithm 伪随机生成算法)<ul>
+<li>在更新表时生成伪随机数序列的过程</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>实际使用时，经常结合IV(Initialization Vector 初始化向量)使用</li>
+<li>这用于防止相同的明文在使用相同的密钥加密时产生相同的密文(类似linux密码中的salt)</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>类似的，在解密时，从密钥生成伪随机数序列并对密文进行xor异或</li>
+</ul>
+<h2 id="1-KSA-生成表"><a href="#1-KSA-生成表" class="headerlink" title="1.KSA(生成表)"></a>1.KSA(生成表)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>最终生成的S是RC4的状态表，因为只对S进行交换处理，最终将重新排列[0,1,2,…255]</p>
+<h2 id="2-PRGA-生成伪随机数"><a href="#2-PRGA-生成伪随机数" class="headerlink" title="2.PRGA(生成伪随机数)"></a>2.PRGA(生成伪随机数)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>最终的output是生成的随机数序列</li>
+<li>由于密钥未在PRGA中使用（密钥已经反映在S中），如果作为RC4内部表的S泄漏，则可以识别出随后的伪随机数序列</li>
+</ul>
+<h2 id="关于RC4实现"><a href="#关于RC4实现" class="headerlink" title="关于RC4实现"></a>关于RC4实现</h2><ul>
+<li>RC4通常由KSA和PRGA实现为单独的函数</li>
+<li>表S由KSA或PRGA使用<ul>
+<li>也就是说，它通常被定义为全局变量（= .bss）</li>
+</ul>
+</li>
+<li>通过argv[0] leak获取全局变量中的密码</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-06-12T03:08:16.369Z" itemprop="dateUpdated">2019-06-12 11:08:16</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/&title=《RC4简单学习》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/&title=《RC4简单学习》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RC4简单学习》 — 喵喵喵喵&url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/12/Shared-Library-Injection/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Shared Library Injection</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/11/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B019-argv-0-leak/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记19:argv[0] leak</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/&title=《RC4简单学习》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/&title=《RC4简单学习》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RC4简单学习》 — 喵喵喵喵&url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACxklEQVR42u3aUW4qMRAEQO5/6UR6v8k63R6b5Em1XyjAQjmSx/TM6xVfH/+up8dfr/Udnt67/vT1a0YXHh4e3tZXX3/Rpw9Y/2V9h2Rp2mX9Zgnw8PDwrvHaYjApLcmmn1N/+BQ8PDy8X+UlXyI/2SZ3Xr8LDw8P7//irQ+4LSkpG3h4eHh/jdduxHvRavtZ+cIdyFrw8PDwYt68Afb+x2/t7+Hh4eHF23S7+SZb/LwZVnxDPDw8vAu8/Ag7CRGShtZ8+CDKWvDw8PDGvFNDVJOwoP375v8NDw8P7xDvVLsrGSzIt/W2AERIPDw8vEO89S3aQ3M+MtWWnM3xBTw8PLzLvDYmmDTP8qB28gMADw8P7wYvGajai2LzwOIU77FQ4eHh4R3l5T/y2+h2r8U1OXC/JrMMeHh4eDHvVCNqLzmeBxB5UcHDw8N7Dy85LucLMR/bqkl4eHh4F3jzNlUeE7TxRH64/yHAxcPDwzvKqxPfstHVBhB7rz8wU4aHh4cXv7IdM00ig1N3a5tej0NXeHh4eEd57RDAvNO0N7IwH3HAw8PDO8XLh0cT6t6Gvpc6F8UADw8P7xpvHk+0R+025qjjEjw8PLxrvLbJlEcSSRtsb1wgGiPAw8PDu8CbHIsnowD5guZByWaXDw8PD6/krTfrfOvPX9OC92YAoqfx8PDwtniTdlcb5u4t32joCg8PD+8CbzJKlRysk5g4P4gnC/c4U4aHh4d3iLf3g7+9db5kk4bZgZkyPDw8vID3UV4tOA9/J/hipgwPDw9vzJtsu3kZmLT/2yM1Hh4e3nt4k7ZWe35vS86BUoSHh4d3jZcXg815rnIJ2qJVB7h4eHh4b+ftHazbAYJ2AOubZ/Hw8PB+lbeOZedL0z4edfbw8PDwxrz5AFZSJNrlawvJY2HAw8PDO8prg4N54ypZprwkjGB4eHh4He8TBkNK3xn/wn0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

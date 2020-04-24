@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>延迟合并 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="回顾K&amp;R free                                                                                                             现在free list head指向释放掉的节点  缓存和本地引用 对heap内存访问概率最高的是在malloc之后立即free 刚刚free的内存在缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="延迟合并">
+<meta property="og:url" content="https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="回顾K&amp;R free                                                                                                             现在free list head指向释放掉的节点  缓存和本地引用 对heap内存访问概率最高的是在malloc之后立即free 刚刚free的内存在缓存">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030401.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030402.jpg">
+<meta property="article:published_time" content="2019-03-04T06:48:17.000Z">
+<meta property="article:modified_time" content="2019-03-04T06:48:44.588Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030401.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">延迟合并</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">延迟合并</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-04T06:48:17.000Z" itemprop="datePublished" class="page-time">
+  2019-03-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#回顾K-amp-R-free"><span class="post-toc-number">1.</span> <span class="post-toc-text">回顾K&amp;R free</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓存和本地引用"><span class="post-toc-number">2.</span> <span class="post-toc-text">缓存和本地引用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓冲区的延迟合并"><span class="post-toc-number">3.</span> <span class="post-toc-text">缓冲区的延迟合并</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#从宏观角度"><span class="post-toc-number">4.</span> <span class="post-toc-text">从宏观角度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#malloc的正常状态和突发状态"><span class="post-toc-number">5.</span> <span class="post-toc-text">malloc的正常状态和突发状态</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#还有一点"><span class="post-toc-number">6.</span> <span class="post-toc-text">还有一点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#每个人都喜欢多线程"><span class="post-toc-number">7.</span> <span class="post-toc-text">每个人都喜欢多线程</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-延迟合并"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">延迟合并</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-04 14:48:17" datetime="2019-03-04T06:48:17.000Z"  itemprop="datePublished">2019-03-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="回顾K-amp-R-free"><a href="#回顾K-amp-R-free" class="headerlink" title="回顾K&amp;R free"></a>回顾K&amp;R free</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol start="9">
+<li>现在free list head指向释放掉的节点</li>
+</ol>
+<h2 id="缓存和本地引用"><a href="#缓存和本地引用" class="headerlink" title="缓存和本地引用"></a>缓存和本地引用</h2><ul>
+<li>对heap内存访问概率最高的是在malloc之后立即free</li>
+<li>刚刚free的内存在缓存上的概率很高</li>
+<li>为了优先确保内存，malloc之后直接访问，不会出现缓存miss</li>
+</ul>
+<p>缓存命中率很重要</p>
+<h2 id="缓冲区的延迟合并"><a href="#缓冲区的延迟合并" class="headerlink" title="缓冲区的延迟合并"></a>缓冲区的延迟合并</h2><ul>
+<li>当调用free时，立即 与相邻空间合并，并且暂时不会进行连接到free list的处理</li>
+<li>最初实现这种方式的是SVR4(相当早的UNIX内核)</li>
+<li>malloc-free-malloc-free这类常见的访问模式导致内存块的分离-合并-分离-合并之类的不必要处理，延迟合并能够避免这种情况。</li>
+<li>并且，由于按照时间顺序对free进行连接，因此将列表头部的block返回到应用程序可以提高缓存命中率。</li>
+<li>glibc malloc的最低确保单位是32，bin[0]和bin[1]不能使用</li>
+<li>bin[1]用来存放这个延迟的block所要连接的list的header</li>
+<li>源码中叫做unsorted_chunk，不进行排序，而是按照时间顺序</li>
+<li>通过遍历列表，找到与要求size一致的</li>
+<li>与要求size不一致的，在这个时间，与相邻空间合并后进行实际的free处理</li>
+</ul>
+<h2 id="从宏观角度"><a href="#从宏观角度" class="headerlink" title="从宏观角度"></a>从宏观角度</h2><ul>
+<li>malloc的调用模式大致上是以下流程</li>
+<li>应用启动时会调用malloc，很少调用free</li>
+<li>之后，进入malloc和free大体上交错被调用的正常状态</li>
+<li>像GUI画面切换之类的，会触发，free被单独调用，之后malloc被调用，数据结构体也会有大的变化</li>
+<li>之后再次进入正常状态</li>
+</ul>
+<h2 id="malloc的正常状态和突发状态"><a href="#malloc的正常状态和突发状态" class="headerlink" title="malloc的正常状态和突发状态"></a>malloc的正常状态和突发状态</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p> 延迟合并有时会事与愿违，但可以接受，因为它在正常状态下是高速化的</p>
+<h2 id="还有一点"><a href="#还有一点" class="headerlink" title="还有一点"></a>还有一点</h2><h2 id="每个人都喜欢多线程"><a href="#每个人都喜欢多线程" class="headerlink" title="每个人都喜欢多线程"></a>每个人都喜欢多线程</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-03-04T06:48:44.588Z" itemprop="dateUpdated">2019-03-04 14:48:44</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/&title=《延迟合并》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/&title=《延迟合并》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《延迟合并》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/04/%E5%A4%9A%E7%BA%BF%E7%A8%8Block%E9%97%AE%E9%A2%98/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">多线程lock问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/28/mmap/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mmap</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/&title=《延迟合并》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/&title=《延迟合并》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《延迟合并》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3a0Y7bMAwEwPz/T6dAXwvrdkWpRovxU3BJZA0PsBiSn098fX9fpz7/fbiePrO3hw8eHh7eNd53ea2Xbjf655rJ3/c+g4eHh3ebt364P226fQ7n67T7efw7Hh4e3qu8x4fvMhVu8148PDy8/4mXvE7eXX+r3QMeHh7eW7z8x/96W/l2kxDkwTpQa8HDw8OLeZNCwFuvL/b38PDw8AZd9b0Gf55qtw/0ep94eHh4F3h7hdd2HGqv0NAm96MKMR4eHl5893xMalIaSA6AtgEW/QDAw8PDu8CbfO1GGn1qzOtAVPDw8PCC3+nzkkQ7tpWHoBgUmJdx8fDw8MY9oyJ5jR/x60d/HsQ80Hh4eHg3ePlY1R5yPt2Qt+J+mCzDw8PDO8RrW1zrVHh+DOyFKQofHh4e3oDXFlvzQm1beG2DFbHx8PDwLvDyj+bvtidSPrgwKVvg4eHhneVNxqcmmHZQoG2h4eHh4d3g5Qnx+mZtwSJJkdvycfF/w8PDwxvz9kas8lLF2bvk4cbDw8O7zcu33ja99kjz8QI8PDy8G7yElLfH2pGstgyxl8rj4eHh3eYVD9zg3bapdmM1PDw8vLOr7d2sbXrlASoKDckxg4eHh/cSL2n5t+WDdrU8cHh4eHi3eW0i2xZkk5XzoYRJwwwPDw/vHm/v4T5Pf/cGvIohLTw8PLyjvMnAU1uAaA+MvWMJDw8P7+/wJuOnSeKbr3CqzIGHh4d3g/ctr7Y62pYbJgdGdCTg4eHhjXnzllXe0NorTyQFi/YueHh4eHPeXrI7afa3YcqLFPXph4eHhzfg7TWo2gLEXvE3CRMeHh7ev8KblIOTAOXDBD9UqfHw8PBe4u0l08n6efEiP37w8PDwbvMmyfFeU6oNWXtQ4eHh4d3j1cNM5THQtsQmB8mB/h4eHh7eivcLILZek+eRxDgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

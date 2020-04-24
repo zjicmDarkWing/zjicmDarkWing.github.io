@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记:总结01 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="总结 这一次，主要解决与堆密切相关的漏洞 还有很多其他类型的漏洞 例如栈溢出，很有名并且很容易找到 条件竞争，整数溢出这类稍微有点难找   简单介绍一下其他漏洞  其他类型的漏洞栈缓冲区溢出 当输入数据超出栈上分配的内存末尾时，会产生这种溢出 可以通过重写返回地址来控制后续操作 如果启用了canary保护，那么会检测到stack被更改 特别情况，仅能超出一个元素，被称为Off-By-One Sta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记:总结01">
+<meta property="og:url" content="https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="总结 这一次，主要解决与堆密切相关的漏洞 还有很多其他类型的漏洞 例如栈溢出，很有名并且很容易找到 条件竞争，整数溢出这类稍微有点难找   简单介绍一下其他漏洞  其他类型的漏洞栈缓冲区溢出 当输入数据超出栈上分配的内存末尾时，会产生这种溢出 可以通过重写返回地址来控制后续操作 如果启用了canary保护，那么会检测到stack被更改 特别情况，仅能超出一个元素，被称为Off-By-One Sta">
+<meta property="article:published_time" content="2019-04-01T05:34:17.000Z">
+<meta property="article:modified_time" content="2019-04-01T05:35:20.660Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记:总结01</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记:总结01</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-01T05:34:17.000Z" itemprop="datePublished" class="page-time">
+  2019-04-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他类型的漏洞"><span class="post-toc-number">2.</span> <span class="post-toc-text">其他类型的漏洞</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#栈缓冲区溢出"><span class="post-toc-number">3.</span> <span class="post-toc-text">栈缓冲区溢出</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#堆缓冲区溢出"><span class="post-toc-number">4.</span> <span class="post-toc-text">堆缓冲区溢出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户可控数据"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">用户可控数据</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变更连接攻击-Unlink-attack"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">变更连接攻击(Unlink attack)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fastbins-attack"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">fastbins attack</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字符串末尾NULL消除-Unterminated-Null-Terminated-String"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">字符串末尾NULL消除(Unterminated Null-Terminated String)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存释放后的使用-Use-After-Free"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">内存释放后的使用(Use After Free)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存二次释放-Double-Free"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">内存二次释放(Double Free)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类型混淆-Type-Confusion"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">类型混淆(Type Confusion)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#格式化字符串漏洞-FSB-Format-String-Bug"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">格式化字符串漏洞(FSB: Format String Bug)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基于堆的FSB"><span class="post-toc-number">4.9.</span> <span class="post-toc-text">基于堆的FSB</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#条件竞争-Race-Condition"><span class="post-toc-number">4.10.</span> <span class="post-toc-text">条件竞争(Race Condition)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TOCTOU条件竞争-Time-of-check-Time-of-use-Race-Condition"><span class="post-toc-number">4.11.</span> <span class="post-toc-text">TOCTOU条件竞争(Time-of-check Time-of-use Race Condition)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用未初始化的数据-Using-Uninitialized-Variable"><span class="post-toc-number">4.12.</span> <span class="post-toc-text">使用未初始化的数据(Using Uninitialized Variable)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#负数处理问题"><span class="post-toc-number">4.13.</span> <span class="post-toc-text">负数处理问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#整数溢出-Integer-Overflow"><span class="post-toc-number">4.14.</span> <span class="post-toc-text">整数溢出(Integer Overflow)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录遍历"><span class="post-toc-number">4.15.</span> <span class="post-toc-text">目录遍历</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他Unlink经典题目"><span class="post-toc-number">5.</span> <span class="post-toc-text">其他Unlink经典题目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Plaid-CTF-2014-–-Pwnables200-–"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Plaid CTF 2014 – Pwnables200 –</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HITCON-CTF-2014-Pwnables-550-–"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">HITCON CTF 2014 Pwnables 550 –</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hack-lu-CTF-Exploiting400-oreo"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">Hack.lu CTF Exploiting400 oreo</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记-总结01"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记:总结01</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-01 13:34:17" datetime="2019-04-01T05:34:17.000Z"  itemprop="datePublished">2019-04-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>这一次，主要解决与堆密切相关的漏洞</li>
+<li>还有很多其他类型的漏洞<ul>
+<li>例如栈溢出，很有名并且很容易找到</li>
+<li>条件竞争，整数溢出这类稍微有点难找</li>
+</ul>
+</li>
+<li>简单介绍一下其他漏洞</li>
+</ul>
+<h1 id="其他类型的漏洞"><a href="#其他类型的漏洞" class="headerlink" title="其他类型的漏洞"></a>其他类型的漏洞</h1><h1 id="栈缓冲区溢出"><a href="#栈缓冲区溢出" class="headerlink" title="栈缓冲区溢出"></a>栈缓冲区溢出</h1><ul>
+<li>当输入数据超出栈上分配的内存末尾时，会产生这种溢出</li>
+<li>可以通过重写返回地址来控制后续操作</li>
+<li>如果启用了canary保护，那么会检测到stack被更改</li>
+<li>特别情况，仅能超出一个元素，被称为Off-By-One Stack Buffer Overflow。这种情况下只能重写ebp/rbp等，需要进行栈调整</li>
+</ul>
+<h1 id="堆缓冲区溢出"><a href="#堆缓冲区溢出" class="headerlink" title="堆缓冲区溢出"></a>堆缓冲区溢出</h1><ul>
+<li>当输入的数据超出堆上分配的内存末尾时，会产生这种溢出</li>
+<li>虽然不能重写返回地址，但是可以重写例如函数指针，数据等来控制后续操作</li>
+<li>如果可以重写内存管理区域，则可以通过重写链表的next地址或者prev地址，向任意内存地址写入任意数据(之后会详细说明)</li>
+</ul>
+<h2 id="用户可控数据"><a href="#用户可控数据" class="headerlink" title="用户可控数据"></a>用户可控数据</h2><ul>
+<li>这是导致溢出产生的现实原因，输入的数据由用户指定，而缓冲区是固定size，向固定size的缓冲区发送任意size的数据，就导致了溢出</li>
+<li>这也能够导致Buffer Over Read</li>
+</ul>
+<h2 id="变更连接攻击-Unlink-attack"><a href="#变更连接攻击-Unlink-attack" class="headerlink" title="变更连接攻击(Unlink attack)"></a>变更连接攻击(Unlink attack)</h2><ul>
+<li>通过堆溢出，能够重写堆上的malloc管理数据(被称为chunk)，通过free()的时候进行unlink处理，就更改了next或者prev到能够RWX的任意内存，可以写入任意数据</li>
+<li>还可以进行GOT Overwrite</li>
+</ul>
+<h2 id="fastbins-attack"><a href="#fastbins-attack" class="headerlink" title="fastbins attack"></a>fastbins attack</h2><ul>
+<li>malloc/free时，可能进行fastbins attack</li>
+<li>malloc的返回地址能够任意指定，就产生了漏洞</li>
+</ul>
+<h2 id="字符串末尾NULL消除-Unterminated-Null-Terminated-String"><a href="#字符串末尾NULL消除-Unterminated-Null-Terminated-String" class="headerlink" title="字符串末尾NULL消除(Unterminated Null-Terminated String)"></a>字符串末尾NULL消除(Unterminated Null-Terminated String)</h2><ul>
+<li>C语言中的字符串是数组，如果没有结尾的NULL字符(=’\0’)，那么在显示字符串时也会将后面的内容显示出来，造成信息泄漏</li>
+<li>在这种情况下嘛，可以获得堆，栈，libc或者PIE的基地址，并且在某些情况下，可能泄漏例如用于加密/解密的密钥之类的重要信息</li>
+<li>这可能是一个意外的长度，也会导致溢出</li>
+</ul>
+<h2 id="内存释放后的使用-Use-After-Free"><a href="#内存释放后的使用-Use-After-Free" class="headerlink" title="内存释放后的使用(Use After Free)"></a>内存释放后的使用(Use After Free)</h2><ul>
+<li>在malloc的内存被释放后，再次向该地址呢写入数据会发生这种情况</li>
+<li>如果该地址已经被别的功能所使用，则可以重写改地址的数据</li>
+</ul>
+<h2 id="内存二次释放-Double-Free"><a href="#内存二次释放-Double-Free" class="headerlink" title="内存二次释放(Double Free)"></a>内存二次释放(Double Free)</h2><ul>
+<li>malloc申请的内存进行释放后，再次释放相同的地址</li>
+<li>如果在第一次和第二次释放之间，这个地址被其他用途X获取到，那么第二次也会释放掉这个地址</li>
+<li>那么，X在使用它时，堆中的数据可能会严重受损，因为它使用已经被释放的地址</li>
+</ul>
+<h2 id="类型混淆-Type-Confusion"><a href="#类型混淆-Type-Confusion" class="headerlink" title="类型混淆(Type Confusion)"></a>类型混淆(Type Confusion)</h2><ul>
+<li>在使用多种结构体/类的情况下，如果用户可以选择要应用的结构/类，错误的应用可能导致溢出及函数指针覆盖</li>
+</ul>
+<h2 id="格式化字符串漏洞-FSB-Format-String-Bug"><a href="#格式化字符串漏洞-FSB-Format-String-Bug" class="headerlink" title="格式化字符串漏洞(FSB: Format String Bug)"></a>格式化字符串漏洞(FSB: Format String Bug)</h2><ul>
+<li>在printf系列函数中，如果使用printf(input)这类写法，攻击者就能够控制参数格式。正确的写法应该是printf(“%s”,input).</li>
+<li>例如使用%p或者%x之类的转换说明符，可能泄漏stack上的值。即使是在ASLR/PIE环境下也可以置顶栈地址。</li>
+<li>另外，如果用户输入在栈上，则可以输出该值地址，并以此为基础，向栈的内存地址写入数据</li>
+<li>此外，%12345x这类指定字符宽度规范，可以自由指定printf输出的字符数。通过这个可能向任意内存地址写入任意值</li>
+<li>覆盖stack或者GOT，重写数据或者函数指针，利用方式有很多</li>
+<li>FORTIFY_SOURCE(使用printf_chk之类的chk)情况下，无法使用%n</li>
+</ul>
+<h2 id="基于堆的FSB"><a href="#基于堆的FSB" class="headerlink" title="基于堆的FSB"></a>基于堆的FSB</h2><ul>
+<li>格式化字符串攻击困难，用户输入不在stack上的情况</li>
+<li>使用原本存在于stack上的二重引用(A→B→C)的指针，通过A修改B的低字节，通过B修改C，… 类似这样的攻略方式</li>
+</ul>
+<h2 id="条件竞争-Race-Condition"><a href="#条件竞争-Race-Condition" class="headerlink" title="条件竞争(Race Condition)"></a>条件竞争(Race Condition)</h2><ul>
+<li>当资源管理对于竞争的处理不正确时，会发生这种情况</li>
+<li>对一个对象同时进行多个操作，可能会导致该对象的状态出现问题</li>
+<li>例如，在多人共享数据的服务中，客户端A和B同时连接的情况下，B在A打开某个文件的时候对该文件进行删除操作，类似这种情况</li>
+<li>在某些情况下，数据可能被破坏，Use After Free或者Double Free，或者是堆溢出或栈溢出</li>
+</ul>
+<h2 id="TOCTOU条件竞争-Time-of-check-Time-of-use-Race-Condition"><a href="#TOCTOU条件竞争-Time-of-check-Time-of-use-Race-Condition" class="headerlink" title="TOCTOU条件竞争(Time-of-check Time-of-use Race Condition)"></a>TOCTOU条件竞争(Time-of-check Time-of-use Race Condition)</h2><ul>
+<li>在A和B两次操作之间，因为另一个操作改变了状态</li>
+<li>例如A[检查文件属性(确认它不是符号链接)]，B[读取文件], 在A和B两次操作之间，文件被重写为符号链接，那么B将从符号链接读取内容</li>
+</ul>
+<h2 id="使用未初始化的数据-Using-Uninitialized-Variable"><a href="#使用未初始化的数据-Using-Uninitialized-Variable" class="headerlink" title="使用未初始化的数据(Using Uninitialized Variable)"></a>使用未初始化的数据(Using Uninitialized Variable)</h2><ul>
+<li>使用之前已经被使用过的数据可能会导致意外操作</li>
+<li>例如，申请的内存，未初始化的数据是”%p%p%p…”，如果未初始化直接使用printf将导致格式化字符串攻击之类的</li>
+</ul>
+<h2 id="负数处理问题"><a href="#负数处理问题" class="headerlink" title="负数处理问题"></a>负数处理问题</h2><ul>
+<li>在条件比较情况中，没有正确考虑signed和unsigned的差异，从而将负数是别成大的正数的问题</li>
+<li>它能够使得条件比较变得奇怪，以及更改指针索引等操作，也可能更改操作逻辑</li>
+</ul>
+<h2 id="整数溢出-Integer-Overflow"><a href="#整数溢出-Integer-Overflow" class="headerlink" title="整数溢出(Integer Overflow)"></a>整数溢出(Integer Overflow)</h2><ul>
+<li>在32位数字和64位数字中，如果超出最大值或最小值，则会发生溢出。</li>
+<li>例如，通过条件比较后故意溢出，可能导致申请很大的内存，或者使其很小</li>
+</ul>
+<h2 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h2><ul>
+<li>当二进制程序处理PATH时，可能被利用</li>
+<li>使用<code>../../../../../proc/self/maps</code> 之类的可以用于获取内存映射信息</li>
+</ul>
+<h1 id="其他Unlink经典题目"><a href="#其他Unlink经典题目" class="headerlink" title="其他Unlink经典题目"></a>其他Unlink经典题目</h1><h2 id="Plaid-CTF-2014-–-Pwnables200-–"><a href="#Plaid-CTF-2014-–-Pwnables200-–" class="headerlink" title="Plaid CTF 2014 – Pwnables200 –"></a>Plaid CTF 2014 – Pwnables200 –</h2><p>ezhp</p>
+<p>基本信息：</p>
+<ul>
+<li><p>menu显示后，读取用户输入</p>
+</li>
+<li><p>可以输入1-4，使用jmp_table[idx]的形式调用对应函数</p>
+<ul>
+<li>四个函数命名为add_note, remove_note, change_note, print_note</li>
+<li>add_note/remove_note有自己定义的malloc/free实现方式及堆管理</li>
+<li>使用这样的结构体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct note &#123;</span><br><span class="line">	unsigned int size;</span><br><span class="line">	note* next;</span><br><span class="line">	note* prev;</span><br><span class="line">	char* msg;</span><br><span class="line">	... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>change_note有明显的溢出漏洞</li>
+<li>可以通过重写next和prev来进行Unlink Attack</li>
+</ul>
+<p>攻略方法：</p>
+</li>
+<li><p>这个二进制程序没有开启NX，服务器上开启了ASLR，这里有几种方法</p>
+<ul>
+<li>通过Unlink让GOT指向堆chunk(与前面的babyfirst-heap相同的方式)<ul>
+<li><a href="https://fail0verflow.com/blog/2014/plaidctf2014-pwn200-ezhp.html" target="_blank" rel="noopener">https://fail0verflow.com/blog/2014/plaidctf2014-pwn200-ezhp.html</a> </li>
+<li><a href="http://tasteless.eu/2014/04/plaidctf-2014-ezhp-writeup/" target="_blank" rel="noopener">http://tasteless.eu/2014/04/plaidctf-2014-ezhp-writeup/</a></li>
+</ul>
+</li>
+<li>结合Unlink来泄漏堆值，写入GOT及jmp shellcode <ul>
+<li><a href="http://x86overflow.blogspot.jp/2014/04/plaidctf-pwnable-200-ezhp.html" target="_blank" rel="noopener">http://x86overflow.blogspot.jp/2014/04/plaidctf-pwnable-200-ezhp.html</a></li>
+<li><a href="https://docs.google.com/document/d/19Tpc7skiAJCof-rQgwQQN1uZ6baq0KW4Ag910RybCC4/edit?pli=1" target="_blank" rel="noopener">https://docs.google.com/document/d/19Tpc7skiAJCof-rQgwQQN1uZ6baq0KW4Ag910RybCC4/edit?pli=1</a></li>
+<li><a href="http://daehee87.tistory.com/386" target="_blank" rel="noopener">http://daehee87.tistory.com/386</a></li>
+<li><a href="https://blog.skullsecurity.org/2014/plaidctf-writeup-for-pwnage-200-a-simple-overflow-bug" target="_blank" rel="noopener">https://blog.skullsecurity.org/2014/plaidctf-writeup-for-pwnage-200-a-simple-overflow-bug</a></li>
+</ul>
+</li>
+<li>结合Unlink，任意内存地址读写的方法<ul>
+<li>读取GOT的值，计算libc的偏移地址，加载system</li>
+<li><a href="https://github.com/osirislab/CTF-Solutions/blob/master/PCTF_2014/ezhp/ezhp.py" target="_blank" rel="noopener">https://github.com/osirislab/CTF-Solutions/blob/master/PCTF_2014/ezhp/ezhp.py</a></li>
+</ul>
+</li>
+<li>通过Unlink将ppret加载到GOT并执行read(0, note[id], size)<ul>
+<li>返回note[id]将不通过read而通过ppret，也就能够执行shellcode</li>
+<li><a href="https://pastebin.com/mEHQdcRW" target="_blank" rel="noopener">https://pastebin.com/mEHQdcRW</a> (只是有一定概率成功)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HITCON-CTF-2014-Pwnables-550-–"><a href="#HITCON-CTF-2014-Pwnables-550-–" class="headerlink" title="HITCON CTF 2014 Pwnables 550 –"></a>HITCON CTF 2014 Pwnables 550 –</h2><p>stkof</p>
+<p>基本信息：</p>
+<ul>
+<li>读取用户输入</li>
+<li>可以输入1-3，调用对应函数<ul>
+<li>三个函数命名为alloc_mem, write_mem, free_mem</li>
+<li>alloc_mem获得的地址，存储在bss上的PTR_TABLE[IDX++]中</li>
+<li>write_mem有明显的溢出问题</li>
+<li>可以通过重写next, prev进行fastbins attack</li>
+</ul>
+</li>
+</ul>
+<p>攻略方法：</p>
+<ul>
+<li>这个二进制程序启用了NX，ASLR，有两种之前提到的可用方法<ul>
+<li>通过覆盖chunk，让bss中存在的地址被认为是已经释放状态，故意创建了一个Use After Free情况，之后进行Unlink Attack<ul>
+<li><a href="http://acez.re/ctf-writeup-hitcon-ctf-2014-stkof-or-modern-heap-overflow/" target="_blank" rel="noopener">http://acez.re/ctf-writeup-hitcon-ctf-2014-stkof-or-modern-heap-overflow/</a></li>
+</ul>
+</li>
+<li>使用fastbins attack的简单解法<ul>
+<li><a href="https://rzhou.org/~ricky/hitcon2014/stkof/" target="_blank" rel="noopener">https://rzhou.org/~ricky/hitcon2014/stkof/</a></li>
+</ul>
+</li>
+<li>附加了详细解释<ul>
+<li><a href="http://pastebin.com/pwCxUE2V" target="_blank" rel="noopener">http://pastebin.com/pwCxUE2V</a> (fastbins attack)</li>
+<li><a href="http://pastebin.com/3hiWVeNw" target="_blank" rel="noopener">http://pastebin.com/3hiWVeNw</a> (Unlink attack)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hack-lu-CTF-Exploiting400-oreo"><a href="#Hack-lu-CTF-Exploiting400-oreo" class="headerlink" title="Hack.lu CTF Exploiting400 oreo"></a>Hack.lu CTF Exploiting400 oreo</h2><p>基本信息：</p>
+<ul>
+<li><p>显示menu后，读取用户输入</p>
+</li>
+<li><p>可以输入1-5，调用对应函数</p>
+<ul>
+<li><p>五个函数命名为Add_new_rifle, Show_added_rifles,Order_selected_rifles,Leave_a_Message_with_your_Order, Show_current_stats</p>
+</li>
+<li><p>使用这样的结构体：</p>
+</li>
+<li><pre><code>struct RIFLE {
+    char description[25]; 
+    char name[25];
+    char align[2];
+    RIFLE* next;
+}</code></pre></li>
+<li><p>Add_new_rifle有明显的溢出问题</p>
+</li>
+<li><p>可以通过覆盖next进行fastbins attack</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>攻略方法：</p>
+<ul>
+<li>这个二进制程序启用了NX，ASLR</li>
+<li>另外，使用了自定义的libc，无法猜测偏移量。攻略方法有三种<ul>
+<li>想办法找出自定义libc中system的偏移地址<ul>
+<li><a href="http://ctl.ovh/wapiflapi/oreo.py" target="_blank" rel="noopener">http://ctl.ovh/wapiflapi/oreo.py</a> </li>
+<li><a href="https://github.com/ctfs/write-ups/blob/master/hack-lu-ctf-2014/oreo/" target="_blank" rel="noopener">https://github.com/ctfs/write-ups/blob/master/hack-lu-ctf-2014/oreo/</a> </li>
+<li>这是官方预期解法</li>
+</ul>
+</li>
+<li>使用ret2dl_runtime_resolve+DT_DEBUG<ul>
+<li><a href="http://wapiflapi.github.io/2014/11/17/hacklu-oreo-with-ret2dl-resolve/" target="_blank" rel="noopener">http://wapiflapi.github.io/2014/11/17/hacklu-oreo-with-ret2dl-resolve/</a></li>
+</ul>
+</li>
+<li>查找自定义libc中system的偏移量<ul>
+<li>猜测官方使用的是latest source构建的libc</li>
+<li>从Gentoo Linux的每周Auto build的stage3.tar.bz2中获取libc，计算偏移量</li>
+<li><a href="http://www.pastebin.com/9vq38BYH" target="_blank" rel="noopener">http://www.pastebin.com/9vq38BYH</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-01T05:35:20.660Z" itemprop="dateUpdated">2019-04-01 13:35:20</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/&title=《Pwn学习笔记:总结01》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/&title=《Pwn学习笔记:总结01》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记:总结01》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记9:栈溢出及NX</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/28/DEFCON-2014-CTF-Baby-s-First-heap-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%8F%8Aexploit/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">DEFCON 2014 CTF-Baby&#39;s First-heap 动态分析及exploit</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/&title=《Pwn学习笔记:总结01》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/&title=《Pwn学习笔记:总结01》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记:总结01》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3aS4pbQRAEwLn/pcfgrZGcWdUCqRVvJYRov+gBJ/X5+Ymf379P8s2/3//7+0efn5//6DfJL4cPNjY29oewf58+m5dOzklOeP79ozMfvQM2Njb2rewkctqXTk57fnIbdUUcYmNjY38luy0D2jiclT3Y2NjY2G2AtcVD3iTatJawsbGxsdvyoA2VTfOobTAd7qVhY2Njvz27DZJ3/vzC+TY2Njb2W7J/y+dU5LRD4tlY9+E52NjY2Bex83b8PkJmlzVbCYreDRsbG/sK9myxZt9UagMpudz8j4eNjY19KzsvG5IB8GwNaDNULsonbGxs7IvYm0FsOyTet582DSlsbGzsW9lJFG2mpftVnuTd8gUdbGxs7FvZeZDsezKzciWPw+g32NjY2BexkyA5OzbYvG5yTcUQGhsbG/sKdt1SXxQhswZWO4qIBgbY2NjYl7Lz8mAWabMrbgcMURmDjY2NfSm7bQYlpUtermyuso46bGxs7IvYZxcoz35um1x1gwkbGxv7CnaOzIuEzUhgFnV5cwobGxv7PnbyivkCZQs4NZyYBRs2Njb2TezkP/3oiPISk9PaUHz+72JjY2N/J3sTSLNVy1MLQ1EBg42Njf3h7Hyg2wbDpkTJC5W2cIpuFxsbG/sD2fkSTDtDXr3c4kL/cz42Njb2RexXr84kV9A2rZJ3SAohbGxs7JvYp47bj4HbRlUbqC+5RWxsbOw3YLetn+TQTZEza0IVkxBsbGzsL2DPGjotPqG2MVZEIDY2NvYV7Nk4th2+JiXEqVFuNDzAxsbGvog9Y2yWI9tRwSwOo7IEGxsb+wp2O8pNmvJny4bZGxa5jY2NjX0FOw+SvKiYxV47xG0H1T+z/MTGxsZ+e3b+JIduQnEWZu34ARsbG/sm9mzxZbM0k48ENq2utl2FjY2N/ensUw39fDycr+bMBhIHChJsbGzsD2TPVmraEDpLXYUuNjY29leykxLidY2hvP1UbCphY2NjfyV7v9yTrNe05UoSrqsAw8bGxn579qZgyMuGzRXPru9ALw0bGxv77dntsHbf3HkeV22ZkQ82sLGxsa9j/wH8p6H1yh1AfAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

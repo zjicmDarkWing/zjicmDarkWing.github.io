@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记11:ret2libc | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="ret2plt链的问题点 如果想要使用的函数不在PLT中，则无法构成链 ret2libc                                                                                               img               绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？ 源代码中未使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记11:ret2libc">
+<meta property="og:url" content="https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ret2plt链的问题点 如果想要使用的函数不在PLT中，则无法构成链 ret2libc                                                                                               img               绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？ 源代码中未使">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040906.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040907.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040908.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040909.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040910.jpg">
+<meta property="article:published_time" content="2019-04-09T06:40:26.000Z">
+<meta property="article:modified_time" content="2019-04-09T06:41:11.055Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040906.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记11:ret2libc</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记11:ret2libc</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-09T06:40:26.000Z" itemprop="datePublished" class="page-time">
+  2019-04-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ret2plt链的问题点"><span class="post-toc-number">1.</span> <span class="post-toc-text">ret2plt链的问题点</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#绕过NX2-ret2libc"><span class="post-toc-number">2.</span> <span class="post-toc-text">绕过NX2 - ret2libc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#想要使用的函数不在PLT时，应该怎么办？"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">想要使用的函数不在PLT时，应该怎么办？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#怎样才能知道地址？"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">怎样才能知道地址？</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#目前为止的技术总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">目前为止的技术总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记11-ret2libc"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记11:ret2libc</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-09 14:40:26" datetime="2019-04-09T06:40:26.000Z"  itemprop="datePublished">2019-04-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ret2plt链的问题点"><a href="#ret2plt链的问题点" class="headerlink" title="ret2plt链的问题点"></a>ret2plt链的问题点</h1><ul>
+<li>如果想要使用的函数不在PLT中，则无法构成链</li>
+<li>ret2libc</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040906.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<h1 id="绕过NX2-ret2libc"><a href="#绕过NX2-ret2libc" class="headerlink" title="绕过NX2 - ret2libc"></a>绕过NX2 - ret2libc</h1><h2 id="想要使用的函数不在PLT时，应该怎么办？"><a href="#想要使用的函数不在PLT时，应该怎么办？" class="headerlink" title="想要使用的函数不在PLT时，应该怎么办？"></a>想要使用的函数不在PLT时，应该怎么办？</h2><ul>
+<li>源代码中未使用的函数，在二进制程序中不会有PLT入口</li>
+<li>也就是说，我们无法通过PLT代理到函数地址</li>
+<li>即使没有PLT入口，但如果内存地址正确，也可以直接调用函数(至少libc中的函数可以这样)</li>
+<li>如果能够知道system函数的地址，那么就能够调用它</li>
+</ul>
+<h2 id="怎样才能知道地址？"><a href="#怎样才能知道地址？" class="headerlink" title="怎样才能知道地址？"></a>怎样才能知道地址？</h2><ul>
+<li><p>首先，了解下ASLR</p>
+</li>
+<li><pre><code>miao# echo 0 &gt; /proc/sys/kernel/randomize_va_space
+miao# ldd heap | grep libc.so
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7dda000)
+miao# ldd heap | grep libc.so
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7dda000)
+miao# echo 2 &gt; /proc/sys/kernel/randomize_va_space
+miao# ldd heap | grep libc.so                     
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7d45000)
+miao# ldd heap | grep libc.so
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7d8e000)
+miao#</code></pre></li>
+<li><p>在ASLR关闭的情况下，无论运行多少次，读取到的目标地址都是不变的(这里练习环境关闭了ASLR)</p>
+</li>
+<li><p>对于不同的环境和二进制文件，该地址可能不同，但大体上相似(0xf7XXXXXX这种)</p>
+</li>
+<li><p>但是，32位机器上的结果和在64位机器上运行32位程序的结果不同</p>
+<ul>
+<li>32位机器，0xb7XXXXXX</li>
+<li>64位机器运行32位程序，0xf7XXXXXX</li>
+<li>这是因为64位机器中内核区域的映射地址不是0xc0000000~(大概)</li>
+</ul>
+</li>
+<li><p>libc.so中的偏移地址，在文件中和内存中都是固定的</p>
+<ul>
+<li>libc.so的文件内容以完全相同的方式映射到内存</li>
+<li>也就是说，我们只需要加上基地址</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040907.jpg" alt="img"></p>
+</li>
+<li><p>因此</p>
+<ul>
+<li>使用objdump预先检查函数的偏移量</li>
+<li>例如，system()的偏移是0x40190，如果对方的libc与自己的libc一致，那么内存中的地址就是0xf7e21000 + 0x40190</li>
+<li>但是，如果环境不同，可能会有轻微的区别</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040908.jpg" alt="img"></p>
+</li>
+<li><p>检查libc中的函数地址</p>
+<ul>
+<li><code># ldd heap</code> (首先检查正在使用的libc路径)</li>
+<li><code>objdump -d /lib/i386-linux-gnu/libc.so.6 | grep &quot;system&quot;</code> (检查这个libc)</li>
+</ul>
+</li>
+<li><p>检查libc中特定字符串的地址</p>
+<ul>
+<li><code>strings -tx /lib/i386-linux-gnu/libc.so.6 | grep &quot;/bin/sh&quot;</code></li>
+</ul>
+</li>
+<li><p>预先检查得到了system()和”/bin/sh”的地址，将他们加载到stack中</p>
+<ul>
+<li>“/bin/sh”类似的字符串也在libc.so中</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040909.jpg" alt="img"></p>
+</li>
+<li><p>如果环境不同，可能会有偏差</p>
+<ul>
+<li>但是，即使环境不同，加载目标地址也只会以0x1000的增量变化</li>
+<li>您可以以0x1000为增量进行暴力枚举<ul>
+<li>0xf7e61190, 0xf7e62190, 0xf7e63190, …</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040910.jpg" alt="img"></p>
+</li>
+<li><p>那么，问题来了</p>
+<ul>
+<li>对方环境必须要是特定的libc<ul>
+<li>需要提前调查各种偏移地址</li>
+<li>这考察了侦察能力</li>
+<li>需要识别对方环境具体事什么版本的libc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="目前为止的技术总结"><a href="#目前为止的技术总结" class="headerlink" title="目前为止的技术总结"></a>目前为止的技术总结</h1><table>
+<thead>
+<tr>
+<th align="center"><strong>技术</strong></th>
+<th align="center"><strong>推荐练习的问题</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">nop-sled</td>
+<td align="center">CodeGate 2013 - pwn100</td>
+</tr>
+<tr>
+<td align="center">brute force</td>
+<td align="center">CodeGate 2013 - pwn100</td>
+</tr>
+<tr>
+<td align="center">ret2esp</td>
+<td align="center">CSAW CTF 2012 - pwn300 - 4842</td>
+</tr>
+<tr>
+<td align="center">stager</td>
+<td align="center">Hack.lu CTF 2012 - pwn300 - braincpy</td>
+</tr>
+<tr>
+<td align="center">ret2plt</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ret2pop</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ret2libc</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-09T06:41:11.055Z" itemprop="dateUpdated">2019-04-09 14:41:11</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/&title=《Pwn学习笔记11:ret2libc》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/&title=《Pwn学习笔记11:ret2libc》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记11:ret2libc》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记12:ASLR与memory leak</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/09/MacOS%E4%B8%8B%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8php-mt-seed/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MacOS下编译使用php_mt_seed</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/&title=《Pwn学习笔记11:ret2libc》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/&title=《Pwn学习笔记11:ret2libc》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记11:ret2libc》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQW7DMAwEwPz/0+0LZC9J0wja8aloEkWjAhK74ucTPz+H5/Tq6bPJmNfv/2w8eHh4eA9N/QTIJ3c9QrI0J16+KHh4eHh7vGS464meRksAp++6Xtzk2/Hw8PC+gZe8el3Z5mU6Hh4e3t/gVcOCvFC+Pkjw8PDwvo1X3aaTKSYHQLL1V6MQPDw8vG1efov0PT+v3O/h4eHhjW/Vqxtu9dqst3yF2eLh4eEt8HohbHKV1Wu06n3jTYMXHh4e3qO8PFaYkPKRe5HH8bN4eHh4C7xqmVttnKo2ClTjhujYwMPDw3uUl5PyzXpyYZYU2YVP4eHh4a3xqkXwvEWgF3BUf4OHh4e3xyv8Y19sL+iNlpfd0f0eHh4e3gIvn0Rv65+X4MnS3JTUeHh4eA/x8g23OpV8WpNFaUYSeHh4eGu8ZHetXqHlS5A3FtwsHx4eHt4aLzkk8gi4+p7q0hcatvDw8PAe5fWan6phQVKg98KIqOkKDw8P7xVeL2BNLq56xXqVioeHh7fHq5a2edHcA/earqKDDQ8PD+8hXj6JT/A8+8584Y5gPDw8vAXeJJDNN/fe8TBpIGhmyXh4eHgB7yYGDfDVVyfxR3kOeHh4eAu8bWQSGVQPmOsC/dW/IR4e3j/m9QrcXmTQiy16Dx4eHt4ebxK/5r+ZHDzJAdBsGsDDw8Mb8PKwtUeajJ/P8+YCDA8PD2+B19vuJxFtAsuf6H4PDw8Pb8CbpBcJpnetVW01KLQO4OHh4Y151Q03L52Tw2BSKOfLioeHh7fB613kV6+7csDkYMDDw8N7k9dsZiqWztWmhGa+goeHh/fFvN5n88I6H3/lYMDDw8N7iFeNDHrFdLX0x8PDw3uflwcBk3A2DyySxoVoafDw8PAWeJOIoVdM98LfHIyHh4e3xvsFaTrkKV1BY6wAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

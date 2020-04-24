@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>thread clone | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="clone 能够生成线程的system call  适用于sandbox，出现频率非常高 clone(2)和clone(3)有区别，这里使用clone(3)进行说明 https:&#x2F;&#x2F;linuxjm.osdn.jp&#x2F;html&#x2F;LDP_man-pages&#x2F;man2&#x2F;clone.2.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thread clone">
+<meta property="og:url" content="https://darkwing.moe/2019/08/14/thread-clone/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="clone 能够生成线程的system call  适用于sandbox，出现频率非常高 clone(2)和clone(3)有区别，这里使用clone(3)进行说明 https:&#x2F;&#x2F;linuxjm.osdn.jp&#x2F;html&#x2F;LDP_man-pages&#x2F;man2&#x2F;clone.2.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080803.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080804.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080805.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080806.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081401.jpg">
+<meta property="article:published_time" content="2019-08-14T05:45:42.000Z">
+<meta property="article:modified_time" content="2019-08-14T05:46:24.265Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080803.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">thread clone</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">thread clone</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-14T05:45:42.000Z" itemprop="datePublished" class="page-time">
+  2019-08-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#clone"><span class="post-toc-number">1.</span> <span class="post-toc-text">clone</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特别是CLONE-VM，重要"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">特别是CLONE_VM，重要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CLONE-FILES也很常见"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">CLONE_FILES也很常见</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#clone与seccomp"><span class="post-toc-number">2.</span> <span class="post-toc-text">clone与seccomp</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#没有CLONE-VM的模式"><span class="post-toc-number">3.</span> <span class="post-toc-text">没有CLONE_VM的模式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常见模式"><span class="post-toc-number">4.</span> <span class="post-toc-text">常见模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见模式1-有无CLONE-VM皆可"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">常见模式1(有无CLONE_VM皆可)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见模式2-有无CLONE-VM皆可"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">常见模式2(有无CLONE_VM皆可)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见模式3-有CLONE-VM"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">常见模式3(有CLONE_VM)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见模式4-无CLONE-VM"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">常见模式4(无CLONE_VM)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#clone总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">clone总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-thread-clone"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">thread clone</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-14 13:45:42" datetime="2019-08-14T05:45:42.000Z"  itemprop="datePublished">2019-08-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h1><p> 能够生成线程的system call</p>
+<ul>
+<li>适用于sandbox，出现频率非常高</li>
+<li>clone(2)和clone(3)有区别，这里使用clone(3)进行说明</li>
+<li><a href="https://linuxjm.osdn.jp/html/LDP_man-pages/man2/clone.2.html" target="_blank" rel="noopener">https://linuxjm.osdn.jp/html/LDP_man-pages/man2/clone.2.html</a></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>生成的子进程可以通过fn()恢复</li>
+<li>生成的子进程，使用child_stack作为stack</li>
+<li>因为使用父进程相同的stack会产生corrupt</li>
+<li>flags可以指定各种，sandbox问题中这些比较多：<ul>
+<li>CLONE_THREAD：与父进程相同的线程组（线程必须）</li>
+<li>CLONE_SIGHAND：与父进程共享信号处理程序表（线程必须）</li>
+<li>CLONE_FILES：与父进程共享文件目录</li>
+<li>CLONE_FS：与父进程共享文件系统信息</li>
+<li>CLONE_VM：与父进程共享内存空间（线程必须）</li>
+</ul>
+</li>
+</ul>
+<h2 id="特别是CLONE-VM，重要"><a href="#特别是CLONE-VM，重要" class="headerlink" title="特别是CLONE_VM，重要"></a>特别是CLONE_VM，重要</h2><p>与父进程共享内存空间</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>没有CLONE_VM的情况，内存空间是复制后独立的</li>
+<li>指定CLONE_VM的情况，共享内存空间</li>
+</ul>
+<h2 id="CLONE-FILES也很常见"><a href="#CLONE-FILES也很常见" class="headerlink" title="CLONE_FILES也很常见"></a>CLONE_FILES也很常见</h2><p>与父进程共享文件目录</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>没有指定CLONE_FILES的情况，fd是复制后独立的</li>
+<li>指定CLONE_FILES的情况，共享文件目录fd</li>
+</ul>
+<h1 id="clone与seccomp"><a href="#clone与seccomp" class="headerlink" title="clone与seccomp"></a>clone与seccomp</h1><p>clone(flags=CLONE_VM|…)和seccomp()很适合结合使用</p>
+<ul>
+<li>两者结合的sandbox题目频出</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol>
+<li>子进程实行seccomp，后续的system call会受到内核级别的全局限制</li>
+<li>但是如果想要执行特定的system call，需要首先通过子进程的过滤器。通过校验后，对system call进行”代理实行”处理(也存在子进程没有独立过滤器的情况)</li>
+<li>通过预先创建的pipe管道，将寄存器及内存信息传递给父进程，代理实行</li>
+<li>父进程通过使用对pipe管道的写入监视等来处理子进程的system call请求</li>
+<li>通信数据通过父进程的过滤器，实行实际的system call(也存在父进程没有独立过滤器的情况)</li>
+</ol>
+<ul>
+<li>即使子进程实行了seccomp，也与父进程无关，父进程可以自由的进行system call</li>
+<li>因为内存空间和fd是共享的，某些system call的结果会反映在子进程中。(例如通过mmap生成新的内存区域会反映在子进程中，通过open打开文件，那么子进程也可以使用该fd)</li>
+<li>因此可能会有非预期解法，导致子进程执行某些system call</li>
+<li>这种类型的题目考点是“如何绕过独立过滤器”<ul>
+<li>seccomp基本不可绕过</li>
+<li>绕过对象可以是子进程的独立过滤器，也可以是父进程的</li>
+</ul>
+</li>
+</ul>
+<h1 id="没有CLONE-VM的模式"><a href="#没有CLONE-VM的模式" class="headerlink" title="没有CLONE_VM的模式"></a>没有CLONE_VM的模式</h1><p>存在clone(flags=CLONE_VM|…)这样不使用CLONE_VM的模式</p>
+<ul>
+<li>除了使用下面这样的pipe管道进行数据交换外，还使用ptrace， process_vm_readv，process_vm_writev等</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="常见模式"><a href="#常见模式" class="headerlink" title="常见模式"></a>常见模式</h1><h2 id="常见模式1-有无CLONE-VM皆可"><a href="#常见模式1-有无CLONE-VM皆可" class="headerlink" title="常见模式1(有无CLONE_VM皆可)"></a>常见模式1(有无CLONE_VM皆可)</h2><ul>
+<li>自己独立过滤器的参数检查比较容易bypass<ul>
+<li>检查范围的溢出，index溢出，特殊字符，竞争等</li>
+</ul>
+</li>
+</ul>
+<h2 id="常见模式2-有无CLONE-VM皆可"><a href="#常见模式2-有无CLONE-VM皆可" class="headerlink" title="常见模式2(有无CLONE_VM皆可)"></a>常见模式2(有无CLONE_VM皆可)</h2><ul>
+<li>首先子进程能够执行任意代码<ul>
+<li>stack BOF，heap BOF，FSB，UAF，TypeConfusion，Race等</li>
+</ul>
+</li>
+<li>自己独立过滤器隐含假设条件被打破，进行调用<ul>
+<li>system call参数，调用源，调用计数，上下文</li>
+</ul>
+</li>
+</ul>
+<h2 id="常见模式3-有CLONE-VM"><a href="#常见模式3-有CLONE-VM" class="headerlink" title="常见模式3(有CLONE_VM)"></a>常见模式3(有CLONE_VM)</h2><ul>
+<li>利用子进程中的漏洞，创建read/write原语(一系列任意内存读写的输入)</li>
+<li>重复内存泄漏，使ASLR无效</li>
+<li>因为内存由CLONE_VM共享，因此父进程使用的内存被重写，就能够禁用或者绕过父进程的独立过滤器</li>
+</ul>
+<h2 id="常见模式4-无CLONE-VM"><a href="#常见模式4-无CLONE-VM" class="headerlink" title="常见模式4(无CLONE_VM)"></a>常见模式4(无CLONE_VM)</h2><ul>
+<li>子进程可以执行任意代码</li>
+<li>从子进程向父进程发送意外数据，利用父进程的漏洞</li>
+<li>造成父进程的任意代码执行</li>
+<li>类似模式1和2，禁用父进程的独立过滤器</li>
+</ul>
+<h1 id="clone总结"><a href="#clone总结" class="headerlink" title="clone总结"></a>clone总结</h1><ul>
+<li>CLONE_VM，CLONE_FILES比较多<ul>
+<li>皆在通过创建特殊的进程来构造sandbox问题</li>
+</ul>
+</li>
+<li>sandbox问题很常见</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-08-14T05:46:24.265Z" itemprop="dateUpdated">2019-08-14 13:46:24</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/14/thread-clone/&title=《thread clone》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/14/thread-clone/&title=《thread clone》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/14/thread-clone/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《thread clone》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/14/thread-clone/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/14/thread-clone/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage1</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/08/seccomp/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">seccomp</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/14/thread-clone/&title=《thread clone》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/14/thread-clone/&title=《thread clone》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/14/thread-clone/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《thread clone》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/14/thread-clone/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/14/thread-clone/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACQElEQVR42u3a24qDQBBFUf//px2YpwFR96kyYaze/RQS0V4Giq7LtuG1/66/n4/r+OvxDscrz+65fWLJkCHjtYz9cp098gzZuf76pdxQZciQsQCDBFny4PTx18Ga7E2GDBkyrh9AjnTpa5IhQ4aMfsC9vp782jmGypAhY2VGWkTjxTJSekvDugwZMlZj1BoD3/n88f6GDBky/j1jLy3emOSheW8sGTJkzGaQ5JMkkGnprX8Y3dIcWoYMGa9l8PD3kVI+Rt68ehkyZCzA4IGVR7k0vJKm6dbZqAwZMl7LIGEuCHy4hcCPm/wpMmTImMogwbHWHkiPlaRgd1NokyFDxmgGKfqnLQE+GNE5Vt7k4jJkyBjEIIezNIusjbTy46MMGTJWY6RltVrwJQkt77vGYxYyZMh4LeOxonwYKNNNBw1OGTJkjGYQEg/NndJ/hypDhox5jPTQRhJdHjo7ofymvyFDhoyhDB5AeWksHQvjIT4eYJUhQ8YIBg+d/RGN2hDY6R1kyJAxmsEbkJ0BUx52+69DhgwZUxm8cJ8OeKVtyLQ5Wuw/yJAhYxwjTVN5ulsLx8XaoQwZMl7O6AD4FvvDFqgYJ0OGjHGMWqqZHuw4rHalDBkyZjP6g2JpC6HTIpUhQ8bKjMcSyMbWa8MWwXyHDBkyRjDSDaWPr6WswSuQIUOGjPBomDYbOoNiMmTIkFFrBpA7p4e/mzAtQ4aMBRh8tJR8w1sL/Pq4tylDhoxBjE5joJ+OpgH3gX9MhgwZb2L8ALEVslBb2qfEAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

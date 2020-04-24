@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记12:ASLR与memory leak | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="ret2libc对策 – ASLRASLR(Address Space Layout Randomization) 主要是地址随机化  现代Linux内核中默认开启  ret2libc成功的原因是，libc之类的读取地址是固定的  因此如果每次运行时，libc之类的地址随机，是一个比较好的方式  miao# echo 2 &gt; &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;randomize_va_spa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记12:ASLR与memory leak">
+<meta property="og:url" content="https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ret2libc对策 – ASLRASLR(Address Space Layout Randomization) 主要是地址随机化  现代Linux内核中默认开启  ret2libc成功的原因是，libc之类的读取地址是固定的  因此如果每次运行时，libc之类的地址随机，是一个比较好的方式  miao# echo 2 &gt; &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;randomize_va_spa">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041201.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041202.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041203.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041204.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041205.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041206.jpg">
+<meta property="article:published_time" content="2019-04-12T06:21:27.000Z">
+<meta property="article:modified_time" content="2019-04-12T06:22:10.378Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041201.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记12:ASLR与memory leak</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记12:ASLR与memory leak</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-12T06:21:27.000Z" itemprop="datePublished" class="page-time">
+  2019-04-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ret2libc对策-–-ASLR"><span class="post-toc-number">1.</span> <span class="post-toc-text">ret2libc对策 – ASLR</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ASLR-Address-Space-Layout-Randomization"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">ASLR(Address Space Layout Randomization)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ASLR绕过-方式1"><span class="post-toc-number">2.</span> <span class="post-toc-text">ASLR绕过 - 方式1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ASLR中，并非所有地址都是随机的"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">ASLR中，并非所有地址都是随机的</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GOT-leak"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">GOT leak</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GOT-overwrite"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">GOT overwrite</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#NX-ASLR绕过1-–-memory-leak-ret2plt-GOT-overwrite"><span class="post-toc-number">3.</span> <span class="post-toc-text">NX+ASLR绕过1 – memory leak + ret2plt + GOT overwrite</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他的泄漏"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他的泄漏</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#除GOT-leak之外，其他能够泄漏libc地址的情况"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">除GOT leak之外，其他能够泄漏libc地址的情况</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过泄漏想要获取的值"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">通过泄漏想要获取的值</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他的指针"><span class="post-toc-number">5.</span> <span class="post-toc-text">其他的指针</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GOT之外其他可写的函数指针"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">GOT之外其他可写的函数指针</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记12-ASLR与memory-leak"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记12:ASLR与memory leak</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-12 14:21:27" datetime="2019-04-12T06:21:27.000Z"  itemprop="datePublished">2019-04-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ret2libc对策-–-ASLR"><a href="#ret2libc对策-–-ASLR" class="headerlink" title="ret2libc对策 – ASLR"></a>ret2libc对策 – ASLR</h1><h2 id="ASLR-Address-Space-Layout-Randomization"><a href="#ASLR-Address-Space-Layout-Randomization" class="headerlink" title="ASLR(Address Space Layout Randomization)"></a>ASLR(Address Space Layout Randomization)</h2><ul>
+<li><p>主要是地址随机化</p>
+</li>
+<li><p>现代Linux内核中默认开启</p>
+</li>
+<li><p>ret2libc成功的原因是，libc之类的读取地址是固定的</p>
+</li>
+<li><p>因此如果每次运行时，libc之类的地址随机，是一个比较好的方式</p>
+</li>
+<li><pre><code>miao# echo 2 &gt; /proc/sys/kernel/randomize_va_space             
+miao# ldd stack6 | grep libc
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7d94000)
+miao# ldd stack6 | grep libc
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7dd4000)</code></pre></li>
+<li><p>如上所示，每次运行地址都不同</p>
+</li>
+</ul>
+<h1 id="ASLR绕过-方式1"><a href="#ASLR绕过-方式1" class="headerlink" title="ASLR绕过 - 方式1"></a>ASLR绕过 - 方式1</h1><h2 id="ASLR中，并非所有地址都是随机的"><a href="#ASLR中，并非所有地址都是随机的" class="headerlink" title="ASLR中，并非所有地址都是随机的"></a>ASLR中，并非所有地址都是随机的</h2><ul>
+<li><p>PLT/GOT之类的地址是固定的，可以利用这一点</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041201.jpg" alt="img"></p>
+</li>
+<li><p>实际的内存映射大概是这样</p>
+</li>
+<li><p>红框中是固定地址，PLT和GOT在这里</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041202.jpg" alt="img"></p>
+</li>
+<li><p>GOT中存储ASLR随机化后的地址</p>
+</li>
+<li><p>因此出现了有名的的根据这些信息计算libc地址的方法</p>
+</li>
+</ul>
+<h2 id="GOT-leak"><a href="#GOT-leak" class="headerlink" title="GOT leak"></a>GOT leak</h2><ul>
+<li><p>GOT中包含重要地址</p>
+<ul>
+<li>printf的外部地址</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041203.jpg" alt="img"></p>
+</li>
+<li><p>如果能够读取更新后的(<a href="mailto:printf@got.plt">printf@got.plt</a>)这个值，那么就可能计算出libc.so的加载地址</p>
+</li>
+</ul>
+<h2 id="GOT-overwrite"><a href="#GOT-overwrite" class="headerlink" title="GOT overwrite"></a>GOT overwrite</h2><ul>
+<li><p>因为GOT位于RW区域，因此可能覆写</p>
+<ul>
+<li>使用某种漏洞将printf的GOT替换为另一个地址</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041204.jpg" alt="img"></p>
+</li>
+<li><p>默认情况下可以重写GOT的值。通过某种方式将其修改为其他函数的地址，当调用printf函数的时候会调用修改后的其他函数。这种方式叫做GOT overwrite。</p>
+</li>
+</ul>
+<h1 id="NX-ASLR绕过1-–-memory-leak-ret2plt-GOT-overwrite"><a href="#NX-ASLR绕过1-–-memory-leak-ret2plt-GOT-overwrite" class="headerlink" title="NX+ASLR绕过1 – memory leak + ret2plt + GOT overwrite"></a>NX+ASLR绕过1 – memory leak + ret2plt + GOT overwrite</h1><ul>
+<li><p>假设存在栈溢出</p>
+</li>
+<li><p>通过ret2plt等方式，显示出printf@got的地址(write)</p>
+<ul>
+<li>泄漏地址</li>
+<li>攻击者可以通过泄漏的地址计算libc的基地址，加上偏移量计算出system的地址</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041205.jpg" alt="img"></p>
+</li>
+<li><p>通过ret2plt等方式，向printf@got读入system的地址(read)</p>
+<ul>
+<li>下次调用printf的时候，会实际调用system</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041206.jpg" alt="img"></p>
+</li>
+</ul>
+<h1 id="其他的泄漏"><a href="#其他的泄漏" class="headerlink" title="其他的泄漏"></a>其他的泄漏</h1><h2 id="除GOT-leak之外，其他能够泄漏libc地址的情况"><a href="#除GOT-leak之外，其他能够泄漏libc地址的情况" class="headerlink" title="除GOT leak之外，其他能够泄漏libc地址的情况"></a>除GOT leak之外，其他能够泄漏libc地址的情况</h2><ul>
+<li>通过(Stack/Heap)缓冲区溢出读取造成的泄漏</li>
+<li>无序参考，负数索引，类型(主要是结构体)的混淆导致的泄漏</li>
+<li>字符串末尾无终止字符造成的泄漏</li>
+<li>格式化字符串问题</li>
+<li>Use After Free，Double Free</li>
+<li>条件竞争等</li>
+</ul>
+<h2 id="通过泄漏想要获取的值"><a href="#通过泄漏想要获取的值" class="headerlink" title="通过泄漏想要获取的值"></a>通过泄漏想要获取的值</h2><ul>
+<li>stack区域上__libc_start_main的返回地址</li>
+<li>指向bss区域中与libc相关的变量的指针（例如FILE *之类的）</li>
+<li>指向堆管理区域(元数据)中的bin/fastbins的指针<ul>
+<li>bin/fastbins无任何连接时适用</li>
+</ul>
+</li>
+<li>与libc相关的所有其他地址</li>
+</ul>
+<h1 id="其他的指针"><a href="#其他的指针" class="headerlink" title="其他的指针"></a>其他的指针</h1><h2 id="GOT之外其他可写的函数指针"><a href="#GOT之外其他可写的函数指针" class="headerlink" title="GOT之外其他可写的函数指针"></a>GOT之外其他可写的函数指针</h2><ul>
+<li>C++ class的vtable<ul>
+<li>在C++中，class有method，在内部实现了一个函数指针表</li>
+</ul>
+</li>
+<li>.fini_array(旧的.dtor区域)<ul>
+<li>gcc编译具有<code>__attribute__((destructor))</code>的函数时,会在这里注册</li>
+</ul>
+</li>
+<li>由atexit()注册的列表<ul>
+<li>明确指定析构函数时的函数指针</li>
+<li>但是它与Thread Local Storage中奇怪的值XOR(PTR_MANGLE)之后进行注册</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-12T06:22:10.378Z" itemprop="dateUpdated">2019-04-12 14:22:10</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/&title=《Pwn学习笔记12:ASLR与memory leak》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/&title=《Pwn学习笔记12:ASLR与memory leak》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记12:ASLR与memory leak》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记13:ROP与DROP</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记11:ret2libc</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/&title=《Pwn学习笔记12:ASLR与memory leak》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/&title=《Pwn学习笔记12:ASLR与memory leak》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记12:ASLR与memory leak》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMklEQVR42u3aQXIiMRAEQP//0zhibxs2UNUa20jknAgbBqXmUHS3Pj7i6/bvevw6uUP+2a//vfeXfA31hY2Njb0J+/bwukdNPjXbpsd3Sx5DsipsbGzs89jJrR9HyOP3J5+dbVn7HmxsbOx3Zs+KljwOZ/fExsbGxm4DLC9dhgsatZawsbGxsVvGehnTFjnJeOBHemnY2NjYL8++atD7Cq//YL6NjY2N/afsW3m1JcRK2XDVyPmb+2BjY2MfxM4bN+1CV0bFs61pm1nY2NjYZ7DbZa207POiot2C9uFhY2Njn8eexUa76JVSJF9JFGzY2NjYb8bOkW28tRu00pD6pp2EjY2NfSg7b/pf1ehvD/20jyEKMGxsbOxt2evtpCSiZmVMe2CoXQ82Njb2Gey8+Z4fxGlbSFc1mIohATY2NvZB7Nmxm1m7f31sPGuBPdk4bGxs7M3Z7U/8tszIxwBXxVu0xdjY2NgHsdsPtwGWDx7yzVoZFWBjY2Ofyp6dY8mHtbPDQL/U/8HGxsY+iD2LkGFTfqHldFWxhI2NjX0GexYGebzlR4KK4iEeOUe1FzY2Nvbm7Pzne97EWSlC8lXlD+NJVmNjY2Nvzs5DaKUMmBUwPxd72NjY2Cexk2jJBwDJl+VDiBY2PLKDjY2NvTl7OBYtx71tkdMe68HGxsZ+Z3belFmJkHbY0BZIxRy77UVhY2Njvzx7/UDMypat3KHd7ru1FzY2Nvbm7DYM8uW2Q+L2G9tUeoLHxsbG3pydj1evxa+EWTtgjqYi2NjY2BuyW3AbGLMmUR5s+cjhv79gY2NjH8Qejkjjdv9stJDfeWUrsbGxsc9grzfWi8CIy4Zrt+lubmNjY2MfxM5Doo2ofFvzgiePrrqLho2Njb0tO7/aQiUvYPLCYz3MsLGxsU9iD7tQ8digPYKTb30UVPlJJWxsbOzN2bOGfjvcbQuVhJQHWF2QYGNjY2/IzqPo2jHtUqN/1lTCxsbGfmN2HirtgZs8hNphMzY2Njb27ChP267Kv2u9cMLGxsY+lb1yBGfWJJo1j9rtu6CXho2Njf3y7JVBb7vEtmDIB73DggQbGxt7b/YnWZ1t8ctIVuAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

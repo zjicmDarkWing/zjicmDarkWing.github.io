@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记13:ROP与DROP | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="ASLR绕过 - 方式2在ASLR中，并非所有地址都是随机的 也可以利用.text区域    NX+ASLR绕过2 - ROPROP(Return Oriented Programming) 狭义：想要执行的代码细分后在.text区域搜索合并  RX权限，即能够执行的只有.text区域，因此想办法使用.text区域   广义：除了狭义的ROP之外，也包括ret2plt&#x2F;ret2libc之类的伪造返">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记13:ROP与DROP">
+<meta property="og:url" content="https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ASLR绕过 - 方式2在ASLR中，并非所有地址都是随机的 也可以利用.text区域    NX+ASLR绕过2 - ROPROP(Return Oriented Programming) 狭义：想要执行的代码细分后在.text区域搜索合并  RX权限，即能够执行的只有.text区域，因此想办法使用.text区域   广义：除了狭义的ROP之外，也包括ret2plt&#x2F;ret2libc之类的伪造返">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041207.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041208.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041209.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041210.jpg">
+<meta property="article:published_time" content="2019-04-12T06:58:54.000Z">
+<meta property="article:modified_time" content="2019-04-12T06:59:23.041Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041207.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记13:ROP与DROP</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记13:ROP与DROP</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-12T06:58:54.000Z" itemprop="datePublished" class="page-time">
+  2019-04-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ASLR绕过-方式2"><span class="post-toc-number">1.</span> <span class="post-toc-text">ASLR绕过 - 方式2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在ASLR中，并非所有地址都是随机的"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">在ASLR中，并非所有地址都是随机的</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#NX-ASLR绕过2-ROP"><span class="post-toc-number">2.</span> <span class="post-toc-text">NX+ASLR绕过2 - ROP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ROP-Return-Oriented-Programming"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">ROP(Return Oriented Programming)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#寻找rop-gadget"><span class="post-toc-number">3.</span> <span class="post-toc-text">寻找rop gadget</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#很多工具，例如ROPgadget"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">很多工具，例如ROPgadget</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#NX-ASLR绕过3-DROP"><span class="post-toc-number">4.</span> <span class="post-toc-text">NX+ASLR绕过3 - DROP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DROP-Dynamic-ROP"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">DROP(Dynamic ROP)</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记13-ROP与DROP"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记13:ROP与DROP</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-12 14:58:54" datetime="2019-04-12T06:58:54.000Z"  itemprop="datePublished">2019-04-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ASLR绕过-方式2"><a href="#ASLR绕过-方式2" class="headerlink" title="ASLR绕过 - 方式2"></a>ASLR绕过 - 方式2</h1><h2 id="在ASLR中，并非所有地址都是随机的"><a href="#在ASLR中，并非所有地址都是随机的" class="headerlink" title="在ASLR中，并非所有地址都是随机的"></a>在ASLR中，并非所有地址都是随机的</h2><ul>
+<li><p>也可以利用.text区域</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041207.jpg" alt="img"></p>
+</li>
+</ul>
+<h1 id="NX-ASLR绕过2-ROP"><a href="#NX-ASLR绕过2-ROP" class="headerlink" title="NX+ASLR绕过2 - ROP"></a>NX+ASLR绕过2 - ROP</h1><h2 id="ROP-Return-Oriented-Programming"><a href="#ROP-Return-Oriented-Programming" class="headerlink" title="ROP(Return Oriented Programming)"></a>ROP(Return Oriented Programming)</h2><ul>
+<li><p>狭义：想要执行的代码细分后在.text区域搜索合并</p>
+<ul>
+<li>RX权限，即能够执行的只有.text区域，因此想办法使用.text区域</li>
+</ul>
+</li>
+<li><p>广义：除了狭义的ROP之外，也包括ret2plt/ret2libc之类的伪造返回地址的方法</p>
+</li>
+<li><p>细分的代码叫做gadget，rop gadget</p>
+<ul>
+<li>例如下面的代码，可以对eax进行+1操作</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041208.jpg" alt="img"></p>
+</li>
+</ul>
+<h1 id="寻找rop-gadget"><a href="#寻找rop-gadget" class="headerlink" title="寻找rop gadget"></a>寻找rop gadget</h1><h2 id="很多工具，例如ROPgadget"><a href="#很多工具，例如ROPgadget" class="headerlink" title="很多工具，例如ROPgadget"></a>很多工具，例如ROPgadget</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041209.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<ul>
+<li>其他工具例如msfrop，rp++，Ropeme，ropper</li>
+</ul>
+<h1 id="NX-ASLR绕过3-DROP"><a href="#NX-ASLR绕过3-DROP" class="headerlink" title="NX+ASLR绕过3 - DROP"></a>NX+ASLR绕过3 - DROP</h1><h2 id="DROP-Dynamic-ROP"><a href="#DROP-Dynamic-ROP" class="headerlink" title="DROP(Dynamic ROP)"></a>DROP(Dynamic ROP)</h2><ul>
+<li><p>.text区域的gadget很少时的情况</p>
+</li>
+<li><p>基于泄漏的libc地址，使用libc中的gadget构造ROP</p>
+</li>
+<li><p>因为libc相对比较大，其中的gadget非常多</p>
+</li>
+<li><p>在泄漏libc地址的大部分情况中非常有效</p>
+</li>
+<li><p>前提是指导目标环境的libc版本</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041210.jpg" alt="img"></p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-12T06:59:23.041Z" itemprop="dateUpdated">2019-04-12 14:59:23</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/&title=《Pwn学习笔记13:ROP与DROP》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/&title=《Pwn学习笔记13:ROP与DROP》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记13:ROP与DROP》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记14:stack pivot与Off-by-one</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记12:ASLR与memory leak</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/&title=《Pwn学习笔记13:ROP与DROP》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/&title=《Pwn学习笔记13:ROP与DROP》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记13:ROP与DROP》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADOklEQVR42u3aQW7jMBAEwPz/015gT7tIJHdz5MCiS6fAkCgWdZiwh19f8fX4e/37d/7L99+/jzy55/v9l13Y2NjYN2E/Tq9zxvkIa+86Wu7zcerxsbGxsbdjJ0WrLTlJgTl/dq2URsuHjY2N/ZHstoC1Babd0mBjY2Njz9mvKD9JOWwDJmxsbOxPYCeFJHlNXpwmS/yrWRo2Njb227PXGr3v+ffL+9vY2NjYb8Z+XHTlTd+1AjmPtP57FhsbG3sj9lob4DwAupbRHtMpGsDY2NjY27Hz15w/mzQM5uxkDk8+EjY2NvZ27ElDd7HV+oJoabG/jY2NjX1z9rxB2zaJ83vyhWvjKmxsbOyd2GtTT15/1QHKNjCKPhs2Njb2FuzDf9CDSOiqkzB5CyFvHj8pmdjY2NjbsSfxULtpWWsqJLMqPhU2Njb2RuzJ4ZtJ6L+2QGst5ChUwsbGxr4te9IoPb9/rYAlY+ZxUn1YBxsbG/uG7ElINA+S2o1NsoEpti7Y2NjYm7KT4rH2+rwlfNU4T0bGxsbG3oidx0DtNiN/dtIAbpvN2NjY2PuxJ1FOEeKU24l2DvWiY2NjY2/KzkOfCSnf0qy9vajY2NjY2Fuw80KSbwDaMSfLN2pIY2NjY2/EboObvPi1U5ks4lr7ARsbG/u+7LZFulYeJuzFr3deCLGxsbE3YrfRzFqpaxn5x5gHYdjY2Nh3Z7fHdJKW6jxUWmvrFtsVbGxs7I3YbSizdigzL2xXbXgWtzHY2NjYN2Tnm4G1wpCER0mQlH/DaCuFjY2NvR170pRNXpYcr2yfTaiHRREbGxt7I3Yb9+QlZxLlT87V1P0QbGxs7JuzJ2Vjfshmfn/btPghVMLGxsa+OfvakCgve2sFrJ30iIqNjY19E/ajvPJGbFuE8hKVt6UPn8XGxsbeiP2bAVP++vagz+RQETY2NvYe7Lxo1Ydj4mVq27ft8R1sbGzsT2C3E50E+kmZvCoJO5wnNjY29gezJzH9WjzU/p5sn7CxsbE/k922FtpFbDdCeRP6sDeCjY2NvRE7D5XmQc/k/rUPcLgVwcbGxt6CPWn05sPlgdH57+2zo3AKGxsb+93ZfwBf/POHe7IYWwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CTF中的sandbox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="sandbox问题分类大体上两类 1.binary的sandbox 绕过system call过滤机制 自定义过滤器，seccomp过滤器，混合过滤器等   基本上结合pwn问题  2.program的sandbox 绕过对函数，变量，语法，字符等的过滤机制 不能使用符号，import之类语句等 python&#x2F;php很常见，其他的go&#x2F;JavaScript&#x2F;ruby之类     大部分是misc类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF中的sandbox">
+<meta property="og:url" content="https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="sandbox问题分类大体上两类 1.binary的sandbox 绕过system call过滤机制 自定义过滤器，seccomp过滤器，混合过滤器等   基本上结合pwn问题  2.program的sandbox 绕过对函数，变量，语法，字符等的过滤机制 不能使用符号，import之类语句等 python&#x2F;php很常见，其他的go&#x2F;JavaScript&#x2F;ruby之类     大部分是misc类">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080101.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080102.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080103.jpg">
+<meta property="article:published_time" content="2019-08-01T04:57:33.000Z">
+<meta property="article:modified_time" content="2019-08-01T04:58:10.395Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080101.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CTF中的sandbox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CTF中的sandbox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-01T04:57:33.000Z" itemprop="datePublished" class="page-time">
+  2019-08-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#sandbox问题分类"><span class="post-toc-number">1.</span> <span class="post-toc-text">sandbox问题分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-binary的sandbox"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.binary的sandbox</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-program的sandbox"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.program的sandbox</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#sandbox问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">sandbox问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特征"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">特征</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题构成"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">问题构成</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#普通pwn问题构成"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">普通pwn问题构成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sandbox问题构成"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">sandbox问题构成</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构成模式"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">构成模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻略方法"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">攻略方法</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-CTF中的sandbox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CTF中的sandbox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-01 12:57:33" datetime="2019-08-01T04:57:33.000Z"  itemprop="datePublished">2019-08-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="sandbox问题分类"><a href="#sandbox问题分类" class="headerlink" title="sandbox问题分类"></a>sandbox问题分类</h1><p>大体上两类</p>
+<h2 id="1-binary的sandbox"><a href="#1-binary的sandbox" class="headerlink" title="1.binary的sandbox"></a>1.binary的sandbox</h2><ul>
+<li>绕过system call过滤机制<ul>
+<li>自定义过滤器，seccomp过滤器，混合过滤器等</li>
+</ul>
+</li>
+<li>基本上结合pwn问题</li>
+</ul>
+<h2 id="2-program的sandbox"><a href="#2-program的sandbox" class="headerlink" title="2.program的sandbox"></a>2.program的sandbox</h2><ul>
+<li>绕过对函数，变量，语法，字符等的过滤机制<ul>
+<li>不能使用符号，import之类语句等<ul>
+<li>python/php很常见，其他的go/JavaScript/ruby之类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>大部分是misc类，也有pwn和web<ul>
+<li>PWN相关问题会有最新的CVE</li>
+<li>Web问题与web服务一起发布</li>
+</ul>
+</li>
+</ul>
+<h1 id="sandbox问题"><a href="#sandbox问题" class="headerlink" title="sandbox问题"></a>sandbox问题</h1><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ul>
+<li>即使控制了EIP/RIP，也不能调用execve()之类的危险system call<ul>
+<li>system()内部也是execve()，无法调用</li>
+</ul>
+</li>
+<li>大多数system call都不能使用<ul>
+<li>这取决于过滤了哪些</li>
+</ul>
+</li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现大体上有三种方式</p>
+<ol>
+<li>进程自身过滤<ul>
+<li>限制system call的调用地点和流程</li>
+<li>实现方式最简单，也很容易绕过</li>
+</ul>
+</li>
+<li>父进程过滤<ul>
+<li>pipe </li>
+<li>ptrace</li>
+<li>process_vm_readv，process_vm_writev</li>
+<li>使用clone内存共享等来过滤传输系统调用代码参数</li>
+<li>实现比较复杂，CTF中比较多</li>
+</ul>
+</li>
+<li>内核过滤<ul>
+<li>seccomp</li>
+<li>很强大，几乎不可绕过，问题实例较少，结合1和2时有很多问题</li>
+</ul>
+</li>
+</ol>
+<h2 id="问题构成"><a href="#问题构成" class="headerlink" title="问题构成"></a>问题构成</h2><h3 id="普通pwn问题构成"><a href="#普通pwn问题构成" class="headerlink" title="普通pwn问题构成"></a>普通pwn问题构成</h3><ul>
+<li>控制EIP/RIP后，执行system(“sh”)就可以</li>
+<li>或者创建一个RWX区域执行shellcode</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="sandbox问题构成"><a href="#sandbox问题构成" class="headerlink" title="sandbox问题构成"></a>sandbox问题构成</h3><ul>
+<li>单纯控制EIP/RIP，并不能结束工作</li>
+<li>调用禁止的system call的话，进程会停止(pwn失败)</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>因为sandbox过滤了execve()，所以无法获得shell</li>
+</ul>
+<h2 id="构成模式"><a href="#构成模式" class="headerlink" title="构成模式"></a>构成模式</h2><ol>
+<li>在前段进行pwn，控制EIP/RIP后绕过sandbox过滤的模式</li>
+<li>前段没有pwn，直接执行任意代码的模式</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="攻略方法"><a href="#攻略方法" class="headerlink" title="攻略方法"></a>攻略方法</h2><ul>
+<li><p>了解system call过滤处理</p>
+<ul>
+<li>自定义过滤器，seccomp过滤器，混合过滤器等</li>
+</ul>
+</li>
+<li><p>在system call过滤处理中找到漏洞</p>
+<ul>
+<li>CTF题目中一定存在漏洞</li>
+</ul>
+</li>
+<li><p>绕过sandbox经常需要复杂的流程</p>
+</li>
+<li><p>首先，需要某种方式的”任意代码执行”，这里指的是发送的任意汇编代码可以像shellcode一样执行。(因为不能打开shell</p>
+</li>
+<li><p>创建RWX区域执行任意代码</p>
+</li>
+<li><p>RWX区域可以通过mmap/mprotect来生成，如果二进制本身没有NX就太好了</p>
+</li>
+<li><p>绕过之后通常是open(flag) -&gt; read() -&gt; write()，因为不能使用execve</p>
+</li>
+<li><p>如果不能使用mmap/mprotect，那么ROP</p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-08-01T04:58:10.395Z" itemprop="dateUpdated">2019-08-01 12:58:10</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/&title=《CTF中的sandbox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/&title=《CTF中的sandbox》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CTF中的sandbox》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/08/seccomp/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">seccomp</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记23:heap与malloc(-1)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/&title=《CTF中的sandbox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/&title=《CTF中的sandbox》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CTF中的sandbox》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aS27DMAwFwNz/0u62QKvkkUwCSB6tjMZRPV4w/OjxiNf1a60+Xd3/97vPr1f/5Q0LAwNjW8b1dCWPVd0/vyd5NgwMjPswnofR6tar62pYz0M8BgYGRp78JbDqK8PAwMCYMCakVZKHgYGBMSli8x5XEqaTdPAjtTgGBsaGjLy8/P71R+YbGBgYWzGu4uoF3GRIeQ0WBgbG2Yw8wOVpWRVf3X/5OjAwMA5lJG2v5NNJcZuH42XCioGBcTNG77GS0jdv2+UHLzAwMO7DqCZ51WMTvYZ+4X4MDIyjGfmXe4PJakithuYlEgMD4yBGVVxtt/VI1RCPgYFxNqPXXKsOOyeNtnIbDgMD4zhGsmlvLppczwEYGBh3YFQTr6TgrA4Y8hHCi2QRAwPjaEYSCielbN5WyzPZ5Z4YGBjHMaqFaJ7wTVLGKgYDA+NsRu/wRI8xT0DfcHIEAwNjQ0a1KTbhVQeW5ZkGBgbGoYy8+T5JFpNXUD0i9mIGi4GBcQNGYXBY/HteuCYF9j9FLAYGxg0YvdZbnvzNj529aLdhYGAczciPShTStXi02Tt8NjrxgYGBsQnjKq55E21+jqv5i4GBgbEtozolrDbFClG/NXJoDjsxMDA2ZPSC7CQoz19Z+dcDAwPjCEavZK02+pMksonEwMDAKJaavT17qSQGBgbGp4Nyb+TwtoCLgYGxFSMpSvMDFsmEcT5OwMDAuA+jl3flsOQhkgK4d7wDAwNjc8YP7GhBz5w6NjIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

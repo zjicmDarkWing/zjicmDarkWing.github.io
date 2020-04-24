@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>PlaidCTF 2015 - pwnable620(420+200) – tp - stage1 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="题目信息https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2015&#x2F;blob&#x2F;master&#x2F;plaidctf-2015&#x2F;pwnable&#x2F;tp&#x2F;problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw&#x3D;true 测试运行直接运行什么也不会显示，大概10秒后killed">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PlaidCTF 2015 - pwnable620(420+200) – tp - stage1">
+<meta property="og:url" content="https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="题目信息https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2015&#x2F;blob&#x2F;master&#x2F;plaidctf-2015&#x2F;pwnable&#x2F;tp&#x2F;problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw&#x3D;true 测试运行直接运行什么也不会显示，大概10秒后killed">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081501.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081502.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081503.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081504.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081505.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081506.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081507.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081508.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081509.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081510.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081511.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081512.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081513.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081514.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081515.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081516.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081517.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081518.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081519.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081520.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081521.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081522.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082001.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082002.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082003.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082004.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082005.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082006.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082007.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082008.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082009.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082010.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082011.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082012.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082013.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082014.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082015.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082016.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082017.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082018.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082019.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082020.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082021.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082022.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082023.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082101.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082102.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082103.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082104.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082105.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082106.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082107.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082108.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082201.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082202.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082203.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082204.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082205.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082206.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082207.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082208.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082209.jpg">
+<meta property="article:published_time" content="2019-08-22T07:19:49.000Z">
+<meta property="article:modified_time" content="2019-08-27T09:14:39.954Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081501.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PlaidCTF 2015 - pwnable620(420+200) – tp - stage1</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage1</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-22T07:19:49.000Z" itemprop="datePublished" class="page-time">
+  2019-08-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#题目信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">题目信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试运行"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">测试运行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#strace"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">strace</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#checksec"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">checksec</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#vmmap"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">vmmap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开启ASLR运行"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">开启ASLR运行</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Stage1"><span class="post-toc-number">2.</span> <span class="post-toc-text">Stage1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解析-整体构成"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">解析 - 整体构成</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解析-主操作部分"><span class="post-toc-number">3.</span> <span class="post-toc-text">解析 - 主操作部分</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#do-command"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">do_command</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#command0-new"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">command0_new</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#build-node-and-insert-note"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">build_node_and_insert_note</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#恢复点"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">恢复点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#command1-read"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">command1_read</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#command2-write"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">command2_write</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#command3-free"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">command3_free</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#command4-delete"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">command4_delete</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#攻略-stage1"><span class="post-toc-number">4.</span> <span class="post-toc-text">攻略(stage1)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#环境"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成command文件"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">生成command文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成dump函数"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">生成dump函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pwn-生成共有状态"><span class="post-toc-number">5.</span> <span class="post-toc-text">Pwn - 生成共有状态</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-new-size-1"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">1. _new(size&#x3D;1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-new-size-1"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">2. _new(size&#x3D;1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-new-size-1"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3. _new(size&#x3D;-1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-new-size-1"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">4. _new(size&#x3D;-1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-free-id-1"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">5. _free(id&#x3D;1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-new-size-0x28"><span class="post-toc-number">5.6.</span> <span class="post-toc-text">6. _new(size&#x3D;0x28)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pwn-heap-leak"><span class="post-toc-number">6.</span> <span class="post-toc-text">Pwn - heap leak</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-read-id-1-data-pQ-0x1337"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">7. _read(id&#x3D;1, data&#x3D;pQ(0x1337))</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-new-size-0x100"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">8. _new(size&#x3D;0x100)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-read-id-1-data-pQ-0x1337-“-x70-x08”"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">9. _read(id&#x3D;1, data&#x3D;pQ(0x1337) + “\x70\x08”)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-write-id-0x1337-size-8"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">10. _write(id&#x3D;0x1337, size&#x3D;8)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pwn-libc-leak"><span class="post-toc-number">7.</span> <span class="post-toc-text">Pwn - libc leak</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11-read-id-1-data-pQ-0x1337-“-x88-x08”"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">11. _read(id&#x3D;1, data&#x3D;pQ(0x1337) + “\x88\x08”)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-write-id-0x1337-size-8"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">12. _write(id&#x3D;0x1337, size&#x3D;8)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pwn-stack-leak"><span class="post-toc-number">8.</span> <span class="post-toc-text">Pwn - stack leak</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13-read-id-1-data-pQ-0x1337-pQ-libc-base-0x3c14a0"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">13. _read(id&#x3D;1, data&#x3D;pQ(0x1337)+pQ(libc_base+0x3c14a0))</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-write-id-0x1337-size-8"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">14. _write(id&#x3D;0x1337, size&#x3D;8)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pwn-stack伪造"><span class="post-toc-number">9.</span> <span class="post-toc-text">Pwn - stack伪造</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#15-read-id-1-data-pQ-0x1337-pQ-ret-pQ-len-rop"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">15. _read(id&#x3D;1, data&#x3D;pQ(0x1337)+pQ(ret)+pQ(len(rop)))</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#16-read-id-0x1337-data-rop"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">16. _read(id&#x3D;0x1337, data&#x3D;rop)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#stage1的exploit"><span class="post-toc-number">10.</span> <span class="post-toc-text">stage1的exploit</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-PlaidCTF-2015-pwnable620-420-200-–-tp-stage1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage1</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-22 15:19:49" datetime="2019-08-22T07:19:49.000Z"  itemprop="datePublished">2019-08-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><p><a href="https://github.com/ctfs/write-ups-2015/blob/master/plaidctf-2015/pwnable/tp/problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw=true" target="_blank" rel="noopener">https://github.com/ctfs/write-ups-2015/blob/master/plaidctf-2015/pwnable/tp/problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw=true</a></p>
+<h2 id="测试运行"><a href="#测试运行" class="headerlink" title="测试运行"></a>测试运行</h2><p>直接运行什么也不会显示，大概10秒后killed</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="strace"><a href="#strace" class="headerlink" title="strace"></a>strace</h2><p><code>$ env -i strace -fi ./tp</code></p>
+<ul>
+<li>省略前面的加载library部分</li>
+<li>有一个alarm(10)的时间限制（造成killed的原因）</li>
+<li>clone，pipe2，prctl， syscall_317(seccomp)之类的，看起来像sandbox的system call。也有一个可疑的SIGSTOP信号</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h2><p>防御全开</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="vmmap"><a href="#vmmap" class="headerlink" title="vmmap"></a>vmmap</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>没有自身的elf</li>
+<li>一个非常大的mmap</li>
+</ul>
+<h2 id="开启ASLR运行"><a href="#开启ASLR运行" class="headerlink" title="开启ASLR运行"></a>开启ASLR运行</h2><p><code>$ gdb -q ./tp -ex &#39;set disable-randomization off&#39;</code></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p> 这次正常了，也就是说，如果关掉ASLR就不能正常运行</p>
+<h1 id="Stage1"><a href="#Stage1" class="headerlink" title="Stage1"></a>Stage1</h1><ul>
+<li>暂时不需要考虑绕过sandbox</li>
+<li>sandbox部分在Stage2</li>
+<li>这部分主要是pwn</li>
+<li>目标是读取/home/tp/flag1</li>
+</ul>
+<h2 id="解析-整体构成"><a href="#解析-整体构成" class="headerlink" title="解析 - 整体构成"></a>解析 - 整体构成</h2><ul>
+<li>父进程（sandbox）</li>
+<li>子A（sandbox）</li>
+<li>子B（main，note管理类）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>子B主要5个功能，内部实现是红黑树，node持有指向note的指针，note持有指向data的指针</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="解析-主操作部分"><a href="#解析-主操作部分" class="headerlink" title="解析 - 主操作部分"></a>解析 - 主操作部分</h1><h2 id="do-command"><a href="#do-command" class="headerlink" title="do_command"></a>do_command</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081508.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>右侧:恢复点</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081509.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>读取command</li>
+<li>根据command进行分支</li>
+<li>常规的note管理类服务</li>
+</ul>
+<h2 id="command0-new"><a href="#command0-new" class="headerlink" title="command0_new"></a>command0_new</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081510.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081511.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>接受要创建的note的size</li>
+<li>但不对size进行检查</li>
+<li>在没有对size检查的情况下生成新note</li>
+<li>搜索已经free的note，如果存在，会再次使用它</li>
+</ul>
+<h2 id="build-node-and-insert-note"><a href="#build-node-and-insert-note" class="headerlink" title="build_node_and_insert_note"></a>build_node_and_insert_note</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081512.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081513.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>初始化与node相连的note</li>
+<li>搜索能够构建tree的node插入点</li>
+<li>初始化要插入tree的node</li>
+<li>将node插入tree</li>
+<li>在没有检查size的情况下，分配连接到note的buffer</li>
+<li>new(buffer)如果失败，产生std::bad_alloc异常，调用handler</li>
+</ul>
+<h2 id="恢复点"><a href="#恢复点" class="headerlink" title="恢复点"></a>恢复点</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081514.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>note使用的buffer(data)如果存在，则释放它</li>
+<li>note自身也释放</li>
+<li>但是data和note还是连接在一起的</li>
+<li>这就产生了Use After Free</li>
+</ul>
+<h2 id="command1-read"><a href="#command1-read" class="headerlink" title="command1_read"></a>command1_read</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081515.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081516.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>接收note的id，以及要读取的size</li>
+<li>搜索指定id的note</li>
+<li>读取note的data</li>
+</ul>
+<h2 id="command2-write"><a href="#command2-write" class="headerlink" title="command2_write"></a>command2_write</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081517.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081518.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>接收note的id，以及要写入的size</li>
+<li>搜索指定id的note</li>
+<li>写入note的data</li>
+</ul>
+<h2 id="command3-free"><a href="#command3-free" class="headerlink" title="command3_free"></a>command3_free</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081519.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081520.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>接收要变更为不可利用的note的id</li>
+<li>搜索指定id的note</li>
+<li>clear used 比特位</li>
+</ul>
+<h2 id="command4-delete"><a href="#command4-delete" class="headerlink" title="command4_delete"></a>command4_delete</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081521.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081522.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>接收要废弃的note的id</li>
+<li>搜索指定id的note</li>
+<li>释放node和note</li>
+</ul>
+<h1 id="攻略-stage1"><a href="#攻略-stage1" class="headerlink" title="攻略(stage1)"></a>攻略(stage1)</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>创建tp用户，创建测试flag：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>不需要alerm(10),因为有PIE，不能用peda的deactive，直接patch为alerm(0)</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>之后socat启动服务，因为有ASLR，不能使用gdbserver（禁用ASLR时，二进制的.text段会消失)。所以这次需要使用gdb attach：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>终端1启动服务，终端3使用gdb attach，终端2为攻击者发送数据：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li><code>pgrep -w &lt;filename&gt;</code>可以筛选LWP(包括线程的进程)列表，之后使用<code>tail -1</code>选择最后一个生成的线程，也就是只选择子B。</li>
+<li>但是，因为有PIE，每次attach，text的基地址都会改变</li>
+</ul>
+<p>根据attach后stack上的各种值，可以计算出PIE的base：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>通过vmmap检查PIE的base，这次是0x7fdc7bdcc000</li>
+<li>根据stack上的值计算出偏移：0x7fdc7bdce34f - 0x7fdc7bdcc000= 0x234f (diff)</li>
+<li><code>*$rsp-0x234f == PIE的base，set $base = *(void**)$rsp-0x234f</code>，即使有PIE，偏移量是不会改变的，因此我们可以通过每次的rsp计算出PIE的base</li>
+</ul>
+<h2 id="生成command文件"><a href="#生成command文件" class="headerlink" title="生成command文件"></a>生成command文件</h2><p>将禁用SIGSYS信号的stop，print，读取heap信息，计算base等命令写到文件里，再次gdb attach：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>将程序各个功能封装成函数：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="生成dump函数"><a href="#生成dump函数" class="headerlink" title="生成dump函数"></a>生成dump函数</h2><p>确认UAF之前，准备好dump node和note信息的函数比较好</p>
+<ul>
+<li>这样会非常效率</li>
+<li>便于理解heap内部情况</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082011.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082012.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>可以看到生成了一个存在note，buffer为NULL的异常node</p>
+<h1 id="Pwn-生成共有状态"><a href="#Pwn-生成共有状态" class="headerlink" title="Pwn - 生成共有状态"></a>Pwn - 生成共有状态</h1><p>利用UAF可以达到任意内存读写</p>
+<ul>
+<li>但首先需要生成共用内存的状态</li>
+<li>即存在两个指针A和B，指向同一块内存区域</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082013.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="1-new-size-1"><a href="#1-new-size-1" class="headerlink" title="1. _new(size=1)"></a>1. _new(size=1)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082014.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>创建了一个size为1的note，之后tree是这样的</p>
+<h2 id="2-new-size-1"><a href="#2-new-size-1" class="headerlink" title="2. _new(size=1)"></a>2. _new(size=1)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082015.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>创建一个后面用于覆盖的元素</li>
+<li>作为id为0的node的父node，插入到tree中</li>
+</ul>
+<h2 id="3-new-size-1"><a href="#3-new-size-1" class="headerlink" title="3. _new(size=-1)"></a>3. _new(size=-1)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082016.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082017.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>alloc_note内部，首先生成note</li>
+<li>接下来准备生成data</li>
+<li>但是因为size是负数，data生成失败，malloc内部生成了thread_arena</li>
+<li>刚才生成的note被free后，来自node的引用仍然存在</li>
+<li>fastbins与这个note相连接，arena切换，这个note已经不能被使用</li>
+</ul>
+<h2 id="4-new-size-1"><a href="#4-new-size-1" class="headerlink" title="4. _new(size=-1)"></a>4. _new(size=-1)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082018.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082019.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>同样，先在alloc_note内部，首先生成note</li>
+<li>之后，data生成失败，如果已经存在thread_arena，malloc就不会再创建新的arena</li>
+<li>因为data生成失败，data被free，来自node的引用仍然存在</li>
+<li>bins和note相连接</li>
+</ul>
+<h2 id="5-free-id-1"><a href="#5-free-id-1" class="headerlink" title="5. _free(id=1)"></a>5. _free(id=1)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082020.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>tree开头的节点，id=1的note设置为used=0</li>
+<li>如果存在used=0的note，它的size与指定的size不一致，下次alloc_note时，先free(data)，然后重新分配一次</li>
+</ul>
+<h2 id="6-new-size-0x28"><a href="#6-new-size-0x28" class="headerlink" title="6. _new(size=0x28)"></a>6. _new(size=0x28)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082021.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>因为used=0的note的id=1，它将被再次使用</li>
+<li>但是size不一致，会先将id=1的datafree掉</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082022.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>之后的malloc，会从thread_arena生成data</li>
+<li>因为bins中存在sz=0x28的chunk，会直接再次使用，作为id=1的data</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082023.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>这时候，id=1的data和id=3的data是共有状态</li>
+<li>但是，id=3的note，实际上id信息已经破坏，因此需要修正</li>
+</ul>
+<h1 id="Pwn-heap-leak"><a href="#Pwn-heap-leak" class="headerlink" title="Pwn - heap leak"></a>Pwn - heap leak</h1><p>生成了共有状态</p>
+<ul>
+<li>接下来，对id=1的data的变更操作，也会对id=3的note的data操作<ul>
+<li>可以做任意读写</li>
+<li>如果可以指定GOT地址进行读取，就不需要考虑libc相关地址</li>
+<li>也就是说，无视ASLR</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>但是因为这里同时有PIE+ASLR，我们不知道GOT(.text)的地址<ul>
+<li>可以利用Partial Overwrite，来leak内存</li>
+</ul>
+</li>
+<li>首先需要泄漏heap的地址（thread_arena的mapped区域）</li>
+</ul>
+<h2 id="7-read-id-1-data-pQ-0x1337"><a href="#7-read-id-1-data-pQ-0x1337" class="headerlink" title="7. _read(id=1, data=pQ(0x1337))"></a>7. _read(id=1, data=pQ(0x1337))</h2><ul>
+<li>更新id=1的data</li>
+<li>这会导致id=3的note更新，变成id=0x1337</li>
+<li>这时，id=0x1337变成used=0</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="8-new-size-0x100"><a href="#8-new-size-0x100" class="headerlink" title="8. _new(size=0x100)"></a>8. _new(size=0x100)</h2><ul>
+<li>因为找到的used=0的note的id=0x1337，通过alloc_note对这个note再次使用</li>
+<li>id=0x1337，生成data</li>
+<li>size=0x100，不在bins里的小的size就可以</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>这时，id=0x1337的note上，生成了指向data的指针</li>
+<li>这个指向data的指针，指向的是从thread_arena的mapped区域申请的chunk</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="9-read-id-1-data-pQ-0x1337-“-x70-x08”"><a href="#9-read-id-1-data-pQ-0x1337-“-x70-x08”" class="headerlink" title="9. _read(id=1, data=pQ(0x1337) + “\x70\x08”)"></a>9. _read(id=1, data=pQ(0x1337) + “\x70\x08”)</h2><ul>
+<li>使用id=1，来覆盖指向id=0x1337的note的data的指针，只能写两个字节</li>
+<li>指向0x1337的data的指针，指向的是thread_arena内部的bin上的一个chunk</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>可以看到，指向data的指针，后两个字节已经被重写</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>这次是指向mapped+0x870作为data</li>
+<li>里面是mapped+0x858</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="10-write-id-0x1337-size-8"><a href="#10-write-id-0x1337-size-8" class="headerlink" title="10. _write(id=0x1337, size=8)"></a>10. _write(id=0x1337, size=8)</h2><ul>
+<li>通过写出id=0x1337，可以泄漏mapped+0x858之类的值</li>
+<li>泄漏的值减去0x858就能够知道heap的base地址</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Pwn-libc-leak"><a href="#Pwn-libc-leak" class="headerlink" title="Pwn - libc leak"></a>Pwn - libc leak</h1><ul>
+<li>能够泄漏heap的base地址</li>
+<li>附近(mapped+0x888)存在和libc相关的地址</li>
+<li>从thread_arena到main_arena的next指针</li>
+<li>这个也可以被泄漏</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="11-read-id-1-data-pQ-0x1337-“-x88-x08”"><a href="#11-read-id-1-data-pQ-0x1337-“-x88-x08”" class="headerlink" title="11. _read(id=1, data=pQ(0x1337) + “\x88\x08”)"></a>11. _read(id=1, data=pQ(0x1337) + “\x88\x08”)</h2><ul>
+<li>使用id=1，来覆盖指向id=0x1337的note的data的指针，只能写两个字节</li>
+<li>指向0x1337的data的指针，指向的是thread_arena的next</li>
+<li>next中是main_arena的地址</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="12-write-id-0x1337-size-8"><a href="#12-write-id-0x1337-size-8" class="headerlink" title="12. _write(id=0x1337, size=8)"></a>12. _write(id=0x1337, size=8)</h2><ul>
+<li>通过写出id=0x1337，可以泄漏main_arena的地址</li>
+<li>泄漏的值减去0x3be760就能够知道libc的base地址</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Pwn-stack-leak"><a href="#Pwn-stack-leak" class="headerlink" title="Pwn - stack leak"></a>Pwn - stack leak</h1><ul>
+<li>能够泄漏libc的base地址</li>
+<li>结合偏移量就能够计算出libc中各种函数地址<ul>
+<li>但计算出system函数并不能结束</li>
+</ul>
+</li>
+<li>因为有sandbox，system，execve之类的不能使用<ul>
+<li>但是heap操作必要的，mprotect/mmap这类是被允许的</li>
+<li>最快的方法是，通过mprotect使heap权限为RWX，然后在heap中加载执行open()-&gt;read()-&gt;write()这样的shellcode</li>
+</ul>
+</li>
+<li>因此，策略是覆盖stack返回地址，执行mprotect()-&gt;read()这样的ROP</li>
+</ul>
+<h2 id="13-read-id-1-data-pQ-0x1337-pQ-libc-base-0x3c14a0"><a href="#13-read-id-1-data-pQ-0x1337-pQ-libc-base-0x3c14a0" class="headerlink" title="13. _read(id=1, data=pQ(0x1337)+pQ(libc_base+0x3c14a0))"></a>13. _read(id=1, data=pQ(0x1337)+pQ(libc_base+0x3c14a0))</h2><ul>
+<li>libc中存在指向stack的<code>__environ，__libc_stack_end</code>变量</li>
+<li>这里是将id=0x1337的note的data变更为<code>__environ</code>,也就是libc_base + 0x3c14a0</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="14-write-id-0x1337-size-8"><a href="#14-write-id-0x1337-size-8" class="headerlink" title="14. _write(id=0x1337, size=8)"></a>14. _write(id=0x1337, size=8)</h2><ul>
+<li>通过写出id=0x1337，可以泄漏stack上envp[]的地址</li>
+<li>泄漏的值减去0x200就是储存read()函数返回地址的地方</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Pwn-stack伪造"><a href="#Pwn-stack伪造" class="headerlink" title="Pwn - stack伪造"></a>Pwn - stack伪造</h1><h2 id="15-read-id-1-data-pQ-0x1337-pQ-ret-pQ-len-rop"><a href="#15-read-id-1-data-pQ-0x1337-pQ-ret-pQ-len-rop" class="headerlink" title="15. _read(id=1, data=pQ(0x1337)+pQ(ret)+pQ(len(rop)))"></a>15. _read(id=1, data=pQ(0x1337)+pQ(ret)+pQ(len(rop)))</h2><ul>
+<li>让id=0x1337的note指向ret</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="16-read-id-0x1337-data-rop"><a href="#16-read-id-0x1337-data-rop" class="headerlink" title="16. _read(id=0x1337, data=rop)"></a>16. _read(id=0x1337, data=rop)</h2><ul>
+<li>之后在ret附近写入ROP</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="stage1的exploit"><a href="#stage1的exploit" class="headerlink" title="stage1的exploit"></a>stage1的exploit</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-08-27T09:14:39.954Z" itemprop="dateUpdated">2019-08-27 17:14:39</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage1》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage1》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage1》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage2</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/14/thread-clone/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">thread clone</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage1》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage1》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage1》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIklEQVR42u3awW7qQAwFUP7/p9Ptq1DItR2ewD1ZIZpO5oTFle15POLr+Oea35ms87za88r5rpoXNjY29pewj5dXD/N8Z7Jydf1ktdOVsbGxsdexc8YEcPbXs9WSe17/1+n32NjY2H+YXf2mGo1VMDY2NjZ2j10FV1tLeVGBjY2NjZ3HTLX3Xv1cbRXl62BjY2PvZr+P8f8/v2W+jY2Njf3B7KN4VUewSfzkTaI8qC4U2NjY2IvYeQBU20PVBtDksE5z/9jY2NiL2PPxbR421RVy0qhEwcbGxl7Kfh1XCSMPkupgeD5ywMbGxt7E7g1K72o5zSOtevQHGxsbex/7dSxVW0vVgiQviqpxFa2JjY2NvYLda/pUIypZOYm3/Ce52Dk2Njb2CnYviqqBkZAmg4q8iPp1UgkbGxt7ETs/sNhrD+XTiSTeesXJY7JFbGxs7A9mzwNpsoneOr0hROGXx8bGxl7EvmtbvSLkfQ0sbGxs7E3sXjt+0kiaFDnVMcDpi8bGxsZeze6173PGZJycFzwXu8LGxsZex86HrNVDM/OhQvXFRWUMNjY29iL25JHJS0liKYmrvAmVBzA2Njb2JnbvkfPIqY4Eeq+1cHwHGxsb+wvZ1eKhN/RN3nSvXOn9PNjY2Nib2HnKVaOiGiq9gqQ6GMDGxsbeys4LgGop0tt6XsZMBtXY2NjYO9h5yZEXLZPxQ6+oKD8XGxsbexG7WoRUi4TqyzqC665yBRsbG3sHe36wJn+vCaN3sLIaftjY2Nib2Hc1gPKRbW9UPJ97XLSWsLGxsRexJwGWX3nJMWkkXewWGxsbex27OhhIyoC8JZQfxOnF52kpgo2Njb2UfVezadJmqjaS8sjExsbG3sQ+ilevzJgUM8lq5ReHjY2NvYg9yr3WGLha6syHzb3jR9jY2Njfxa6WIkn5MR8zJKXLKMCwsbGx17Enx2jyUmESOdUEvrgfGxsbG7s4BpiMFvJxQmHYjI2NjY09vmfS5aq2orCxsbH/Ajs/QJMPDHJYb4ibPPGG8QA2Njb2x7PzwLirWZ+076uxlx/9wcbGxl7E/gHQMDUAZQ+DjQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

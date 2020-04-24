@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>PlaidCTF 2015 - pwnable620(420+200) – tp - stage2 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="Stage2 sandbox bypass Stage1已经实现了任意代码执行   接下来就是sandbox部分 目标是读取&#x2F;home&#x2F;tp&#x2F;flag2    解析 - 整体构成                                                                                                            亲：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PlaidCTF 2015 - pwnable620(420+200) – tp - stage2">
+<meta property="og:url" content="https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="Stage2 sandbox bypass Stage1已经实现了任意代码执行   接下来就是sandbox部分 目标是读取&#x2F;home&#x2F;tp&#x2F;flag2    解析 - 整体构成                                                                                                            亲：">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090201.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090202.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090203.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090204.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090205.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090206.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090207.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090208.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090209.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090210.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090211.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090301.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090302.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090303.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090304.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090305.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090306.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090307.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090308.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090309.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090310.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090311.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090312.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090313.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090314.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090315.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090316.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090501.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090502.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090503.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090504.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090505.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090506.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090507.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090508.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090509.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090510.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090511.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090512.jpg">
+<meta property="article:published_time" content="2019-09-05T06:40:16.000Z">
+<meta property="article:modified_time" content="2019-09-05T06:41:01.499Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090201.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PlaidCTF 2015 - pwnable620(420+200) – tp - stage2</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage2</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-05T06:40:16.000Z" itemprop="datePublished" class="page-time">
+  2019-09-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Stage2"><span class="post-toc-number">1.</span> <span class="post-toc-text">Stage2</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解析-整体构成"><span class="post-toc-number">2.</span> <span class="post-toc-text">解析 - 整体构成</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解析-sandbox部分"><span class="post-toc-number">3.</span> <span class="post-toc-text">解析 - sandbox部分</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#事前准备"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">事前准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#显示端-独立过滤器"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">显示端(独立过滤器)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#call-r12-munmap"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">call_r12_munmap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#call-r13-seccomp"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">call_r13_seccomp</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#call-r14-clone"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">call_r14_clone</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#arg-checker-amp-outside-run-check-and-do-syscall"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">arg_checker &amp; outside_run_check_and_do_syscall</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#子A的sighandler"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">子A的sighandler</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#sandbox类的问题点"><span class="post-toc-number">4.</span> <span class="post-toc-text">sandbox类的问题点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于seccomp的判定"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">关于seccomp的判定</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#sandbox问题攻略"><span class="post-toc-number">5.</span> <span class="post-toc-text">sandbox问题攻略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题点"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">问题点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻略idea"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">攻略idea</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#exploit"><span class="post-toc-number">6.</span> <span class="post-toc-text">exploit</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-PlaidCTF-2015-pwnable620-420-200-–-tp-stage2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage2</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-05 14:40:16" datetime="2019-09-05T06:40:16.000Z"  itemprop="datePublished">2019-09-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Stage2"><a href="#Stage2" class="headerlink" title="Stage2"></a>Stage2</h1><ul>
+<li>sandbox bypass<ul>
+<li>Stage1已经实现了任意代码执行</li>
+</ul>
+</li>
+<li>接下来就是sandbox部分<ul>
+<li>目标是读取/home/tp/flag2</li>
+</ul>
+</li>
+</ul>
+<h1 id="解析-整体构成"><a href="#解析-整体构成" class="headerlink" title="解析 - 整体构成"></a>解析 - 整体构成</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>亲：</p>
+<ul>
+<li>fork生成子A</li>
+<li>alarm handler</li>
+<li>在随机位置设置子A的显示</li>
+</ul>
+<p>子A：</p>
+<ul>
+<li>seccomp</li>
+<li>clone生成子B</li>
+<li>作为显示运行</li>
+</ul>
+<p>子B：</p>
+<ul>
+<li>主程序（note管理类）</li>
+</ul>
+<p>kernel：</p>
+<ul>
+<li>seccomp过滤器</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>子A和子B的内存空间，fd等是公用的，寄存器数据通过pipe交换使用</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>子B运行system call时，如果被许可才会执行</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>如果不被许可（必要的额外检查），返回SIGSYG信号，调用SIGSYS handler，向显示传递数据</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>之后显示上进行过滤器，没问题的话会再次调用system call，这时seccomp过滤器会无条件通过</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>显示端的过滤条件导致进程强制结束</p>
+<h1 id="解析-sandbox部分"><a href="#解析-sandbox部分" class="headerlink" title="解析 - sandbox部分"></a>解析 - sandbox部分</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>信号handler(SIGALRM)注册</li>
+<li>从0x10000000~0x700000000000的范围中，选择两个随机区域，作为g_trusted_code使用的code区域和stack区域<ul>
+<li>g_trusted_code是子A的独立过滤器（显示端）</li>
+</ul>
+</li>
+<li>通过SIGALRM，10秒后结束</li>
+<li>因为随机生成的地址作为g_trusted_code，子A向该地址写入先使用的汇编代码</li>
+<li>因此ucontext使用的context的显示端，产生调用寄存器状况，会转送到子A</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>注册SIGSYS handler</li>
+<li>亲级的随机地址是生成给g_trusted_code使用，预先申请所有可能的区域，以便可以在任何地方写入，并通知父级，已经写入完成</li>
+<li>子A的内存空间，亲把g_trusted_code的汇编代码写入完成后，通过ucontext来切换</li>
+<li>g_trusted_code内执行clone()，线程的一端（子B）返回，子B开始执行do_command</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="事前准备"><a href="#事前准备" class="headerlink" title="事前准备"></a>事前准备</h2><ul>
+<li>依次调用一次那三个函数</li>
+</ul>
+<h2 id="显示端-独立过滤器"><a href="#显示端-独立过滤器" class="headerlink" title="显示端(独立过滤器)"></a>显示端(独立过滤器)</h2><p>写入pipe管道后，system call相关寄存器从中读取数据，并执行以下检查：</p>
+<ul>
+<li>arg_checker()<ul>
+<li>system call是open时，arg1 == /home/tp/flag1的话，OK</li>
+<li>system call是mmap/mprotect/munmap/brk/mremap的话，OK</li>
+<li>其他的NG，之后进程整体强制结束</li>
+</ul>
+</li>
+<li>outside_run_check_and_do_syscall()<ul>
+<li>stack上的返回地址是g_trusted_code范围以外的地址的话，NG</li>
+<li>OK的话，执行system call</li>
+<li>NG的话，进程整体强制结束</li>
+</ul>
+</li>
+</ul>
+<h2 id="call-r12-munmap"><a href="#call-r12-munmap" class="headerlink" title="call_r12_munmap"></a>call_r12_munmap</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>在已经整体获取到的区域中，释放未使用的区域</li>
+<li>生成pipe</li>
+<li>变更g_trusted_code的内存权限</li>
+</ul>
+<h2 id="call-r13-seccomp"><a href="#call-r13-seccomp" class="headerlink" title="call_r13_seccomp"></a>call_r13_seccomp</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>省略前半部分生成filter的过程，这里直接贴出生成后的filter</li>
+<li>右下角这一大块是设置filter，filter内容参见左上注释部分</li>
+</ul>
+<h2 id="call-r14-clone"><a href="#call-r14-clone" class="headerlink" title="call_r14_clone"></a>call_r14_clone</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>作为子A的显示端（独立过滤器）</li>
+<li>作为子B的context切换，do_command</li>
+<li>清空ucontext使用的context，通过clone()产生子A和子B的分歧，子A：显示端，子B：do_command</li>
+</ul>
+<h2 id="arg-checker-amp-outside-run-check-and-do-syscall"><a href="#arg-checker-amp-outside-run-check-and-do-syscall" class="headerlink" title="arg_checker &amp; outside_run_check_and_do_syscall"></a>arg_checker &amp; outside_run_check_and_do_syscall</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>arg_checker()<ul>
+<li>system call是open时，arg1 == /home/tp/flag1的话，OK</li>
+<li>system call是mmap/mprotect/munmap/brk/mremap的话，OK</li>
+<li>其他的NG，之后进程整体强制结束</li>
+</ul>
+</li>
+<li>outside_run_check_and_do_syscall()<ul>
+<li>stack上的返回地址是g_trusted_code范围以外的地址的话，NG</li>
+<li>OK的话，执行system call</li>
+<li>NG的话，进程整体强制结束</li>
+</ul>
+</li>
+</ul>
+<h2 id="子A的sighandler"><a href="#子A的sighandler" class="headerlink" title="子A的sighandler"></a>子A的sighandler</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>通过seccomp，system call执行失败时（收到SIGSYS），作为sighandler被调用</li>
+<li>经过pipe到显示端，然后重新挑战</li>
+</ul>
+<h1 id="sandbox类的问题点"><a href="#sandbox类的问题点" class="headerlink" title="sandbox类的问题点"></a>sandbox类的问题点</h1><p>事实上，这是一个二阶段的sandbox</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol>
+<li>seccomp（kernel过滤器，不可bypass）</li>
+<li>显示端 + seccomp<ul>
+<li>如果1失败，则使用2</li>
+<li>在用户空间实施过滤器的seccomp</li>
+<li>seccomp会对经过这里的调用全部许可（关注点）</li>
+</ul>
+</li>
+</ol>
+<p>因此重点关注seccomp的bypass</p>
+<h2 id="关于seccomp的判定"><a href="#关于seccomp的判定" class="headerlink" title="关于seccomp的判定"></a>关于seccomp的判定</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>seccomp对二阶段显示端是否通过时如何判定的？<ul>
+<li>这个读一下seccomp的过滤器代码就能知道</li>
+<li>看一下dump流程<ul>
+<li>seccomp过滤器只对应一个进程</li>
+<li>不是从子B，从子A开始调用的是怎样判定的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>在seccomp执行前的int 3断点patch</li>
+<li>ASLR有效</li>
+<li>int 3停止时，$r12是seccomp的过滤器，这里是0x21ee45b14ed0，从这里开始dump到整个内存页结束的内容</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090313.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>arch 检查（是不是x86_64）</li>
+<li>检查system call编号</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090314.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>检查RIP(下位32bit，上位32bit，分两次比较，RIP == 0x32b9f368f0b2的话ALLOW)</li>
+</ul>
+<p>通常allow的特殊地址：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090315.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>0x32b9f368f0b2（这个是每次都会变化的）</li>
+<li>这时，0x32b9f368f000~是g_trusted_code写入的区域</li>
+<li>diff = 0xb2</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090316.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>g_trusted_code + 0xb2（显示端中间）</li>
+<li>指向存放ret地址的地方</li>
+<li>也就是说，我们要判断g_trusted_code + 0xb0 的syscall是否被调用</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>二阶段的sandbox</li>
+<li>第一阶段不可bypass</li>
+<li>第二阶段存在RIP检查</li>
+<li>会检查是否是从显示端内的syscall开始的调用</li>
+<li>如果是从显示端的syscall发起的调用，则seccomp会全部允许</li>
+</ul>
+<h1 id="sandbox问题攻略"><a href="#sandbox问题攻略" class="headerlink" title="sandbox问题攻略"></a>sandbox问题攻略</h1><ul>
+<li>在stage1已经实现了任意代码执行</li>
+<li>如果能够直接jmp到显示端的syscall，不就可以绕过所有过滤器了吗？</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>在子A内，有一个特殊的syscall可以完全通过seccomp</li>
+<li>子A和子B共享内存空间，因此可以从子B进行jmp来调用这个syscall</li>
+</ul>
+<h2 id="问题点"><a href="#问题点" class="headerlink" title="问题点"></a>问题点</h2><p>显示端在内存空间的哪里？</p>
+<ul>
+<li>运行时被设置在一个随机地址</li>
+<li>地址信息，在内存中也没有残留<ul>
+<li>也就是说，不能通过内存泄漏来获取</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>因此，需要某种技术从内存中获取显示端的地址</li>
+</ul>
+<p>能够利用的syecall是下面这些：</p>
+<ul>
+<li>clone, close, exit_group, read, write,</li>
+<li>rt_sigprocmask, rt_sigreturn</li>
+<li>mmap, mprotect, munmap, brk, mremap</li>
+</ul>
+<p>内存空间大概是这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>但是，实际上这些区域之间是有空隙的：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="攻略idea"><a href="#攻略idea" class="headerlink" title="攻略idea"></a>攻略idea</h2><ul>
+<li>以适当的size进行mmap，填充这些空隙<ul>
+<li>mmap是被允许的syscall</li>
+</ul>
+</li>
+<li>空隙完美填充（后面是连续区域），那么后面就可能是显示端区域<ul>
+<li>如何确定后面是否是连续区域？</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>访问没有mapped的区域时，会发生SIGSEGV，但存在避免SIGSEGV的方法</li>
+<li>利用syscall判定<ul>
+<li>write(fd,buf,count) #read()也可以</li>
+<li>mprotect(addr, len, prot)</li>
+</ul>
+</li>
+<li>向write或者mprotect传递位置地址作为参数，检查返回值</li>
+<li>如果成功，就能够断定这个地址存在</li>
+</ul>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ol>
+<li>指定reserved size的一半，调用mmap<ul>
+<li>不能指定从哪里取得<ul>
+<li>也有可能得到的不在reserved区域范围内</li>
+</ul>
+</li>
+<li>当然，如果没有能够mmap的空间，会失败</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol start="2">
+<li>如果失败，size再次减半，重试</li>
+<li>如果成功，对后面的地址进行write，判断区域是否存在<ul>
+<li>区域可能存在，也可能不存在</li>
+<li>不存在的情况下，离开现在已经获取到的区域，同样的size重试（第2步）</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol start="4">
+<li>如果存在，判断它是否是code<ul>
+<li>开头四个字节是0x41 0xff 0xd4 0x48的话，可以判定是code</li>
+<li>如果不是code，离开现在已经获取到的区域，同样的size重试（第2步）</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090508.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol start="5">
+<li>判定成功的话，它是code<ul>
+<li>之后直接调用code + 0xb0的syscall，会允许所有的syscall</li>
+<li>open(“/home/tp/flag2”)-&gt;read()-&gt;write()</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090509.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090510.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090511.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090512.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-09-05T06:41:01.499Z" itemprop="dateUpdated">2019-09-05 14:41:01</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage2》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage2》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage2》 — 喵喵喵喵&url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记24:其他一些技术</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage1</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage2》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/&title=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage2》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PlaidCTF 2015 - pwnable620(420+200) – tp - stage2》 — 喵喵喵喵&url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLUlEQVR42u3aQW7jQAwEwPz/09nrAoHkblK7sCflk5HI0tT4QLM5X1/x6/v29fc1V9f/vObnlfefvb/+61+8sLGxsT+EvSFd3a19yj2y3dbkztjY2Njnse8Bm/f35ScvS/fI3IKNjY2NnSx9VhTzNma23djY2NjYs8W1TUvbVGBjY2Nj58UmeXBeCGfFrx1LPJClYWNjY789O5+Kvv/7fzLfxsbGxn5j9rMFI29a2gLZFqoXT8TGxsY+iD07spNENrMjOHn5zAfGl+vExsbGPoLdBusJoy1L7aBi83RsbGzs89j7KD8pG3lha1uR9ugPNjY29qnstiwlN82X0rLbYcDlF4mNjY19BHsW5bSxUdsktFucTHKjzgYbGxv7A9n5Y9pC0n62LWztNdjY2NinsvODOE+NDe6vTL6MWQQWDXqxsbGxP5a9KQxJAJQUp/u/zNiXd8bGxsY+iL0ZxObg2Xi46KUWERg2Njb2p7Pb0rUpPPmANm9dZsEWNjY29m9jz4pEXnLaK2cHfbCxsbHPZj8Vu7fNySxImq3qRZaGjY2N/eHsZw/xzGL6fJCQwF64sLGxsQ9itzF98rANvh1ItAeAsLGxsU9lJx9LbtSWnHxZ7di4vT82Njb257LvF5ePBPJYZzNmbld7+V9sbGzsg9ibotVuVjuajYL+UanDxsbGPpu9j/Jn27cfCScRGDY2Nvap7Nkot43sZzFTvlmzAQM2Njb2eezhz/r1QcmnRs7tABgbGxv7DHZbTpK4Z9bAbO5cbyg2Njb2cez9T/92MLx/v4q3sLGxsQ9itxvRNiqb4zXtFheDAWxsbOyD2O2Hc3zbeOQhVH5s6PLO2NjY2MexZz/rkyHrfgBcTDnykoyNjY19BPu7fLWh/FNtRhswvbgDNjY29kHsfXK+aQzaxCtvUfIiio2NjX0GOylaSYuyCfTzMGv296/ku8LGxsb+cPamecgblTaE2h/EubwPNjY29i9mt+PbTZSfryEpjdjY2NjYswFAvaB1yPWf6jY2Njb2m7FnoVJyECcvh8kg4bFtxcbGxj6InReMNuhPxq45cgMbhlPY2NjY787+A64HQDuhzZ2XAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>glob://を使用して、open_basedirをバイパスする | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="PHP">
+    <meta name="description" content="0x00 open_basedir open_basedirは、指定されたディレクトリへのユーザアクセスを制限します。 つまり、ユーザーはサーバー上の指定されたディレクトリ以外のファイルにアクセスできません。 クロスサイトを防ぐためによく使用されます。  open_basedir&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;home&#x2F;web1&#x2F;:&#x2F;tmp&#x2F;とすると、web1経由でサーバにアクセスするユーザは、サー">
+<meta property="og:type" content="article">
+<meta property="og:title" content="glob:&#x2F;&#x2F;を使用して、open_basedirをバイパスする">
+<meta property="og:url" content="https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="0x00 open_basedir open_basedirは、指定されたディレクトリへのユーザアクセスを制限します。 つまり、ユーザーはサーバー上の指定されたディレクトリ以外のファイルにアクセスできません。 クロスサイトを防ぐためによく使用されます。  open_basedir&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;home&#x2F;web1&#x2F;:&#x2F;tmp&#x2F;とすると、web1経由でサーバにアクセスするユーザは、サー">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092901.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092902.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092903.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092905.png">
+<meta property="article:published_time" content="2019-02-11T05:34:15.000Z">
+<meta property="article:modified_time" content="2019-02-11T05:35:36.777Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092901.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">glob://を使用して、open_basedirをバイパスする</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">glob://を使用して、open_basedirをバイパスする</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-11T05:34:15.000Z" itemprop="datePublished" class="page-time">
+  2019-02-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%A2%A7%E6%A1%90%E7%99%BE%E7%A7%91/">梧桐百科</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x00-open-basedir"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x00 open_basedir</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x01-glob-疑似プロトコル"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x01 glob:&#x2F;&#x2F;疑似プロトコル</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x02-コード例"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x02 コード例</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-glob-を使用して、open-basedirをバイパスする"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">glob://を使用して、open_basedirをバイパスする</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-11 13:34:15" datetime="2019-02-11T05:34:15.000Z"  itemprop="datePublished">2019-02-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%A2%A7%E6%A1%90%E7%99%BE%E7%A7%91/">梧桐百科</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="0x00-open-basedir"><a href="#0x00-open-basedir" class="headerlink" title="0x00 open_basedir"></a>0x00 open_basedir</h1><p> <code>open_basedir</code>は、指定されたディレクトリへのユーザアクセスを制限します。 つまり、ユーザーはサーバー上の指定されたディレクトリ以外のファイルにアクセスできません。 クロスサイトを防ぐためによく使用されます。</p>
+<p> <code>open_basedir=/home/wwwroot/home/web1/:/tmp/</code>とすると、web1経由でサーバにアクセスするユーザは、サーバ上で<code>/home/wwwroot/home/web1/</code>および<code>/tmp/</code>以外のファイルを取得することはできません。もちろん、物事は絶対的なものではありません。 open_basedir<code>の設定は、</code>system<code>などのコマンド実行関数では無効です。 一般に、コマンド実行を引き起こしやすい</code>system<code>やその他の関数は、</code>disable_function<code>に置かれます。 したがって、通常の状況下では、</code>open_basedir の設定はクロスサイトでは依然として非常に役に立ちます。</p>
+<p> しかし、ハッカーの精神は何ですか？ ハッカーの精神は、不可能なものすべてに挑戦することです。 一連のコマンド実行機能が無効になっていても、<code>open_basedir</code>が設定されていても、スマートハッカーは目に見えない攻撃ポイントを使用して攻撃を実行します。<code>open_basedir</code>をバイパスするの最も一般的な使い方は<code>symlink()</code>関数を使うことです。 具体的な使用については、私が知っている以上phith0nのブログでは言ったことが参照できます:</p>
+<p> <a href="https://www.leavesongs.com/bypass-open-basedir-readfile.html" target="_blank" rel="noopener">https://www.leavesongs.com/bypass-open-basedir-readfile.html</a></p>
+<p> このため、<code>disable_function</code>に<code>symlink()</code>を追加する必要があります。 これは刑務所を構成し、Webshellを取得したハッカーは、制限されたフォルダに閉じ込められます。</p>
+<h1 id="0x01-glob-疑似プロトコル"><a href="#0x01-glob-疑似プロトコル" class="headerlink" title="0x01 glob://疑似プロトコル"></a>0x01 glob://疑似プロトコル</h1><p> <code>glob://</code>疑似プロトコルの公式文書は以下の通りです:</p>
+<p> <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092901.png" alt="img"></p>
+<p> <code>glob://</code>によって、私たちのフィルタ基準を満たしのディレクトリを得ることができます。 問題はここで、<code>glob://</code>を使用してディレクトリをフィルタリングすることは、<code>open_basedir</code>によって制限されていません。<code>glob://</code>マッチングによって、<code>open_basedir</code>をバイパスする,指定されたディレクトリ以外のディレクトリにアクセスできます。 実際、PHPの<code>glob()</code>も同様の問題を抱えていました。 しかし、すぐに修正されました。 しかし、<code>glob://</code>の問題は今日まで続く。</p>
+<h1 id="0x02-コード例"><a href="#0x02-コード例" class="headerlink" title="0x02 コード例"></a>0x02 コード例</h1><p> 私はここでドッカーを使用しています、環境は:nginx / 1.12.2 + PHP 7.1.7（cli）。</p>
+<p> バイパス効果をよりよく知るために、<code>disable_function</code>から<code>scandir()</code>を取り出しました。 次にコードを書く：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index.php error_reporting(E_ALL); ini_set(&#39;open_basedir&#39;, &#39;&#x2F;home&#x2F;wwwroot&#x2F;default&#x2F;&#39;); eval($_GET[&#39;a&#39;]);</span><br></pre></td></tr></table></figure>
+
+<p> <code>glob://</code>を使わずにディレクトリを列挙しようとします。</p>
+<p> <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092902.png" alt="img"></p>
+ <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092903.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<p> <code>open_basedir</code>で許可されている範囲内のディレクトリを自由にリストすることは自明です。 ただし、指定されたファイルの範囲を超えた場合、<code>open_basedir restriction in effec</code>の警告を取得する、ディレクトリの列挙は実装できません。</p>
+<p> 次に、<code>glob://</code>疑似プロトコルを使用してその効果を確認します。</p>
+<p> <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018092905.png" alt="img"></p>
+<p> ご覧のとおり、<code>glob://</code>疑似プロトコルを使用した後で、<code>/home/</code>ディレクトリ下のサブディレクトリを取得できました。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-02-11T05:35:36.777Z" itemprop="dateUpdated">2019-02-11 13:35:36</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/&title=《glob://を使用して、open_basedirをバイパスする》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/&title=《glob://を使用して、open_basedirをバイパスする》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《glob://を使用して、open_basedirをバイパスする》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/13/$_SERVER%5B'SCRIPT_NAME'%5D%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">$_SERVER[&#39;SCRIPT_NAME&#39;]変数のインシェクション</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CTF問題を例として,parse_url関数をバイパスすることを学ぶ</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/&title=《glob://を使用して、open_basedirをバイパスする》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/&title=《glob://を使用して、open_basedirをバイパスする》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《glob://を使用して、open_basedirをバイパスする》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAFOElEQVR42u3ay44bSRADQP3/T3vPC+9oSGZrYKxDJ8OjR1e0AGWR9XrFj1+/Pe6v+uqv75+fv8NXz3n/19cnHvjw4cOHD9/bi/j0kt6/51cEyauSFSVXkr8WHz58+PDh2/jyBeRjR06QDxPJlSQ3Jr+eb6zw4cOHDx++H+HLt9zbdn0bepL3eX/b8OHDhw8fvj+TL48V3n/KvUJoB6Yt4MCHDx8+fPie5UvC+svC8oEjH3S2cWcbqh7oOvDhw4cPH76HOP5//359esLChw8fPnx/Jd+v8pFEBskN2IaJ/NO3q6o18OHDhw8fvkkj+cFOsLbo4bQVn+r2S52ADx8+fPjwXfjuR9PasvnTBUB7e7Za/XS+AB8+fPjw/cV8l5//e/B9jwby/DwvxccgAx8+fPjw4Yv52i39dnSsvVU5RHsj2+v/BhcfPnz48OFbfpdflx/y95vzS0TevrYNKfIDAXWegQ8fPnz48E0VeL6Zb8vv9q9tBd7e4LycwIcPHz58+Da+9gc7H19y+kv0nw9JyWfltf2/Dqjhw4cPHz58Jd+2pA1l26hv5ff2JUiqgugS8eHDhw8fvvOhtGQZn6gBklvVDkn3248PHz58+PBtfJft/UZzD+uT4WMLC4rxBR8+fPjw4Zv4tiK5Pc71M6FA+55b5fAfcx8+fPjw4cNX7nmfWtJThXRbWm9VwRbW48OHDx8+fBvfJfi+VNTvn39Z8KUqaEsIfPjw4cOHr+XLP/ISoG/vvwUZ+bGztiD/puvAhw8fPnz4Jr5LdX0ZNdphpS0G2qkjulX48OHDhw/f9Cu/1cxPRQlPFfCXAetU1ePDhw8fPnwHvraW/nTUnkcALeJ9vfjw4cOHD9/Gl5TKeYTdVuMJU0t5PwQw0uPDhw8fPnwxX8LUbtTbyvwSYdyZLl8RfPjw4cOHL+e7ROdPFefb8rZh5dmqAB8+fPjw4cvX1Q4fOXpeURdR+IHmEtZ/uXZ8+PDhw4ev5Gu39G0Rfl9Ge7DsEsE/ENbjw4cPHz588Z43v9DktW0Q0C6vDSnyzy0CBXz48OHDh2/Pol/3gSBZ6lOhw/Y/l8q/jTbw4cOHDx++31f0K3gkz2zr8w06fySs98/Fhw8fPnz4Wr5Ljb3FDe1Fj0uanjmOcfjw4cOHD198VVv83Rbb9//Zjr61o089eOHDhw8fPnwTX/tjn2/C29C8rdWTG9zWBsWtwocPHz58+M58l8NhW6yQROpbud6OLPkhgFd+//Hhw4cPH774Z/5Slm9pdhvft2H9Fmp8E9bjw4cPHz58JV++mE+APhCal7ckD0TGrgMfPnz48OGbwvr2cnPWHLotyNuyYfta4MOHDx8+fBtfu7VuQ/l2wXlQnnxiXj+cSnd8+PDhw4fvel6rjsLvUXu+7DYIyG/GVtvjw4cPHz58G99lGRtNu73PPyUvDPJA4RsHfPjw4cOHL+BLtuJ5pX058tUOE23BkN/Ix7oOfPjw4cOH7wu+ZMH5pbcBRJ1kTAfjigkujz/w4cOHDx++M992Wffx4lK65+V9GyVEKQs+fPjw4cMX890HhcuI8NRhuPxIXB7KJ/EBPnz48OHDt/FtdfU21uSXvg0ul+A+GVzq6Q8fPnz48OH7gq9dcBsWXN6/LbaLqnva++PDhw8fPnw/yZdcSjsGXTb8LdzlU173bwc+fPjw4cN34GuL8AQ0p7wH7hs0Pnz48OHDd+dLRo0N+tltf1vkt8FE/bXAhw8fPnz4lomiCKkvG/58LNiOqd2jjbYkwIcPHz58+GK+fwDGWyuKi9HKJwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>$_SERVER[&#39;SCRIPT_NAME&#39;]変数のインシェクション | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="PHP">
+    <meta name="description" content="0x00 概要$_SERVER[‘SCRIPT_NAME’]はPHP用の１つ組み込み変数です。ここでは、使用時には、一般的にフィルタリングされません。 fuzzの後、この変数の取得は実際に問題がある、予期しないデータが導入されます。 一部のWebサーバーでは、この変数を直接使用すると、SQLインジェクションまたはxssの脆弱性が発生する可能性があります。 0x01 テストApache&#x2F;2.4.23">
+<meta property="og:type" content="article">
+<meta property="og:title" content="$_SERVER[&#39;SCRIPT_NAME&#39;]変数のインシェクション">
+<meta property="og:url" content="https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="0x00 概要$_SERVER[‘SCRIPT_NAME’]はPHP用の１つ組み込み変数です。ここでは、使用時には、一般的にフィルタリングされません。 fuzzの後、この変数の取得は実際に問題がある、予期しないデータが導入されます。 一部のWebサーバーでは、この変数を直接使用すると、SQLインジェクションまたはxssの脆弱性が発生する可能性があります。 0x01 テストApache&#x2F;2.4.23">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110601.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110602.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110603.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110604.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110605.png">
+<meta property="article:published_time" content="2019-02-13T05:50:45.000Z">
+<meta property="article:modified_time" content="2019-02-13T05:53:28.177Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110601.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">$_SERVER[&#39;SCRIPT_NAME&#39;]変数のインシェクション</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">$_SERVER[&#39;SCRIPT_NAME&#39;]変数のインシェクション</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-13T05:50:45.000Z" itemprop="datePublished" class="page-time">
+  2019-02-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%A2%A7%E6%A1%90%E7%99%BE%E7%A7%91/">梧桐百科</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x00-概要"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x00 概要</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x01-テスト"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x01 テスト</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x02-使用方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x02 使用方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x03-ケーススタディ-XSS"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x03 ケーススタディ - XSS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x04-ケーススタディ-SQLインジェクション"><span class="post-toc-number">5.</span> <span class="post-toc-text">0x04 ケーススタディ - SQLインジェクション</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-$_SERVER[&#39;SCRIPT_NAME&#39;]変数のインシェクション"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">$_SERVER['SCRIPT_NAME']変数のインシェクション</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-13 13:50:45" datetime="2019-02-13T05:50:45.000Z"  itemprop="datePublished">2019-02-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%A2%A7%E6%A1%90%E7%99%BE%E7%A7%91/">梧桐百科</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="0x00-概要"><a href="#0x00-概要" class="headerlink" title="0x00 概要"></a>0x00 概要</h1><p>$_SERVER[‘SCRIPT_NAME’]はPHP用の１つ組み込み変数です。ここでは、使用時には、一般的にフィルタリングされません。 fuzzの後、この変数の取得は実際に問題がある、予期しないデータが導入されます。</p>
+<p>一部のWebサーバーでは、この変数を直接使用すると、SQLインジェクションまたはxssの脆弱性が発生する可能性があります。</p>
+<h1 id="0x01-テスト"><a href="#0x01-テスト" class="headerlink" title="0x01 テスト"></a>0x01 テスト</h1><p>Apache/2.4.23に　<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数があります。 私のローカルテスト環境は、<code>Apache/2.4.23（Win32）OpenSSL/1.0.2j PHP/5.5.38 MySQL/5.5.53</code>です。 現在Apache/2.4.23でのみ成功しています。</p>
+<p><code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数の公式ドキュメントは次のとおりです:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110601.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<p>簡単に言えば、この変数は、Webサービスのルートディレクトリから現在のファイルへのパスを返します。Webルートディレクトリが<code>/var/www/html</code>で、現在のファイルパスが<code>/var/www/html/t/index.php</code>であると仮定すると、<code>index.php</code>で取得された<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>は<code>/t/index.php</code>。</p>
+<p>上記は正常なプロセスです。 しかし、PHPにはパラメータを渡る方法が2種類があります。 1つは、<code>index.php?id =1</code>のような、キーと値のペアの伝統的な形式です。 もう一つのルートで、パラメータを渡すことです：<code>/index.php/xx/b/c</code>。<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数は、ルートでパラメータを渡すことにさらに有害です。</p>
+<p>ルートでパラメータを渡すのURLでは、URLの最後に　<code>/*</code>を追加することができます。つまり、ファイル名の後に<code>スペース + /*</code>を追加して、ファイル名を破棄して、ファイル名の後にデータを取得できます。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110602.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110603.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<p>テストでは、<code>&#39;（一重引用符）&quot;（二重引用符）、;（セミコロン）&lt;&gt;（角カッコ）()（カッコ）</code>などのペイロードで一般的に使用される記号はフィルタリングされません。 一般的なCMSでは、一般にGET、POST、COOKIEの3つの変数のみがフィルタリングされます.GPCのグローバルエスケープが有効になっていても、<code>$_SERVER</code>変数はエスケープされません。</p>
+<p>特別な注意が必要なのは、ペイロードに<code>?</code>（疑問符）は表示されません、疑問符が切り捨てられ、ファイル名の後にデータを取得できなくなります。</p>
+<h1 id="0x02-使用方法"><a href="#0x02-使用方法" class="headerlink" title="0x02 使用方法"></a>0x02 使用方法</h1><p>私はかつてこのCMSに遭遇し、<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>をページに直接書きました。 このようにして、反射的なxss攻撃を実行できます。 さらに、CMSはヘッダを保護せずにphpファイルとして直接ページをキャッシュします。 言い換えれば、私たちが書くPHP文もキャッシュファイルにキャッシュされます。 WebShellを直接生成します。</p>
+<p>コード監査中に<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数を追跡して、変数の値がデータベースに渡されるか、ページに直接渡されるかどうかを調べることができます。</p>
+<h1 id="0x03-ケーススタディ-XSS"><a href="#0x03-ケーススタディ-XSS" class="headerlink" title="0x03 ケーススタディ - XSS"></a>0x03 ケーススタディ - XSS</h1><p><code>index.php</code>コードは次のとおりです:  <?php echo $_SERVER['SCRIPT_NAME'];?>`</p>
+<p>exp: <code>http://localhost/index.php/&lt;img src=x onerror=alert(1)&gt; /\*</code></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110604.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<h1 id="0x04-ケーススタディ-SQLインジェクション"><a href="#0x04-ケーススタディ-SQLインジェクション" class="headerlink" title="0x04 ケーススタディ - SQLインジェクション"></a>0x04 ケーススタディ - SQLインジェクション</h1><p><code>index.php</code>コードは次のとおりです:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">$db&#x3D;&quot;xx&quot;;</span><br><span class="line">$dbuser&#x3D;&quot;xxxxx&quot;;</span><br><span class="line">$dbpwd&#x3D;&quot;xxxx&quot;;</span><br><span class="line">$host&#x3D;&quot;localhost&quot;;</span><br><span class="line"></span><br><span class="line">$mysql&#x3D;mysqli_connect($host,$dbuser,$dbpwd,$db) or die(&quot;connect failed&quot;);</span><br><span class="line"></span><br><span class="line">$sql&#x3D;&quot;select password from user where username&#x3D;&#39;&quot;.$_SERVER[&#39;SCRIPT_NAME&#39;].&quot;&#39;&quot;;</span><br><span class="line">$result&#x3D;mysqli_query($mysql,$sql) or print_r(mysqli_error($mysql));</span><br><span class="line">$result_array&#x3D;mysqli_fetch_all($result);</span><br><span class="line"></span><br><span class="line">echo &quot;Your password is:&quot;.$result_array[0][0];</span><br></pre></td></tr></table></figure>
+
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost&#x2F;index.php&#x2F;&#39; and extractvalue(1,concat(0x7e,(select @@version),0x7e))||&#39; &#x2F;*</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110605.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-02-13T05:53:28.177Z" itemprop="dateUpdated">2019-02-13 13:53:28</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/&title=《$_SERVER['SCRIPT_NAME']変数のインシェクション》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/&title=《$_SERVER['SCRIPT_NAME']変数のインシェクション》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《$_SERVER['SCRIPT_NAME']変数のインシェクション》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/15/Postbook-Writeup-Hacker101-CTF/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Postbook Writeup(Hacker101 CTF)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">glob://を使用して、open_basedirをバイパスする</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/&title=《$_SERVER['SCRIPT_NAME']変数のインシェクション》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/&title=《$_SERVER['SCRIPT_NAME']変数のインシェクション》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《$_SERVER['SCRIPT_NAME']変数のインシェクション》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/13/$_SERVER['SCRIPT_NAME']%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAFQElEQVR42u3ay44aQRAEQP7/p23Jp7UwTGZVDz4QnFYY5hFtiZysfjzi168/r59//3zn1SfzY7affL6e52t7vs737+TXU7/w4cOHDx++p0tJTtx+PiFOaPLPJwvz6vPtPeLDhw8fPnwbvvYm3//wt4Hg/S1tlqq92twEHz58+PDhu5tvdoIN4mw58+8mf+PDhw8fPnz/i6/91icnDLOSIqlI8OHDhw8fvjv49uX75luzGuL9MuQB5UOzDnz48OHDh6+MBd/z9+EXPnz48OHDF0eBfMtaHmjaAfksBs1G9YUDPnz48OHDN3EoxtinLqsdkJ/NaEm5UJwLHz58+PDhi/mSj+aRpS3H29CzH7TnG+CScQI+fPjw4cM347u7AmjDUDvM3gSU5MovGhd8+PDhw4evywBRRJidJr+Z9km8XYYEerhFDx8+fPjw4ZtMmeu6PIkX0Zg5qBU+E1NWC48PHz58+PAFR25jSl4x5GV9Pg7fHDM/V7FI+PDhw4cP34ivffA+hZ6X8rNqIK/780FFlPXw4cOHDx++BV+OOCsR2sKiHe23C1MMHvDhw4cPH775zLqov/fj7X10aLfH5Vvr3t91UU/gw4cPHz58Ad8mUsx+8vOLbs+bbzKbFRD48OHDhw/fjG9fYW9uYzaonoEmgaaNa/jw4cOHD1/OlweLduCdXOJs69umjm+X5+Ie8eHDhw8fvhHffePqWXDJF3KP1Q4DjvUr+PDhw4fvi/k28eJU/d3Gpjwwbd6/+CQ+fPjw4cNX8iW/yG01v3+wn91SXuXPhgT48OHDhw/fni8vr5N32q1ps1ph89rX9H/9Kz58+PDhw7fg26eeNhC0KMnC5MXEgSXBhw8fPnz41j/k+1F0fpN5DJrFjhYuP+8/Zh348OHDhw/fZBf3I7nhzUHbsXcbSjaJ4nDcwYcPHz58+J74kotL3j/wM78OLjOC1XgAHz58+PDhW0yW27I+jxf5dzdnz0f+s5r+4iz48OHDhw9fwJf/hOd1fPIQ3h5/Vg3k9cFwhIAPHz58+PCN+E5tvE5iUDuong3L23JkVqngw4cPHz58s2/NtoslIWYzVm+H2e3G8Xzb+gU0Pnz48OHDV/JtSvPZYpxawlMFfVsirGYd+PDhw4fvi/n2oaR98N4ff1Yf5NdZ3BE+fPjw4cN3iK+NDm28yB/72wF5cuX7jez48OHDhw/fhm9Wgre1wiwe5cszO2YykIhaFnz48OHDhy8e5M4q72IOMBs8l6P6diFnw358+PDhw4dvz7fh2BTr+w3iSeAoIkisMcyA+PDhw4cP36FxdR5u8ljTjgfaQr+tMy7+3+HDhw8fPnwl3x03vN/K1samnOZDZQE+fPjw4cNX1vT5IDkfkN8RiZJFzeNItBj48OHDhw/fgq99RJ9tIGu3f52KHbPjXHwGHz58+PDhK/nyh+R2HN4S50XAPohs7hcfPnz48OHb8M0Gw22JPwsZ+QB7dpy8/nh5j/jw4cOHD9+ILzl0PvxOokaRp8o59WYkUIc2fPjw4cOHb83XPqK3MSIv7vN6fTYAOHBMfPjw4cOHb37M4se7Lbtnw++cIOfYF/TDogEfPnz48OFbbFOb/cznpX+7VW6/2PkIv05/+PDhw4cP3wu+2Q/5PrhsSvM7Fq+NWfjw4cOHD9/dfMkDeV7W78uF2WC+jVAXEw98+PDhw4fvBr5Z/Z3jboJUTjC7ngOVAT58+PDhw1eW9bPCPbmZ2eh9P0KY1QdFesKHDx8+fPjWe5s3QWQ/wM5H5m2J0G56w4cPHz58+Eq+3w8gInppQyUrAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

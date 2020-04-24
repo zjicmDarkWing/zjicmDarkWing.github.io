@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CTF問題を例として,parse_url関数をバイパスすることを学ぶ | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,PHP">
+    <meta name="description" content="問題 運用保守担当者の間違いのため、イントラネット認証ページは外部ネットワークに展開されましたが、幸いにも、開発者はドメイン名の検証が行われました。   Writeup ソースコードを表示し、次のコードを見つけます: 123456789101112ini_set(&quot;display_errors&quot;,0); $uri &#x3D; $_SERVER[&#39;REQUEST_URI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF問題を例として,parse_url関数をバイパスすることを学ぶ">
+<meta property="og:url" content="https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="問題 運用保守担当者の間違いのため、イントラネット認証ページは外部ネットワークに展開されましたが、幸いにも、開発者はドメイン名の検証が行われました。   Writeup ソースコードを表示し、次のコードを見つけます: 123456789101112ini_set(&quot;display_errors&quot;,0); $uri &#x3D; $_SERVER[&#39;REQUEST_URI">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018082801.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018082802.png">
+<meta property="article:published_time" content="2019-02-02T05:31:49.000Z">
+<meta property="article:modified_time" content="2019-02-02T05:32:53.160Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018082801.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CTF問題を例として,parse_url関数をバイパスすることを学ぶ</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CTF問題を例として,parse_url関数をバイパスすることを学ぶ</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-02T05:31:49.000Z" itemprop="datePublished" class="page-time">
+  2019-02-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#問題"><span class="post-toc-number">1.</span> <span class="post-toc-text">問題</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Writeup"><span class="post-toc-number">2.</span> <span class="post-toc-text">Writeup</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-CTF問題を例として-parse-url関数をバイパスすることを学ぶ"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CTF問題を例として,parse_url関数をバイパスすることを学ぶ</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-02 13:31:49" datetime="2019-02-02T05:31:49.000Z"  itemprop="datePublished">2019-02-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><p> 運用保守担当者の間違いのため、イントラネット認証ページは外部ネットワークに展開されましたが、幸いにも、開発者はドメイン名の検証が行われました。</p>
+<p> <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018082801.png" alt="img"></p>
+<h1 id="Writeup"><a href="#Writeup" class="headerlink" title="Writeup"></a>Writeup</h1><p> ソースコードを表示し、次のコードを見つけます:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;,0); </span><br><span class="line">$uri &#x3D; $_SERVER[&#39;REQUEST_URI&#39;];</span><br><span class="line">if(stripos($uri,&quot;.&quot;))&#123;   </span><br><span class="line">	die(&quot;Unkonw URI.&quot;); </span><br><span class="line">&#125; </span><br><span class="line">if(!parse_url($uri,PHP_URL_HOST))&#123;   </span><br><span class="line">	$uri　&#x3D;　&quot;http:&#x2F;&#x2F;&quot;.$_SERVER[&#39;REMOTE_ADDR&#39;].$_SERVER[&#39;REQUEST_URI&#39;]; </span><br><span class="line">&#125; </span><br><span class="line">$host &#x3D; parse_url($uri,PHP_URL_HOST);</span><br><span class="line">if($host &#x3D;&#x3D;&#x3D; &quot;c7f.zhuque.com&quot;)&#123;</span><br><span class="line">	  setcookie(&quot;AuthFlag&quot;,&quot;flag&#123;*******&quot;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 明らかに、parse_url関数をバイパスすることを検査です.</p>
+<p> しかし、最初にドットのマッチングが増え、バイパスすることができます。 ペイロードを使用する：<code>.@c7f.zhuque.com/..//</code></p>
+<p> <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018082802.png" alt="img"></p>
+<p> 以上です。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-02-02T05:32:53.160Z" itemprop="dateUpdated">2019-02-02 13:32:53</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/&title=《CTF問題を例として,parse_url関数をバイパスすることを学ぶ》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/&title=《CTF問題を例として,parse_url関数をバイパスすることを学ぶ》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CTF問題を例として,parse_url関数をバイパスすることを学ぶ》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">glob://を使用して、open_basedirをバイパスする</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/01/%E9%AB%98%E8%B2%A0%E8%8D%B7%E3%81%AESQL%E6%96%87%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9FTime-based-SQL%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">高負荷のSQL文を使用したTime-based SQLインシェクション</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/&title=《CTF問題を例として,parse_url関数をバイパスすることを学ぶ》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/&title=《CTF問題を例として,parse_url関数をバイパスすることを学ぶ》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CTF問題を例として,parse_url関数をバイパスすることを学ぶ》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

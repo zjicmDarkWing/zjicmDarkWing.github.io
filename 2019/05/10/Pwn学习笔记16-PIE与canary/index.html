@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记16:PIE与canary | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="ROP对策 - PIEPIE(Position Independent Executables) .text区域的地址也进行随机化  所有的汇编代码中不包含绝对地址  全都使用相对地址  二进制文件被加载到内存时，基本是随机映射的  没有可以提前确定的固定地址    PIE绕过 – 多段memory leak + ret2libc等 看起来非常严格，因为完全没有固定地址，但如果能够多次利用漏洞，花">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记16:PIE与canary">
+<meta property="og:url" content="https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ROP对策 - PIEPIE(Position Independent Executables) .text区域的地址也进行随机化  所有的汇编代码中不包含绝对地址  全都使用相对地址  二进制文件被加载到内存时，基本是随机映射的  没有可以提前确定的固定地址    PIE绕过 – 多段memory leak + ret2libc等 看起来非常严格，因为完全没有固定地址，但如果能够多次利用漏洞，花">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051001.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051002.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051003.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051004.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051005.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051006.jpg">
+<meta property="article:published_time" content="2019-05-10T07:30:37.000Z">
+<meta property="article:modified_time" content="2019-05-10T07:31:52.222Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051001.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记16:PIE与canary</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记16:PIE与canary</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-10T07:30:37.000Z" itemprop="datePublished" class="page-time">
+  2019-05-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROP对策-PIE"><span class="post-toc-number">1.</span> <span class="post-toc-text">ROP对策 - PIE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PIE-Position-Independent-Executables"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">PIE(Position Independent Executables)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PIE绕过-–-多段memory-leak-ret2libc等"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">PIE绕过 – 多段memory leak + ret2libc等</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Stack-Canary"><span class="post-toc-number">2.</span> <span class="post-toc-text">Stack Canary</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#很早就出现的机制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">很早就出现的机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stack-Canary攻略1-–-brute-force"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Stack Canary攻略1 – brute force</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stack-Canary攻略2-–-master-canary-forging"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Stack Canary攻略2 – master canary forging</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#目前为止的技术总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">目前为止的技术总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记16-PIE与canary"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记16:PIE与canary</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-10 15:30:37" datetime="2019-05-10T07:30:37.000Z"  itemprop="datePublished">2019-05-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ROP对策-PIE"><a href="#ROP对策-PIE" class="headerlink" title="ROP对策 - PIE"></a>ROP对策 - PIE</h1><h2 id="PIE-Position-Independent-Executables"><a href="#PIE-Position-Independent-Executables" class="headerlink" title="PIE(Position Independent Executables)"></a>PIE(Position Independent Executables)</h2><ul>
+<li><p>.text区域的地址也进行随机化</p>
+</li>
+<li><p>所有的汇编代码中不包含绝对地址</p>
+</li>
+<li><p>全都使用相对地址</p>
+</li>
+<li><p>二进制文件被加载到内存时，基本是随机映射的</p>
+</li>
+<li><p>没有可以提前确定的固定地址</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051001.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="PIE绕过-–-多段memory-leak-ret2libc等"><a href="#PIE绕过-–-多段memory-leak-ret2libc等" class="headerlink" title="PIE绕过 – 多段memory leak + ret2libc等"></a>PIE绕过 – 多段memory leak + ret2libc等</h2><ul>
+<li><p>看起来非常严格，因为完全没有固定地址，但如果能够多次利用漏洞，花费时间和精力也能够解决它</p>
+</li>
+<li><p>通过栈溢出之外的漏洞(例如格式化字符串(FSB)，堆溢出)等泄漏的情况比较多</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051002.jpg" alt=""></p>
+</li>
+<li><p>如果能够知道.text的地址，就能够知道其他例如.data , .bss，.plt，.got.plt 等</p>
+</li>
+<li><p>如果进一步从.got.plt读取内存，则可以识别libc地址。之后如果能够将其加载到stack上，或者能够重写GOT，就解决了。</p>
+</li>
+</ul>
+<h1 id="Stack-Canary"><a href="#Stack-Canary" class="headerlink" title="Stack Canary"></a>Stack Canary</h1><h2 id="很早就出现的机制"><a href="#很早就出现的机制" class="headerlink" title="很早就出现的机制"></a>很早就出现的机制</h2><ul>
+<li>gcc编译后，stack上有一个canary值</li>
+<li>进入函数时，canary被随机设置</li>
+<li>退出该函数时(return 前)，会验证canary没有被修改</li>
+<li>根据之前已经提到的技术，很难突破这一层保护</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="Stack-Canary攻略1-–-brute-force"><a href="#Stack-Canary攻略1-–-brute-force" class="headerlink" title="Stack Canary攻略1 – brute force"></a>Stack Canary攻略1 – brute force</h2><ul>
+<li><p>在重新运行二进制文件之前，Stack Canary的值不会更改</p>
+<ul>
+<li><p>对于fork-server类型，只要主进程没有重新启动，canary就是常量</p>
+</li>
+<li><p>逐个字节进行爆破的话，最多256*4次尝试就能够命中Stack Canary</p>
+<ul>
+<li>如果是x64的话需要256*8次，但无论如何都是一个现实的数字</li>
+</ul>
+</li>
+<li><p>覆盖Stack Canary为正确的值，这样函数返回时，通过检查，正常返回</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051004.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Stack-Canary攻略2-–-master-canary-forging"><a href="#Stack-Canary攻略2-–-master-canary-forging" class="headerlink" title="Stack Canary攻略2 – master canary forging"></a>Stack Canary攻略2 – master canary forging</h2><ul>
+<li><p>Stack Canary存储在TLS(Thread local storage)中</p>
+<ul>
+<li>x86是在gs:0x14，x64是在fs:0x28存在着值</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051005.jpg" alt=""></p>
+</li>
+<li><p>如果能够重写该值，就能够使Stack Canary无效</p>
+<ul>
+<li>将StackCanary修改为想要的值</li>
+<li>使用任意内存读写，堆溢出等技术进行覆盖</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051006.jpg" alt=""></p>
+</li>
+<li><p>potetisensei的相关paper</p>
+<ul>
+<li><a href="http://www.npca.jp/works/magazine/2015_1/" target="_blank" rel="noopener">http://www.npca.jp/works/magazine/2015_1/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="目前为止的技术总结"><a href="#目前为止的技术总结" class="headerlink" title="目前为止的技术总结"></a>目前为止的技术总结</h1><table>
+<thead>
+<tr>
+<th align="center"><strong>技术</strong></th>
+<th align="center"><strong>推荐练习的问题</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">nop-sled</td>
+<td align="center">CodeGate 2013 - pwn100</td>
+</tr>
+<tr>
+<td align="center">brute force</td>
+<td align="center">CodeGate 2013 - pwn100</td>
+</tr>
+<tr>
+<td align="center">ret2esp</td>
+<td align="center">CSAW CTF 2012 - pwn300 - 4842</td>
+</tr>
+<tr>
+<td align="center">stager</td>
+<td align="center"><a href="http://Hack.lu" target="_blank" rel="noopener">Hack.lu</a> CTF 2012 - pwn300 - braincpy</td>
+</tr>
+<tr>
+<td align="center">ret2plt</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ret2pop</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ret2libc</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">GOT overwrite</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ROP</td>
+<td align="center">Hack.lu CTF 2012 - pwn300 – braincpy</td>
+</tr>
+<tr>
+<td align="center">stack pivot</td>
+<td align="center">Hack.lu CTF 2012 - pwn300 – braincpy</td>
+</tr>
+<tr>
+<td align="center">ret2dl_runtime_resolve</td>
+<td align="center">Hack.lu CTF 2014 – pwn400 - oreo</td>
+</tr>
+<tr>
+<td align="center">_IO_jump_t overwrite</td>
+<td align="center">ED-CTF – pwn350 – Heap is a tomodachi of mine</td>
+</tr>
+<tr>
+<td align="center">ld specific ptr overwrite</td>
+<td align="center">Plaid CTF 2015 – pwn550 - plaiddb</td>
+</tr>
+<tr>
+<td align="center">canary brute force</td>
+<td align="center">30c3 CTF 2014 - pwn400 - bigdata</td>
+</tr>
+<tr>
+<td align="center">master canary forging</td>
+<td align="center">CodeGate 2014 – pwn600 - dodosandbox</td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-05-10T07:31:52.222Z" itemprop="dateUpdated">2019-05-10 15:31:52</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/&title=《Pwn学习笔记16:PIE与canary》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/&title=《Pwn学习笔记16:PIE与canary》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记16:PIE与canary》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/13/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B017-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记17:其他一些技术简介</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记15:Full-RELRO与library</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/&title=《Pwn学习笔记16:PIE与canary》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/&title=《Pwn学习笔记16:PIE与canary》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记16:PIE与canary》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADP0lEQVR42u3a0W7jMAwEwPz/T6evB6R2din3ECvjpyC1JY0CmCWpxyO+nv9cr98f3fn61Pn9s3te77/swsbGxr4J+3l6JdMkm3I05tGMK9uajIyNjY29H/voDZ8Dzrcgn2s2Yzs+NjY2Nnay3KOgkm/rVWkJNjY2NnZe+pmlLu34+VPY2NjY38NuizVt1T1Z1nrB6E9qadjY2Ngfz867op//+U/629jY2NgfzH6W11WBJA+QSRCqFdjY2NgbsdeP7MzavW0QWj889Mv92NjY2Fuw81br7F//pGWbLLr9/s3s2NjY2Bux28OR7WGa2bMXMOJ5sbGxsfdgt+GqDXsrRajZtkYJDzY2NvZ27CSYrTcMkkOTSYEpLy0dBjxsbGzs7djnmLaIfx5C1hvDbQCLUhFsbGzsG7JXGqjJNwl1pbA1TFSwsbGxt2OvJBUrkXM91WlTlOg3xMbGxr4VO3n1rxyOmTUJ8mfz1b7JwLCxsbFvzk7at0mpaL1tPAt4ycGd6M/Y2NjYN2evY9qy0XlQvKrM9EgubGxs7Juz80GvKjnl7eRZaSm6HxsbG3sL9lWFm5yUB87ZRkTpEzY2NvYXsNuEoS1C5Uc5V0pUh1uJjY2NvR27rjzFU+YhbRbkZuvBxsbG3ok9W2JboG/x64lNktJgY2Nj78HOSzkrG3Q+Tr7cFfabuI2NjY19W3Zemp+1clcCW7JZbYitOxLY2NjYN2S3Iadtu+bj5GlPu03Y2NjYO7Fnr/716dtUJw+lUTMDGxsbezt2UrJJ0oZZEGoTofwHOFw/NjY29kbstmSTBLykzDSbdz2NebS/JzY2NvZt2W3LdqW5e15+aj/XR3ywsbGxt2C3pfxZ4WkF3KYuwyM72NjY2Fuw86M8bZIwawy0I1/QG8HGxsa+FftZXm34SUJa26xttx4bGxt7b3b76p8tdxai8uXOGhjY2NjYO7GT0JKUbxJGG2ySQznDDcXGxsbejt0WldrDMUnAu6BfnW80NjY29hez/w++DVF1UwEbGxv769ltypGnE8N+dVsIw8bGxt6O3RaV8iJRu31tszkvdV1QS8PGxsb+SHYbKpLjO/kSV44Era8KGxsb++bsH5FXnQgkS7e8AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

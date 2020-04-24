@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记1:基本环境及概念 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="0x01 工具 IDA Pro Linux x86 and x64 推荐Debian系列（Ubuntu,Debian,Kali,…）   qemu gdb 自定义.gdbinit   gdb-peda gdb script gdb -q -x cmd .&#x2F;binary   gdb-server C Python Perl Bash功能 &#x2F;dev&#x2F;tcp&#x2F;&lt;IPADDR&gt;&#x2F;&lt;POR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记1:基本环境及概念">
+<meta property="og:url" content="https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="0x01 工具 IDA Pro Linux x86 and x64 推荐Debian系列（Ubuntu,Debian,Kali,…）   qemu gdb 自定义.gdbinit   gdb-peda gdb script gdb -q -x cmd .&#x2F;binary   gdb-server C Python Perl Bash功能 &#x2F;dev&#x2F;tcp&#x2F;&lt;IPADDR&gt;&#x2F;&lt;POR">
+<meta property="article:published_time" content="2019-02-21T04:36:20.000Z">
+<meta property="article:modified_time" content="2019-02-21T05:03:12.488Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记1:基本环境及概念</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记1:基本环境及概念</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-21T04:36:20.000Z" itemprop="datePublished" class="page-time">
+  2019-02-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x01-工具"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x01 工具</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x02-pwn问题类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x02 pwn问题类型</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0x03-pwn问题的攻略方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x03 pwn问题的攻略方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本战略："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">基本战略：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#打开shell的各种方法："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">打开shell的各种方法：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记1-基本环境及概念"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记1:基本环境及概念</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-21 12:36:20" datetime="2019-02-21T04:36:20.000Z"  itemprop="datePublished">2019-02-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="0x01-工具"><a href="#0x01-工具" class="headerlink" title="0x01 工具"></a>0x01 工具</h1><ul>
+<li>IDA Pro</li>
+<li>Linux<ul>
+<li>x86 and x64</li>
+<li>推荐Debian系列（Ubuntu,Debian,Kali,…）</li>
+</ul>
+</li>
+<li>qemu</li>
+<li>gdb<ul>
+<li>自定义<code>.gdbinit</code></li>
+</ul>
+</li>
+<li>gdb-peda</li>
+<li>gdb script<ul>
+<li><code>gdb -q -x cmd ./binary</code></li>
+</ul>
+</li>
+<li>gdb-server</li>
+<li>C</li>
+<li>Python</li>
+<li>Perl</li>
+<li>Bash功能<ul>
+<li><code>/dev/tcp/&lt;IPADDR&gt;/&lt;PORT&gt;</code></li>
+</ul>
+</li>
+<li>Binutils , Elfutils<ul>
+<li>objdump,readelf,eu-readelf…</li>
+</ul>
+</li>
+<li>nasm/ndisasm/radare2</li>
+<li>netcat(nc)</li>
+<li>socat<ul>
+<li><code>socat TCP-LISTEN:4444,reuseaddr,fork exec:./binary&amp;</code></li>
+</ul>
+</li>
+<li>strace/ltrace<ul>
+<li><code>strace –fiv ./binary</code></li>
+</ul>
+</li>
+<li>checksec.sh<ul>
+<li><code>checksec.sh --file ./binary</code></li>
+</ul>
+</li>
+<li>rp++<ul>
+<li><code>rp-lin-x86 --file=binary --unique --rop=5</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="0x02-pwn问题类型"><a href="#0x02-pwn问题类型" class="headerlink" title="0x02 pwn问题类型"></a>0x02 pwn问题类型</h1><ul>
+<li>本地权限提升</li>
+<li>remote shell 夺取</li>
+</ul>
+<h1 id="0x03-pwn问题的攻略方法"><a href="#0x03-pwn问题的攻略方法" class="headerlink" title="0x03 pwn问题的攻略方法"></a>0x03 pwn问题的攻略方法</h1><h2 id="基本战略："><a href="#基本战略：" class="headerlink" title="基本战略："></a>基本战略：</h2><ol>
+<li>binary各项设定检查<ul>
+<li>checksec(NX,ASLR,RELRO,PIE)</li>
+</ul>
+</li>
+<li>分析binary，找到漏洞点</li>
+<li>向漏洞点发送测试数据</li>
+<li>控制binary运行流程<ul>
+<li>例如控制EIP</li>
+</ul>
+</li>
+<li>getshell</li>
+</ol>
+<h2 id="打开shell的各种方法："><a href="#打开shell的各种方法：" class="headerlink" title="打开shell的各种方法："></a>打开shell的各种方法：</h2><ol>
+<li>运行shellcode<ul>
+<li>Exec-shell</li>
+<li>Exec-shell + back connect</li>
+</ul>
+</li>
+<li><code>system(&quot;/bin/sh&quot;) や execve(&quot;/bin/sh&quot;,0,0)</code></li>
+<li><code>open(&quot;flag&quot;) -&gt; read() -&gt; write()</code><ul>
+<li>某些情况下不能直接获取shell，但能读取flag</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-02-21T05:03:12.488Z" itemprop="dateUpdated">2019-02-21 13:03:12</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/&title=《Pwn学习笔记1:基本环境及概念》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/&title=《Pwn学习笔记1:基本环境及概念》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记1:基本环境及概念》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记2:内存布局</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/15/Postbook-Writeup-Hacker101-CTF/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Postbook Writeup(Hacker101 CTF)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/&title=《Pwn学习笔记1:基本环境及概念》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/&title=《Pwn学习笔记1:基本环境及概念》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记1:基本环境及概念》 — 喵喵喵喵&url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEnUlEQVR42u3aWU7kQBAEUO5/aUaarxkBJiLTSK7m9Rfq9lbPSJXb21v8ef/7+fjN9ff//np9/Ffnfvz1+qyvnvyrc2/+YMKECROmRzK9X37yR0kWf33u9QISvuunyl/MJ+diwoQJE6bDmdrLXX+/IUtCgZwpeYURMSZMmDBh+gVMyVltwjxLTe9KkjFhwoQJE6b27/bT1lfzxecpPSZMmDBh+g1M7RZ7veBZi7FteW5e4Q/WwjFhwoQJ08OY2sGdV/r7B+ebMGHChAnTA5hmaWq7obbb/HV40RaF86t9eRdMmDBhwnQsUz4uc9dYzL68uykEr+6ICRMmTJhelGm2nbctwzwUmA0A5c+GCRMmTJhej6ndzpPHSpLPTRiRt0vblxFhYcKECROmA5nagCDf4PNtuB0n2qToLRwmTJgwYTqXqS3vbljzNHhW5G2vWQzxYMKECROmY5najXmz7FlDtE1WN6uI/l0wYcKECdNRTHl+PGtwzoKJNqSY/VqUgzFhwoQJ04FM7fjLbKkt36ZdekNH9+OVMWHChAnTsUyztt+mMZkv7K7XNiscF11fTJgwYcL0eKZ2Gcn2n4POoIu69eg1Y8KECROm12PaNzUTrPz6bWjSprVtKo4JEyZMmM5lmrX62s17k2ZvSsntq4pcMWHChAnTIUz5tjo7st2YrwuybXI+CxEwYcKECdMrMeUl0Ta5bbf2TYK6b6y268KECRMmTKcw5WMxbSbdLmkWKOTjPu29/vsGEyZMmDAdy3T90HmRdDaykxeUNwXo287FhAkTJkwHMrUQm3Q0v36+1Lxg3RaUV/8vmDBhwoTpMUzJwvKNsw0s8uvMNv671oUJEyZMmE5nmhVDNyXXtpH5E8n2bUVeTJgwYcL0YKZN+fX6mHwZbYiQt2DzY765CyZMmDBhOpZpz7Efo0lezD7qya/wzZGYMGHChOlYps1pm0Dh3qJtO1p0W2sTEyZMmDA9kikvhuYp6L4lOVvM7I7RGBAmTJgwYTqWaVainbU284LyJghoC8FFwxUTJkyYMB3IdNeAS144zjfvTYm5nl26Li5jwoQJE6bDmZIFzNqfm814H17kKMOkFxMmTJgwHcLUPlyboLb3yrf/NrC4oRaOCRMmTJiOYsqT1fzXzeadl5VnrdZ2RAkTJkyYMJ3O1C4gL+zOSq6bu2+CmG/gMGHChAnTsUxJkrn5PgkXZoloOwbUhhef/IoJEyZMmA5kShY/2z6TRLQdjU2W1A4ARYiYMGHChOklmPJSb15aXaWa8VPty75F1xcTJkyYMB3FNGso5scnSfI+4EjKvrMy8XDZmDBhwoTpMUyzFLQNCJLxndm99uhFkRcTJkyYMB3I1Kam+fI2yWc7Wto2U2dNVkyYMGHCdC5T3kpsW4/tgvMUOm9G5oNH3wQxmDBhwoTpcKY2CGhLpZtCbZKKz1qkRS0cEyZMmDD9AqbrRLHNszftzzZEaEONT54ZEyZMmDBhuulq+TVn6fFwkAgTJkyYMB3ONCvyJr/mx7RBw11F3ihkwYQJEyZMxzJtBndmqWleik1A20Gc21AwYcKECdPTmf4ABzm0FVyPEwgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

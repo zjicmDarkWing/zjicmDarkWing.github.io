@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>DEFCON 2014 CTF-Baby&#39;s First-heap 基本知识及静态分析 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="Setup 下载题目文件到Linux系统环境中  http:&#x2F;&#x2F;shell-storm.org&#x2F;repo&#x2F;CTF&#x2F;Defcon-22-quals&#x2F;heap-1&#x2F;   文件名有点长，做下重命名  mv babyfirst-heap_33ecf0ad56efc1b322088f95dd98827c heap   赋予运行权限  chmod +x heap   运行  .&#x2F;heap   不能运行的话，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DEFCON 2014 CTF-Baby&#39;s First-heap 基本知识及静态分析">
+<meta property="og:url" content="https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="Setup 下载题目文件到Linux系统环境中  http:&#x2F;&#x2F;shell-storm.org&#x2F;repo&#x2F;CTF&#x2F;Defcon-22-quals&#x2F;heap-1&#x2F;   文件名有点长，做下重命名  mv babyfirst-heap_33ecf0ad56efc1b322088f95dd98827c heap   赋予运行权限  chmod +x heap   运行  .&#x2F;heap   不能运行的话，可">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032604.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032605.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032606.jpg">
+<meta property="article:published_time" content="2019-03-26T01:23:15.000Z">
+<meta property="article:modified_time" content="2019-03-26T01:24:24.408Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032604.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">DEFCON 2014 CTF-Baby&#39;s First-heap 基本知识及静态分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">DEFCON 2014 CTF-Baby&#39;s First-heap 基本知识及静态分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-26T01:23:15.000Z" itemprop="datePublished" class="page-time">
+  2019-03-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Setup"><span class="post-toc-number">1.</span> <span class="post-toc-text">Setup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#时间序列表示堆的状态"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">时间序列表示堆的状态</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#已知信息"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">已知信息</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-DEFCON-2014-CTF-Baby-s-First-heap-基本知识及静态分析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-26 09:23:15" datetime="2019-03-26T01:23:15.000Z"  itemprop="datePublished">2019-03-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ul>
+<li><p>下载题目文件到Linux系统环境中</p>
+<ul>
+<li><a href="http://shell-storm.org/repo/CTF/Defcon-22-quals/heap-1/" target="_blank" rel="noopener">http://shell-storm.org/repo/CTF/Defcon-22-quals/heap-1/</a></li>
+</ul>
+</li>
+<li><p>文件名有点长，做下重命名</p>
+<ul>
+<li><code>mv babyfirst-heap_33ecf0ad56efc1b322088f95dd98827c heap</code></li>
+</ul>
+</li>
+<li><p>赋予运行权限</p>
+<ul>
+<li><code>chmod +x heap</code></li>
+</ul>
+</li>
+<li><p>运行</p>
+<ul>
+<li><code>./heap</code></li>
+</ul>
+</li>
+<li><p>不能运行的话，可能是因为使用的是64位系统</p>
+<ul>
+<li>在x86_64环境中运行不能直接运行x86的二进制程序</li>
+</ul>
+</li>
+<li><p>Ubuntu 14.04以后版本</p>
+<ul>
+<li><pre><code>dpkg --add-architecture i386
+apt-get update
+apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 $ apt-get install gcc-multilib g++-multilib
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 初步调查</span><br><span class="line"></span><br><span class="line">- 每次都需要做的初步检查</span><br><span class="line"></span><br><span class="line">  -</span><br></pre></td></tr></table></figure>
+$ file heap
+heap: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-, for GNU/Linux 2.6.24, BuildID[sha1]=1b4e88004c13ca18ef78ac90b298c1e247c1d4e5, with debug_info, not stripped
+
+$ ldd heap
+    linux-gate.so.1 (0xf7ee0000)
+    libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7ce8000)
+    /lib/ld-linux.so.2 (0xf7ee2000)
+
+$ checksec --file heap #http://www.trapkit.de/tools/checksec.html
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH    Symbols        FORTIFY    Fortified    Fortifiable  FILE
+Partial RELRO   No canary found   NX enabled    No PIE          No RPATH   No RUNPATH   113 Symbols     No    0        8    heap
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 使用的库函数列表</span><br><span class="line"></span><br><span class="line">  -</span><br></pre></td></tr></table></figure>
+Relocation section &apos;.rel.plt&apos; at offset 0x558 contains 14 entries:
+ Offset     Info    Type              Sym.Value      Sym.Name
+0804c000  00000107 R_386_JUMP_SLOT   00000000   mprotect@GLIBC_2.0 //更改内存属性
+0804c004  00000207 R_386_JUMP_SLOT   00000000   printf@GLIBC_2.0 //显示文字
+0804c008  00000307 R_386_JUMP_SLOT   00000000   memcpy@GLIBC_2.0 //拷贝内存
+0804c00c  00000407 R_386_JUMP_SLOT   00000000   signal@GLIBC_2.0 //定义收到信号时的操作
+0804c010  00000507 R_386_JUMP_SLOT   00000000   alarm@GLIBC_2.0 //在一段时间后提出异常
+0804c014  00000607 R_386_JUMP_SLOT   00000000   _IO_getc@GLIBC_2.0 //读取一个字符
+0804c018  00000707 R_386_JUMP_SLOT   00000000   puts@GLIBC_2.0 //显示一行
+0804c01c  00000807 R_386_JUMP_SLOT   00000000   __gmon_start__ //使用gprof等收集统计信息时使用的函数。由于通常不使用它，因此可以忽略它
+0804c020  00000907 R_386_JUMP_SLOT   00000000   exit@GLIBC_2.0 //退出函数
+0804c024  00000a07 R_386_JUMP_SLOT   00000000   __libc_start_main@GLIBC_2.0 //调用main的包装函数
+0804c028  00000b07 R_386_JUMP_SLOT   00000000   fprintf@GLIBC_2.0 //向文件指针输出内容
+0804c02c  00000c07 R_386_JUMP_SLOT   00000000   setvbuf@GLIBC_2.0 //更改缓冲行为
+0804c030  00000d07 R_386_JUMP_SLOT   00000000   memset@GLIBC_2.0 //设置内存值
+0804c034  00000e07 R_386_JUMP_SLOT   00000000   sbrk@GLIBC_2.0 //扩张heap区域
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    上述函数没有bind, listen, accept等，因为没有实现NX处理</span><br><span class="line"></span><br><span class="line">## fork-server型与xinetd型</span><br><span class="line"></span><br><span class="line">- CTF题目常见的有两种</span><br><span class="line">- fork-server型，xinetd型</span><br><span class="line">- fork-server型</span><br><span class="line">  - 二进制程序中有bind-&gt;listen-&gt;accept的类型</span><br><span class="line">  - ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032501.jpg)</span><br><span class="line">  - 这种情况下，需要去调试子进程</span><br><span class="line">  - 如果未在gdb中设置set follow-fork-mode child，则仅调试父进程(并且父进程将继续存在，因此您需要每次都kill父进程)</span><br><span class="line">- xinetd型</span><br><span class="line">  - 二进程程序中没有bind-&gt;listen-&gt;accept的类型(用xinetd代替)</span><br><span class="line">  - ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032502.jpg)</span><br><span class="line">  - 在这种情况下，使用gdb等工具调试时，不需要考虑NW</span><br><span class="line">  - 但是，在实际编写exploit进行测试时，可以用过socat来添加NW关系</span><br><span class="line">  - 也就是说，对于xintd型，在调试时不需要考虑NW交换，但在编写exploit时需要考虑NW上的通信</span><br><span class="line"></span><br><span class="line">## 简单运行了解下流程</span><br></pre></td></tr></table></figure>
+$ ./heap
+...
+[ALLOC][loc=84354B0][size=823]
+Write to object [size=260]:
+AAAAA // 尝试输入简单的值
+Copied 6 bytes.
+[FREE][address=8431008]
+...
+[FREE][address=84354B0]
+Did you forget to read the flag with your shellcode?
+Exiting // 什么也没发生
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 由于之前有[size &#x3D; 260]的描述，尝试发送260个字节</span><br></pre></td></tr></table></figure>
+$ python -c &apos;print &quot;A&quot;*260&apos; | ./heap //使用python生成260个字符，发送给二进制程序
+...
+[ALLOC][loc=8E3E4B0][size=823]
+Write to object [size=260]:
+Copied 261 bytes.
+[FREE][address=8E3A008]
+...
+[FREE][address=8E3C058]
+[1]    7910 done                              python -c &apos;print &quot;A&quot;*260&apos; | 
+   7911 segmentation fault (core dumped)  ./heap //crash了，如果是259个字符，则刚好不会crash
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 静态分析</span><br><span class="line"></span><br><span class="line">- 下载安装IDA Free版本</span><br><span class="line"></span><br><span class="line">  - https:&#x2F;&#x2F;www.hex-rays.com&#x2F;products&#x2F;ida&#x2F;support&#x2F;download.shtml</span><br><span class="line"></span><br><span class="line">- 启动后，加载要分析的二进制文件并等待一段时间以完成分析</span><br><span class="line"></span><br><span class="line">- Options→General更改一些设置</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032503.jpg)</span><br><span class="line"></span><br><span class="line">- Graph View的整体视图如下所示</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032504.jpg)</span><br><span class="line"></span><br><span class="line">- 基本上，可以通过call指令和引用字符串作为提示推测程序流程</span><br><span class="line"></span><br><span class="line">  - 即便不怎么读程序汇编代码，也能够通过使用方式来了解大概</span><br><span class="line"></span><br><span class="line">- 很难一口气阅读所有内容</span><br><span class="line"></span><br><span class="line">  - 我试着一点一点分组阅读</span><br><span class="line">  - 对于很明显的循环部分，可以先放在一起</span><br><span class="line"></span><br><span class="line">## 循环部分先放在一起，稍后再看</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032505.jpg)</span><br><span class="line"></span><br><span class="line">左边这些选中部分注释为ALLOC LOOP，由于左下方块中存在字符串ALLOC，因此可能执行此类处理</span><br><span class="line"></span><br><span class="line">- 其他的循环也同样添加注释，最后看起来应该是这样的（很容易想象）</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032506.jpg)</span><br><span class="line"></span><br><span class="line">点击这个将重新展开</span><br><span class="line"></span><br><span class="line">## 分析第一块</span><br><span class="line"></span><br><span class="line">- 堆栈顶部是变量</span><br><span class="line">- 选择变量后按&#39;N&#39;键可以进行命名</span><br><span class="line">- &#39;:&#39; 对这一行进行注释</span><br><span class="line">- &#39;Insert&#39;在这一行上方进行注释</span><br><span class="line">- &#39;Shift&#39;+&#39;insert&#39;在这一行下方进行注释</span><br><span class="line">- 对于不知道的函数，可以通过&#96;man &lt;function name&gt;&#96;进行检索</span><br><span class="line">- 深蓝色文字是符号，可以双击跳转</span><br><span class="line">- 如果需要返回可以按&#39;Esc&#39;，或者工具栏上的&#39;←&#39;按钮</span><br><span class="line">- 粗略阅读时，使用这些会使得可读性很好</span><br><span class="line">- 目的是为了理解代码内容以及解释反编译的代码</span><br><span class="line"></span><br><span class="line">## 第一块看起来像这样</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032507.jpg)</span><br><span class="line"></span><br><span class="line">C语言代码大概像这样</span><br></pre></td></tr></table></figure>
+setvbuf(stdout, 0, 2, 0);
+signal(14, sig_alarm_handler);
+alarm(0x5Au); //90秒后，调用sig_alarm_handler并将其杀死
+mysrand(0x1234u); //可能是随机数种子设置（但每次都固定）
+puts(&quot;\nWelcome to your first heap overflow...&quot;);
+puts(&quot;I am going to allocate 20 objects...&quot;);
+puts(&quot;Using Dougle Lee Allocator 2.6.1...\nGoodluck!\n&quot;);
+exit_func = do_exit; //复制退出时调用的函数指针
+printf(&quot;Exit function pointer is at %X address.\n&quot;, &amp;exit_func);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 第二块看起来像这样</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032508.jpg)</span><br><span class="line"></span><br><span class="line">- 仔细看这段代码</span><br><span class="line"></span><br><span class="line">- stack上看起来有ptr, size, ptr, size…这样的20个排列</span><br><span class="line"></span><br><span class="line">  - Structures窗口中，制作结构体会更加容易</span><br><span class="line">    - Insert→指定结构体名称</span><br><span class="line">    - 可以通过反复按&#39;D&#39;切换类型</span><br><span class="line">      - db: 1byte</span><br><span class="line">      - dw: 2byte</span><br><span class="line">      - dd: 4byte</span><br><span class="line">    - 按&#39;N&#39;对变量重命名</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032509.jpg)</span><br><span class="line"></span><br><span class="line">- 切换到Stack frame窗口，选中这个变量</span><br><span class="line"></span><br><span class="line">- Edit→Struct var，应用创建的结构体</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032511.jpg)</span><br><span class="line"></span><br><span class="line">- &#39;N&#39;重命名为array</span><br><span class="line"></span><br><span class="line">- 然后使用数字键盘上的&#39;*&#39;进行数组排列</span><br><span class="line"></span><br><span class="line">  - size是20</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032512.jpg)</span><br><span class="line"></span><br><span class="line">- stack上进行结构体应用后大概像这样</span><br><span class="line"></span><br><span class="line">  ![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032510.jpg)</span><br><span class="line"></span><br><span class="line">- C语言代码大概像这样</span><br><span class="line"></span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+for ( i = 0; i &lt;= 0x13; ++i ) //20次循环
+{
+  random_size = randrange(0x200u, 0x500u); //很容易理解的随机数生成
+  if ( i == 10 ) //第11次固定260
+    random_size = 260;
+  array[i].ptr = malloc(random_size); //分配random_size的内存
+  array[i].size = random_size; //保存这个随机值
+  printf(&quot;[ALLOC][loc=%X][size=%d]\n&quot;, array[i].ptr, random_size);
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 第三块看起来像这样</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032601.jpg)</span><br><span class="line"></span><br><span class="line">C语言代码大概像这样：</span><br></pre></td></tr></table></figure>
+printf(&quot;Write to object [size=%d]:\n&quot;, array[10].size); 
+count = get_my_line(&amp;buff, 0x1000u); //stack上的buffer中读取最多0x1000个字符
+memcpy(array[10].ptr, &amp;buff, count); //复制到指针指向区域(产生堆溢出)
+printf(&quot;Copied %d bytes.\n&quot;, count);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 第四块看起来像这样</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032602.jpg)</span><br><span class="line"></span><br><span class="line">C语言代码大概像这样</span><br></pre></td></tr></table></figure>
+for ( i = 0; i &lt;= 0x13; ++i ) //20次free
+{
+printf(&quot;[FREE][address=%X]\n&quot;, array[i].ptr);
+free(array[i].ptr);
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 第五块看起来像这样</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;zjicmDarkWing&#x2F;images&#x2F;master&#x2F;2019032603.jpg)</span><br><span class="line"></span><br><span class="line">C语言代码大概像这样</span><br></pre></td></tr></table></figure>
+exit_func(1u);
+return 0;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 总体代码逻辑</span><br></pre></td></tr></table></figure>
+int main(void){
+setvbuf(stdout, 0, 2, 0);
+signal(14, sig_alarm_handler);
+alarm(0x5Au); //90秒后，调用sig_alarm_handler并将其杀死
+mysrand(0x1234u); //可能是随机数种子设置（但每次都固定）
+puts(&quot;\nWelcome to your first heap overflow...&quot;);
+puts(&quot;I am going to allocate 20 objects...&quot;);
+puts(&quot;Using Dougle Lee Allocator 2.6.1...\nGoodluck!\n&quot;);
+exit_func = do_exit; //复制退出时调用的函数指针
+printf(&quot;Exit function pointer is at %X address.\n&quot;, &amp;exit_func);
+</code></pre></li>
+</ul>
+<p>for ( i = 0; i &lt;= 0x13; ++i ) //20次循环<br>{<br>  random_size = randrange(0x200u, 0x500u); //很容易理解的随机数生成<br>  if ( i == 10 ) //第11次固定260<br>  random_size = 260;<br>  array[i].ptr = malloc(random_size); //分配random_size的内存<br>  array[i].size = random_size; //保存这个随机值<br>  printf(“[ALLOC][loc=%X][size=%d]\n”, array[i].ptr, random_size);<br>}<br>printf(“Write to object [size=%d]:\n”, array[10].size);<br>count = get_my_line(&amp;buff, 0x1000u); //stack上的buffer中读取最多0x1000个字符<br>memcpy(array[10].ptr, &amp;buff, count); //复制到指针指向区域(产生堆溢出)<br>printf(“Copied %d bytes.\n”, count);</p>
+<p>for ( i = 0; i &lt;= 0x13; ++i ) //20次free<br>{<br>  printf(“[FREE][address=%X]\n”, array[i].ptr);<br>  free(array[i].ptr);<br>}</p>
+<p>exit_func(1u);<br>return 0;<br>}</p>
+<pre><code></code></pre></li>
+</ul>
+<h2 id="时间序列表示堆的状态"><a href="#时间序列表示堆的状态" class="headerlink" title="时间序列表示堆的状态"></a>时间序列表示堆的状态</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>20次重复，第11个固定260byte</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>指针及size一起存储在stack中</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>第11个节点进行堆溢出</p>
+<p>从前到后依次free()</p>
+<h2 id="已知信息"><a href="#已知信息" class="headerlink" title="已知信息"></a>已知信息</h2><ul>
+<li><p>只是申请内存，覆盖和释放</p>
+<ul>
+<li>申请的内存不用于其他</li>
+</ul>
+</li>
+<li><p>是一道关于覆盖堆管理区域的问题</p>
+<ul>
+<li><p>这也可以从启动消息中理解</p>
+<blockquote>
+<p>Welcome to your first heap overflow…<br>I am going to allocate 20 objects…<br>Using Dougle Lee Allocator 2.6.1…<br>Goodluck!</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>看起来就是想让使用Unlink Attack</p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-03-26T01:24:24.408Z" itemprop="dateUpdated">2019-03-26 09:24:24</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/&title=《DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/&title=《DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/28/DEFCON-2014-CTF-Baby-s-First-heap-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%8F%8Aexploit/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">DEFCON 2014 CTF-Baby&#39;s First-heap 动态分析及exploit</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记8:fastbins attack</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/&title=《DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/&title=《DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DEFCON 2014 CTF-Baby's First-heap 基本知识及静态分析》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEnElEQVR42u3ay2rjQBAF0Pz/T2dgVgMZ2/dWyeBWjlbGkSX1UaDr9fUVH99/j5/f/Pz+51//Pefn50ffPDqSu+TPcPGBCRMmTJg+kil5rEcP8XzxLcrz6+ev5DlE/mIwYcKECdOdmPLL5b9NsJL99/k3ya+SF/xiXZgwYcKE6RcwtYlxspjNZr/Z/jFhwoQJE6ar0tR9sXWD3qb0mDBhwoTprkzXbr0zsllivCkov6UWjgkTJkyYPoxpsyWf/vmN802YMGHChOkDmL7LY1MUbou5s6Q6T4yLVWPChAkTpmOZkmZkstS2obgJRFrQHPrFE2LChAkTpgOZ8sZkUvBti8XJdTYl5iSkiMIRTJgwYcJ0LNMsBc1DgXyzz1uVm2Ju/kowYcKECdM9mBKO/BFnBMngTpv0zhL1h2diwoQJE6Zjma7a7HO4JIltm6NJozRvbWLChAkTpnsztdt/npru242zMCJPmIumJiZMmDBhOoopTxrztmWbWM6288340exMTJgwYcJ0ItN+0HOWDLcN1HYYKA81ouQcEyZMmDAdyLRJdGeDnlcN1syS7eHrx4QJEyZMhzO1m+jzTX2TJO+3+dn4zov2KiZMmDBhOpZpNqDTJp95iJC8gM3V8jAoip4wYcKECdOBTPlozrvbnG2CvblyXerFhAkTJkxHMa0SwnLQJ28lXvWrNoyIBDBhwoQJ0yFMycLy0u3ssfKCcptstwHEw1eOCRMmTJhuxNQGAbPiaf7QeSiwSb9flHoxYcKECdOxTNc2L/NZl1lhN7/Chrj+p8GECRMmTB/MlC8y/zxjTa6ZN1A3zz+sYWPChAkTpo9kmi273YbzIZv2avnTzs7EhAkTJkz3YGpP2iy+HQzaN0E364r+szBhwoQJ01FMeXl0kxLni8/T8lnivR/0wYQJEyZMn8/0vg01SY+vbXDORnmiwAITJkyYMB3ONIsgZuM738GxP3/TyMSECRMmTPdgmo3I5MnnpvU427Znrco6YsKECRMmTIcwtZt3e07eINzcpb1CmxJjwoQJE6Z7MOWbdDs005aP28Zn+8La8jQmTJgwYTqXKW9SJo3J2TLaQnD72hL0F8EBJkyYMGE6nOna7TNZQLKMWdDQQkepNSZMmDBhOpzpHW3LtqSbDNbMmqA568PXgwkTJkyYbsTUNv+e/3YWauQjpO3i27tjwoQJE6bTmdrltW3Fq75JmqZJQJCHHV+tNyZMmDBh+kimfMNu25DJ5t2m2fk19yHFw7gJEyZMmDAdy9QOic5GZPIFtKXhWaIeBRyYMGHChOlYpjaBbAd0hvl3XPzN77K/LyZMmDBhOpFpNoLTpsfXDta0xdzZvf6T+mLChAkTpgOZ3rEltyM4s6R6M/rzjpAFEyZMmDB9MtOm0dgmw+08zKaU3IYUL14DJkyYMGE6nClfRhsKtHztGNCsVD2sf2PChAkTplszzW4wQ9kP37ShQ5T6YsKECROmX8M0u3HejMyfIW++tmViTJgwYcJ0J6Z2WKd9rLbNORsPys/MV4cJEyZMmE5nmg3u7BPRWeu03ebbcOFrc2DChAkTps9i+gNbyILTZsXPYAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

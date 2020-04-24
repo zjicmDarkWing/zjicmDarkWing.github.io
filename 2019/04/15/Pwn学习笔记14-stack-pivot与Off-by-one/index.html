@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记14:stack pivot与Off-by-one | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="ROP的问题点ROP需要一个较大的溢出缓冲区 因为只包含一些细分的小指令，要发送的数据不可避免的增加  如果在srack返回地址下没有较大的溢出，就会很糟糕  如果没有足够的溢出缓冲区该怎么办？  stack pivot    溢出量问题绕过 - stack pivot stack pivot  使用ret2plt等将后续ROP加载到bss(适当区域)   通过pop ebp; ret来调整EBP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记14:stack pivot与Off-by-one">
+<meta property="og:url" content="https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ROP的问题点ROP需要一个较大的溢出缓冲区 因为只包含一些细分的小指令，要发送的数据不可避免的增加  如果在srack返回地址下没有较大的溢出，就会很糟糕  如果没有足够的溢出缓冲区该怎么办？  stack pivot    溢出量问题绕过 - stack pivot stack pivot  使用ret2plt等将后续ROP加载到bss(适当区域)   通过pop ebp; ret来调整EBP">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041501.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041502.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041503.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041504.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041505.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041506.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041507.jpg">
+<meta property="article:published_time" content="2019-04-15T05:56:33.000Z">
+<meta property="article:modified_time" content="2019-04-15T06:00:05.310Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041501.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记14:stack pivot与Off-by-one</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记14:stack pivot与Off-by-one</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-15T05:56:33.000Z" itemprop="datePublished" class="page-time">
+  2019-04-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROP的问题点"><span class="post-toc-number">1.</span> <span class="post-toc-text">ROP的问题点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ROP需要一个较大的溢出缓冲区"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">ROP需要一个较大的溢出缓冲区</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#溢出量问题绕过-stack-pivot"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">溢出量问题绕过 - stack pivot</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#stack-pivot的注意事项"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">stack pivot的注意事项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Off-by-one-栈溢出"><span class="post-toc-number">2.</span> <span class="post-toc-text">Off-by-one 栈溢出</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#目前为止的技术总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">目前为止的技术总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记14-stack-pivot与Off-by-one"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记14:stack pivot与Off-by-one</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-15 13:56:33" datetime="2019-04-15T05:56:33.000Z"  itemprop="datePublished">2019-04-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ROP的问题点"><a href="#ROP的问题点" class="headerlink" title="ROP的问题点"></a>ROP的问题点</h1><h2 id="ROP需要一个较大的溢出缓冲区"><a href="#ROP需要一个较大的溢出缓冲区" class="headerlink" title="ROP需要一个较大的溢出缓冲区"></a>ROP需要一个较大的溢出缓冲区</h2><ul>
+<li><p>因为只包含一些细分的小指令，要发送的数据不可避免的增加</p>
+</li>
+<li><p>如果在srack返回地址下没有较大的溢出，就会很糟糕</p>
+</li>
+<li><p>如果没有足够的溢出缓冲区该怎么办？</p>
+</li>
+<li><p>stack pivot</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041501.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="溢出量问题绕过-stack-pivot"><a href="#溢出量问题绕过-stack-pivot" class="headerlink" title="溢出量问题绕过 - stack pivot"></a>溢出量问题绕过 - stack pivot</h2><ul>
+<li><p>stack pivot</p>
+<ul>
+<li><p>使用ret2plt等将后续ROP加载到bss(适当区域)</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041502.jpg" alt="img"></p>
+</li>
+<li><p>通过pop ebp; ret来调整EBP寄存器</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041503.jpg" alt="img"></p>
+</li>
+<li><p>通过leave; ret来任意更改ESP</p>
+<ul>
+<li>leave是「mov esp, ebp; pop ebp」之类的值</li>
+</ul>
+</li>
+<li><p>bss作为stack继续ROP</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041504.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="stack-pivot的注意事项"><a href="#stack-pivot的注意事项" class="headerlink" title="stack pivot的注意事项"></a>stack pivot的注意事项</h2><ul>
+<li><p>使用bss作为stack发动ROP，可能会失败</p>
+<ul>
+<li>调用system()之前出现SIGSEGV</li>
+<li>调用system()时也可能出现SIGSEGV</li>
+</ul>
+</li>
+<li><p>这是因为(后续ROP使用的GOT等)必要的变量被破坏，以及跳到stack等原因</p>
+<ul>
+<li>因为read/write时，系统内的dl_fixup函数对stack做了很好的保护</li>
+</ul>
+</li>
+<li><p>pivot使用的stack，应该设置在.bss的中间，而不是靠近顶部</p>
+<ul>
+<li>建议使用bss+0x800左右的区域</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041505.jpg" alt="img"></p>
+</li>
+</ul>
+<h1 id="Off-by-one-栈溢出"><a href="#Off-by-one-栈溢出" class="headerlink" title="Off-by-one 栈溢出"></a>Off-by-one 栈溢出</h1><ul>
+<li><p>栈溢出的椅子红，但只溢出一个字节</p>
+<ul>
+<li>只可能覆盖Old-EBP的低位一个字节</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041506.jpg" alt="img"></p>
+</li>
+<li><p>这里也能使用stack pivot</p>
+<ul>
+<li><p>因为可以更改Old-EBP，因此可以在这个函数返回后控制ebp</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041507.jpg" alt="img"></p>
+</li>
+<li><p>另外，当从那里返回时，可以更改stack伤的返回地址</p>
+<ul>
+<li>只要函数使用leave或者等效的命令</li>
+</ul>
+</li>
+<li><p>由于stack地址根据环境而变化，因此很难完全预测一字节的溢出值</p>
+<ul>
+<li>但总共可以使用256次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="目前为止的技术总结"><a href="#目前为止的技术总结" class="headerlink" title="目前为止的技术总结"></a>目前为止的技术总结</h1><table>
+<thead>
+<tr>
+<th align="center"><strong>技术</strong></th>
+<th align="center"><strong>推荐练习的问题</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">nop-sled</td>
+<td align="center">CodeGate 2013 - pwn100</td>
+</tr>
+<tr>
+<td align="center">brute force</td>
+<td align="center">CodeGate 2013 - pwn100</td>
+</tr>
+<tr>
+<td align="center">ret2esp</td>
+<td align="center">CSAW CTF 2012 - pwn300 - 4842</td>
+</tr>
+<tr>
+<td align="center">stager</td>
+<td align="center"><a href="http://Hack.lu" target="_blank" rel="noopener">Hack.lu</a> CTF 2012 - pwn300 - braincpy</td>
+</tr>
+<tr>
+<td align="center">ret2plt</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ret2pop</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ret2libc</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">GOT overwrite</td>
+<td align="center">Plaid CTF 2013 - pwn200 - ropasaurusrex</td>
+</tr>
+<tr>
+<td align="center">ROP</td>
+<td align="center">Hack.lu CTF 2012 - pwn300 – braincpy</td>
+</tr>
+<tr>
+<td align="center">stack pivot</td>
+<td align="center">Hack.lu CTF 2012 - pwn300 – braincpy</td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-15T06:00:05.310Z" itemprop="dateUpdated">2019-04-15 14:00:05</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/&title=《Pwn学习笔记14:stack pivot与Off-by-one》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/&title=《Pwn学习笔记14:stack pivot与Off-by-one》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记14:stack pivot与Off-by-one》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Plaid CTF 2013 - pwn200 – ropasaurusrex</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记13:ROP与DROP</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/&title=《Pwn学习笔记14:stack pivot与Off-by-one》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/&title=《Pwn学习笔记14:stack pivot与Off-by-one》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记14:stack pivot与Off-by-one》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJElEQVR42u3awWojMRAEUP//T3thTwuL7aruMWSUp1NIxho9GdKoWo9HPJ5/R/7M85/x/zPJk+/f/v8Mj28MbGxs7Juwn29H+5rZbMl2vN/K/O3Y2NjYp7KTgpQs9P1GJAUp2dC2mGFjY2NjJweGds6kULXbjY2NjY19VQFrQ6hNPISNjY2NncdASflpYW0kNPsrNjY29tnsTZH4aT9/sb+NjY2N/SPZz8VoA6O8dO0L1YeVY2NjYx/E3kf/bft20zCeXfGp+8bY2NjYt2InJScvCXlrNm/67iOtl3UbGxsb+wh2+1Db+m3LZDtP8jV8eDs2Njb2zdkbXhskzZq4swPPh+3GxsbGPoh9VcCUb8csnPpGIcTGxsY+g53wrt2CWcx01c8vszRsbGzs27Lb8pDH9PnlnrzG1h3sq44i2NjY2Ddh7yOezabMIqdN2ISNjY19Evuqlm2+xNkzm/bDy94INjY29s3Zm8W1n2qjq/wLqJvW2NjY2Aexhx8IIp5ka2aHonxrhvkZNjY29nHsPELKl9V+dn/T5uUJDBsbG/vm7JaUHAnapSTFMr8eVDR3sbGxsY9g5weDNgzazzxr7rbtB2xsbOxT2VeFON/blLwBXJQ0bGxs7Buy82s3bXAzax4kjeT87S+fx8bGxj6IPeO1IX5bRdviNFwbNjY29hHsZKK8qLTlZx8S5e2HR77r2NjY2DdkJ4vYHzDaA88mzPrw1WJjY2Mfyt43VpODRH5Eueo6ZtGdxsbGxr4tO0fOru/MimK+nvyYhI2NjX0eu/3fnmNm0VXePChIyZPY2NjYR7Bni8uv0STztO9KQrGidGFjY2MfxP5eQdq0DfLfDAsYNjY29hHsGWPWlE02YjOi2bCxsbFvzn6W46qlf68JEX0WGxsb+yD2xTXw0kKVX83JNxEbGxv7VHZbtPZFJb9k07Z7i8gJGxsb+zj2vq2bbMT7yH6z9W0nFxsbG/s3s9sDxv5UlAdbRQMYGxsb+1ey8xbC5kCyKX5FKIaNjY19HHsW9GyuVLZzbvDY2NjYZ7Nnjdv20kyOKYKhRUSFjY2NfQT7D1Z6ESRdlKjqAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

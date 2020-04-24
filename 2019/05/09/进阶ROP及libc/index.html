@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>进阶ROP及libc | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="有用的ROP技巧__libc_csu_init 从stack中将值加载到寄存器的通用gadget  x86和x86_64中都存在，x86_64中这个会很方便  经常找不到pop rdi; ret这类，我们可以通过这种方式设置rdi    可以从stack经过r13设置rdi的值，但是需要注意只能设置32位，因为这里是edi而不是rdi   alarm(x) 在x86&#x2F;x64中，想要通过ROP设置E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进阶ROP及libc">
+<meta property="og:url" content="https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="有用的ROP技巧__libc_csu_init 从stack中将值加载到寄存器的通用gadget  x86和x86_64中都存在，x86_64中这个会很方便  经常找不到pop rdi; ret这类，我们可以通过这种方式设置rdi    可以从stack经过r13设置rdi的值，但是需要注意只能设置32位，因为这里是edi而不是rdi   alarm(x) 在x86&#x2F;x64中，想要通过ROP设置E">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050802.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050803.jpg">
+<meta property="article:published_time" content="2019-05-09T07:02:26.000Z">
+<meta property="article:modified_time" content="2019-05-09T07:03:39.977Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050801.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">进阶ROP及libc</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">进阶ROP及libc</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-09T07:02:26.000Z" itemprop="datePublished" class="page-time">
+  2019-05-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#有用的ROP技巧"><span class="post-toc-number">1.</span> <span class="post-toc-text">有用的ROP技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#libc-csu-init"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">__libc_csu_init</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#alarm-x"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">alarm(x)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Repeat-code"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Repeat-code</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#One-gadget-RCE"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">One-gadget-RCE</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#进阶ROP类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">进阶ROP类型</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GOT-overwrite技术"><span class="post-toc-number">3.</span> <span class="post-toc-text">GOT overwrite技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#将某个函数的GOT修改为system"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">将某个函数的GOT修改为system()</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ASLR地址相关技术"><span class="post-toc-number">4.</span> <span class="post-toc-text">ASLR地址相关技术</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#针对libc-DB的对策"><span class="post-toc-number">5.</span> <span class="post-toc-text">针对libc DB的对策</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#绕过”针对libc-DB的对策”"><span class="post-toc-number">6.</span> <span class="post-toc-text">绕过”针对libc DB的对策”</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方式一"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">方式一</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方式二"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">方式二</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方式三"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">方式三</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-进阶ROP及libc"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">进阶ROP及libc</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-09 15:02:26" datetime="2019-05-09T07:02:26.000Z"  itemprop="datePublished">2019-05-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="有用的ROP技巧"><a href="#有用的ROP技巧" class="headerlink" title="有用的ROP技巧"></a>有用的ROP技巧</h1><h2 id="libc-csu-init"><a href="#libc-csu-init" class="headerlink" title="__libc_csu_init"></a>__libc_csu_init</h2><ul>
+<li><p>从stack中将值加载到寄存器的通用gadget</p>
+</li>
+<li><p>x86和x86_64中都存在，x86_64中这个会很方便</p>
+<ul>
+<li>经常找不到<code>pop rdi; ret</code>这类，我们可以通过这种方式设置rdi</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050801.jpg" alt=""></p>
+</li>
+<li><p>可以从stack经过r13设置rdi的值，但是需要注意只能设置32位，因为这里是edi而不是rdi</p>
+</li>
+</ul>
+<h2 id="alarm-x"><a href="#alarm-x" class="headerlink" title="alarm(x)"></a>alarm(x)</h2><ul>
+<li>在x86/x64中，想要通过ROP设置EAX/RAX为任意数值<ul>
+<li>可以写一个直接调用systemcall的ROP</li>
+</ul>
+</li>
+<li>通常搜索rop gadgets时无法找到<code>pop eax/rax</code>这种<ul>
+<li>这是一个罕见的命令</li>
+</ul>
+</li>
+<li>可以使用alarm()来代替<ul>
+<li>CTF问题一般都能很好实现alarm()</li>
+<li>通过ret2plt来调用两次alarm(x) -&gt; alarm(0)，EAX/RAX的值将被设置为x</li>
+<li>更多信息可以参考man alarm文档</li>
+</ul>
+</li>
+<li>可以使用相同的技术来修改其他函数(例如write)的返回值</li>
+</ul>
+<h2 id="Repeat-code"><a href="#Repeat-code" class="headerlink" title="Repeat-code"></a>Repeat-code</h2><ul>
+<li><p>考虑系统调用受到沙箱限制</p>
+</li>
+<li><p>在例如libc中灵活使用<code>\xEB\xFE(jmp $-2)</code> 这样的字节挺好</p>
+<ul>
+<li>到达此处时，会发生无限循环</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050802.jpg" alt=""></p>
+<ul>
+<li>在指令中间，可以进行控制</li>
+</ul>
+</li>
+<li><p>例如执行memcmp(key,input,n)，根据返回值进行分支ROP</p>
+</li>
+<li><p>让它跳到<code>jmp $-2</code> 或者会导致SIGSEGV的gadget</p>
+<ul>
+<li>如果key和input相等，则会进入无限循环导致连接无响应</li>
+<li>如果key和input不同，则会产生SIGSEGV导致断开连接</li>
+<li>因为这种差异，即使write/send有限，也可以指定一个字节</li>
+</ul>
+</li>
+</ul>
+<h2 id="One-gadget-RCE"><a href="#One-gadget-RCE" class="headerlink" title="One-gadget-RCE"></a>One-gadget-RCE</h2><ul>
+<li><p>x64中要调用system(“/bin/sh”)的话，有几个必要条件</p>
+<ul>
+<li>pop rdi</li>
+<li>“/bin/sh”</li>
+<li>return system()</li>
+</ul>
+</li>
+<li><p>需要8*3=24字节的ROP</p>
+</li>
+<li><p>可以用一种有条件限制的8字节来代替</p>
+<ul>
+<li>8字节只是一个ROP，无需带入到ROP中(只需要控制RIP就可以)</li>
+<li>只对x64和xinetd类型有效</li>
+</ul>
+</li>
+<li><p>核心</p>
+<ul>
+<li>libc中存在自动执行<code>execve(&quot;/bin/sh&quot;,0,0)的</code>地址</li>
+<li>参考DragonSector的资料(<a href="http://j00ru.vexillium.org/?p=2485" target="_blank" rel="noopener">http://j00ru.vexillium.org/?p=2485</a>)</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050803.jpg" alt=""></p>
+<ul>
+<li>但是有条件限制，lea带入到rsi的值需要是NULL</li>
+</ul>
+</li>
+<li><p>x86不存在One-gadget-RCE</p>
+<ul>
+<li>因为libc中有PIC，将ebx保存为基指针<ul>
+<li>需要以ebx+offset的形式访问字符串</li>
+</ul>
+</li>
+<li>如果ebx不包含libc的基地址，则它无法正常工作<ul>
+<li>如果ebx包含libc的基地址，则可能存在One-gadget-RCE的地址</li>
+<li>但是，栈上对应第二个参数的部分需要为NULL(与x64相同)</li>
+<li>所以不太现实</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在x64中没有基指针这样的东西，它由RIP的相对地址表示</p>
+<ul>
+<li>寄存器不必包含特定数字</li>
+<li>使用这种技术的概率非常高</li>
+</ul>
+</li>
+</ul>
+<h1 id="进阶ROP类型"><a href="#进阶ROP类型" class="headerlink" title="进阶ROP类型"></a>进阶ROP类型</h1><ul>
+<li>JOP (Jump-Oriented Programming)<ul>
+<li>基于jmp指令而不是return的ROP</li>
+</ul>
+</li>
+<li>COP (Call-Oriented Programming)<ul>
+<li>基于call指令的ROP<ul>
+<li>习惯构造ROP后，无意中就会用到JOP和COP</li>
+<li>在x64中，可以只使用heap伤的JOP/COP进行攻击，而无需使用任何stack数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SROP(Sigreturn-Oriented Programming)<ul>
+<li>利用信号中断恢复重写寄存器并简化ROP<ul>
+<li>x86和x64都可以使用，但要注意需要有足够的栈溢出空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BROP(Blind Return-Oriented Programming)<ul>
+<li>手边没有二进制原文件的ROP</li>
+</ul>
+</li>
+<li>详细可以参考ntddk的博客<ul>
+<li><a href="https://ntddk.github.io/2014/09/11/after-rop/" target="_blank" rel="noopener">https://ntddk.github.io/2014/09/11/after-rop/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="GOT-overwrite技术"><a href="#GOT-overwrite技术" class="headerlink" title="GOT overwrite技术"></a>GOT overwrite技术</h1><h2 id="将某个函数的GOT修改为system"><a href="#将某个函数的GOT修改为system" class="headerlink" title="将某个函数的GOT修改为system()"></a>将某个函数的GOT修改为system()</h2><ul>
+<li>如果存在接受用户输入的函数就太好了<ul>
+<li>将想要执行的命令作为字符串传递成为函数参数</li>
+</ul>
+</li>
+<li>常见的一些<ul>
+<li>strlen()<ul>
+<li>使用strlen(user_input)判断哟ing胡输入长度的情况</li>
+</ul>
+</li>
+<li>strcmp()/memcmp()<ul>
+<li>使用strcmp(user_input,xxx)或者memcmp(user_input,xxx)将用户输入作为第一个参数的情况</li>
+</ul>
+</li>
+<li>atoi()/strtol()<ul>
+<li>使用atoi(user_input)或者strtol(user_input,xxx,xxx)将用户输入转换成整数的情况</li>
+</ul>
+</li>
+<li>free()<ul>
+<li>使用free(user_input_buffer)对用户输入进行free的情况</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>上述的情况，如果将GOT修改为system()，那么调用时将成为system(user_input)</li>
+</ul>
+<h1 id="ASLR地址相关技术"><a href="#ASLR地址相关技术" class="headerlink" title="ASLR地址相关技术"></a>ASLR地址相关技术</h1><ul>
+<li>通过预先调查，将system()或者”/bin/sh”的地址加载到stack上</li>
+<li>。。。</li>
+<li>但是，有一个问题<ul>
+<li>如果对方环境的libc版本不是特定的就不行了</li>
+<li>单纯绕过NX的话，可以采用上述方式，但是，如果有ASLR呢</li>
+</ul>
+</li>
+<li>真的不知道libc吗？<ul>
+<li>libc.so大体上是公开的<ul>
+<li>deb, rpm之类的都包含有</li>
+</ul>
+</li>
+<li>也就是说，你拥有很多可能的libc<ul>
+<li>将libc.so转换成DB</li>
+<li><a href="http://libcdb.com/" target="_blank" rel="noopener">http://libcdb.com/</a></li>
+</ul>
+</li>
+<li>在ASLR下，libc以0x1000为单位被随机化加载<ul>
+<li>也就是说，末尾12比特(0x00000FFF)不是随机的</li>
+<li>使用泄漏的GOT最后12位作为关键字在libcdb中搜索以缩小libc版本范围</li>
+<li>如果可以确定libc版本，就可以计算出其他地址，例如”/bin/sh”，DROP gadget等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="针对libc-DB的对策"><a href="#针对libc-DB的对策" class="headerlink" title="针对libc DB的对策"></a>针对libc DB的对策</h1><ul>
+<li>当然，如果libc不在DB中就无法搜索<ul>
+<li>CTF出题人可能会使用自定制libc</li>
+<li>这是针对libcdb的对策</li>
+</ul>
+</li>
+</ul>
+<h1 id="绕过”针对libc-DB的对策”"><a href="#绕过”针对libc-DB的对策”" class="headerlink" title="绕过”针对libc DB的对策”"></a>绕过”针对libc DB的对策”</h1><h2 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h2><ul>
+<li>使用Gentoo的stage3.tar.bz2中包含的libc.so<ul>
+<li>Gentoo的stage3是每周从源代码构建更新<ul>
+<li><a href="http://distfiles.gentoo.org/releases/amd64/autobuilds/" target="_blank" rel="noopener">http://distfiles.gentoo.org/releases/amd64/autobuilds/</a></li>
+</ul>
+</li>
+<li>每周的镜像也会公开，可以获取到</li>
+<li>出题人自定义libc的话，一般会从最新源码构建</li>
+<li>因此与Gentoo的libc.so没有太大区别</li>
+</ul>
+</li>
+</ul>
+<h2 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h2><ul>
+<li>从GOT等中删除地址的末尾12+α位，之后计算libc base</li>
+<li>从 libc base开始泄漏大概0x200000字节的数据</li>
+<li>根据”exit 0”之类的字符串作为参照查找system地址</li>
+</ul>
+<h2 id="方式三"><a href="#方式三" class="headerlink" title="方式三"></a>方式三</h2><ul>
+<li>使用ret2dl_runtime_resolve</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-05-09T07:03:39.977Z" itemprop="dateUpdated">2019-05-09 15:03:39</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/&title=《进阶ROP及libc》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/&title=《进阶ROP及libc》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《进阶ROP及libc》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记15:Full-RELRO与library</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/23/ropasaurusrex-level3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ropasaurusrex level3</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/&title=《进阶ROP及libc》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/&title=《进阶ROP及libc》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《进阶ROP及libc》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aUW7jMAwFwN7/0t0DdOO8R0rbLDD+ChJb5qiAxJL6+oqv7x/Xz19fffP8+eeY+VuOXXh4eHjr0J9f+Xzn8/058tVoecx4eHh4t3mvBn0OqA0iX8OTkZ9jxsPDw/t8XvJrkky3WwseHh7e/8LLU+1Z0SHB4+Hh4f0ury0f5AXcdpp+rdaCh4eHF/PyLtLnfL7S38PDw8Nbd9XzBbdtm7VPDaPFw8PDu8DLF9w29H3jKn/2TREZDw8P7xovb/m338/KB+30vZwIPDw8vAu8tvGfl2hPlXGT4kj0LB4eHt4hXt76StLfnN1OcdJaK/p7eHh4eCPebDnOE9z8niS9Thpyw10ODw8Pr+y5bxb6WWq+b6cVBQ48PDy8o7z8cMAmgW6Lvwm+bn3h4eHhXePNws2bZ3lZtv21qLLg4eHhXeOdLb9uNox8M3iTUuPh4eEd5e3b+e3xgrbi2qbXeHh4eDd4s7Z9/s1sY0iCPnymDA8PD2+9wucFiLZB1R4LaOMs/oZ4eHh4h3j70kB7CODsoas3SDw8PLw1L39xEu6pEsNsov/yGQ8PD+8yb/PKzSLetsSK2PDw8PAu8041wPLUebP0R5OOh4eHd4H3fOusnDobp22Azcq+eHh4eKd47fKdLOvJ+LNmW76p4OHh4f0bXpKkzhLifVr8vHkUPT08PDy8C7yWkYeSsPNpTTYYPDw8vHu8WYiz5DgpIs+ul7VqPDw8vEO87/Lat//z5HhWBMHDw8O7zWsX3LapPwt6M62r/QQPDw8vfns7dP5UW67ND4ENy7h4eHh4R3n7YsT+6MCx+goeHh7eR/JOLfT5RDzH9vJ+PDw8vI/htSl13vpqjw68SeXx8PDwrvGSxHd2fGpT5H3eQoqNAQ8PD+8or/2Hvw16X9JtwXh4eHjXeH8Ab64DJ5G0puYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

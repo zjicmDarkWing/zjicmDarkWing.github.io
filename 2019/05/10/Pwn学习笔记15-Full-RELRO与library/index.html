@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记15:Full-RELRO与library | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="GOT overwrite对策 – Full-RELRO GOT可以重写会产生问题  Full-RELRO使其只读    这里整个section被设置为只读属性(只能在二进制启动时初始化写入)，Full-RELRO (RELocation Read-Only) 编译选项： gcc -Wl,-z,relro,-z,now    NX+ASLR+Full-RELRO绕过1 –ret2dl_runtim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记15:Full-RELRO与library">
+<meta property="og:url" content="https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="GOT overwrite对策 – Full-RELRO GOT可以重写会产生问题  Full-RELRO使其只读    这里整个section被设置为只读属性(只能在二进制启动时初始化写入)，Full-RELRO (RELocation Read-Only) 编译选项： gcc -Wl,-z,relro,-z,now    NX+ASLR+Full-RELRO绕过1 –ret2dl_runtim">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050901.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050902.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050903.jpg">
+<meta property="article:published_time" content="2019-05-10T02:32:07.000Z">
+<meta property="article:modified_time" content="2019-05-10T02:33:06.681Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050901.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记15:Full-RELRO与library</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记15:Full-RELRO与library</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-10T02:32:07.000Z" itemprop="datePublished" class="page-time">
+  2019-05-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GOT-overwrite对策-–-Full-RELRO"><span class="post-toc-number">1.</span> <span class="post-toc-text">GOT overwrite对策 – Full-RELRO</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#NX-ASLR-Full-RELRO绕过1-–ret2dl-runtime-resolve"><span class="post-toc-number">2.</span> <span class="post-toc-text">NX+ASLR+Full-RELRO绕过1 –ret2dl_runtime_resolve</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#NX-ASLR-Full-RELRO绕过2-–-IO-jump-t-overwrite"><span class="post-toc-number">3.</span> <span class="post-toc-text">NX+ASLR+Full-RELRO绕过2 – _IO_jump_t overwrite</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他的-–-libc-ld-specific-ptr"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他的 – libc&#x2F;ld specific ptr</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#library地址相关"><span class="post-toc-number">5.</span> <span class="post-toc-text">library地址相关</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记15-Full-RELRO与library"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记15:Full-RELRO与library</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-10 10:32:07" datetime="2019-05-10T02:32:07.000Z"  itemprop="datePublished">2019-05-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="GOT-overwrite对策-–-Full-RELRO"><a href="#GOT-overwrite对策-–-Full-RELRO" class="headerlink" title="GOT overwrite对策 – Full-RELRO"></a>GOT overwrite对策 – Full-RELRO</h1><ul>
+<li><p>GOT可以重写会产生问题</p>
+<ul>
+<li>Full-RELRO使其只读</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050901.jpg" alt=""></p>
+<ul>
+<li>这里整个section被设置为只读属性(只能在二进制启动时初始化写入)，Full-RELRO (RELocation Read-Only)</li>
+<li>编译选项： <code>gcc -Wl,-z,relro,-z,now</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="NX-ASLR-Full-RELRO绕过1-–ret2dl-runtime-resolve"><a href="#NX-ASLR-Full-RELRO绕过1-–ret2dl-runtime-resolve" class="headerlink" title="NX+ASLR+Full-RELRO绕过1 –ret2dl_runtime_resolve"></a>NX+ASLR+Full-RELRO绕过1 –ret2dl_runtime_resolve</h1><ul>
+<li>AVtokyo2014上inaz2公开的一项技术<ul>
+<li><a href="http://www.slideshare.net/inaz2/rop-illmatic-exploring-universal-rop-on-glibc-x8664-ja" target="_blank" rel="noopener">http://www.slideshare.net/inaz2/rop-illmatic-exploring-universal-rop-on-glibc-x8664-ja</a></li>
+<li>利用dl_runtime_resolve和DT_DEBUG在libc中动态查找地址<ul>
+<li>dl_runtime_resolve是PLT用于动态解析外部函数地址的函数</li>
+<li>如果提供类似system()的数据，就能够得到system()的地址</li>
+</ul>
+</li>
+<li>详细参考inaz2的博客<ul>
+<li>通过ROP stager + Return-to-dl-resolve + DT_DEBUG read绕过 ASLR+DEP+RELRO<ul>
+<li><a href="http://inaz2.hatenablog.com/entry/2014/07/20/161106" target="_blank" rel="noopener">http://inaz2.hatenablog.com/entry/2014/07/20/161106</a> </li>
+</ul>
+</li>
+<li>x64环境下通过ROP stager + Return-to-dl-resolve + DT_DEBUG read尝试绕过ASLR+DEP+RELRO<ul>
+<li><a href="http://inaz2.hatenablog.com/entry/2014/07/29/020112" target="_blank" rel="noopener">http://inaz2.hatenablog.com/entry/2014/07/29/020112</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="NX-ASLR-Full-RELRO绕过2-–-IO-jump-t-overwrite"><a href="#NX-ASLR-Full-RELRO绕过2-–-IO-jump-t-overwrite" class="headerlink" title="NX+ASLR+Full-RELRO绕过2 – _IO_jump_t overwrite"></a>NX+ASLR+Full-RELRO绕过2 – _IO_jump_t overwrite</h1><ul>
+<li><p>当bss中有stdin/stdout等时有效</p>
+<ul>
+<li>瞄准全局变量FILE*指针</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050902.jpg" alt=""></p>
+</li>
+<li><p><a href="http://outflux.net/blog/archives/2011/12/22/abusing-the-file-structure/" target="_blank" rel="noopener">http://outflux.net/blog/archives/2011/12/22/abusing-the-file-structure/</a></p>
+</li>
+<li><p>FILE函数指针指向处有一个函数表</p>
+</li>
+<li><p>覆盖函数表，当调用例如_IO_file_close()时会调用shellcode或者ROP</p>
+</li>
+<li><p>即使全局变量中没有fd，libc.so中总会有一个bss</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019050903.jpg" alt=""></p>
+</li>
+</ul>
+<h1 id="其他的-–-libc-ld-specific-ptr"><a href="#其他的-–-libc-ld-specific-ptr" class="headerlink" title="其他的 – libc/ld specific ptr"></a>其他的 – libc/ld specific ptr</h1><ul>
+<li>libc.so或者ld.so的bss中，有一些有趣的函数指针<ul>
+<li>libc_bss+0x08(x86)/0x10(x64):<a href="mailto:_dl_runtime_resolve@got.plt">_dl_runtime_resolve@got.plt</a></li>
+<li>libc_bss+0x30(x86)/0x38(x64):<a href="mailto:__tls_get_addr@got.plt">__tls_get_addr@got.plt</a></li>
+<li>ld_bss+0x838(x86)/0xf68(x64):_dl_rtld_lock_recursive</li>
+<li>ld_bss+0x83c(x86)/0xf70(x64):_dl_rtld_unlock_recursive </li>
+<li>(以上数据为Ubuntu 14.04 latest中的偏移)</li>
+</ul>
+</li>
+<li>还与一个函数指针表(指针的指针)<ul>
+<li>(x86) libc.so正上方mapped+0x914处的匿名函数指针表</li>
+<li>(x64) ld.so正下方mapped+0x6f0处的匿名函数指针表</li>
+<li>从<code>__GI___call_tls_dtors</code>调用的函数表</li>
+<li>(以上数据为Ubuntu 14.04 latest中的偏移)</li>
+<li>Ubuntu16.04中许多已经受到保护，但仍有部分可用</li>
+</ul>
+</li>
+<li>如果覆盖这些，exit()时将会自动调用<ul>
+<li>更改为shellcode地址，将会被执行</li>
+</ul>
+</li>
+<li>可以覆盖任意内存，但不能直接控制EIP/RIP的困难情况<ul>
+<li>尝试利用之前的地址强行控制EIP/RIP</li>
+<li>之后从DROP开始的stack pivot可以做任何事情</li>
+<li>实际应用这种情况不多</li>
+</ul>
+</li>
+</ul>
+<h1 id="library地址相关"><a href="#library地址相关" class="headerlink" title="library地址相关"></a>library地址相关</h1><ul>
+<li>即使在ASLR下，x86的library地址也是很低的熵<ul>
+<li>具体来说，只有256种模式(8比特)<ul>
+<li>可以通过brute force来集中正确的libc_base</li>
+<li>mmap, vdso, pie时的.text也是同样程度的熵</li>
+</ul>
+</li>
+<li>x64种，熵足够高(28比特)，暴力方式几乎不可能</li>
+</ul>
+</li>
+<li>x86/x64种，library与某些区域的相对距离是固定的<ul>
+<li>library A与library B</li>
+<li>library A与mapped</li>
+<li>library A与0x21000以上size的malloc地址</li>
+<li>library A与经过PIE的.text<ul>
+<li>泄露相关地址后，就能够计算出其他地址</li>
+<li>offset需要预先在相同版本ASLR环境下确认</li>
+<li>需要注意的是，heap，vdso，stack之间的距离不是固定值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-05-10T02:33:06.681Z" itemprop="dateUpdated">2019-05-10 10:33:06</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/&title=《Pwn学习笔记15:Full-RELRO与library》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/&title=《Pwn学习笔记15:Full-RELRO与library》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记15:Full-RELRO与library》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记16:PIE与canary</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">进阶ROP及libc</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/&title=《Pwn学习笔记15:Full-RELRO与library》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/&title=《Pwn学习笔记15:Full-RELRO与library》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记15:Full-RELRO与library》 — 喵喵喵喵&url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3awW4bMQwEUP//T7tATz202xlyA3jlp1PgxBs9+UCTo9crXu/f6/qV69fblfzH9x/r9RMLGxsb+yHs9+Vq/+XsOddPSF7PLdjY2Ninsq9LyDXyelsJ+BrZ7iEqq9jY2Nhfyc7bgKSMJdudFTlsbGxs7LaA/edL/2LYlLwLGxsbGzsfKuUPbd87O9Bk8HTDLA0bGxv749ltIfnkn38w38bGxsb+SPa7XO2gZzPK38e6/3wONjY29kHs/BpN/tX/3rFUfjR18ICNjY19BHsTx27AbUHahMF/eQUbGxv7OHbOSLa7uQaU7KQNBrCxsbG/gX3XyObeiz6bYy2SbWxsbOwj2O2VxzZY3bQ6+ROKAoyNjY19EHsTFeSXe/JSlx96O37CxsbGPpWdtA2zUpQ8sx0e5YOqohXBxsbGfji7ffNdYW0yQmoP/eZPHhsbG/uB7NnkvA0A2lZn8/w8VMDGxsZ+LruNV/MNte3EDDOLE7CxsbFPYm8u0LRTmjyvaPeQPB8bGxv7VHZ72SUJfWcBQ/sBtA3MX4JebGxs7CPYs8s6ecG4K0JuD64outjY2NgPZ7/LlX/db+PY/ceQl1hsbGzsU9l5JJA3D7MB0ybijZ6PjY2NfRD73nF/3rokJWdFSlogbGxs7EPZm4s1r2AlTUvbPrUFDxsbG/sk9mwcn4+QZoP+/AhmDQw2Njb2SezNVZu2hUgakv2FoSLZxsbGxj6InTNm13fa0LcdQrWRBjY2Nvap7NlBzMrVvuDlRS6apWFjY2M/lr1pGNrRT7vyvdV/j42NjX0Qe3btZlPqkgs3syLXDpuwsbGxz2DnbcDmUJLDaotlO2aK6jY2Njb2Y9nDZHjBuyvEHca92NjY2Mex23F/0oRsctWfLmbY2NjYJ7FnU6hZAJyUn9mmZ9eGsLGxsU9ib7abNzN5WJv8ti1gdUOCjY2N/UB2UhhmkW17MShvV1ZFFxsbG/sr2S01v76zb2DqiBobGxv7i9m3Dd8XDcnmmLCxsbFPZecNQ1uWkgPaXPHMm5bhLA0bGxv749mzoDcfMLWRQJtOt5d7sLGxsQ9i/wLBDv1hT4Y44gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

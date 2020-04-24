@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记24:其他一些技术 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="ucontextsetjmp&#x2F;longjmp的最终演变  setjmp()&#x2F;longjmp() sigsetjmp()&#x2F;siglongjmp() getcontext()&#x2F;makecontext()&#x2F;setcontext()&#x2F;swapcontext()  1. setjmp()&#x2F;longjmp() 通过setjmp()设置一个保存点，可以通过longjmp()返回到那里 实现了函数间的goto 只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记24:其他一些技术">
+<meta property="og:url" content="https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ucontextsetjmp&#x2F;longjmp的最终演变  setjmp()&#x2F;longjmp() sigsetjmp()&#x2F;siglongjmp() getcontext()&#x2F;makecontext()&#x2F;setcontext()&#x2F;swapcontext()  1. setjmp()&#x2F;longjmp() 通过setjmp()设置一个保存点，可以通过longjmp()返回到那里 实现了函数间的goto 只">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092401.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092402.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092403.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092404.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092405.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092406.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092407.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092408.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092409.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092410.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092411.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092412.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092413.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092414.jpg">
+<meta property="article:published_time" content="2019-09-24T07:42:54.000Z">
+<meta property="article:modified_time" content="2019-09-24T07:43:34.142Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092401.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记24:其他一些技术</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记24:其他一些技术</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-24T07:42:54.000Z" itemprop="datePublished" class="page-time">
+  2019-09-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ucontext"><span class="post-toc-number">1.</span> <span class="post-toc-text">ucontext</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-setjmp-longjmp"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. setjmp()&#x2F;longjmp()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-sigsetjmp-siglongjmp"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. sigsetjmp()&#x2F;siglongjmp()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-getcontext-makecontext-setcontext-swapcontext"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. getcontext()&#x2F;makecontext()&#x2F;setcontext()&#x2F;swapcontext()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#但是需要给context一个独立的stack区域"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">但是需要给context一个独立的stack区域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ucontext-1"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">ucontext</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#context的结构"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">context的结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ucontext与sigaction"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">ucontext与sigaction</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ucontext的总结"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">ucontext的总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#DWARF"><span class="post-toc-number">2.</span> <span class="post-toc-text">DWARF</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DWARF-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">DWARF</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#katana"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">katana</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关论文及题目"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">相关论文及题目</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记24-其他一些技术"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记24:其他一些技术</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-24 15:42:54" datetime="2019-09-24T07:42:54.000Z"  itemprop="datePublished">2019-09-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ucontext"><a href="#ucontext" class="headerlink" title="ucontext"></a>ucontext</h1><p>setjmp/longjmp的最终演变</p>
+<ol>
+<li>setjmp()/longjmp()</li>
+<li>sigsetjmp()/siglongjmp()</li>
+<li>getcontext()/makecontext()/setcontext()/swapcontext()</li>
+</ol>
+<h2 id="1-setjmp-longjmp"><a href="#1-setjmp-longjmp" class="headerlink" title="1. setjmp()/longjmp()"></a>1. setjmp()/longjmp()</h2><ul>
+<li>通过setjmp()设置一个保存点，可以通过longjmp()返回到那里</li>
+<li>实现了函数间的goto</li>
+<li>只要不从setjmp()的函数退出就有效<ul>
+<li>返回保存点时，esp寄存器会还原到设置保存点时的值。即只返回stack位置，而不是内容。调用setjmp()的函数一旦退出，stack本身可能与保存点设定时不同，即便还原也可能不能正常工作</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>正常工作的case：<ul>
+<li>esp还原时，stack frame也还原到正常</li>
+</ul>
+</li>
+<li>非正常工作的case：<ul>
+<li>funcA退出，funcC，funcD调用后，funcD内longjmp()，esp还原，这时候stack frame是funcC，不是原本的funcA</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-sigsetjmp-siglongjmp"><a href="#2-sigsetjmp-siglongjmp" class="headerlink" title="2. sigsetjmp()/siglongjmp()"></a>2. sigsetjmp()/siglongjmp()</h2><p>也可以恢复signal stack信息</p>
+<ul>
+<li>假如存在一个通过sigaction(2)指定signal stack的signal handler（例如SIG_TERM的handler运行中，不接受SIG_ALRM），当这个handler内通过longjmp()返回保存点时，它不接受SIG_ALRM返回。为避免这种情况，需要一种在longjmp()时还原signal stack信息的处理机制</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="3-getcontext-makecontext-setcontext-swapcontext"><a href="#3-getcontext-makecontext-setcontext-swapcontext" class="headerlink" title="3. getcontext()/makecontext()/setcontext()/swapcontext()"></a>3. getcontext()/makecontext()/setcontext()/swapcontext()</h2><ul>
+<li>通过getcontext()设置保存点(context)</li>
+<li>通过 makecontext()将context与函数相关联<ul>
+<li>恢复时，可以从关联的函数进行（带参数）</li>
+<li><h2 id="但是需要给context一个独立的stack区域"><a href="#但是需要给context一个独立的stack区域" class="headerlink" title="但是需要给context一个独立的stack区域"></a>但是需要给context一个独立的stack区域</h2><ul>
+<li>只在这种情况下，与setjmp()/sigsetjmp()不同，调用getcontext()的函数退出后仍然有效</li>
+</ul>
+</li>
+<li>也可以指定next context<ul>
+<li>当这个函数结束时，自动转换到next</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过setcontext()来返回到那个context</li>
+<li>通过swapcontext()来返回到那个context，并且保存现在的context</li>
+</ul>
+<h2 id="ucontext-1"><a href="#ucontext-1" class="headerlink" title="ucontext"></a>ucontext</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092403.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol>
+<li>生成context</li>
+<li>根据需要修改context中的信息<ul>
+<li>通过makecontext()，可以修改为通过特定函数带参数调用</li>
+<li>可以直接重写context中的寄存器信息</li>
+</ul>
+</li>
+<li>之后通过setcontext()/swapcontext()进行切换<ul>
+<li>可以通过适当设置，从任意寄存器状况恢复</li>
+</ul>
+</li>
+</ol>
+<h2 id="context的结构"><a href="#context的结构" class="headerlink" title="context的结构"></a>context的结构</h2><ul>
+<li>作为参考，context结构大概是这样(Ubuntu x86_64)</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092404.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>ss_sp是指向新stack的指针</li>
+<li>ss_size是它的size</li>
+<li>gregs[0~22]是用来保存通用寄存器及其值</li>
+<li>从gregs[0]开始按顺序，R8, R9, R10, R11, R12, R13, R14, R15,RDI, RSI, RBP, RBX, RDX, RAX, RCX, RSP, RIP, EFL, CSGSFS(+pad),ERR, TRAPNO, OLDMASK, CR2</li>
+<li>__val是signal mask</li>
+</ul>
+<h2 id="ucontext与sigaction"><a href="#ucontext与sigaction" class="headerlink" title="ucontext与sigaction"></a>ucontext与sigaction</h2><p>context与sigaction也有关联</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092406.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li><a href="https://linuxjm.osdn.jp/html/LDP_man-pages/man2/sigaction.2.html" target="_blank" rel="noopener">https://linuxjm.osdn.jp/html/LDP_man-pages/man2/sigaction.2.html</a></li>
+<li>在sa_flags指定SA_SIGINFO时(不是sa_handler)，根据sa_sigaction的signum指定对应的signal handler函数。指定的函数，第一个参数是signal 编号，第二个是指向siginfo_t的指针，第三个参数是经过(void * 类型转换)的指向ucontext_t的指针</li>
+<li>只要正确设置，成为signal handler的函数也可以接受context作为第三个参数</li>
+</ul>
+<h2 id="ucontext的总结"><a href="#ucontext的总结" class="headerlink" title="ucontext的总结"></a>ucontext的总结</h2><ul>
+<li>非常强大的机制<ul>
+<li>使用时，可以从任意函数/地址启动任意的寄存器状态</li>
+<li>利用这个功能，用户可以自己实现类似线程的context切换</li>
+<li>但是，context的结构非常复杂</li>
+<li>需要注意，没有system call</li>
+</ul>
+</li>
+</ul>
+<h1 id="DWARF"><a href="#DWARF" class="headerlink" title="DWARF"></a>DWARF</h1><ul>
+<li>之前解释过malloc(-1)的行为<ul>
+<li>只是失败</li>
+</ul>
+</li>
+<li>new(-1)时，会产生std::bad_alloc<ul>
+<li>产生异常，需要手动处理</li>
+<li>实际上尝试大概是这样</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092407.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>可以使用try-catch来手动处理：</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092408.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>那么try-catch是怎么避免异常进行还原的？</p>
+<ul>
+<li>使用IDA能够看到try catch，但不能确定范围</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092409.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这是libgcc通过DWARF来确定处理的位置</p>
+<h2 id="DWARF-1"><a href="#DWARF-1" class="headerlink" title="DWARF"></a>DWARF</h2><ul>
+<li>是作为调试信息，保存stack trace的机制<ul>
+<li>.debug_frame section</li>
+</ul>
+</li>
+<li>C++的try-catch实现也使用到<ul>
+<li>.eh_frame_hdr section，.eh_frame section(CIE, FDE)</li>
+<li>也用到了.gcc_except_table section(LSDA)</li>
+<li>libgcc中实现</li>
+</ul>
+</li>
+<li><a href="https://osdn.jp/projects/drdeamon64/wiki/DWARF%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88" target="_blank" rel="noopener">https://osdn.jp/projects/drdeamon64/wiki/DWARF%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88</a></li>
+<li><a href="https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/ehframechpt.html" target="_blank" rel="noopener">https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/ehframechpt.html</a></li>
+<li><a href="https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/ehframechpt.html" target="_blank" rel="noopener">https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/ehframechpt.html</a></li>
+<li>也存在单独的寄存器操作指令</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092410.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>call frame信息</li>
+<li>CIE就像一个初期状态模板</li>
+<li>也有readelf -wF不会显示的信息<ul>
+<li>是LSDA</li>
+</ul>
+</li>
+<li>可以使用katana<ul>
+<li><a href="http://www.nongnu.org/katana/" target="_blank" rel="noopener">http://www.nongnu.org/katana/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="katana"><a href="#katana" class="headerlink" title="katana"></a>katana</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092411.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092412.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092413.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092414.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="相关论文及题目"><a href="#相关论文及题目" class="headerlink" title="相关论文及题目"></a>相关论文及题目</h2><ul>
+<li><a href="http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf" target="_blank" rel="noopener">http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf</a></li>
+<li><a href="http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf" target="_blank" rel="noopener">http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf</a></li>
+<li>CodeGate2014 - pwn800 - membership<ul>
+<li><a href="https://www.bpak.org/blog/2014/02/codegate-2014-membership-" target="_blank" rel="noopener">https://www.bpak.org/blog/2014/02/codegate-2014-membership-</a> 800pt-pwnable-write-up/</li>
+</ul>
+</li>
+<li>Hack.lu 2014 - pwn500 - breakout<ul>
+<li><a href="https://github.com/jhector/breakout" target="_blank" rel="noopener">https://github.com/jhector/breakout</a></li>
+<li><a href="https://blog.leoc.io/blog/20150223/hacklu2014-breakout/" target="_blank" rel="noopener">https://blog.leoc.io/blog/20150223/hacklu2014-breakout/</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-09-24T07:43:34.142Z" itemprop="dateUpdated">2019-09-24 15:43:34</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/&title=《Pwn学习笔记24:其他一些技术》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/&title=《Pwn学习笔记24:其他一些技术》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记24:其他一些技术》 — 喵喵喵喵&url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/25/CTF%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%A4%E4%B8%AASQL%E7%9F%A5%E8%AF%86%E7%82%B9/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CTF学到的两个SQL知识点</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PlaidCTF 2015 - pwnable620(420+200) – tp - stage2</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/&title=《Pwn学习笔记24:其他一些技术》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/&title=《Pwn学习笔记24:其他一些技术》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记24:其他一些技术》 — 喵喵喵喵&url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/09/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B024-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEkUlEQVR42u3a226jShAF0Pz/T2ek8zRSBmfvKnLkJosnyyZALyLVrT8+4uPzv+Pvz1+P139115W/nv/116tr5k81PDBhwoQJ01syfb48rs55fcv8UfIF5KD5y0vWjgkTJkyYnsGUXy6JmO2vm3B+9esspbj8HhMmTJgw/QKmfDEbiDw5SNKUWRmMCRMmTJh+M9Ps0V+X0C1ucrW8pMeECRMmTL+Bqb3cZpF5EzkfYSbN6OT7G3rhmDBhwoTpzZg2Q8fTP998YMKECROmN2P6LI+2VdrSt0Vs3g5erRoTJkyYMB3LlJSFs/g4u/Jsu0/y8jbXwYQJEyZMT2JKUKLh36KuzF9hm6bk32DChAkTpucx5SE8Ca7tYDJZXv4M+Rai4vqYMGHChOlYpn3LdTMQnSUKeTrSvgBMmDBhwvQ8plkDtMXKi+f8hc0K72HrGRMmTJgwPYJpvymnDeR5Ufr6+02zOGoTY8KECROmY5mS4JoH8jyE31VUJ4tsX9g3z4AJEyZMmA5kyoNuO+Bs+WYD0bZKzct1TJgwYcJ0LtNsQ2ebBGxK600TuWW6PAcTJkyYMD2IaXbRtnV7F0HenM1f0uWWHUyYMGHCdCzTZgCZpAJJ5d22hvOCfLad6B8JASZMmDBhOpZps2lm08zd/5o3c/ME5ZsmLyZMmDBhOoopn3nmA8hZY7ctR/MkYDbOLDYPYcKECROmt2fKA3+7cWfWeG2bvD83jsWECRMmTE9i+hgdswFhfsc2jcjp89YzJkyYMGE6lykPw23Lta229w3lNk0p/hYTJkyYMB3OtClc21Fo3iDOi+rZmfm9MGHChAnTuUx5WXvvNpqWdRb4Z6+wLp4xYcKECdMhTLnfZnn7e+03Bg174ZgwYcKE6VimfRietVPzBKJF2ScT//geEyZMmDAdyzQLom3BmV9htgWnbVK36QImTJgwYXoSU761JQ/wd2242YxXb5hOYsKECROmo5iSoePr2+Rhuw3/OfosZSmGr5gwYcKE6XFMs2XMkoN22W15nGwe+qbJiwkTJkyYjmVqy8giiK43zeQhPC/ON4U0JkyYMGE6l2m25SW//b3N2TZ9aSHq1jAmTJgwYXp7pnyDZlLottxt+zhv7G7SBUyYMGHC9AymdpPNfsF7mlnJ3Q4+L3vhmDBhwoTpQKbZ9pr9yDMHalvA7aaiqAeACRMmTJgOZPqJm7VhOPmc3L19Me0/CiZMmDBhOpFp80D5bT7LYz/4nBW6l+dgwoQJE6ZHMOWF7qYqzEvfWdN59gyYMGHChOmpTC3QZig4a922A9FZEZ6fgwkTJkyYzmL6iaI0b6fOxqWv+66bf4XLdWHChAkTpmOZ2oJ2tqRkMZt2bTvOnF0fEyZMmDCdy5QnAXnzdFZ25iV3noLMtiJdbt/BhAkTJkzHMm2CdDJ63DReN2Vqnfu0SRQmTJgwYXoQ0480RssQnhe6+6QBEyZMmDBhmm30LArOuEGcb2AdJg2YMGHChOlwpjbEbsrXzdz1rjCft3oxYcKECdPpTP9/IzgP25ugnreebzswYcKECdN7Mf0BOkt2NzdzZI4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

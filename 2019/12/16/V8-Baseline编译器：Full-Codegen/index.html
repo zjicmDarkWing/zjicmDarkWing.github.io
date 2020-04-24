@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>V8 Baseline编译器：Full-Codegen | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="Full-CodegenFull-Codegen存在的功能 将AST转换为汇编代码 作为JIT(Just in time)编译器 JIT编译器：在软件运行时执行编译，提高运行速度的机制 V8使用它，将要执行的Javascript代码转换为机器语言   输出的机器代码位于JIT区域(&#x3D;RWX区域) EIP寄存器移到这个区域，然后执行   尚未优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V8 Baseline编译器：Full-Codegen">
+<meta property="og:url" content="https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="Full-CodegenFull-Codegen存在的功能 将AST转换为汇编代码 作为JIT(Just in time)编译器 JIT编译器：在软件运行时执行编译，提高运行速度的机制 V8使用它，将要执行的Javascript代码转换为机器语言   输出的机器代码位于JIT区域(&#x3D;RWX区域) EIP寄存器移到这个区域，然后执行   尚未优化">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121602.jpg">
+<meta property="article:published_time" content="2019-12-16T06:59:50.000Z">
+<meta property="article:modified_time" content="2019-12-16T07:00:43.030Z">
+<meta property="article:author" content="暗羽">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121602.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">V8 Baseline编译器：Full-Codegen</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">V8 Baseline编译器：Full-Codegen</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-16T06:59:50.000Z" itemprop="datePublished" class="page-time">
+  2019-12-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Full-Codegen"><span class="post-toc-number">1.</span> <span class="post-toc-text">Full-Codegen</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Full-Codegen存在的功能"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Full-Codegen存在的功能</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-V8-Baseline编译器：Full-Codegen"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">V8 Baseline编译器：Full-Codegen</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-16 14:59:50" datetime="2019-12-16T06:59:50.000Z"  itemprop="datePublished">2019-12-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Full-Codegen"><a href="#Full-Codegen" class="headerlink" title="Full-Codegen"></a>Full-Codegen</h1><h2 id="Full-Codegen存在的功能"><a href="#Full-Codegen存在的功能" class="headerlink" title="Full-Codegen存在的功能"></a>Full-Codegen存在的功能</h2><ul>
+<li>将AST转换为汇编代码<ul>
+<li>作为JIT(Just in time)编译器<ul>
+<li>JIT编译器：在软件运行时执行编译，提高运行速度的机制</li>
+<li>V8使用它，将要执行的Javascript代码转换为机器语言</li>
+</ul>
+</li>
+<li>输出的机器代码位于JIT区域(=RWX区域)<ul>
+<li>EIP寄存器移到这个区域，然后执行</li>
+</ul>
+</li>
+<li>尚未优化</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121602.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-12-16T07:00:43.030Z" itemprop="dateUpdated">2019-12-16 15:00:43</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/&title=《V8 Baseline编译器：Full-Codegen》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/&title=《V8 Baseline编译器：Full-Codegen》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《V8 Baseline编译器：Full-Codegen》 — 喵喵喵喵&url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">V8的优化机制</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/16/V8%E7%AE%80%E4%BB%8B/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">V8简介</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/&title=《V8 Baseline编译器：Full-Codegen》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/&title=《V8 Baseline编译器：Full-Codegen》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《V8 Baseline编译器：Full-Codegen》 — 喵喵喵喵&url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNUlEQVR42u3aQW4jMQwEwPz/01lgTwsktrtJe+GRa06BI4xVyoFhU19f8fP99/n35/yTn8/PN9/67a333//8aQ82Njb2RdjJFm99cv9Q7m83h83+AA8OFBsbG/s49iuKVvLO+2vyglq/ExsbG/sj2W3p2pSopGTeX4ONjY2NvWHnsdGzDggbGxsbOwmVktjoFaFSG3U9OUvDxsbGfnv2bND7nj+/fL6NjY2N/Wbs7/KZjRDywe0rhru/KLCxsbEPYs+i9k2EtIHd/952n9jY2NifwG7/0U+o7TWg5GiSkomNjY19NjsJkvLCk1/EyS/3zOL+4XgAGxsb+1Ls/WWdNppvg6e2REVFERsbG/s49ixUmpXAtsHI25Xi4hE2Njb2cexZscm3kvPaUjr8U2FjY2MfxE6+oB0htGvyw9qURmxsbOxT2floNi82mwambTySfT4IlbCxsbEPYiebbse0s7Fu21S0LRM2Njb257BnRSs5uM0lnrZM/rISGxsb+1D2/aXtyjYkareeXOu5eUDY2NjYB7FzWP7q/JPNAKAtvfWoABsbG/si7LaFaK/szA40CoY234KNjY19EHsWr9dxfIxJjq9tgYo+DBsbG/s49gw2S2/yUGnWhGBjY2Ofyk4WtQHQZn0+PE52W8+3sbGxsS/InjUkr2gq8jfM1mNjY2N/ArstHnlYnw8V8jFD28BgY2Njn8rOi0QbFb3u+k4bJEUjXmxsbOzLstvrOMnrZsPgtpnZDKqxsbGxT2LnEUweEiXdz6zs5QPjB0ePjY2NfRA7CW7ayzHtkKAth+1YOiqH2NjY2Jdlb8axmwZjc23oCeNebGxs7EPZs+oX/aO/HhgkrU5RsbGxsbEPYs8u62winjzA+lo/UaiEjY2NfXH2d/nsL19urun812EANjY29kXYbTHIYe0RJ4D9AWFjY2Ofym43lJeQ9srOrLFpR8XY2NjYp7LbwpDXxk14lB/lE2oyNjY29gew85agHSTnb9uUtGEBw8bGxj6OnQc9yYY2gVQ76lgVMGxsbOy3Z7ehUjvc3Qxx88JW7AQbGxv7IPYmgWlbiLw0Jr9tI636CLCxsbHfnf0HmoRT7whAypgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

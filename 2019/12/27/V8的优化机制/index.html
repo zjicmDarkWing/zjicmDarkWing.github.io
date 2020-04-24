@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>V8的优化机制 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="优化 Full-Codegen生成的机器代码(半优化代码)的特点  生成速度快，运行速度慢(浪费较多)   因此，出现了根据需要进行优化的机制  优化1: 利用类型信息缓存  利用Hidden Class的信息，Inline Caching 缓存调用的地址和引用的偏移量     优化2: 重新编译为更高效的JIT代码  运行时判定优化对象 主线程中，正常运行机器代码 其他线程中，Runtime-P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V8的优化机制">
+<meta property="og:url" content="https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="优化 Full-Codegen生成的机器代码(半优化代码)的特点  生成速度快，运行速度慢(浪费较多)   因此，出现了根据需要进行优化的机制  优化1: 利用类型信息缓存  利用Hidden Class的信息，Inline Caching 缓存调用的地址和引用的偏移量     优化2: 重新编译为更高效的JIT代码  运行时判定优化对象 主线程中，正常运行机器代码 其他线程中，Runtime-P">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122301.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122302.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122303.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122304.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122305.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122306.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122307.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122308.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122309.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122310.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122311.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122312.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122313.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122501.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122502.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122503.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122504.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122505.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122506.jpg">
+<meta property="article:published_time" content="2019-12-27T05:45:18.000Z">
+<meta property="article:modified_time" content="2019-12-27T05:46:19.817Z">
+<meta property="article:author" content="暗羽">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122301.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">V8的优化机制</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">V8的优化机制</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-27T05:45:18.000Z" itemprop="datePublished" class="page-time">
+  2019-12-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#优化"><span class="post-toc-number">1.</span> <span class="post-toc-text">优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#优化的线程关系"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">优化的线程关系</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Hidden-Class"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Hidden Class</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#property的实现"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">property的实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Map"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Map</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Map复用"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Map复用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#property管理方式"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">property管理方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#这里想说的"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">这里想说的</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-Inline-Caching"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. Inline Caching</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#针对各种action，对类型进行缓存优化的机制"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">针对各种action，对类型进行缓存优化的机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于Inline-Caching"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">关于Inline Caching</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-V8的优化机制"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">V8的优化机制</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-27 13:45:18" datetime="2019-12-27T05:45:18.000Z"  itemprop="datePublished">2019-12-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><ul>
+<li><p>Full-Codegen生成的机器代码(半优化代码)的特点</p>
+<ul>
+<li>生成速度快，运行速度慢(浪费较多)</li>
+</ul>
+</li>
+<li><p>因此，出现了根据需要进行优化的机制</p>
+<ul>
+<li><p>优化1: 利用类型信息缓存</p>
+<ol>
+<li>利用Hidden Class的信息，Inline Caching<ul>
+<li>缓存调用的地址和引用的偏移量</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>优化2: 重新编译为更高效的JIT代码</p>
+<ul>
+<li>运行时判定优化对象<ul>
+<li>主线程中，正常运行机器代码</li>
+<li>其他线程中，Runtime-Profiler测定利用情况<ul>
+<li>Runtime-Profiler：程序运行时，进行测定，统计的机制</li>
+<li>基于测定结果，判定是否进行优化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>使用Crankshaft优化编译<ul>
+<li>再次讲源代码编译为机器代码，替换运行中的机器代码</li>
+</ul>
+</li>
+<li>使用TurboFan优化编译<ul>
+<li>再次讲源代码编译为机器代码，替换运行中的机器代码</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="优化的线程关系"><a href="#优化的线程关系" class="headerlink" title="优化的线程关系"></a>优化的线程关系</h2><p>运行时的关系大概是这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>2018年现在的关系大概这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="2-Hidden-Class"><a href="#2-Hidden-Class" class="headerlink" title="2. Hidden Class"></a>2. Hidden Class</h1><p>Javascript中，Object有property，例如这个例子中，使用函数来实现class，其中有x和y属性，被称为property：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>V8通过调用Hidden Class的机制来实现对property的访问<ul>
+<li>为了高效访问property</li>
+</ul>
+</li>
+<li>对property访问的实现<ul>
+<li>一般使用hash table比较多，效率很差<ul>
+<li>直接实现hash table的话，会增加没有使用的浪费掉的区域</li>
+<li>hash冲突情况的处理，管理区域复杂化，也是问题</li>
+<li>hash table和后面要讲的Inline caching的相性不是很好</li>
+<li>因此需要比hash table更高效的搜索property的机制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="property的实现"><a href="#property的实现" class="headerlink" title="property的实现"></a>property的实现</h2><ul>
+<li>property的值以数组形式进行管理</li>
+<li>通过偏移值来访问数组中的property值</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>offset另外管理<ul>
+<li>property名称与偏移量的依赖关系交给别的class(Map)</li>
+<li>这个Map被称为Hidden Class</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><ol>
+<li>Object生成时(还没有property时)，obj1内部指向C0</li>
+<li>创建一个没有任何property，用于管理类型和offset的MAP(一般叫C0)</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol>
+<li><p>当添加obj1.x时，obj1内部改为指向C1</p>
+</li>
+<li><p>C0中添加x的offset信息，生成新的Map C1(Map也有类型信息)</p>
+</li>
+<li><p>C0中添加转移条件(Map transition)</p>
+<blockquote>
+<p>Map C0<br>条件：当x加入时转移到C1</p>
+</blockquote>
+</li>
+</ol>
+<p>当访问obj1.x的值时，跟踪obj1所持有的指针，引用C1,获得”x的偏移量为0”的信息。之后，通过访问obj1的偏移量0处的值，可以高速的获得x的值。在C1内部，有必要寻找”x”，尽管我个人觉得它与哈希表似乎没有多大区别，但是这会让它速度更快。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ol>
+<li>当添加obj1.y时，obj1内部改为指向C2</li>
+<li>C1中添加y的offset信息，生成新的Map C2</li>
+<li>C1中添加转移条件</li>
+</ol>
+<blockquote>
+<p>Map C1</p>
+<p>条件：当y加入时转换到C2</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>C0和C1这时候已经不使用了，但后面可能还会用到，随意不会被移除。</p>
+<h2 id="Map复用"><a href="#Map复用" class="headerlink" title="Map复用"></a>Map复用</h2><p>会存在完全相同property的Object，他们也会有x和y，所以复用生成的Map</p>
+<p>创建obj2时指向C0，通过与obj1相同的方式按x和y的顺序添加property，它顺着转换条件以完成C0-&gt;C1-&gt;C2</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>注意：具有相同名称的property的object，如果property的添加循序不同，那么也会具有不同的转换条件。 因此，最终创建的map也会变成不同的map，也就无法享受到获得加速的好处。有关详细信息，请参阅<br><a href="http://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html" target="_blank" rel="noopener">http://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html</a><br>另外，如果property添加/删除次数增加太多，Hidden Class的管理会减慢。因此，这种情况不使用Hidden Class，而使用字典类型来管理<br><a href="https://v8project.blogspot.jp/2017/08/fast-properties.html" target="_blank" rel="noopener">https://v8project.blogspot.jp/2017/08/fast-properties.html</a></p>
+<h2 id="property管理方式"><a href="#property管理方式" class="headerlink" title="property管理方式"></a>property管理方式</h2><ol>
+<li>默认情况下，property在object内部通过数组管理<ul>
+<li>In-Object property</li>
+</ul>
+</li>
+<li>property增加(超过11个)时，也会使用object外部的数组<ul>
+<li>Fast property</li>
+</ul>
+</li>
+<li>进一步增加property的话，会使用object外部的字典管理<ul>
+<li>Slow/dict property<ul>
+<li>不使用Map，通过外部字典保存所有信息，也别叫做self-contained</li>
+<li>实体是一个FixedArray的数组，但用法类似下土这种字典</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122313.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>参考：<a href="https://v8project.blogspot.jp/2017/08/fast-properties.html" target="_blank" rel="noopener">https://v8project.blogspot.jp/2017/08/fast-properties.html</a></p>
+<h2 id="这里想说的"><a href="#这里想说的" class="headerlink" title="这里想说的"></a>这里想说的</h2><ul>
+<li>(javascript的)object中有指向Map的指针<ul>
+<li>后面会说，object开头8个字节是指向Map的指针</li>
+</ul>
+</li>
+<li>(javascript的)object指向的Map，会根据情况快速改变<ul>
+<li>也就是说，在exploit中，这不是一个能够稳定利用的指针</li>
+</ul>
+</li>
+<li>类型相同 = Map的地址相同<ul>
+<li>通过比较Map的地址，可以确定类型的一致性</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-Inline-Caching"><a href="#3-Inline-Caching" class="headerlink" title="3. Inline Caching"></a>3. Inline Caching</h1><p>参考：</p>
+<ul>
+<li><a href="https://blog.ghaiklor.com/optimizations-tricks-in-v8-d284b6c8b183" target="_blank" rel="noopener">https://blog.ghaiklor.com/optimizations-tricks-in-v8-d284b6c8b183</a></li>
+<li><a href="https://speakerdeck.com/brn/source-to-binary-journey-of-v8-javascript-engine" target="_blank" rel="noopener">https://speakerdeck.com/brn/source-to-binary-journey-of-v8-javascript-engine</a></li>
+<li><a href="https://www.slideshare.net/ssuser6f246f/v8-javascript-engine-for" target="_blank" rel="noopener">https://www.slideshare.net/ssuser6f246f/v8-javascript-engine-for</a></li>
+<li><a href="http://cs.au.dk/~jmi/VM/IC-V8.pdf" target="_blank" rel="noopener">http://cs.au.dk/~jmi/VM/IC-V8.pdf</a></li>
+</ul>
+<h2 id="针对各种action，对类型进行缓存优化的机制"><a href="#针对各种action，对类型进行缓存优化的机制" class="headerlink" title="针对各种action，对类型进行缓存优化的机制"></a>针对各种action，对类型进行缓存优化的机制</h2><p>这里说的action，大概是这些：</p>
+<ul>
+<li>引用，代入(LoadIC, StoreIC)</li>
+<li>数组访问(KeyedLoadIC, KeyedStoreIC)</li>
+<li>二项运算(BinaryOpIC) # 最近的V8中好像去掉了？</li>
+<li>函数调用(CallIC)</li>
+<li>比较(CompareIC)</li>
+<li>布尔化(ToBooleanIC) # 最近的V8中好像去掉了？</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>要考虑到某些action的JIT代码被多次调用</p>
+<ul>
+<li>循环和函数之类的，多次传递相同的JIT代码</li>
+</ul>
+<p>执行JIT代码时，关注操作对象（≒参数）的类型</p>
+<ul>
+<li>JIT代码，有较高的可能性和上次时同样类型的操作</li>
+<li>例如下面的Javascript代码，明显是重复相同类型的操作<ul>
+<li>对应到JIT代码，也同样成立</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>JavaScript类型,等价于map地址</p>
+<ul>
+<li>从 Hidden Class的实现可以知道，同样类型的话，Map地址也是相同的</li>
+<li>对类型进行缓存，也就是将map地址嵌入到JIT code中</li>
+<li>例如对obj.x进行引用(Load)的IC，大概是这样：<ul>
+<li>x的offset也一起缓存</li>
+<li>当Map匹配时，通过x的offset得到property x，然后返回</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>实际上会有多个Map注册的情况，因此进行函数化</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>IC持有State</p>
+<ul>
+<li><p>UNINITIALIZED(0): 未初始化</p>
+</li>
+<li><p>PREMONOMORPHIC(.): 当前只被执行过一次，还没进行IC</p>
+</li>
+<li><p>MONOMORPHIC(1): 只注册一个IC的情况(快速)</p>
+</li>
+<li><p>POLYMORPHIC(P): 注册多个IC的情况(一般速度)</p>
+</li>
+<li><p>MEGAMORPHIC(N): 注册很多个IC的情况(慢速)</p>
+</li>
+<li><p>GENERIC(G): IC已停止的状态</p>
+<blockquote>
+<p>括号里是后面说的debug输出（–trace-ic）的省略的标注</p>
+</blockquote>
+</li>
+<li><p>基本上是按照从上到下(0-&gt;.-&gt;1-&gt;P-&gt;N-&gt;G)的顺序迁移</p>
+<ul>
+<li>CallIC之类的，是直接0-&gt;1</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>Inline Caching，可以使用–trace-ic确认</p>
+<p>–use-ic使IC有效化(默认)，–no-use-ic使IC无效</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019122506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="关于Inline-Caching"><a href="#关于Inline-Caching" class="headerlink" title="关于Inline Caching"></a>关于Inline Caching</h2><p>对前面的总结：</p>
+<ul>
+<li>与Hidden Class配对，对高速化做出巨大贡献</li>
+<li>对于exploit，只需要关注地址和偏移在JIT中的缓存</li>
+<li>创建任意地址读写的原语比较难，因此与exploit的相性不好</li>
+<li>但是，某些情况下，IC执行的部分检查（例如边界检查）被部分简化<ul>
+<li>也就存在在非IC下不会引发的漏洞可能会在IC下触发</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-12-27T05:46:19.817Z" itemprop="dateUpdated">2019-12-27 13:46:19</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/&title=《V8的优化机制》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/&title=《V8的优化机制》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《V8的优化机制》 — 喵喵喵喵&url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/01/08/HacktheBox-%E2%80%94-Craft/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HackTheBox — Craft</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">V8 Baseline编译器：Full-Codegen</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/&title=《V8的优化机制》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/&title=《V8的优化机制》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《V8的优化机制》 — 喵喵喵喵&url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACw0lEQVR42u3awW6kMBAE0Pz/T2elPW20AqraNqNIj1NEmMGPSLhT3V9f8fH99/j35//PXP326nuuzlx9KrlyeODh4eGNln51rN/gnpoc9w/x6no8PDy807x2M8g/e7Wg+4VeraG9Lx4eHt5neclt8lf2/TZzfz0eHh7eb+Tl5fXp78HDw8P7FC8vbVe2hzYabgtxPDw8vHd46y/3938+3t/Dw8PDG3XV29f6rNk/2x6i1eLh4eEd4CWtqeR9m7e+7s8k5XuyC0TLxcPDwxvx1ltfbQzRNsxmwwo/9j08PDy8Y7wkDJ1tIW28m7/6H87g4eHhHeCtRwP5o8mL6fwR5wNbeHh4eLt4K6FAXmrnRfb6xlM/Szw8PLySly80H5lqA4t80cl6LlNqPDw8vAO8lVI4Z7eRbjtu9TA6gIeHh7eJ1waveVHbLnGWowxjXDw8PLwRrw1qZ+3//NWfl9pR8wwPDw/vAK9dYnvNrqhihsfDw8M7x5ttBu2W0BbWbeMtylrw8PDwNvGS1/FKSyxf+q54Fw8PD+8cb9a8Xx+WyreWZJt5iHHx8PDwtvLycjlZ0ProQJ7H5uvBw8PD28vbFT3khXU7FpDHuA8lNR4eHt4B3nq3vc4/ypK6Djjw8PDwjvHyV/wsksjDiHa46uEueHh4eAd4eZnbbgZtVJHHDfWfCg8PD28rLwlq20gifxAJrP0UHh4e3vu8dhvIy99dgOKfATw8PLwDvNlmkJfOOaYdt6rbY3h4eHibeLO2UzsuMLsyZ1yuEA8PD+8ALz9mgcJKBDxrvOHh4eG9w5sNVyWRbv6w9o4m4OHh4b3DazeD9eGAldI8H3TAw8PD+yxvZaHtuMBKPDHsueHh4eG9wps10vJHk4wORG0wPDw8vAO8PIxYafy3Z9Ybcnh4eHgneCsNsNmXtjFuMgq2Uprj4eHhxbw/UweccdBUm+oAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

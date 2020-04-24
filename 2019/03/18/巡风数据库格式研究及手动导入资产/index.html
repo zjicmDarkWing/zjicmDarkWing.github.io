@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>巡风数据库格式研究及手动导入资产 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="连接及基本信息默认安装环境下： 12345678910111213141516root@ubuntu:&#x2F;opt&#x2F;xunfeng&#x2F;xunfengdb&#x2F;bin# .&#x2F;mongo mongodb:&#x2F;&#x2F;127.0.0.1:65521&#x2F;xunfengMongoDB shell version v3.4.0connecting t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巡风数据库格式研究及手动导入资产">
+<meta property="og:url" content="https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="连接及基本信息默认安装环境下： 12345678910111213141516root@ubuntu:&#x2F;opt&#x2F;xunfeng&#x2F;xunfengdb&#x2F;bin# .&#x2F;mongo mongodb:&#x2F;&#x2F;127.0.0.1:65521&#x2F;xunfengMongoDB shell version v3.4.0connecting t">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031801.jpg">
+<meta property="article:published_time" content="2019-03-18T06:14:20.000Z">
+<meta property="article:modified_time" content="2019-03-18T06:31:25.812Z">
+<meta property="article:author" content="暗羽">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031801.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">巡风数据库格式研究及手动导入资产</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">巡风数据库格式研究及手动导入资产</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-18T06:14:20.000Z" itemprop="datePublished" class="page-time">
+  2019-03-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#连接及基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">连接及基本信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#资产相关表"><span class="post-toc-number">2.</span> <span class="post-toc-text">资产相关表</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-巡风数据库格式研究及手动导入资产"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">巡风数据库格式研究及手动导入资产</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-18 14:14:20" datetime="2019-03-18T06:14:20.000Z"  itemprop="datePublished">2019-03-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="连接及基本信息"><a href="#连接及基本信息" class="headerlink" title="连接及基本信息"></a>连接及基本信息</h2><p>默认安装环境下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:&#x2F;opt&#x2F;xunfeng&#x2F;xunfengdb&#x2F;bin# .&#x2F;mongo mongodb:&#x2F;&#x2F;127.0.0.1:65521&#x2F;xunfeng</span><br><span class="line">MongoDB shell version v3.4.0</span><br><span class="line">connecting to: mongodb:&#x2F;&#x2F;127.0.0.1:65521&#x2F;xunfeng</span><br><span class="line">MongoDB server version: 3.4.0</span><br><span class="line">&gt; db.auth(&#39;scan&#39;,&#39;scanlol66&#39;)</span><br><span class="line">1</span><br><span class="line">&gt; show collections</span><br><span class="line">Config</span><br><span class="line">Heartbeat</span><br><span class="line">History</span><br><span class="line">Info</span><br><span class="line">Plugin</span><br><span class="line">Result</span><br><span class="line">Statistics</span><br><span class="line">Task</span><br><span class="line">Update</span><br></pre></td></tr></table></figure>
+
+<h2 id="资产相关表"><a href="#资产相关表" class="headerlink" title="资产相关表"></a>资产相关表</h2><p>根据巡风代码，主要是Info表</p>
+<p><a href="https://github.com/ysrc/xunfeng/blob/master/nascan/lib/scan.py" target="_blank" rel="noopener">https://github.com/ysrc/xunfeng/blob/master/nascan/lib/scan.py</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongo.NA_INFO.insert(&#123;&quot;ip&quot;: self.ip, &quot;port&quot;: self.port,“hostname&quot;: hostname, &quot;banner&quot;: banner, &quot;time&quot;: time_&#125;)</span><br><span class="line">                                  </span><br><span class="line">mongo.NA_INFO.update(&#123;&#39;ip&#39;: self.ip, &#39;port&#39;: self.port&#125;,&#123;&quot;$set&quot;: &#123;&#39;banner&#39;: self.banner, &#39;server&#39;: &#39;web&#39;, &#39;webinfo&#39;: web_info,&#39;time&#39;: time_&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>以一条具体数据为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.Info.find()</span><br><span class="line"></span><br><span class="line">&#123; &quot;_id&quot; : ObjectId(&quot;id信息&quot;), &quot;ip&quot; : &quot;ip_address&quot;, &quot;hostname&quot; : &quot;hostname_miao&quot;, &quot;time&quot; : ISODate(&quot;2019-03-06T02:49:18.268Z&quot;), &quot;banner&quot; : &quot;banner 信息&quot;, &quot;port&quot; : 2333, &quot;webinfo&quot; : &#123; &quot;tag&quot; : [ &quot;php&quot;,&quot;apache&quot;], &quot;title&quot; : &quot;Error 404 Not Found&quot; &#125;, &quot;server&quot; : &quot;web&quot; &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 在巡风web界面大概是这样</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>ip，port，hostname，banner等顾名思义</p>
+<p>server：web</p>
+<p>webinfo中php，apache</p>
+<p>打码的蓝色信息为webinfo中title</p>
+<p>可以获取下Info中的key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mr &#x3D; db.runCommand(&#123; &quot;mapreduce&quot; : &quot;Info&quot;, &quot;map&quot; : function() &#123; for (var key in this) &#123; emit(key, null); &#125; &#125;, &quot;reduce&quot; : function(key, stuff) &#123; return null; &#125;,  &quot;out&quot;: &quot;Info&quot; + &quot;_keys&quot; &#125;)</span><br><span class="line">&#123;</span><br><span class="line">	&quot;result&quot; : &quot;Info_keys&quot;,</span><br><span class="line">	&quot;timeMillis&quot; : 112,</span><br><span class="line">	&quot;counts&quot; : &#123;</span><br><span class="line">		&quot;input&quot; : 1209,</span><br><span class="line">		&quot;emit&quot; : 8707,</span><br><span class="line">		&quot;reduce&quot; : 102,</span><br><span class="line">		&quot;output&quot; : 8</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;ok&quot; : 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&gt; db.Info_keys.distinct(&quot;_id&quot;)</span><br><span class="line">[</span><br><span class="line">	&quot;_id&quot;,</span><br><span class="line">	&quot;banner&quot;,</span><br><span class="line">	&quot;hostname&quot;,</span><br><span class="line">	&quot;ip&quot;,</span><br><span class="line">	&quot;port&quot;,</span><br><span class="line">	&quot;server&quot;,</span><br><span class="line">	&quot;time&quot;,</span><br><span class="line">	&quot;webinfo&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到主要就这些信息</p>
+<p>因此如果认为巡风自身资产探测不完善，需要手工导入资产信息，既可以按照这种格式构造数据进行导入</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-03-18T06:31:25.812Z" itemprop="dateUpdated">2019-03-18 14:31:25</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/&title=《巡风数据库格式研究及手动导入资产》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/&title=《巡风数据库格式研究及手动导入资产》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《巡风数据库格式研究及手动导入资产》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06-Unlink-Attack-%E5%88%9D%E7%BA%A7/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记6:Unlink Attack 初级</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-%E5%A0%86%E6%BA%A2%E5%87%BA%E4%B8%8EUser-After-Free/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记5:堆溢出与User After Free</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/&title=《巡风数据库格式研究及手动导入资产》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/&title=《巡风数据库格式研究及手动导入资产》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《巡风数据库格式研究及手动导入资产》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/18/%E5%B7%A1%E9%A3%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%BC%E5%BC%8F%E7%A0%94%E7%A9%B6%E5%8F%8A%E6%89%8B%E5%8A%A8%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAFP0lEQVR42u3ay27kRhAEQP3/T8uA4YOB9YwyKzmG4Q2ehBEfzegDs6v66ys+vv88fv3l77//es6r818d769KxvN+JK/G/H4MDxz48OHDhw9f/GI5VvLL+4l5j/Xq6TnlwvqSGB8+fPjw4TvxtS/2XR7vg8INcQ9S7bX48OHDhw/fv8mXf+wTrHyIbbnh9ix8+PDhw4fvv8zX1q7rpfip0NBOWBKk8OHDhw8fvk/wJY9PsNr2862ssLTzb+N/oNeBDx8+fPjwDUHh//33wwc+fPjw4cM3tLqTWLAEkTZMJMGljUqRBj58+PDhw3fS2JfoTxUdPhek8snOSxv48OHDhw/fzvc+duyBoA0KbVE+Pz9vG3wtl+HDhw8fPnyPIt4GuvQW8miybKqrQfHhw4cPH76Y7/bJXwoN+cvnm97aM/Mx/zAZ+PDhw4cP31BnzuGWhXcSDtrywcLUjgcfPnz48OHb+W4N73wCPh1BpuxWTvy0vw8fPnz48P3GfEuBII8mtxiRT1veaG/b/3VBBB8+fPjw4Sv7vLdw0G5K25vc71nbxf9t+vHhw4cPH76Wr14SxyX72wvfRnJrEiRYPzwFHz58+PDhK/naG7UN7DbK5Oht0GknIG+948OHDx8+fDlfXtpOSuS3QTwVnpZ2wq0AgQ8fPnz48N34PtEOX0oJy4a5PI4kbfgfJhsfPnz48OEr+W6L6ryE3eIug75tR0sK/fUuP3z48OHDh+/Ff/Ml/bIDbl/Yty+fjzAhfnkOPnz48OHDV/Ilbez3D85b3bcQcxvP/ty8VY8PHz58+PC1fHtrPC8BJC/WTtUSqtrR4sOHDx8+fAtfXs7OS/btcKfGc9lIWJ74sliPDx8+fPjwlXz5g9sl/QKR9/Y/UayPIhc+fPjw4cN3qboXQSQPBPm1yXL91jzY7x9VXPDhw4cPH76y2tyWyPMwkZ+zl+yXUsItqOHDhw8fPnwt3610nizR82l4qlifB6YEN49Z+PDhw4cPX863NLxvm7Bvk9Q2FfLx5MWIf7gDPnz48OHD9yhfHk1yoHzZ33J8B8fSDMCHDx8+fPh2vnbBnz8++eX232X72q3lEE05Pnz48OHDF/PtC+ylRZ0HlH3T2x7UfthrgA8fPnz48A37u/JCebuAvzW/l5dPzly2CODDhw8fPnz5SNrP89I4b2NNfu1erL9tF8CHDx8+fPhub5RHkPyjfisNtCWAtt1+a5bjw4cPHz58T/EtRfn82n2h3t5taT8ULXx8+PDhw4cv5sub07ftX7ci+Pu7tU33vNxQFzLw4cOHDx++E1/bSG43gSWR4gZ6K9PvhXt8+PDhw4fvxpfcot1Y1m4X20fSxpRbw/5lJMKHDx8+fPjuq+n6Q74XBfIi+20i26mtex348OHDhw/f0CZvt5QlD8gX7bcwtJTp88AU1V3w4cOHDx++U2RpaZIJuLWrPwe3lPXx4cOHDx++G9+zw7q1sZ8q1ucT3xYpXj4dHz58+PDhO/FFp8af/DYW5MX3vKXdRqj2+Os++PDhw4cP38z3VMjIXy9vwN/a20vAihrk+PDhw4cPX8x3iwtPLdGX4S5t+70hgQ8fPnz48C18SVhZ4ksL9OwY9uf+gIgPHz58+PCd+JYPed4UzzeQ3aLV3qqvix348OHDhw/fx/j2iNNWMnL6/D439GPfHh8+fPjw4XuIL7lP3mhv48tTG9FuWwEeCC748OHDh++352vjyG2xnZTjk8l4tlg/vS8+fPjw4cN3f99iXdxGmdsWt2WqbkDtVjZ8+PDhw4cvftYfLfU93TD5f/4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

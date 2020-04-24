@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记4:heap布局 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="heap布局 使用中和free区域混杂在一起 各个block被称为chunk                                                                                                               想要再次使用free状态的区域 需要知道哪里有free的区域，因此它是链表结构 实际上没这么简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记4:heap布局">
+<meta property="og:url" content="https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="heap布局 使用中和free区域混杂在一起 各个block被称为chunk                                                                                                               想要再次使用free状态的区域 需要知道哪里有free的区域，因此它是链表结构 实际上没这么简单">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031405.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031406.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031407.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031408.jpg">
+<meta property="article:published_time" content="2019-03-14T07:02:59.000Z">
+<meta property="article:modified_time" content="2019-03-14T07:03:32.606Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031405.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记4:heap布局</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记4:heap布局</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-14T07:02:59.000Z" itemprop="datePublished" class="page-time">
+  2019-03-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#heap布局"><span class="post-toc-number">1.</span> <span class="post-toc-text">heap布局</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实际上的结构体："><span class="post-toc-number">2.</span> <span class="post-toc-text">实际上的结构体：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#填充"><span class="post-toc-number">3.</span> <span class="post-toc-text">填充</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记4-heap布局"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记4:heap布局</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-14 15:02:59" datetime="2019-03-14T07:02:59.000Z"  itemprop="datePublished">2019-03-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="heap布局"><a href="#heap布局" class="headerlink" title="heap布局"></a>heap布局</h2><ul>
+<li>使用中和free区域混杂在一起</li>
+<li>各个block被称为chunk</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>想要再次使用free状态的区域</li>
+<li>需要知道哪里有free的区域，因此它是链表结构<ul>
+<li>实际上没这么简单</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031406.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031407.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>malloc获得的是这个地址</p>
+<p>size按照8的倍数进行padding</p>
+<p>为简单起见，图中省略了fd_nextsize和bk_nextsize</p>
+<h2 id="实际上的结构体："><a href="#实际上的结构体：" class="headerlink" title="实际上的结构体："></a>实际上的结构体：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct malloc_chunk &#123;</span><br><span class="line">  INTERNAL_SIZE_T      mchunk_prev_size;  &#x2F;* Size of previous chunk (if free).  *&#x2F;</span><br><span class="line">  INTERNAL_SIZE_T      mchunk_size;       &#x2F;* Size in bytes, including overhead. *&#x2F;</span><br><span class="line">  struct malloc_chunk* fd;         &#x2F;* double links -- used only if free. *&#x2F;</span><br><span class="line">  struct malloc_chunk* bk;</span><br><span class="line">  &#x2F;* Only used for large blocks: pointer to next larger size.  *&#x2F;</span><br><span class="line">  struct malloc_chunk* fd_nextsize; &#x2F;* double links -- used only if free. *&#x2F;</span><br><span class="line">  struct malloc_chunk* bk_nextsize;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>来源：<a href="https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#malloc_chunk" target="_blank" rel="noopener">https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#malloc_chunk</a></p>
+<h2 id="填充"><a href="#填充" class="headerlink" title="填充"></a>填充</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031408.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>仅在前一个chunk已经free时才能访问</p>
+<p>末尾3个字节有特定的用途</p>
+<ul>
+<li>最低一位(PREV_INUSE) 前一个chunk是否已被使用</li>
+<li>低二位(IS_MMAPED) 是否是mmap获取的地址(大的内存通过mmap获取)</li>
+<li>低三位(IS_NON_MAINARENA)  是否来自main_arena(多线程时，使用多个arena进行heap管理)</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-03-14T07:03:32.606Z" itemprop="dateUpdated">2019-03-14 15:03:32</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记4:heap布局》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记4:heap布局》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记4:heap布局》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-%E5%A0%86%E6%BA%A2%E5%87%BA%E4%B8%8EUser-After-Free/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Pwn学习笔记5:堆溢出与User After Free</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03-heap/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记3:heap</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记4:heap布局》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/&title=《Pwn学习笔记4:heap布局》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记4:heap布局》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNklEQVR42u3aS27jQAwFwNz/0h5gtp7I77E1gE2XVoGjqFUMEIafn5/4evy9rr/72z3Pnz+ervyn8nNvuLCxsbE/hP24vJ6PvH7p9vPre5KgXL/br+diY2Njr2Mnj85fKwlBm5zaELwwYmNjY38lOylUrkmzQOTFDDY2NjZ2/rrDAiBuV90VIGxsbOzvYSdNpba1lA8PkhSVlys399KwsbGx357dDnrf+ev/ON/GxsbGfkv2o7yStHFX2TAbOUcKbGxs7EXsfOyalB9tW6pF5uOBKL1hY2Njr2DP0kObnJJTTkLQrgFhY2Njb2LPWur553eVIrMEho2Njf0N7PPRad76mQ1x702BP8kLYWNjY69gzwarJyFrg9WmvX9MRbCxsbEXsY/GpQeJsF3EzBd0XowNsLGxsdexZ4uYefGQp7STBlMxisbGxsZeyj5vCSXUfLmnHQkUS5zY2NjYi9gzcL40c9edbeijRUxsbGzsFey7CoB8NJuH9Xy0gI2Njf0N7DZtnCS8aARbJq3ZO2BjY2NvYp+sv8zaTO1STp4+bxj0YmNjY38su/2XPU9F+aufFBv1yAEbGxt7HXuYBoKfmqWfdjhRD5ixsbGx17HzYiNahSmDeNKEGhY/2NjY2IvYd63LzMa9SZJrG1KzogUbGxv7c9n50LRd3GmDkv826sLj+XRsbGzspezZ49pSpF3ByQNR9IuwsbGxl7Jnieq8cZ8kvHbYcFSKYGNjY38U+6THkhcV7fPbJtRw8IyNjY29gp284iwVzUqd/J6TNhY2Njb2bnbSsmkHse1K0Pny5YvWGDY2NvYi9knhkZcZbSHRtqhmgwRsbGzsHezkD31bHuSpa1benLSxsLGxsbeyk9HpXUPf/P42veUnYmNjY+9j59csQHmaaVtFw1OwsbGxF7GHXag4keTD2rwh1abPo1YUNjY29oew80FpvtZzXjzMzi2Cgo2Njb2OnaeTnBqtzsRF0Xn6jKoobGxs7NXsPOXMRrAzZDuKxsbGxsbO2+554PKyZ1Y4RXUPNjY29oezkwe1jDwVzZJlnhqPemnY2NjYb89uG/cnIWiTTT4ebs/CxsbGXsH+Ax6PRSjm1hf7AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

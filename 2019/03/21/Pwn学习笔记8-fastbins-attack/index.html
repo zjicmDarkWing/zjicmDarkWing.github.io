@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记8:fastbins attack | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="fastbins为了高速化而实现的机制 www.valinux.co.jp&#x2F;technologylibrary&#x2F;document&#x2F;linux&#x2F;malloc0001&#x2F; bins和fastbins 之前提到过libc中存在一个为了快速搜索free区域而存在的链表  这是arena(malloc_state构造体)中存在的列表头   free状态的chunk根据相似大小来管理，因此会有多个列表   si">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记8:fastbins attack">
+<meta property="og:url" content="https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="fastbins为了高速化而实现的机制 www.valinux.co.jp&#x2F;technologylibrary&#x2F;document&#x2F;linux&#x2F;malloc0001&#x2F; bins和fastbins 之前提到过libc中存在一个为了快速搜索free区域而存在的链表  这是arena(malloc_state构造体)中存在的列表头   free状态的chunk根据相似大小来管理，因此会有多个列表   si">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032101.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032102.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032103.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032104.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032105.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032106.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032107.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032108.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032109.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032110.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032111.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032112.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032113.jpg">
+<meta property="article:published_time" content="2019-03-21T06:32:22.000Z">
+<meta property="article:modified_time" content="2019-03-21T06:33:08.053Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032101.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记8:fastbins attack</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记8:fastbins attack</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-21T06:32:22.000Z" itemprop="datePublished" class="page-time">
+  2019-03-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fastbins"><span class="post-toc-number">1.</span> <span class="post-toc-text">fastbins</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#bins和fastbins"><span class="post-toc-number">2.</span> <span class="post-toc-text">bins和fastbins</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正常的malloc"><span class="post-toc-number">3.</span> <span class="post-toc-text">正常的malloc()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#exploit的流程"><span class="post-toc-number">4.</span> <span class="post-toc-text">exploit的流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有什么困难"><span class="post-toc-number">5.</span> <span class="post-toc-text">有什么困难</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记8-fastbins-attack"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记8:fastbins attack</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-21 14:32:22" datetime="2019-03-21T06:32:22.000Z"  itemprop="datePublished">2019-03-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="fastbins"><a href="#fastbins" class="headerlink" title="fastbins"></a>fastbins</h2><p>为了高速化而实现的机制</p>
+<p><a href="http://www.valinux.co.jp/technologylibrary/document/linux/malloc0001/" target="_blank" rel="noopener">www.valinux.co.jp/technologylibrary/document/linux/malloc0001/</a></p>
+<h2 id="bins和fastbins"><a href="#bins和fastbins" class="headerlink" title="bins和fastbins"></a>bins和fastbins</h2><ul>
+<li><p>之前提到过libc中存在一个为了快速搜索free区域而存在的链表</p>
+</li>
+<li><p>这是arena(malloc_state构造体)中存在的列表头</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032101.jpg" alt="img"></p>
+</li>
+<li><p>free状态的chunk根据相似大小来管理，因此会有多个列表</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032102.jpg" alt="img"></p>
+</li>
+<li><p>size比较小的chunk，free的时候会暂时和fastbins连接</p>
+<ul>
+<li>这个链表是单向的</li>
+<li>每个chunk在x86环境下是小于64字节，x86_64环境下是小于128字节</li>
+<li>也存在bk成员变量，但因为高速化，不会使用到</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032103.jpg" alt="img"></p>
+</li>
+<li><p>进入fastbins的小的chunk如果是像下面这样的状态，就存在堆溢出</p>
+<ul>
+<li>覆盖fd</li>
+<li>这就可能进行fastbins attack</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032104.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="正常的malloc"><a href="#正常的malloc" class="headerlink" title="正常的malloc()"></a>正常的malloc()</h2><ul>
+<li><p>假设有一个像这样的fastbins列表</p>
+</li>
+<li><p>各个chunk根据size连接到fastbins列表</p>
+<ul>
+<li>图中也显示size，因为它很重要</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032105.jpg" alt="img"></p>
+</li>
+<li><p>取出fastbins的第一个元素，进行简单的检查</p>
+<ul>
+<li>检查P-&gt;size，判断它是否在正确的fastbins列表里</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032106.jpg" alt="img"></p>
+<p>连接到fastbins的小的chunk是根据size大小决定要连接到哪个fastbins列表上</p>
+</li>
+<li><p>之后，将其从列表中删除</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032107.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="exploit的流程"><a href="#exploit的流程" class="headerlink" title="exploit的流程"></a>exploit的流程</h2><ul>
+<li><p>通过P2上的堆溢出覆盖fastbins上的P的fd</p>
+<ul>
+<li>使其指向X</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032108.jpg" alt="img"></p>
+</li>
+<li><p>进行malloc()的时候P被unlink</p>
+<ul>
+<li>fastbins列表现在和X相连接</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032109.jpg" alt="img"></p>
+</li>
+<li><p>下次进行malloc()时，就可能返回X</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032110.jpg" alt="img"></p>
+<ul>
+<li>但是X下面没有合适的size也不行</li>
+<li>因为存在判断它是否在正确的列表中</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032111.jpg" alt="img"></p>
+</li>
+<li><p>原本malloc()的返回值是堆的地址，通过这种方式就能够让返回X</p>
+</li>
+<li><p>假设X是一个保存函数地址的区域(例如GOT)</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032112.jpg" alt="img"></p>
+</li>
+<li><p>也就可以通过对malloc()的返回值，也就是X进行特定值写入，来覆盖GOT</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019032113.jpg" alt="img"></p>
+</li>
+</ul>
+<h2 id="有什么困难"><a href="#有什么困难" class="headerlink" title="有什么困难"></a>有什么困难</h2><ul>
+<li>这不仅是对用户进程的hack，还要跟踪libc中的内容<ul>
+<li>fastbins感觉不太出名</li>
+</ul>
+</li>
+<li>仅通过分析给出的二进制程序来解决它是不可能的<ul>
+<li>需要了解libc.so中malloc和free的行为相关知识</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-03-21T06:33:08.053Z" itemprop="dateUpdated">2019-03-21 14:33:08</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/&title=《Pwn学习笔记8:fastbins attack》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/&title=《Pwn学习笔记8:fastbins attack》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记8:fastbins attack》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/26/DEFCON-2014-CTF-Baby-s-First-heap-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E5%8F%8A%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">DEFCON 2014 CTF-Baby&#39;s First-heap 基本知识及静态分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/19/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B07-Unlink-Attack-%E4%B8%AD%E7%BA%A7/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pwn学习笔记7:Unlink Attack 中级</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/&title=《Pwn学习笔记8:fastbins attack》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/&title=《Pwn学习笔记8:fastbins attack》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记8:fastbins attack》 — 喵喵喵喵&url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/03/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-fastbins-attack/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKUlEQVR42u3ay26jUBAE0Pz/T3ukrCKNQqq6iWRuDiuLwYZDFjX9+PiIj9fn8f+Zr0f+O9ff/Xrmu19OrrnhwMbGxn4I+3V5JMjkyvzF5fdK7v7tHwYbGxv7OHYSEvfyrqPoOpbab2FjY2NjX7+CvEi4xieFTRK02NjY2NgzdoK8vtf19e1nbGxs7L/GzoMhKVH2L2j2a7/SS8PGxsZ+e3Y76H3nz78438bGxsZ+S/arPO4tOZLB7Wx56AcFNjY29kHsdmSbJ8JdJcf1gLl9tuFDY2NjY789e7as0wZSAmjXdJK2ETY2NvbZ7M36S3LjWdHSnqlfBzY2Nvah7PzMfq2nDbx2AHD9IrCxsbFPYrcD1M1CT3uXAlAOCbCxsbFPZSetn1m8JfGTY2brO9jY2Nhns5O1mNlyTN54mjWn2tdXVDDY2NjYj2LnIbRB3jXubUfIxZAAGxsb+4Hs/PZ5YNxbMGxe8befsbGxsQ9i7xs6s3Z/HlfJgLn9LjY2NvZJ7DwGZuGUgPflSh292NjY2Mex82ZNO3ydNfHzEULbwMLGxsY+j92OWvNxbBKEbZupvXs0JMDGxsZ+OLstDzbrmLMrZ+XHDzGGjY2NfRA7KRvyiMofdDYAzp82uh4bGxv7CPasqdRGSPtYs2FwEajY2NjYB7Hzxv29W0Kzce+s5MDGxsb+C+y8YZQXD20BMwuq1YImNjY29hHspNiY/ac/j6V8YDBbNoqmItjY2NiPZe+ReezljH1AFr+GjY2N/XD2rJmePMpdhUoeYHlbChsbG/skdttwb8H7wEu+1S4JYWNjY5/EnsE2qzntKLdteH3s/ybY2NjYR7CTMmA4VV4/z/61YmNjY5/Evis2kvPtiuSsBMrHG9jY2NhnsF/lsW9Ctcud+ci5KKuwsbGxD2K3YdCy2yjat7RuoGJjY2M/kJ2HVrvQs/nlzV2isMTGxsY+jj0Lrf1At12+2URv9A/Y2NjYR7NnRchqvaZsKhXjDWxsbGzs0XdnsdSGXHQXbGxs7OPYm5BoV3Y2L7cdIQyn3NjY2NiPYq9aM6OCpH2h7Zm2RMHGxsZ+LPsfMlUCXd58iBoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

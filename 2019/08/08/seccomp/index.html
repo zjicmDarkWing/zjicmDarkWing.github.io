@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>seccomp | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="Pwn">
+    <meta name="description" content="seccomp sandbox的典型 内核层面过滤system call 只要过滤器正确注册，就无法从用户进程绕过 这个sandbox非常强，还会结合其他的过滤器作为辅助，以防止意外的解决方案   尽量使用复杂的过滤器 也存在一部分过滤器存在漏洞的题目   只过滤自己的进程，不会影响其他进程 使用seccomp(2) 或者 prctl(2)来注册过滤器 这是一种通过库函数调用的方式，稍微有点复杂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="seccomp">
+<meta property="og:url" content="https://darkwing.moe/2019/08/08/seccomp/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="seccomp sandbox的典型 内核层面过滤system call 只要过滤器正确注册，就无法从用户进程绕过 这个sandbox非常强，还会结合其他的过滤器作为辅助，以防止意外的解决方案   尽量使用复杂的过滤器 也存在一部分过滤器存在漏洞的题目   只过滤自己的进程，不会影响其他进程 使用seccomp(2) 或者 prctl(2)来注册过滤器 这是一种通过库函数调用的方式，稍微有点复杂">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080701.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080702.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080703.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080705.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080706.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080707.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080802.jpg">
+<meta property="article:published_time" content="2019-08-08T03:13:58.000Z">
+<meta property="article:modified_time" content="2019-08-08T03:14:38.686Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080701.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">seccomp</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">seccomp</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-08T03:13:58.000Z" itemprop="datePublished" class="page-time">
+  2019-08-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#seccomp"><span class="post-toc-number">1.</span> <span class="post-toc-text">seccomp</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用seccomp的流程"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用seccomp的流程</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#seccomp的调用方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">seccomp的调用方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#seccomp-h的库函数"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">seccomp.h的库函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码示例"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">代码示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#prctl-2"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">prctl(2)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码示例-1"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">代码示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#seccomp-2"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">seccomp(2)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码示例-2"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">代码示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-seccomp"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">seccomp</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-08 11:13:58" datetime="2019-08-08T03:13:58.000Z"  itemprop="datePublished">2019-08-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="seccomp"><a href="#seccomp" class="headerlink" title="seccomp"></a>seccomp</h1><ul>
+<li>sandbox的典型</li>
+<li>内核层面过滤system call<ul>
+<li>只要过滤器正确注册，就无法从用户进程绕过</li>
+<li>这个sandbox非常强，还会结合其他的过滤器作为辅助，以防止意外的解决方案</li>
+</ul>
+</li>
+<li>尽量使用复杂的过滤器<ul>
+<li>也存在一部分过滤器存在漏洞的题目</li>
+</ul>
+</li>
+<li>只过滤自己的进程，不会影响其他进程</li>
+<li>使用seccomp(2) 或者 prctl(2)来注册过滤器<ul>
+<li>这是一种通过库函数调用的方式，稍微有点复杂</li>
+</ul>
+</li>
+</ul>
+<h1 id="使用seccomp的流程"><a href="#使用seccomp的流程" class="headerlink" title="使用seccomp的流程"></a>使用seccomp的流程</h1><ol>
+<li>进程发布seccomp（后面所说的prctl）</li>
+<li>在内核中创建过滤器，之后每次执行system call都会经过过滤器验证<ul>
+<li>该过滤器适用于这个进程的每个线程，一旦注册，在该进程结束之前就不能进行修改或者删除。</li>
+<li>如果允许prctl，则可以添加更多过滤器。如果允许fork，则子进程继承过滤器。如果允许execve，则在execve前后过滤器保持不变。</li>
+</ul>
+</li>
+<li>如果是允许的system call，则内核执行</li>
+<li>如果是不允许的system call，则根据过滤器设置进行操作<ul>
+<li>不要直接结束进程，向进程发送SIGSYS信号（无效参数）,返回错误代码，然后继续</li>
+</ul>
+</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="seccomp的调用方法"><a href="#seccomp的调用方法" class="headerlink" title="seccomp的调用方法"></a>seccomp的调用方法</h1><p>有多种方法可以调用，有点复杂</p>
+<ol>
+<li>seccomp.h的库函数</li>
+<li>prctl(2)</li>
+<li>seccomp(2)</li>
+</ol>
+<h2 id="seccomp-h的库函数"><a href="#seccomp-h的库函数" class="headerlink" title="seccomp.h的库函数"></a>seccomp.h的库函数</h2><ul>
+<li>直接使用seccomp.h中定义的库函数<ul>
+<li>最简单的调用方式</li>
+</ul>
+</li>
+<li>不需要了解BPF<ul>
+<li>seccomp在内部实现了调用BPF(Berkeley Packet Filter)的虚拟机</li>
+<li>封装之后，使用者不需要去了解BPF命令<ul>
+<li>只需要设置system call编号，参数检查等</li>
+<li>自动检查平台架构</li>
+<li>prctl(PR_SET_NO_NEW_PRIVS, …)也自动进行</li>
+<li>无法进行EIP/RIP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基本上是这4个<ul>
+<li>scmp_filter_ctx seccomp_init(uint32_t def_action)</li>
+<li>int seccomp_rule_add(scmp_filter_ctx ctx, uint32_t action,</li>
+<li>int syscall, unsigned int arg_cnt, …) int seccomp_load(scmp_filter_ctx ctx)</li>
+<li>void seccomp_release(scmp_filter_ctx ctx)</li>
+</ul>
+</li>
+<li>函数定义参考这里：<ul>
+<li><a href="http://man7.org/linux/man-pages/man3/seccomp_init.3.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man3/seccomp_init.3.html</a></li>
+<li><a href="http://man7.org/linux/man-pages/man3/seccomp_rule_add.3.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man3/seccomp_rule_add.3.html</a></li>
+<li><a href="http://man7.org/linux/man-pages/man3/seccomp_load.3.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man3/seccomp_load.3.html</a></li>
+<li><a href="http://man7.org/linux/man-pages/man3/seccomp_release.3.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man3/seccomp_release.3.html</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li><p>SCMP_ACT_KILL: 从内核收到SIGSYS，进程推出</p>
+</li>
+<li><p>SCMP_ACT_ALLOW: 执行system call</p>
+</li>
+<li><p>SCMP_ACT_TRAP: 自身发出SIGSYS</p>
+</li>
+<li><p>SCMP_ACT_ERRNO(x): 返回错误代码</p>
+</li>
+<li><p>SCMP_ACT_TRACE: 由ptrace控制时发出(SIGTRAP | (PTRACE_EVENT_SECCOMP&lt;&lt;8))</p>
+</li>
+<li><p>简单使用的话啊就只检查system call编号和参数是否正确</p>
+</li>
+<li><p>此次生成的内部BPF指令如下：</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>测试运行，如果禁掉了read，会得到下面的结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="prctl-2"><a href="#prctl-2" class="headerlink" title="prctl(2)"></a>prctl(2)</h2><ul>
+<li>使用prctl定义的PR_SET_SECCOMP</li>
+<li>存在两种模式</li>
+</ul>
+<ol>
+<li>静态模式<ul>
+<li>用户不需要编写过滤器</li>
+<li>静态模式只有通用的过滤器，放行read, write, exit, sigreturn</li>
+<li>很少用于CTF</li>
+</ul>
+</li>
+<li>过滤模式<ul>
+<li>自己编写并注册过滤器</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>可以在过滤器中检查EIP/RIP<ul>
+<li>如果需要在调用system call的时候检查EIP/RIP，则不能使用seccomp.h的库函数</li>
+<li>使用seccomp_data.instruction_pointer</li>
+</ul>
+</li>
+<li>但是，过滤器结构很复杂<ul>
+<li>所有BPF命令都需要自己写</li>
+<li>平台架构的检查，system call编号及参数的检查，全都需要使用者自己编写</li>
+</ul>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>基本流程如下：</p>
+<ol>
+<li>创建一个sock_filter结构体数组<ul>
+<li>在这里写BPF命令</li>
+</ul>
+</li>
+<li>从sock_filter结构体数组及其大小创建sock_fprog结构体</li>
+<li>prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0);<ul>
+<li>如果没有这个，在第四步允许execve()的话，如果执行suid二进制文件，则uid可能改变，如果不重置该功能，可能存在各种漏洞。所以还是指定比较好。</li>
+</ul>
+</li>
+<li>prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, &amp;prog, 0, 0);</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><a href="https://linuxjm.osdn.jp/html/LDP_man-pages/man2/prctl.2.html" target="_blank" rel="noopener">https://linuxjm.osdn.jp/html/LDP_man-pages/man2/prctl.2.html</a></li>
+<li><a href="http://www.tiger1997.jp/report/activity/securityreport_20131211.html" target="_blank" rel="noopener">http://www.tiger1997.jp/report/activity/securityreport_20131211.html</a></li>
+<li><a href="http://www.tiger1997.jp/report/activity/securityreport_20131227.html" target="_blank" rel="noopener">http://www.tiger1997.jp/report/activity/securityreport_20131227.html</a></li>
+</ul>
+<p>FreeBSD的数据包过滤器，同呀昂存在BPF，作为参考：</p>
+<ul>
+<li><a href="http://www.gsp.com/cgi-bin/man.cgi?topic=bpf" target="_blank" rel="noopener">http://www.gsp.com/cgi-bin/man.cgi?topic=bpf</a></li>
+<li><a href="http://www.yosbits.com/opensonar/rest/man/freebsd/man/ja/man4/bpf.4.html" target="_blank" rel="noopener">http://www.yosbits.com/opensonar/rest/man/freebsd/man/ja/man4/bpf.4.html</a></li>
+</ul>
+<p>Linux中的编程示例：</p>
+<ul>
+<li><a href="http://man7.org/tlpi/code/online/dist/seccomp/" target="_blank" rel="noopener">http://man7.org/tlpi/code/online/dist/seccomp/</a></li>
+</ul>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<ul>
+<li>seccomp过滤器注册后，调用system call，每次都会向内核传递这样的结构体</li>
+<li>平台架构检查是必须的。如果不存在此检查，则可能通过将执行上下文从x86切换到x64来跳过system call编号检查</li>
+<li>system call编号由BPF命令检查<ul>
+<li>向隐式累加器A(seccomp虚拟机的32位运算寄存器)使用seccomp_data-&gt;nr作为四个字节(BPF_W|BPF_ABS)进行加载(BPF_LD) </li>
+<li>比较(BPF_JEQ)A与立即值(BPF_K)的__NR_XXX，根据结果产生分支(BPF_JMP) </li>
+<li>返回(BPF_RET)立即值(BPF_K)</li>
+</ul>
+</li>
+</ul>
+<p>测试运行，如果禁掉了read，会得到下面的结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>分析seccomp二进制文件的小技巧：</p>
+<ul>
+<li>假设是prctl(2)方式的seccomp<ul>
+<li>制作BPF过滤器</li>
+<li>但是，创建BPF过滤器时的命令逐条解析很麻烦</li>
+</ul>
+</li>
+<li>检查BPF过滤器的内容<ul>
+<li>使用gdb，到prctl(PR_SET_SECCOMP, …)之前</li>
+<li>使用gdb-peda的dumpmem，dump BPF过滤器的内存范围</li>
+<li><code>gdb-peda$ dumpmem /tmp/out.dmp 0xffffaaaabb00 0xffffaaaabc00</code></li>
+</ul>
+</li>
+<li>反编译dump出得BPF过滤器<ul>
+<li><code>$ disas-seccomp-filter /tmp/out.dmp</code></li>
+</ul>
+</li>
+<li>这样不需要知道构建过滤器过程，只需要知道最终的过滤器</li>
+</ul>
+<h2 id="seccomp-2"><a href="#seccomp-2" class="headerlink" title="seccomp(2)"></a>seccomp(2)</h2><p>prctl(2)的向上兼容</p>
+<ul>
+<li><p>使用方法与prctl(2)基本相同</p>
+<ul>
+<li>但是，glibc中没有seccomp的包装函数</li>
+<li>glibc的syscall()可以直接指定system call编号进行调用<ul>
+<li><code>long syscall(long number, ...);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>大概是这样的流程</p>
+<ol>
+<li>创建一个sock_filter结构体数组</li>
+<li>从sock_filter结构体数组及其大小创建sock_fprog结构体</li>
+<li>prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0);</li>
+<li>syscall(__NR_seccomp, SECCOMP_SET_MODE_FILTER, 0, &amp;prog)</li>
+</ol>
+<ul>
+<li>与prctl(2)不同的只有第四步</li>
+</ul>
+</li>
+<li><p>可以使用SECCOMP_FILTER_FLAG_TSYNC标志来添加过滤器</p>
+<ul>
+<li>添加过滤器时，请注意将同一过滤器添加到其他线程</li>
+<li>如果存在无法添加的线程，则返回线程ID</li>
+<li><code>syscall(__NR_seccomp,SECCOMP_SET_MODE_FILTER, SECCOMP_FILTER_FLAG_TSYNC, &amp;prog)</code></li>
+</ul>
+</li>
+<li><p>函数定义参考这里：</p>
+<ul>
+<li><a href="http://man7.org/linux/man-pages/man2/seccomp.2.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man2/seccomp.2.html</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><p>因为库中不存在seccomp(2)，这里使用syscall()：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这里很容易出错，（虽然它是相同的过滤模式，prctl为2，seccomp为1）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>seccomp.h的库函数<ul>
+<li>简单</li>
+</ul>
+</li>
+<li>prctl(2)<ul>
+<li>存在静态模式，过滤模式两种</li>
+<li>可以检查EIP/RIP</li>
+</ul>
+</li>
+<li>seccomp(2)<ul>
+<li>prctl(2)的向上兼容</li>
+<li>glibc中没有库，通过syscall()调用</li>
+<li>存在同时向所有线程追加的选项</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-08-08T03:14:38.686Z" itemprop="dateUpdated">2019-08-08 11:14:38</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/08/seccomp/&title=《seccomp》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/08/seccomp/&title=《seccomp》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/08/seccomp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《seccomp》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/08/seccomp/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/08/seccomp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/14/thread-clone/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">thread clone</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/01/CTF%E4%B8%AD%E7%9A%84sandbox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CTF中的sandbox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2019/08/08/seccomp/&title=《seccomp》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2019/08/08/seccomp/&title=《seccomp》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2019/08/08/seccomp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《seccomp》 — 喵喵喵喵&url=https://darkwing.moe/2019/08/08/seccomp/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2019/08/08/seccomp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByUlEQVR42u3aS46DMBAFQO5/aUaaVTYxr93YoKi8iiDBRRYt9+c44nX+r/GVz+ufd5MrNy9cXNw29xyuMTenjJ+ZGHBxcfdzx8Erf427Is/X67i4uC/jjl+jejDCxcX9DW51szyhwsXFfSc3OYJEycnw+/kR6oZcDRcXt8HtBJ27Pi+s7+Li4ha5Z3HdW+wo746Li7uFO9dAnUtm8iPUxV64uLiLuf02arUpm5dZL0IYLi7uMm51DCsvm3bGNfLAiouLu4K7egArCUZJoDyqb4aLi9vmlrOlRuu0U3zBxcXdya2OT+VpTP6rKPDh4uJu4RbyoalRrfw1ygEUFxd3GTdPZqoNmLk27cUfgYuLu5FbrqfGh5hq4+TimIWLi/sabt5MrbZJqoNcuLi4e7hz4xTV7CpvxEZBEBcXdzE3KVMmCUz1GBQ1TnBxcR/ldtKVOe5kWoWLi7uRm69OqLqtsYqLi7uYWw0o4yZKNUHq3MXFxV3N7ZRFqqWN/Dlfn4+Li7uRO7dlNSmqjn8VbuPi4j7EHf8qCVXVxmorkOHi4m7kdsoonXENXFzc/dy83DkXjOaSn1ZZBBcXt8GdK5jm288lTri4uA9x/wDRPGzDk/tdWQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
