@@ -20,17 +20,36 @@
     <meta name="theme-color" content="#66CCFF">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="有东西被加密了, 请输入密码查看.">
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息lab地址： https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;219  10.10.10.168  端口扫描                                                                                                            80端口closed">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Obscurity - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/04/16/Obscurity-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
+<meta property="og:description" content="基本信息lab地址： https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;219  10.10.10.168  端口扫描                                                                                                            80端口closed">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041601.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041602.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041603.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041604.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041605.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041606.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041607.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041608.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041609.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041610.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041611.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041612.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041613.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041614.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041615.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041616.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041617.jpg">
 <meta property="article:published_time" content="2020-04-16T07:19:24.000Z">
-<meta property="article:modified_time" content="2020-04-16T07:20:19.156Z">
+<meta property="article:modified_time" content="2020-05-11T02:44:10.756Z">
 <meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041601.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
     
@@ -138,7 +157,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -174,6 +193,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-168"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.168</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8080"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">8080</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#代码注入"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码注入</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#reverse-shell"><span class="post-toc-number">4.</span> <span class="post-toc-text">reverse shell</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#decrypt"><span class="post-toc-number">5.</span> <span class="post-toc-text">decrypt</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">6.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#BetterSSH-条件竞争"><span class="post-toc-number">7.</span> <span class="post-toc-text">BetterSSH 条件竞争</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">8.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考链接"><span class="post-toc-number">9.</span> <span class="post-toc-text">参考链接</span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-Obscurity-HackTheBox"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -194,15 +220,178 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">您好, 这里需要密码.</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="dbc7f2acd6f61d733a0a39c65482a22b37578898a9ccb6c4b1bc8867b3a587e0">8680a714fb366d6519f8af281b667b9d57e605e43cca5dcd0494bde718a93adc3f3d5d1b38594c0faa46442abd2e44d59b020610df3c56874010ec940219e1fe8a9fbce1eec0c0db224fc5c9765a0bbf70f7add63a9f6bc81060dacb1d1bb4704bdd0a60b439b754709040c5b8329b1ad1bec05ff88a8d2c71129614d43a9e3619fbd0f4081db9d1ae97c81bdfc316dd3e734153f5c4aeb6fe9616876b75ce396e5ba736f03d2697aa10bce5d60060ec3522432411c52300df353ba8d226e280a1b7938e756886d8cbf19b94b8bd41eb9952d2938dad016d744a25619fd43d6886f6c78c3779864a3fc77d606cee024484ea793ecf39f87e0c67633917fa0ebc2876a06c170ba981cb90876b36dc0feaaa218ff71f2562c1f11908392c815967659c533c21e53afec30d2b41f3bca44a167a8874caf92ed33029c1fc7e9d7e3bda676bca722b1cfbdf02a36ecda69a37abc08978d3f0e1ad9ff2c35fff96f076d418c2739e06817f16c11faefa38b665283d3b678b4ddc05bffdfd23a1943d20692d7313a1190dd1c47455087993575686af125746998d9431b3e2682b3b57ea7ca9fc8592b67760ca6124e9ec0319b08b519935f47ade074062841f1119552239e9d5c5e2c9c2c5417f6e0d86ec46c3b16bd185fc9ede3ab83b4c1d29fa882ea5e335d4ad436174e0a90211c92e64d153a67ee7a45b15f76acb8d4a6a91b0f478baae7ef1299410e793e326509758f29a40298a99f0fe379502113b8ff071c1bacf04d00c9f939b9532d9df817189825982eba2aedf42b399270786840e2ec10394d38663a732a8fb153e6e2de057681b6b1e01d2d982752ac205ccdd3481e4e1591d4114dbbe97849bcd84e28439ace48fa15c4aa0117ec60952596f25b72646950d04bc268d6a2aaafda0052026cfb8b2f638f69da65e09c94c5e5b9bb4e3fa95a3f9329f6a40ddc884c15211f560c1fd1e35bd1c37ad8eb453b064cfefcc5ad5deb9f98c56883aceb01b40f677861612c4dd0d0564d485de1a8c482561f89588da85c4f0ea85abbd8aab310da4a13cb7db94ca6c80d012b9f75215c50f351e57f5a879e21c180848e2541257c046bb9bcc6d3cb40c1529517bdc9aff8d2aa0725dabdd1229d33e414bfd808cbe3df6221855b12c9bf2e43fc02515c012a5fbceaf08f63665356ce02231ec011ea56b4565a3f78b36e3f94d4a921c785dacb6be65f78ebc17be2c5bcabceec06a813d3247791ebc76a3126622e7e052d69e93ee30b3440ca82fbd4c5a798ecbd05022f607f99c3d1deac40fecdb070f0408a314a35ae8c08c5333788c794f451ba616d91589e6809d96c4fd5a55b2e352b503eae8fd1cca4feb436bb75785471ca7c1f1c95290b8bd5aa15cdb52f505add4687fb3afe8857997eadba6cce27b9e347bbb8b394d1a284bce8b4a44b0e299a52a04f63c01703f64a2fbb067186c117b55f3dd4f0449f3a3b69e05f69313565ea011aa70ac06123f2c6e4b5ad4442c9f45c9b532f931bb5648edf79fe122cc3155d08786d058b43de4382415e48205306b3de4fba834c6e56dd452ca46e3af9579220e386a50c7aa90bffd5b83b9dc23d48f9f84f90b9578ea7897ab3eca7e7a59f5c06859672198c701bf8cb6925fe4b9aeb0c1dce71169e1699ecf18af7c67c4873331f2617c1ebe22840690f1ebc17e9cad2e3320783047f23dc8cba96a47ce6d24586a80db1307d2e17bfd36f61641d83948b7ad40a36f4f711340dc31d9a980453bfec288d2e10ffb23c5c473049adf973b52391cdf5e701505a1fbdc7605b8638d199b08c1d48e449c76f4263e3616763024294a1d83b4da9b776f0127af6272d3a9284e82aecceb03b9954e67a5a46011bb59e5979342fd102a6407e01f712a6794ce96d3340a968b5a992214e112e3c85731c52c65bc79cd704bbd27745a0c9a2ad50015338399182cf3dcf76227b06dab88e30fdef612b3ab44aef612029f66eebfc5557c5cda21fb5636a7e5d0ed675128deeb9b26ab324ead12a1c76cce5a0c06bb98b008791ef118f0b65c1f149c2b273e648699b6835d13431a92c0a2a46853608e60a65d66022447232845e074c1d64a29c4d7d4bf6f388320ef0a213847b4803c4335063b32ddfc7d786c440438901c23ef006391efe29577b5d838da6d99db28699df05d51d074055cfbca96848b35a50d1ff91f30a8c649eb234aa6286d82fbfc4113a17e531a28f0e741a4b530b4edb3e05deb137b22f7bac68a7006eaa2edb02c2553944e22e76dc8950cb07e964cfd31f0b76ae9ef11f6428b7eb2701e58b0a01c81a91769c55ca732b67d65e990b2328ab23ce133b1c3ae32642b41643bb36d18f009b517b929ac35ed8e3c8660f00d25b7072c8872844ad5e7e837e3241f79570e9813ca53b4f7618c079de4c03e63e3796a9e4bc09f66e50cb1ed172c653c88933f4027b5a381162cc0234f1dacfb3a075705ff5db30b1633ed6c2304bd6128ab2489e635c690d083af004144be7357c9cec62ade545567d598813abecc40c67801be9d02e79373b4ff05b9f604f1c5156fe9c166fee6a0d5a3a66571bd2e2f14332d14c8947fdc56ac495dcfc3b69283fd437f65c34528efe8c8dfe36407344fbfffadbc5dfde06a3fad6342ab001628587fdc164b681f398b258b4474098cf7636e64fedba8d2dc682076caa754366df04b23828227c835b28b94e639b4dc89bb0d643458d45e2d7cda9875cca61879d0833dae52807ab25f323b254aeee2d1b014c60b15277666894aa37f3a4b5045f1b50f333e7bdb7ab107fc4ff587fb1ff956bfef2eb52e531f9524f37f4aaea3622282c1ef19fc913e1f519d841c0ae2dcfdae5e3dd4c02ca695fb6a44e601d01c66fcb5cfe7246208783b860dc5c52955d88b4b987d588d7c2d8c25926c6fbe9b03924727f6e999f2494a9af9db77e553e116601a61a70b39fedad9e8ad22e85b69580fe0e2fa0c1c8e4006639ae2f73177b6543754f881147679489583f3a4f7117b61cc6cedcbe3608440597ac1f87eb9e16442704a856184318959e412182fa9ab5fa2f1e3b95e057256672a346944d85c478ab4dc51ed0f89416b4d69e9cba86d55aa53ea9ff5c6cd5425b5a3f3a8c049c71cffabcf308a73f9320e81bed2217e69da053f5ac60247e78221769979e6115a5782e6e0ceafe6be69b797116c12b4f9bd34ea522505ccbb939763cb6b1edbb36c906bd79efdee50d30c22488e2096c9b901322b5226a54d748b2e3d102fd5608a643eaa91982b605757daf199edc5a989b2b0753de91f9de950cfa2d3504482a4c3a4ebd3001a983209199cb61eb38c27b515a093acc8a7a5c4f5e288b4660a39791850249e063c89a8e9d69721256823abd7249d6ce2052ed1a4e8e1467ef3a9decc266dfd044e755d73ea74cbf5ad375221765c5961066537e310af5dae39ae0bb1449176433b7c72e469f0414357595cb94ad75c18903c1c2eee5eeedc5d5317488e7e11793975b810a9b5775bcf26dd694dcc92ad3e07c267a4dc1d0f98f01f3764a230ff43509834441f24d161a85c52d2355c19850ba51e49312e56f81b4869d625d942dcb465e774229096283306d86779b338f2bc947146393f472f1a532557d891aab14065bdd5e9e1c47bb180a4a8c933b1737fde2f3c4a817306a292b1931303f66d979f5c27c60caabafe329a910cf2f92c104417149b0d534ef1e101c8a9d33164f3a0cb20cf7feddd08f3575a0baeeb0c06415c6983000d1887c4a03fdbf95b457fa9ebe6ef6a7ac5bdb4da1f469d1a87e0654095005c2416910f9a7bd8ba35bcf2ca581c563bd6afd941fa6bd617d12dab62fccfa11f58feeb1ef271704eb487ea26ac0534b678c4eac3fcdf592eabd31e67cb4d1b3632e1e71e5fdb8c2ef3145099fc32f22494ca871bc388140181cc7c46f6579413edcbed66adc52880b012a1bd10fa55ad679668099c899ac2aa1cbc480d7015a32743cf0b24ef078ddb144ef4db603e29a9ba866df2534284307fa12ae09117048ce144f507980c455dd40e0cfa87f7b1471370dd8db434204f62271b911fe819fe1313fccbe5936f215b25fb22993f37b770f7c5fa2b1693b8116721121c633bd5e3a2c70476f53fe9773fb40e8862ab8614d2af8f687c63e736b6f9ace34d2f2a77a6797da3f4ffa65e22479b7fa62f7faa08620af1634e75552d9126d9c1598db0554d3a76261607bf09aef37ce1441f248c0d5d993be13a65f0555d71c648351e6f5cb6dedba829d2b25e93cf0d69269e3a567cb0b6c37d8d835a6d5c37fc6fa1287d0d914865615c23b02c0da65df04c255ceb692f033aaa063040d5f16672ab68078df84158e1c7c05ae93774e2e325d05966e0df61ecd357483bf7a080c5b67519bff5977c57324b3e6a745c28ef5a0bdc71d9c419c58367c51a731f023937a97dda32abd56932a0515e28e2f6300aae1d346514f8e9b1ca5478b0898fb85b892171edc32f38ca1305cfaddf917b3e76fc46df00fc65e239fb9287d2080635fd7bcded78c6eff71435eb9c949e31b1b69f66e7db50a0440b2855bae0768f26682651ef28de78d7d2b8c3cbdc9f3d1bfa5547109222114b37c451562e59016a8c371b8e215b59d7439acfe8d2eafe7cb10f4c3d513c0f2f16ef3a48c39f60a382db406093375069e6fc7267172edffeaa570deba4f355a7a31ff66bd57fb0ac50d55f1b36df89b8ea178cf1d9d1fdbfb35b86b29c99758352719548e0856bf5ac7445502a108437a541ca708ae9d3db9352701a5e20d93279c3b267ca7581520df32b31a356af84ae4bdf9e3b345afb1c88b1376afb207e7ab3d23c8db5c1edcda657ac216535cb90f0eeb37bf08032268b7b871a52ea0c320781efcf0583614634ea0d9569bd92bf7c5b6881df684d2f4f306e031eaf5231756a29772b1219251a82843f3d4360dbba9cb2d9fa682ed5fa85d505e0814320fc6d9aebf7339169afea7c197e3b079741545e94b129ca1f6c957df4602b6dcece78b445fdba312db68509309c8a4d25b9af03672ed2bcc15e5808cb25374d7647aa6ee4e149a21fbc1c375ac0127dfb98a6d83f01a086f11df2e3eaf823bb5c87ab78819e658774ac25b91b36b1dda4ea3148d057d9f86194ce1416579757d0a4eb1598c27c009fc640e321de9d04aa82dcdbf51520d2091fd747d8c46ab53222ccf6a4f35ec30ae1e6accbad50cab190006fce7eac9ef6401bf26293c4b7af67c90688b481b74d7116f7f3874d6574859a8c9225bc4bae2d1056b5626c42b125cc2dd26a2a82baa047d899a2d867e81ff965dbafa4d4da30f64826d56e2dea1a071be560819bd044f81d8387470c747fff234c469f836d221309d338f4396b3d83dcc341f16a0a3bf1a001a07da2180216289df2ed231747209fa612f81cc326ac2f957fd972b92635cd86ffe95a74104069cece5fe97b3509f6eee006095ab6051e248f6508d5c0aa39b99172bdfa3cac43f7b249e69e7c1e9f97df28b3bd3097190c722d4d955a0a3b1e93846d605dec8bfe34aadf7dee6de2b400552d2b684913c84e752435758ca974800ca403a34fb530c2198f8dc353e50a180f9df4d64b99e0972fa0f53c42b868aaff0c70e8a9e96a2d85cb2e7adb0f3e8d0a70d5573bc378aa7b24355d0f294d247aa9e2f731c5b329960c1d3b4aac5f22fa40b992eeccf6bbbb4655d3e4128b46e8e64c96a792e626203ec08c4280315b100ede2660cd7871a8e793c8e448c686bd238cd553d5b7ec9f4c6fdb135208cd9d75325086f993250245b7e93529c01de4ca57be69e5e73a608e167b264405be54d2ff668d65242fbd4696cc3d915af276f52d06074853e1899d99d756bc222dc334b15a786c0a4efad5e71c2992042804d680a1c86a0ea5c75320af0e4bbf982672cba7fce4d3cc10aa86696c1f8293b42daca44190ab06c412cab11f352e3da6e7acf9fa3f883febc774acb29334d3c4b1bf3ed3e1cc4650bcad52f483ffa7bb2fc0f022c8038e1ca6aa373f045ec09d27a29f207de9655a04a2993e09cf7b4174c0f0064964d46d803ff0b4327607a9c8ee73482ad713cd54e9e17397653824d9b8400112544be355a6acce3ca4b0eec6293bb5f3fa64bce7ac1f6f958ffc90f736a672ebf211c51b9a07a4f4f3911eb784f5cf56ecb96373491ac8b29490de6e972f2c372e6dff836454fcee86b2f2bc5e5f651ae0d897cedc087a78a2368e72310541004cc8c9d6a6cc7335b44e24cee7735180a65c2410a7292fc6388b32983b0ae6887c8f963ac4cd58a28bdb126eb05af3c2568c3f986435c925a633561dc3f1a608ebe08128bd06c597c15284be370a2082153987190dce483d5b6f9a327fd946e2c264655c9b2d557c0df6a5ee026e2a65d08b8f6e95b3b174c1423ef7f5e0365960f430fbc576686d186a698521a3422b0b539cd7e9a60307b056aff6f76869ad4c62e486bc119c03d02a3d1e0724568a372d62bd7270b8bdc0f9e03092de1d93228c5843b9d33a5b7db1f03b7d2ded47879d2b696ccb1918f2e23dae012d92f9becca712cf87ed84441f8de921b92e4dcaf2340990c0ab18555a21b248e792511a56216bc29668ea347caf51a8abbba6f72965ce141eda37e2b26f790797cbf70fe49dbc0bc8db2e4d68870187b1abc4dd92432993ae84f0792f09515cad08ec4cebbdfeeb1a5f45d77142af16750465ab6e84c610dd5bbd31e9fe3b678b2378cb481cb545681d79f9d80809e5fe9203f431f4f67a17723594e705ab5e32da496a083888304e2a2b7ff032d12189383a79f58948ab54a3cd18d25c3a9863c0d3e8e5a5163ba2cf909db9b4991d0a89e22e1d2322c4bf50f0d2df8e34b8e576df493720f51d0828fd1192245a5a0b833e60fee554aa188dbeccb2d65ba70c1fdcb97d20b67503fa657d1b4f31898fb8e72d3785f41673d6c58bfbd8bed22eeae38232615b727648093e608ef61b097891e60521332dcb89144224e6471390ec7729802ad5877851b0849cb3063d73c887e2f91a6d0c5f1d9a07438a256e92b66cedacfc02bd94568df7142298bc0a365caffde1ad9ef00b69ab40765eb22be65988686e8f996360f902432f7abd987be76644b087b1073da201999f5bc7dfdeed4a008417d934ea506fe8313bc445db1f21c79e336362b860923c38a57f7d39a52e3711d2d4b931c2c55fb1d68ae2d69b3b31b51e106c2e241fcc517f068b50562d918992b98f486fd322c07208721894329c00f724112434b070bc8cfa139e9f2f6c38ff0b3c376adaa222e0c6707cb8058a297893ef74a85d8fae7feb7e90602faca6cff357b05b6c33800ffd880726a662439a345b6f8cd3a914a4d94adab05a9a71c877973f118dab7842f4f3a6550bf618a0c4f45e76485b025a1e8f12f308ae82d686f5ce3fe8e435c4774264c85954c87fdb64b8601aee01b71f842344f53e6e24baef552f3cc82196e8d18a1a62202cd6efc90e733e6d5063f383b59cfae6eaf3c5af5e3c8fe1497164c64f85402b8d31b4b1935b99ed55e655de48b7a157f7333076548428831707244487ad3e691fd8e923deda2244f1c85d819f9c6d3b8c4b88fb94e16603593641586e5161d4305029c965b13850c85cf7892fcbf00118319493c28f4d1ee452b6a452f4a9921f06c6060c9078c071b2738c1edf6f543229fecca6ef09fd750fa855222249859df6dbc7f22f11b14713bf061f09d416be6918dc35afa2f6dbfa6ff37837bf906d9ec7b7f64881e7e219f6ffb37ccd1224bbf1648dfe67f2dd6760cb8f047ec41ebdd16d5f0a53c944fd698062a4378165bc72b580b4b2f7f15cb04f381cdee83b5fbb2f04d7ae5d18e246f01737e5ceeb3bccc90fa432fad0b78658cfb042b3f5a7910a8505ad74535f809d34d577873db9c71544d995fe75a337069385961e0e9b4c4b8755ad2c539376d6a4332e9bc0df1b8f77ee76c389d78a391afc5e9b5d5629acf99dd356a56e807342b9f4f7e212830c3e04851568ecab78519c029ae348a3ec9a35681dc4597ba029c17702ebd6dc8b8e2f9483bf4373b68dc9c76e0d38da005787807e7a7587499da2d674b47038f9bec340facd0a31c0918ef50bf216c3a44f154f0e94fc1dce3f860a527c3e7d636fc42cbe5c6e961372bce8f9f013abee020f29838406a9e061149546f078dcff5a002bb01ca52c273b400e245b19054c9f45e6ec6e4542bb561c74da126e86e4b58c060e37593108375c65188a8e887c95a83cfdfe4431e360177431cb677c53c56bbb4314d50fb8a7d97c29d0b538f6023ff226acaa45bbf1920159d481fa3a0befab7d560f9a3626cd32b922edc7abac88dc90a2b7bf4b8b3037110808ffd914ce5246922cd403d7bcbe73efa49a10fdd748b3357b8a894edba55c0d2a88d41cb09a3b8a328e80085588dfe5881f1f6a55aeba7ad938df54a27811d30e80323bc6894ebcc2fee709684b737f0a1e2833167914b7512347101252066c0c1ae3fa087a08789ff1b49d046c5c6855cbeb255432dc791ed6dd0a377adc47338a2516a9cb3152bb4fa9b19bf60761e6ff1abb8fb76d477ea75127fbffc494b0fd80ccff9d36811254caba825fb3ebb2d5d007513c6b907250b19a49c9dfa63413cfbe68167d9cc206c1a0c540464384bed42c32209ea39bf12e1bab5b128c0b267731d3f87b0e03e7e12db671420f8a46bea3435c3241e49308b07f7fb0356605acdc85cfa18b2607566dbab6e45ebbd4d30b5dcf2df1b60054d074f81f197014d2880d33a67b9aa5365157cc73c2bc17c5c99ca642cbd01e3f59bca3bd88cc4edbce45de7edde94eaaf7399a962d2ef02a4ef0d6077b803de16c2054e9137f2821a46781c716bf558763dad5295820a1247689e3dd706b329384a041fb47620a5a685e3627454a1d202ba5493a24241701bd06c7ffab35a317ed8226aa56dcae5648587618fff1dfd006fa27badba49b3aa0bf2c7eab8f37dcb8e1bb3f95d4c8e44f1412fb1409f1349f239e0f3d10446f8058236ebc4db8066f5e8051ea6f8b1f0e7a1c7d2ac1c38de66e078834cdefe7644e3184890677c40fe6d072e3a0a90d26f6c8a7c931fd25e8f828fa726b65bf7580cdb6168ccf84b0660f36c64324c0fe8cfb53a060b2a1396845653bd510d0535dab3ac29e18158d995376daa2bd7b30f415b8e4fe9af5b67700d27d2734b0238eab2ce40ca385160111d3f609c90d6a2b3967b14ab89607ce09fba381312cff13af63ac6907fbc680bd13d262a76b2d688550d763e4e016e3857b56d3629861771d759bdf5ab939d757485a1bc23e6d78e78ac72a3b68b131f0c81866951e9ad5829dcffc2e176c4e715bc700f5521d8836a04ec7328a662a3e1d61e34e25ffec9b2974b324301042a1b67afbf62d6e9fb44544cebf32a8623248f916491fcc0b126c53228631a76e4228c6599be2e1ad82d772f58840efc2196a056907320293b76787f5918546bb62bd1601c11b8447b1ba466205cd79d8b295ae18d0e9fdeed9719ac7e9348314bbdecb1173234f83aa050315146392b5e586cde126f978b790410421ea5e1f1bd3edb45ef2e8d4402471e4d061a741caba276b74254c85869c053b872f5b62267cd17a5d28d36d701d4a82532aed916783c988975bb4db59bae621b50a33400ffdae3d19cdc31d830e8db0ef3f28d66551744245a42feecae7bd34eb79ade6b478185944fd8ac427ce9d02b8076e34180c619de5f89cc7cf88d8029240af673b24344c0315595239a372409b23e829c81d860d11f19651fc57d39b3d04d3eb06db858846d413f5afd51145bfa22e93420daa57d966434d9698cbce930cbf4f918d2e614d3e4d203e52d69de9ecfe6b98626b0631c36857e6ab4c291d29f005bb88058d60094a1b6bf97bf0419c80f92469ebb19d99d5fa8c95131a9b12b96c753bf7457c5479299ad7ecca1fa63eeb7795efea9fbf361d5da3041317f87bf482c9c1d0be4affebfacdd54d21c8c1133228b45bea93bd4beb9157a4d9260cf54da4628a831824467c80356674bbb0b9f79e1769c46e448ef5d30e9c3bde821bc8845c4a9523cbde28a1e2190262c0db1cccdc7d04dc757838b95b03913740cdbaf332b6129b6ba6e69e61f50679462af3dce6c8be874a84f2c049fc10af028af82d297b67201390c02e749635f1f02171b34748494e84cd975111fc380eb809e18797da422ff4fcf0ea3d98a123f2a1482d6d7db77c145586d7975117fe7da5338773616d95de1cde107cb17003266627f01e1e3e113450b2837f522edf89f8074a20df17dd63135c50115ec207cce602c86ae35e16787d86c88644ad5690331bb1ccf08e9901a8bf6653d8101e58c9790d6250b7045694c63e18e98da192247a98bfdfd219a125e44addca385f02ade41779e8528df61ba39f8766e7717d9b8a5639242c1b4e56628de1a61328da9e4ceb94b10077cc84be00cd3048925001d5161087c2e85d323c3ad1d8dc687fc4961da863e6acc23bdf865da7ee5ddd42e0701cf1311ae0bd7685f4b0b8dfc97639dea679c25fce58c0c058e83da85392f2318acbd4188bd5319b4f166256a405fbe27c8a9fad30bd2d471291a737afe36945fcb76cdf6024ca6d450562f3ecf1cfab1d7135527780d1668cfeea933d8eb7f1b3437427a8d6718c25145c0b2f285ca687cd22ba2250a2efa74cd33d1942ef3ce8b81d0d4eb9160a185f5488f5b7668f34a915f0b829bb9e01cf08a97d69472885cf86ed57bc5cb802b60873b90efc116984b40895956a319463ced1cf6d77041b6b7d1df5e9729294e8618778849cfa46de7a10d5bfed7ee49e57f43a43da01ae302f2487dfab74a6852a6f57af50f7b796db327d3c198682696b95329f2a49ce8fb6134c5f2fd6015af3c24cad3577f9c7447535302e1633c12ab0410f072bf198724c861b5c632f94505d90201b0bd1019407e74376b6e8caa161fe7e68ab097b5fe2bb3e6691325e319209d3eb753ee8790c187f2b916f3c5bc0709919ea20fcbdaea1c07b0a18f21efe1c68b7b9f33bde34ab70cb5352c74d4f587e4b74270f7002e2053ff50a31c520b42b151dc08019f5be0abcd75f84cacebc5b96a51942020797ed1db1cbfd8f20369aea9081c1ecbd5ad866848f72d236b7e9d5e78ba7cdd9d928f44133d28c85f7d64851e569d5eae10df48a9a8364c0525e758d8a136c991b102f96fe9387e0938c8edf956c235f4ff6abad9511a3403f3be9f035fb399776bca4ab97ba897696df7f361cfb89d2350fc044463ebe29e8b54489850afc95a83cccaaf97676484598df12de872ec3bc03207b5f3fc6bf47f2051a5a4a058f1074a559ea3d68d8a12e60fe08b08d35d7eaee9cd922cfc0d6aa275ee6f4bfeec8a9d977ba1346195ba16cc396f6752bee81a47d79e0e0deb7b037d5f9741f0d775835419d212bed7cb143dd8d7579a5d8453ad020a81ea7577ce14b3a00c05d78947486835dc8856bc2aebf9f8d6c7c7720a32de26857691e41d3cd5155d12c6b8f7f752cdb323f9d9c8c4128e5b4157536b99df713c21918f070933e358703e952df8e2b856836cc1449b96c4f2bf6754ec2952a321e5543ba53698f8addbbf844d740fe4ce8ef7277090c3226da14ded1ef75ac237d95cee1f6804fdae132a1212b3d0edf3e25293b13698222fec34315b39feb78e7b0edf693d5fc6fdf7155ee3db121e09523e0c087212d6d0713b14b1cb9fd4ec93ab82e5f1cbbced93ef64dff31ba76b1acc9041b2c9ccc7b3a21d39f7a5085c1027645064983d540f1fb17f1a7b0618a142263c05421ed3d2350093e916a3cc143a9d355c40cc1a2a113495ef79657396e29a8e5b7fc3b4ff5af514571cb29c338e980c92ba3c5538f447e6dfbcba2b634f8aa2413c789e4935dc645530b04d95388377e3a4a496170ca4934f7657e8827a4d2598651dd3bbf6a8afa68cea19d4fc74fb185c3d827de6a46f4434716ad8f356a0aae867beadafa178e47ad63ebc13831b6f4f1b445d35f95fff56f963606a7080db8d9854d337c7dd17da54c7eb1eb94ec9fceda2c2c89db5cc9e49999042d5b30dbe937aabd5a7c727d6d06a4e7c5abbebcc19f441e252b67ca9090396a1541c0f709d0324a773e9380ccc12cae6b0f11b4bec5bc49114c7ab9de565c95907b377ef7d5ee35b6aed09f916403c9cdffc58b45ac13dabc1e678751e5a822ae97da203de6751e3707e8d82aa86306a4e6fdca46c64dadde59de6cdd7b7a0118cd95abe1ce30716efa28da18b235baa685a982f56a8dc235473af21291fb22c24cf0ecddb83448979abc2a1fd4ff657cb91316348a28b38f59e14e36e4adbf4cab41c0c42a5afccf394b5821566bb960922204b597c9ec60b47181a1f5ce2634e5e2b1132e14d100e62a286137cf40bf6fc2389a9822a2d473e93952327e981e4d5fb92c604786436e84cf71b5c2504cf1627aa0c3bdaf187feeabba25d1c81a02c517018ccb12c211c408a1bea5ce6963d4d421e7561f7a13f2261316e4efcd60fd946cdcebfe05e4cab9c198660f1ed167c49573f20e4068d6b71d683c0bb4e77ba9b086a25cb47d4ab862c303f9efc9f51416d36149434b845d01702256eb9507e81c640b1c60277cfb7a280091c4c34640ba95dd7bf44c52db017111666fde84d51a6f7d5c53db1726eb77f6c5a27b8892a4a0f4e390670c52081847fdd9353f872eeee367bde070b9d365cd4d5848d7d0c4fcb5a2e3a281b839d7b0bfcc371fffc8b4a30625ad341deb8011d1b5dc6c304921eb6acf1c12ac04aeb19ad4f099477db78f01f803ea15527e5fa98deac580cf9661bf017e8c7d64fabc5767fad5d42f306c3f1d50b9ffe9537b50ccd639da28d64c4d8c96a9721a6bc06b3b3f2092785ae7cdbca29d0595261b22733a1ff1d582746725a805f29259eae73de96a55ee07f2933474c7498d7429b674c8370347952a7806be0d7d97d6b70fab3618ec018a10e06f9528fb367f59fb8bc72ea23c77399e94f02861449a3755a7abb17e560eaf6dbecc6ae25bd1c631b710dd0f4a3bf905ca731689815637e89924c0fc6d0b14ef1762ce70a28e2fbef509d522675af4d516dcae71458944f800c3f0ed61a770ed9653241f753fe6fb3717659b36967edeed696f68d2fea6ee382908e8ba4e70e093189a502daba6140381d33c7b32b3745e73976216fb3c7b5bf3143d1b901d0aaca25487ce5b1ebe31f6c129991ea7375a74cfb7b53ced5cf989743fdd6fd28ab80c569603c017935ce21ca0631748649102509350ea003d3712fccd0e24dd66c3ea081f32190e80091102d9918774bad02a20599fdce20f39f50bab2bc571ad42093a5b2959045682439f71aec283d4595b9b7b4ef4252bfc9d0f154a3ab16a48a2cf6a646257cc4ed85d579d7f65b25bbd744d1359806d5c6cc9cc501421b3c9d73f308a54c3c3fcdca08a44f8fa4528ce1ea552c9e0f710f3f983af830f29209856221b4f1586c239a09f02e0cddbb67d57ae5c959a8f376cc9b482ec8231866860fe812b129f0ec3de9d762e4035b78567d345758e52b80fe77fbbf19052ece80d2142cb881b6032c3f45ca2564304c0c9e911f5b294eb2c32b2c818e702ab8c2c785d20bfadfd2096e0160a59b44754cec0861cf735a5c49e338fdc2ecbb6cd0a13edc9208dee783d5e40bf57b0118c6319c59475339c6a69f634a7eec349c4e66b9293973bf359543c17b4459ad8e22c5f710f913598f800aa931fc3b632934382b268ca33d886b063df95da90275e2d76c018c1788d00f9d40c224ae9a9b39390524d6eb186ea8243726313aadb3759ddb732a2137622f9c05980a72900784b80483803186187c1aadbf1924bd34c5b5ccdebbe8e414ae9545c96c9b04c4e7450dd73e5730714cf14c877ca236ad432262ee12819dae05cca0a1bba678557e02ffc30072e735c79a2d09f3975859a4d77981aea95a1d33ad7f5594dd561233678dad7c7aa0e3651c67eb726b03fbd07e414582c721639886c4e9c1337d07a6f7c867066a3a55f1a540b7d23d3d51fc88afd60c08589383e97f0306d91430bcc155b28e7a6bc2f3e856dceb05536fd6b272383997eb22aab0a78549cc229ecf62416f5f0cc1d4785a4c100e783190950e867bc5553495019dad1671f4dc263e22995fa86469def0883a673f9ffab2fd9673a3d57bf7f2232fc5807f5e36dda0989fdc486831c924e21bc9609b5938779e3a35bf9c0946d8c888ab509e79bea4ad136ec4d14564db5af2fe9fa88c8e6a94ce6449271e197539499109bc2d5959c11da59598dad8e511bd7840cc697aaea1ff3cad6936597599d8d2842b6565fb821ec95555762fe4d0b876dea36013c5b96f264d4a5555b1bfaa1e3e344ad91542c2a2351686e45b1875c8a7134a4d6af7b7efd1ce5f226896b1841f24432a6ac0f728509eea7b4f171fc2ef8e8c57017c7a9edda3e08a9cda413476d3845ee0e5698781462449e9b5a99938251ac1a9a38f5ed732b3bbb89e4aee4ac2c1a10741800061ad44f3dfbf60933571cb9373147fae06595349fc137b7c72328a171a62e06cc0133f1a062839e4d9f619cf527ae44b965a1c59d4a29496c46185003f867e6cecf6c03703daeaf57821e6c9e12761a5db1fb979ec4726e645055ea7bc2be570fde7bfd09cf57356642dacfbf1e8bf38977385476a1569d119244de6fb6a61abf5f4f92bba0b951e5cfbb89b1c281be07d47493810212bece3dac8e31a13b86831849661f1448ad1cc7371ed6fa0e8eaeb4e3c7ff2d6d070d992ce092c87bba0531912e504b98e001386d3b87af852d53c92ee9aae4be4c6201da0e5228f97a5e5a0f4b0c06281ac67ebce9da3fb203104f4319f8b256351593017a95ce52eaf3a21715b08ef265ddaac6046d7faffaf2af615d412aa5d5c7119cada8599e310df68dd202734538f6f67cb69698eb39f0066b08a4d6e9f850afe63513f1c88001661ede120fc534ba3920776c474bf406d8329f790099696436c59481933251713604eb8ac7346baf949bc8db7171abf0e11f25a49c216170c5571a7545f4c2c5b03f0c3a2e5966055429cd33f8c60e86adbad7d47733bbb2a22ce4baa2d5136e76cf844b862d799510cbb8110b13808dfe4b367d1092e5e5d482e3e3a549d093dc4770d440229c59a347be35c0c0117d1d03198f0b575b2631b9239ae545c59c3180a6509d159955d69ce399c6f5c59af501ab6e90dc05b8b0bd5007d4d07dc3ee1af4834d8e72a7202d7ff4a1dd17dfcd84ab22e333aa549f01b067d8b4a722ff885d33647f2f3304a337b1180a8ea2c80dacbff7f9afb658</script>
-</div>
-<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>lab地址：</p>
+<p><a href="https://www.hackthebox.eu/home/machines/profile/219" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/219</a></p>
+<ul>
+<li><h2 id="10-10-10-168"><a href="#10-10-10-168" class="headerlink" title="10.10.10.168"></a>10.10.10.168</h2></li>
+</ul>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041601.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>80端口closed，直接访问失败</p>
+<h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041602.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041603.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>提示源代码在某个目录的’SuperSecureServer.py’ 中。</p>
+<p> 扫一下目录，是develop，得到源码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="代码注入"><a href="#代码注入" class="headerlink" title="代码注入"></a>代码注入</h1><p>注意这里直接使用了exec：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>直接exec我们可控的path，那么我们就可以在path注入python代码得到reverse shell</p>
+<h1 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h1><p>代码注入，得到www-root权限的shell：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041607.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041608.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>接下来我们需要切到robert用户：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041609.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="decrypt"><a href="#decrypt" class="headerlink" title="decrypt"></a>decrypt</h1><p>robert用户目录存在一个加密程序，out.txt是check.txt加密后的文件,  查看下代码就知道加密算法只是异或，我们就可以用这个程序解出来key：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">python3 SuperSecureCrypt.py -i out.txt -o /tmp/key.txt -k "$(cat check.txt)" -d</span><br><span class="line"></span><br><span class="line">cat /tmp/key.txt</span><br><span class="line">alexandrovichalexandrovichalexandrovichalexandrovichalexandrovichalexandrovichal</span><br><span class="line"></span><br><span class="line">key : alexandrovich</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041610.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>然后使用这个key解密passwordreminder.txt：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 SuperSecureCrypt.py -i passwordreminder.txt -o /tmp/pass.txt -k alexandrovich -d</span><br><span class="line"></span><br><span class="line">cat /tmp/pass.txt</span><br><span class="line">SecThruObsFTW</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041611.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>然后使用这个密码，以robert用户登录，得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041612.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="BetterSSH-条件竞争"><a href="#BetterSSH-条件竞争" class="headerlink" title="BetterSSH 条件竞争"></a>BetterSSH 条件竞争</h1><p>在BetterSSH中有一个python文件，会读取shadow,把password写到tmp之后进行校验，并且有一个sleep，我们可以尝试在sleep的时候去读取tmp，条件竞争</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041613.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这里我们使用两个SSH session</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while sleep 0.1; do cat /tmp/SSH/* 2&gt;/dev/null; done # session 1</span><br><span class="line"></span><br><span class="line">usr/bin/sudo /usr/bin/python3 /home/robert/BetterSSH/BetterSSH.py # session 2</span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意需要绝对路径</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041614.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041615.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root</span><br><span class="line">$6$riekpK4m$uBdaAyK0j9WfMzvcSKYVfyEHGtBfnfpiVbYbzbVmfbneEbo0wSijW1GQussvJSk8X1M56kzgGj8f7DFN1h4dy1</span><br></pre></td></tr></table></figure>
+
+<p> 解出来root密码是mercedes：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041616.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>root不能直接SSH登录，使用su切换到root，得到root.txt：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041617.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><p><a href="https://github.com/Tatik07/Hackthebox/blob/master/Obscurity-Shell.py" target="_blank" rel="noopener">https://github.com/Tatik07/Hackthebox/blob/master/Obscurity-Shell.py</a></p>
+</li>
+<li><p>Hackthebox Obscurity - YouTube<br><a href="https://www.youtube.com/watch?v=0qXFSkPeNuo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=0qXFSkPeNuo</a></p>
+</li>
+</ul>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -210,7 +399,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2020-04-16T07:20:19.156Z" itemprop="dateUpdated">2020-04-16 15:20:19</time>
+    Last updated: <time datetime="2020-05-11T02:44:10.756Z" itemprop="dateUpdated">2020-05-11 10:44:10</time>
 </span><br>
 
 
@@ -236,6 +425,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -254,7 +445,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/04/16/Obscurity-HackTheBox/&title=《Obscurity - HackTheBox》 — 喵喵喵喵&source=有东西被加密了, 请输入密码查看." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/04/16/Obscurity-HackTheBox/&title=《Obscurity - HackTheBox》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -405,7 +596,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
@@ -437,7 +628,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/04/16/Obscurity-HackTheBox/&title=《Obscurity - HackTheBox》 — 喵喵喵喵&source=有东西被加密了, 请输入密码查看." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/04/16/Obscurity-HackTheBox/&title=《Obscurity - HackTheBox》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
