@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>セキュリティ用語事典 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="专业单词对照表，参考了一些技术博客和 セキュリティ用語事典 - ＠IThttps:&#x2F;&#x2F;www.atmarkit.co.jp&#x2F;ait&#x2F;subtop&#x2F;features&#x2F;kwd&#x2F;security_glossary.html    日本語 English 中文    デシリアライゼーション Deserialization 反序列化   シリアライゼーション Serialization 序列化   安全(あ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="セキュリティ用語事典">
+<meta property="og:url" content="https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="专业单词对照表，参考了一些技术博客和 セキュリティ用語事典 - ＠IThttps:&#x2F;&#x2F;www.atmarkit.co.jp&#x2F;ait&#x2F;subtop&#x2F;features&#x2F;kwd&#x2F;security_glossary.html    日本語 English 中文    デシリアライゼーション Deserialization 反序列化   シリアライゼーション Serialization 序列化   安全(あ">
+<meta property="article:published_time" content="2099-12-31T05:07:20.000Z">
+<meta property="article:modified_time" content="2020-07-03T05:46:17.658Z">
+<meta property="article:author" content="暗羽">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/%E4%B9%A6%E5%8D%95/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">セキュリティ用語事典</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">セキュリティ用語事典</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2099-12-31T05:07:20.000Z" itemprop="datePublished" class="page-time">
+  2099-12-31
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-セキュリティ用語事典"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">セキュリティ用語事典</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2099-12-31 13:07:20" datetime="2099-12-31T05:07:20.000Z"  itemprop="datePublished">2099-12-31</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>专业单词对照表，参考了一些技术博客和</p>
+<p>セキュリティ用語事典 - ＠IT<br><a href="https://www.atmarkit.co.jp/ait/subtop/features/kwd/security_glossary.html" target="_blank" rel="noopener">https://www.atmarkit.co.jp/ait/subtop/features/kwd/security_glossary.html</a></p>
+<table>
+<thead>
+<tr>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>デシリアライゼーション</td>
+<td>Deserialization</td>
+<td>反序列化</td>
+</tr>
+<tr>
+<td>シリアライゼーション</td>
+<td>Serialization</td>
+<td>序列化</td>
+</tr>
+<tr>
+<td>安全(あんぜん)でないデシリアライゼーション</td>
+<td>Insecure Deserialization</td>
+<td>不安全的反序列化</td>
+</tr>
+<tr>
+<td>脆弱性(ぜいじゃくせい)</td>
+<td>Vulnerability</td>
+<td>漏洞</td>
+</tr>
+<tr>
+<td>入力(にゅうりょく)</td>
+<td>Input</td>
+<td>输入</td>
+</tr>
+<tr>
+<td>出力(でりょく)</td>
+<td>Output</td>
+<td>输出</td>
+</tr>
+<tr>
+<td>情報(じょうほう)</td>
+<td>information</td>
+<td>信息</td>
+</tr>
+<tr>
+<td>ブログ</td>
+<td>blog</td>
+<td>博客</td>
+</tr>
+<tr>
+<td>ハッキング</td>
+<td>Hacking</td>
+<td>黑客活动</td>
+</tr>
+<tr>
+<td>データ</td>
+<td>data</td>
+<td>数据</td>
+</tr>
+<tr>
+<td>バイナリ</td>
+<td>binary</td>
+<td>二进制</td>
+</tr>
+<tr>
+<td>サービス</td>
+<td>service</td>
+<td>服务</td>
+</tr>
+<tr>
+<td>システム</td>
+<td>system</td>
+<td>系统</td>
+</tr>
+<tr>
+<td>エンコード</td>
+<td>encode</td>
+<td>编码</td>
+</tr>
+<tr>
+<td>デコード</td>
+<td>decode</td>
+<td>解码</td>
+</tr>
+<tr>
+<td>文字列(もじれつ)</td>
+<td>string</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>署名(しょめい)</td>
+<td>signature</td>
+<td>签名</td>
+</tr>
+<tr>
+<td>暗号化(あんごうか)</td>
+<td>encryption</td>
+<td>加密</td>
+</tr>
+<tr>
+<td>復号化(ふくごうか)</td>
+<td>decryption</td>
+<td>解密</td>
+</tr>
+<tr>
+<td>ソーシャルログイン</td>
+<td>Social login</td>
+<td>社交登录</td>
+</tr>
+<tr>
+<td>仕様策定(しようさくてい)</td>
+<td>Specification development</td>
+<td>制定规范</td>
+</tr>
+<tr>
+<td>ユーザー</td>
+<td>user</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>パスワード</td>
+<td>password</td>
+<td>密码</td>
+</tr>
+<tr>
+<td>ユースケース</td>
+<td>Use Case</td>
+<td>用例</td>
+</tr>
+<tr>
+<td>セキュリティ</td>
+<td>Security</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>トークン</td>
+<td>Token</td>
+<td></td>
+</tr>
+<tr>
+<td>サーバー</td>
+<td>server</td>
+<td>服务端</td>
+</tr>
+<tr>
+<td>クライアント</td>
+<td>client</td>
+<td>客户端</td>
+</tr>
+<tr>
+<td>ログイン</td>
+<td>login</td>
+<td>登录</td>
+</tr>
+<tr>
+<td>ログアウト</td>
+<td>logout</td>
+<td>登出</td>
+</tr>
+<tr>
+<td>登録(とうろく)</td>
+<td>register</td>
+<td>注册</td>
+</tr>
+<tr>
+<td>アプリケーション</td>
+<td>Application</td>
+<td>应用</td>
+</tr>
+<tr>
+<td>セッション</td>
+<td>session</td>
+<td>会话</td>
+</tr>
+<tr>
+<td>発行者(はっこうしゃ)</td>
+<td>sender</td>
+<td>发送者</td>
+</tr>
+<tr>
+<td>受信者(じゅしんしゃ)</td>
+<td>receiver</td>
+<td>接收者</td>
+</tr>
+<tr>
+<td>ブラウザ</td>
+<td>browser</td>
+<td>浏览器</td>
+</tr>
+<tr>
+<td>ハッシュ</td>
+<td>hash</td>
+<td>哈希</td>
+</tr>
+<tr>
+<td>アクセス</td>
+<td>access</td>
+<td>访问</td>
+</tr>
+<tr>
+<td>リクエスト</td>
+<td>request</td>
+<td>请求</td>
+</tr>
+<tr>
+<td>レスポンス</td>
+<td>response</td>
+<td>响应</td>
+</tr>
+<tr>
+<td>サイズ</td>
+<td>size</td>
+<td>大小</td>
+</tr>
+<tr>
+<td>ライブラリ</td>
+<td>library</td>
+<td>库</td>
+</tr>
+<tr>
+<td>プロトコル</td>
+<td>protocol</td>
+<td>协议</td>
+</tr>
+<tr>
+<td>フォーマット</td>
+<td>format</td>
+<td>格式</td>
+</tr>
+<tr>
+<td>ステートレス</td>
+<td>stateless</td>
+<td>无状态的</td>
+</tr>
+<tr>
+<td>アルゴリズム</td>
+<td>algorithm</td>
+<td>算法</td>
+</tr>
+<tr>
+<td>パラメータ</td>
+<td>parameter</td>
+<td>参数</td>
+</tr>
+<tr>
+<td>タグ</td>
+<td>tag</td>
+<td>标签</td>
+</tr>
+<tr>
+<td>ドキュメント</td>
+<td>document</td>
+<td>文档</td>
+</tr>
+<tr>
+<td>コンテキスト</td>
+<td>context</td>
+<td>上下文</td>
+</tr>
+<tr>
+<td>関数(かんすう)</td>
+<td>function</td>
+<td>函数</td>
+</tr>
+<tr>
+<td>公開鍵(こうかいかぎ)</td>
+<td>Public key</td>
+<td>公钥</td>
+</tr>
+<tr>
+<td>秘密鍵(ひみつかぎ)</td>
+<td>Private key</td>
+<td>私钥</td>
+</tr>
+<tr>
+<td>楕円曲線暗号(だえんきょくせんあんごう)</td>
+<td>Elliptic Curve Cryptography</td>
+<td>椭圆曲线密码</td>
+</tr>
+<tr>
+<td>ファイル</td>
+<td>file</td>
+<td>文件</td>
+</tr>
+<tr>
+<td>デバッガ</td>
+<td>debugger</td>
+<td>调试器</td>
+</tr>
+<tr>
+<td>リソース</td>
+<td>resource</td>
+<td>资源</td>
+</tr>
+<tr>
+<td>文字化け(もじばけ)</td>
+<td>garbled</td>
+<td>乱码</td>
+</tr>
+<tr>
+<td>オンライン</td>
+<td>online</td>
+<td>在线</td>
+</tr>
+<tr>
+<td>オフライン</td>
+<td>offline</td>
+<td>离线</td>
+</tr>
+<tr>
+<td>オンサイト</td>
+<td>on-site</td>
+<td>现场</td>
+</tr>
+<tr>
+<td>配信(はっしん)</td>
+<td>Delivery</td>
+<td>发布/传送(信息)</td>
+</tr>
+<tr>
+<td>エンジニア</td>
+<td>engineer</td>
+<td>工程师</td>
+</tr>
+<tr>
+<td>インフラ</td>
+<td>Infra</td>
+<td>基础设施</td>
+</tr>
+<tr>
+<td>ペネトレーションテスト/侵入(しんにゅう)テスト/ペンテスト</td>
+<td>Penetration test/pentest</td>
+<td>渗透测试</td>
+</tr>
+<tr>
+<td>ポート</td>
+<td>port</td>
+<td>端口</td>
+</tr>
+<tr>
+<td>ディレクトリ</td>
+<td>directory</td>
+<td>目录</td>
+</tr>
+<tr>
+<td>スキャン</td>
+<td>scan</td>
+<td>扫描</td>
+</tr>
+<tr>
+<td>メモリ</td>
+<td>memory</td>
+<td>内存</td>
+</tr>
+<tr>
+<td>読み取り(読み取り)</td>
+<td>reading</td>
+<td>读取</td>
+</tr>
+<tr>
+<td>ツール</td>
+<td>tool</td>
+<td>工具</td>
+</tr>
+<tr>
+<td>ログ</td>
+<td>log</td>
+<td>日志</td>
+</tr>
+<tr>
+<td>ゲートウェイ</td>
+<td>gateway</td>
+<td>网关</td>
+</tr>
+<tr>
+<td>改ざん(かいざん)</td>
+<td>Falsification</td>
+<td>篡改/伪造</td>
+</tr>
+<tr>
+<td>共通鍵暗号方式(きょうつうかぎあんごうほうしき)</td>
+<td>common key cryptosystem</td>
+<td>对称加密方式</td>
+</tr>
+<tr>
+<td>公開鍵暗号方式(こうかいかぎあんごうほうしき)</td>
+<td>Public-key cryptosystem</td>
+<td>公钥/非对称加密方式</td>
+</tr>
+<tr>
+<td>クラッカー</td>
+<td>Cracker</td>
+<td>破解者/恶意黑客</td>
+</tr>
+<tr>
+<td>クロスサイトスクリプティング</td>
+<td>Cross Site Scripting</td>
+<td>跨站脚本/XSS</td>
+</tr>
+<tr>
+<td>クロスサイトリクエストフォージェリ</td>
+<td>Cross site request forgery</td>
+<td>跨站请求伪造/CSRF</td>
+</tr>
+<tr>
+<td>公開鍵証明書(こうかいかぎしょうめいしょ)</td>
+<td>Public key certificate</td>
+<td>公钥证书</td>
+</tr>
+<tr>
+<td>コンテンツフィルタリング</td>
+<td>Content filtering</td>
+<td>内容过滤</td>
+</tr>
+<tr>
+<td>サイバーテロ</td>
+<td>cyber-terrorism</td>
+<td>网络恐怖主义</td>
+</tr>
+<tr>
+<td>サイバー犯罪(はんざい)</td>
+<td>Cyber crime</td>
+<td>网络犯罪</td>
+</tr>
+<tr>
+<td>アドミニストレータ</td>
+<td>administrator</td>
+<td>管理员</td>
+</tr>
+<tr>
+<td>冗長化(じょうちょうか)</td>
+<td>redundantize</td>
+<td>冗余化</td>
+</tr>
+<tr>
+<td>冗長性(じょうちょうせい)</td>
+<td>redundancy</td>
+<td>冗余性</td>
+</tr>
+<tr>
+<td>二重化(にじゅうか)</td>
+<td>duplication</td>
+<td>备份/副本</td>
+</tr>
+<tr>
+<td>ショルダーハック</td>
+<td>shoulder hack</td>
+<td>窥视(从后面过肩)</td>
+</tr>
+<tr>
+<td>シングルサインオン</td>
+<td>Single Sign-On(SSO)</td>
+<td>单点登录</td>
+</tr>
+<tr>
+<td>スクリプトキディ</td>
+<td>Script kiddie</td>
+<td>脚本小子</td>
+</tr>
+<tr>
+<td>スニファ</td>
+<td>Sniffer</td>
+<td>嗅探器</td>
+</tr>
+<tr>
+<td>セキュリティホール,Security hole,”安全漏洞(用””脆弱性””的比较多吧)”</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スパイウェア</td>
+<td>Spyware</td>
+<td>间谍软件</td>
+</tr>
+<tr>
+<td>スパム</td>
+<td>spam</td>
+<td>垃圾邮件</td>
+</tr>
+<tr>
+<td>セキュリティポリシー</td>
+<td>Security policy</td>
+<td>安全策略</td>
+</tr>
+<tr>
+<td>ソーシャルエンジニアリング</td>
+<td>Social engineering</td>
+<td>社会工程学</td>
+</tr>
+<tr>
+<td>トロイの木馬(もくば)</td>
+<td>Trojan horse</td>
+<td>特洛伊木马</td>
+</tr>
+<tr>
+<td>電子署名(でんししょめい)</td>
+<td>electronic signature</td>
+<td>电子签名</td>
+</tr>
+<tr>
+<td>なりすまし</td>
+<td>Spoofing</td>
+<td>欺骗</td>
+</tr>
+<tr>
+<td>ラボ</td>
+<td>lab</td>
+<td>实验室</td>
+</tr>
+<tr>
+<td>バイオメトリクス認証(にんしょう)/生体認証(せいたいにんしょう)</td>
+<td>biometric identification</td>
+<td>生物认证</td>
+</tr>
+<tr>
+<td>パケットフィルタリング</td>
+<td>Packet filtering</td>
+<td>包过滤</td>
+</tr>
+<tr>
+<td>ハッカー</td>
+<td>hacker</td>
+<td>黑客</td>
+</tr>
+<tr>
+<td>バックアップ</td>
+<td>backup</td>
+<td>备份</td>
+</tr>
+<tr>
+<td>バックドア</td>
+<td>Back Door</td>
+<td>后门</td>
+</tr>
+<tr>
+<td>バッファオーバーフロー</td>
+<td>Buffer overflow</td>
+<td>缓冲区溢出</td>
+</tr>
+<tr>
+<td>ハニーポット</td>
+<td>Honey pot</td>
+<td>蜜罐</td>
+</tr>
+<tr>
+<td>ファイアウォール</td>
+<td>Firewall</td>
+<td>防火墙</td>
+</tr>
+<tr>
+<td>フィッシング</td>
+<td>phishing</td>
+<td>钓鱼攻击</td>
+</tr>
+<tr>
+<td>フットプリンティング</td>
+<td>Foot printing</td>
+<td>足迹(渗透前的信息搜集)</td>
+</tr>
+<tr>
+<td>踏み台(ふみだい)</td>
+<td>Springboard</td>
+<td>跳板</td>
+</tr>
+<tr>
+<td>ブルートフォースアタック/総当たり攻撃(そうあたりこうげき)</td>
+<td>Brute Force Attack</td>
+<td>蛮力攻击/暴力破解</td>
+</tr>
+<tr>
+<td>プロキシ</td>
+<td>Proxy</td>
+<td>代理</td>
+</tr>
+<tr>
+<td>ポートスキャン</td>
+<td>port scan</td>
+<td>端口扫描</td>
+</tr>
+<tr>
+<td>マクロウイルス</td>
+<td>Macro virus</td>
+<td>宏病毒</td>
+</tr>
+<tr>
+<td>リバースエンジニアリング</td>
+<td>reverse engineering</td>
+<td>逆向工程</td>
+</tr>
+<tr>
+<td>ワーム</td>
+<td>worm</td>
+<td>蠕虫</td>
+</tr>
+<tr>
+<td>ワンタイムパスワード</td>
+<td>one-time password</td>
+<td>一次性密码/OTP</td>
+</tr>
+<tr>
+<td>バージョン</td>
+<td>version</td>
+<td>版本</td>
+</tr>
+<tr>
+<td>ベータ</td>
+<td>beta</td>
+<td>测试(版本)</td>
+</tr>
+<tr>
+<td>公式(こうしき)ページ</td>
+<td>Official page</td>
+<td>官网</td>
+</tr>
+<tr>
+<td>リリース</td>
+<td>release</td>
+<td>发布</td>
+</tr>
+<tr>
+<td>サポート</td>
+<td>support</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>アップデート</td>
+<td>update</td>
+<td>更新</td>
+</tr>
+<tr>
+<td>ライセンス</td>
+<td>license</td>
+<td>许可证</td>
+</tr>
+<tr>
+<td>フォレンジック</td>
+<td>forensic</td>
+<td>取证(内存镜像之类的)</td>
+</tr>
+<tr>
+<td>コピー</td>
+<td>copy</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>ファームウェア</td>
+<td>firmware</td>
+<td>固件</td>
+</tr>
+<tr>
+<td>ストレッチング</td>
+<td>stretching</td>
+<td>对密码进行多次哈希操作</td>
+</tr>
+<tr>
+<td>ペッパー</td>
+<td>pepper</td>
+<td>hash使用的胡椒(秘密字符串)</td>
+</tr>
+<tr>
+<td>ソルト</td>
+<td>salt</td>
+<td>hash使用的盐(随机字符串)</td>
+</tr>
+<tr>
+<td>平文(ひらぶん)</td>
+<td>Plaintext</td>
+<td>明文/纯文本</td>
+</tr>
+<tr>
+<td>権限(けんげん)</td>
+<td>privilege</td>
+<td>权限</td>
+</tr>
+<tr>
+<td>レッドチーム</td>
+<td>RedTeam</td>
+<td>红队(攻击队)</td>
+</tr>
+<tr>
+<td>ブルーチーム</td>
+<td>BlueTeam</td>
+<td>蓝队(防守队)</td>
+</tr>
+<tr>
+<td>マルウェア</td>
+<td>malware</td>
+<td>恶意软件</td>
+</tr>
+<tr>
+<td>サブドメイン</td>
+<td>sub domain</td>
+<td>子域名</td>
+</tr>
+<tr>
+<td>エクスプロイト</td>
+<td>exploit</td>
+<td>(漏洞)利用</td>
+</tr>
+<tr>
+<td>イメージ</td>
+<td>image</td>
+<td>镜像</td>
+</tr>
+<tr>
+<td>難読化(なんどくか)</td>
+<td>Obfuscation</td>
+<td>(代码)混淆</td>
+</tr>
+<tr>
+<td>ペイロード</td>
+<td>payload</td>
+<td>有效载荷</td>
+</tr>
+<tr>
+<td>ブラインド</td>
+<td>blind</td>
+<td>盲(指无回显)</td>
+</tr>
+<tr>
+<td>テンプレート</td>
+<td>template</td>
+<td>模板</td>
+</tr>
+<tr>
+<td>エンジン</td>
+<td>engine</td>
+<td>引擎</td>
+</tr>
+<tr>
+<td>リモートコード実行(じっこう)</td>
+<td>Remote code execution</td>
+<td>远程代码执行/RCE</td>
+</tr>
+<tr>
+<td>フレームワーク</td>
+<td>Framework</td>
+<td>框架</td>
+</tr>
+<tr>
+<td>ステガノグラフィ</td>
+<td>steganography</td>
+<td>隐写术</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-03T05:46:17.658Z" itemprop="dateUpdated">2020-07-03 13:46:17</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/&title=《セキュリティ用語事典》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/&title=《セキュリティ用語事典》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《セキュリティ用語事典》 — 喵喵喵喵&url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/01/Blunder-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Blunder - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/&title=《セキュリティ用語事典》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/&title=《セキュリティ用語事典》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《セキュリティ用語事典》 — 喵喵喵喵&url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E%E4%BA%8B%E5%85%B8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEl0lEQVR42u3aS27bQBAFwNz/0s4mixiOpPe6aURDl1aCJZEzRQM9/fn1K359fHn9/ffkfXuFZCX5vdq7DF+YMGHChOktmfJLf73Bo+8nn+YrSba3+ebz+2LChAkTpnsw5TduA2oevJ+H/OfrTK6c7wUTJkyYMP1kpjwxnqXBecBODg3J9TFhwoQJE6bnae0s0d0Ul9vQ3qbTmDBhwoTpfkybQJssqN3MrJjblpu/pRaOCRMmTJjejGlfqD33/cUvTJgwYcL0Zkwf5SsPyXlpeJY2t4Xj2X7//BYTJkyYMB3LlAfIPJVNhmzawJyn2W07s9gvJkyYMGE6kGkzapOH5E0WOSv4tjTRUQATJkyYMN2CaRYy9ylr3oxMhodmh5jiNIQJEyZMmA5haoddNoMys1Jyizi7ckSGCRMmTJgOZGpLpfuW4Sxs54j79mc9uIMJEyZMmA5hmiXDLcE+zG8eeX6vT3vBhAkTJkzHMrWjom07M/9+Hn/bAnR+oHlxfUyYMGHCdCBTkjrm7cBZY3JfYt6vqpjhxYQJEyZMRzHlRdW8hZkPjOZtxbaFmXRxZ21aTJgwYcJ0FlNbEm3T3bwguye49vDxsBaOCRMmTJgOZ5rVNvfl4E2yPbta3oLFhAkTJkynM81GUfNy8OZIkf929pDqqgAmTJgwYTqQaZb0JqMz7dGhLTpvDjH1ZBMmTJgwYTqc6apP26C7T2vzdeYF6IdFXkyYMGHCdBRTMZqZN/+Cw0F7sJgdTZLr17/FhAkTJkxHMeUJ56xNOEu22zR7Pxj04leYMGHChOkWTFcVdmebTJLh5F6zluoLREyYMGHCdDjTVYGzHcrZlIZnzct2X5gwYcKE6U5Ms8DfcrQF5U17sr3Li9QXEyZMmDAdyJSkoG0xtw3em7skcJsjy4veLyZMmDBhOoppM4KTHy+KJ1amr23qO2zKYsKECROm2zFtWp6zJujsweQHlFXqjgkTJkyYjmXaxL42NZ0VW5PQPtt8TYMJEyZMmI5i2g/ofHf7cFbSvfifABMmTJgwHcjU3j5HSdLgtnQ7O1LMStKfPsWECRMmTLdgaluJs3Jtm46utlceRx6uBxMmTJgwHct07UjNrAm6GQOalZXz62DChAkTptOZZuXd9puzcZ+86bhZTzHThAkTJkyYDmRqw+Rs6W1rs6WctUWHk02YMGHChOlAplnbMgnkbbCftTbb0aJZAo8JEyZMmE5kygujm9Jtvr186ZsDRz1UhAkTJkyYbsG0Ccb77eWF2tnBpV1nVBXAhAkTJkxvz5QHzqtS0FkheEPfHh1W5wtMmDBhwvRmTJtxlraRublaG9T3j/wfRV5MmDBhwnQg01WDNTO+vAE5Gw9qG5z1rBMmTJgwYTqEKTkE5IM1s0VsGpyzMN8WhTFhwoQJ0+lM7bI2Az2zsZs2nW5LvS/Kx5gwYcKE6ccwtWXQtnB87SY3DwkTJkyYMP1MprwE3JZW8/Vstp2v7VtSX0yYMGHC9J+YknJtnoLOvtkWf/Pfbv6CCRMmTJhOZ5qVWZPxmhaiLRPv0+kLZpowYcKECdP7Mv0GrHjUZWSqYqIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
