@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020073001.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020073002.png">
 <meta property="article:published_time" content="2020-07-30T06:24:37.000Z">
-<meta property="article:modified_time" content="2020-07-30T06:35:20.772Z">
+<meta property="article:modified_time" content="2020-07-30T06:38:02.034Z">
 <meta property="article:author" content="暗羽">
 <meta property="article:tag" content="TryHackMe">
 <meta name="twitter:card" content="summary">
@@ -143,7 +143,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -913,8 +913,8 @@
 <table>
 <thead>
 <tr>
-<th>[sourcetype](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 we8105desk  | stats count by sourcetype | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596087678.18#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 we8105desk  | stats count by sourcetype | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596087678.18#)</th>
+<th>sourcetype</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -948,8 +948,8 @@
 <table>
 <thead>
 <tr>
-<th>[src_ip](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 we8105desk  sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” | stats count by src_ip | sort-count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596087742.19#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 we8105desk  sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” | stats count by src_ip | sort-count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596087742.19#)</th>
+<th>src_ip</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -988,8 +988,8 @@
 <table>
 <thead>
 <tr>
-<th>[registry_value_data](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 sourcetype%3DWinRegistry friendlyname  | stats count by registry_value_data&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596087925.20#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 sourcetype%3DWinRegistry friendlyname  | stats count by registry_value_data&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596087925.20#)</th>
+<th>registry_value_data</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1004,8 +1004,8 @@
 <table>
 <thead>
 <tr>
-<th>[drive](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 we8105desk sourcetype%3DXmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational  | makemv delim%3D”%3A” CurrentDirectory | eval drive%3Dmvindex(CurrentDirectory%2C0)  | stats count by drive&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088132.21#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 we8105desk sourcetype%3DXmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational  | makemv delim%3D”%3A” CurrentDirectory | eval drive%3Dmvindex(CurrentDirectory%2C0)  | stats count by drive&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088132.21#)</th>
+<th>drive</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1023,8 +1023,8 @@
 <table>
 <thead>
 <tr>
-<th>[_time](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3D”we8105desk” sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D”<em>D%3A\</em>“  | table _time%2C CommandLine  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088212.22#)</th>
-<th>[CommandLine](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3D”we8105desk” sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D”<em>D%3A\</em>“  | table _time%2C CommandLine  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088212.22#)</th>
+<th>_time</th>
+<th>CommandLine</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1043,7 +1043,7 @@
 <table>
 <thead>
 <tr>
-<th>[CommandLine](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3D”we8105desk” sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” (CommandLine%3D”<em>D%3A\</em>“ OR ParentCommandLine%3D”<em>D%3A\</em>“)  | eval length%3Dlen(CommandLine)  | table CommandLine%2C length | sort by -length | head 1&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088467.27#)</th>
+<th>CommandLine</th>
 <th>[length](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3D”we8105desk” sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” (CommandLine%3D”<em>D%3A\</em>“ OR ParentCommandLine%3D”<em>D%3A\</em>“)  | eval length%3Dlen(CommandLine)  | table CommandLine%2C length | sort by -length | head 1&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088467.27#)</th>
 </tr>
 </thead>
@@ -1077,8 +1077,8 @@
 <table>
 <thead>
 <tr>
-<th>[_time](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dstream%3Adns record_type%3DA NOT (query{}%3D”<em>microsoft.com” OR query{}%3D”wpad” OR query{}%3D”</em>.waynecorpinc.local” OR query{}%3D”isatap” OR query{}%3D”<em>bing.com” OR query{}%3D”</em>windows.com” OR query{}%3D”*msftncsi.com”) | table _time%2C query{} | sort by _time&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088774.30#)</th>
-<th>[query{}](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dstream%3Adns record_type%3DA NOT (query{}%3D”<em>microsoft.com” OR query{}%3D”wpad” OR query{}%3D”</em>.waynecorpinc.local” OR query{}%3D”isatap” OR query{}%3D”<em>bing.com” OR query{}%3D”</em>windows.com” OR query{}%3D”*msftncsi.com”) | table _time%2C query{} | sort by _time&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088774.30#)</th>
+<th>_time</th>
+<th>query{}</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1101,9 +1101,9 @@
 <table>
 <thead>
 <tr>
-<th>[_time](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dsuricata http.hostname%3Dsolidaritedeproximite.org  |  table _time%2C http.http_method%2C http.hostname%2C http.url&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088928.35#)</th>
-<th>[http.http_method](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dsuricata http.hostname%3Dsolidaritedeproximite.org  |  table _time%2C http.http_method%2C http.hostname%2C http.url&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088928.35#)</th>
-<th>[http.hostname](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dsuricata http.hostname%3Dsolidaritedeproximite.org  |  table _time%2C http.http_method%2C http.hostname%2C http.url&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088928.35#)</th>
+<th>_time</th>
+<th>http.http_method</th>
+<th>http.hostname</th>
 <th>[http.url](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dsuricata http.hostname%3Dsolidaritedeproximite.org  |  table _time%2C http.http_method%2C http.hostname%2C http.url&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596088928.35#)</th>
 </tr>
 </thead>
@@ -1119,8 +1119,8 @@
 <table>
 <thead>
 <tr>
-<th>[_time](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 121214.tmp sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D* | table _time%2C CommandLine%2C ProcessId%2C ParentCommandLine%2C ParentProcessId  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089000.37#)</th>
-<th>[CommandLine](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 121214.tmp sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D* | table _time%2C CommandLine%2C ProcessId%2C ParentCommandLine%2C ParentProcessId  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089000.37#)</th>
+<th>_time</th>
+<th>CommandLine</th>
 <th>[ProcessId](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 121214.tmp sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D* | table _time%2C CommandLine%2C ProcessId%2C ParentCommandLine%2C ParentProcessId  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089000.37#)</th>
 <th>[ParentCommandLine](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 121214.tmp sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D* | table _time%2C CommandLine%2C ProcessId%2C ParentCommandLine%2C ParentProcessId  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089000.37#)</th>
 <th>[ParentProcessId](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 121214.tmp sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” CommandLine%3D* | table _time%2C CommandLine%2C ProcessId%2C ParentCommandLine%2C ParentProcessId  | reverse&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089000.37#)</th>
@@ -1183,9 +1183,9 @@
 <table>
 <thead>
 <tr>
-<th>[alert.signature](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 cerber sourcetype%3Dsuricata  | stats count by alert.signature%2C alert.signature_id  | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089132.38#)</th>
-<th>[alert.signature_id](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 cerber sourcetype%3Dsuricata  | stats count by alert.signature%2C alert.signature_id  | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089132.38#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 cerber sourcetype%3Dsuricata  | stats count by alert.signature%2C alert.signature_id  | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089132.38#)</th>
+<th>alert.signature</th>
+<th>alert.signature_id</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1212,7 +1212,7 @@
 <table>
 <thead>
 <tr>
-<th>[TargetFilename](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3Dwe8105desk sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” *.txt  | stats count by TargetFilename&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089215.39#)</th>
+<th>TargetFilename</th>
 <th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3Dwe8105desk sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” *.txt  | stats count by TargetFilename&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089215.39#)</th>
 </tr>
 </thead>
@@ -1303,7 +1303,7 @@
 <table>
 <thead>
 <tr>
-<th>[dc(TargetFilename)](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 host%3Dwe8105desk sourcetype%3D”XmlWinEventLog%3AMicrosoft-Windows-Sysmon%2FOperational” TargetFilename%3D”C%3A\Users\bob.smith.WAYNECORPINC\*.txt”  | stats dc(TargetFilename)&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089295.42#)</th>
+<th>dc(TargetFilename)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1318,8 +1318,8 @@
 <table>
 <thead>
 <tr>
-<th>[sourcetype](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 *.pdf  | stats count by sourcetype  | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089365.43#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 *.pdf  | stats count by sourcetype  | sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089365.43#)</th>
+<th>sourcetype</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1349,8 +1349,8 @@
 <table>
 <thead>
 <tr>
-<th>[dest](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 *.pdf sourcetype%3Dwineventlog  |  stats count by dest  |  sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089450.45#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 *.pdf sourcetype%3Dwineventlog  |  stats count by dest  |  sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089450.45#)</th>
+<th>dest</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1368,8 +1368,8 @@
 <table>
 <thead>
 <tr>
-<th>[Source_Address](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 *.pdf sourcetype%3Dwineventlog   dest%3D”we9041srv.waynecorpinc.local”  |  stats count by Source_Address  |  sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089515.46#)</th>
-<th>[count](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 *.pdf sourcetype%3Dwineventlog   dest%3D”we9041srv.waynecorpinc.local”  |  stats count by Source_Address  |  sort -count&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089515.46#)</th>
+<th>Source_Address</th>
+<th>count</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1402,8 +1402,8 @@
 <table>
 <thead>
 <tr>
-<th>[_time](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dstream%3Adns record_type%3DA NOT (query{}%3D”<em>microsoft.com” OR query{}%3D”wpad” OR query{}%3D”</em>.waynecorpinc.local” OR query{}%3D”isatap” OR query{}%3D”<em>bing.com” OR query{}%3D”</em>windows.com” OR query{}%3D”*msftncsi.com”) | table _time%2C query{} | sort by _time&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089671.49#)</th>
-<th>[query{}](<a href="http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search" target="_blank" rel="noopener">http://10.10.134.217:8000/zh-CN/app/investigate_workshop/search?q=search</a> index%3Dbotsv1 src_ip%3D”192.168.250.100” sourcetype%3Dstream%3Adns record_type%3DA NOT (query{}%3D”<em>microsoft.com” OR query{}%3D”wpad” OR query{}%3D”</em>.waynecorpinc.local” OR query{}%3D”isatap” OR query{}%3D”<em>bing.com” OR query{}%3D”</em>windows.com” OR query{}%3D”*msftncsi.com”) | table _time%2C query{} | sort by _time&amp;display.page.search.mode=smart&amp;dispatch.sample_ratio=1&amp;workload_pool=&amp;earliest=1471996800&amp;latest=1472083200&amp;display.page.search.tab=statistics&amp;display.general.type=statistics&amp;sid=1596089671.49#)</th>
+<th>_time</th>
+<th>query{}</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1448,7 +1448,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-30T06:35:20.772Z" itemprop="dateUpdated">2020-07-30 14:35:20</time>
+    Last updated: <time datetime="2020-07-30T06:38:02.034Z" itemprop="dateUpdated">2020-07-30 14:38:02</time>
 </span><br>
 
 
@@ -1645,7 +1645,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
