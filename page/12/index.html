@@ -136,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -168,6 +168,62 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-K-R-malloc"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-02-25 14:11:43" datetime="2019-02-25T06:11:43.000Z"  itemprop="datePublished">2019-02-25</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/25/K-R-malloc/">K&amp;R malloc</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        K&amp;R malloc的优点
+简单
+代码大小很小(malloc仍然内置等)
+除非有大量碎片空间，否则malloc是O(1) 复杂度
+适用于小程序，整个程序中只使用几十次malloc
+
+K&amp;R malloc的缺点
+当小型malloc频繁出现时，会出现大量碎片空间
+free是O(n)复杂度
+在调用brk时，需要遍历freelist一次(如果有数万个列表，缓存、刷新、代码状态将是很恐...
+    
+
+        <a href="/2019/02/25/K-R-malloc/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-堆扩展及brk"
@@ -213,7 +269,7 @@
     
 
         <a href="/2019/02/22/%E5%A0%86%E6%89%A9%E5%B1%95%E5%8F%8Abrk/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -272,7 +328,7 @@
     
 
         <a href="/2019/02/22/malloc%E5%8F%8Afree%E7%AE%97%E6%B3%95/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -332,7 +388,7 @@ shared object 共享对象区域(lib...
     
 
         <a href="/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -401,7 +457,7 @@ Bash功能
     
 
         <a href="/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%A6%82%E5%BF%B5/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -459,7 +515,7 @@ Bash功能
     
 
         <a href="/2019/02/15/Postbook-Writeup-Hacker101-CTF/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -508,7 +564,7 @@ Bash功能
     
 
         <a href="/2019/02/13/$_SERVER%5B'SCRIPT_NAME'%5D%E5%A4%89%E6%95%B0%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -556,7 +612,7 @@ Bash功能
     
 
         <a href="/2019/02/11/glob-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81open-basedir%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -604,7 +660,7 @@ Writeup ソースコードを表示し、次のコードを見つけます:
     
 
         <a href="/2019/02/02/CTF%E5%95%8F%E9%A1%8C%E3%82%92%E4%BE%8B%E3%81%A8%E3%81%97%E3%81%A6-parse-url%E9%96%A2%E6%95%B0%E3%82%92%E3%83%90%E3%82%A4%E3%83%91%E3%82%B9%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%AD%A6%E3%81%B6/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -652,76 +708,13 @@ Writeup ソースコードを表示し、次のコードを見つけます:
     
 
         <a href="/2019/02/01/%E9%AB%98%E8%B2%A0%E8%8D%B7%E3%81%AESQL%E6%96%87%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9FTime-based-SQL%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Android恶意代码分析与渗透测试"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-01-31 12:58:41" datetime="2019-01-31T04:58:41.000Z"  itemprop="datePublished">2019-01-31</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/01/31/Android%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%8E%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">Android恶意代码分析与渗透测试</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        1. Android的基本概念1.1 Android的架构
-Linux内核
-库
-Android运行时
-应用程序与框架
-设备文件目录结构
-
-1.2 Android重要组件
-Activity
-Service
-Content Provider
-
-1.3 Android应用程序的基本结构
-Androidmanifest.xml
-classes.dex
-
-2.Android应用程序诊断环境2.1 构建...
-    
-
-        <a href="/2019/01/31/Android%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%8E%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag">移动安全</a></li></ul>
 
     </div>
     
@@ -758,7 +751,7 @@ classes.dex
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
