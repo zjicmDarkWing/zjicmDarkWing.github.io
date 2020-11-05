@@ -136,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -168,6 +168,60 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-Pwn学习笔记17-其他一些技术简介"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-05-13 10:39:04" datetime="2019-05-13T02:39:04.000Z"  itemprop="datePublished">2019-05-13</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/05/13/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B017-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B/">Pwn学习笔记17:其他一些技术简介</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        PartialOverwrite
+只更改func@got低位两个字节的值，可以替换为前后0x0000~0xffff范围内的地址
+修改的两个字节中，ASLR只影响高4位(低12位不受ASLR影响)
+也就是说，即使不泄漏地址，也有1/16的概率调用到想要的地址
+重写stack上返回地址的低位三个字节也是可能的
+
+CAROP(potetisensei和自己命名)
+意思是Calc&amp;Adjus...
+    
+
+        <a href="/2019/05/13/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B017-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B/" class="post-more waves-effect waves-button">
+            続きを読む…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-Pwn学习笔记16-PIE与canary"
@@ -216,7 +270,7 @@ PIE绕过 – 多段memory leak + ret2libc等
     
 
         <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B016-PIE%E4%B8%8Ecanary/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -275,7 +329,7 @@ NX+ASLR+Full-RELRO绕过1 –ret2dl_run...
     
 
         <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -335,7 +389,7 @@ alarm(x)
     
 
         <a href="/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -394,7 +448,7 @@ execve(“/bin/sh”, &amp;[“-c”, command, NULL], envp)
     
 
         <a href="/2019/04/23/ropasaurusrex-level3/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -447,7 +501,7 @@ execve(“/bin/sh”, &amp;[“-c”, command, NULL], envp)
     
 
         <a href="/2019/04/22/ropasaurusrex-level2/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -500,7 +554,7 @@ http://shell-storm.org/repo/CTF/PlaidCTF-2013/Pwnable/ropasau...
     
 
         <a href="/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -564,7 +618,7 @@ stack pivot
     
 
         <a href="/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -622,7 +676,7 @@ RX权限，即能够执行的只有.text区域，因此想办法使用.text区�
     
 
         <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -678,67 +732,7 @@ miao# echo 2 &gt; /proc/sys/kernel/randomize_va_...
     
 
         <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Pwn学习笔记11-ret2libc"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-04-09 14:40:26" datetime="2019-04-09T06:40:26.000Z"  itemprop="datePublished">2019-04-09</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/">Pwn学习笔记11:ret2libc</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ret2plt链的问题点
-如果想要使用的函数不在PLT中，则无法构成链
-ret2libc
-
-
-                
-                    
-                    
-                
-                img
-            
-
-绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？
-源代码...
-    
-
-        <a href="/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" class="post-more waves-effect waves-button">
-            Continue reading...
+            続きを読む…
         </a>
     </div>
     
@@ -757,7 +751,7 @@ ret2libc
     
 <nav id="page-nav">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
     </div>
 </nav>
 
@@ -781,7 +775,7 @@ ret2libc
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
         </p>
     </div>
     <div class="bottom">
