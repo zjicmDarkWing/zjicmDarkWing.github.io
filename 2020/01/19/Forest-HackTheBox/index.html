@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111005.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111006.jpg">
 <meta property="article:published_time" content="2020-01-19T07:01:28.000Z">
-<meta property="article:modified_time" content="2020-11-10T07:04:49.384Z">
+<meta property="article:modified_time" content="2020-11-10T07:07:46.158Z">
 <meta property="article:author" content="暗羽">
 <meta property="article:tag" content="HackTheBox">
 <meta name="twitter:card" content="summary">
@@ -146,7 +146,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -185,7 +185,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-161"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.161</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#rpcclient"><span class="post-toc-number">3.</span> <span class="post-toc-text">rpcclient</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#enumdomusers"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">enumdomusers</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#users"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">users</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GetNPUsers"><span class="post-toc-number">4.</span> <span class="post-toc-text">GetNPUsers</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#john"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">john</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">5.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#BloodHound"><span class="post-toc-number">6.</span> <span class="post-toc-text">BloodHound</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权"><span class="post-toc-number">7.</span> <span class="post-toc-text">提权</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WriteDacl"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">WriteDacl</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DCSync"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">DCSync</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">8.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">9.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-161"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.161</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#rpcclient"><span class="post-toc-number">3.</span> <span class="post-toc-text">rpcclient</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#enumdomusers"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">enumdomusers</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#users"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">users</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GetNPUsers"><span class="post-toc-number">4.</span> <span class="post-toc-text">GetNPUsers</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#john"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">john</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">5.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#BloodHound"><span class="post-toc-number">6.</span> <span class="post-toc-text">BloodHound</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权"><span class="post-toc-number">7.</span> <span class="post-toc-text">提权</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Exchange-Windows-Permissions"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">Exchange Windows Permissions</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WriteDacl"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">WriteDacl</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DCSync"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">DCSync</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">8.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">9.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
         </nav>
     </aside>
 
@@ -261,8 +261,7 @@
                 <div class="image-caption"></div>
             </figure>
 
-<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>##Exchange Windows Permissions</p>
-<p>首先需要加入到Exchange Windows Permissions组中：</p>
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="Exchange-Windows-Permissions"><a href="#Exchange-Windows-Permissions" class="headerlink" title="Exchange Windows Permissions"></a>Exchange Windows Permissions</h2><p>首先需要加入到Exchange Windows Permissions组中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net group &quot;Exchange Windows Permissions&quot; svc-alfresco &#x2F;add &#x2F;domain</span><br></pre></td></tr></table></figure>
 
 <p>然后Exchange Windows Permissions组有WriteDacl权限：</p>
@@ -314,7 +313,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-11-10T07:04:49.384Z" itemprop="dateUpdated">2020-11-10 15:04:49</time>
+    最終更新：<time datetime="2020-11-10T07:07:46.158Z" itemprop="dateUpdated">2020-11-10 15:07:46</time>
 </span><br>
 
 
@@ -511,7 +510,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
         </p>
     </div>
     <div class="bottom">
