@@ -136,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -168,6 +168,66 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-Pwn学习笔记22-Use-After-Free"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-06-25 16:04:07" datetime="2019-06-25T08:04:07.000Z"  itemprop="datePublished">2019-06-25</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/06/25/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B022-Use-After-Free/">Pwn学习笔记22:Use After Free</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前置知识之前有过相关内容
+Use After Free 模式化fastbins类型典型流程
+找到存在Use After Free漏洞的指针x
+free(x)，但没有将x设置为NULL
+如果有多个指针，free(x)之后没有将所有的指针设置为NULL
+x最好是函数指针
+或者后面的y是一个函数指针
+
+
+free(x) # 但x仍然指向堆中的一个chunk
+发送会产生free(x)的输入选项
+
+
+...
+    
+
+        <a href="/2019/06/25/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B022-Use-After-Free/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-Pwn学习笔记21-其他一些技术"
@@ -211,7 +271,7 @@
     
 
         <a href="/2019/06/24/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B021-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -266,7 +326,7 @@ setarch uname -m -R /bin/bash(32位，64位都可以)
     
 
         <a href="/2019/06/20/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B020-%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -319,7 +379,7 @@ OS : Ubuntu 14.04.2 L...
     
 
         <a href="/2019/06/18/beef-steak-%E2%80%93-CodeGate-2015-pwnables400/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -374,7 +434,7 @@ mylib.so中重写了printf()函数，a.out调用printf时，实际调用的是..
     
 
         <a href="/2019/06/12/Shared-Library-Injection/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -440,7 +500,7 @@ https://en.wikipedia.org/wiki/RC4
     
 
         <a href="/2019/06/12/RC4%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -491,7 +551,7 @@ gcc编译后，stack上存在一个canary
     
 
         <a href="/2019/06/11/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B019-argv-0-leak/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -547,7 +607,7 @@ gcc编译后，stack上存在一个canary
     
 
         <a href="/2019/06/05/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B018-Stack%E7%BB%86%E8%8A%82%E5%8F%8Aargv-0-leak/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -604,7 +664,7 @@ fm.eaef2247796c11db798a579396482399
     
 
         <a href="/2019/05/23/61dctf-fm/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -659,63 +719,7 @@ nc pwn2.jarvisoj.com 9884
     
 
         <a href="/2019/05/21/XMAN-level5/" class="post-more waves-effect waves-button">
-            閱讀全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-XMAN-level4"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-05-20 11:43:36" datetime="2019-05-20T03:43:36.000Z"  itemprop="datePublished">2019-05-20</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/05/20/XMAN-level4/">XMAN level4</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        题目信息
-nc pwn2.jarvisoj.com 9880
-level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0
-
-32位elf，开了Partial RELRO和NX：
-
-                
-                    
-                    
-                
-                
-    ...
-    
-
-        <a href="/2019/05/20/XMAN-level4/" class="post-more waves-effect waves-button">
-            閱讀全文…
+            Continue reading...
         </a>
     </div>
     
@@ -758,7 +762,7 @@ level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>本部落格係採用<a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
