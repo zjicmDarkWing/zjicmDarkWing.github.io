@@ -136,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -168,6 +168,65 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-ropasaurusrex-level3"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-04-23 15:07:23" datetime="2019-04-23T07:07:23.000Z"  itemprop="datePublished">2019-04-23</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/04/23/ropasaurusrex-level3/">ropasaurusrex level3</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        至今为止都是调用system(“/bin/sh”)的攻略方式
+
+system()超甜
+接下来在chroot环境下运行level2
+system()隐式调用”/bin/sh”
+调用system(command)时，内部是这样
+execve(“/bin/sh”, &amp;[“-c”, command, NULL], envp)
+
+
+这意味着，chroot环境下，调用system会失败
+
+
+需要...
+    
+
+        <a href="/2019/04/23/ropasaurusrex-level3/" class="post-more waves-effect waves-button">
+            閱讀全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-ropasaurusrex-level2"
@@ -208,7 +267,7 @@
     
 
         <a href="/2019/04/22/ropasaurusrex-level2/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -261,7 +320,7 @@ http://shell-storm.org/repo/CTF/PlaidCTF-2013/Pwnable/ropasau...
     
 
         <a href="/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -325,7 +384,7 @@ stack pivot
     
 
         <a href="/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -383,7 +442,7 @@ RX权限，即能够执行的只有.text区域，因此想办法使用.text区�
     
 
         <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -439,7 +498,7 @@ miao# echo 2 &gt; /proc/sys/kernel/randomize_va_...
     
 
         <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -499,7 +558,7 @@ ret2libc
     
 
         <a href="/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -554,7 +613,7 @@ ret2libc
     
 
         <a href="/2019/04/09/MacOS%E4%B8%8B%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8php-mt-seed/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -609,7 +668,7 @@ PLT作为代理跳...
     
 
         <a href="/2019/04/03/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-PLT-GOT%E4%B8%8Eret2plt/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
@@ -668,73 +727,13 @@ Stack以x86环境为例
     
 
         <a href="/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" class="post-more waves-effect waves-button">
-            Continue reading...
+            閱讀全文…
         </a>
     </div>
     
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Pwn学习笔记-总结01"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-04-01 13:34:17" datetime="2019-04-01T05:34:17.000Z"  itemprop="datePublished">2019-04-01</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/">Pwn学习笔记:总结01</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        总结
-这一次，主要解决与堆密切相关的漏洞
-还有很多其他类型的漏洞
-例如栈溢出，很有名并且很容易找到
-条件竞争，整数溢出这类稍微有点难找
-
-
-简单介绍一下其他漏洞
-
-其他类型的漏洞栈缓冲区溢出
-当输入数据超出栈上分配的内存末尾时，会产生这种溢出
-可以通过重写返回地址来控制后续操作
-如果启用了canary保护，那么会检测到stack被更改
-特别情况，仅能超出一个元素，被称为Off-By-One ...
-    
-
-        <a href="/2019/04/01/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%9301/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
 
     </div>
     
@@ -771,7 +770,7 @@ Stack以x86环境为例
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>本部落格係採用<a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
         </p>
     </div>
     <div class="bottom">
