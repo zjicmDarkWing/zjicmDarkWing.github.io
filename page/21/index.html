@@ -163,6 +163,61 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-Shared-Library-Injection"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-06-12 15:13:20" datetime="2019-06-12T07:13:20.000Z"  itemprop="datePublished">2019-06-12</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/06/12/Shared-Library-Injection/">Shared Library Injection</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Shared Library Injection关注环境变量LD_PRELOAD
+LD_PRELOAD这个对于CTF选手来说应该很常见
+
+例如这样使用
+
+hook libc中的函数(例如printf)，将其替换成自定义函数
+$ export LD_PRELOAD=./mylib.so
+$ ./a.out
+mylib.so中重写了printf()函数，a.out调用printf时，实际调用的是...
+    
+
+        <a href="/2019/06/12/Shared-Library-Injection/" class="post-more waves-effect waves-button">
+            続きを読む…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-RC4简单学习"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -654,62 +709,6 @@ level2_x64.04d700633c6dc26afc6a1e7e9df8c94e
     
 
         <a href="/2019/05/16/XMAN-level2-x64/" class="post-more waves-effect waves-button">
-            続きを読む…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-XMAN-level2"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-05-15 15:39:59" datetime="2019-05-15T07:39:59.000Z"  itemprop="datePublished">2019-05-15</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/05/15/XMAN-level2/">XMAN level2</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        题目信息
-nc pwn2.jarvisoj.com 9878
-level2.54931449c557d0551c4fc2a10f4778a1
-
-开了NX和Partial RELRO
-
-                
-                    
-                    
-                
-                
-            ...
-    
-
-        <a href="/2019/05/15/XMAN-level2/" class="post-more waves-effect waves-button">
             続きを読む…
         </a>
     </div>
