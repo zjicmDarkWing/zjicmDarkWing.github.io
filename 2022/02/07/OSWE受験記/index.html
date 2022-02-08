@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>OSWE受験記 | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="喵喵喵准备主要准备就是教材和lab，以及lab里额外的那几套练习 pentesrerlab的code review basge https:&#x2F;&#x2F;pentesterlab.com&#x2F;badges&#x2F;codereview 以及BurpSuite官方学院练习全做完 Dashboard | Web Security Academy - PortSwiggerhttps:&#x2F;&#x2F;portswigger.net&#x2F;we">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSWE受験記">
+<meta property="og:url" content="https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="喵喵喵准备主要准备就是教材和lab，以及lab里额外的那几套练习 pentesrerlab的code review basge https:&#x2F;&#x2F;pentesterlab.com&#x2F;badges&#x2F;codereview 以及BurpSuite官方学院练习全做完 Dashboard | Web Security Academy - PortSwiggerhttps:&#x2F;&#x2F;portswigger.net&#x2F;we">
+<meta property="article:published_time" content="2022-02-07T09:50:36.000Z">
+<meta property="article:modified_time" content="2022-02-08T06:09:00.124Z">
+<meta property="article:author" content="暗羽">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                彼女募集中
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                about
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OSWE受験記</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OSWE受験記</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2022-02-07T09:50:36.000Z" itemprop="datePublished" class="page-time">
+  2022-02-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#喵喵喵"><span class="post-toc-number">1.</span> <span class="post-toc-text">喵喵喵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#考试"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">考试</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#时间记录"><span class="post-toc-number">2.</span> <span class="post-toc-text">时间记录</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#burp插件"><span class="post-toc-number">3.</span> <span class="post-toc-text">burp插件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资源"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考资源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sql注入"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">sql注入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SSTI"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">SSTI</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XSS"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">XSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#反序列化"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">反序列化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令注入"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">命令注入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TypeJuggling"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">TypeJuggling</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文件上传"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">文件上传</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#各种语言在线运行环境"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">各种语言在线运行环境</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基于grep的漏洞发现"><span class="post-toc-number">5.</span> <span class="post-toc-text">基于grep的漏洞发现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#调试相关"><span class="post-toc-number">6.</span> <span class="post-toc-text">调试相关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#调试-NET程序集"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">调试.NET程序集</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#语言相关checklist"><span class="post-toc-number">7.</span> <span class="post-toc-text">语言相关checklist</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nodejs"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">nodejs</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-OSWE受験記"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OSWE受験記</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2022-02-07 17:50:36" datetime="2022-02-07T09:50:36.000Z"  itemprop="datePublished">2022-02-07</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="喵喵喵"><a href="#喵喵喵" class="headerlink" title="喵喵喵"></a>喵喵喵</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>主要准备就是教材和lab，以及lab里额外的那几套练习</p>
+<p>pentesrerlab的code review basge</p>
+<p><a href="https://pentesterlab.com/badges/codereview" target="_blank" rel="noopener">https://pentesterlab.com/badges/codereview</a></p>
+<p>以及BurpSuite官方学院练习全做完</p>
+<p>Dashboard | Web Security Academy - PortSwigger<br><a href="https://portswigger.net/web-security/dashboard" target="_blank" rel="noopener">https://portswigger.net/web-security/dashboard</a></p>
+<p>参考资源里那些也都大概看过</p>
+<h2 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h2><p>就是时间记录里那样</p>
+<p>考试给了5台机器，2台考试目标机，两台对应的调试机，一台kali</p>
+<p>因为网络问题，GUI远程连接调试机，进行VSCODE远程调试非常卡，所以就没调试，只是ssh连上去分析代码，测试</p>
+<p>通读代码，理解完整的逻辑，漏洞点都是是在lab里接触过的(包括额外练习中的)，主要是发现它们，把不同的点组合起来，完成整个利用流程</p>
+<p>手工利用成功后写exp都可以直接用burp插件帮助，测试exp可以在给的那台kali上跑，通信速度会很快</p>
+<p>大概就这些</p>
+<h1 id="时间记录"><a href="#时间记录" class="headerlink" title="时间记录"></a>时间记录</h1><p>大概就是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">3号 </span><br><span class="line">14:00开始</span><br><span class="line">22:00 第一台auth bypass</span><br><span class="line">23:15 手工完成第一台</span><br><span class="line">exp.py todo</span><br><span class="line"></span><br><span class="line">4号 </span><br><span class="line">3:20  第二台auth bypass</span><br><span class="line">3:30 admin test success 睡觉</span><br><span class="line">睡到7点</span><br><span class="line">7:45 手工完成第二台</span><br><span class="line">exp todo</span><br><span class="line"></span><br><span class="line">17:15 完成两个exp，开始写报告</span><br><span class="line">19:00 v1</span><br><span class="line">21:00 v2 提前结束考试</span><br><span class="line"></span><br><span class="line">5号</span><br><span class="line">11点开始写报告</span><br><span class="line">17:00 提交</span><br><span class="line"></span><br><span class="line">6号 </span><br><span class="line">17：00 收到通过邮件</span><br></pre></td></tr></table></figure>
+
+<h1 id="burp插件"><a href="#burp插件" class="headerlink" title="burp插件"></a>burp插件</h1><p>burp里直接生成对应request代码，方便写exp，主要用python，但某些情况必须用Java来做的话，用copy2java也可以，需要安装一个第三方库</p>
+<ul>
+<li>Copy As Python-Requests - PortSwigger<br><a href="https://portswigger.net/bappstore/b324647b6efa4b6a8f346389730df160" target="_blank" rel="noopener">https://portswigger.net/bappstore/b324647b6efa4b6a8f346389730df160</a></li>
+<li>TheKingOfDuck/Copy2Java: 一键生成Java代码的burp插件/Generate Java script for fuzzing in Burp。<br><a href="https://github.com/TheKingOfDuck/Copy2Java" target="_blank" rel="noopener">https://github.com/TheKingOfDuck/Copy2Java</a></li>
+<li>kevinsawicki/http-request: Java HTTP Request Library<br><a href="https://github.com/kevinsawicki/http-request" target="_blank" rel="noopener">https://github.com/kevinsawicki/http-request</a></li>
+</ul>
+<h1 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h1><ul>
+<li><p>All learning materials | Web Security Academy </p>
+<p><a href="https://portswigger.net/web-security/all-materials" target="_blank" rel="noopener">https://portswigger.net/web-security/all-materials</a></p>
+</li>
+<li><p>PentesterLab: Learn Web App Pentesting! </p>
+<p><a href="https://pentesterlab.com/exercises/codereview/course" target="_blank" rel="noopener">https://pentesterlab.com/exercises/codereview/course</a></p>
+</li>
+<li><p>HTB 中 OSWE prep</p>
+<p><a href="https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/edit?usp=drivesdk" target="_blank" rel="noopener">NetSecFocus Trophy Room</a></p>
+</li>
+<li><p><a href="https://bowneconsultingcontent.com/pub/EH/proj/ED105.htm" target="_blank" rel="noopener">https://bowneconsultingcontent.com/pub/EH/proj/ED105.htm</a></p>
+</li>
+<li><p>TROUBLE-1/White-box-pentesting: This lab is created to demonstrate pass-the-hash, blind sql and SSTI vulnerabilities </p>
+<p><a href="https://github.com/TROUBLE-1/White-box-pentesting" target="_blank" rel="noopener">https://github.com/TROUBLE-1/White-box-pentesting</a></p>
+</li>
+<li><p>softwaresecured/secure-code-review-checklist: A starter secure code review checklist </p>
+<p><a href="https://github.com/softwaresecured/secure-code-review-checklist" target="_blank" rel="noopener">https://github.com/softwaresecured/secure-code-review-checklist</a></p>
+</li>
+<li><p>Bug Patterns - Find Security Bugs </p>
+<p><a href="https://find-sec-bugs.github.io/bugs.htm" target="_blank" rel="noopener">https://find-sec-bugs.github.io/bugs.htm</a></p>
+</li>
+<li><p>timip/OSWE: OSWE Preparation </p>
+<p><a href="https://github.com/timip/OSWE" target="_blank" rel="noopener">https://github.com/timip/OSWE</a></p>
+</li>
+<li><p>wetw0rk/AWAE-PREP: This repository will serve as the “master” repo containing all trainings and tutorials done in preperation for OSWE in conjunction with the AWAE course. This repo will likely contain custom code by me and various courses.</p>
+<p> <a href="https://github.com/wetw0rk/AWAE-PREP" target="_blank" rel="noopener">https://github.com/wetw0rk/AWAE-PREP</a></p>
+</li>
+<li><p>Home · rinku191/OSWE-prepration Wiki </p>
+<p><a href="https://github.com/rinku191/OSWE-prepration/wiki" target="_blank" rel="noopener">https://github.com/rinku191/OSWE-prepration/wiki</a></p>
+</li>
+<li><p>w181496/Web-CTF-Cheatsheet: Web CTF CheatSheet 🐈</p>
+<p> <a href="https://github.com/w181496/Web-CTF-Cheatsheet" target="_blank" rel="noopener">https://github.com/w181496/Web-CTF-Cheatsheet</a></p>
+</li>
+</ul>
+<h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><ul>
+<li><p>PentesterLab: Learn Web App Pentesting! </p>
+<p><a href="https://pentesterlab.com/exercises/from_sqli_to_shell_pg_edition/course" target="_blank" rel="noopener">https://pentesterlab.com/exercises/from_sqli_to_shell_pg_edition/course</a></p>
+</li>
+<li><p>Blind SQL Injection | OWASP </p>
+<p><a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection" target="_blank" rel="noopener">https://owasp.org/www-community/attacks/Blind_SQL_Injection</a></p>
+</li>
+<li><p>POSTGRESQL CODE EXECUTION: UDF REVISITED | by AFINE | Medium </p>
+<p><a href="https://afinepl.medium.com/postgresql-code-execution-udf-revisited-3b08412f47c1" target="_blank" rel="noopener">https://afinepl.medium.com/postgresql-code-execution-udf-revisited-3b08412f47c1</a></p>
+</li>
+<li><p>SQL Injection Double Uppercut :: How to Achieve Remote Code Execution Against PostgreSQL </p>
+<p><a href="https://srcincite.io/blog/2020/06/26/sql-injection-double-uppercut-how-to-achieve-remote-code-execution-against-postgresql.html" target="_blank" rel="noopener">https://srcincite.io/blog/2020/06/26/sql-injection-double-uppercut-how-to-achieve-remote-code-execution-against-postgresql.html</a></p>
+</li>
+<li><p>SQL Injection and Postgres - An adventure to eventual RCE </p>
+<p><a href="https://pulsesecurity.co.nz/articles/postgres-sqli" target="_blank" rel="noopener">https://pulsesecurity.co.nz/articles/postgres-sqli</a></p>
+</li>
+<li><p>Exploiting PostgreSQL Restore - Blog </p>
+<p><a href="https://jon-stewart.github.io/exploiting-postgresql-restore/" target="_blank" rel="noopener">https://jon-stewart.github.io/exploiting-postgresql-restore/</a></p>
+</li>
+<li><p>Authenticated Arbitrary Command Execution on PostgreSQL 9.3 &gt; Latest | by Greenwolf | Greenwolf Security | Medium </p>
+<p><a href="https://medium.com/greenwolf-security/authenticated-arbitrary-command-execution-on-postgresql-9-3-latest-cd18945914d5" target="_blank" rel="noopener">https://medium.com/greenwolf-security/authenticated-arbitrary-command-execution-on-postgresql-9-3-latest-cd18945914d5</a></p>
+</li>
+<li><p>Taking SQL Injections further (Blind Second Order SQL Injection + TMHC CTF Shitter Writeup) - Web Hacking - 0x00sec - The Home of the Hacker </p>
+<p><a href="https://0x00sec.org/t/taking-sql-injections-further-blind-second-order-sql-injection-tmhc-ctf-shitter-writeup/18122" target="_blank" rel="noopener">https://0x00sec.org/t/taking-sql-injections-further-blind-second-order-sql-injection-tmhc-ctf-shitter-writeup/18122</a></p>
+</li>
+<li><p>Lord of SQLInjection </p>
+<p><a href="https://los.rubiya.kr/" target="_blank" rel="noopener">https://los.rubiya.kr/</a></p>
+</li>
+<li><p>21y4d/blindSQLi: A python based blind SQL injection exploitation script </p>
+<p><a href="https://github.com/21y4d/blindSQLi" target="_blank" rel="noopener">https://github.com/21y4d/blindSQLi</a></p>
+</li>
+</ul>
+<h2 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h2><ul>
+<li><p>DiogoMRSilva/websitesVulnerableToSSTI: Simple websites vulnerable to Server Side Template Injections(SSTI) </p>
+<p><a href="https://github.com/DiogoMRSilva/websitesVulnerableToSSTI" target="_blank" rel="noopener">https://github.com/DiogoMRSilva/websitesVulnerableToSSTI</a></p>
+</li>
+<li><p>epinna/tplmap: Server-Side Template Injection and Code Injection Detection and Exploitation Tool </p>
+<p><a href="https://github.com/epinna/tplmap" target="_blank" rel="noopener">https://github.com/epinna/tplmap</a></p>
+</li>
+</ul>
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><ul>
+<li><p>XSS Showcase </p>
+<p><a href="http://bogus.jp/xsssample/" target="_blank" rel="noopener">http://bogus.jp/xsssample/</a></p>
+</li>
+<li><p>XSS Challenges (by yamagata21) - Stage #1</p>
+<p> <a href="http://xss-quiz.int21h.jp/" target="_blank" rel="noopener">http://xss-quiz.int21h.jp/</a></p>
+</li>
+<li><p>Client XSS Exercises - DomGoat </p>
+<p><a href="https://domgo.at/cxss/example" target="_blank" rel="noopener">https://domgo.at/cxss/example</a></p>
+</li>
+<li><p>Javascript for Pentesters </p>
+<p><a href="https://www.pentesteracademy.com/course?id=11" target="_blank" rel="noopener">https://www.pentesteracademy.com/course?id=11</a></p>
+</li>
+</ul>
+<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><ul>
+<li><p>Deserialization - OWASP Cheat Sheet Series </p>
+<p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html" target="_blank" rel="noopener">https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html</a></p>
+</li>
+<li><p>OWASP TOP 10: Insecure Deserialization - Detectify Blog </p>
+<p><a href="https://blog.detectify.com/2018/03/21/owasp-top-10-insecure-deserialization/" target="_blank" rel="noopener">https://blog.detectify.com/2018/03/21/owasp-top-10-insecure-deserialization/</a></p>
+</li>
+<li><p>OWASP Top 10 in 2017: Insecure Deserialization Security Vulnerability Practical Overview | ImmuniWeb Security Blog </p>
+<p><a href="https://www.immuniweb.com/blog/OWASP-insecure-deserialization.html" target="_blank" rel="noopener">https://www.immuniweb.com/blog/OWASP-insecure-deserialization.html</a></p>
+</li>
+<li><p>JAVA</p>
+<ul>
+<li><p>ManageEngine Applications Manager Deserialization Unauthenticated RCE · Application Security Blog </p>
+<p><a href="https://blog.jamesotten.com/post/applications-manager-rce/" target="_blank" rel="noopener">https://blog.jamesotten.com/post/applications-manager-rce/</a></p>
+</li>
+<li><p>Java Deserialization — From Discovery to Reverse Shell on Limited Environments | by Francesco Soncina (phra) | ABN AMRO — Red Team | Medium </p>
+<p><a href="https://medium.com/abn-amro-red-team/java-deserialization-from-discovery-to-reverse-shell-on-limited-environments-2e7b4e14fbef" target="_blank" rel="noopener">https://medium.com/abn-amro-red-team/java-deserialization-from-discovery-to-reverse-shell-on-limited-environments-2e7b4e14fbef</a></p>
+</li>
+<li><p>Understanding &amp; practicing java deserialization exploits – DiabloHorn </p>
+<p><a href="https://diablohorn.com/2017/09/09/understanding-practicing-java-deserialization-exploits/" target="_blank" rel="noopener">https://diablohorn.com/2017/09/09/understanding-practicing-java-deserialization-exploits/</a></p>
+</li>
+<li><p>Understanding Java deserialization – Nytro Security </p>
+<p><a href="https://nytrosecurity.com/2018/05/30/understanding-java-deserialization/" target="_blank" rel="noopener">https://nytrosecurity.com/2018/05/30/understanding-java-deserialization/</a></p>
+</li>
+<li><p>What Do WebLogic, WebSphere, JBoss, Jenkins, OpenNMS, and Your Application Have in Common? This Vulnerability. </p>
+<p><a href="https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/" target="_blank" rel="noopener">https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/</a></p>
+</li>
+<li><p>GrrrDog/Java-Deserialization-Cheat-Sheet: The cheat sheet about Java Deserialization vulnerabilities </p>
+<p><a href="https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet" target="_blank" rel="noopener">https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet</a></p>
+</li>
+</ul>
+</li>
+<li><p>.NET</p>
+<ul>
+<li><p>Ivan1ee/NET-Deserialize: 总结了十篇.Net反序列化文章，持续更新 </p>
+<p><a href="https://github.com/Ivan1ee/NET-Deserialize" target="_blank" rel="noopener">https://github.com/Ivan1ee/NET-Deserialize</a></p>
+</li>
+<li><p>DotNetNuke 任意代码执行漏洞 (CVE-2017-9822) 分析预警 </p>
+<p><a href="https://paper.seebug.org/365/" target="_blank" rel="noopener">https://paper.seebug.org/365/</a></p>
+</li>
+<li><p>How to exploit the DotNetNuke Cookie Deserialization - <a href="http://pentest-tools.com/" target="_blank" rel="noopener">Pentest-Tools.com</a> Blog </p>
+<p><a href="https://pentest-tools.com/blog/exploit-dotnetnuke-cookie-deserialization/" target="_blank" rel="noopener">https://pentest-tools.com/blog/exploit-dotnetnuke-cookie-deserialization/</a></p>
+</li>
+<li><p>ObjectDataProvider Class (System.Windows.Data) | Microsoft Docs </p>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.objectdataprovider?view=netframework-4.8" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.objectdataprovider?view=netframework-4.8</a></p>
+</li>
+<li><p>Details of XML serialization | Microsoft Docs</p>
+<p> <a href="https://docs.microsoft.com/en-us/dotnet/standard/serialization/introducing-xml-serialization" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/standard/serialization/introducing-xml-serialization</a></p>
+</li>
+<li><p>New .NET deserialization gadget for compact payload. When size matters | Micro Focus Community </p>
+<p><a href="https://community.microfocus.com/cyberres/b/off-by-on-software-security-blog/posts/new-net-deserialization-gadget-for-compact-payload-when-size-matters" target="_blank" rel="noopener">https://community.microfocus.com/cyberres/b/off-by-on-software-security-blog/posts/new-net-deserialization-gadget-for-compact-payload-when-size-matters</a></p>
+</li>
+<li><p>Exploiting Deserialisation in <a href="http://asp.net/" target="_blank" rel="noopener">ASP.NET</a> via ViewState | Soroush Dalili (@irsdl) – سروش دلیلی </p>
+<p><a href="https://soroush.secproject.com/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/" target="_blank" rel="noopener">https://soroush.secproject.com/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/</a></p>
+</li>
+<li><p>slides_bh_pdf </p>
+<p><a href="https://www.blackhat.com/docs/us-17/thursday/us-17-Munoz-Friday-The-13th-Json-Attacks.pdf" target="_blank" rel="noopener">https://www.blackhat.com/docs/us-17/thursday/us-17-Munoz-Friday-The-13th-Json-Attacks.pdf</a></p>
+</li>
+<li><p>The Battle of C# to JSON Serializers in .NET Core 3 - Michael’s Coding Spot </p>
+<p><a href="https://michaelscodingspot.com/the-battle-of-c-to-json-serializers-in-net-core-3/" target="_blank" rel="noopener">https://michaelscodingspot.com/the-battle-of-c-to-json-serializers-in-net-core-3/</a></p>
+</li>
+<li><p>BlueHat v17 || Dangerous Contents - Securing .Net Deserialization </p>
+<p><a href="https://www.slideshare.net/MSbluehat/dangerous-contents-securing-net-deserialization" target="_blank" rel="noopener">https://www.slideshare.net/MSbluehat/dangerous-contents-securing-net-deserialization</a></p>
+</li>
+<li><p>Black Hat USA 2012 - Are You My Type? Breaking .net Sandboxes Through Serialization - YouTube </p>
+<p><a href="https://www.youtube.com/watch?v=Xfbu-pQ1tIc&amp;ab_channel=BlackHat" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Xfbu-pQ1tIc&amp;ab_channel=BlackHat</a></p>
+</li>
+<li><p>pwntester/ysoserial.net: Deserialization payload generator for a variety of .NET formatters </p>
+<p><a href="https://github.com/pwntester/ysoserial.net" target="_blank" rel="noopener">https://github.com/pwntester/ysoserial.net</a></p>
+</li>
+</ul>
+</li>
+<li><p>Python</p>
+<ul>
+<li><p>Escalating Deserialization Attacks (Python) </p>
+<p><a href="https://frichetten.com/blog/escalating-deserialization-attacks-python/" target="_blank" rel="noopener">https://frichetten.com/blog/escalating-deserialization-attacks-python/</a></p>
+</li>
+</ul>
+</li>
+<li><p>Nodejs</p>
+<ul>
+<li><p>Exploiting Node.js deserialization bug for Remote Code Execution | OpSecX </p>
+<p><a href="https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/" target="_blank" rel="noopener">https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2><ul>
+<li><p>Artsploit: [<a href="http://demo.paypal.com/" target="_blank" rel="noopener">demo.paypal.com</a>] Node.js code injection (RCE) </p>
+<p><a href="https://artsploit.blogspot.com/2016/08/pprce2.html" target="_blank" rel="noopener">https://artsploit.blogspot.com/2016/08/pprce2.html</a></p>
+</li>
+<li><p>Exploiting Node.js deserialization bug for Remote Code Execution | OpSecX </p>
+<p><a href="https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/" target="_blank" rel="noopener">https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/</a></p>
+</li>
+<li><p>Nodejs RCE and a simple reverse shell </p>
+<p><a href="https://ibreak.software/2016/08/nodejs-rce-and-a-simple-reverse-shell/" target="_blank" rel="noopener">https://ibreak.software/2016/08/nodejs-rce-and-a-simple-reverse-shell/</a></p>
+</li>
+</ul>
+<h2 id="TypeJuggling"><a href="#TypeJuggling" class="headerlink" title="TypeJuggling"></a>TypeJuggling</h2><ul>
+<li><p>PHP Type Juggling. PHP has two comparisons loose (==, =!)… | by HacktheBoxWalkthroughs | Medium </p>
+<p><a href="https://medium.com/@Q2hpY2tlblB3bnk/php-type-juggling-c34a10630b10" target="_blank" rel="noopener">https://medium.com/@Q2hpY2tlblB3bnk/php-type-juggling-c34a10630b10</a></p>
+</li>
+<li><p>PHP Type Juggling Vulnerabilities | by Vickie Li | The Startup | Medium </p>
+<p><a href="https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09" target="_blank" rel="noopener">https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09</a></p>
+</li>
+<li><p>PHP: PHP type comparison tables - Manual </p>
+<p><a href="https://www.php.net/manual/en/types.comparisons.php" target="_blank" rel="noopener">https://www.php.net/manual/en/types.comparisons.php</a></p>
+</li>
+<li><p>PHP Type Juggling Vulnerabilities, Netsparker - Paul’s Security Weekly #572 - YouTube </p>
+<p><a href="https://www.youtube.com/watch?v=ASYuK01H3Po&amp;ab_channel=SecurityWeekly" target="_blank" rel="noopener">https://www.youtube.com/watch?v=ASYuK01H3Po&amp;ab_channel=SecurityWeekly</a></p>
+</li>
+<li><p>PHPMagicTricks-TypeJuggling.pdf </p>
+<p><a href="https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf" target="_blank" rel="noopener">https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf</a></p>
+</li>
+<li><p>Type Juggling Authentication Bypass Vulnerability in CMS Made Simple | Netsparker </p>
+<p><a href="https://www.netsparker.com/blog/web-security/type-juggling-authentication-bypass-cms-made-simple/" target="_blank" rel="noopener">https://www.netsparker.com/blog/web-security/type-juggling-authentication-bypass-cms-made-simple/</a></p>
+</li>
+<li><p>Type Juggling and PHP Object Injection, and SQLi, Oh My! </p>
+<p><a href="https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/" target="_blank" rel="noopener">https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/</a></p>
+</li>
+<li><p>Magic Hashes | NTT Application Security </p>
+<p><a href="https://www.whitehatsec.com/blog/magic-hashes/" target="_blank" rel="noopener">https://www.whitehatsec.com/blog/magic-hashes/</a></p>
+</li>
+<li><p>spaze/hashes: Magic hashes – PHP hash “collisions”</p>
+<p> <a href="https://github.com/spaze/hashes" target="_blank" rel="noopener">https://github.com/spaze/hashes</a></p>
+</li>
+</ul>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><ul>
+<li><p>45074-file-upload-restrictions-bypass.pdf </p>
+<p><a href="https://www.exploit-db.com/docs/english/45074-file-upload-restrictions-bypass.pdf" target="_blank" rel="noopener">https://www.exploit-db.com/docs/english/45074-file-upload-restrictions-bypass.pdf</a></p>
+</li>
+<li><p>hacking website by shell uploading </p>
+<p><a href="http://www.securityidiots.com/Web-Pentest/hacking-website-by-shell-uploading.html" target="_blank" rel="noopener">http://www.securityidiots.com/Web-Pentest/hacking-website-by-shell-uploading.html</a></p>
+</li>
+<li><p>Unrestricted File Upload | OWASP </p>
+<p><a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload" target="_blank" rel="noopener">https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload</a></p>
+</li>
+<li><p>File upload bypass - Hacker’s Grimoire </p>
+<p><a href="https://vulp3cula.gitbook.io/hackers-grimoire/exploitation/web-application/file-upload-bypass" target="_blank" rel="noopener">https://vulp3cula.gitbook.io/hackers-grimoire/exploitation/web-application/file-upload-bypass</a></p>
+</li>
+</ul>
+<h2 id="各种语言在线运行环境"><a href="#各种语言在线运行环境" class="headerlink" title="各种语言在线运行环境"></a>各种语言在线运行环境</h2><ul>
+<li><p>Online PHP Editor | ブラウザでプログラミング・実行ができる「オンライン実行環境」| </p>
+<p><a href="http://paiza.io/" target="_blank" rel="noopener">paiza.IO</a><a href="https://paiza.io/ja/projects/new" target="_blank" rel="noopener">https://paiza.io/ja/projects/new</a></p>
+</li>
+<li><p>PHP Sandbox, test PHP online, PHP tester </p>
+<p><a href="https://sandbox.onlinephpfunctions.com/" target="_blank" rel="noopener">https://sandbox.onlinephpfunctions.com/</a></p>
+</li>
+<li><p>SQL OnLine IDE </p>
+<p><a href="https://sqliteonline.com/" target="_blank" rel="noopener">https://sqliteonline.com/</a></p>
+</li>
+<li><p>regex101: build, test, and debug regex </p>
+<p><a href="https://regex101.com/" target="_blank" rel="noopener">https://regex101.com/</a></p>
+</li>
+</ul>
+<h1 id="基于grep的漏洞发现"><a href="#基于grep的漏洞发现" class="headerlink" title="基于grep的漏洞发现"></a>基于grep的漏洞发现</h1><ul>
+<li><p>Don’t Underestimate Grep Based Code Scanning – Little Man In My Head </p>
+<p><a href="https://littlemaninmyhead.wordpress.com/2019/08/04/dont-underestimate-grep-based-code-scanning/" target="_blank" rel="noopener">https://littlemaninmyhead.wordpress.com/2019/08/04/dont-underestimate-grep-based-code-scanning/</a></p>
+</li>
+<li><p>dustyfresh/PHP-vulnerability-audit-cheatsheet: This will assist you in the finding of potentially vulnerable PHP code. Each type of grep command is categorized in the type of vulnerabilities you generally find with that function. </p>
+<p><a href="https://github.com/dustyfresh/PHP-vulnerability-audit-cheatsheet" target="_blank" rel="noopener">https://github.com/dustyfresh/PHP-vulnerability-audit-cheatsheet</a></p>
+</li>
+<li><p>wireghoul/graudit: grep rough audit - source code auditing tool </p>
+<p><a href="https://github.com/wireghoul/graudit" target="_blank" rel="noopener">https://github.com/wireghoul/graudit</a></p>
+</li>
+<li><p>Bug Patterns - Find Security Bugs </p>
+<p><a href="https://find-sec-bugs.github.io/bugs_ja.htm" target="_blank" rel="noopener">https://find-sec-bugs.github.io/bugs_ja.htm</a></p>
+</li>
+<li><p>Using Grep + Regex (Regular Expressions) to Search Text in Linux | DigitalOcean </p>
+<p><a href="https://www.digitalocean.com/community/tutorials/using-grep-regular-expressions-to-search-for-text-patterns-in-linux" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/using-grep-regular-expressions-to-search-for-text-patterns-in-linux</a></p>
+</li>
+</ul>
+<h1 id="调试相关"><a href="#调试相关" class="headerlink" title="调试相关"></a>调试相关</h1><h2 id="调试-NET程序集"><a href="#调试-NET程序集" class="headerlink" title="调试.NET程序集"></a>调试.NET程序集</h2><ul>
+<li><p>.NET Reflector Visual Studio Extension - Visual Studio Marketplace </p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=vs-publisher-306627.NETReflectorVisualStudioExtension" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=vs-publisher-306627.NETReflectorVisualStudioExtension</a></p>
+</li>
+<li><p>dnSpy/dnSpy: .NET debugger and assembly editor </p>
+<p><a href="https://github.com/dnSpy/dnSpy" target="_blank" rel="noopener">https://github.com/dnSpy/dnSpy</a></p>
+</li>
+<li><p>Debug .NET Framework source - Visual Studio (Windows) | Microsoft Docs </p>
+<p><a href="https://docs.microsoft.com/en-us/visualstudio/debugger/how-to-debug-dotnet-framework-source?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/visualstudio/debugger/how-to-debug-dotnet-framework-source?view=vs-2019</a></p>
+</li>
+<li><p>How to debug your .NET applications and packages without the actual source | Dominique St-Amand </p>
+<p><a href="https://www.domstamand.com/debugging-your-dotnet-applications-and-packages-howto/" target="_blank" rel="noopener">https://www.domstamand.com/debugging-your-dotnet-applications-and-packages-howto/</a></p>
+</li>
+</ul>
+<h1 id="语言相关checklist"><a href="#语言相关checklist" class="headerlink" title="语言相关checklist"></a>语言相关checklist</h1><h2 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h2><ul>
+<li><p>Node.js Security Checklist - RisingStack Engineering </p>
+<p><a href="https://blog.risingstack.com/node-js-security-checklist/" target="_blank" rel="noopener">https://blog.risingstack.com/node-js-security-checklist/</a></p>
+</li>
+<li><p>aadityapurani/NodeJS-Red-Team-Cheat-Sheet: NodeJS Red-Team Cheat Sheet </p>
+<p><a href="https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet" target="_blank" rel="noopener">https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet</a></p>
+</li>
+<li><p>jesusprubio/awesome-nodejs-pentest: Delightful Node.js packages useful for penetration testing, exploiting, reverse engineer, cryptography … </p>
+<p><a href="https://github.com/jesusprubio/awesome-nodejs-pentest" target="_blank" rel="noopener">https://github.com/jesusprubio/awesome-nodejs-pentest</a></p>
+</li>
+<li><p>Secure Code Review and Penetration Testing of Node.js and JavaScript Apps | by Mostafa Moradian | The Startup | Medium </p>
+<p><a href="https://medium.com/swlh/secure-code-review-and-penetration-testing-of-node-js-and-javascript-apps-41485b1a9518" target="_blank" rel="noopener">https://medium.com/swlh/secure-code-review-and-penetration-testing-of-node-js-and-javascript-apps-41485b1a9518</a></p>
+</li>
+<li><p><a href="https://github.com/carnal0wnage/exploits-1/blob/master/nodejsshell.py" target="_blank" rel="noopener">https://github.com/carnal0wnage/exploits-1/blob/master/nodejsshell.py</a></p>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>OSWE Review(受験記) - 高林の雑記ブログ<br><a href="https://kakyouim.hatenablog.com/entry/2021/04/02/162147" target="_blank" rel="noopener">https://kakyouim.hatenablog.com/entry/2021/04/02/162147</a></li>
+<li>OSWE Review (AWAE Course) - S7acktrac3<br><a href="https://stacktrac3.co/oswe-review-awae-course/" target="_blank" rel="noopener">https://stacktrac3.co/oswe-review-awae-course/</a></li>
+<li>[CERT] OSWE Exam Review and Tips (ft. No Developer Background Candidate) | by bigb0ss | InfoSec Write-ups<br><a href="https://infosecwriteups.com/cert-oswe-exam-review-and-tips-ft-no-developer-background-candidate-1dad7f545155" target="_blank" rel="noopener">https://infosecwriteups.com/cert-oswe-exam-review-and-tips-ft-no-developer-background-candidate-1dad7f545155</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2022-02-08T06:09:00.124Z" itemprop="dateUpdated">2022-02-08 14:09:00</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/&title=《OSWE受験記》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/&title=《OSWE受験記》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OSWE受験記》 — 喵喵喵喵&url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2022/01/29/Meta-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Meta - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/&title=《OSWE受験記》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/&title=《OSWE受験記》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OSWE受験記》 — 喵喵喵喵&url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2022/02/07/OSWE%E5%8F%97%E9%A8%93%E8%A8%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQW5iMRAE0Nz/0pntRKMPVe32JJEeKxTA+BnJ7lT74yN+fD48/n713/fnn339nqdvWXvg4eHhLU399SSeRng9oacx83m2i4KHh4d3j5cM1+66+cIl4Hw+eHh4eD+N104uOWzakfHw8PB+Oy8pi9uyO8fj4eHhfRdvFtQmcUN+bMz+spa14OHh4cW8WYT6vc+v9Pfw8PDwjrvqyYabN8m2lrKYLR4eHt4FXr7h5tRZXJsXzXXkgYeHh3eNN9vic/CsXD6/joCHh4e3y3vNyCPa2ZWp2XWr4gfAw8PDu8Br8882Tm0PmLYBli8uHh4e3i6vjWvz1WqDhtkFhYU1xsPDwzvos+eTm5Xm+QEzu3r1ODIeHh7eKq8NBRLqSYw7ixjelNR4eHh4S7y8BTUryvNyuY0ehr8bHh4e3jEvx8zK6PayVHsI1YcKHh4e3hJvN2hIRsgDhVkEjIeHh3eP15bR7UTzFteNwwkPDw/vBu9k0NmVqSTYncUfy/8r4OHh4T3w2qtU52lHUemPlvjLmHh4eHgXeHkBfVLstk21k7bZm6wFDw8Pb5WXlLN5sz9v8LeLWL+Kh4eHd4GXb7hHtxLiR/7txffi4eHhLfHOG2BbAcR5NHyUTOPh4eGNuuqzxn97VMziiWT8NzEuHh4e3mXebOi85J0t3/DSFR4eHt5lXtuCymOC3WsHxWfx8PDw/jsv2Zpnh0cbGQ9jXzw8PLxV3nkMkYSzs1J4YUw8PDy8C7x2883L4vaoSJa1fY6Hh4d3j9cOfRIitNcIFg4GPDw8vGu8fLvfCl7ziOHonXh4eHg/mJdv2cn787m9+TseHh7eL+FthQsny4SHh4d3m9fGBO1y7B4GyUUEPDw8vHu8rWhgNsXZsTRk4OHh4Z3y/gDfYlS5ga0YmwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
