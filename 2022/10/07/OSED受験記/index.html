@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="喵喵喵喵">
 <meta property="og:description" content="准备主要就是课程资料和lab练习，额外练习资源在后面参考资料中 考试尽可能多练习熟悉各种坑，我是只做完了课程中的内容，课后作业都没做完，三个challenge也是只大概看了下，一个都没做 考试内容具体太细节的不能说，只写大概内容 三个题目  给有基础 crash poc，DEP绕过 30分 custome shellcode 30分 逆向 ，DEP + ASLR 绕过 40分  满分100分，60">
 <meta property="article:published_time" content="2022-10-07T11:49:41.000Z">
-<meta property="article:modified_time" content="2022-10-08T06:49:28.920Z">
+<meta property="article:modified_time" content="2022-10-08T06:54:23.962Z">
 <meta property="article:author" content="暗羽">
 <meta name="twitter:card" content="summary">
     
@@ -204,15 +204,15 @@
 <li>逆向 ，DEP + ASLR 绕过 40分</li>
 </ol>
 <p>满分100分，60分及格，没有步骤分，所以必须要完全做出来两个题目</p>
-<h2 id="DEP-bypass题目"><a href="#DEP-bypass题目" class="headerlink" title="DEP bypass题目"></a>DEP bypass题目</h2><p>题目要求必须使用WriteProcessMemory函数，不允许使用VirtualAlloc或者VirtualProtect之类的其他函数</p>
+<h2 id="DEP-bypass题目"><a href="#DEP-bypass题目" class="headerlink" title="DEP bypass题目"></a>DEP bypass题目</h2><p>题目要求必须使用<code>WriteProcessMemory</code>函数，不允许使用<code>VirtualAlloc</code>或者<code>VirtualProtect</code>之类的其他函数</p>
 <p>题目exe文件也是精心设计的，过滤完badchars之后可用的gadgets非常少，关键的内存读写gadget就两三个能用的，还有小坑需要自己注意</p>
 <p>rop chain部分，如果使用的gadget不够优雅，就会导致最终可用空间不足，就算dep bypass成功，也会没有足够空间放shellcode</p>
 <p>最终是75条gadget(包括各种junk填充)组合成了一条rop chain</p>
 <p>然后shellcode部分也会坑，badchars比较多，如果继续使用rop编码解码处理badchars的话，剩余空间不够，只能使用自定义shellcode，修改一些会产生badchars的指令，生成可用shellcode</p>
 <h2 id="custome-shellcode"><a href="#custome-shellcode" class="headerlink" title="custome shellcode"></a>custome shellcode</h2><p>这部分就是纯汇编代码实现题目要求，考试很明确的要求了需要调用什么函数达成什么效果， 测试效果就是python keyston-engine + windbg</p>
-<p>最关键的就是要注意<code>position independent code</code>  和 <code>NULL-Free</code>, 生成的shellcode如果有null bute，用python运行是没问题的，然而，在真正的漏洞利用中使用这个 shellcode 会有问题，因为 NULL 字节通常是一个坏字符</p>
+<p>最关键的就是要注意<code>position independent code</code>  和 <code>NULL-Free</code>, 生成的shellcode如果有null byte，用python运行是没问题的，然而，在真正的漏洞利用中使用这个 shellcode 会有问题，因为 NULL 字节通常是一个坏字符</p>
 <p>所以需要满足这些基本要求，生成的操作码不能有null字节，这个自己windbg一点点确认，然后修改对应汇编指令为没有null byte，但效果相同的其他指令即可</p>
-<h2 id="逆向题目"><a href="#逆向题目" class="headerlink" title="逆向题目"></a>逆向题目</h2><p>根据考试说明是需要逆向找到绕过ASLR的方式，然后还有DEP绕过部分，但考试的逆向只允许使用IDA免费版本，不允许使用IDA Pro，Ghidra之类的其他工具</p>
+<h2 id="逆向题目"><a href="#逆向题目" class="headerlink" title="逆向题目"></a>逆向题目</h2><p>根据考试说明是需要逆向找到绕过ASLR的方式，然后还有内存漏洞控制eip，以及后续的DEP绕过部分，但考试的逆向只允许使用IDA免费版本，不允许使用IDA Pro，Ghidra之类的其他工具</p>
 <p>这个题目就大概看了下，直接放弃了</p>
 <h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><p>武器化是基本要求，靶机操作系统环境版本可能和调试机不一样，所以gadget只能使用程序本身的，不能使用系统dll中的</p>
 <p>最重要的就是OffSec一直要求的 TryHarder .我是因为完全没有任何额外练习，考试中各种浪费时间，不止一次想跟监考说放弃考试，但继续坚持，都会在几个小时内找到突破口</p>
@@ -361,7 +361,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2022-10-08T06:49:28.920Z" itemprop="dateUpdated">2022-10-08 14:49:28</time>
+    Last updated: <time datetime="2022-10-08T06:54:23.962Z" itemprop="dateUpdated">2022-10-08 14:54:23</time>
 </span><br>
 
 
