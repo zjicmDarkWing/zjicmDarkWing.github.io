@@ -163,6 +163,68 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-Pwn学习笔记4-heap布局"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-03-14 15:02:59" datetime="2019-03-14T07:02:59.000Z"  itemprop="datePublished">2019-03-14</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/">Pwn学习笔记4:heap布局</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        heap布局
+使用中和free区域混杂在一起
+各个block被称为chunk
+
+
+                
+                    
+                    
+                
+                
+            
+
+
+想要再次使用free状态的区域
+需要知道哪里有free的区域，因此它是链表结构
+实际上没这么简单...
+    
+
+        <a href="/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/" class="post-more waves-effect waves-button">
+            続きを読む…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-Pwn学习笔记3-heap"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -684,62 +746,6 @@ mmap最初是一个将文件映射到内存中的系统调用
     
 
         <a href="/2019/02/25/header%E7%9A%84%E7%BA%A6%E6%9D%9F/" class="post-more waves-effect waves-button">
-            続きを読む…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-K-R-malloc"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-02-25 14:11:43" datetime="2019-02-25T06:11:43.000Z"  itemprop="datePublished">2019-02-25</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/25/K-R-malloc/">K&amp;R malloc</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        K&amp;R malloc的优点
-简单
-代码大小很小(malloc仍然内置等)
-除非有大量碎片空间，否则malloc是O(1) 复杂度
-适用于小程序，整个程序中只使用几十次malloc
-
-K&amp;R malloc的缺点
-当小型malloc频繁出现时，会出现大量碎片空间
-free是O(n)复杂度
-在调用brk时，需要遍历freelist一次(如果有数万个列表，缓存、刷新、代码状态将是很恐...
-    
-
-        <a href="/2019/02/25/K-R-malloc/" class="post-more waves-effect waves-button">
             続きを読む…
         </a>
     </div>
