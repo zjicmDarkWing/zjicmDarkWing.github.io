@@ -112,8 +112,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -135,7 +142,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -205,14 +212,7 @@
 <h1 id="SPF"><a href="#SPF" class="headerlink" title="SPF"></a>SPF</h1><p>SPF是“发件人策略架构 Sender Policy Framework”的缩写，该系统可防止其他服务器代表您的域发送未经授权的电子邮件。在您的域的DNS表中使用TXT条目配置SPF，并在其中通知允许哪些服务器使用您的域发送电子邮件。收到电子邮件后，收件人的服务器将验证发送服务器是否实际上已被授权使用该域。如果服务器没有，则电子邮件被拒绝。</p>
 <p>SPF会在Internet标头中检查用于发送邮件的SMTP（邮件服务器）是否在回答服务器域的IP列表中得到授权。它还会告诉您域是否授权该关系以外的其他IP代表您发送电子邮件。管理员按照（<a href="https://datatracker.ietf.org/doc/rfc4408/" target="_blank" rel="noopener">RFC 4408</a>）的规则在DNS区域TXT条目上配置此接口。如果此系统处于活动状态，并且请求的IP与授权的IP不同，则电子邮件将被拒绝。</p>
 <p>那么检查下SPF记录，能够得到一部分flag，证明思路是对的，其他部分应该在其他配置中：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010901.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010901.jpg" alt=""></p>
 <h1 id="DKIM"><a href="#DKIM" class="headerlink" title="DKIM"></a>DKIM</h1><p>DKIM，电子邮件验证标准——域名密钥识别邮件标准。DomainKeys Identified Mail的缩写。</p>
 <p>一般来说，发送方会在电子邮件的标头插入DKIM-Signature及电子签名资讯。而接收方则透过DNS查询得到公钥后进行验证。</p>
 <p>不过针对这个题目，并没有用到DKIM</p>
@@ -222,14 +222,7 @@
 <p>DMARC在发件人策略框架（SPF）和域密钥标识的邮件（DKIM）协议中添加了一个策略层。SPF协议可与DNS配置一起使用。然后，在配置它时，发送方会通知已授权给定的IP地址使用该域发送消息。</p>
 <p>DKIM协议与公钥加密一起使用。这意味着，通过使用该协议发送消息，接收者能够识别该密钥确实属于发送者。最后，当DMARC遇到与电子邮件的任何不一致时，它会使用这两种协议来执行一系列安全措施。</p>
 <p>那就检查下DMARC，得到另一部分flag：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010902.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010902.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://medium.com/@maximilianomeyer1/hint-customers-of-secure-startup-com-1d4591537ff7" target="_blank" rel="noopener">https://medium.com/@maximilianomeyer1/hint-customers-of-secure-startup-com-1d4591537ff7</a></li>
 <li><a href="http://www.ciotimes.com/InfoSecurity/158336.html" target="_blank" rel="noopener">http://www.ciotimes.com/InfoSecurity/158336.html</a></li>
@@ -242,7 +235,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-04-23T06:29:09.811Z" itemprop="dateUpdated">2020-04-23 14:29:09</time>
+    Last updated: <time datetime="2020-04-23T06:29:09.811Z" itemprop="dateUpdated">2020-04-23 14:29:09</time>
 </span><br>
 
 
@@ -409,11 +402,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

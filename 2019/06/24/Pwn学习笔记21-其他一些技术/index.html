@@ -116,8 +116,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -139,7 +146,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -270,14 +277,7 @@
 <h1 id="free-hook"><a href="#free-hook" class="headerlink" title="__free_hook"></a>__free_hook</h1><h2 id="glibc的malloc-和free-的实现，在-bss中存在函数指针"><a href="#glibc的malloc-和free-的实现，在-bss中存在函数指针" class="headerlink" title="glibc的malloc()和free()的实现，在.bss中存在函数指针"></a>glibc的malloc()和free()的实现，在.bss中存在函数指针</h2><ul>
 <li><a href="http://osxr.org/glibc/source/malloc/malloc.c#2913" target="_blank" rel="noopener">http://osxr.org/glibc/source/malloc/malloc.c#2913</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062101.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062101.jpg" alt=""></p>
 <ul>
 <li>如果<code>__free_hook</code>不为NULL，则调用它而不是free。<code>__free_hook</code>是bss中的函数指针</li>
 </ul>
@@ -311,14 +311,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062102.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062102.jpg" alt=""></p>
 <ul>
 <li>线程B使用被覆盖的内存<ul>
 <li>期待在线程A产生SIGSEGV之前发生上下文切换</li>
@@ -327,14 +320,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062103.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062103.jpg" alt=""></p>
 <h1 id="栈保护页-Stack-guard-page-之外"><a href="#栈保护页-Stack-guard-page-之外" class="headerlink" title="栈保护页(Stack guard page)之外"></a>栈保护页(Stack guard page)之外</h1><h2 id="Linux中创建线程的几种方式"><a href="#Linux中创建线程的几种方式" class="headerlink" title="Linux中创建线程的几种方式"></a>Linux中创建线程的几种方式</h2><ol>
 <li>pthread系<ul>
 <li>pthread_create()之类</li>
@@ -362,14 +348,7 @@
 <li>每个栈之间都有一个保护页(权限是—p)</li>
 <li>但是，在地址上是连续的</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062401.jpg" alt=""></p>
 <ul>
 <li>线程B的栈</li>
 <li>线程A的栈</li>
@@ -385,26 +364,12 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062402.jpg" alt=""></p>
 <h2 id="默认情况下，保护页的大小只有0x1000"><a href="#默认情况下，保护页的大小只有0x1000" class="headerlink" title="默认情况下，保护页的大小只有0x1000"></a>默认情况下，保护页的大小只有0x1000</h2><ul>
 <li>如果线程A的递归函数越界超过0x1000呢？</li>
 <li>会跳过保护页，并且写入到线程B的栈中</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019062403.jpg" alt=""></p>
 <h2 id="线程B的栈被重写"><a href="#线程B的栈被重写" class="headerlink" title="线程B的栈被重写"></a>线程B的栈被重写</h2><ul>
 <li><p>线程A的递归调用可能重写线程B栈上的返回地址</p>
 </li>
@@ -449,7 +414,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-24T06:02:34.173Z" itemprop="dateUpdated">2019-06-24 14:02:34</time>
+    Last updated: <time datetime="2019-06-24T06:02:34.173Z" itemprop="dateUpdated">2019-06-24 14:02:34</time>
 </span><br>
 
 
@@ -616,11 +581,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

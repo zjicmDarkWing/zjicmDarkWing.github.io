@@ -106,8 +106,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -129,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -195,18 +202,20 @@ https://www.hackthebox.eu/home/machines/profile/219
 10.10.10.168
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
+80端口closed，直接访问失败
+8080
 
-80端口clo...
+提示源代码在某个目录的’SuperSecureServer.py’ 中。
+ 扫一下目录，是develop，得到源码：
+
+
+代码注入注意这里直接使用了exec：
+
+直接exec我们可...
     
 
         <a href="/2020/04/16/Obscurity-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -252,18 +261,15 @@ https://www.hackthebox.eu/home/machines/profile/219
 10.10.10.169
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
+是一个Windows服务器，没有web
+enum4linux 使用enum4linux收集信息：
 
-是一个Windo...
+ 这里能够看到一条信息，其中是一个账号密码：
+1index: 0x10a9 RID: 0x457 acb: 0x00000210 ...
     
 
         <a href="/2020/04/15/Resolute-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -310,18 +316,20 @@ https://www.hackthebox.eu/home/machines/profile/234
 
 端口扫描：一些常规端口：
 
-                
-                    
-                    
-                
-                
-            
+80一个普通的企业网站，concat这里点进去，需要登录
 
-80一个普...
+
+20492049端口，这个是NFS的默认端口,可以直接使用showmount查看：
+
+我们可以把这个共享目录挂载到本地：
+
+ 在这个文件可以发现敏感信息：
+
+1a...
     
 
         <a href="/2020/04/14/Remote-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -368,18 +376,18 @@ https://www.hackthebox.eu/home/machines/profile/234
 
 端口扫描三个端口
 
-                
-                    
-                    
-                
-                
-            
+80打开是一个黑页，注释中有信息：
 
-80打...
+
+根据信息找到这个：
+https://github.com/TheBinitGhimire/Web-Shells
+利用这些文件名作为字典，可以找到已有的webshell：
+
+webs...
     
 
         <a href="/2020/04/13/Traceback-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -425,15 +433,15 @@ https://www.hackthebox.eu/home/machines/profile/234
 https://www.hackthebox.eu/home/machines/profile/230
 
 端口扫描
-                
-                    
-                    
-                
-...
+只有80和22端口
+80
+注册和登录，因为没有账号，就先随便注册一个, 登录进去后发现管理员邮箱：
+
+管理员账号尝试弱口令无效，扫目录能够发现admin...
     
 
         <a href="/2020/04/09/Book-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -474,18 +482,17 @@ https://www.hackthebox.eu/home/machines/profile/230
 
 端口扫描三个端口：
 
-                
-                    
-                    
-                
-                
-            
+80
+扫描目录发现存在一个admin.php,直接访问被拒绝：
 
-80...
+
+提示缺失Header，需要通过代理访问，代理header那应该是XFF之类的，在首页源码能看到注释中的信息：
+
+那么可以尝试用这个IP作为XFF头，直...
     
 
         <a href="/2020/04/09/Control-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -532,18 +539,12 @@ https://www.hackthebox.eu/home/machines/profile/181
 10.10.10.131
 
 
-                
-                    
-                    
-                
-                
-            
-
-端口扫描21,22,80,443:...
+端口扫描21,22,80,443:
+1234567891011121314151617181920212223242526272829303132$ nmap -sC -sV 10.10.10.131Starting Nmap 7.91 ( htt...
     
 
         <a href="/2020/03/17/LaCasaDePapel-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -590,19 +591,12 @@ https://www.hackthebox.eu/home/machines/profile/192
 10.10.10.138
 
 
-                
-                    
-                    
-                
-                
-            
-
 端口扫描22和80:
-123456...
+1234567891011121314151617$ nmap -sC -sV 10.10.10.138Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-12 14:53 C...
     
 
         <a href="/2020/03/15/Writeup-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -649,19 +643,12 @@ https://www.hackthebox.eu/home/machines/profile/117
 10.10.10.67
 
 
-                
-                    
-                    
-                
-                
-            
-
 端口扫描80和3128:
-12345...
+12345678910111213141516$ nmap -sC -sV 10.10.10.67Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-28 14:04 CST...
     
 
         <a href="/2020/03/13/Inception-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -708,19 +695,12 @@ https://www.hackthebox.eu/home/machines/profile/170
 10.10.10.121
 
 
-                
-                    
-                    
-                
-                
-            
-
 端口扫描22,80,3000:
-1...
+12345678910111213141516171819202122$ nmap -sC -sV -Pn 10.10.10.121Host discovery disabled (-Pn). All address...
     
 
         <a href="/2020/03/12/Help-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -763,11 +743,11 @@ https://www.hackthebox.eu/home/machines/profile/170
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

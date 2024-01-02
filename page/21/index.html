@@ -106,8 +106,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -129,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -199,7 +206,7 @@ https://www.hackthebox.eu/home/machines/profile/231
     
 
         <a href="/2020/07/17/Oouch-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -246,19 +253,20 @@ https://www.hackthebox.eu/home/machines/profile/259
 
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
-
 80
-          ...
+很容易发现News那里有个file参数，注意要加一下hosts：
+110.10.10.194 megahosting.htb
+
+
+LFI这里一个很明显的LFI：
+
+80808080是tomcat管理界面，不存在常规弱密码：s
+
+LFI...
     
 
         <a href="/2020/07/14/Tabby-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -308,7 +316,7 @@ https://www.hackthebox.eu/home/machines/profile/256
     
 
         <a href="/2020/07/13/Fuse-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -355,20 +363,19 @@ https://app.hackthebox.eu/machines/251
 
 端口扫描常规22和80
 
-                
-                    
-                    
-                
-                
-            
-
 80直接访问没什么信息：
 
-     ...
+登录界面加载了functionality.js，里面硬编码的账号密码
+
+1ash:H@v3_fun
+
+登录进去也没什么东西：
+
+functionality.js12345678910111213141516171819202...
     
 
         <a href="/2020/07/07/Cache-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -416,16 +423,12 @@ https://www.hackthebox.eu/home/machines/profile/254
 
 端口扫描21和80,21closed
 
-                
-                    
-                    
-                
-                
-            ...
+80
+目录扫描12345678910111213141516171819gobuster dir -u http://10.10.10.191/ -w /usr/share/seclists/Discovery...
     
 
         <a href="/2020/07/01/Blunder-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -473,16 +476,18 @@ https://www.hackthebox.eu/home/machines/profile/221
 
 端口扫描这里需要全端口扫描，默认扫描会漏掉开放的8545:
 
-                
-                    
-                    
-                
-                
- ...
+
+80直接访问是一个错误页面：
+
+配置hosts访问：
+110.10.10.170 player2.htb
+
+
+subdomain1wfuzz -w /usr/share/wordlist...
     
 
         <a href="/2020/06/30/Player2-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -530,17 +535,15 @@ https://www.hackthebox.eu/home/machines/profile/248
 
 端口扫描21,22,80几个端口：
 
-                
-                    
-                    
-                
-                
-            
-...
+80根据扫描结果，robots.txt中得到admin-dir目录，直接访问是403:
+
+扫描目录,这里字典很重要，因为包含敏感信息的credentials.txt，一般字典里没有：
+
+credentials.t...
     
 
         <a href="/2020/06/16/Admirer-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -588,18 +591,17 @@ https://www.hackthebox.eu/home/machines/profile/200
 
 端口扫描只有22和9999
 
-                
-                    
-                    
-                
-                
-            
+9999直接访问是一个登录页面：
 
-999...
+目录遍历简单的扫描后可以发现一个目录遍历：
+
+
+
+/opt/www/run.sh123456#!/bin/bashsource /home/john/.bashrcwhile true...
     
 
         <a href="/2020/05/27/Rope-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -646,18 +648,13 @@ https://www.hackthebox.eu/home/machines/profile/224
 10.10.10.173
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
+80 一个Patents管理系统，存在一个上传接口，上传docx转换成pdf：
 
-80 一个Patents管...
+目录扫描1gobuster dir -u http:&#x2F;&#x2F;10.10.10.173&#x2F; -w &#x2F;usr&#x2F;shar...
     
 
         <a href="/2020/05/21/Patents-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -705,16 +702,12 @@ https://www.hackthebox.eu/home/machines/profile/235
 
 端口扫描windows服务器，没有web，开了域相关端口
 
-                
-                    
-                    
-                
-                
-  ...
+135RPC可以匿名访问，直接用rpcclient
+1234567891011121314151617181920212223242526272829rpcclient 10.10.10.1...
     
 
         <a href="/2020/05/17/Cascade-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -757,11 +750,11 @@ https://www.hackthebox.eu/home/machines/profile/235
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

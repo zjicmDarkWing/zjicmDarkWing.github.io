@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="heap布局 使用中和free区域混杂在一起 各个block被称为chunk                                                                                                               想要再次使用free状态的区域 需要知道哪里有free的区域，因此它是链表结构 实际上没这么简单">
+    <meta name="description" content="heap布局 使用中和free区域混杂在一起 各个block被称为chunk    想要再次使用free状态的区域 需要知道哪里有free的区域，因此它是链表结构 实际上没这么简单      malloc获得的是这个地址 size按照8的倍数进行padding 为简单起见，图中省略了fd_nextsize和bk_nextsize 实际上的结构体：123456789struct malloc_chu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记4:heap布局">
 <meta property="og:url" content="https://darkwing.moe/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="heap布局 使用中和free区域混杂在一起 各个block被称为chunk                                                                                                               想要再次使用free状态的区域 需要知道哪里有free的区域，因此它是链表结构 实际上没这么简单">
+<meta property="og:description" content="heap布局 使用中和free区域混杂在一起 各个block被称为chunk    想要再次使用free状态的区域 需要知道哪里有free的区域，因此它是链表结构 实际上没这么简单      malloc获得的是这个地址 size按照8的倍数进行padding 为简单起见，图中省略了fd_nextsize和bk_nextsize 实际上的结构体：123456789struct malloc_chu">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031405.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031406.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031407.jpg">
@@ -114,8 +114,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -137,7 +144,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -208,14 +215,7 @@
 <li>使用中和free区域混杂在一起</li>
 <li>各个block被称为chunk</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031405.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031405.jpg" alt=""></p>
 <ul>
 <li>想要再次使用free状态的区域</li>
 <li>需要知道哪里有free的区域，因此它是链表结构<ul>
@@ -223,36 +223,15 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031406.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031407.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031406.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031407.jpg" alt=""></p>
 <p>malloc获得的是这个地址</p>
 <p>size按照8的倍数进行padding</p>
 <p>为简单起见，图中省略了fd_nextsize和bk_nextsize</p>
 <h2 id="实际上的结构体："><a href="#实际上的结构体：" class="headerlink" title="实际上的结构体："></a>实际上的结构体：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct malloc_chunk &#123;</span><br><span class="line">  INTERNAL_SIZE_T      mchunk_prev_size;  &#x2F;* Size of previous chunk (if free).  *&#x2F;</span><br><span class="line">  INTERNAL_SIZE_T      mchunk_size;       &#x2F;* Size in bytes, including overhead. *&#x2F;</span><br><span class="line">  struct malloc_chunk* fd;         &#x2F;* double links -- used only if free. *&#x2F;</span><br><span class="line">  struct malloc_chunk* bk;</span><br><span class="line">  &#x2F;* Only used for large blocks: pointer to next larger size.  *&#x2F;</span><br><span class="line">  struct malloc_chunk* fd_nextsize; &#x2F;* double links -- used only if free. *&#x2F;</span><br><span class="line">  struct malloc_chunk* bk_nextsize;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>来源：<a href="https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#malloc_chunk" target="_blank" rel="noopener">https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#malloc_chunk</a></p>
-<h2 id="填充"><a href="#填充" class="headerlink" title="填充"></a>填充</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031408.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="填充"><a href="#填充" class="headerlink" title="填充"></a>填充</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031408.jpg" alt=""></p>
 <p>仅在前一个chunk已经free时才能访问</p>
 <p>末尾3个字节有特定的用途</p>
 <ul>
@@ -268,7 +247,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-14T07:03:32.606Z" itemprop="dateUpdated">2019-03-14 15:03:32</time>
+    Last updated: <time datetime="2019-03-14T07:03:32.606Z" itemprop="dateUpdated">2019-03-14 15:03:32</time>
 </span><br>
 
 
@@ -435,11 +414,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

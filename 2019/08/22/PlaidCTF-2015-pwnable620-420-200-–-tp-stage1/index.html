@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2015&#x2F;blob&#x2F;master&#x2F;plaidctf-2015&#x2F;pwnable&#x2F;tp&#x2F;problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw&#x3D;true 测试运行直接运行什么也不会显示，大概10秒后killed">
+    <meta name="description" content="题目信息https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2015&#x2F;blob&#x2F;master&#x2F;plaidctf-2015&#x2F;pwnable&#x2F;tp&#x2F;problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw&#x3D;true 测试运行直接运行什么也不会显示，大概10秒后killed  strace$ env -i strace -fi .&#x2F;tp  省略前面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PlaidCTF 2015 - pwnable620(420+200) – tp - stage1">
 <meta property="og:url" content="https://darkwing.moe/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2015&#x2F;blob&#x2F;master&#x2F;plaidctf-2015&#x2F;pwnable&#x2F;tp&#x2F;problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw&#x3D;true 测试运行直接运行什么也不会显示，大概10秒后killed">
+<meta property="og:description" content="题目信息https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2015&#x2F;blob&#x2F;master&#x2F;plaidctf-2015&#x2F;pwnable&#x2F;tp&#x2F;problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw&#x3D;true 测试运行直接运行什么也不会显示，大概10秒后killed  strace$ env -i strace -fi .&#x2F;tp  省略前面">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081503.jpg">
@@ -173,8 +173,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -196,7 +203,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -265,58 +272,23 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><p><a href="https://github.com/ctfs/write-ups-2015/blob/master/plaidctf-2015/pwnable/tp/problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw=true" target="_blank" rel="noopener">https://github.com/ctfs/write-ups-2015/blob/master/plaidctf-2015/pwnable/tp/problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw=true</a></p>
 <h2 id="测试运行"><a href="#测试运行" class="headerlink" title="测试运行"></a>测试运行</h2><p>直接运行什么也不会显示，大概10秒后killed</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081501.jpg" alt=""></p>
 <h2 id="strace"><a href="#strace" class="headerlink" title="strace"></a>strace</h2><p><code>$ env -i strace -fi ./tp</code></p>
 <ul>
 <li>省略前面的加载library部分</li>
 <li>有一个alarm(10)的时间限制（造成killed的原因）</li>
 <li>clone，pipe2，prctl， syscall_317(seccomp)之类的，看起来像sandbox的system call。也有一个可疑的SIGSTOP信号</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081502.jpg" alt=""></p>
 <h2 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h2><p>防御全开</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="vmmap"><a href="#vmmap" class="headerlink" title="vmmap"></a>vmmap</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081503.jpg" alt=""></p>
+<h2 id="vmmap"><a href="#vmmap" class="headerlink" title="vmmap"></a>vmmap</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081504.jpg" alt=""></p>
 <ul>
 <li>没有自身的elf</li>
 <li>一个非常大的mmap</li>
 </ul>
 <h2 id="开启ASLR运行"><a href="#开启ASLR运行" class="headerlink" title="开启ASLR运行"></a>开启ASLR运行</h2><p><code>$ gdb -q ./tp -ex &#39;set disable-randomization off&#39;</code></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081505.jpg" alt=""></p>
 <p> 这次正常了，也就是说，如果关掉ASLR就不能正常运行</p>
 <h1 id="Stage1"><a href="#Stage1" class="headerlink" title="Stage1"></a>Stage1</h1><ul>
 <li>暂时不需要考虑绕过sandbox</li>
@@ -329,85 +301,29 @@
 <li>子A（sandbox）</li>
 <li>子B（main，note管理类）</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081506.jpg" alt=""></p>
 <p>子B主要5个功能，内部实现是红黑树，node持有指向note的指针，note持有指向data的指针</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h1 id="解析-主操作部分"><a href="#解析-主操作部分" class="headerlink" title="解析 - 主操作部分"></a>解析 - 主操作部分</h1><h2 id="do-command"><a href="#do-command" class="headerlink" title="do_command"></a>do_command</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081507.jpg" alt=""></p>
+<h1 id="解析-主操作部分"><a href="#解析-主操作部分" class="headerlink" title="解析 - 主操作部分"></a>解析 - 主操作部分</h1><h2 id="do-command"><a href="#do-command" class="headerlink" title="do_command"></a>do_command</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081508.jpg" alt=""></p>
 <ul>
 <li>右侧:恢复点</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081509.jpg" alt=""></p>
 <ul>
 <li>读取command</li>
 <li>根据command进行分支</li>
 <li>常规的note管理类服务</li>
 </ul>
-<h2 id="command0-new"><a href="#command0-new" class="headerlink" title="command0_new"></a>command0_new</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="command0-new"><a href="#command0-new" class="headerlink" title="command0_new"></a>command0_new</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081510.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081511.jpg" alt=""></p>
 <ul>
 <li>接受要创建的note的size</li>
 <li>但不对size进行检查</li>
 <li>在没有对size检查的情况下生成新note</li>
 <li>搜索已经free的note，如果存在，会再次使用它</li>
 </ul>
-<h2 id="build-node-and-insert-note"><a href="#build-node-and-insert-note" class="headerlink" title="build_node_and_insert_note"></a>build_node_and_insert_note</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081512.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081513.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="build-node-and-insert-note"><a href="#build-node-and-insert-note" class="headerlink" title="build_node_and_insert_note"></a>build_node_and_insert_note</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081512.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081513.jpg" alt=""></p>
 <ul>
 <li>初始化与node相连的note</li>
 <li>搜索能够构建tree的node插入点</li>
@@ -416,265 +332,90 @@
 <li>在没有检查size的情况下，分配连接到note的buffer</li>
 <li>new(buffer)如果失败，产生std::bad_alloc异常，调用handler</li>
 </ul>
-<h2 id="恢复点"><a href="#恢复点" class="headerlink" title="恢复点"></a>恢复点</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081514.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="恢复点"><a href="#恢复点" class="headerlink" title="恢复点"></a>恢复点</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081514.jpg" alt=""></p>
 <ul>
 <li>note使用的buffer(data)如果存在，则释放它</li>
 <li>note自身也释放</li>
 <li>但是data和note还是连接在一起的</li>
 <li>这就产生了Use After Free</li>
 </ul>
-<h2 id="command1-read"><a href="#command1-read" class="headerlink" title="command1_read"></a>command1_read</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081515.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081516.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="command1-read"><a href="#command1-read" class="headerlink" title="command1_read"></a>command1_read</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081515.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081516.jpg" alt=""></p>
 <ul>
 <li>接收note的id，以及要读取的size</li>
 <li>搜索指定id的note</li>
 <li>读取note的data</li>
 </ul>
 <h2 id="command2-write"><a href="#command2-write" class="headerlink" title="command2_write"></a>command2_write</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081517.jpg" alt=""></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081518.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081518.jpg" alt=""></p>
 <ul>
 <li>接收note的id，以及要写入的size</li>
 <li>搜索指定id的note</li>
 <li>写入note的data</li>
 </ul>
-<h2 id="command3-free"><a href="#command3-free" class="headerlink" title="command3_free"></a>command3_free</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081519.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081520.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="command3-free"><a href="#command3-free" class="headerlink" title="command3_free"></a>command3_free</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081519.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081520.jpg" alt=""></p>
 <ul>
 <li>接收要变更为不可利用的note的id</li>
 <li>搜索指定id的note</li>
 <li>clear used 比特位</li>
 </ul>
-<h2 id="command4-delete"><a href="#command4-delete" class="headerlink" title="command4_delete"></a>command4_delete</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081521.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081522.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="command4-delete"><a href="#command4-delete" class="headerlink" title="command4_delete"></a>command4_delete</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081521.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081522.jpg" alt=""></p>
 <ul>
 <li>接收要废弃的note的id</li>
 <li>搜索指定id的note</li>
 <li>释放node和note</li>
 </ul>
 <h1 id="攻略-stage1"><a href="#攻略-stage1" class="headerlink" title="攻略(stage1)"></a>攻略(stage1)</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>创建tp用户，创建测试flag：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082001.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082001.jpg" alt=""></p>
 <p>不需要alerm(10),因为有PIE，不能用peda的deactive，直接patch为alerm(0)</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082002.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082002.jpg" alt=""></p>
 <p>之后socat启动服务，因为有ASLR，不能使用gdbserver（禁用ASLR时，二进制的.text段会消失)。所以这次需要使用gdb attach：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082003.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082003.jpg" alt=""></p>
 <p>终端1启动服务，终端3使用gdb attach，终端2为攻击者发送数据：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082004.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082004.jpg" alt=""></p>
 <ul>
 <li><code>pgrep -w &lt;filename&gt;</code>可以筛选LWP(包括线程的进程)列表，之后使用<code>tail -1</code>选择最后一个生成的线程，也就是只选择子B。</li>
 <li>但是，因为有PIE，每次attach，text的基地址都会改变</li>
 </ul>
 <p>根据attach后stack上的各种值，可以计算出PIE的base：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082005.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082005.jpg" alt=""></p>
 <ul>
 <li>通过vmmap检查PIE的base，这次是0x7fdc7bdcc000</li>
 <li>根据stack上的值计算出偏移：0x7fdc7bdce34f - 0x7fdc7bdcc000= 0x234f (diff)</li>
 <li><code>*$rsp-0x234f == PIE的base，set $base = *(void**)$rsp-0x234f</code>，即使有PIE，偏移量是不会改变的，因此我们可以通过每次的rsp计算出PIE的base</li>
 </ul>
 <h2 id="生成command文件"><a href="#生成command文件" class="headerlink" title="生成command文件"></a>生成command文件</h2><p>将禁用SIGSYS信号的stop，print，读取heap信息，计算base等命令写到文件里，再次gdb attach：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082006.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082007.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082006.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082007.jpg" alt=""></p>
 <p>将程序各个功能封装成函数：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082008.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082009.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082008.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082009.jpg" alt=""></p>
 <h2 id="生成dump函数"><a href="#生成dump函数" class="headerlink" title="生成dump函数"></a>生成dump函数</h2><p>确认UAF之前，准备好dump node和note信息的函数比较好</p>
 <ul>
 <li>这样会非常效率</li>
 <li>便于理解heap内部情况</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082010.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082011.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082012.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082010.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082011.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082012.jpg" alt=""></p>
 <p>可以看到生成了一个存在note，buffer为NULL的异常node</p>
 <h1 id="Pwn-生成共有状态"><a href="#Pwn-生成共有状态" class="headerlink" title="Pwn - 生成共有状态"></a>Pwn - 生成共有状态</h1><p>利用UAF可以达到任意内存读写</p>
 <ul>
 <li>但首先需要生成共用内存的状态</li>
 <li>即存在两个指针A和B，指向同一块内存区域</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082013.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="1-new-size-1"><a href="#1-new-size-1" class="headerlink" title="1. _new(size=1)"></a>1. _new(size=1)</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082014.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082013.jpg" alt=""></p>
+<h2 id="1-new-size-1"><a href="#1-new-size-1" class="headerlink" title="1. _new(size=1)"></a>1. _new(size=1)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082014.jpg" alt=""></p>
 <p>创建了一个size为1的note，之后tree是这样的</p>
-<h2 id="2-new-size-1"><a href="#2-new-size-1" class="headerlink" title="2. _new(size=1)"></a>2. _new(size=1)</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082015.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="2-new-size-1"><a href="#2-new-size-1" class="headerlink" title="2. _new(size=1)"></a>2. _new(size=1)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082015.jpg" alt=""></p>
 <ul>
 <li>创建一个后面用于覆盖的元素</li>
 <li>作为id为0的node的父node，插入到tree中</li>
 </ul>
-<h2 id="3-new-size-1"><a href="#3-new-size-1" class="headerlink" title="3. _new(size=-1)"></a>3. _new(size=-1)</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082016.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082017.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="3-new-size-1"><a href="#3-new-size-1" class="headerlink" title="3. _new(size=-1)"></a>3. _new(size=-1)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082016.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082017.jpg" alt=""></p>
 <ul>
 <li>alloc_note内部，首先生成note</li>
 <li>接下来准备生成data</li>
@@ -682,72 +423,30 @@
 <li>刚才生成的note被free后，来自node的引用仍然存在</li>
 <li>fastbins与这个note相连接，arena切换，这个note已经不能被使用</li>
 </ul>
-<h2 id="4-new-size-1"><a href="#4-new-size-1" class="headerlink" title="4. _new(size=-1)"></a>4. _new(size=-1)</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082018.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082019.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="4-new-size-1"><a href="#4-new-size-1" class="headerlink" title="4. _new(size=-1)"></a>4. _new(size=-1)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082018.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082019.jpg" alt=""></p>
 <ul>
 <li>同样，先在alloc_note内部，首先生成note</li>
 <li>之后，data生成失败，如果已经存在thread_arena，malloc就不会再创建新的arena</li>
 <li>因为data生成失败，data被free，来自node的引用仍然存在</li>
 <li>bins和note相连接</li>
 </ul>
-<h2 id="5-free-id-1"><a href="#5-free-id-1" class="headerlink" title="5. _free(id=1)"></a>5. _free(id=1)</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082020.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="5-free-id-1"><a href="#5-free-id-1" class="headerlink" title="5. _free(id=1)"></a>5. _free(id=1)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082020.jpg" alt=""></p>
 <ul>
 <li>tree开头的节点，id=1的note设置为used=0</li>
 <li>如果存在used=0的note，它的size与指定的size不一致，下次alloc_note时，先free(data)，然后重新分配一次</li>
 </ul>
-<h2 id="6-new-size-0x28"><a href="#6-new-size-0x28" class="headerlink" title="6. _new(size=0x28)"></a>6. _new(size=0x28)</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082021.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="6-new-size-0x28"><a href="#6-new-size-0x28" class="headerlink" title="6. _new(size=0x28)"></a>6. _new(size=0x28)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082021.jpg" alt=""></p>
 <ul>
 <li>因为used=0的note的id=1，它将被再次使用</li>
 <li>但是size不一致，会先将id=1的datafree掉</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082022.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082022.jpg" alt=""></p>
 <ul>
 <li>之后的malloc，会从thread_arena生成data</li>
 <li>因为bins中存在sz=0x28的chunk，会直接再次使用，作为id=1的data</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082023.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082023.jpg" alt=""></p>
 <ul>
 <li>这时候，id=1的data和id=3的data是共有状态</li>
 <li>但是，id=3的note，实际上id信息已经破坏，因此需要修正</li>
@@ -761,14 +460,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082101.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082101.jpg" alt=""></p>
 <ul>
 <li>但是因为这里同时有PIE+ASLR，我们不知道GOT(.text)的地址<ul>
 <li>可以利用Partial Overwrite，来leak内存</li>
@@ -781,125 +473,55 @@
 <li>这会导致id=3的note更新，变成id=0x1337</li>
 <li>这时，id=0x1337变成used=0</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082102.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082102.jpg" alt=""></p>
 <h2 id="8-new-size-0x100"><a href="#8-new-size-0x100" class="headerlink" title="8. _new(size=0x100)"></a>8. _new(size=0x100)</h2><ul>
 <li>因为找到的used=0的note的id=0x1337，通过alloc_note对这个note再次使用</li>
 <li>id=0x1337，生成data</li>
 <li>size=0x100，不在bins里的小的size就可以</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082103.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082103.jpg" alt=""></p>
 <ul>
 <li>这时，id=0x1337的note上，生成了指向data的指针</li>
 <li>这个指向data的指针，指向的是从thread_arena的mapped区域申请的chunk</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082104.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082104.jpg" alt=""></p>
 <h2 id="9-read-id-1-data-pQ-0x1337-“-x70-x08”"><a href="#9-read-id-1-data-pQ-0x1337-“-x70-x08”" class="headerlink" title="9. _read(id=1, data=pQ(0x1337) + “\x70\x08”)"></a>9. _read(id=1, data=pQ(0x1337) + “\x70\x08”)</h2><ul>
 <li>使用id=1，来覆盖指向id=0x1337的note的data的指针，只能写两个字节</li>
 <li>指向0x1337的data的指针，指向的是thread_arena内部的bin上的一个chunk</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082105.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082105.jpg" alt=""></p>
 <ul>
 <li>可以看到，指向data的指针，后两个字节已经被重写</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082106.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082106.jpg" alt=""></p>
 <ul>
 <li>这次是指向mapped+0x870作为data</li>
 <li>里面是mapped+0x858</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082107.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082107.jpg" alt=""></p>
 <h2 id="10-write-id-0x1337-size-8"><a href="#10-write-id-0x1337-size-8" class="headerlink" title="10. _write(id=0x1337, size=8)"></a>10. _write(id=0x1337, size=8)</h2><ul>
 <li>通过写出id=0x1337，可以泄漏mapped+0x858之类的值</li>
 <li>泄漏的值减去0x858就能够知道heap的base地址</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082108.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082108.jpg" alt=""></p>
 <h1 id="Pwn-libc-leak"><a href="#Pwn-libc-leak" class="headerlink" title="Pwn - libc leak"></a>Pwn - libc leak</h1><ul>
 <li>能够泄漏heap的base地址</li>
 <li>附近(mapped+0x888)存在和libc相关的地址</li>
 <li>从thread_arena到main_arena的next指针</li>
 <li>这个也可以被泄漏</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082201.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082201.jpg" alt=""></p>
 <h2 id="11-read-id-1-data-pQ-0x1337-“-x88-x08”"><a href="#11-read-id-1-data-pQ-0x1337-“-x88-x08”" class="headerlink" title="11. _read(id=1, data=pQ(0x1337) + “\x88\x08”)"></a>11. _read(id=1, data=pQ(0x1337) + “\x88\x08”)</h2><ul>
 <li>使用id=1，来覆盖指向id=0x1337的note的data的指针，只能写两个字节</li>
 <li>指向0x1337的data的指针，指向的是thread_arena的next</li>
 <li>next中是main_arena的地址</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082202.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082202.jpg" alt=""></p>
 <h2 id="12-write-id-0x1337-size-8"><a href="#12-write-id-0x1337-size-8" class="headerlink" title="12. _write(id=0x1337, size=8)"></a>12. _write(id=0x1337, size=8)</h2><ul>
 <li>通过写出id=0x1337，可以泄漏main_arena的地址</li>
 <li>泄漏的值减去0x3be760就能够知道libc的base地址</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082203.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082203.jpg" alt=""></p>
 <h1 id="Pwn-stack-leak"><a href="#Pwn-stack-leak" class="headerlink" title="Pwn - stack leak"></a>Pwn - stack leak</h1><ul>
 <li>能够泄漏libc的base地址</li>
 <li>结合偏移量就能够计算出libc中各种函数地址<ul>
@@ -917,64 +539,22 @@
 <li>libc中存在指向stack的<code>__environ，__libc_stack_end</code>变量</li>
 <li>这里是将id=0x1337的note的data变更为<code>__environ</code>,也就是libc_base + 0x3c14a0</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082204.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082204.jpg" alt=""></p>
 <h2 id="14-write-id-0x1337-size-8"><a href="#14-write-id-0x1337-size-8" class="headerlink" title="14. _write(id=0x1337, size=8)"></a>14. _write(id=0x1337, size=8)</h2><ul>
 <li>通过写出id=0x1337，可以泄漏stack上envp[]的地址</li>
 <li>泄漏的值减去0x200就是储存read()函数返回地址的地方</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082205.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082205.jpg" alt=""></p>
 <h1 id="Pwn-stack伪造"><a href="#Pwn-stack伪造" class="headerlink" title="Pwn - stack伪造"></a>Pwn - stack伪造</h1><h2 id="15-read-id-1-data-pQ-0x1337-pQ-ret-pQ-len-rop"><a href="#15-read-id-1-data-pQ-0x1337-pQ-ret-pQ-len-rop" class="headerlink" title="15. _read(id=1, data=pQ(0x1337)+pQ(ret)+pQ(len(rop)))"></a>15. _read(id=1, data=pQ(0x1337)+pQ(ret)+pQ(len(rop)))</h2><ul>
 <li>让id=0x1337的note指向ret</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082206.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082206.jpg" alt=""></p>
 <h2 id="16-read-id-0x1337-data-rop"><a href="#16-read-id-0x1337-data-rop" class="headerlink" title="16. _read(id=0x1337, data=rop)"></a>16. _read(id=0x1337, data=rop)</h2><ul>
 <li>之后在ret附近写入ROP</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082207.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h1 id="stage1的exploit"><a href="#stage1的exploit" class="headerlink" title="stage1的exploit"></a>stage1的exploit</h1><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082208.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082209.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082207.jpg" alt=""></p>
+<h1 id="stage1的exploit"><a href="#stage1的exploit" class="headerlink" title="stage1的exploit"></a>stage1的exploit</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082208.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019082209.jpg" alt=""></p>
 
         </div>
 
@@ -983,7 +563,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-27T09:14:39.954Z" itemprop="dateUpdated">2019-08-27 17:14:39</time>
+    Last updated: <time datetime="2019-08-27T09:14:39.954Z" itemprop="dateUpdated">2019-08-27 17:14:39</time>
 </span><br>
 
 
@@ -1150,11 +730,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

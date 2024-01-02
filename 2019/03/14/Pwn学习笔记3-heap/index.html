@@ -114,8 +114,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -137,7 +144,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -231,14 +238,7 @@
 </ul>
 <h3 id="使用heap的程序例子1"><a href="#使用heap的程序例子1" class="headerlink" title="使用heap的程序例子1"></a>使用heap的程序例子1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; </span><br><span class="line">#include &lt;string.h&gt; </span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">int main(int argc, char* argv[])&#123; </span><br><span class="line">    char* ptr;</span><br><span class="line">    ptr &#x3D; (char*)malloc(20); </span><br><span class="line">    strcpy(ptr, argv[1]); </span><br><span class="line">    printf(&quot;%s\n&quot;, ptr);</span><br><span class="line">    free(ptr);</span><br><span class="line">    return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031401.jpg" alt=""></p>
 <ul>
 <li>分配20字节内存</li>
 <li>字符串拷贝</li>
@@ -250,14 +250,7 @@
 
 <h3 id="使用heap的程序例子2"><a href="#使用heap的程序例子2" class="headerlink" title="使用heap的程序例子2"></a>使用heap的程序例子2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt; </span><br><span class="line">int main(void)&#123;</span><br><span class="line">    int *p;</span><br><span class="line">    p &#x3D; new int();</span><br><span class="line">    std::cin &gt;&gt; *p;</span><br><span class="line">    std::cout &lt;&lt; *p &lt;&lt; std::endl; </span><br><span class="line">    delete p;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031402.jpg" alt=""></p>
 <ul>
 <li>分配int变量内存</li>
 <li>读取值</li>
@@ -267,14 +260,7 @@
 <p>实际运行大概像这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ g++ heap2.cpp</span><br><span class="line">$ .&#x2F;a.out</span><br><span class="line">6</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031403.jpg" alt=""></p>
 <p>malloc和new是从哪里获取内存的？答案是heap</p>
 <h3 id="从以下区域分配内存"><a href="#从以下区域分配内存" class="headerlink" title="从以下区域分配内存"></a>从以下区域分配内存</h3><ul>
 <li>不使用时使用free()进行释放</li>
@@ -282,14 +268,7 @@
 <li>太大的内存请求将通过另一种方式分配(mmap)</li>
 <li>sbrk/mmap在malloc内部自动进行</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031404.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031404.jpg" alt=""></p>
 <ul>
 <li><p>编写程序时并不需要非常在意heap机制</p>
 <ul>
@@ -312,7 +291,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-14T06:33:38.313Z" itemprop="dateUpdated">2019-03-14 14:33:38</time>
+    Last updated: <time datetime="2019-03-14T06:33:38.313Z" itemprop="dateUpdated">2019-03-14 14:33:38</time>
 </span><br>
 
 
@@ -479,11 +458,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

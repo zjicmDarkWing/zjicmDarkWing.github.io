@@ -106,8 +106,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -129,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -196,15 +203,18 @@ https://www.hackthebox.eu/home/machines/profile/232
 
 端口扫描windows服务器，开了域相关端口，但enum4linux没什么有用信息
 
-                
-                    
-                    
-                
-      ...
+80
+有一个搜索接口，发送空可以得到所有员工信息：
+
+
+WAF bypass尝试sql注入，存在WAF，注意unicode编码后可以bypass：
+
+
+sqlmap...
     
 
         <a href="/2020/05/06/Multimaster-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -251,19 +261,12 @@ https://www.hackthebox.eu/home/machines/profile/113
 10.10.10.59
 
 
-                
-                    
-                    
-                
-                
-            
-
 端口扫描常规windows端口：
-1...
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585...
     
 
         <a href="/2020/05/01/Tally-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -311,18 +314,16 @@ https://www.hackthebox.eu/home/machines/profile/239
 
 端口扫描常规22和80:
 
-                
-                    
-                    
-                
-                
-            
+80需要加一下host：
+110.10.10.183 forwardslash.htb
 
-80需要...
+
+扫一下目录：
+1gobuster dir -u http://forwardslash.htb/ -w /usr/share/wo...
     
 
         <a href="/2020/04/29/ForwardSlash-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -369,18 +370,19 @@ https://www.hackthebox.eu/home/machines/profile/240
 10.10.10.184
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
+2121端口FTP可以匿名连接：
 
-2121端口FTP可以匿名...
+两个用户目录中两个txt：
+
+
+8080是NVMS 1000
+
+直接搜索有一个相关漏洞：
+1auxiliary&#x2F;scanner&#x2F;http&#x2F;tvt_nvms_traversal...
     
 
         <a href="/2020/04/27/ServMon-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -428,16 +430,16 @@ https://www.hackthebox.eu/home/machines/profile/241
 
 端口扫描常规的Linux，22和80:
 
-                
-                    
-                    
-                
-                
-           ...
+80
+看起来是个图床，有登录界面,很简单的注入，直接万能密码就可以：
+1&#39;or&#39;1&#39;&#x3D;&#39;1
+
+
+bypass_image_upload只能上传图像，并且存在文件头校验...
     
 
         <a href="/2020/04/26/Magic-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -485,16 +487,17 @@ https://www.hackthebox.eu/home/machines/profile/225
 
 端口扫描windows服务器，两个端口，没有web：
 
-                
-                    
-                    
-                
-                
-    ...
+445enum4linux没什么结果，smb能直接匿名连接：
+
+发现两个txt文件：
+
+下载下来查看内容，得到一组账号密码：
+
+12Username: TempUserPassword: wel...
     
 
         <a href="/2020/04/24/Nest-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -541,19 +544,19 @@ https://www.hackthebox.eu/home/machines/profile/222
 10.10.10.171
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
-
 80 直接访问是默认页面
-...
+
+扫描目录发现存在music目录，login是跳转到ona：
+
+
+ona getshellona默认guest用户登录，版本是 v18.1.1，搜索发现存在已知漏洞,注意这里要用全称搜索：
+
+
+这个shell是ww...
     
 
         <a href="/2020/04/23/OpenAdmin-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -600,16 +603,13 @@ https://www.hackthebox.eu/home/machines/profile/222
 
 端口扫描windows服务器，没有web：
 
-                
-                    
-                    
-                
-                
-    ...
+enum4linux
+根据结果生成用户名字典：
+12345678910GuestAAD_987d7f2f57d2mhopeSABatchJobssvc-atasvc-bexecsvc-netap...
     
 
         <a href="/2020/04/21/Monteverde-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -655,19 +655,16 @@ https://www.hackthebox.eu/home/machines/profile/222
 10.10.10.175
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
-
 80
-     ...
+389389是ldap，用nmap ldap相关脚本详细扫描：
+1nmap -n -sV -script "ldap*" -p 389 10.10.10.175
+
+ 
+根据结果，域应该是EGOTISTICAL-BANK.LO...
     
 
         <a href="/2020/04/20/Sauna-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -714,19 +711,17 @@ https://www.hackthebox.eu/home/machines/profile/214
 10.10.10.162
 
 端口扫描
-                
-                    
-                    
-                
-                
-            
-
 80
-    ...
+绑定hosts访问后是这个：
+
+443  证书信息是staging-order.mango.htb，可以加到hosts里
+
+Nosql injection80登录界面其实是nosql，可以用这个
+https://githu...
     
 
         <a href="/2020/04/17/Mango-HackTheBox/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -769,11 +764,11 @@ https://www.hackthebox.eu/home/machines/profile/214
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

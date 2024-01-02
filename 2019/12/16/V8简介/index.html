@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="什么是V8解释，执行Javascript代码的引擎 自身是C++实现 解析Javascript 代码，构造AST(抽象语法树) 基于AST，通过JIT编译器将其转换为汇编，执行  AST 抽象语法树大概是这样(以a+b为例)：">
+    <meta name="description" content="什么是V8解释，执行Javascript代码的引擎 自身是C++实现 解析Javascript 代码，构造AST(抽象语法树) 基于AST，通过JIT编译器将其转换为汇编，执行  AST 抽象语法树大概是这样(以a+b为例)：  V8也可以单独运行，一般是和其他项目一起被使用，例如Google Chrome，Node.js等 ##V8 Exploit之前  首先，我们需要了解V8的构造  并不需要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="V8简介">
 <meta property="og:url" content="https://darkwing.moe/2019/12/16/V8%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="什么是V8解释，执行Javascript代码的引擎 自身是C++实现 解析Javascript 代码，构造AST(抽象语法树) 基于AST，通过JIT编译器将其转换为汇编，执行  AST 抽象语法树大概是这样(以a+b为例)：">
+<meta property="og:description" content="什么是V8解释，执行Javascript代码的引擎 自身是C++实现 解析Javascript 代码，构造AST(抽象语法树) 基于AST，通过JIT编译器将其转换为汇编，执行  AST 抽象语法树大概是这样(以a+b为例)：  V8也可以单独运行，一般是和其他项目一起被使用，例如Google Chrome，Node.js等 ##V8 Exploit之前  首先，我们需要了解V8的构造  并不需要">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120901.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120902.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120903.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -216,14 +223,7 @@
 <li>基于AST，通过JIT编译器将其转换为汇编，执行</li>
 </ul>
 <p>AST 抽象语法树大概是这样(以a+b为例)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120901.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120901.jpg" alt=""></p>
 <p>V8也可以单独运行，一般是和其他项目一起被使用，例如Google Chrome，Node.js等</p>
 <p>##V8 Exploit之前</p>
 <ul>
@@ -253,14 +253,7 @@
 <li>新的优化编译器：TurboFan</li>
 <li>新的baseline编译器：Ignition</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120902.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120902.jpg" alt=""></p>
 <p>下面这些资料可以用于参考：</p>
 <ul>
 <li><p><a href="https://docs.google.com/presentation/d/1H1lLsbclvzyOF3IUR05ZUaZcqDxo7_-8f4yJoxdMooU/edit#slide=id.p" target="_blank" rel="noopener">An overview of the TurboFan compiler</a></p>
@@ -275,75 +268,33 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120903.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120903.jpg" alt=""></p>
 <ul>
 <li>2010年，针对hot-code优化目的，引入了Crankshaft<ul>
 <li>调用频率较高，机器代码生成时间还能再减少，判断可以更优化的代码</li>
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120904.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120904.jpg" alt=""></p>
 <ul>
 <li>2015年，因为Crankshaft适配JavaScript的新规范比较麻烦，引入了新的TurboFan</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120905.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120905.jpg" alt=""></p>
 <ul>
 <li>2017年，为了维护效率，引入了用于生成中间代码的Ignition</li>
 <li>TurboFan专门优化中间代码</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120906.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120906.jpg" alt=""></p>
 <ul>
 <li>2018年至今，Full-Codegen和Crankshaft结束寿命，被删除</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120907.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120907.jpg" alt=""></p>
 <h2 id="回到例题"><a href="#回到例题" class="headerlink" title="回到例题"></a>回到例题</h2><p>例题是2016年当时的latest</p>
 <ul>
 <li>存在Full-Codegen，Crankshaft，TurboFan</li>
 <li>Hidden Class + Inline Caching也被用于优化</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120908.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019120908.jpg" alt=""></p>
 <h2 id="编译器与优化"><a href="#编译器与优化" class="headerlink" title="编译器与优化"></a>编译器与优化</h2><ul>
 <li>Baseline编译器<ol>
 <li>Full-Codegen （对于这次例题exp的重要程度低）</li>
@@ -360,32 +311,11 @@
 </ol>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121301.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121301.jpg" alt=""></p>
 <p>各种编译器在V8源码的src目录中：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121302.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121302.jpg" alt=""></p>
 <p>其他应该知道的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019121601.jpg" alt=""></p>
 
         </div>
 
@@ -394,7 +324,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-12-16T06:33:24.987Z" itemprop="dateUpdated">2019-12-16 14:33:24</time>
+    Last updated: <time datetime="2019-12-16T06:33:24.987Z" itemprop="dateUpdated">2019-12-16 14:33:24</time>
 </span><br>
 
 
@@ -559,11 +489,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

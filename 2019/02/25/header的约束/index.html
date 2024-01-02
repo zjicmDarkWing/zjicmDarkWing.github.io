@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="header需要必要的约束 首先，分配的内存块不需要free list的指针，bk，fd等 可以简单的删除它 需要注意访问方法                                                                                                              当我们转向malloc_chunk结构体来访问它时，可">
+    <meta name="description" content="header需要必要的约束 首先，分配的内存块不需要free list的指针，bk，fd等 可以简单的删除它 需要注意访问方法   当我们转向malloc_chunk结构体来访问它时，可以看到存在fd，bk，实际上它们已经被用户应用所使用，如果访问会造成内存破坏 很难从源代码中读取 约束继续进行 经常要考虑的 prev_size在free时候的合并处理是必要的 只有当prev处于free状态时，是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="header的约束">
 <meta property="og:url" content="https://darkwing.moe/2019/02/25/header%E7%9A%84%E7%BA%A6%E6%9D%9F/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="header需要必要的约束 首先，分配的内存块不需要free list的指针，bk，fd等 可以简单的删除它 需要注意访问方法                                                                                                              当我们转向malloc_chunk结构体来访问它时，可">
+<meta property="og:description" content="header需要必要的约束 首先，分配的内存块不需要free list的指针，bk，fd等 可以简单的删除它 需要注意访问方法   当我们转向malloc_chunk结构体来访问它时，可以看到存在fd，bk，实际上它们已经被用户应用所使用，如果访问会造成内存破坏 很难从源代码中读取 约束继续进行 经常要考虑的 prev_size在free时候的合并处理是必要的 只有当prev处于free状态时，是">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022503.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022504.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022505.jpg">
@@ -115,8 +115,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -138,7 +145,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -210,14 +217,7 @@
 <li>可以简单的删除它</li>
 <li>需要注意访问方法</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022503.jpg" alt=""></p>
 <p>当我们转向malloc_chunk结构体来访问它时，可以看到存在fd，bk，实际上它们已经被用户应用所使用，如果访问会造成内存破坏</p>
 <p>很难从源代码中读取</p>
 <h2 id="约束继续进行"><a href="#约束继续进行" class="headerlink" title="约束继续进行"></a>约束继续进行</h2><ul>
@@ -227,46 +227,18 @@
 <li>只有在prev处于free状态时才记录prev_size</li>
 <li>那么，如何确认prev是否是free状态(先有鸡还是先有蛋的问题)</li>
 </ul>
-<h2 id="32位系统的指针"><a href="#32位系统的指针" class="headerlink" title="32位系统的指针"></a>32位系统的指针</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="32位系统的指针"><a href="#32位系统的指针" class="headerlink" title="32位系统的指针"></a>32位系统的指针</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022504.jpg" alt=""></p>
 <ul>
 <li>最低2位固定是0</li>
 <li>glibc malloc实际上内部会取8的倍数，因此最低3位是0</li>
 <li>size记录两个指针之间的差，当然，最低3位同样是0</li>
 </ul>
-<h2 id="也就是说"><a href="#也就是说" class="headerlink" title="也就是说"></a>也就是说</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="也就是说"><a href="#也就是说" class="headerlink" title="也就是说"></a>也就是说</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022505.jpg" alt=""></p>
 <p>size的最低一位用于记录prev的使用状态</p>
 <p>结构体类型和内存中的数据结构不一致，这是为什么难以读区的原因</p>
-<h2 id="在时间序列中"><a href="#在时间序列中" class="headerlink" title="在时间序列中"></a>在时间序列中</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="在时间序列中"><a href="#在时间序列中" class="headerlink" title="在时间序列中"></a>在时间序列中</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022506.jpg" alt=""></p>
 <p>显然，从malloc header直接访问malloc chunk会出错，因为fd，bk被用户应用所使用</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022507.jpg" alt=""></p>
 <p>free的时候会第一次写入fd，bk，prev_size</p>
 <p>prev_in_use flag是1</p>
 <p>size之外，malloc时不会确保，但它是free的，可以直接使用</p>
@@ -288,7 +260,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-25T07:18:28.348Z" itemprop="dateUpdated">2019-02-25 15:18:28</time>
+    Last updated: <time datetime="2019-02-25T07:18:28.348Z" itemprop="dateUpdated">2019-02-25 15:18:28</time>
 </span><br>
 
 
@@ -455,11 +427,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

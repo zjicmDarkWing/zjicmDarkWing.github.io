@@ -128,8 +128,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -151,7 +158,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,23 +229,9 @@
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.203</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-04 12:00 CST</span><br><span class="line">Nmap scan report for 10.10.10.203</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 998 filtered ports</span><br><span class="line">PORT     STATE SERVICE  VERSION</span><br><span class="line">80/tcp   open  http     Microsoft IIS httpd 10.0</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">|_http-title: IIS Windows Server</span><br><span class="line">3690/tcp open  svnserve Subversion</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 29.77 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>80是IIS默认页面：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090401.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090401.jpg" alt=""></p>
 <h2 id="3690"><a href="#3690" class="headerlink" title="3690"></a>3690</h2><p>3690是SVN：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090402.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090402.jpg" alt=""></p>
 <h1 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h1><h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> svn list svn://10.10.10.203</span></span><br><span class="line">dimension.worker.htb/</span><br><span class="line">moved.txt</span><br></pre></td></tr></table></figure>
 
 <h2 id="moved-txt"><a href="#moved-txt" class="headerlink" title="moved.txt"></a>moved.txt</h2><p>moved.txt里得到一个新域名，加到host后访问：</p>
@@ -248,167 +241,53 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.203 devops.worker.htb worker.htb</span><br></pre></td></tr></table></figure>
 
 <p>需要登录，首先需要从其他地方得到登录信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090403.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090403.jpg" alt=""></p>
 <h2 id="dimension-worker-htb"><a href="#dimension-worker-htb" class="headerlink" title="dimension.worker.htb"></a>dimension.worker.htb</h2><p>这个目录下载下来没什么有用信息(兔子洞)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> svn <span class="built_in">export</span> svn://worker.htb/dimension.worker.htb/</span></span><br><span class="line">A    dimension.worker.htb</span><br><span class="line">A    dimension.worker.htb/LICENSE.txt</span><br><span class="line">A    dimension.worker.htb/README.txt</span><br><span class="line">A    dimension.worker.htb/assets</span><br><span class="line">A    dimension.worker.htb/assets/css</span><br><span class="line">A    dimension.worker.htb/assets/css/fontawesome-all.min.css</span><br><span class="line">A    dimension.worker.htb/assets/css/main.css</span><br><span class="line">A    dimension.worker.htb/assets/css/noscript.css</span><br><span class="line">A    dimension.worker.htb/assets/js</span><br><span class="line">A    dimension.worker.htb/assets/js/breakpoints.min.js</span><br><span class="line">A    dimension.worker.htb/assets/js/browser.min.js</span><br><span class="line">A    dimension.worker.htb/assets/js/jquery.min.js</span><br><span class="line">A    dimension.worker.htb/assets/js/main.js</span><br><span class="line">A    dimension.worker.htb/assets/js/util.js</span><br><span class="line">A    dimension.worker.htb/assets/sass</span><br><span class="line">A    dimension.worker.htb/assets/sass/base</span><br><span class="line">A    dimension.worker.htb/assets/sass/base/_page.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/base/_reset.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/base/_typography.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_actions.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_box.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_button.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_form.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_icon.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_icons.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_image.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_list.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/components/_table.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/layout</span><br><span class="line">A    dimension.worker.htb/assets/sass/layout/_bg.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/layout/_footer.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/layout/_header.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/layout/_main.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/layout/_wrapper.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/libs</span><br><span class="line">A    dimension.worker.htb/assets/sass/libs/_breakpoints.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/libs/_functions.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/libs/_mixins.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/libs/_vars.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/libs/_vendor.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/main.scss</span><br><span class="line">A    dimension.worker.htb/assets/sass/noscript.scss</span><br><span class="line">A    dimension.worker.htb/assets/webfonts</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-brands-400.eot</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-brands-400.svg</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-brands-400.ttf</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-brands-400.woff</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-brands-400.woff2</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-regular-400.eot</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-regular-400.svg</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-regular-400.ttf</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-regular-400.woff</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-regular-400.woff2</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-solid-900.eot</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-solid-900.svg</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-solid-900.ttf</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-solid-900.woff</span><br><span class="line">A    dimension.worker.htb/assets/webfonts/fa-solid-900.woff2</span><br><span class="line">A    dimension.worker.htb/images</span><br><span class="line">A    dimension.worker.htb/images/bg.jpg</span><br><span class="line">A    dimension.worker.htb/images/overlay.png</span><br><span class="line">A    dimension.worker.htb/images/pic01.jpg</span><br><span class="line">A    dimension.worker.htb/images/pic02.jpg</span><br><span class="line">A    dimension.worker.htb/images/pic03.jpg</span><br><span class="line">A    dimension.worker.htb/index.html</span><br><span class="line">Exported revision 5.</span><br></pre></td></tr></table></figure>
 
 <p>域名加hosts后访问：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090404.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090404.jpg" alt=""></p>
 <h2 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h2><p>当前svn是在revision 5，可以查看下历史版本，在2发现了一个deploy.ps1文件, 里面得到一组账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> svn checkout -r 2 svn://worker.htb</span></span><br><span class="line">A    deploy.ps1</span><br><span class="line">Checked out revision 2.</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat deploy.ps1</span></span><br><span class="line"><span class="meta">$</span><span class="bash">user = <span class="string">"nathen"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">plain = <span class="string">"wendel98"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">pwd</span> = (<span class="variable">$plain</span> | ConvertTo-SecureString)</span></span><br><span class="line"><span class="meta">$</span><span class="bash">Credential = New-Object System.Management.Automation.PSCredential <span class="variable">$user</span>, <span class="variable">$pwd</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">args = <span class="string">"Copy-Site.ps1"</span></span></span><br><span class="line">Start-Process powershell.exe -Credential $Credential -ArgumentList ("-file $args")</span><br></pre></td></tr></table></figure>
 
 <h1 id="devops"><a href="#devops" class="headerlink" title="devops"></a>devops</h1><p>然后使用这个账号密码可以登录前面的devops.worker.htb(不知道哪里的问题，火狐登录一直失败，换safari就可以)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090405.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090405.jpg" alt=""></p>
 <h2 id="SmartHotel360-gt-Repos-gt-Branches"><a href="#SmartHotel360-gt-Repos-gt-Branches" class="headerlink" title="SmartHotel360 &gt; Repos &gt; Branches"></a><strong>SmartHotel360</strong> &gt; <strong>Repos</strong> &gt; <strong>Branches</strong></h2><p> 新建一个分支：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090406.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090406.jpg" alt=""></p>
 <h2 id="upload-shell"><a href="#upload-shell" class="headerlink" title="upload shell"></a>upload shell</h2><p>然后去自己新建的分支上传文件，上传aspx webshell：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090407.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090407.jpg" alt=""></p>
 <h2 id="pull-request"><a href="#pull-request" class="headerlink" title="pull request"></a><strong>pull request</strong></h2><p>然后去新建一个pull request把我们的变更合并到master(需要指定工作项，要不然后面没法完成，随意选个1就行)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090408.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090408.jpg" alt=""></p>
 <h2 id="Approve-gt-Complete-gt-Complete-Merge"><a href="#Approve-gt-Complete-gt-Complete-Merge" class="headerlink" title="Approve &gt; Complete &gt; Complete Merge"></a><strong>Approve</strong> &gt; <strong>Complete</strong> &gt; <strong>Complete Merge</strong></h2><p>然后去批准，完成合并：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090409.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090409.jpg" alt=""></p>
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>得到webshell：</p>
 <p><a href="http://spectral.worker.htb/aspxshell.aspx" target="_blank" rel="noopener">http://spectral.worker.htb/aspxshell.aspx</a></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090410.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090410.jpg" alt=""></p>
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>然后转成reverse shel,  这里方便操作直接用meterpreter了l：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090411.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090411.jpg" alt=""></p>
 <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>在w:\svnrepos\www\conf目录下有一个passwd文件，里面很多用户名密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090412.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090412.jpg" alt=""></p>
 <p>然后其中有用的是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">robisl : wolves11</span><br></pre></td></tr></table></figure>
 
 <h2 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[users]</span><br><span class="line">nathen &#x3D; wendel98</span><br><span class="line">nichin &#x3D; fqerfqerf</span><br><span class="line">nichin &#x3D; asifhiefh</span><br><span class="line">noahip &#x3D; player</span><br><span class="line">nuahip &#x3D; wkjdnw</span><br><span class="line">oakhol &#x3D; bxwdjhcue</span><br><span class="line">owehol &#x3D; supersecret</span><br><span class="line">paihol &#x3D; painfulcode</span><br><span class="line">parhol &#x3D; gitcommit</span><br><span class="line">pathop &#x3D; iliketomoveit</span><br><span class="line">pauhor &#x3D; nowayjose</span><br><span class="line">payhos &#x3D; icanjive</span><br><span class="line">perhou &#x3D; elvisisalive</span><br><span class="line">peyhou &#x3D; ineedvacation</span><br><span class="line">phihou &#x3D; pokemon</span><br><span class="line">quehub &#x3D; pickme</span><br><span class="line">quihud &#x3D; kindasecure</span><br><span class="line">rachul &#x3D; guesswho</span><br><span class="line">raehun &#x3D; idontknow</span><br><span class="line">ramhun &#x3D; thisis</span><br><span class="line">ranhut &#x3D; getting</span><br><span class="line">rebhyd &#x3D; rediculous</span><br><span class="line">reeinc &#x3D; iagree</span><br><span class="line">reeing &#x3D; tosomepoint</span><br><span class="line">reiing &#x3D; isthisenough</span><br><span class="line">renipr &#x3D; dummy</span><br><span class="line">rhiire &#x3D; users</span><br><span class="line">riairv &#x3D; canyou</span><br><span class="line">ricisa &#x3D; seewhich</span><br><span class="line">robish &#x3D; onesare</span><br><span class="line">robisl &#x3D; wolves11</span><br><span class="line">robive &#x3D; andwhich</span><br><span class="line">ronkay &#x3D; onesare</span><br><span class="line">rubkei &#x3D; the</span><br><span class="line">rupkel &#x3D; sheeps</span><br><span class="line">ryakel &#x3D; imtired</span><br><span class="line">sabken &#x3D; drjones</span><br><span class="line">samken &#x3D; aqua</span><br><span class="line">sapket &#x3D; hamburger</span><br><span class="line">sarkil &#x3D; friday</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>然后使用上面有效的那个用户密码登录，桌面得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090413.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090413.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>robisl用户在Authenticated Users用户组中，这意味着他也可以使用Azure Devops：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">*Evil-WinRM* PS C:\Users\robisl\Desktop&gt; whoami /all</span><br><span class="line"></span><br><span class="line">USER INFORMATION</span><br><span class="line">----------------</span><br><span class="line"></span><br><span class="line">User Name     SID</span><br><span class="line">============= ==============================================</span><br><span class="line">worker\robisl S-1-5-21-3082756831-2119193761-3468718151-1330</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GROUP INFORMATION</span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">Group Name                             Type             SID                                            Attributes</span><br><span class="line">====================================== ================ ============================================== ==================================================</span><br><span class="line">Everyone                               Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group</span><br><span class="line">WORKER\Production                      Alias            S-1-5-21-3082756831-2119193761-3468718151-1018 Mandatory group, Enabled by default, Enabled group</span><br><span class="line">BUILTIN\Remote Management Users        Alias            S-1-5-32-580                                   Mandatory group, Enabled by default, Enabled group</span><br><span class="line">BUILTIN\Users                          Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\NETWORK                   Well-known group S-1-5-2                                        Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\Authenticated Users       Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\This Organization         Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\Local account             Well-known group S-1-5-113                                      Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\NTLM Authentication       Well-known group S-1-5-64-10                                    Mandatory group, Enabled by default, Enabled group</span><br><span class="line">Mandatory Label\Medium Mandatory Level Label            S-1-16-8192</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                    State</span><br><span class="line">============================= ============================== =======</span><br><span class="line">SeChangeNotifyPrivilege       Bypass traverse checking       Enabled</span><br><span class="line">SeIncreaseWorkingSetPrivilege Increase a process working set Enabled</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>使用<strong>robisl:wolves11</strong>登录<strong>devops.worker.htb</strong></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090414.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090414.jpg" alt=""></p>
 <h2 id="PartsUnlimited-gt-Pipelines"><a href="#PartsUnlimited-gt-Pipelines" class="headerlink" title="PartsUnlimited -&gt; Pipelines"></a><strong>PartsUnlimited</strong> -&gt; <strong>Pipelines</strong></h2><p>New Pipeline &gt; Azure Repos Git &gt; PartsUnlimited &gt; Starter Pipeline </p>
 <p>新建一个pipeline脚本，内容直接改成读取root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090415.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090415.jpg" alt=""></p>
 <p>保存并运行，选项改成新分支，pull request：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090416.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090416.jpg" alt=""></p>
 <p>注意上图代码可能会报错没有default pool，可以直接把其他的都删了，只保留step那两行</p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>保存运行，然后在一堆success里有一个<strong>Run a one-line script</strong>，里面是执行结果：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090417.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090418.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090417.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090418.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>HackTheBox - Worker 10.10.10.203 - WriteUp - BinaryBiceps<br><a href="https://binarybiceps.com/hackthebox-worker-writeup/" target="_blank" rel="noopener">https://binarybiceps.com/hackthebox-worker-writeup/</a></li>
 <li>HACK THE BOX - Worker 10.10.10.203 [Writeup/Walkthrough]<br><a href="https://hacktheboxwriteups.blogspot.com/2020/08/nmap-scan-nmap-10.html" target="_blank" rel="noopener">https://hacktheboxwriteups.blogspot.com/2020/08/nmap-scan-nmap-10.html</a></li>
@@ -423,7 +302,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-02-01T00:33:39.275Z" itemprop="dateUpdated">2021-02-01 08:33:39</time>
+    Last updated: <time datetime="2021-02-01T00:33:39.275Z" itemprop="dateUpdated">2021-02-01 08:33:39</time>
 </span><br>
 
 
@@ -590,11 +469,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

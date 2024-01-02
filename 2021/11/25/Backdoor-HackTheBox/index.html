@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;416 10.10.11.125                                                                                                              端口扫描22,80: 123456789">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;416 10.10.11.125   端口扫描22,80: 12345678910111213141516171819 nmap -sV -sC 10.10.11.125Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2021-11-25 14:51 C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Backdoor - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/11/25/Backdoor-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;416 10.10.11.125                                                                                                              端口扫描22,80: 123456789">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;416 10.10.11.125   端口扫描22,80: 12345678910111213141516171819 nmap -sV -sC 10.10.11.125Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2021-11-25 14:51 C">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112503.jpg">
@@ -119,8 +119,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -142,7 +149,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -209,14 +216,7 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/416" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/416</a></li>
 <li>10.10.11.125</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112501.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> nmap -sV -sC 10.10.11.125</span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-25 14:51 CST</span><br><span class="line">Nmap scan report for backdoor.htb (10.10.11.125)</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 b4:de:43:38:46:57:db:4c:21:3b:69:f3:db:3c:62:88 (RSA)</span><br><span class="line">|   256 aa:c9:fc:21:0f:3e:f4:ec:6b:35:70:26:22:53:ef:66 (ECDSA)</span><br><span class="line">|_  256 d2:8b:e4:ec:07:61:aa:ca:f8:ec:1c:f8:8c:c1:f6:e1 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-title: Backdoor &amp;#8211; Real-Life</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-generator: WordPress 5.8.1</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 27.45 seconds</span><br></pre></td></tr></table></figure>
 
@@ -225,92 +225,36 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>加hosts,wordpress:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.125 backdoor.htb</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112502.jpg" alt=""></p>
 <h1 id="wordpress"><a href="#wordpress" class="headerlink" title="wordpress"></a>wordpress</h1><p>wpscan没什么东西，手动访问插件目录发现目录遍历，ebook-download 1.1版本：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112503.jpg" alt=""></p>
 <h2 id="eBook-Download"><a href="#eBook-Download" class="headerlink" title="eBook Download"></a>eBook Download</h2><p>搜到这个插件漏洞：</p>
 <ul>
 <li>WordPress Plugin eBook Download 1.1 - Directory Traversal - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/39575" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/39575</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112504.jpg" alt=""></p>
 <h2 id="wp-config"><a href="#wp-config" class="headerlink" title="wp-config"></a>wp-config</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define( &#39;DB_NAME&#39;, &#39;wordpress&#39; );</span><br><span class="line"></span><br><span class="line">&#x2F;** MySQL database username *&#x2F;</span><br><span class="line">define( &#39;DB_USER&#39;, &#39;wordpressuser&#39; );</span><br><span class="line"></span><br><span class="line">&#x2F;** MySQL database password *&#x2F;</span><br><span class="line">define( &#39;DB_PASSWORD&#39;, &#39;MQYBJSaD#DxG6qbm&#39; );</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="proc"><a href="#proc" class="headerlink" title="proc"></a>proc</h2><p>Lfi enum,proc cmdline发现枚举到gdbserver在1337端口：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112505.jpg" alt=""></p>
 <h1 id="gdbserver-amp-user-flag"><a href="#gdbserver-amp-user-flag" class="headerlink" title="gdbserver &amp; user flag"></a>gdbserver &amp; user flag</h1><p>根据这个：</p>
 <ul>
 <li>Turning arbitrary GDBserver sessions into RCE | Development &amp; Security<br><a href="http://jbremer.org/turning-arbitrary-gdbserver-sessions-into-rce/" target="_blank" rel="noopener">http://jbremer.org/turning-arbitrary-gdbserver-sessions-into-rce/</a></li>
 </ul>
 <p>也可以直接msf</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112506.jpg" alt=""></p>
+<h2 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112507.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>ps可以看到root screen session：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112508.jpg" alt=""></p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>直接attach到root session：</p>
 <ul>
 <li>screen Cheat Sheet - Kapeli<br><a href="https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index" target="_blank" rel="noopener">https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export TERM=xterm</span><br><span class="line">screen -x root/root</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021112509.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>WordPress Plugin eBook Download 1.1 - Directory Traversal - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/39575" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/39575</a></li>
 <li>mthbernardes/LFI-Enum: Scripts to execute enumeration via LFI<br><a href="https://github.com/mthbernardes/LFI-Enum" target="_blank" rel="noopener">https://github.com/mthbernardes/LFI-Enum</a></li>
@@ -326,7 +270,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2022-04-24T06:36:03.752Z" itemprop="dateUpdated">2022-04-24 14:36:03</time>
+    Last updated: <time datetime="2022-04-24T06:36:03.752Z" itemprop="dateUpdated">2022-04-24 14:36:03</time>
 </span><br>
 
 
@@ -493,11 +437,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

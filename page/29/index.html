@@ -106,8 +106,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -129,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -202,7 +209,7 @@
     
 
         <a href="/2020/01/08/HacktheBox-%E2%80%94-Craft/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -269,7 +276,7 @@ Full-Codegen生成的机器代码(半优化代码)的特点
     
 
         <a href="/2019/12/27/V8%E7%9A%84%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -322,12 +329,11 @@ EIP寄存器移到这个区域，然后执行
 
 
 
-                
-  ...
+
     
 
         <a href="/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -371,15 +377,16 @@ EIP寄存器移到这个区域，然后执行
 
 AST 抽象语法树大概是这样(以a+b为例)：
 
-                
-                    
-                    
-                
-      ...
+V8也可以单独运行，一般是和其他项目一起被使用，例如Google Chrome，Node.js等
+##V8 Exploit之前
+
+首先，我们需要了解V8的构造
+
+并...
     
 
         <a href="/2019/12/16/V8%E7%AE%80%E4%BB%8B/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -422,7 +429,7 @@ gclient内部跑download_from_google_storage时，是用不了socks的，只能�
     
 
         <a href="/2019/12/09/V8%E7%8E%AF%E5%A2%83/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -459,21 +466,18 @@ gclient内部跑download_from_google_storage时，是用不了socks的，只能�
     
         题目信息64位elf，开了NX
 
-                
-                    
-                    
-                
-                
-            
-
 分析大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用
 
-                
-     ...
+
+可以看出encrypt读取输入明显的溢出：
+
+题目没有system和sh所以需要构造ROP。并且没有给出libc文件，但存在puts函数，可以用于leak。
+所以就是leak出函数地址，确定libc，之后构造ROP
+exploitencrypt64位，pu...
     
 
         <a href="/2019/11/26/ciscn-2019-c-1/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -516,23 +520,23 @@ gclient内部跑download_from_google_storage时，是用不了socks的，只能�
     
         题目信息32位elf，开了NX
 
-                
-                    
-                    
-                
-                
-            
-
 文件是C++的，需要安装下依赖
 1sudo apt-get install lib32stdc++6
 
 分析
-                
- ...
+存在vuln函数及get_flag函数
+
+
+所以重点看vuln函数
+fgets是读取输入，存在长度限制，但会把用户输入的I替换为you，这样三倍的长度就能够造成溢出：
+
+offset可以测试出来是21*3+1，即64
+
+exploit12345678...
     
 
         <a href="/2019/11/13/pwn1-sctf-2016/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -575,21 +579,18 @@ gclient内部跑download_from_google_storage时，是用不了socks的，只能�
     
         题目信息基本信息64位elf，保护没开
 
-                
-                    
-                    
-                
-                
-            
-
 静态分析IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出
 
-                
-             ...
+这个函数就是直接cat flag的函数
+
+那么意图很明显，就是溢出后控制执行这个函数get flag
+动态分析gdb中计算出offset为72:
+
+exploit12345678910111213#!/usr/bin/pythonfrom pwn import *sh = ...
     
 
         <a href="/2019/11/10/warmup-csaw-2016/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -637,7 +638,7 @@ gclient内部跑download_from_google_storage时，是用不了socks的，只能�
     
 
         <a href="/2019/11/06/CTF%E4%B8%ADRSA%E7%B1%BB%E9%A2%98%E7%9B%AE/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -687,7 +688,7 @@ session 伪造因为题目要求admin，源码也可以看到需要sessi...
     
 
         <a href="/2019/11/04/HCTF-2018-admin/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -730,11 +731,11 @@ session 伪造因为题目要求admin，源码也可以看到需要sessi...
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

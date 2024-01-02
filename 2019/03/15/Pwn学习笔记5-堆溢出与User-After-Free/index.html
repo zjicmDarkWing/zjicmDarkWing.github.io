@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="堆溢出 原理非常简单 数据溢出并覆盖下一个区域                                                                                                               如果下面有认证信息或重要数据，则可以破坏&#x2F;覆盖">
+    <meta name="description" content="堆溢出 原理非常简单 数据溢出并覆盖下一个区域    如果下面有认证信息或重要数据，则可以破坏&#x2F;覆盖    如果溢出目标是函数指针，则可以进行pwn func_ptr overwrite 当函数被调用时，则变成了调用system      如果下面是free chunk，则管理数据会被破坏 heap管理变得奇怪的话，进程可能会crash      以之前的例子1进行尝试 正常运行是上面这样的 过长">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记5:堆溢出与User After Free">
 <meta property="og:url" content="https://darkwing.moe/2019/03/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-%E5%A0%86%E6%BA%A2%E5%87%BA%E4%B8%8EUser-After-Free/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="堆溢出 原理非常简单 数据溢出并覆盖下一个区域                                                                                                               如果下面有认证信息或重要数据，则可以破坏&#x2F;覆盖">
+<meta property="og:description" content="堆溢出 原理非常简单 数据溢出并覆盖下一个区域    如果下面有认证信息或重要数据，则可以破坏&#x2F;覆盖    如果溢出目标是函数指针，则可以进行pwn func_ptr overwrite 当函数被调用时，则变成了调用system      如果下面是free chunk，则管理数据会被破坏 heap管理变得奇怪的话，进程可能会crash      以之前的例子1进行尝试 正常运行是上面这样的 过长">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031503.jpg">
@@ -121,8 +121,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -144,7 +151,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -215,25 +222,11 @@
 <li>原理非常简单</li>
 <li>数据溢出并覆盖下一个区域</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031501.jpg" alt=""></p>
 <ul>
 <li>如果下面有认证信息或重要数据，则可以破坏/覆盖</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031502.jpg" alt=""></p>
 <ul>
 <li>如果溢出目标是函数指针，则可以进行pwn<ul>
 <li>func_ptr overwrite</li>
@@ -241,28 +234,14 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031503.jpg" alt=""></p>
 <ul>
 <li>如果下面是free chunk，则管理数据会被破坏<ul>
 <li>heap管理变得奇怪的话，进程可能会crash</li>
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031504.jpg" alt=""></p>
 <ul>
 <li>以之前的例子1进行尝试<ul>
 <li>正常运行是上面这样的</li>
@@ -276,14 +255,7 @@
 <li>顾名思义，heap内存释放后再次使用</li>
 <li>假设用户已经通过new获取了可以读取写入的内存</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031505.jpg" alt=""></p>
 <ul>
 <li>假设已进行delete ptr操作<ul>
 <li>这时候，原本的ptr已经不能使用</li>
@@ -291,14 +263,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031506.jpg" alt=""></p>
 <ul>
 <li>假设通过new获取了ptr2<ul>
 <li>它恰好和之前的ptr指向同一个地方，需要考虑到这种情况</li>
@@ -306,50 +271,22 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031507.jpg" alt=""></p>
 <ul>
 <li>如果ptr2是object，它通常有一个虚函数表</li>
 <li>指向这个虚函数表的的指针叫做vptr</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031508.jpg" alt=""></p>
 <ul>
 <li>因为ptr可能还会使用，从ptr进行覆盖可能会改变vptr</li>
 <li>vptr overwrite</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031509.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031509.jpg" alt=""></p>
 <ul>
 <li>vptr指向可控区域，并将内容设置为system地址等</li>
 <li>这样当调用函数时，实际调用的是system</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031510.jpg" alt=""></p>
 <ul>
 <li>Use After Free很难找到<ul>
 <li>阅读大部分代码，如果不了解整体行为，通常无法找到它<ul>
@@ -381,14 +318,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031511.jpg" alt=""></p>
 
         </div>
 
@@ -397,7 +327,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-15T06:30:21.298Z" itemprop="dateUpdated">2019-03-15 14:30:21</time>
+    Last updated: <time datetime="2019-03-15T06:30:21.298Z" itemprop="dateUpdated">2019-03-15 14:30:21</time>
 </span><br>
 
 
@@ -564,11 +494,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

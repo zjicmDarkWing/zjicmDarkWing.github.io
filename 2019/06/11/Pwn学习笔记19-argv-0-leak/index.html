@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="argv[0] leak - Stack Canary实现Stack Canary gcc编译后，stack上存在一个canary 进入函数时，canary被随机赋值 退出函数时(return前)，会检查canary是否被修改">
+    <meta name="description" content="argv[0] leak - Stack Canary实现Stack Canary gcc编译后，stack上存在一个canary 进入函数时，canary被随机赋值 退出函数时(return前)，会检查canary是否被修改   简单测试自己写一段简单代码，产生溢出，查看结果    gcc加入了一个叫做SSP(ProPolice)的机制 溢出导致canary被修改，检测到之后产生这样的错误信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记19:argv[0] leak">
 <meta property="og:url" content="https://darkwing.moe/2019/06/11/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B019-argv-0-leak/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="argv[0] leak - Stack Canary实现Stack Canary gcc编译后，stack上存在一个canary 进入函数时，canary被随机赋值 退出函数时(return前)，会检查canary是否被修改">
+<meta property="og:description" content="argv[0] leak - Stack Canary实现Stack Canary gcc编译后，stack上存在一个canary 进入函数时，canary被随机赋值 退出函数时(return前)，会检查canary是否被修改   简单测试自己写一段简单代码，产生溢出，查看结果    gcc加入了一个叫做SSP(ProPolice)的机制 溢出导致canary被修改，检测到之后产生这样的错误信息">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061103.jpg">
@@ -124,8 +124,15 @@
             </li>
         
             <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffe
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link"></i>
+                <i class="icon icon-lg icon-link2"></i>
                 About
               </a>
             </li>
@@ -147,7 +154,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -219,52 +226,17 @@
 <li>进入函数时，canary被随机赋值</li>
 <li>退出函数时(return前)，会检查canary是否被修改</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061101.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061101.jpg" alt=""></p>
 <h2 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h2><p>自己写一段简单代码，产生溢出，查看结果</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061102.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061103.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061102.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061103.jpg" alt=""></p>
 <ul>
 <li>gcc加入了一个叫做SSP(ProPolice)的机制</li>
 <li>溢出导致canary被修改，检测到之后产生这样的错误信息</li>
 </ul>
 <h2 id="栈的结构及溢出情况"><a href="#栈的结构及溢出情况" class="headerlink" title="栈的结构及溢出情况"></a>栈的结构及溢出情况</h2><p>大概是这样，当产生溢出时，一定会覆盖到canary</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061104.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="stack-canary的检查机制"><a href="#stack-canary的检查机制" class="headerlink" title="stack canary的检查机制"></a>stack canary的检查机制</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061105.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061104.jpg" alt=""></p>
+<h2 id="stack-canary的检查机制"><a href="#stack-canary的检查机制" class="headerlink" title="stack canary的检查机制"></a>stack canary的检查机制</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061105.jpg" alt=""></p>
 <ul>
 <li>进入函数时，canary值从TLS区域(fs:0x28)到rax，再加载到stack上，之后清空rax</li>
 <li>正常执行函数代码</li>
@@ -276,86 +248,30 @@
 <li><a href="http://osxr.org/glibc/source/sysdeps/posix/libc_fatal.c" target="_blank" rel="noopener">http://osxr.org/glibc/source/sysdeps/posix/libc_fatal.c</a></li>
 <li><a href="http://osxr.org/glibc/source/sysdeps/generic/paths.h" target="_blank" rel="noopener">http://osxr.org/glibc/source/sysdeps/generic/paths.h</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061106.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061107.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061106.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061107.jpg" alt=""></p>
 <h2 id="libc-argv"><a href="#libc-argv" class="headerlink" title="__libc_argv"></a>__libc_argv</h2><ul>
 <li><a href="http://osxr.org/glibc/source/csu/init-first.c" target="_blank" rel="noopener">http://osxr.org/glibc/source/csu/init-first.c</a></li>
 <li><code>__libc_init_first()</code>是<code>__libc_start_main()</code> 掉哟ing的函数，也就是说，ELF启动时一定会调用</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061108.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061108.jpg" alt=""></p>
 <ul>
 <li>在stack上大概是这样</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061109.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
-<h2 id="argv-0-leak-运行测试"><a href="#argv-0-leak-运行测试" class="headerlink" title="argv[0] leak - 运行测试"></a>argv[0] leak - 运行测试</h2><h2 id="能否通过溢出修改栈上的argv-0-？"><a href="#能否通过溢出修改栈上的argv-0-？" class="headerlink" title="能否通过溢出修改栈上的argv[0]？"></a>能否通过溢出修改栈上的argv[0]？</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061110.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061109.jpg" alt=""></p>
+<h2 id="argv-0-leak-运行测试"><a href="#argv-0-leak-运行测试" class="headerlink" title="argv[0] leak - 运行测试"></a>argv[0] leak - 运行测试</h2><h2 id="能否通过溢出修改栈上的argv-0-？"><a href="#能否通过溢出修改栈上的argv-0-？" class="headerlink" title="能否通过溢出修改栈上的argv[0]？"></a>能否通过溢出修改栈上的argv[0]？</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061110.jpg" alt=""></p>
 <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><ul>
 <li>定语一个测试字符串，确定它的地址，然后溢出写入很多这个地址</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061111.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061111.jpg" alt=""></p>
 <ul>
 <li>在检查canary时断点，检查状态，这时候栈上的argv[0]应该已经被修改为定义的字符串</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061112.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061112.jpg" alt=""></p>
 <ul>
 <li>继续运行，因为canary被修改，调用__stack_chk_fail()，错误信息显示的argv[0]也已经是定义的字符串</li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061113.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061113.jpg" alt=""></p>
 <ul>
 <li>通过这种方式，就能够泄漏任意内存</li>
 <li>但是，程序在此之后会结束，所以即使多次运行也只能泄漏”不变的字符串/数据”</li>
@@ -380,14 +296,7 @@
 </li>
 <li><a href="https://qiita.com/sei0o/items/55db337b0829367a2052" target="_blank" rel="noopener">https://qiita.com/sei0o/items/55db337b0829367a2052</a></li>
 </ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061114.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-
+<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061114.jpg" alt=""></p>
 <h1 id="补充-xinetd与socat的默认行为差异"><a href="#补充-xinetd与socat的默认行为差异" class="headerlink" title="补充 - xinetd与socat的默认行为差异"></a>补充 - xinetd与socat的默认行为差异</h1><h2 id="xinetd环境下"><a href="#xinetd环境下" class="headerlink" title="xinetd环境下"></a>xinetd环境下</h2><ul>
 <li>会因为/dev/tty打开失败输出到stderr中</li>
 <li>在xinetd中，stderr绑定到socket</li>
@@ -408,7 +317,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-11T06:54:17.678Z" itemprop="dateUpdated">2019-06-11 14:54:17</time>
+    Last updated: <time datetime="2019-06-11T06:54:17.678Z" itemprop="dateUpdated">2019-06-11 14:54:17</time>
 </span><br>
 
 
@@ -575,11 +484,11 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>暗羽 &copy; 2014 - 2023</span>
+        <p><span>暗羽 &copy; 2014 - 2024</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
