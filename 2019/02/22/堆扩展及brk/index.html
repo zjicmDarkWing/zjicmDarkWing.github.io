@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="堆扩展 因为堆并不是无限的，有时会出现空间不足的情况 这时候，我们会使用brk系统调用来扩展heap区域，brk是一个用来更改heap结尾地址的API  增加的区域分成两部分，前面一部分返回给用户，剩下的追加到free list中 简单的brk实现  data段包括静态数据和stack 当前大小以及增量（内核中）malloc 复制到新内存中 对旧的数据进行mfree stack复制到内存末尾 st">
+    <meta name="description" content="堆扩展                                                                                                            因为堆并不是无限的，有时会出现空间不足的情况 这时候，我们会使用brk系统调用来扩展heap区域，brk是一个用来更改heap结尾地址的API">
 <meta property="og:type" content="article">
 <meta property="og:title" content="堆扩展及brk">
 <meta property="og:url" content="https://darkwing.moe/2019/02/22/%E5%A0%86%E6%89%A9%E5%B1%95%E5%8F%8Abrk/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="堆扩展 因为堆并不是无限的，有时会出现空间不足的情况 这时候，我们会使用brk系统调用来扩展heap区域，brk是一个用来更改heap结尾地址的API  增加的区域分成两部分，前面一部分返回给用户，剩下的追加到free list中 简单的brk实现  data段包括静态数据和stack 当前大小以及增量（内核中）malloc 复制到新内存中 对旧的数据进行mfree stack复制到内存末尾 st">
+<meta property="og:description" content="堆扩展                                                                                                            因为堆并不是无限的，有时会出现空间不足的情况 这时候，我们会使用brk系统调用来扩展heap区域，brk是一个用来更改heap结尾地址的API">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022209.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022210.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022211.jpg">
@@ -121,7 +121,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -210,12 +210,33 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="堆扩展"><a href="#堆扩展" class="headerlink" title="堆扩展"></a>堆扩展</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022209.jpg" alt=""></p>
+            <h2 id="堆扩展"><a href="#堆扩展" class="headerlink" title="堆扩展"></a>堆扩展</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>因为堆并不是无限的，有时会出现空间不足的情况</p>
 <p>这时候，我们会使用brk系统调用来扩展heap区域，brk是一个用来更改heap结尾地址的API</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022210.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>增加的区域分成两部分，前面一部分返回给用户，剩下的追加到free list中</p>
-<h2 id="简单的brk实现"><a href="#简单的brk实现" class="headerlink" title="简单的brk实现"></a>简单的brk实现</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022211.jpg" alt=""></p>
+<h2 id="简单的brk实现"><a href="#简单的brk实现" class="headerlink" title="简单的brk实现"></a>简单的brk实现</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="0">
 <li>data段包括静态数据和stack</li>
 <li>当前大小以及增量（内核中）malloc</li>

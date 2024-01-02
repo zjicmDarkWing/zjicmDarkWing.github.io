@@ -114,7 +114,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -297,28 +297,19 @@ PlaidCTF 2014 - Pwnables200 – ezhp...
 数据溢出并覆盖下一个区域
 
 
+                
+                    
+                    
+                
+                
+            
+
 
 如果下面有认证信息或重要数据，则可以破坏/覆盖
 
 
-
-如果溢出目标是函数指针，则可以进行pwn
-func_ptr overwrite
-当函数被调用时，则变成了调用system
-
-
-
-
-
-如果下面是free chunk，则管理数据会被破坏
-heap管理变得奇怪的话，进程可能会crash
-
-
-
-
-
-以之前的例子1进行尝试
-正常运行是上面这样的...
+                
+                    ...
     
 
         <a href="/2019/03/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-%E5%A0%86%E6%BA%A2%E5%87%BA%E4%B8%8EUser-After-Free/" class="post-more waves-effect waves-button">
@@ -370,19 +361,17 @@ heap管理变得奇怪的话，进程可能会crash
 各个block被称为chunk
 
 
+                
+                    
+                    
+                
+                
+            
+
 
 想要再次使用free状态的区域
 需要知道哪里有free的区域，因此它是链表结构
-实际上没这么简单
-
-
-
-
-
-malloc获得的是这个地址
-size按照8的倍数进行padding
-为简单起见，图中省略了fd_nextsize和bk_nextsize
-实际上的结构体：123456789struct malloc_...
+实际上没这么简单...
     
 
         <a href="/2019/03/14/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-heap%E5%B8%83%E5%B1%80/" class="post-more waves-effect waves-button">
@@ -495,17 +484,19 @@ heap区域中，”使用中”和”已free”的内存状态大不相同
 
     
         Arena 1M对齐方法图解
+                
+                    
+                    
+                
+                
+            
+
 想要的是这样的内存
 但通过mmap做不到这一点
 
-2倍size的mmap
-但是PROT_NONE
-RWX权限都没有，这已经不能算内存分配了，可以叫做地址空间
-1M对齐的场所中，通过remap对size 1M进行RWX权限分配
-剩余的空间进行munmap
-总结
-小型malloc如果经常出现的话，复杂度是O(n)，太糟了
-防止碎片化，Huge Block将heap分...
+                
+                    
+            ...
     
 
         <a href="/2019/03/11/Arena%E5%AF%B9%E9%BD%90%E5%8F%8A%E6%80%BB%E7%BB%93/" class="post-more waves-effect waves-button">
@@ -613,15 +604,18 @@ arena是固定内存1M对齐，谈...
 
     
         Arena生成
+                
+                    
+                    
+                
+                
+            
+
 main_arena == 之前说明过的heap
 Arena生成thread2
-thread2被锁定
-别的thread如果同时调用malloc，会因为锁(mutex_trylock)而失败
-
-内存中arena结构体(包含bin数组的结构体)
-新的自身专用heap通过mmap生成
-这个altanative heap的构造被称为arena
-记住TLS(thread local s...
+                
+                    
+    ...
     
 
         <a href="/2019/03/05/Arena%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-more waves-effect waves-button">
@@ -669,16 +663,18 @@ thread2被锁定
 
     
         古典lock
+                
+                    
+                    
+                
+                
+            
+
 很简单的，使用互斥锁来保护整个函数
 实际想要这样
- 没有锁的简单世界
-多线程
-这确实是不可能的
-没有办法事先知道应用创建了多少个线程
-没有办法事先知道一个线程将使用多少内存
-如果ITRON(Industrial the Real-Time Operation System  Nucleus，工业实时操作系统中心)之类的都在编译时决定。。。
-
-因此，我们将在运行时创建一个新的he...
+                
+                    
+                    ...
     
 
         <a href="/2019/03/04/%E5%A4%9A%E7%BA%BF%E7%A8%8Block%E9%97%AE%E9%A2%98/" class="post-more waves-effect waves-button">
@@ -726,18 +722,19 @@ thread2被锁定
 
     
         回顾K&amp;R free
+                
+                    
+                    
+                
+                
+            
+
 
 现在free list head指向释放掉的节点
 
 缓存和本地引用
 对heap内存访问概率最高的是在malloc之后立即free
-刚刚free的内存在缓存上的概率很高
-为了优先确保内存，malloc之后直接访问，不会出现缓存miss
-
-缓存命中率很重要
-缓冲区的延迟合并
-当调用free时，立即 与相邻空间合并，并且暂时不会进行连接到free list的处理
-最...
+刚刚free的内存...
     
 
         <a href="/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/" class="post-more waves-effect waves-button">

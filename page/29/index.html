@@ -114,7 +114,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -329,7 +329,8 @@ EIP寄存器移到这个区域，然后执行
 
 
 
-
+                
+  ...
     
 
         <a href="/2019/12/16/V8-Baseline%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%9AFull-Codegen/" class="post-more waves-effect waves-button">
@@ -377,12 +378,11 @@ EIP寄存器移到这个区域，然后执行
 
 AST 抽象语法树大概是这样(以a+b为例)：
 
-V8也可以单独运行，一般是和其他项目一起被使用，例如Google Chrome，Node.js等
-##V8 Exploit之前
-
-首先，我们需要了解V8的构造
-
-并...
+                
+                    
+                    
+                
+      ...
     
 
         <a href="/2019/12/16/V8%E7%AE%80%E4%BB%8B/" class="post-more waves-effect waves-button">
@@ -466,14 +466,17 @@ gclient内部跑download_from_google_storage时，是用不了socks的，只能�
     
         题目信息64位elf，开了NX
 
+                
+                    
+                    
+                
+                
+            
+
 分析大概就是这样一个加解密程序，读取输入选择功能，encrypt读取用户输入，decrypt不可用
 
-
-可以看出encrypt读取输入明显的溢出：
-
-题目没有system和sh所以需要构造ROP。并且没有给出libc文件，但存在puts函数，可以用于leak。
-所以就是leak出函数地址，确定libc，之后构造ROP
-exploitencrypt64位，pu...
+                
+     ...
     
 
         <a href="/2019/11/26/ciscn-2019-c-1/" class="post-more waves-effect waves-button">
@@ -520,19 +523,19 @@ exploitencrypt64位，pu...
     
         题目信息32位elf，开了NX
 
+                
+                    
+                    
+                
+                
+            
+
 文件是C++的，需要安装下依赖
 1sudo apt-get install lib32stdc++6
 
 分析
-存在vuln函数及get_flag函数
-
-
-所以重点看vuln函数
-fgets是读取输入，存在长度限制，但会把用户输入的I替换为you，这样三倍的长度就能够造成溢出：
-
-offset可以测试出来是21*3+1，即64
-
-exploit12345678...
+                
+ ...
     
 
         <a href="/2019/11/13/pwn1-sctf-2016/" class="post-more waves-effect waves-button">
@@ -579,14 +582,17 @@ exploit12345678...
     
         题目信息基本信息64位elf，保护没开
 
+                
+                    
+                    
+                
+                
+            
+
 静态分析IDA中可以看到，输出一个函数地址，然后gets，gets可能溢出
 
-这个函数就是直接cat flag的函数
-
-那么意图很明显，就是溢出后控制执行这个函数get flag
-动态分析gdb中计算出offset为72:
-
-exploit12345678910111213#!/usr/bin/pythonfrom pwn import *sh = ...
+                
+             ...
     
 
         <a href="/2019/11/10/warmup-csaw-2016/" class="post-more waves-effect waves-button">

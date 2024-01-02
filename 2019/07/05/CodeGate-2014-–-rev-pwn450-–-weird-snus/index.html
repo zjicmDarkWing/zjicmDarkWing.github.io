@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="题目信息题目链接https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2014&#x2F;tree&#x2F;master&#x2F;codegate-preliminary-2014&#x2F;weirdsnus 准备环境12$ echo HEHE_I_DONT_KNOW_YOU &gt; admin_passwd $ echo N0_MoR3_SMOKING_SNUS &gt; flag  基本信息 静态分析x86二进">
+    <meta name="description" content="题目信息题目链接https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2014&#x2F;tree&#x2F;master&#x2F;codegate-preliminary-2014&#x2F;weirdsnus 准备环境12$ echo HEHE_I_DONT_KNOW_YOU &gt; admin_passwd $ echo N0_MoR3_SMOKING_SNUS &gt; flag  基本信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CodeGate 2014 – rev+pwn450 – weird_snus">
 <meta property="og:url" content="https://darkwing.moe/2019/07/05/CodeGate-2014-%E2%80%93-rev-pwn450-%E2%80%93-weird-snus/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息题目链接https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2014&#x2F;tree&#x2F;master&#x2F;codegate-preliminary-2014&#x2F;weirdsnus 准备环境12$ echo HEHE_I_DONT_KNOW_YOU &gt; admin_passwd $ echo N0_MoR3_SMOKING_SNUS &gt; flag  基本信息 静态分析x86二进">
+<meta property="og:description" content="题目信息题目链接https:&#x2F;&#x2F;github.com&#x2F;ctfs&#x2F;write-ups-2014&#x2F;tree&#x2F;master&#x2F;codegate-preliminary-2014&#x2F;weirdsnus 准备环境12$ echo HEHE_I_DONT_KNOW_YOU &gt; admin_passwd $ echo N0_MoR3_SMOKING_SNUS &gt; flag  基本信息">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070103.jpg">
@@ -174,7 +174,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -266,7 +266,14 @@
             <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://github.com/ctfs/write-ups-2014/tree/master/codegate-preliminary-2014/weirdsnus" target="_blank" rel="noopener">https://github.com/ctfs/write-ups-2014/tree/master/codegate-preliminary-2014/weirdsnus</a></p>
 <h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo HEHE_I_DONT_KNOW_YOU &gt; admin_passwd </span><br><span class="line">$ echo N0_MoR3_SMOKING_SNUS &gt; flag</span><br></pre></td></tr></table></figure>
 
-<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070101.jpg" alt=""></p>
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h1><h2 id="x86二进制文件分析"><a href="#x86二进制文件分析" class="headerlink" title="x86二进制文件分析"></a>x86二进制文件分析</h2><p>使用IDA</p>
 <ul>
 <li>重命名变量<ul>
@@ -301,14 +308,28 @@
 <li>复杂的处理可以从library call为起点确定变量</li>
 <li>因为library call有固定的参数个数和参数类型</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="第一块"><a href="#第一块" class="headerlink" title="第一块"></a>第一块</h3><ul>
 <li>保存旧的ebp，在stack frame上更新当前的ebp，准备好函数使用的各种寄存器的值，准备好stack空间，做好各种准备，以便函数启动后能立即就绪</li>
 <li>将函数参数(这里是argv)保存到stack上。x86中通常将参数重新保存在栈上</li>
 <li>从TLS区域(gs+0x14)将stack canary复制到栈上</li>
 </ul>
 <p>以上三个是常见模式</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>buffer是0x110-0x10=0x100=256字节</li>
 <li>memset的内部展开，”rep stosd”四个字节是memset高速实现</li>
@@ -316,43 +337,148 @@
 <li>rep: ecx!=0时[重复ecx-=N(这里是DWORD，N=4)]</li>
 <li>strlen是library call，需要注意signed和unsigned的区别</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="第2到5快"><a href="#第2到5快" class="headerlink" title="第2到5快"></a>第2到5快</h3><ul>
 <li>图上已经做了函数重命名（分析后的结果）</li>
 <li>函数结束时，释放使用的stack，还原用到的寄存器，还原ebp的值。如果函数有返回值，则返回值给eax</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070105.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="转换成C语言代码"><a href="#转换成C语言代码" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><p>大概是这样：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070106.jpg" alt=""></p>
-<h2 id="password-check"><a href="#password-check" class="headerlink" title="password_check"></a>password_check</h2><h3 id="第一块-1"><a href="#第一块-1" class="headerlink" title="第一块"></a>第一块</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070107.jpg" alt=""></p>
-<h3 id="第二块～"><a href="#第二块～" class="headerlink" title="第二块～"></a>第二块～</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070108.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070109.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070110.jpg" alt=""></p>
-<h3 id="转换成C语言代码-1"><a href="#转换成C语言代码-1" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070111.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="password-check"><a href="#password-check" class="headerlink" title="password_check"></a>password_check</h2><h3 id="第一块-1"><a href="#第一块-1" class="headerlink" title="第一块"></a>第一块</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="第二块～"><a href="#第二块～" class="headerlink" title="第二块～"></a>第二块～</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="转换成C语言代码-1"><a href="#转换成C语言代码-1" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>memcmp的第三个参数len，是用户可控的</li>
 <li>输入\x00的话，len(“\x00”)=0</li>
 <li>这样就跳过了memcmp</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070112.jpg" alt=""></p>
-<h2 id="doit"><a href="#doit" class="headerlink" title="doit"></a>doit</h2><h3 id="第一块-2"><a href="#第一块-2" class="headerlink" title="第一块"></a>第一块</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070112.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="doit"><a href="#doit" class="headerlink" title="doit"></a>doit</h2><h3 id="第一块-2"><a href="#第一块-2" class="headerlink" title="第一块"></a>第一块</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="第三～块"><a href="#第三～块" class="headerlink" title="第三～块"></a>第三～块</h3><ul>
 <li>EAX范围检查按照unsigned，如果不在0x28~0x7a则nop</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="第七～块"><a href="#第七～块" class="headerlink" title="第七～块"></a>第七～块</h3><ul>
 <li>switch 保存在.rodata区域的jump_table</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070203.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070204.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>分支分析大概是这样</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>如果argv[1]有’(‘, ‘)’，则可以调用更深的函数，但需要先bypass前面的认证</li>
 </ul>
-<h3 id="转换成C语言代码-2"><a href="#转换成C语言代码-2" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070206.jpg" alt=""></p>
+<h3 id="转换成C语言代码-2"><a href="#转换成C语言代码-2" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>实际上signed比较函数也有bug，一般size比较都是signed，如果输入一个字节的负数(0x80~0xff)，能够通过比较。但是没法进行后续利用</li>
 <li>case ‘z’那里的free(ptr)之后没有清空ptr，后续进行写入会造成Use After Free，但是这里也无法进行exploit</li>
@@ -360,35 +486,126 @@
 <h1 id="do-command-loop"><a href="#do-command-loop" class="headerlink" title="do_command_loop"></a>do_command_loop</h1><ul>
 <li>可以看到一个malloc(16)的结构体</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>结构体大概这样，定义后应用</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070208.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070209.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>根据需要应用结构体偏移</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070210.jpg" alt=""></p>
-<h3 id="分析之后大概是这样"><a href="#分析之后大概是这样" class="headerlink" title="分析之后大概是这样"></a>分析之后大概是这样</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070211.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070212.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070213.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070214.jpg" alt=""></p>
-<h3 id="转换成C语言代码-3"><a href="#转换成C语言代码-3" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070215.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070216.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="分析之后大概是这样"><a href="#分析之后大概是这样" class="headerlink" title="分析之后大概是这样"></a>分析之后大概是这样</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070213.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070214.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h3 id="转换成C语言代码-3"><a href="#转换成C语言代码-3" class="headerlink" title="转换成C语言代码"></a>转换成C语言代码</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070215.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070216.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="do-command-loop的bug"><a href="#do-command-loop的bug" class="headerlink" title="do_command_loop的bug"></a>do_command_loop的bug</h3><ul>
 <li>存在两个bug</li>
 <li>第一个bug，read_key(new_buffer, buffer_len)，两个参数完全没关系，但是read_key内部将buffer_len作为new_buffer的size，buffer_len用户可控</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070217.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070217.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>第二个bug，free(ptr)之后，没有将ptr设置为NULL，也就能够进行Use After Free</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070218.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070218.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>ptr != NULL的检查不能确定UAF。也就是说，如果UAF之后ptr用作其他用途，则可能修改func_ptr，之后可能调用func_ptr。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070219.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070219.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="漏洞思考"><a href="#漏洞思考" class="headerlink" title="漏洞思考"></a>漏洞思考</h2><ul>
 <li>如何控制EIP</li>
 <li>重写函数指针</li>
@@ -411,18 +628,53 @@
 <li>getcwd()通过new_buffer读取当前工作目录，如果当亲工作目录path超过16字节，就能够覆盖函数指针</li>
 </ul>
 <h2 id="利用流程"><a href="#利用流程" class="headerlink" title="利用流程"></a>利用流程</h2><p>大概是这样：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h1><ul>
 <li>测试运行</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070401.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>已经控制了EIP</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070402.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h1><p>因为有NX，shellcode比较困难，尝试system(“/bin/sh”)</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070403.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070404.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070403.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070404.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>常规方式需要将参数加载到stack上</li>
 <li>第一个参数必定是0x0a，不能指定文件名</li>
@@ -433,49 +685,175 @@
 <li>通过Use After Free，在func_ptr之前，pop×N; ret</li>
 <li>这样当调用该函数时，popxN除去了多余的参数，执行ROP</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070405.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070406.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070406.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>command使用fgets()读取输入到buffer</li>
 <li>因此可以考虑在换行前输入字符串</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070407.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070407.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>但是这种方法只能读取10个字节</li>
 <li>而这种ROP需要至少12个字节</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070408.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070408.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>注意到do_D的buffer可以控制</li>
 <li>考虑使用command D</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070409.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070410.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070409.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070410.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>尝试</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070411.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070412.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070411.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070412.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>计算偏移</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070413.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070414.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070413.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070414.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>需要一个add esp, 0x144+α的gadget</li>
 <li>找到一个add 0x140 + pop3回 = 0x14c的gadget</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070415.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070415.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>大概流程是这样：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070501.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070502.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>替换为system, /bin/sh的地址</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070504.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070505.jpg" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070505.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <p>可以看到测试能够getshell</p>
-<h2 id="实际运行"><a href="#实际运行" class="headerlink" title="实际运行"></a>实际运行</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070506.jpg" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070507.jpg" alt="img"></p>
+<h2 id="实际运行"><a href="#实际运行" class="headerlink" title="实际运行"></a>实际运行</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070506.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070507.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <ul>
 <li>发生了SIGSEGV</li>
 <li>实际上成功了</li>
@@ -485,7 +863,14 @@
 <li>之后因为stack已经被破坏，发生SIGSEGV</li>
 <li>我们需要做一点处理</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070508.jpg" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019070508.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <ul>
 <li>(cat input; cat -)</li>
 <li>这样能够向input继续输入</li>

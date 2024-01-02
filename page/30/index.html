@@ -114,7 +114,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -247,13 +247,17 @@
 
     
         题目信息
+                
+                    
+                    
+                
+                
+            
+
 64位elf，简单输入，保护基本没开
 静态分析IDA，明显的溢出，并且直接有一个fun函数来getshell，那就控制rip跳到fun就可以
 
-
-动态分析gdb简单看一下，offset23，fun地址0x401186
-
-exploit1234567891011121314from pwn import *sh = remote('node3.buuoj.cn', 28896)# s...
+             ...
     
 
         <a href="/2019/10/29/buuoj-pwn-rip/" class="post-more waves-effect waves-button">
@@ -417,25 +421,14 @@ Stage1已经实现了任意代码执行
 
 
 解析 - 整体构成
-亲：
+                
+                    
+                    
+                
+                
+            
 
-fork生成子A
-alarm handler
-在随机位置设置子A的显示
-
-子A：
-
-seccomp
-clone生成子B
-作为显示运行
-
-子B：
-
-主程序（note管理类）
-
-kernel：
-
-seccomp...
+...
     
 
         <a href="/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/" class="post-more waves-effect waves-button">
@@ -485,9 +478,8 @@ seccomp...
         题目信息https://github.com/ctfs/write-ups-2015/blob/master/plaidctf-2015/pwnable/tp/problem_414d338fffb41107a3cf70bd0a7feffe.elf?raw=true
 测试运行直接运行什么也不会显示，大概10秒后killed
 
-strace$ env -i strace -fi ./tp
-
-省...
+                
+                ...
     
 
         <a href="/2019/08/22/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage1/" class="post-more waves-effect waves-button">
@@ -541,10 +533,9 @@ clone(2)和clone(3)有区别，这里使用clone(3)进行说明
 https://linuxjm.osdn.jp/html/LDP_man-pages/man2/clone.2.html
 
 
-
-生成的子进程可以通过fn()恢复
-生成的子进程，使用child_stack作为stack
-因为使用父...
+                
+                    
+             ...
     
 
         <a href="/2019/08/14/thread-clone/" class="post-more waves-effect waves-button">
@@ -731,9 +722,10 @@ clone
 
 
 
-扩展部分并不是解题必须的，但因为相关资料较少，作为补充内容
-heapThe Malloc Maleficarum
-有点老（x86, gl...
+                
+                    
+                    
+         ...
     
 
         <a href="/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/" class="post-more waves-effect waves-button">

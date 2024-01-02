@@ -167,7 +167,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -271,8 +271,22 @@
 
 <p> 直接访问443端口的web会有个警告信息，直接信任就可以</p>
 <h1 id="子域名"><a href="#子域名" class="headerlink" title="子域名"></a>子域名</h1><p>craft.htb的Web界面信息显示可以通过REST API访问，直接点击API会出错，因为这是一个子域名，api.craft.htb/api/</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010701.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>API右边的Logo是子域名 gogs.craft.htb，直接点击访问同样失败，看起来是用了Virtual Hosting，我们修改hosts，将这几个域名都加进去：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.110    craft.htb api.craft.htb gogs.craft.htb</span><br></pre></td></tr></table></figure>
 
@@ -280,20 +294,57 @@
 <ul>
 <li>Craft API</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>Craft Gogs</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>API打开是swagger-ui，给出了一些API接口格式信息，看起来有用的是check, login, 和brew这几个</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;auth&#x2F;check</span><br><span class="line">Checks validity of an authorization token</span><br><span class="line">URL: https:&#x2F;&#x2F;api.craft.htb&#x2F;api&#x2F;auth&#x2F;check</span><br><span class="line">GET &#x2F;auth&#x2F;login</span><br><span class="line">Create an authentication token provided valid username and password</span><br><span class="line">URL: https:&#x2F;&#x2F;api.craft.htb&#x2F;api&#x2F;auth&#x2F;login</span><br><span class="line">POST &#x2F;brew&#x2F;</span><br><span class="line">Creates a new brew entry</span><br><span class="line">URL: https:&#x2F;&#x2F;api.craft.htb&#x2F;api&#x2F;brew&#x2F;</span><br></pre></td></tr></table></figure>
 
 <p> 尝试auth login ：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>看起来是401基础认证，尝试简单用户名密码失败，响应如下：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>响应头中有一个www-authenticate，看起来如果认证成功会得到一个token，另外检查/auth/check和/brew也可以根据相应信息确定，需要提供有效token：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="Gogs"><a href="#Gogs" class="headerlink" title="Gogs"></a>Gogs</h2><p>因为Gogs看起来是Git服务器，我们尝试进行目录爆破：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 dirmap.py -i https://gogs.craft.htb/ -lcf</span><br></pre></td></tr></table></figure>
 
@@ -301,88 +352,349 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[200][text/html; charset=UTF-8][7.04kb] https://gogs.craft.htb/Administrator</span><br><span class="line">[200][text/html; charset=UTF-8][7.04kb] https://gogs.craft.htb/administrator</span><br><span class="line">[200][text/html; charset=UTF-8][7.04kb] https://gogs.craft.htb/Administrator/</span><br><span class="line">[200][text/html; charset=UTF-8][7.04kb] https://gogs.craft.htb/administrator/</span><br><span class="line">[200][text/plain; charset=utf-8][27.34kb] https://gogs.craft.htb/config.codekit</span><br><span class="line">[200][text/html; charset=utf-8][160.00b] https://gogs.craft.htb/debug</span><br><span class="line">[200][text/html; charset=utf-8][160.00b] https://gogs.craft.htb/debug/</span><br><span class="line">[200][text/html; charset=UTF-8][6.83kb] https://gogs.craft.htb/user/login/</span><br></pre></td></tr></table></figure>
 
 <p>尝试访问/administrator：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010708.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>在explore中可以发现一个craft-api的repo：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010709.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>并且能够看到4个用户，administrator之外其他三个用户名是美剧《硅谷》中的角色：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010710.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="代码信息"><a href="#代码信息" class="headerlink" title="代码信息"></a>代码信息</h1><p>接下来翻一下repo中的代码</p>
 <p>dbtest.py是一个测试数据库连接的脚本，并且有一个测试sql query：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010711.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>test.py中是对API的测试，可以看到认证成功后得到token，之后使用X-Craft-API-Token请求头使用其他API：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010712.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>auth.py是认证需要的一些信息和认证处理流程：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010713.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010714.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010714.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="命令注入漏洞"><a href="#命令注入漏洞" class="headerlink" title="命令注入漏洞"></a>命令注入漏洞</h2><p>继续翻其他文件，brew.py里这段代码很有趣，使用了eval，可能的命令注入：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010715.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010715.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>在issue中有一个相关问题：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010716.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010716.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>点进去可以发现eval是这次commit加进去的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010717.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010717.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>修复一个bug产生一个新漏洞，但利用这个eval的前提是要有有效认证信息</p>
 <h2 id="commit-log-泄漏信息"><a href="#commit-log-泄漏信息" class="headerlink" title="commit log 泄漏信息"></a>commit log 泄漏信息</h2><p>转去看commit历史</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010718.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010718.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看到第四次提交add test script，第五次是Cleanup test，这里泄漏了认证信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010719.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010720.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010719.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010720.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dinesh:4aUh0A8PbVJxgd</span><br></pre></td></tr></table></figure>
 
 <h1 id="有效认证"><a href="#有效认证" class="headerlink" title="有效认证"></a>有效认证</h1><p>然后，我们就可以使用dinesh的用户名和密码登录Gogs:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010721.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010721.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>也可以使用同样的用户名密码使用API认证得到有效token：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010722.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010722.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>也可以添加X-Craft-Api-Token请求头检查token，确认token有效：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010723.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010723.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="利用命令注入"><a href="#利用命令注入" class="headerlink" title="利用命令注入"></a>利用命令注入</h1><p>我们现在有有效token，就可以尝试利用/api/brew，在前面的脚本中我们也已经知道了相关请求格式，那么就可以进行测试：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010724.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010725.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010724.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010725.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>正常的输入处理逻辑如上，但前面也注意到了，这里处理直接使用的eval，可能命令注入：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make sure the ABV value is sane.</span></span><br><span class="line">        <span class="keyword">if</span> eval(<span class="string">'%s &gt; 1'</span> % request.json[<span class="string">'abv'</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"ABV must be a decimal value less than 1.0"</span>, <span class="number">400</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            create_brew(request.json)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span>, <span class="number">201</span></span><br></pre></td></tr></table></figure>
 
 <p>我们可以打开Python简单测试下：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010726.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010726.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看到这样的代码本地是可以进行命令注入的，接下来就进行下实际验证：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010727.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010728.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010727.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010728.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h2><p>可以成功执行命令，接下来尝试反弹shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010729.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010729.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以成功getshell，root权限</p>
 <p>因为这是一个哑shell，想把它变成一个交互shell，但常规方式失败：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010730.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010730.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>检查之后发现现在是在一个docker容器里：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010731.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010731.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那就扫描下docker这个网段：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for ip in $(seq 1 254); do (ping -c 1 172.20.0.$ip | grep "bytes from" | cut -d ":" -f1 | cut -d " " -f4 &amp;); done</span><br></pre></td></tr></table></figure>
 
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>但好像没什么有用信息,那就还从app本身文件入手：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010732.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010733.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010734.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010732.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010733.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010734.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看到这里有一个settings.py文件，前面的Gogs中没有这个文件</p>
 <p>在settings.py中，我们可以得到CRAFT_API_SECRET和数据库相关信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010735.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010735.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="dump-db"><a href="#dump-db" class="headerlink" title="dump db"></a>dump db</h2><p>另外dbtest.py直接使用相关信息测试查询数据库，我们可以尝试修改其中的sql query获取信息,不过因为是哑shell，所以需要本地修改好之后传过去，另外没有curl，但可以使用wget：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010736.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010736.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>  在modules.py中可以得到数据库结构信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010737.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010737.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>修改sql获取所有user信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010738.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010738.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&#123;&#39;id&#39;: 1, &#39;username&#39;: &#39;dinesh&#39;, &#39;password&#39;: &#39;4aUh0A8PbVJxgd&#39;&#125;, </span><br><span class="line">&#123;&#39;id&#39;: 4, &#39;username&#39;: &#39;ebachman&#39;, &#39;password&#39;: &#39;llJ77D8QFkLPQB&#39;&#125;, </span><br><span class="line">&#123;&#39;id&#39;: 5, &#39;username&#39;: &#39;gilfoyle&#39;, &#39;password&#39;: &#39;ZEU3N8WNM2rh4T&#39;&#125;]</span><br></pre></td></tr></table></figure>
 
 <h2 id="有效账号"><a href="#有效账号" class="headerlink" title="有效账号"></a>有效账号</h2><p>尝试使用这些信息SSH连接22和 6022端口，均失败</p>
 <p>尝试登录Gogs，gilfoyle的信息可用</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010739.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010739.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p>可以看到一个craft-infra的repo：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010740.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010740.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>并且在 <code>.ssh</code>目录可以得到ssh密钥：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010741.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010741.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>然后就可以用这个私钥以gilfoyle的身份登录SSH，可能会要求输入密码，就是gilfoyle用户的密码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010742.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010742.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="user-txt"><a href="#user-txt" class="headerlink" title="user.txt"></a>user.txt</h2><p>现在可以得到user flag：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010743.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010743.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="vault"><a href="#vault" class="headerlink" title="vault"></a>vault</h1><p>查看下文件，发现有个.vault-token文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <p>简单搜了下，这应该是Hashicorp的Vault ，一种用于在现代应用程序体系结构中安全地管理机密信息的流行工具。</p>
 <ul>
 <li><a href="https://www.jianshu.com/p/019a9eb51ae6" target="_blank" rel="noopener">https://www.jianshu.com/p/019a9eb51ae6</a></li>
@@ -390,16 +702,51 @@
 <li><a href="https://www.vaultproject.io/docs/commands/" target="_blank" rel="noopener">https://www.vaultproject.io/docs/commands/</a></li>
 </ul>
 <p>并且前面的craft-infra中也有vault的相关文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010802.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看到<code>vault secrets enable ssh</code></p>
 <p>根据文档查看下token相关信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>显示capabilities是root，并且前面看到enable ssh，那么尝试ssh：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>password就是他给的session，成功获得root shell</p>
 <h2 id="root-txt"><a href="#root-txt" class="headerlink" title="root.txt"></a>root.txt</h2><p>得到root flag：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020010806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>并且确认6022端口是前面的docker</p>
 <p>以上</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>

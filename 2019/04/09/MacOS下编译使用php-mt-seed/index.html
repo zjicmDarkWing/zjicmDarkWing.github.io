@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="下载源码包https:&#x2F;&#x2F;www.openwall.com&#x2F;php_mt_seed&#x2F;php_mt_seed-4.0.tar.gz 编译直接编译会报错，缺少openmp  可以去掉这个选项编译，但这样会只能单核跑：  安装llvm和libomp： brew install llvm libomp 之后使用llvm的clang进行编译，报错：  这是因为macOS SDK headers不在&#x2F;usr&#x2F;">
+    <meta name="description" content="下载源码包https:&#x2F;&#x2F;www.openwall.com&#x2F;php_mt_seed&#x2F;php_mt_seed-4.0.tar.gz 编译直接编译会报错，缺少openmp                                                                                                             可以去掉这个选项">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacOS下编译使用php_mt_seed">
 <meta property="og:url" content="https://darkwing.moe/2019/04/09/MacOS%E4%B8%8B%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8php-mt-seed/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="下载源码包https:&#x2F;&#x2F;www.openwall.com&#x2F;php_mt_seed&#x2F;php_mt_seed-4.0.tar.gz 编译直接编译会报错，缺少openmp  可以去掉这个选项编译，但这样会只能单核跑：  安装llvm和libomp： brew install llvm libomp 之后使用llvm的clang进行编译，报错：  这是因为macOS SDK headers不在&#x2F;usr&#x2F;">
+<meta property="og:description" content="下载源码包https:&#x2F;&#x2F;www.openwall.com&#x2F;php_mt_seed&#x2F;php_mt_seed-4.0.tar.gz 编译直接编译会报错，缺少openmp                                                                                                             可以去掉这个选项">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040901.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040902.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040903.jpg">
@@ -122,7 +122,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -209,21 +209,56 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="下载源码包"><a href="#下载源码包" class="headerlink" title="下载源码包"></a>下载源码包</h1><p><a href="https://www.openwall.com/php_mt_seed/php_mt_seed-4.0.tar.gz" target="_blank" rel="noopener">https://www.openwall.com/php_mt_seed/php_mt_seed-4.0.tar.gz</a></p>
 <h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>直接编译会报错，缺少openmp</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以去掉这个选项编译，但这样会只能单核跑：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040902.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>安装llvm和libomp：</p>
 <p><code>brew install llvm libomp</code></p>
 <p>之后使用llvm的clang进行编译，报错：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040903.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这是因为macOS SDK headers不在/usr/include里，可以使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open &#x2F;Library&#x2F;Developer&#x2F;CommandLineTools&#x2F;Packages&#x2F;macOS_SDK_headers_for_macOS_10.14.pkg</span><br></pre></td></tr></table></figure>
 
 <p> 将其安装到默认/usr/include里</p>
 <p>之后继续编译，提示一个warning编译选项，加了之后反而不能用：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>默认编译选项就可以：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040905.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

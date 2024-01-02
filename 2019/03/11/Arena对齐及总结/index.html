@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="Arena 1M对齐方法图解 想要的是这样的内存 但通过mmap做不到这一点  2倍size的mmap 但是PROT_NONE RWX权限都没有，这已经不能算内存分配了，可以叫做地址空间 1M对齐的场所中，通过remap对size 1M进行RWX权限分配 剩余的空间进行munmap 总结 小型malloc如果经常出现的话，复杂度是O(n)，太糟了 防止碎片化，Huge Block将heap分开是有">
+    <meta name="description" content="Arena 1M对齐方法图解                                                                                                            想要的是这样的内存 但通过mmap做不到这一点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arena对齐及总结">
 <meta property="og:url" content="https://darkwing.moe/2019/03/11/Arena%E5%AF%B9%E9%BD%90%E5%8F%8A%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="Arena 1M对齐方法图解 想要的是这样的内存 但通过mmap做不到这一点  2倍size的mmap 但是PROT_NONE RWX权限都没有，这已经不能算内存分配了，可以叫做地址空间 1M对齐的场所中，通过remap对size 1M进行RWX权限分配 剩余的空间进行munmap 总结 小型malloc如果经常出现的话，复杂度是O(n)，太糟了 防止碎片化，Huge Block将heap分开是有">
+<meta property="og:description" content="Arena 1M对齐方法图解                                                                                                            想要的是这样的内存 但通过mmap做不到这一点">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031102.jpg">
 <meta property="article:published_time" content="2019-03-11T08:32:41.000Z">
@@ -120,7 +120,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -209,10 +209,24 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="Arena-1M对齐方法图解"><a href="#Arena-1M对齐方法图解" class="headerlink" title="Arena 1M对齐方法图解"></a>Arena 1M对齐方法图解</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031101.jpg" alt=""></p>
+            <h2 id="Arena-1M对齐方法图解"><a href="#Arena-1M对齐方法图解" class="headerlink" title="Arena 1M对齐方法图解"></a>Arena 1M对齐方法图解</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>想要的是这样的内存</p>
 <p>但通过mmap做不到这一点</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>2倍size的mmap</p>
 <p>但是PROT_NONE</p>
 <p>RWX权限都没有，这已经不能算内存分配了，可以叫做地址空间</p>

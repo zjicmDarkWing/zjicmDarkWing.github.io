@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="clone 能够生成线程的system call  适用于sandbox，出现频率非常高 clone(2)和clone(3)有区别，这里使用clone(3)进行说明 https:&#x2F;&#x2F;linuxjm.osdn.jp&#x2F;html&#x2F;LDP_man-pages&#x2F;man2&#x2F;clone.2.html    生成的子进程可以通过fn()恢复 生成的子进程，使用child_stack作为stack 因为使用父进程相">
+    <meta name="description" content="clone 能够生成线程的system call  适用于sandbox，出现频率非常高 clone(2)和clone(3)有区别，这里使用clone(3)进行说明 https:&#x2F;&#x2F;linuxjm.osdn.jp&#x2F;html&#x2F;LDP_man-pages&#x2F;man2&#x2F;clone.2.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="thread clone">
 <meta property="og:url" content="https://darkwing.moe/2019/08/14/thread-clone/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="clone 能够生成线程的system call  适用于sandbox，出现频率非常高 clone(2)和clone(3)有区别，这里使用clone(3)进行说明 https:&#x2F;&#x2F;linuxjm.osdn.jp&#x2F;html&#x2F;LDP_man-pages&#x2F;man2&#x2F;clone.2.html    生成的子进程可以通过fn()恢复 生成的子进程，使用child_stack作为stack 因为使用父进程相">
+<meta property="og:description" content="clone 能够生成线程的system call  适用于sandbox，出现频率非常高 clone(2)和clone(3)有区别，这里使用clone(3)进行说明 https:&#x2F;&#x2F;linuxjm.osdn.jp&#x2F;html&#x2F;LDP_man-pages&#x2F;man2&#x2F;clone.2.html">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080803.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080804.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080805.jpg">
@@ -123,7 +123,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -218,7 +218,14 @@
 <li>clone(2)和clone(3)有区别，这里使用clone(3)进行说明</li>
 <li><a href="https://linuxjm.osdn.jp/html/LDP_man-pages/man2/clone.2.html" target="_blank" rel="noopener">https://linuxjm.osdn.jp/html/LDP_man-pages/man2/clone.2.html</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>生成的子进程可以通过fn()恢复</li>
 <li>生成的子进程，使用child_stack作为stack</li>
@@ -233,13 +240,27 @@
 </li>
 </ul>
 <h2 id="特别是CLONE-VM，重要"><a href="#特别是CLONE-VM，重要" class="headerlink" title="特别是CLONE_VM，重要"></a>特别是CLONE_VM，重要</h2><p>与父进程共享内存空间</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>没有CLONE_VM的情况，内存空间是复制后独立的</li>
 <li>指定CLONE_VM的情况，共享内存空间</li>
 </ul>
 <h2 id="CLONE-FILES也很常见"><a href="#CLONE-FILES也很常见" class="headerlink" title="CLONE_FILES也很常见"></a>CLONE_FILES也很常见</h2><p>与父进程共享文件目录</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>没有指定CLONE_FILES的情况，fd是复制后独立的</li>
 <li>指定CLONE_FILES的情况，共享文件目录fd</li>
@@ -248,7 +269,14 @@
 <ul>
 <li>两者结合的sandbox题目频出</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol>
 <li>子进程实行seccomp，后续的system call会受到内核级别的全局限制</li>
 <li>但是如果想要执行特定的system call，需要首先通过子进程的过滤器。通过校验后，对system call进行”代理实行”处理(也存在子进程没有独立过滤器的情况)</li>
@@ -270,7 +298,14 @@
 <ul>
 <li>除了使用下面这样的pipe管道进行数据交换外，还使用ptrace， process_vm_readv，process_vm_writev等</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081401.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019081401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="常见模式"><a href="#常见模式" class="headerlink" title="常见模式"></a>常见模式</h1><h2 id="常见模式1-有无CLONE-VM皆可"><a href="#常见模式1-有无CLONE-VM皆可" class="headerlink" title="常见模式1(有无CLONE_VM皆可)"></a>常见模式1(有无CLONE_VM皆可)</h2><ul>
 <li>自己独立过滤器的参数检查比较容易bypass<ul>
 <li>检查范围的溢出，index溢出，特殊字符，竞争等</li>

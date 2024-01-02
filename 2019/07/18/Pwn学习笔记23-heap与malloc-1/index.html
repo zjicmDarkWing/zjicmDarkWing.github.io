@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="PlaidCTF 2015 - pwnable620(420+200) - tp Use After Free + sandbox逃逸 主要三个点 heap thread arena   sandbox seccomp   thread clone     扩展部分并不是解题必须的，但因为相关资料较少，作为补充内容 heapThe Malloc Maleficarum 有点老（x86, glibc">
+    <meta name="description" content="PlaidCTF 2015 - pwnable620(420+200) - tp Use After Free + sandbox逃逸 主要三个点 heap thread arena   sandbox seccomp   thread clone">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记23:heap与malloc(-1)">
 <meta property="og:url" content="https://darkwing.moe/2019/07/18/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B023-heap%E4%B8%8Emalloc-1/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="PlaidCTF 2015 - pwnable620(420+200) - tp Use After Free + sandbox逃逸 主要三个点 heap thread arena   sandbox seccomp   thread clone     扩展部分并不是解题必须的，但因为相关资料较少，作为补充内容 heapThe Malloc Maleficarum 有点老（x86, glibc">
+<meta property="og:description" content="PlaidCTF 2015 - pwnable620(420+200) - tp Use After Free + sandbox逃逸 主要三个点 heap thread arena   sandbox seccomp   thread clone">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071602.jpg">
@@ -146,7 +146,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -251,7 +251,14 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071501.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>扩展部分并不是解题必须的，但因为相关资料较少，作为补充内容</p>
 <h1 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h1><h2 id="The-Malloc-Maleficarum"><a href="#The-Malloc-Maleficarum" class="headerlink" title="The Malloc Maleficarum"></a>The Malloc Maleficarum</h2><ul>
 <li>有点老（x86, glibc-2.3.5），使用malloc/free进行exploit的5种技术<ul>
@@ -421,58 +428,142 @@
 <h2 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h2><p>一个简单的例子：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>程序运行后main_arena内部大概是这样，next指向main_arena自身</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>第一次调用设置__malloc_hook的malloc_hook_ini()，即便停止也会跳过一次。malloc_hook_ini()结束后，TLS区域中设置了地址。</li>
 <li>搜索包含main_arena地址的地址，在mapped中也发现有</li>
 <li>指向main_arena的有两个，next和TLS区域</li>
 <li>这个是TLS区域中指向当前arena的指针的地址(0x7ffff7fed700)</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>调用arena_get2()后，生成了新的arena</li>
 <li>调用arena_get2()后，main_arena内部是这样，next的地址改变了</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>TLS区域中指向arena的地址也改变了</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>新的arena，bins的初始化也完成了</li>
 <li>next指向main_arena</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>对比arena_get2()调用前后的内存映射状态，可以看出原本的arena(main_arena)是在bss区域，新生成的arena是通过mmap获取的内存</li>
 <li>mapped内存区域前面，是_heap_info结构体</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071807.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>后面配置了thread arena</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>图示大概这样</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>后面是heap的chunk使用的区域</li>
 </ul>
 <h2 id="malloc-1-X-2"><a href="#malloc-1-X-2" class="headerlink" title="malloc(-1) X 2"></a>malloc(-1) X 2</h2><p>那么，thread arena生成后，再次调用malloc(-1)呢？</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071810.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>通过arena_lookup()，从TLS区域获得arena的地址（更新后的thread arena地址）</li>
 <li>通过mutex_lock锁定thread arena</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071811.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>_int_malloc()失败</li>
 <li>调用arena_get_retry()</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071812.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>第二次满足这个分支判断</li>
 <li>不需要关注ar_ptr-&gt;next，只需要将arena切换到main_arena(不调用arena_get2()，不会生成thread arena)</li>
@@ -504,7 +595,14 @@
 <li>在arena_get2()中，从上次lock成功的arena，通过跟随next使用lock成功的arena</li>
 <li>全部失败才会创建新的arena</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071813.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="现代malloc-实现-—-通过pthreads创建多线程的情况"><a href="#现代malloc-实现-—-通过pthreads创建多线程的情况" class="headerlink" title="现代malloc()实现 — 通过pthreads创建多线程的情况"></a>现代malloc()实现 — 通过pthreads创建多线程的情况</h3><ul>
 <li>生成线程时，TLS区域也是新生成的</li>
 <li>在新的TLS中，当前arena的指针被清空</li>
@@ -512,18 +610,39 @@
 <li>但是arena的数量存在最大值，如果超出，arena_get2()会使用已存在的arena作为当前arena（reused_arena()，通过arena的next来选择一个arena使用）</li>
 <li>这种情况下，会存在同一个arena被多个线程使用</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071814.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="现代malloc-实现-—-其它方式-clone之类-创建多线程的情况"><a href="#现代malloc-实现-—-其它方式-clone之类-创建多线程的情况" class="headerlink" title="现代malloc()实现 — 其它方式(clone之类)创建多线程的情况"></a>现代malloc()实现 — 其它方式(clone之类)创建多线程的情况</h3><ul>
 <li>TLS不是专门新建的</li>
 <li>当然，TLS区域也不会清零</li>
 <li>因此，各个线程都使用相同的arena</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071815.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/" target="_blank" rel="noopener">https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/</a></p>
 <h2 id="new-1"><a href="#new-1" class="headerlink" title="new(-1)"></a>new(-1)</h2><ul>
 <li>new(-1)也是类似的情况</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071816.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019071816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>获取sz参数</li>
 <li>malloc(sz)</li>

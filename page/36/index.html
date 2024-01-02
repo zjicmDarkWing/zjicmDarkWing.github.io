@@ -114,7 +114,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -204,8 +204,9 @@ mmap最初是一个将文件映射到内存中的系统调用
 使用此API，mmap可以直接从kernel中获取Huge Block(默认情况下超过128k字节)，而不是从heap获取
 
 再次回顾一下size的低位bit
-低位第二个bit是IS_MMAPED标志位
-另一个标志位如果是ON，那么将不是从fre...
+                
+                    
+     ...
     
 
         <a href="/2019/02/28/mmap/" class="post-more waves-effect waves-button">
@@ -253,16 +254,17 @@ mmap最初是一个将文件映射到内存中的系统调用
 
     
         small bin
+                
+                    
+                    
+                
+                
+            
+
 结构体大体上适合这个size，并不是best fit，只是just fit 分配器
 进一步改进
 不处理512字节之上的部分
-但是，对于较大的size也用这种8bit单位的bin是不现实的
-但是可以用多个列表，这个想法还不错
-
-large bin
-单位是64bit
-随着bin index增大，有必要将block size指数增大
-由于有许多较小的size，有必要采取平均到各...
+但是，对于较大的size也用这种8b...
     
 
         <a href="/2019/02/28/small-bin%E4%B8%8Elarge-bin/" class="post-more waves-effect waves-button">
@@ -315,12 +317,14 @@ large bin
 需要注意访问方法
 
 
-当我们转向malloc_chunk结构体来访问它时，可以看到存在fd，bk，实际上它们已经被用户应用所使用，如果访问会造成内存破坏
-很难从源代码中读取
-约束继续进行
-经常要考虑的
-prev_size在free时候的合并处理是必要的
-只有当prev处于free状态...
+                
+                    
+                    
+                
+                
+            
+
+当我们转向malloc_chunk结构体来访问它...
     
 
         <a href="/2019/02/25/header%E7%9A%84%E7%BA%A6%E6%9D%9F/" class="post-more waves-effect waves-button">
@@ -424,17 +428,17 @@ free是O(n)复杂度
 
     
         堆扩展
+                
+                    
+                    
+                
+                
+            
+
 因为堆并不是无限的，有时会出现空间不足的情况
 这时候，我们会使用brk系统调用来扩展heap区域，brk是一个用来更改heap结尾地址的API
 
-增加的区域分成两部分，前面一部分返回给用户，剩下的追加到free list中
-简单的brk实现
-
-data段包括静态数据和stack
-当前大小以及增量（内核中）malloc
-复制到新内存中
-对旧的数据进行mfree
-stack复制到内存末尾...
+             ...
     
 
         <a href="/2019/02/22/%E5%A0%86%E6%89%A9%E5%B1%95%E5%8F%8Abrk/" class="post-more waves-effect waves-button">
@@ -482,18 +486,18 @@ stack复制到内存末尾...
 
     
         Linux中进程地址空间模型
+                
+                    
+                    
+                
+                
+            
+
 古典的malloc
-
-使用free list来管理空闲内存
-整个进程只使用一个heap
-使用malloc的时候，管理区域会使用多个allocate，并且将头部追加到管理区域（如果某个地方没有管理区域，那么在free的时候将不知道需要释放的size）
-分配策略是first fit
-
-malloc的算法
-
-首先，从列表头获取头指针
-检查可用空间是否足够
-指针前进到列...
+                
+                    
+                    
+      ...
     
 
         <a href="/2019/02/22/malloc%E5%8F%8Afree%E7%AE%97%E6%B3%95/" class="post-more waves-effect waves-button">
@@ -541,22 +545,19 @@ malloc的算法
 
     
         0x01 内存布局大部分Linux：
+                
+                    
+                    
+                
+                
+            
+
 
 .text 汇编代码
 .data 有初始值的数据
 .bss  无初始值的数据
 heap 堆
-shared object 共享对象区域(libc.so之类的)
-stack 栈
-kernel-area 内核区域
-
-实际数值大概像这样：
-
-gdb-peda/pwndbg 下可以直接使用vmmap
-
-也可以通过cat /proc/$PID/maps
-
-每行有各...
+shared object 共享对象区域(lib...
     
 
         <a href="/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" class="post-more waves-effect waves-button">
@@ -674,15 +675,16 @@ Bash功能
     
         flag1随意注册账号后登录，发现已经存在的文章，两篇文章id分别为1和3，手动修改查看2即可获取：
 
+                
+                    
+                    
+                
+                
+            
 
-flag2弱口令 user:password  登录成功后获得：
 
-flag3对文章id进行遍历，发现一个较大的id存在内容：
-
-
-flag4编辑文章，修改id为空：
-
-flag5删除文章使用加密id，使用前面获取的user账号获取属于user用户的文章id，之后登录自己注册的账号进行越...
+                
+                    ...
     
 
         <a href="/2019/02/15/Postbook-Writeup-Hacker101-CTF/" class="post-more waves-effect waves-button">

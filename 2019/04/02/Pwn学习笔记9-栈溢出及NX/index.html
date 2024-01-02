@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="漏洞类型及攻略方法全写出来不太可能，图示大概这样：  Stack以x86环境为例 每个进程在内存区域底部都有一个stack  上半部分是在32位机器中运行32位程序 下半部分是在64位机器中运行32位程序  它与C语言函数密切相关12345678910int main(void)&amp;#123; 	int a, b;	..	func(a, b); ..	return 0; &amp;#125;void fun">
+    <meta name="description" content="漏洞类型及攻略方法全写出来不太可能，图示大概这样：                                                                                                             Stack以x86环境为例 每个进程在内存区域底部都有一个stack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记9:栈溢出及NX">
 <meta property="og:url" content="https://darkwing.moe/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="漏洞类型及攻略方法全写出来不太可能，图示大概这样：  Stack以x86环境为例 每个进程在内存区域底部都有一个stack  上半部分是在32位机器中运行32位程序 下半部分是在64位机器中运行32位程序  它与C语言函数密切相关12345678910int main(void)&amp;#123; 	int a, b;	..	func(a, b); ..	return 0; &amp;#125;void fun">
+<meta property="og:description" content="漏洞类型及攻略方法全写出来不太可能，图示大概这样：                                                                                                             Stack以x86环境为例 每个进程在内存区域底部都有一个stack">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040103.jpg">
@@ -129,7 +129,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,9 +219,23 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="漏洞类型及攻略方法"><a href="#漏洞类型及攻略方法" class="headerlink" title="漏洞类型及攻略方法"></a>漏洞类型及攻略方法</h1><p>全写出来不太可能，图示大概这样：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><p>以x86环境为例</p>
-<h2 id="每个进程在内存区域底部都有一个stack"><a href="#每个进程在内存区域底部都有一个stack" class="headerlink" title="每个进程在内存区域底部都有一个stack"></a>每个进程在内存区域底部都有一个stack</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040102.jpg" alt=""></p>
+<h2 id="每个进程在内存区域底部都有一个stack"><a href="#每个进程在内存区域底部都有一个stack" class="headerlink" title="每个进程在内存区域底部都有一个stack"></a>每个进程在内存区域底部都有一个stack</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>上半部分是在32位机器中运行32位程序</li>
 <li>下半部分是在64位机器中运行32位程序</li>
@@ -229,21 +243,49 @@
 <h2 id="它与C语言函数密切相关"><a href="#它与C语言函数密切相关" class="headerlink" title="它与C语言函数密切相关"></a>它与C语言函数密切相关</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main(void)&#123; </span><br><span class="line">	int a, b;</span><br><span class="line">	..</span><br><span class="line">	func(a, b); ..</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br><span class="line">void func(int a, int b)&#123; </span><br><span class="line">	int x, y;</span><br><span class="line">	..</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>例如，调用这个函数时stack状态如下：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>ESP/EBP不容易理解，这里解释一下</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040104.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>ESP寄存器始终指向栈顶</li>
 <li>EBP寄存器始终指向栈底</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040105.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040105.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>EBP-0x8能偶访问本地变量2</li>
 <li>EBP-0x4能够访问本地变量1</li>
 <li>EBP+0x8能够访问参数1</li>
 <li>EBP+0xC能够访问参数2</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040106.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040106.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>调用原函数也有相同的帧并保存EBP寄存器，当函数被调用时，EBP会以新的帧为基础更新。因此，调用原函数的帧暂时保存到stack中</p>
 <h1 id="栈溢出"><a href="#栈溢出" class="headerlink" title="栈溢出"></a>栈溢出</h1><h2 id="对策及解决方法"><a href="#对策及解决方法" class="headerlink" title="对策及解决方法"></a>对策及解决方法</h2><p> 首先来看经典问题</p>
 <ul>
@@ -334,7 +376,14 @@ void func(int a, char* s){
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="ret2plt"><a href="#ret2plt" class="headerlink" title="ret2plt"></a>ret2plt</h2><ul>
 <li>让栈的状态，在函数调用的瞬间是相同的(非常重要的概念)</li>
 </ul>

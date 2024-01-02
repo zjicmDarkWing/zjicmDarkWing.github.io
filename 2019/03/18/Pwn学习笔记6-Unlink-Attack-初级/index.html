@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -237,7 +237,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="fd-bk-是什么"><a href="#fd-bk-是什么" class="headerlink" title="fd/bk 是什么"></a>fd/bk 是什么</h2><ul>
 <li>free区域，为了再次利用时的高速，使用了双向链表结构<ul>
 <li>这是为了快速寻找分散在各个地方的free区块</li>
@@ -248,14 +255,28 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="正常的free"><a href="#正常的free" class="headerlink" title="正常的free()"></a>正常的free()</h2><ul>
 <li>假设紧接着P之前的P2是使用中状态<ul>
 <li>从P2开始，加上自身的size可以知道P的地址</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>如果在此状态下执行free(P2) ,那么将会产生两个连续的free区域</li>
 <li>这将产生一个大的free块，需要从列表中暂时删除P<ul>
@@ -264,7 +285,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 合并成一个大的free块(然后再次插入相应的列表)</p>
 <h2 id="exploit的流程"><a href="#exploit的流程" class="headerlink" title="exploit的流程"></a>exploit的流程</h2><ul>
 <li>在前面的内存进行堆溢出，覆盖fd<ul>
@@ -272,15 +300,36 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>进行free(P2)的时候，相连接的P被unlink</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031807.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>此时，BK和X在链表中相连</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="忆往昔"><a href="#忆往昔" class="headerlink" title="忆往昔"></a>忆往昔</h2><ul>
 <li>DEFCON CTF 2014预选赛出过的一道题，就是利用这样的技巧<ul>
 <li>Baby’s First: 1 - heap</li>
@@ -297,7 +346,14 @@
 </li>
 <li>加入了这样的判断，如果不满足将产生错误</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019031809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>P-&gt;fd-&gt;bk = X-&gt;bk != P ，unlink之前就会产生错误</p>
 
         </div>

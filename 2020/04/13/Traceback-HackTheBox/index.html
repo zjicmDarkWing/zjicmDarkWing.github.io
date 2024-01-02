@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;233  10.10.10.181  端口扫描三个端口  80打开是一个黑页，注释中有信息：   根据信息找到这个： https:&#x2F;&#x2F;github.com&#x2F;TheBinitGhimire&#x2F;Web-Shells 利用这些文件名作为字典，可以找到已有的webshell：  webshel">
+    <meta name="description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;233  10.10.10.181  端口扫描三个端口                                                                                                             80打开是一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Traceback - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/04/13/Traceback-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;233  10.10.10.181  端口扫描三个端口  80打开是一个黑页，注释中有信息：   根据信息找到这个： https:&#x2F;&#x2F;github.com&#x2F;TheBinitGhimire&#x2F;Web-Shells 利用这些文件名作为字典，可以找到已有的webshell：  webshel">
+<meta property="og:description" content="基本信息lab地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;233  10.10.10.181  端口扫描三个端口                                                                                                             80打开是一">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041301.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041302.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041303.jpg">
@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -222,32 +222,130 @@
 <li><h2 id="10-10-10-181"><a href="#10-10-10-181" class="headerlink" title="10.10.10.181"></a>10.10.10.181</h2></li>
 </ul>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>三个端口</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>打开是一个黑页，注释中有信息：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041302.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041303.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据信息找到这个：</p>
 <p><a href="https://github.com/TheBinitGhimire/Web-Shells" target="_blank" rel="noopener">https://github.com/TheBinitGhimire/Web-Shells</a></p>
 <p>利用这些文件名作为字典，可以找到已有的webshell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>默认账号密码进去，得到webshell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p>当前用户是webadmin，在其ssh目录发现存在authorized_keys文件，我们可以把自己创建一个authorized_keys文件，里面是SSH公钥，然后上传上去替换：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>然后就可以使用webadmin用户SSH登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="sysadmin"><a href="#sysadmin" class="headerlink" title="sysadmin"></a>sysadmin</h1><p>根据history和已有文件，我们可以切到sysadmin用户：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041308.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以自己修改下内容，这种写法得到友好的交互shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041310.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>同样，传个pspy64上去，搜集信息，发现有一个定时备份以root权限运行：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041311.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041312.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>注意复制后目录中的文件，00-header看起来是ssh登录后显示的内容，我们可以写入命令，然后重新登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041313.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041314.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041313.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020041314.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Hackthebox Traceback - YouTube<br><a href="https://www.youtube.com/watch?v=r8Pbimic9xQ" target="_blank" rel="noopener">https://www.youtube.com/watch?v=r8Pbimic9xQ</a></li>
 </ul>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="small bin 结构体大体上适合这个size，并不是best fit，只是just fit 分配器 进一步改进 不处理512字节之上的部分 但是，对于较大的size也用这种8bit单位的bin是不现实的 但是可以用多个列表，这个想法还不错  large bin 单位是64bit 随着bin index增大，有必要将block size指数增大 由于有许多较小的size，有必要采取平均到各个列表">
+    <meta name="description" content="small bin                                                                                                            结构体大体上适合这个size，并不是best fit，只是just fit 分配器 进一步改进 不处理512字节之上的部分 但是，对于较大的size也用这种8bit单">
 <meta property="og:type" content="article">
 <meta property="og:title" content="small bin与large bin">
 <meta property="og:url" content="https://darkwing.moe/2019/02/28/small-bin%E4%B8%8Elarge-bin/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="small bin 结构体大体上适合这个size，并不是best fit，只是just fit 分配器 进一步改进 不处理512字节之上的部分 但是，对于较大的size也用这种8bit单位的bin是不现实的 但是可以用多个列表，这个想法还不错  large bin 单位是64bit 随着bin index增大，有必要将block size指数增大 由于有许多较小的size，有必要采取平均到各个列表">
+<meta property="og:description" content="small bin                                                                                                            结构体大体上适合这个size，并不是best fit，只是just fit 分配器 进一步改进 不处理512字节之上的部分 但是，对于较大的size也用这种8bit单">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022801.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022802.jpg">
 <meta property="article:published_time" content="2019-02-28T05:33:03.000Z">
@@ -120,7 +120,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -209,14 +209,28 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="small-bin"><a href="#small-bin" class="headerlink" title="small bin"></a>small bin</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022801.jpg" alt=""></p>
+            <h2 id="small-bin"><a href="#small-bin" class="headerlink" title="small bin"></a>small bin</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>结构体大体上适合这个size，并不是best fit，只是just fit 分配器</p>
 <h2 id="进一步改进"><a href="#进一步改进" class="headerlink" title="进一步改进"></a>进一步改进</h2><ul>
 <li>不处理512字节之上的部分</li>
 <li>但是，对于较大的size也用这种8bit单位的bin是不现实的</li>
 <li>但是可以用多个列表，这个想法还不错</li>
 </ul>
-<h2 id="large-bin"><a href="#large-bin" class="headerlink" title="large bin"></a>large bin</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022802.jpg" alt=""></p>
+<h2 id="large-bin"><a href="#large-bin" class="headerlink" title="large bin"></a>large bin</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>单位是64bit</p>
 <p>随着bin index增大，有必要将block size指数增大</p>
 <p>由于有许多较小的size，有必要采取平均到各个列表的措施</p>

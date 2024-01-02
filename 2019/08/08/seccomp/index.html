@@ -128,7 +128,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -247,7 +247,14 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="seccomp的调用方法"><a href="#seccomp的调用方法" class="headerlink" title="seccomp的调用方法"></a>seccomp的调用方法</h1><p>有多种方法可以调用，有点复杂</p>
 <ol>
 <li>seccomp.h的库函数</li>
@@ -285,7 +292,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080702.jpg" alt=""></p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li><p>SCMP_ACT_KILL: 从内核收到SIGSYS，进程推出</p>
 </li>
@@ -302,9 +316,23 @@
 <li><p>此次生成的内部BPF指令如下：</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>测试运行，如果禁掉了read，会得到下面的结果：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="prctl-2"><a href="#prctl-2" class="headerlink" title="prctl(2)"></a>prctl(2)</h2><ul>
 <li>使用prctl定义的PR_SET_SECCOMP</li>
 <li>存在两种模式</li>
@@ -333,7 +361,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>基本流程如下：</p>
 <ol>
 <li>创建一个sock_filter结构体数组<ul>
@@ -362,8 +397,22 @@
 <ul>
 <li><a href="http://man7.org/tlpi/code/online/dist/seccomp/" target="_blank" rel="noopener">http://man7.org/tlpi/code/online/dist/seccomp/</a></li>
 </ul>
-<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080706.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080707.jpg" alt=""></p>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>seccomp过滤器注册后，调用system call，每次都会向内核传递这样的结构体</li>
 <li>平台架构检查是必须的。如果不存在此检查，则可能通过将执行上下文从x86切换到x64来跳过system call编号检查</li>
@@ -375,7 +424,14 @@
 </li>
 </ul>
 <p>测试运行，如果禁掉了read，会得到下面的结果：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>分析seccomp二进制文件的小技巧：</p>
 <ul>
 <li>假设是prctl(2)方式的seccomp<ul>
@@ -431,9 +487,23 @@
 </li>
 </ul>
 <h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><p>因为库中不存在seccomp(2)，这里使用syscall()：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这里很容易出错，（虽然它是相同的过滤模式，prctl为2，seccomp为1）</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>seccomp.h的库函数<ul>
 <li>简单</li>

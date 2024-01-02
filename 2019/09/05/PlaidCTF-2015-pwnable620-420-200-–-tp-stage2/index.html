@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="Stage2 sandbox bypass Stage1已经实现了任意代码执行   接下来就是sandbox部分 目标是读取&#x2F;home&#x2F;tp&#x2F;flag2    解析 - 整体构成 亲：  fork生成子A alarm handler 在随机位置设置子A的显示  子A：  seccomp clone生成子B 作为显示运行  子B：  主程序（note管理类）  kernel：  seccomp过滤器">
+    <meta name="description" content="Stage2 sandbox bypass Stage1已经实现了任意代码执行   接下来就是sandbox部分 目标是读取&#x2F;home&#x2F;tp&#x2F;flag2    解析 - 整体构成                                                                                                            亲：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PlaidCTF 2015 - pwnable620(420+200) – tp - stage2">
 <meta property="og:url" content="https://darkwing.moe/2019/09/05/PlaidCTF-2015-pwnable620-420-200-%E2%80%93-tp-stage2/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="Stage2 sandbox bypass Stage1已经实现了任意代码执行   接下来就是sandbox部分 目标是读取&#x2F;home&#x2F;tp&#x2F;flag2    解析 - 整体构成 亲：  fork生成子A alarm handler 在随机位置设置子A的显示  子A：  seccomp clone生成子B 作为显示运行  子B：  主程序（note管理类）  kernel：  seccomp过滤器">
+<meta property="og:description" content="Stage2 sandbox bypass Stage1已经实现了任意代码执行   接下来就是sandbox部分 目标是读取&#x2F;home&#x2F;tp&#x2F;flag2    解析 - 整体构成                                                                                                            亲：">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090203.jpg">
@@ -158,7 +158,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -257,7 +257,14 @@
 </ul>
 </li>
 </ul>
-<h1 id="解析-整体构成"><a href="#解析-整体构成" class="headerlink" title="解析 - 整体构成"></a>解析 - 整体构成</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090201.jpg" alt=""></p>
+<h1 id="解析-整体构成"><a href="#解析-整体构成" class="headerlink" title="解析 - 整体构成"></a>解析 - 整体构成</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>亲：</p>
 <ul>
 <li>fork生成子A</li>
@@ -278,19 +285,75 @@
 <ul>
 <li>seccomp过滤器</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>子A和子B的内存空间，fd等是公用的，寄存器数据通过pipe交换使用</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>子B运行system call时，如果被许可才会执行</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090204.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>如果不被许可（必要的额外检查），返回SIGSYG信号，调用SIGSYS handler，向显示传递数据</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>之后显示上进行过滤器，没问题的话会再次调用system call，这时seccomp过滤器会无条件通过</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090206.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>显示端的过滤条件导致进程强制结束</p>
-<h1 id="解析-sandbox部分"><a href="#解析-sandbox部分" class="headerlink" title="解析 - sandbox部分"></a>解析 - sandbox部分</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090207.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090208.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090209.jpg" alt=""></p>
+<h1 id="解析-sandbox部分"><a href="#解析-sandbox部分" class="headerlink" title="解析 - sandbox部分"></a>解析 - sandbox部分</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>信号handler(SIGALRM)注册</li>
 <li>从0x10000000~0x700000000000的范围中，选择两个随机区域，作为g_trusted_code使用的code区域和stack区域<ul>
@@ -301,16 +364,44 @@
 <li>因为随机生成的地址作为g_trusted_code，子A向该地址写入先使用的汇编代码</li>
 <li>因此ucontext使用的context的显示端，产生调用寄存器状况，会转送到子A</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090210.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090211.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>注册SIGSYS handler</li>
 <li>亲级的随机地址是生成给g_trusted_code使用，预先申请所有可能的区域，以便可以在任何地方写入，并通知父级，已经写入完成</li>
 <li>子A的内存空间，亲把g_trusted_code的汇编代码写入完成后，通过ucontext来切换</li>
 <li>g_trusted_code内执行clone()，线程的一端（子B）返回，子B开始执行do_command</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090301.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="事前准备"><a href="#事前准备" class="headerlink" title="事前准备"></a>事前准备</h2><ul>
 <li>依次调用一次那三个函数</li>
 </ul>
@@ -329,25 +420,60 @@
 </ul>
 </li>
 </ul>
-<h2 id="call-r12-munmap"><a href="#call-r12-munmap" class="headerlink" title="call_r12_munmap"></a>call_r12_munmap</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090303.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090304.jpg" alt=""></p>
+<h2 id="call-r12-munmap"><a href="#call-r12-munmap" class="headerlink" title="call_r12_munmap"></a>call_r12_munmap</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>在已经整体获取到的区域中，释放未使用的区域</li>
 <li>生成pipe</li>
 <li>变更g_trusted_code的内存权限</li>
 </ul>
-<h2 id="call-r13-seccomp"><a href="#call-r13-seccomp" class="headerlink" title="call_r13_seccomp"></a>call_r13_seccomp</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090305.jpg" alt=""></p>
+<h2 id="call-r13-seccomp"><a href="#call-r13-seccomp" class="headerlink" title="call_r13_seccomp"></a>call_r13_seccomp</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>省略前半部分生成filter的过程，这里直接贴出生成后的filter</li>
 <li>右下角这一大块是设置filter，filter内容参见左上注释部分</li>
 </ul>
-<h2 id="call-r14-clone"><a href="#call-r14-clone" class="headerlink" title="call_r14_clone"></a>call_r14_clone</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090306.jpg" alt=""></p>
+<h2 id="call-r14-clone"><a href="#call-r14-clone" class="headerlink" title="call_r14_clone"></a>call_r14_clone</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>作为子A的显示端（独立过滤器）</li>
 <li>作为子B的context切换，do_command</li>
 <li>清空ucontext使用的context，通过clone()产生子A和子B的分歧，子A：显示端，子B：do_command</li>
 </ul>
-<h2 id="arg-checker-amp-outside-run-check-and-do-syscall"><a href="#arg-checker-amp-outside-run-check-and-do-syscall" class="headerlink" title="arg_checker &amp; outside_run_check_and_do_syscall"></a>arg_checker &amp; outside_run_check_and_do_syscall</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090307.jpg" alt=""></p>
+<h2 id="arg-checker-amp-outside-run-check-and-do-syscall"><a href="#arg-checker-amp-outside-run-check-and-do-syscall" class="headerlink" title="arg_checker &amp; outside_run_check_and_do_syscall"></a>arg_checker &amp; outside_run_check_and_do_syscall</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>arg_checker()<ul>
 <li>system call是open时，arg1 == /home/tp/flag1的话，OK</li>
@@ -362,13 +488,27 @@
 </ul>
 </li>
 </ul>
-<h2 id="子A的sighandler"><a href="#子A的sighandler" class="headerlink" title="子A的sighandler"></a>子A的sighandler</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090308.jpg" alt=""></p>
+<h2 id="子A的sighandler"><a href="#子A的sighandler" class="headerlink" title="子A的sighandler"></a>子A的sighandler</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>通过seccomp，system call执行失败时（收到SIGSYS），作为sighandler被调用</li>
 <li>经过pipe到显示端，然后重新挑战</li>
 </ul>
 <h1 id="sandbox类的问题点"><a href="#sandbox类的问题点" class="headerlink" title="sandbox类的问题点"></a>sandbox类的问题点</h1><p>事实上，这是一个二阶段的sandbox</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol>
 <li>seccomp（kernel过滤器，不可bypass）</li>
 <li>显示端 + seccomp<ul>
@@ -379,7 +519,14 @@
 </li>
 </ol>
 <p>因此重点关注seccomp的bypass</p>
-<h2 id="关于seccomp的判定"><a href="#关于seccomp的判定" class="headerlink" title="关于seccomp的判定"></a>关于seccomp的判定</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090310.jpg" alt=""></p>
+<h2 id="关于seccomp的判定"><a href="#关于seccomp的判定" class="headerlink" title="关于seccomp的判定"></a>关于seccomp的判定</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>seccomp对二阶段显示端是否通过时如何判定的？<ul>
 <li>这个读一下seccomp的过滤器代码就能知道</li>
@@ -391,30 +538,72 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090311.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>在seccomp执行前的int 3断点patch</li>
 <li>ASLR有效</li>
 <li>int 3停止时，$r12是seccomp的过滤器，这里是0x21ee45b14ed0，从这里开始dump到整个内存页结束的内容</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090312.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090313.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090313.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>arch 检查（是不是x86_64）</li>
 <li>检查system call编号</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090314.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090314.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>检查RIP(下位32bit，上位32bit，分两次比较，RIP == 0x32b9f368f0b2的话ALLOW)</li>
 </ul>
 <p>通常allow的特殊地址：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090315.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090315.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>0x32b9f368f0b2（这个是每次都会变化的）</li>
 <li>这时，0x32b9f368f000~是g_trusted_code写入的区域</li>
 <li>diff = 0xb2</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090316.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090316.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>g_trusted_code + 0xb2（显示端中间）</li>
 <li>指向存放ret地址的地方</li>
@@ -431,7 +620,14 @@
 <li>在stage1已经实现了任意代码执行</li>
 <li>如果能够直接jmp到显示端的syscall，不就可以绕过所有过滤器了吗？</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090501.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>在子A内，有一个特殊的syscall可以完全通过seccomp</li>
 <li>子A和子B共享内存空间，因此可以从子B进行jmp来调用这个syscall</li>
@@ -444,7 +640,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090502.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>因此，需要某种技术从内存中获取显示端的地址</li>
 </ul>
@@ -455,9 +658,23 @@
 <li>mmap, mprotect, munmap, brk, mremap</li>
 </ul>
 <p>内存空间大概是这样：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>但是，实际上这些区域之间是有空隙的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090504.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="攻略idea"><a href="#攻略idea" class="headerlink" title="攻略idea"></a>攻略idea</h2><ul>
 <li>以适当的size进行mmap，填充这些空隙<ul>
 <li>mmap是被允许的syscall</li>
@@ -468,7 +685,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090505.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>访问没有mapped的区域时，会发生SIGSEGV，但存在避免SIGSEGV的方法</li>
 <li>利用syscall判定<ul>
@@ -489,7 +713,14 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090506.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="2">
 <li>如果失败，size再次减半，重试</li>
 <li>如果成功，对后面的地址进行write，判断区域是否存在<ul>
@@ -498,7 +729,14 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090507.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="4">
 <li>如果存在，判断它是否是code<ul>
 <li>开头四个字节是0x41 0xff 0xd4 0x48的话，可以判定是code</li>
@@ -506,7 +744,14 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090508.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090508.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="5">
 <li>判定成功的话，它是code<ul>
 <li>之后直接调用code + 0xb0的syscall，会允许所有的syscall</li>
@@ -514,10 +759,40 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090509.jpg" alt=""></p>
-<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090510.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090511.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090512.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090509.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090510.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090511.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019090512.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 
         </div>
 

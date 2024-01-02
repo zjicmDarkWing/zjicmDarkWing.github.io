@@ -120,7 +120,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -248,13 +248,34 @@
 <li>实际使用时，经常结合IV(Initialization Vector 初始化向量)使用</li>
 <li>这用于防止相同的明文在使用相同的密钥加密时产生相同的密文(类似linux密码中的salt)</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>类似的，在解密时，从密钥生成伪随机数序列并对密文进行xor异或</li>
 </ul>
-<h2 id="1-KSA-生成表"><a href="#1-KSA-生成表" class="headerlink" title="1.KSA(生成表)"></a>1.KSA(生成表)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061202.jpg" alt=""></p>
+<h2 id="1-KSA-生成表"><a href="#1-KSA-生成表" class="headerlink" title="1.KSA(生成表)"></a>1.KSA(生成表)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>最终生成的S是RC4的状态表，因为只对S进行交换处理，最终将重新排列[0,1,2,…255]</p>
-<h2 id="2-PRGA-生成伪随机数"><a href="#2-PRGA-生成伪随机数" class="headerlink" title="2.PRGA(生成伪随机数)"></a>2.PRGA(生成伪随机数)</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061203.jpg" alt=""></p>
+<h2 id="2-PRGA-生成伪随机数"><a href="#2-PRGA-生成伪随机数" class="headerlink" title="2.PRGA(生成伪随机数)"></a>2.PRGA(生成伪随机数)</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019061203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>最终的output是生成的随机数序列</li>
 <li>由于密钥未在PRGA中使用（密钥已经反映在S中），如果作为RC4内部表的S泄漏，则可以识别出随后的伪随机数序列</li>

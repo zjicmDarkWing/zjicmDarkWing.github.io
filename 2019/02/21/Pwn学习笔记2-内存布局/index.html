@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="0x01 内存布局大部分Linux：  .text 汇编代码 .data 有初始值的数据 .bss  无初始值的数据 heap 堆 shared object 共享对象区域(libc.so之类的) stack 栈 kernel-area 内核区域  实际数值大概像这样：  gdb-peda&#x2F;pwndbg 下可以直接使用vmmap  也可以通过cat &#x2F;proc&#x2F;$PID&#x2F;maps  每行有各种属性">
+    <meta name="description" content="0x01 内存布局大部分Linux：                                                                                                             .text 汇编代码 .data 有初始值的数据 .bss  无初始值的数据 heap 堆 shared object 共享对象区域(libc.s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pwn学习笔记2:内存布局">
 <meta property="og:url" content="https://darkwing.moe/2019/02/21/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="0x01 内存布局大部分Linux：  .text 汇编代码 .data 有初始值的数据 .bss  无初始值的数据 heap 堆 shared object 共享对象区域(libc.so之类的) stack 栈 kernel-area 内核区域  实际数值大概像这样：  gdb-peda&#x2F;pwndbg 下可以直接使用vmmap  也可以通过cat &#x2F;proc&#x2F;$PID&#x2F;maps  每行有各种属性">
+<meta property="og:description" content="0x01 内存布局大部分Linux：                                                                                                             .text 汇编代码 .data 有初始值的数据 .bss  无初始值的数据 heap 堆 shared object 共享对象区域(libc.s">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022101.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022102.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022103.jpg">
@@ -122,7 +122,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -211,7 +211,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="0x01-内存布局"><a href="#0x01-内存布局" class="headerlink" title="0x01 内存布局"></a>0x01 内存布局</h1><h2 id="大部分Linux："><a href="#大部分Linux：" class="headerlink" title="大部分Linux："></a>大部分Linux：</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022101.jpg" alt=""></p>
+            <h1 id="0x01-内存布局"><a href="#0x01-内存布局" class="headerlink" title="0x01 内存布局"></a>0x01 内存布局</h1><h2 id="大部分Linux："><a href="#大部分Linux：" class="headerlink" title="大部分Linux："></a>大部分Linux：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>.text 汇编代码</li>
 <li>.data 有初始值的数据</li>
@@ -221,7 +228,14 @@
 <li>stack 栈</li>
 <li>kernel-area 内核区域</li>
 </ul>
-<h2 id="实际数值大概像这样："><a href="#实际数值大概像这样：" class="headerlink" title="实际数值大概像这样："></a>实际数值大概像这样：</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022102.jpg" alt=""></p>
+<h2 id="实际数值大概像这样："><a href="#实际数值大概像这样：" class="headerlink" title="实际数值大概像这样："></a>实际数值大概像这样：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li><p>gdb-peda/pwndbg 下可以直接使用vmmap</p>
 </li>
@@ -245,12 +259,26 @@
 <li>物理内存和虚拟内存都与内核相关联，这是一种被称为MMU(Memory Management Unit)的机制</li>
 <li>用户程序只能看到虚拟内存，并不需要考虑物理内存</li>
 </ul>
-<h2 id="NX、ASLR、PIE"><a href="#NX、ASLR、PIE" class="headerlink" title="NX、ASLR、PIE"></a>NX、ASLR、PIE</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022103.jpg" alt=""></p>
+<h2 id="NX、ASLR、PIE"><a href="#NX、ASLR、PIE" class="headerlink" title="NX、ASLR、PIE"></a>NX、ASLR、PIE</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>这个例子有0x0804XXXX和0xfXXXXXXX两种类型的起始地址，前者在堆之外每次启动不会变化，后者每次启动都会发生改变，这被称为ASLR(Address space layout randomization，地址空间配置随机加载)。</p>
 <p>对前者也进行随机化的技术叫做PIE(position-independent executable, 地址无关可执行文件).</p>
 <p>这个例子中stack，mapped之类的很多地方都是rwx，也就是说，可以在这些内存区域进行读取，写入和执行。</p>
 <p>但是，这样的话安全性较差，因此NX(DEP)会使得text区域没有执行权限</p>
-<h2 id="RELRO"><a href="#RELRO" class="headerlink" title="RELRO"></a>RELRO</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022104.jpg" alt=""></p>
+<h2 id="RELRO"><a href="#RELRO" class="headerlink" title="RELRO"></a>RELRO</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022104.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>使用外部库(共享对象，*.so)时，他们会映射到地址空间的各个位置。</p>
 <p>如果每次都计算这些库提供的函数地址，这不太方便，计算一次后保存到一个映射表会很方便后续使用。</p>
 <p>这个表被称为GOT(Global Offset Table，全剧映射表)，它存在于地址固定的区域。</p>

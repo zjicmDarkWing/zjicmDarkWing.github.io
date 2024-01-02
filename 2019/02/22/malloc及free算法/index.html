@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="Linux中进程地址空间模型 古典的malloc  使用free list来管理空闲内存 整个进程只使用一个heap 使用malloc的时候，管理区域会使用多个allocate，并且将头部追加到管理区域（如果某个地方没有管理区域，那么在free的时候将不知道需要释放的size） 分配策略是first fit  malloc的算法  首先，从列表头获取头指针 检查可用空间是否足够 指针前进到列表的下">
+    <meta name="description" content="Linux中进程地址空间模型                                                                                                            古典的malloc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="malloc及free算法">
 <meta property="og:url" content="https://darkwing.moe/2019/02/22/malloc%E5%8F%8Afree%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="Linux中进程地址空间模型 古典的malloc  使用free list来管理空闲内存 整个进程只使用一个heap 使用malloc的时候，管理区域会使用多个allocate，并且将头部追加到管理区域（如果某个地方没有管理区域，那么在free的时候将不知道需要释放的size） 分配策略是first fit  malloc的算法  首先，从列表头获取头指针 检查可用空间是否足够 指针前进到列表的下">
+<meta property="og:description" content="Linux中进程地址空间模型                                                                                                            古典的malloc">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022201.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022202.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022203.jpg">
@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -215,15 +215,36 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="Linux中进程地址空间模型"><a href="#Linux中进程地址空间模型" class="headerlink" title="Linux中进程地址空间模型"></a>Linux中进程地址空间模型</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022201.jpg" alt=""></p>
-<h2 id="古典的malloc"><a href="#古典的malloc" class="headerlink" title="古典的malloc"></a>古典的malloc</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022202.jpg" alt=""></p>
+            <h2 id="Linux中进程地址空间模型"><a href="#Linux中进程地址空间模型" class="headerlink" title="Linux中进程地址空间模型"></a>Linux中进程地址空间模型</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="古典的malloc"><a href="#古典的malloc" class="headerlink" title="古典的malloc"></a>古典的malloc</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>使用free list来管理空闲内存</li>
 <li>整个进程只使用一个heap</li>
 <li>使用malloc的时候，管理区域会使用多个allocate，并且将头部追加到管理区域（如果某个地方没有管理区域，那么在free的时候将不知道需要释放的size）</li>
 <li>分配策略是first fit</li>
 </ul>
-<h2 id="malloc的算法"><a href="#malloc的算法" class="headerlink" title="malloc的算法"></a>malloc的算法</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022203.jpg" alt=""></p>
+<h2 id="malloc的算法"><a href="#malloc的算法" class="headerlink" title="malloc的算法"></a>malloc的算法</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol>
 <li>首先，从列表头获取头指针</li>
 <li>检查可用空间是否足够</li>
@@ -233,22 +254,50 @@
 <li>再次，检查可用空间</li>
 </ol>
 <p>此时，满足条件</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022204.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="7">
 <li>将空闲区域分成两部分</li>
 <li>更新list head</li>
 </ol>
 <p>此时first list的head：</p>
 <p>最终搜索失败的地方（分配内存的前一个节点）</p>
-<h2 id="实际情况"><a href="#实际情况" class="headerlink" title="实际情况"></a>实际情况</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022205.jpg" alt=""></p>
+<h2 id="实际情况"><a href="#实际情况" class="headerlink" title="实际情况"></a>实际情况</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>实际上会寻找一个更合适的区域</p>
-<h2 id="free的算法"><a href="#free的算法" class="headerlink" title="free的算法"></a>free的算法</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022206.jpg" alt=""></p>
+<h2 id="free的算法"><a href="#free的算法" class="headerlink" title="free的算法"></a>free的算法</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol>
 <li>从free list head获取第一个指针</li>
 <li>获取第一个节点的下一个指针(next = p-&gt;s.ptr)</li>
 <li>由于p&lt;bp&lt;next 不成立，进入下一步</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="4">
 <li>p前进到下一个节点</li>
 <li>获取下一个指针</li>
@@ -256,7 +305,14 @@
 <li>p和bp不相邻( p + p-&gt;size != bp)</li>
 <li>因为bp和p-&gt;s.ptr相邻(bp + bp-&gt;s.size == next)，合并</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019022208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="9">
 <li>free list head现在指向释放掉的节点</li>
 </ol>

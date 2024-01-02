@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="Pwn">
-    <meta name="description" content="回顾K&amp;R free  现在free list head指向释放掉的节点  缓存和本地引用 对heap内存访问概率最高的是在malloc之后立即free 刚刚free的内存在缓存上的概率很高 为了优先确保内存，malloc之后直接访问，不会出现缓存miss  缓存命中率很重要 缓冲区的延迟合并 当调用free时，立即 与相邻空间合并，并且暂时不会进行连接到free list的处理 最初实现">
+    <meta name="description" content="回顾K&amp;R free                                                                                                             现在free list head指向释放掉的节点  缓存和本地引用 对heap内存访问概率最高的是在malloc之后立即free 刚刚free的内存在缓存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="延迟合并">
 <meta property="og:url" content="https://darkwing.moe/2019/03/04/%E5%BB%B6%E8%BF%9F%E5%90%88%E5%B9%B6/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="回顾K&amp;R free  现在free list head指向释放掉的节点  缓存和本地引用 对heap内存访问概率最高的是在malloc之后立即free 刚刚free的内存在缓存上的概率很高 为了优先确保内存，malloc之后直接访问，不会出现缓存miss  缓存命中率很重要 缓冲区的延迟合并 当调用free时，立即 与相邻空间合并，并且暂时不会进行连接到free list的处理 最初实现">
+<meta property="og:description" content="回顾K&amp;R free                                                                                                             现在free list head指向释放掉的节点  缓存和本地引用 对heap内存访问概率最高的是在malloc之后立即free 刚刚free的内存在缓存">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030401.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030402.jpg">
 <meta property="article:published_time" content="2019-03-04T06:48:17.000Z">
@@ -120,7 +120,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -209,7 +209,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="回顾K-amp-R-free"><a href="#回顾K-amp-R-free" class="headerlink" title="回顾K&amp;R free"></a>回顾K&amp;R free</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030401.jpg" alt=""></p>
+            <h2 id="回顾K-amp-R-free"><a href="#回顾K-amp-R-free" class="headerlink" title="回顾K&amp;R free"></a>回顾K&amp;R free</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030401.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ol start="9">
 <li>现在free list head指向释放掉的节点</li>
 </ol>
@@ -237,7 +244,14 @@
 <li>像GUI画面切换之类的，会触发，free被单独调用，之后malloc被调用，数据结构体也会有大的变化</li>
 <li>之后再次进入正常状态</li>
 </ul>
-<h2 id="malloc的正常状态和突发状态"><a href="#malloc的正常状态和突发状态" class="headerlink" title="malloc的正常状态和突发状态"></a>malloc的正常状态和突发状态</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030402.jpg" alt=""></p>
+<h2 id="malloc的正常状态和突发状态"><a href="#malloc的正常状态和突发状态" class="headerlink" title="malloc的正常状态和突发状态"></a>malloc的正常状态和突发状态</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019030402.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 延迟合并有时会事与愿违，但可以接受，因为它在正常状态下是高速化的</p>
 <h2 id="还有一点"><a href="#还有一点" class="headerlink" title="还有一点"></a>还有一点</h2><h2 id="每个人都喜欢多线程"><a href="#每个人都喜欢多线程" class="headerlink" title="每个人都喜欢多线程"></a>每个人都喜欢多线程</h2>
         </div>

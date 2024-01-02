@@ -121,7 +121,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -267,12 +267,26 @@
 <li>控制EIP/RIP后，执行system(“sh”)就可以</li>
 <li>或者创建一个RWX区域执行shellcode</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080101.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080101.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h3 id="sandbox问题构成"><a href="#sandbox问题构成" class="headerlink" title="sandbox问题构成"></a>sandbox问题构成</h3><ul>
 <li>单纯控制EIP/RIP，并不能结束工作</li>
 <li>调用禁止的system call的话，进程会停止(pwn失败)</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080102.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080102.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>因为sandbox过滤了execve()，所以无法获得shell</li>
 </ul>
@@ -280,7 +294,14 @@
 <li>在前段进行pwn，控制EIP/RIP后绕过sandbox过滤的模式</li>
 <li>前段没有pwn，直接执行任意代码的模式</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080103.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images/master/2019080103.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="攻略方法"><a href="#攻略方法" class="headerlink" title="攻略方法"></a>攻略方法</h2><ul>
 <li><p>了解system call过滤处理</p>
 <ul>

