@@ -170,6 +170,66 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-Pwn学习笔记22-Use-After-Free"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-06-25 16:04:07" datetime="2019-06-25T08:04:07.000Z"  itemprop="datePublished">2019-06-25</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/06/25/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B022-Use-After-Free/">Pwn学习笔记22:Use After Free</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前置知识之前有过相关内容
+Use After Free 模式化fastbins类型典型流程
+找到存在Use After Free漏洞的指针x
+free(x)，但没有将x设置为NULL
+如果有多个指针，free(x)之后没有将所有的指针设置为NULL
+x最好是函数指针
+或者后面的y是一个函数指针
+
+
+free(x) # 但x仍然指向堆中的一个chunk
+发送会产生free(x)的输入选项
+
+
+...
+    
+
+        <a href="/2019/06/25/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B022-Use-After-Free/" class="post-more waves-effect waves-button">
+            続きを読む…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-Pwn学习笔记21-其他一些技术"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -659,62 +719,6 @@ nc pwn2.jarvisoj.com 9884
     
 
         <a href="/2019/05/21/XMAN-level5/" class="post-more waves-effect waves-button">
-            続きを読む…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-XMAN-level4"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-05-20 11:43:36" datetime="2019-05-20T03:43:36.000Z"  itemprop="datePublished">2019-05-20</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/05/20/XMAN-level4/">XMAN level4</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        题目信息
-nc pwn2.jarvisoj.com 9880
-level4.0f9cfa0b7bb6c0f9e030a5541b46e9f0
-
-32位elf，开了Partial RELRO和NX：
-
-                
-                    
-                    
-                
-                
-    ...
-    
-
-        <a href="/2019/05/20/XMAN-level4/" class="post-more waves-effect waves-button">
             続きを読む…
         </a>
     </div>
