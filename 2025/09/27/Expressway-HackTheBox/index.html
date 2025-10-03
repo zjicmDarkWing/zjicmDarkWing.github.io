@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Expressway - HackTheBox | 喵喵喵喵 | 愚かな人間</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#66CCFF">
+    
+    
+    <meta name="keywords" content="HackTheBox">
+    <meta name="description" content="有东西被加密了, 请输入密码查看.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expressway - HackTheBox">
+<meta property="og:url" content="https://darkwing.moe/2025/09/27/Expressway-HackTheBox/index.html">
+<meta property="og:site_name" content="喵喵喵喵">
+<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
+<meta property="article:published_time" content="2025-09-26T15:37:31.000Z">
+<meta property="article:modified_time" content="2025-10-03T14:39:05.544Z">
+<meta property="article:author" content="暗羽">
+<meta property="article:tag" content="HackTheBox">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="喵喵喵喵" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暗羽</h5>
+          <a href="mailto:Discord@darkwing_nya" title="Discord@darkwing_nya" class="mail">Discord@darkwing_nya</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zjicmDarkWing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-gratipay"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.buymeacoffee.com/darkwing_nya" target="_blank" >
+                <i class="icon icon-lg icon-coffee"></i>
+                Buy me a coffee
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://darkwing.moe/2015/01/01/about/"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Expressway - HackTheBox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Expressway - HackTheBox</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2025-09-26T15:37:31.000Z" itemprop="datePublished" class="page-time">
+  2025-09-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-Expressway-HackTheBox"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Expressway - HackTheBox</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2025-09-26 23:37:31" datetime="2025-09-26T15:37:31.000Z"  itemprop="datePublished">2025-09-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">您好, 这里需要密码. root hash: $y$j9T$u0cgimz******33WH1esn7</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="0314695e662bd6f313d5d8769cbc52b47873d387d1dcc0e9b05a3d809e7fd176">a01b97dad30a591d0c5dea1a5523a36d8c106944bb8192a8571c8ab3584bccb6eaba19165dc44336ebc624e61018644e4ffe6455a9fd44bfeb7d4fb80fddc037d17bc5645c3be104f05423a7927c3862559c9978b5f9444bb0543978233aefe30a258d46e801a37d551a25c2b980eb199ff7fc951a78d3622e78647908ccfd33ca2ae52fd1bfd2fa6c6a1956da1b38fb17cf1d221f71477645d259008b577a9846db6042eb916537ec2980f30413c2be547cf4770ba0977c9c5f9c2fe9620822bfa817b39fca09af7fe393f565b7abda73c5056044615169df365050c6566ebf9a22111fe7470de77cccefe8d9aaac58bb13c5762411a9378e678ecdd0032df928698176ba5dc3e3d7fd6a6460fe116b1e00f4669b63e56bc4c32b7f4a373cc42c9dbff87a58ec27af51af52be9e583e8ad694a34111dc8acb61f2b01b36226f95271373ec317f26542bf45cc7e437d4ea7e31bce00ef9c987dbc23109b7d1e147fa2c0c17f03f2b50609b8373ee91173bb83044413910d1f7646d3d5c5cde47eac8c37521e0e15e0eb857196c704be6cafec2368b7c45afd5b73b2d740033d1873240a6b9c6d28ec3f443726574ce30c2799bd8d20c478ea89081bbc476e39ac2df7e823087b19a69bbec6edad25123df8ea330c95e65f78de238953215cf4c374ddefbc31a37188ef725f7956a67296b4b21c3d36654a634e3ecd55ca45200a67adede50c17a313c26b2d6e5a805c30b04f1e5e1689e9e94e5d331047e2d98fa1b1b21fcdae6fb8c178ca538b2c6bf8ead53b5fc568badd48adf3f766cce9972b453a2eb25221b5fac13981bc914642f247ce8c20b7d54d80e1fb1ca87f8af9f2e8e81973d2f5f660051125f57162b75df78b2d7fd286a463cc800c0cfaedf1a2dfba484c572e24a2f3a5d0ab5cf44a3f587a28f10ef3d4c300891733e91e6c9eda219bbe1850745869ab4fd0482838494e630ecb2e39343137022dd34b713b581ec850e6fd08b0ee7f28bd12dd63a5edf5e8fe5515e556c18c8acfbce33c6d2b17a8b3c984f11bfc1db0b24e2af8954bb226be68f4f55d19916ee899174cfbd392d7491a296e5005f2e723e4c4d5e1f61b95bf515885d394a94f08bf44b96a5101e0c426dcc695cfe08d27e70d3557724a9cdcfce3415c0deed30b2a61b954482b2af9d037db9b0b8794c4f8622ef06d7b7c44984e25de2b9990dde0a9aab119a6ac222f9e213bdb4a484e1d06b031cfbdbce8413bab96bfe879bfa87f4b542945ca0a34eb34d8ca8daf7e030480b2daa6b46de04937c48f9e0b7aac9af9f08e0a691ad63fa7b3a398c95ff9b9917508b1a26439f502ede43aac1640dd91d843499c73f39ef3f63e10b7f9cbf975782f9dfd7b0622d2973c54f5730713ab3f3e97f8924964f1f620b717bcf329bfe318d478621919f475a8404598abaa5acbf73c6095ff39a7c7d5e9b0c967814f654b8b6efafea2c838de5a628b3d534cf4238839f25a5fd683f0fdb24cbdb4b2645609529c0bc51be5d2f70376348354366c5183d68dc08f738b1741af237f988722dc98cff4292756b42fb34fda73bf5b4aa60572be08abcd3031de777a17b7d6bc8065f6be31f8ecc34ad4ae88b32ec3daf5945e2f30c95a14e044eaa4ce7585d59b21e55826a19db064aeadf7b3dde477faf21c7cfc877ff4cb530a7faa167fd24ea71279565d8e4b754efce6fd3d208ef7cd7c471df67ffe0c17b08d3262d8b7a737a491f7c4ff7a6d0bfd5ee93c5baa3326ee08aafb555c01a3a716fb8d2ab83412a5c82effd508dae30dfe899bf91ecd0b41d603ccf7c988e604495a79c41c0552842891f9d02726d5075a096cf695e5a6f9c99998fc07ebb1e16694aa0052e698b88eec9e798658dbd7bde1d716f4b3a597dd55feadc36c1435c52f2ed99935bebf563cad0258b44562c6440f4fc6c075af91dd294eb72542b37cd7b7be68bdaecbe2b2cbe6cd0bf595da44ed6fb5c3b82f188a9f9d65448fd2be475f9b6eeedfb16f5ea15a64e5453425362a0d4d02c0b5f0205e486a7d67a0ef33ddea8cf23b6f697a2bb7930496f1c6aa407f45104040ae4c9376eb150fc083b5e0cde7dcaff59f59de1169ce4a159829af1a0387c676505833f07248fcb69a63deceaa89d1de593ae965c5066ed187338bf45a6a52813fa557e09ce8c85d3d6d60064153f4b79e40f748c237fcf670ec63aff254eb10036f136ed42649d1534853cecf66474057b5df13d38e4be0d96a681eed0aed03a92ae32ca7dcd878ac46fde2bcc80f1717c76b10fb116eaf1c175241ad2ebb681482bb3bbdb0fedad3a282d38398b01184f01ad776ce549dfcaf1b7b098a2264895f5d77e8cc3519876a03cf2b3e05c469c688b35ab752845fede7ee7f096f69b40f8fbe98dcc4073f7376e2590855194c0675ac23a385f5a5e03f4cd56879c6bec1533885100eec8bf4486b105ecb5e89258fe6b52f3edd2368f8fc4b8e207421a4e68c3956e25b3b437e78b9e1fc2dd187227c71563fd2c555a713f43164f4905db8d585387af935a2ebf9f78e3a36bc2416999ced07e810a6c3074bbb062220ea9e292e897ca23f15b36a3e251acb39c37c6fd4686414adf7752579394881a089916264d729b6767926d3ac73457c02d1f21245a0e9f8809dbf3fade86770f674bb46db785f8786dd109df7bff4bfa50a64c819dd5ef1962dc132ee48c1c09ed59cf5fe5509ff37af11fd562b4e6c866f2b017eaadaec376cfb64399ffb2091b6c95944a6cc5ac20fb1992fdc90868156ea0f180803bbb48a727852051006883d4639edf7962894d4cedfbc62de7aa24beadcdff8d047fd8be201679efead48e08eb72a04d0ab053da338b2f5c606521b81d3fb2a059caf08d7a2da85dbc0b7d222f8321a75e957928516cb845a2c09468b91f39f9ccf3436c2a24f98322407a31fac1f89624beebe08de89303fa4fa85b7d9e5cfa0d238697bce2b13d6914258a3e706dda5c40a62d75ed7e8692b090e9f5dc621ee0b52406e9afa83ca9d68c61f1acd0cf75ea9a525666461dbdbd66790465e63f28387a09452fc228a0e81a52e14efdadc51e1a6a02e548cb975d54bbee27ecb6c8238e3db02947c727f2a69b6df959ea660153be3858571009fafa9bf078efb6bbc311ba780639c6083665802f1dbd9c92c3c81b75a2da198b66a208272ff5000676633f8b76f08764069629bb87bb9365de495caebe2c190c797660adcb78737965d90963f1dd33a636ee1ce72104ef052ef92c6590cd4614ede049761f42aacf7b55848dacd3807a830533af2d541fb63c4297f37d582ccf8a8d06b19e988cee366100e4497898f4e8ed3fa117d14d0ceeb54c9e2e8ef47a4690790a4396524238d2b087cc0726f27f7c26886d7391188c2cce11a5d3c03bd167bd661e74a735f615ac0f8970382be7a9e8c577918a4884a98b23f8c71de5218cac43b93435459cf98e25dcfda9f72823f1d4b78276708c4e43f470fa3aae5ea79dad3dce2eb73cc0ecab91536ca5a7118b835b0dc15f1406a5c1eca6ba9b2cdeab4cd1fec8fb411cefd83be8692862a2b42acbd4a9d2111386096de83ee20c904defa74827187f89bf25ad423ddd2639e06b75188afd540f057fca675969f4062d70b43164705af4b60f74d2b9f52a0156ab45374aa426045624837f3076991f10c81ea8bb8d9117142ba6e403490628c195d0416ba450cbf79593e839f8bee388538da0fe71a00e3569c27a6e429399813682f6549a3dcc2fc4d9689ce6dcebf613b6c3cb45e5f8dd32171c28cfc0cf470f6a54e401df777f9383f2c21f4f18e79c0e8e9cdbe6e911489fe0fed4bd3e6cf148f6ca000d25d1c2437e3e289721976949315fd0649b1e1bd91342b07dba2bde2cc55f2869106dc461dbca1a5170a7df661fe7f160b8722e4545eae8dac22f75d92976fe762b410276ec40908f2bff0c0876fcb0125e7bf544d54adb941b4366db7782456b4bef111434e39b473ec4dc39b5a88409127684903cb02071c6faf789db716d4772c00559c1f466ec70537a5f819dc96ecd6f8473a5fb82a36e96e44d38ba7c0ea00fdb97204dde8b0a572fb63de42e0b6d083afd27ba79ed76df4ea598abe4fdac5debed8ef51180d41d06b068fa9f19366f1228e75e0df4ec82e4840e2df41eff9a554df2c820b6d9921f39fd0a1c67b5e847a1a61d8b586d1555cc2715202478e9371b7b8665fba3b27d903d2d7cf6598658dba602003f1d57970322790585098522a0cde31d7994ac4101aa1578513015190c7d67708d48d34e1886b5c63a756002f987bc76734880e835121b281d704452e2cad88bd28cdc3e4734882e7f9bb7f6c0c953526503d7a97afc14050d4d2316ff88878d1b60c05e20209a15db76eca73d8346a713b9c055339c6b60ce6860952d697e69d557fe12f2abe0ace3d37e79a029652523cd2024d3ab9924fa67057ef5b15e29d79190eee933b042668481400d905fa4f0ff373fd0c53e33908de1714818b2697c5f76946ad0975b6151dc85096426de9a4907eedc762646ff1849d9bf2bb54e8d69ec9c278bf35f58c3646729a00cd71855ec206870f22370d498aba38f3bdc9cfa835191739005d0868ae46dfd5d49b2ad6d3f2b53c04262634e0a878d45821d2f94b61d545e62eb311662138290bb370d0c755c3c1430865c4942abb8f2a1d734017f9121c6b6ee92e4f6e152b8390509243d92dc0297be22d4e23063c4a601e9e3fc6f72be8b6b8722910013d2e3a7aef51f77b4e65be4c18225280996ce5bc793e73adb1c76e2adc3c844725b39d93ad9bc62e46ac1e79348e6225b1562a2cce29daea56045a559c81fcded680f38bafdd1a974cdb240fbd57089921a42ea7f7539160af628af08eafcc2b72c54ee2f43563e2b83d1a148e31418505d9a1db261918089c623f1fc96bf75a8ced46955736dffee9c79d009c09e857563a23c9e7ce81d1969e7cf48fc036658a131b329b8e317019022ff7839e51eaeb73dd1ccbb722b83616e3f3fce9967b1cc4e2b19b88309d282c0bf1a423c8e72c33e063e45940d174e7eb12736f1d98b7c9dbc89830341d55b684438ea81bc81b01a0b3b86e855845e97ca27a1a53c129d7015dea7f55d2b29ec898c3df302e71a61b72bf3f0de93f6d4d37c4c449bf15728c1e27cad889d04d71374dc2f008c9acbc1548eaa914e7008f60e225c0e3a86496b0ca804995536b4979af0577a1b85e01ffed441a3cc5af3bee51c3af1ce8346b9553d83d50efc1ec06bf7606502f7d7cf1d6a4cb15cc31cdb7df2532e31f627a4fcfc5dd7eddc0e868531e76984d99d8a3b4d8abe7118fce5d04e4120fd90f30c4126a13bc7f56ca07b7feb9c24cf7be169332563ccd20781d0bccb4810d00fd5060ead401692495076584acee5e704773829a97379502ee711ae467a04b62639257a6683d66a2a907aff073fe2804759cb8e1089ad430904756620181df128b8ad8672deb38e24ad22521ca9dfcd6dee58a2430790b50ce0f4606d77dc7f644deed89e1e2fe2997365fcdd7b1ebc2b1c871efac30e72b2ab06faac539e204011e25bda1a41d3cbc15b96939351b06ef426e4d17c726765c924080f60bf4a5bbf7c530bcb7bb862853d2f6d01a41e1e4fd147fa78fa248d4daebdf1b4fc149e3753b6ec45ea9126a273a4ef1f9a6615ab9ef4c4f03c750dc681100d88e33a4efdd98c8e257520506526024e8ffe346fcd23122fd0416c7da9028947311f79846838b43b04e664d2bed8d615461c3d88ba48af4576c664603f6d987cdb72d3c198c7de233a8c9ec77143122fc43d117f9be230d1099b0c73ba45338f1ba6e21262f09f74dc932ed7c940aaf215fb0a63dcd2bfe2f7f4982807525862e8bcdcab2ed64d8120d31f1403c098c8de973b1d3541ecd710ae78ebb198a2c33ec22aef3ae70e7cb94d7864df69c5b57b79e4d42d588e03256d37e94454a990d217daa22fccabd76ba6eb3f5fe9b6f0c686f55ede2f977b2bbcd4217ed833a7a6d954f5fc984f7905cfdbc9a09b24404fa5954b148a0bf02012d9a8feabca6c4ff34a036bc1fdb25e89738be02b74dc03cff02493f6be666bbe41db95d42d03fd854ad74efc8e68cf8d5f5c652c3a297991ee2182f7cbbfd9d5cc76ed51fdb6768ed3374700755b66114aaae2507a49f37c724b230577f12d189008cbabb54129faf014d726b74ce2049a08c2a17c2d2b6e77d976ded4087d8272f0811c715e67516478d004a477ce57eb921a3f6751f4cdace73867ffde134541e943ae879db02f73f91bbe0097b6a93619e7d178de5d64d905336b402b1e72fe8f39b32d535c2de4f452e46086eff31256f3a20ec89197f7f9e925ea0bfb115bac6463c0dc2ac2cd181167bb2e20624dd810c74e9a5afdf3c7b3bb04df7245075ae8d40d4c78c5f0c2f956158848afb5ea1d745eed27f9c08f40d61356832c9836d83509e54f4d1d946424097d3669f54b679b26ab2df7728ca688df7fed5d01b2c852ca447d688334986cf32487e9a38aadb845ac49cdace364d6d9ae27bcf1079286a501213eff071f6139952c98162e77683cc82c2a8890d74c4f1d4f847aa346b6136cfeaa0aa972858fc08b085271d997ec04e71fbbd0697ff975e6303acefe07a652be01d36e14b9b6d5ebae35b7b627a8a259c557314b03a537435b0e3d9a70d781ef48bf5d67bc9efcd70db9c33b4eacca1b43b601fbcbf44e47624e801ffcdb5f1a2b74d5ee62ff02df64e0988e988455376839b41e299e5d094f5e128c022a30e577994492daa410afc636ec4701eeb1741231006730bdcba035a409335255d603de4c52044008b7582d29258b568c91b14e2f23d31b8056a777aa518be4e8e9365f32abe825394b48aa7600b65e0bf5bbede27f57aa53ad5697470b9ecb0edae6ac09f4b5deb33b8772b262d36c7b40a652e3b8123d34fec2dc876b35ce61b33ef0283892c3d6117e64027ad005f7e4648f8842db4674f981b5ff1eb9a7dcaf4685ddc0991d7c50b9047309e8ba4c55c951f7d85c09a065b52a7a55b5e1b67ef60cdfd30effa4b0dd297f23adaaec41624b062460bd30562b9827ff4927b8f20188f6cd219bdd63a56b126da4adcd780e9543fabdf91fdd3bae17d824eadd0e3c3740eca1c42ecab87f9ea45ffb74ba38ee8998d189dd5b374e18a24616e9d6f4681fee6aa7f4a22e9176643dcac24f07fd9a551ab5735e4407496a76bcb006ab625bb4484aa3ba9f8a094fe908e7cd699419c471d8001f283f3b6f9a81c4005b6b01653013bca76226a6bc1259466e43eb16cd7b3a68fc218b81cc6ee8d015fc02cd5caab4963d2d7802976554a3966ae8ec80e4e1a8f2222c48eb2c2a800dc4a718e2c47ddc56fa867c3618d11530bd1b26a08025aedfc094e638fe1a5e80243844f8aff017464726807a8b1a0c718fe8858a670938b3dd8dfdafd5e4265cd62591463faef9311535507d4c72da357bf387569f463d9d4a54ddb7fc75d46c52034af073c19a3a8f4296692e0009ef29ae8b5ed2f2212dd8b8a9313488a82eb6f6fda3f828867eae4e40e8021f36ea8d0167dfa8c1d1291888ae835018aed58cc9643ced08424df6d75c7f5000d99139068a3980a39d1dad1fe73a4d243ce523c190bc713473dd63a188c1a7a36021df6fbfd09c1676043049de24d58e04149becb21a13e58424b19be9031832da7b39ed4d9c2c4c2e0261fe34d8daf3213a34dfc6ead1a3ec02216c5da83274097d0ddd73f104954e6b5304d51f4d5780f6c16f1fd080b61f39baf09c09a6d2d142bf84e056a7c6360a9fa30cb87aa554679dffc1c889c7b91c98d0b4df3779e0c4fc7367c8c99da178db6b4e250b6dda99857bcbfd826b2ed42c35edef78f4aa3885ef665609ee6a4c673c34549a264b01ac34709aa8af95165bb072428118338f912c9f3ff79244d19b11db68558d318801cbda29327fd41867753f5d69505d9fc75b9f1fcbf3fec475889fb71b23304895f90eeba6f2d544305739f263b6e91badb58d7e9a821720af8250982f0ad5df32f839234ec6563627a57434019cebf7b5b84a84ff94e5afebf5a146ae45463441f2331a54c79a90f45b586c24011d7bd03904aa71ce2570e987709bd6c3d8371384118fa83f5f9eb8cb8eb1de7b1478c944b101367149898ef7c6b6fab4bed91f2fe6373d36a88aa64bee4737763d55e77553cf2735678ea1be45c9b136c37134920a7734a78d4d70ef1b8a4fe89b0e68da0d205b7a96ef6f5096759b18d1a27023c76a55ab6221e164348f6f984dddf5c42fb506e19baa0ced0aef971ccedd553925a2465dff6419f49b44605c00ca4bde4be0d010a4e81ed2214b477a57fcc1f12672ed930151c96efed55c0f79aff9be6a5a4cb3eb738c9f9c55209d055286a5dbf44ddb3d32aebede566ea23ea1a8026dfe24258f666ef5bbcba6f44db2ce0ecc968e587458766650c5035db27fc14d79d54fb2dc9e9739e784169518e89a4e1435fd548039d10ce581ae334d265992330166e1a5e3e3106316f7214ff19635b906d47a079aa4453564384ee50de433427899d8d203f8833d639523c62d15880a43db993ac9b02bf95494fce017e513f48fb4966d7f08c7cf42df8e492205f9a27fc8e15f41a14d7a565c35a52f86478481f38592e68ce81e9820a0c864d2dd7fcd6286b9d74f4dfa8f7ee04f7781f3ea2db5e23b8abe314af2bcd41914f3858c9370313d00632afd38242ba3a2d484545ed0d7d5f94ec37049d075346edee800a0e70dc32cf629c85fa0af81dcfee8c0d7817cbf35580b7152e21442dcb07a5efd2f276d239d4824499a7c0bf96efa524cfd54f52658364aeaca52ecad962944cf7e738e8cd4b2dbc67517271b99257a77cfd55d4ec332fb804b8d0c66d519bf69c1af040963c71f1b1e4ea01dc852220548ebaa08b28c3e62d401cfaf8af5792503cb7d1be90c16a11f673a2e8385ae15157c489d974b98b6bd68f23586c100720ba09092efb322c51ea008851e1fd6394c79fdc3d5ab5b422844b9c863c38a7c256522000febdaeb19db274ec2e002a11fd44e3e04c81c37933bf44b333134b35c44f93b06f9c9b19420a6f2aebf5cf5a73eb2e3b9f41e3c1044d5ef2c1920cbb8b730457f3aa8e983ac0a59035ed1b1de73081b4922796660b45eb24bfee5f1ba61091fc72a5b6ad8c13cbf974d26eea2d391f3e38f7b3840dc58353c3316c480ae65a754cf28d8fa93900f1b4f8e92f9dabffb5805d7cafb1e7b09b76e9c245a85e93fa5769d90aa842e35f0d68788a794d4a19965a412c55ca4568e10213274e854eec2a809e7d3e156ad5f70f6bae3d79ae31f5b11bbf4405b8d589ebdf0b46b4790573db1584947c3ebd65a20439ab514e1ffa45df7675791fe88ebb60d4b9fd981a3e3dc394ddfdf839008867816a22d1cc3b8f5bb3bf80c01b61cffc0d2b3999f3655cbdabc5d5d4f2ee296de36d9d9a975fe2616f62ce103951d09de1ac40042aece3de408d4edb4397ddf0132939bf480795046aa66df7de79c08bc9a45b92d3dc102130d3662db635da1b0d630dd2896ed3ddab95913ff3e4004dfd822745603ee7aab6d7e713cf6745d709ad524311ea4da9d70e9053de4da757d0c9a649793216e903346cdf2baf0ac1959a0b2990c6770bcc8e343e44b300dee88f7377fc65ba42c696a02aaedc8fc1ae0d56f6397fa2bb7f84ff49c52fecd2ae240838e226602b3c6f95295a7bb19b9740498c61e39e64a3f1cb46f9b3a20aff416de5138a41640fe10ed755b18a83fb75c908747d1896d185ec46eda32abdc14b69de081345ab729283bd456b69de65f09200a66543690876c2e9c3ad125a4be733fa375df69c13830051c6fcbd268ac410eb4bb8352ecd133f2780cd1f48aca93099e7168f3640376781348feceffabff1493ca55bc55ce48c95a580264adec0762601d44e105576ee3e9a9a570ff9d86c32ccb3a90ff2891576d7ff0f18ec3ddb425bbdc6023ff9ad3c8b3a5de601ca3d8169c23b574e448ec20f8c71964efba713af39b7c2ed4b05d58b7481d9081e9834f8c371d72534d1322d2b48d69c40b06cc1039024898795940f60a17f722ba9ec03349c3bbc51b54aa5be2d766c1f214749d6cbe3ea5d5d4cdb749acced19f44356e2575f7299174e397305ddb2ea7de48650514920a86641cdc2f176580d7c74652018dd7997694d52436392235d3a7a2fd621b9bb63bf7e14f53010d6e97494a34b1810efd8d3d0b79ca357c6a20dbd40b394eb1a75e5261e2b8d221466fc7ae1649f0577ca5f24596f552ae93bc774c1fe181906a4b75f3e5c562610eccf59d82ad52dff8f7f38c53f72d3448922a12ab237c70cb91fa324c60848fa500ba584b6f06e1ca99ce9ea8a5de7d97397090db4d0b6f8551e5155843ff6d07d363acc2c93d806460be7532422bcfae70166d7b0edd584e082d7385d8dc8963bc922d2369f17640b11ba8c0b8796f05eab7f7ff75f43e6b4922c2e185ed9480062f0e02ed505209b24f42ff07fc5c2a6f769f2c6e5cf36c57fe1d37edbddd1537311435b7c071836fef2bac721fa8029e52a72f847cae6b0155f743ef9f4dbdda099e62e0421e694577bca731d072d5be77e677eaca143a42af6086b455c07ce30d720d075065bf44acb9de7be0cb2db007e11ccdea2abe5ffcbea75074de65de9fba59d811122c290ff02f8cf0fb459f34a20bd22c5efa567b0b97e40f3bafb8f7444f790320d539ad7705ae9d9ed163aacc4cb4255fdbf6dea9b91dd9c715a0b7908894f2c184b000d3d73a97b663a50236bab09ed9f20ac66d20c6591ad35629b83b307019929e340c21cb03ea4c49247a62aacb132242bed7d7528e34ea2a77090cb0febad004438cdd7c922fd9b2329056a99a61db3f95872480b1b77f4d1f8a156d9b2a10012b8e02a3cfe3ff61515765e0443c34c73e610ec86907b65671ff77d62a83e02262bdf4ef715bb8f54d251b7044f308538c4d</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2025-10-03T14:39:05.544Z" itemprop="dateUpdated">2025-10-03 22:39:05</time>
+</span><br>
+
+
+        
+        水平不济整日被虐这也不会那也得学,脑子太蠢天天垫底这看不懂那学不会
+        
+    </div>
+    
+    <footer>
+        <a href="https://darkwing.moe">
+            <img src="/img/avatar.jpg" alt="暗羽">
+            暗羽
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HackTheBox/" rel="tag">HackTheBox</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/&title=《Expressway - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/&title=《Expressway - HackTheBox》 — 喵喵喵喵&source=有东西被加密了, 请输入密码查看." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Expressway - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2025/09/22/HackNet-HackTheBox/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HackNet - HackTheBox</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: 'd35074a248599729ad26',
+          clientSecret: 'd208d5902ab831ba7294f942046bcd8da954f9ff',
+          repo: 'BlogComments',
+          owner: 'zjicmDarkWing',
+          admin: ['zjicmDarkWing'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>暗羽 &copy; 2014 - 2025</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/&title=《Expressway - HackTheBox》 — 喵喵喵喵&pic=https://darkwing.moe/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/&title=《Expressway - HackTheBox》 — 喵喵喵喵&source=有东西被加密了, 请输入密码查看." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Expressway - HackTheBox》 — 喵喵喵喵&url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/&via=https://darkwing.moe" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://darkwing.moe/2025/09/27/Expressway-HackTheBox/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACPUlEQVR42u3aUY6DMAxFUfa/aWYBlHCfDSMlufmqNB2SQyXLsX0ceJ2Xdf3r3fev3xl/vj7ttSVDhoxpGedwjY9FNr479Hh3fjYZMmTsw+Db82ONnz+OmfxsMmTIkDFO4MaBkhw6fU0yZMiQ0U/p+KWUJ6AyZMiQkQZQwiNBlhfmXr6Ly5AhY0IGv17+/+dP+hsyZMiYinGGK21w8uDIg+yPvWTIkLE0Iy2NdZLIcTpYY8uQIWMfRm30oVM4S8fCXksWZciQMSGjk/y92waotUVvM1wZMmQsx4ibhaWif62gj9oMMmTIWJpRu3aSBJEEZR7i0QiIDBkytmHwzVojXO1XU4z3MmTImJZRK9y/G3Dj8JqW4WTIkDEtg4TINMwFZbIwuN/uIkOGjKUZabDrJ3DpJTYYs5AhQ8bSDN5iTBNHEnZrwxbBbyJDhozJGVzJS2M8xew87eESK0OGjOUY6YUzHbY4vl4yZMhYmpEW/WuHTl9WmibKkCFjB0Z6WeXFLz6QkZb5Hm7hMmTIWJRRayimA1t3RyFX3IfgK0OGjA0YfJCrNkhB0sdOaU+GDBn7MHhw7ATc9L9Q+U+GDBmLMs5w1WpcPNHkF1eUFMqQIWMJRqfZyb/TL7eRpFOGDBlrM0iQ7Tcsa8OpwfuWIUPGBozg1ou3J+Owaar3kOfKkCFDBm4A8JTxtUENGTJkyCiV73kJj7yyh1AuQ4aMDRjpyEVaJuOAtCEhQ4aMHRi1WtYXySJ5WquRKUOGjPkYf/70A/FdktfZAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
