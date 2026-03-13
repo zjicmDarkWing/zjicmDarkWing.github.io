@@ -160,7 +160,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -394,7 +394,7 @@
                 <div class="image-caption"></div>
             </figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ sqlite3 Audit.db</span><br><span class="line">SQLite version 3.31.1 2020-01-27 19:55:54</span><br><span class="line">Enter ".help" for usage hints.</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> .tables</span></span><br><span class="line">DeletedUserAudit  Ldap              Misc</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from DeletedUserAudit;</span></span><br><span class="line">6|test|Test</span><br><span class="line">DEL:ab073fb7-6d91-4fd1-b877-817b9e1b0e6d|CN=Test\0ADEL:ab073fb7-6d91-4fd1-b877-817b9e1b0e6d,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line">7|deleted|deleted guy</span><br><span class="line">DEL:8cfe6d14-caba-4ec0-9d3e-28468d12deef|CN=deleted guy\0ADEL:8cfe6d14-caba-4ec0-9d3e-28468d12deef,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line">9|TempAdmin|TempAdmin</span><br><span class="line">DEL:5ea231a1-5bb4-4917-b07a-75a57f4c188a|CN=TempAdmin\0ADEL:5ea231a1-5bb4-4917-b07a-75a57f4c188a,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from Ldap;</span></span><br><span class="line">1|ArkSvc|BQO5l5Kj9MdErXx6Q6AGOw==|cascade.local</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from misc;</span></span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ sqlite3 Audit.db</span><br><span class="line">SQLite version 3.31.1 2020-01-27 19:55:54</span><br><span class="line">Enter ".help" for usage hints.</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> .tables</span></span><br><span class="line">DeletedUserAudit  Ldap              Misc</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from DeletedUserAudit;</span></span><br><span class="line">6|test|Test</span><br><span class="line">DEL:ab073fb7-6d91-4fd1-b877-817b9e1b0e6d|CN=Test\0ADEL:ab073fb7-6d91-4fd1-b877-817b9e1b0e6d,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line">7|deleted|deleted guy</span><br><span class="line">DEL:8cfe6d14-caba-4ec0-9d3e-28468d12deef|CN=deleted guy\0ADEL:8cfe6d14-caba-4ec0-9d3e-28468d12deef,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line">9|TempAdmin|TempAdmin</span><br><span class="line">DEL:5ea231a1-5bb4-4917-b07a-75a57f4c188a|CN=TempAdmin\0ADEL:5ea231a1-5bb4-4917-b07a-75a57f4c188a,CN=Deleted Objects,DC=cascade,DC=local</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from Ldap;</span></span><br><span class="line">1|ArkSvc|BQO5l5Kj9MdErXx6Q6AGOw==|cascade.local</span><br><span class="line"><span class="meta">sqlite&gt;</span><span class="bash"> select * from misc;</span></span><br><span class="line"><span class="meta">sqlite&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>ldap中得到信息，但直接base64解的话是乱码，直接搜这串base64能够搜到相关信息：</p>
 <p><a href="https://dotnetfiddle.net/2RDoWz" target="_blank" rel="noopener">https://dotnetfiddle.net/2RDoWz</a></p>
@@ -484,7 +484,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2020-07-27T00:51:57.818Z" itemprop="dateUpdated">2020-07-27 08:51:57</time>
+    Last updated: <time datetime="2020-07-27T00:51:57.818Z" itemprop="dateUpdated">2020-07-27 08:51:57</time>
 </span><br>
 
 
@@ -651,7 +651,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

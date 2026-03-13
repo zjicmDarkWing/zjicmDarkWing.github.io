@@ -150,7 +150,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -326,7 +326,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 decrypt.py</span><br><span class="line">Enter the Hash : Odh7N3L9aVQ8/srdZgG2hIR0SSJoJKGi</span><br><span class="line">Decrypted Password : kidvscat_admin_@123</span><br></pre></td></tr></table></figure>
 
 <p>github的是根据文件解，可以直接用hash：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> des <span class="keyword">import</span> * <span class="comment">#python3 -m pip install des</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    hash = str(input(<span class="string">"Enter the Hash : "</span>))</span><br><span class="line">    hash = base64.b64decode(hash.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    key = DesKey(<span class="string">b"7ly6UznJ"</span>)</span><br><span class="line">    print(<span class="string">"Decrypted Password : "</span> + key.decrypt(hash,initial=<span class="string">b"XuVUm5fR"</span>,padding=<span class="keyword">True</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"Wrong Hash"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> des <span class="keyword">import</span> * <span class="comment">#python3 -m pip install des</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    hash = str(input(<span class="string">"Enter the Hash : "</span>))</span><br><span class="line">    hash = base64.b64decode(hash.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    key = DesKey(<span class="string">b"7ly6UznJ"</span>)</span><br><span class="line">    print(<span class="string">"Decrypted Password : "</span> + key.decrypt(hash,initial=<span class="string">b"XuVUm5fR"</span>,padding=<span class="literal">True</span>).decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"Wrong Hash"</span>)</span><br></pre></td></tr></table></figure>
 
 <h1 id="root-flag"><a href="#root-flag" class="headerlink" title="root flag"></a>root flag</h1><p>之后直接winrm登录administrator，桌面得到root.txt:</p>
 <figure class="image-bubble">
@@ -352,7 +352,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2021-07-12T02:47:19.219Z" itemprop="dateUpdated">2021-07-12 10:47:19</time>
+    Last updated: <time datetime="2021-07-12T02:47:19.219Z" itemprop="dateUpdated">2021-07-12 10:47:19</time>
 </span><br>
 
 
@@ -519,7 +519,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

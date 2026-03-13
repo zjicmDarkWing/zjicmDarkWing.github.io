@@ -163,7 +163,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -287,7 +287,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dwolfe</span><br><span class="line">H0lOgrams4reTakIng0Ver754!</span><br></pre></td></tr></table></figure>
 
 <p>然后使用这组有效账号查看smb,在SOC Analysis里发现一个pcap文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/smbclient.py dwolfe:'H0lOgrams4reTakIng0Ver754!'@10.10.11.3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> shares</span></span><br><span class="line"><span class="meta">ADMIN$</span><span class="bash"></span></span><br><span class="line"><span class="meta">C$</span><span class="bash"></span></span><br><span class="line"><span class="meta">IPC$</span><span class="bash"></span></span><br><span class="line">NETLOGON</span><br><span class="line">SOC Analysis</span><br><span class="line">SYSVOL</span><br><span class="line"><span class="meta">#</span><span class="bash"> use SOC Analysis</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line">drw-rw-rw-          0  Thu May 11 02:52:24 2023 .</span><br><span class="line">drw-rw-rw-          0  Wed Feb 14 18:18:31 2024 ..</span><br><span class="line">-rw-rw-rw-    1372860  Thu May 11 02:51:42 2023 Latest-System-Dump-8fbc124d.pcap</span><br><span class="line"><span class="meta">#</span><span class="bash"> get Latest-System-Dump-8fbc124d.pcap</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python3 ~/Tools/impacket/examples/smbclient.py dwolfe:'H0lOgrams4reTakIng0Ver754!'@10.10.11.3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> shares</span></span><br><span class="line"><span class="meta">ADMIN$</span></span><br><span class="line"><span class="meta">C$</span></span><br><span class="line"><span class="meta">IPC$</span></span><br><span class="line">NETLOGON</span><br><span class="line">SOC Analysis</span><br><span class="line">SYSVOL</span><br><span class="line"><span class="meta">#</span><span class="bash"> use SOC Analysis</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line">drw-rw-rw-          0  Thu May 11 02:52:24 2023 .</span><br><span class="line">drw-rw-rw-          0  Wed Feb 14 18:18:31 2024 ..</span><br><span class="line">-rw-rw-rw-    1372860  Thu May 11 02:51:42 2023 Latest-System-Dump-8fbc124d.pcap</span><br><span class="line"><span class="meta">#</span><span class="bash"> get Latest-System-Dump-8fbc124d.pcap</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="pcap"><a href="#pcap" class="headerlink" title="pcap"></a>pcap</h1><p>查看pcap文件，在其中可以看到存在AS-REQ请求：</p>
 <figure class="image-bubble">
@@ -543,7 +543,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2024-06-24T01:43:30.004Z" itemprop="dateUpdated">2024-06-24 09:43:30</time>
+    Last updated: <time datetime="2024-06-24T01:43:30.004Z" itemprop="dateUpdated">2024-06-24 09:43:30</time>
 </span><br>
 
 
@@ -710,7 +710,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

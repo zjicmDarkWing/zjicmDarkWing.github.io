@@ -151,7 +151,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -267,7 +267,7 @@
 
 <p>##qreader.py</p>
 <p> 代码里发现websocket，对应域名同样加hosts：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">ws_host = <span class="string">'ws://ws.qreader.htb:5789'</span></span><br><span class="line">...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">version</span><span class="params">(self)</span>:</span></span><br><span class="line">        response = asyncio.run(ws_connect(ws_host + <span class="string">'/version'</span>, json.dumps(&#123;</span><br><span class="line">            <span class="string">'version'</span>: VERSION &#125;)))</span><br><span class="line">        data = json.loads(response)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'error'</span> <span class="keyword">not</span> <span class="keyword">in</span> data.keys():</span><br><span class="line">            version_info = data[<span class="string">'message'</span>]</span><br><span class="line">            msg = <span class="string">f'''[INFO] You have version <span class="subst">&#123;version_info[<span class="string">'version'</span>]&#125;</span> which was released on <span class="subst">&#123;version_info[<span class="string">'released_date'</span>]&#125;</span>'''</span></span><br><span class="line">            self.statusBar().showMessage(msg)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        error = <span class="keyword">None</span>[<span class="string">'error'</span>]</span><br><span class="line">        self.statusBar().showMessage(error)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">ws_host = <span class="string">'ws://ws.qreader.htb:5789'</span></span><br><span class="line">...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">version</span><span class="params">(self)</span>:</span></span><br><span class="line">        response = asyncio.run(ws_connect(ws_host + <span class="string">'/version'</span>, json.dumps(&#123;</span><br><span class="line">            <span class="string">'version'</span>: VERSION &#125;)))</span><br><span class="line">        data = json.loads(response)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'error'</span> <span class="keyword">not</span> <span class="keyword">in</span> data.keys():</span><br><span class="line">            version_info = data[<span class="string">'message'</span>]</span><br><span class="line">            msg = <span class="string">f'''[INFO] You have version <span class="subst">&#123;version_info[<span class="string">'version'</span>]&#125;</span> which was released on <span class="subst">&#123;version_info[<span class="string">'released_date'</span>]&#125;</span>'''</span></span><br><span class="line">            self.statusBar().showMessage(msg)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        error = <span class="literal">None</span>[<span class="string">'error'</span>]</span><br><span class="line">        self.statusBar().showMessage(error)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <h1 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h1><p>根据代码测试构造请求，得到响应：</p>
 <figure class="image-bubble">
@@ -362,7 +362,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2023-07-17T00:29:49.210Z" itemprop="dateUpdated">2023-07-17 08:29:49</time>
+    Last updated: <time datetime="2023-07-17T00:29:49.210Z" itemprop="dateUpdated">2023-07-17 08:29:49</time>
 </span><br>
 
 
@@ -529,7 +529,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

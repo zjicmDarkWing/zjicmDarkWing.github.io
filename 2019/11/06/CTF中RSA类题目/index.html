@@ -141,7 +141,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -207,7 +207,7 @@
             <h1 id="已知p-q-e-求d"><a href="#已知p-q-e-求d" class="headerlink" title="已知p,q,e,求d"></a>已知p,q,e,求d</h1><blockquote>
 <p>在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17<br>求解出d作为flag提交</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">p = <span class="number">473398607161</span></span><br><span class="line">q = <span class="number">4511491</span></span><br><span class="line">e = <span class="number">17</span></span><br><span class="line">n = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="comment"># 17x + ny = 1</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    <span class="keyword">if</span> ((<span class="number">1</span> - n * i) % e == <span class="number">0</span>):</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    i -= <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'%d'</span> % ((<span class="number">1</span> - n * i) / e)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">p = <span class="number">473398607161</span></span><br><span class="line">q = <span class="number">4511491</span></span><br><span class="line">e = <span class="number">17</span></span><br><span class="line">n = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="comment"># 17x + ny = 1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> ((<span class="number">1</span> - n * i) % e == <span class="number">0</span>):</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    i -= <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'%d'</span> % ((<span class="number">1</span> - n * i) / e)</span><br></pre></td></tr></table></figure>
 
 <h1 id="已知p-q-e-c-求m"><a href="#已知p-q-e-c-求m" class="headerlink" title="已知p,q,e,c,求m"></a>已知p,q,e,c,求m</h1><blockquote>
 <p>Math is cool! Use the RSA algorithm to decode the secret message, c, p, q, and e are parameters for the RSA algorithm.</p>
@@ -320,7 +320,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2019-11-06T08:25:41.738Z" itemprop="dateUpdated">2019-11-06 16:25:41</time>
+    Last updated: <time datetime="2019-11-06T08:25:41.738Z" itemprop="dateUpdated">2019-11-06 16:25:41</time>
 </span><br>
 
 
@@ -487,7 +487,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
