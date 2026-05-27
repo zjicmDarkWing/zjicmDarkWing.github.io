@@ -136,7 +136,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -168,6 +168,65 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-Pwn学习笔记15-Full-RELRO与library"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-05-10 10:32:07" datetime="2019-05-10T02:32:07.000Z"  itemprop="datePublished">2019-05-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/">Pwn学习笔记15:Full-RELRO与library</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        GOT overwrite对策 – Full-RELRO
+GOT可以重写会产生问题
+
+Full-RELRO使其只读
+
+
+
+这里整个section被设置为只读属性(只能在二进制启动时初始化写入)，Full-RELRO (RELocation Read-Only)
+编译选项： gcc -Wl,-z,relro,-z,now
+
+
+
+NX+ASLR+Full-RELRO绕过1 –ret2dl_run...
+    
+
+        <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-进阶ROP及libc"
@@ -215,7 +274,7 @@ alarm(x)
     
 
         <a href="/2019/05/09/%E8%BF%9B%E9%98%B6ROP%E5%8F%8Alibc/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -274,7 +333,7 @@ execve(“/bin/sh”, &amp;[“-c”, command, NULL], envp)
     
 
         <a href="/2019/04/23/ropasaurusrex-level3/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -327,7 +386,7 @@ execve(“/bin/sh”, &amp;[“-c”, command, NULL], envp)
     
 
         <a href="/2019/04/22/ropasaurusrex-level2/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -380,7 +439,7 @@ http://shell-storm.org/repo/CTF/PlaidCTF-2013/Pwnable/ropasau...
     
 
         <a href="/2019/04/19/Plaid-CTF-2013-pwn200-%E2%80%93-ropasaurusrex/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -444,7 +503,7 @@ stack pivot
     
 
         <a href="/2019/04/15/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B014-stack-pivot%E4%B8%8EOff-by-one/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -502,7 +561,7 @@ RX权限，即能够执行的只有.text区域，因此想办法使用.text区�
     
 
         <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B013-ROP%E4%B8%8EDROP/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -558,7 +617,7 @@ miao# echo 2 &gt; /proc/sys/kernel/randomize_va_...
     
 
         <a href="/2019/04/12/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B012-ASLR%E4%B8%8Ememory-leak/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -618,7 +677,7 @@ ret2libc
     
 
         <a href="/2019/04/09/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B011-ret2libc/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
     </div>
     
@@ -673,69 +732,8 @@ ret2libc
     
 
         <a href="/2019/04/09/MacOS%E4%B8%8B%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8php-mt-seed/" class="post-more waves-effect waves-button">
-            続きを読む…
+            阅读全文…
         </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Pwn学习笔记10-PLT-GOT与ret2plt"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-04-03 15:14:34" datetime="2019-04-03T07:14:34.000Z"  itemprop="datePublished">2019-04-03</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/04/03/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-PLT-GOT%E4%B8%8Eret2plt/">Pwn学习笔记10:PLT,GOT与ret2plt</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        PLT与GOTPLT(Procedure Linkage Table)与GOT(Global Offset Table)
-ELF文件调用库函数时，存在PLT入口和GOT入口
-
-注意，静态链接库没有这些
-
-
-是一种在libc.so等动态查找外部函数地址的机制
-
-PLT解析外部地址，之后保存(缓存)在GOT中
-
-
-
-如果有PLT入口，就可以在不知道函数实际地址的情况下去调用它
-
-PLT作为代理跳...
-    
-
-        <a href="/2019/04/03/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-PLT-GOT%E4%B8%8Eret2plt/" class="post-more waves-effect waves-button">
-            続きを読む…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
     </div>
     
 </article>
@@ -771,7 +769,7 @@ PLT作为代理跳...
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
