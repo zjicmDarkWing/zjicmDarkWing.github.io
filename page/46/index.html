@@ -170,6 +170,65 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-Pwn学习笔记15-Full-RELRO与library"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-05-10 10:32:07" datetime="2019-05-10T02:32:07.000Z"  itemprop="datePublished">2019-05-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/">Pwn学习笔记15:Full-RELRO与library</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        GOT overwrite对策 – Full-RELRO
+GOT可以重写会产生问题
+
+Full-RELRO使其只读
+
+
+
+这里整个section被设置为只读属性(只能在二进制启动时初始化写入)，Full-RELRO (RELocation Read-Only)
+编译选项： gcc -Wl,-z,relro,-z,now
+
+
+
+NX+ASLR+Full-RELRO绕过1 –ret2dl_run...
+    
+
+        <a href="/2019/05/10/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B015-Full-RELRO%E4%B8%8Elibrary/" class="post-more waves-effect waves-button">
+            続きを読む…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-进阶ROP及libc"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -675,67 +734,6 @@ ret2libc
         <a href="/2019/04/09/MacOS%E4%B8%8B%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8php-mt-seed/" class="post-more waves-effect waves-button">
             続きを読む…
         </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Pwn学习笔记10-PLT-GOT与ret2plt"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-04-03 15:14:34" datetime="2019-04-03T07:14:34.000Z"  itemprop="datePublished">2019-04-03</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/04/03/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-PLT-GOT%E4%B8%8Eret2plt/">Pwn学习笔记10:PLT,GOT与ret2plt</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        PLT与GOTPLT(Procedure Linkage Table)与GOT(Global Offset Table)
-ELF文件调用库函数时，存在PLT入口和GOT入口
-
-注意，静态链接库没有这些
-
-
-是一种在libc.so等动态查找外部函数地址的机制
-
-PLT解析外部地址，之后保存(缓存)在GOT中
-
-
-
-如果有PLT入口，就可以在不知道函数实际地址的情况下去调用它
-
-PLT作为代理跳...
-    
-
-        <a href="/2019/04/03/Pwn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-PLT-GOT%E4%B8%8Eret2plt/" class="post-more waves-effect waves-button">
-            続きを読む…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
-
     </div>
     
 </article>
